@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="Debug" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project=".\Snowcode.S3BuildPublisher.Tasks.Targets" />
+
+  <ItemGroup>
+    <SourceFiles Include="./S3Examples.proj" />
+    <SourceFiles Include="./EC2Examples.proj" />
+  </ItemGroup>
+
+  <!-- S3 -->
+
+  <!-- Sample/Debug target for publishing to S3 -->
+  <Target Name="Debug">
+    <S3BuildPublisher
+      EncryptionContainerName ="MySecretContainer"
+      SourceFiles="@(SourceFiles)"
+      DestinationBucket="s3publisher-testbucket-2"
+      PublicRead="true" />
+  </Target>
+
+  <!-- Sample target for publishing to S3 storing the file in a folder structure in the S3 bucket -->
+  <Target Name="StoreFileInFolder">
+    <S3BuildPublisher
+      EncryptionContainerName ="MySecretContainer"
+      SourceFiles="@(SourceFiles)"
+      DestinationBucket="s3publisher-testbucket-2"
+      DestinationFolder="Folder1/SubFolder"
+      PublicRead="true" />
+  </Target>
+
+  <Target Name="DeleteBucket">
+    <DeleteS3BucketTask
+      BucketName="s3publisher-testbucket-2"
+      EncryptionContainerName ="MySecretContainer" />
+  </Target>
+
+  <!-- Sample target to store AWS credentials -->
+  <!-- You should run this first time you run any of these targets to ensure your keys are stored -->
+  <Target Name="StoreKeys">
+    <StoreClientDetailsTask
+      EncryptionContainerName ="MySecretContainer"
+      AwsAccessKeyId="##YOUR-AMAZON-ID-HERE##"
+      AwsSecretAccesskey="##YOUR-SECRET-ACCESS-KEY-HERE##" />
+  </Target>
+  
+  
+
+</Project>

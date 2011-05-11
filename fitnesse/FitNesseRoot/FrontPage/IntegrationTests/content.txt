@@ -1,0 +1,5 @@
+!define TEST_SYSTEM {fit}
+!define COMMAND_PATTERN (%m -c suite.config.xml -a ${FITNESSEROOT}\assemblies\OnpointConnect.Fitnesse.dll.config -r fitnesse.fitserver.FitServer %p)
+!define TEST_RUNNER {assemblies\Runner.exe}
+
+Tests will go here.

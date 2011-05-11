@@ -1,0 +1,8 @@
+<suiteConfig>
+  <ApplicationUnderTest>
+    <AddAssembly>assemblies\OnpointConnect.Fitnesse.dll</AddAssembly>
+    <AddAssembly>assemblies\fit.dll</AddAssembly>
+    <AddNamespace>fitlibrary</AddNamespace>
+    <AddNamespace>OnpointConnect.Fitnesse</AddNamespace>
+  </ApplicationUnderTest>
+</suiteConfig>

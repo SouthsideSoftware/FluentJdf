@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdp.Jdf", "src\Jdp.Jdf\Jdp.Jdf.csproj", "{B70C889D-3B60-469D-8475-23818353771C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA105616-C5B0-4D3B-BA17-DB686117D4C7}"
+	ProjectSection(SolutionItems) = preProject
+		Jdp.proj = Jdp.proj
+		readme.txt = readme.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jdp.Jdf.Tests", "src\Jdp.Jdf.Tests\Jdp.Jdf.Tests.csproj", "{AB646A3D-481D-4776-A0D2-EA9FAC30954B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B70C889D-3B60-469D-8475-23818353771C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B70C889D-3B60-469D-8475-23818353771C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B70C889D-3B60-469D-8475-23818353771C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B70C889D-3B60-469D-8475-23818353771C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB646A3D-481D-4776-A0D2-EA9FAC30954B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB646A3D-481D-4776-A0D2-EA9FAC30954B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB646A3D-481D-4776-A0D2-EA9FAC30954B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB646A3D-481D-4776-A0D2-EA9FAC30954B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

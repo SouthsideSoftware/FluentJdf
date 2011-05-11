@@ -1,0 +1,6 @@
+!define TEST_SYSTEM {slim}
+!define COMMAND_PATTERN {%m -a RICOH.SJDF.Fitnesse.dll.config -r fitSharp.Slim.Service.Runner,assemblies\sjdf\fitsharp.dll %p}
+!define TEST_RUNNER {assemblies\sjdf\Runnerw.exe}
+
+!define COLLAPSE_SETUP {true}
+!define COLLAPSE_TEARDOWN {true}
