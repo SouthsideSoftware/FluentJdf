@@ -129,50 +129,65 @@
     <CallTarget Targets="TestInsideTeamCity" Condition="$(InTeamCity)"/>
 	</Target>
 
-	<Target Name="TestOutsideTeamCity">
-		<Message Importance="high" Text="TestOutsideTeamCity"/>
-    <CallTarget Targets="MSpecTests"/>
+  <Target Name="TestOutsideTeamCity">
+    <Message Importance="high" Text="TestOutsideTeamCity"/>
+    <PropertyGroup>
+      <TestDir>$(MSBuildProjectDirectory)\src\Tests\Jdp.Jdf.Tests\bin\$(Configuration)</TestDir>
+      <TestDll>Jdp.Jdf.Tests.dll</TestDll>
+      <TestReportName>Jdp.Jdf.Tests.Results.htm</TestReportName>
+    </PropertyGroup>
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName)'
+             Targets='MSpecTests'/>
     <CallTarget Targets="FitnesseTests"/>
-	</Target>
+  </Target>
 
   <Target Name="TestInsideTeamCity">
     <Message Importance="high" Text="Test inside team city"/>
-    <Message Importance="high" Text="Test: src\Jdp.Jdf.Tests\bin\$(Configuration)\Jdp.Jdf.Tests.dll"/>
-    <CallTarget Targets="MSpecTests"/>
-    <CallTarget Targets="MSpecCoverage"/>
+    <Message Importance="high" Text="Test: src\Tests\Onpoint.Commons.Core.Tests\bin\$(Configuration)\Onpoint.Commons.Core.Tests.dll"/>
+    <PropertyGroup>
+      <TestDir>$(MSBuildProjectDirectory)\src\Tests\Jdp.Jdf.Tests\bin\$(Configuration)</TestDir>
+      <TestDll>Jdp.Jdf.Tests.dll</TestDll>
+      <TestReportName>Jdp.Jdf.Tests.Results.htm</TestReportName>
+      <CoverageXmlName>Jdp.Jdf.Tests.Coverage.xml</CoverageXmlName>
+    </PropertyGroup>
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName)'
+             Targets='MSpecTests'/>
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName);CoverageXmlName=$(CoverageXmlName)'
+             Targets='MSpecCoverage'/>
     <CallTarget Targets="FitnesseTests"/>
   </Target>
 
   <Target Name="MSpecTests">
     <Message Importance="high" Text="MSpec: $(MSpecDir)\mspec-clr4.exe"/>
-    <Message Importance="high" Text="Testing: $(MSBuildProjectDirectory)\src\Jdp.Jdf.Tests\bin\$(Configuration)\Jdp.Jdf.Tests.dll"/>
-    <Exec WorkingDirectory="$(MSBuildProjectDirectory)\src\Jdp.Jdf.Tests\bin\$(Configuration)"
-          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\Jdp.Jdf.Tests.Results.htm Jdp.Jdf.Tests.dll"'
+    <Message Importance="high" Text="Testing: $(TestDir)\$(TestDll)"/>
+    <Exec WorkingDirectory="$(TestDir)"
+          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\$(TestReportName) $(TestDll)"'
           Condition='!$(InTeamCity)'/>
 
-    <Exec WorkingDirectory="$(MSBuildProjectDirectory)\src\Jdp.Jdf.Tests\bin\$(Configuration)"
-          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\Jdp.Jdf.Tests.Results.htm Jdp.Jdf.Tests.dll --teamcity"'
+    <Exec WorkingDirectory="$(TestDir)"
+          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\$(TestReportName) $(TestDll) --teamcity"'
           Condition='$(InTeamCity)'/>
   </Target>
 
   <Target Name='MSpecCoverage'>
     <Message Importance="high" Text="Code coverage on MSpec tests"/>
     <Message Importance="high" Text="dotCover: $(dotCover)"/>
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\dotcoverTemplate.xml" 
+    <Message Importance="high" Text="Coverage Testing: $(TestDir)\$(TestDll)"/>
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\dotcoverTemplate.xml"
           DestinationFiles="$(MSBuildProjectDirectory)\dotcover.xml" SkipUnchangedFiles="false"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
                XPath="//Executable"
                Value="$(MSpecDir)\mspec-clr4.exe"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
                XPath="//Arguments"
-               Value="$(MSBuildProjectDirectory)\src\Jdp.Jdf.Tests\bin\$(Configuration)\Jdp.Jdf.Tests.dll"/>
+               Value="$(TestDir)\$(TestDll)"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
                XPath="//Output"
-               Value="$(TestOutputDir)\coverage.xml"/>
+               Value="$(TestOutputDir)\$(CoverageXmlName)"/>
     <Exec Command="$(dotCover) c dotcover.xml"/>
-    <Message Text="##teamcity[importData type='dotNetCoverage' tool='dotcover' path='$(TestOutputDir)\coverage.xml']"/>
+    <Message Text="##teamcity[importData type='dotNetCoverage' tool='dotcover' path='$(TestOutputDir)\$(CoverageXmlName)']"/>
   </Target>
-
+  
   <Target Name="FitnesseTests">
     <Message Importance="high" Text="FitnesseTests"/>
     <Fitnesse WorkingDirectory="$(MSBuildProjectDirectory)\fitnesse" Suite="FrontPage.IntegrationTests" ExcludeSuiteFilter="failing"

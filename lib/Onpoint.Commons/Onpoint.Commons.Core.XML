@@ -1,0 +1,194 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Onpoint.Commons.Core</name>
+  </assembly>
+  <members>
+    <member name="T:Onpoint.Commons.Core.CastleWindsor.ContainerManager">
+      <summary>
+            Simple disposable singleton container for
+            the Windsor container
+            </summary>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.ContainerManager.LoadPlugins">
+      <summary>
+            Load plugins from the plugins folder.
+            </summary>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.ContainerManager.Release">
+      <summary>
+            Release the current instance and dispose the underlying container.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.CastleWindsor.ContainerManager.Instance">
+      <summary>
+            Gets the single instance of the container manager.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.CastleWindsor.ContainerManager.Container">
+      <summary>
+            Get the wrapped Windsor container.
+            </summary>
+    </member>
+    <member name="T:Onpoint.Commons.Core.CastleWindsor.Extensions">
+      <summary>
+            Extensions for Castle Windsor container
+            </summary>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.Extensions.RegisterRemainingInterfaceImplementations(Castle.Windsor.IWindsorContainer)">
+      <summary>
+            Register components in the calling assembly as singletons.
+            </summary>
+      <param name="container">The Windsor container.</param>
+      <returns>The Windsor container.</returns>
+      <requires>container != null</requires>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.Extensions.RegisterRemainingInterfaceImplementations(Castle.Windsor.IWindsorContainer,System.Reflection.Assembly)">
+      <summary>
+            Register components in the given assembly as singletons.
+            </summary>
+      <param name="container">The Windsor container.</param>
+      <param name="assembly">The assembly</param>
+      <returns>The Windsor container.</returns>
+      <requires>container != null</requires>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.Extensions.RegisterRemainingInterfaceImplementations(Castle.Windsor.IWindsorContainer,Castle.Core.LifestyleType,System.Reflection.Assembly)">
+      <summary>
+            Register components in the given assembly with the given lifestyle.
+            </summary>
+      <param name="container">The Windsor container.</param>
+      <param name="lifestyle">The desired lifestyle</param>
+      <param name="assembly">The assembly</param>
+      <returns>The Windsor container.</returns>
+      <requires>container != null</requires>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.Extensions.InstallAssemblies(Castle.Windsor.IWindsorContainer,System.Reflection.Assembly[])">
+      <summary>
+            Register components in the one or more assemblies
+            as directed in each assembly's Windsor installer class.
+            </summary>
+      <param name="container">The Windsor container.</param>
+      <param name="assemblies">One or more assemblies.</param>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.Extensions.LoadAndInstallAssemblies(Castle.Windsor.IWindsorContainer,Castle.MicroKernel.Registration.AssemblyFilter[])">
+      <summary>
+            Register components in assemblies loaded via one or more assembly filters
+            as directed in each assembly's Windsor installer class.
+            </summary>
+      <param name="container">The Windsor container.</param>
+      <param name="assemblyFilters">One or more assembly filters</param>
+      <returns>The Windsor container.</returns>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.Extensions.LogRegisteredComponents(Castle.Windsor.IWindsorContainer)">
+      <summary>
+            Log the registered components in the container.
+            </summary>
+      <param name="container">The container that has the component registry to be logged.</param>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.Extensions.GetClassesImplementing``1(Castle.Windsor.IWindsorContainer)">
+      <summary>
+            Gets a list of class full names that are registered with Windsor as an implementation
+            of the given service type.
+            </summary>
+      <typeparam name="T">The service type.</typeparam>
+      <param name="container">The Windsor container.</param>
+    </member>
+    <member name="T:Onpoint.Commons.Core.CastleWindsor.NameSelector">
+      <summary>
+            Select components from a type factory based on name.
+            </summary>
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.NameSelector.GetComponentName(System.Reflection.MethodInfo,System.Object[])">
+      <summary>
+            Overrides getting the component name for windsor by using
+            argument[0] as long as it is a string.
+            </summary>
+      <param name="method" />
+      <param name="arguments" />
+      <returns />
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.NameSelector.BuildFactoryComponent(System.Reflection.MethodInfo,System.String,System.Type,System.Collections.IDictionary)">
+      <summary>
+            Override to check component name for existance and return null if it is not registered.
+            </summary>
+      <param name="method" />
+      <param name="componentName" />
+      <param name="componentType" />
+      <param name="additionalArguments" />
+      <returns />
+    </member>
+    <member name="M:Onpoint.Commons.Core.CastleWindsor.NameSelector.GetArguments(System.Reflection.MethodInfo,System.Object[])">
+      <summary>
+            If we are getting by name, eliminate the first argument
+            as it is the name of the class.
+            </summary>
+      <param name="method" />
+      <param name="arguments" />
+      <returns />
+    </member>
+    <member name="T:Onpoint.Commons.Core.Helpers.ApplicationInformation">
+      <summary>
+            Common information about the application
+            </summary>
+    </member>
+    <member name="M:Onpoint.Commons.Core.Helpers.ApplicationInformation.LogApplicationInfo">
+      <summary>
+            Logs information about the application to the configured loggers.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.Helpers.ApplicationInformation.Name">
+      <summary>
+            Gets the name of the application as contained in the AssemblyProduct attribute
+            of the entry assembly.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.Helpers.ApplicationInformation.Version">
+      <summary>
+            Gets the version of the application as contained in the AssemblyVersion attribute
+            of the entry assembly.
+            This is the value used by .NET to check for compatibility with callers.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.Helpers.ApplicationInformation.FileVersion">
+      <summary>
+            Gets the file version of the application as contained in the AssemblyFileVersion attribute
+            of the entry assembly.
+            This is the library version with the build number.  Build number is not relevant
+            when checking for compatibility.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.Helpers.ApplicationInformation.Directory">
+      <summary>
+            Gets the application directory.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.Helpers.ApplicationInformation.IsWebApplication">
+      <summary>
+            Gets a boolean indicating whether of not the current application is a web application.
+            </summary>
+      <remarks>The application is considered a web application of the configuration file
+            name is web.config.</remarks>
+    </member>
+    <member name="T:Onpoint.Commons.Core.Resources.Messages">
+      <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.Resources.Messages.ResourceManager">
+      <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.Resources.Messages.Culture">
+      <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+    </member>
+    <member name="P:Onpoint.Commons.Core.Resources.Messages.NameSelectorCannotFindComponent">
+      <summary>
+              Looks up a localized string similar to Cannot find component with name {0} of type {1}.
+            </summary>
+    </member>
+  </members>
+</doc>
