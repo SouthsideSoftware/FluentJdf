@@ -152,8 +152,8 @@
     </PropertyGroup>
     <MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName)'
              Targets='MSpecTests'/>
-    <MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName);CoverageXmlName=$(CoverageXmlName)'
-             Targets='MSpecCoverage'/>
+    <!--<MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName);CoverageXmlName=$(CoverageXmlName)'
+             Targets='MSpecCoverage'/>-->
     <CallTarget Targets="FitnesseTests"/>
   </Target>
 
