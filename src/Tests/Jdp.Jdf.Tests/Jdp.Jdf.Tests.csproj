@@ -104,7 +104,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="when_running_a_dummy_test.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_checking_nodes_to_see_if_they_are_jdf_nodes.cs" />
+    <Compile Include="Unit\Utility\StringHelper\when_using_contains_that_support_case_insensitive_comparisons.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Jdp.Jdf\Jdp.Jdf.csproj">
@@ -112,6 +113,7 @@
       <Name>Jdp.Jdf</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
