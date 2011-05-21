@@ -22,7 +22,7 @@ namespace Jdp.Jdf.LinqToJdf
             Contract.Requires(parent != null);
             if (parent is XElement)
             {
-                ThrowExceptionIfNotJdfNode(parent as XElement);
+                (parent as XElement).ThrowExceptionIfNotJdfNode();
             }
 
             if (jdfNodeCreationAttributes == null)
@@ -53,6 +53,73 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
+        /// Returns true if the node is a JDF intent node 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static bool IsJdfIntentNode(this XElement element) {
+            Contract.Requires(element != null);
+
+            return element.IsJdfNode() && element.GetJdfType() == "Product";
+        }
+
+        /// <summary>
+        /// Gets the type of the node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static string GetJdfType(this XElement element) {
+            Contract.Requires(element != null);
+
+            return element.GetAttributeFromJdfNode("Type");
+        }
+
+        /// <summary>
+        /// Gets the types of the node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static string GetJdfTypes(this XElement element)
+        {
+            Contract.Requires(element != null);
+
+            return element.GetAttributeFromJdfNode("Types");
+        }
+
+        /// <summary>
+        /// Gets the job id of the node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static string GetJobId(this XElement element)
+        {
+            Contract.Requires(element != null);
+
+            return element.GetAttributeFromJdfNode("JobID");
+        }
+
+        /// <summary>
+        /// Gets the job part of the node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static string GetJobPartId(this XElement element)
+        {
+            Contract.Requires(element != null);
+
+            return element.GetAttributeFromJdfNode("JobPartID");
+        }
+
+        static string GetAttributeFromJdfNode(this XElement element, string attributeName) {
+            Contract.Requires(element != null);
+            Contract.Requires(!string.IsNullOrEmpty(attributeName));
+
+            element.ThrowExceptionIfNotJdfNode();
+
+            return element.GetAttributeValueOrNull(attributeName);
+        }
+
+        /// <summary>
         /// Make the JDF node an intent node.
         /// </summary>
         /// <param name="jdfNode"></param>
@@ -60,15 +127,21 @@ namespace Jdp.Jdf.LinqToJdf
         public static XElement MakeJdfNodeAnIntent(this XElement jdfNode)
         {
             Contract.Requires(jdfNode != null);
-            ThrowExceptionIfNotJdfNode(jdfNode);
+            jdfNode.ThrowExceptionIfNotJdfNode();
 
             jdfNode.SetTypeAndTypes("Product");
 
             return jdfNode;
         }
 
-        static void ThrowExceptionIfNotJdfNode(XElement jdfNode)
+        /// <summary>
+        /// Throws an ArgumentException if the given node is not a JDF node.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        public static void ThrowExceptionIfNotJdfNode(this XElement jdfNode)
         {
+            Contract.Requires(jdfNode != null);
+
             if (!jdfNode.IsJdfNode())
             {
                 throw new ArgumentException(string.Format(Messages.CanOnlyOperateOnJdfNode,
