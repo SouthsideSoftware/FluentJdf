@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
+    <Compile Include="LinqToJdf\ElementExtensions.cs" />
     <Compile Include="LinqToJdf\ElementNames.cs" />
     <Compile Include="LinqToJdf\Globals.cs" />
     <Compile Include="LinqToJdf\JdfElementExtensions.cs" />
