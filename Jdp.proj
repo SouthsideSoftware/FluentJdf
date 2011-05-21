@@ -142,7 +142,7 @@
   </Target>
 
   <Target Name="TestInsideTeamCity">
-    <Message Importance="high" Text="Test inside team city"/>
+    <!--<Message Importance="high" Text="Test inside team city"/>
     <Message Importance="high" Text="Test: src\Tests\Onpoint.Commons.Core.Tests\bin\$(Configuration)\Onpoint.Commons.Core.Tests.dll"/>
     <PropertyGroup>
       <TestDir>$(MSBuildProjectDirectory)\src\Tests\Jdp.Jdf.Tests\bin\$(Configuration)</TestDir>
@@ -154,7 +154,7 @@
              Targets='MSpecTests'/>
     <MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName);CoverageXmlName=$(CoverageXmlName)'
              Targets='MSpecCoverage'/>
-    <CallTarget Targets="FitnesseTests"/>
+    <CallTarget Targets="FitnesseTests"/>-->
   </Target>
 
   <Target Name="MSpecTests">
