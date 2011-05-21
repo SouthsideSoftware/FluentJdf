@@ -9,7 +9,7 @@
     <SouthSideTasksPath>$(ToolsDir)\MSBuild\SouthSideBuildTasks</SouthSideTasksPath>
 		<MSpecDir>$(ToolsDir)\MSpec</MSpecDir>
     <agent_home_dir>dummy</agent_home_dir>
-    <dotCover>$(teamcity_agent_tools_directory)\plugins\dotCover\bin\dotCover.exe</dotCover>
+    <dotCover>$(teamcity_agent_tools_directory)\dotCover\bin\dotCover.exe</dotCover>
 	</PropertyGroup>
 
 	<!-- Artifact Directories -->
