@@ -41,6 +41,71 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
+        /// Provides a resource factory used to add input resources.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        public static ResourceFactory AddInput(this XElement jdfNode) {
+            Contract.Requires(jdfNode != null);
+            jdfNode.ThrowExceptionIfNotJdfNode();
+
+            return new ResourceFactory(jdfNode, ResourceUsageType.Input);
+        }
+
+        /// <summary>
+        /// Gets the resource pool of the jdf node.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        /// <remarks>Creates the resource pool if it does not exist.</remarks>
+        public static XElement ResourcePool(this XElement jdfNode) {
+            Contract.Requires(jdfNode != null);
+            jdfNode.ThrowExceptionIfNotJdfNode();
+
+            var resourcePool = jdfNode.Element(ElementNames.ResourcePool);
+            if (resourcePool == null) {
+                resourcePool = new XElement(ElementNames.ResourcePool);
+                jdfNode.Add(resourcePool);
+            }
+
+            return resourcePool;
+        }
+
+        /// <summary>
+        /// Gets the resource link pool of the jdf node.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        /// <remarks>Creates the resource link pool if it does not exist.</remarks>
+        public static XElement ResourceLinkPool(this XElement jdfNode)
+        {
+            Contract.Requires(jdfNode != null);
+            jdfNode.ThrowExceptionIfNotJdfNode();
+
+            var resourceLinkPool = jdfNode.Element(ElementNames.ResourceLinkPool);
+            if (resourceLinkPool == null)
+            {
+                resourceLinkPool = new XElement(ElementNames.ResourceLinkPool);
+                jdfNode.Add(resourceLinkPool);
+            }
+
+            return resourceLinkPool;
+        }
+
+        /// <summary>
+        /// Provides a resource factory used to add output resources.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        public static ResourceFactory AddOutput(this XElement jdfNode)
+        {
+            Contract.Requires(jdfNode != null);
+            jdfNode.ThrowExceptionIfNotJdfNode();
+
+            return new ResourceFactory(jdfNode, ResourceUsageType.Output);
+        }
+
+        /// <summary>
         /// Gets true if the element is a JDF node.
         /// </summary>
         /// <param name="element"></param>
