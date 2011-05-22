@@ -25,6 +25,19 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
+        /// Sets the DescriptiveName.
+        /// </summary>
+        /// <returns></returns>
+        public static XElement SetDescriptiveName(this XElement element, string value)
+        {
+            Contract.Requires(element != null);
+
+            element.SetAttributeValue("DescriptiveName", value);
+
+            return element;
+        }
+
+        /// <summary>
         /// Adds arbitrary content to the element.
         /// </summary>
         /// <param name="element"></param>

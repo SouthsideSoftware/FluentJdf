@@ -14,24 +14,24 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
 
         Establish context = () => jdf = new XElement(ElementNames.JDF);
 
-        Because of = () => jdf.AddInput(ElementNames.BindingIntent).AddOutput(ElementNames.FoldingIntent);
+        Because of = () => jdf.AddInput(ResourceNames.BindingIntent).AddOutput(ResourceNames.FoldingIntent);
 
-        It should_have_binding_intent_in_resource_pool = () => jdf.ResourcePool().Element(ElementNames.BindingIntent).ShouldNotBeNull();
+        It should_have_binding_intent_in_resource_pool = () => jdf.ResourcePool().Element(ResourceNames.BindingIntent).ShouldNotBeNull();
 
-        It should_have_binding_intent_link_in_the_resource_link_pool = () => jdf.ResourceLinkPool().Element(ElementNames.BindingIntent.LinkName()).ShouldNotBeNull();
+        It should_have_binding_intent_link_in_the_resource_link_pool = () => jdf.ResourceLinkPool().Element(ResourceNames.BindingIntent.LinkName()).ShouldNotBeNull();
 
-        It should_have_binding_as_input = () => jdf.ResourceLinkPool().Element(ElementNames.BindingIntent.LinkName()).GetUsage().ShouldEqual(ResourceUsageType.Input);
+        It should_have_binding_as_input = () => jdf.ResourceLinkPool().Element(ResourceNames.BindingIntent.LinkName()).GetUsage().ShouldEqual(ResourceUsageType.Input);
 
-        It should_have_binding_resource_linked_by_id = () => jdf.ResourcePool().Element(ElementNames.BindingIntent).GetId()
-            .ShouldEqual(jdf.ResourceLinkPool().Element(ElementNames.BindingIntent.LinkName()).GetRefId());
+        It should_have_binding_resource_linked_by_id = () => jdf.ResourcePool().Element(ResourceNames.BindingIntent).GetId()
+            .ShouldEqual(jdf.ResourceLinkPool().Element(ResourceNames.BindingIntent.LinkName()).GetRefId());
 
-        It should_have_folding_intent_in_resource_pool = () => jdf.ResourcePool().Element(ElementNames.FoldingIntent).ShouldNotBeNull();
+        It should_have_folding_intent_in_resource_pool = () => jdf.ResourcePool().Element(ResourceNames.FoldingIntent).ShouldNotBeNull();
 
-        It should_have_folding_intent_link_in_the_resource_link_pool = () => jdf.ResourceLinkPool().Element(ElementNames.FoldingIntent.LinkName()).ShouldNotBeNull();
+        It should_have_folding_intent_link_in_the_resource_link_pool = () => jdf.ResourceLinkPool().Element(ResourceNames.FoldingIntent.LinkName()).ShouldNotBeNull();
 
-        It should_have_folding_as_output = () => jdf.ResourceLinkPool().Element(ElementNames.FoldingIntent.LinkName()).GetUsage().ShouldEqual(ResourceUsageType.Output);
+        It should_have_folding_as_output = () => jdf.ResourceLinkPool().Element(ResourceNames.FoldingIntent.LinkName()).GetUsage().ShouldEqual(ResourceUsageType.Output);
 
-        It should_have_folding_resource_linked_by_id = () => jdf.ResourcePool().Element(ElementNames.FoldingIntent).GetId()
-            .ShouldEqual(jdf.ResourceLinkPool().Element(ElementNames.FoldingIntent.LinkName()).GetRefId());
+        It should_have_folding_resource_linked_by_id = () => jdf.ResourcePool().Element(ResourceNames.FoldingIntent).GetId()
+            .ShouldEqual(jdf.ResourceLinkPool().Element(ResourceNames.FoldingIntent.LinkName()).GetRefId());
     }
 }

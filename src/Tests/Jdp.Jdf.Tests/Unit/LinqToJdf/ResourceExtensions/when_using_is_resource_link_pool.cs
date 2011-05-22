@@ -8,7 +8,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ResourceExtensions {
         static XElement jdf;
 
         Establish content = () => jdf = Ticket.Create().AddItentNode()
-                                            .AddInput(ElementNames.BindingIntent);
+                                            .AddInput(ResourceNames.BindingIntent);
                            
 
         It should_have_is_resource_link_pool_true_in_root_resource_link_pool = () => jdf.Element(ElementNames.ResourceLinkPool).IsResourceLinkPool().ShouldBeTrue();

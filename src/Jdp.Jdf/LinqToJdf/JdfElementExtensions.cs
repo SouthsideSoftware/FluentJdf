@@ -90,11 +90,11 @@ namespace Jdp.Jdf.LinqToJdf
         /// <remarks>If you do not pass an id (or you pass a null id), a new resource will
         /// always be created.</remarks>
         /// <returns></returns>
-        public static XElement AddOutput(this XElement jdfNode, XName resourceName, string id = null)
+        public static XElement AddOutput(this XElement jdfNode, XName resourceName, string id = null, Action<XElement, XElement> additionalAction = null)
         {
             Contract.Requires(jdfNode != null);
 
-            return jdfNode.LinkResource(ResourceUsageType.Output, resourceName, id);
+            return jdfNode.LinkResource(ResourceUsageType.Output, resourceName, id, additionalAction);
         }
 
         /// <summary>
@@ -106,11 +106,11 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <remarks>If you do not pass an id (or you pass a null id), a new resource will
         /// always be created.</remarks>
-        public static XElement AddInput(this XElement jdfNode, XName resourceName, string id = null)
+        public static XElement AddInput(this XElement jdfNode, XName resourceName, string id = null, Action<XElement, XElement> additionalAction = null)
         {
             Contract.Requires(jdfNode != null);
 
-            return jdfNode.LinkResource(ResourceUsageType.Input, resourceName, id);
+            return jdfNode.LinkResource(ResourceUsageType.Input, resourceName, id, additionalAction);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <remarks>If you do not pass an id (or you pass a null id), a new resource will
         /// always be created.</remarks>
-        public static XElement LinkResource(this XElement jdfNode, ResourceUsageType usage, XName resourceName, string id = null) {
+        public static XElement LinkResource(this XElement jdfNode, ResourceUsageType usage, XName resourceName, string id = null, Action<XElement, XElement> additionalAction = null) {
             Contract.Requires(jdfNode != null);
             Contract.Requires(resourceName != null);
             jdfNode.ThrowExceptionIfNotJdfNode();
@@ -134,14 +134,23 @@ namespace Jdp.Jdf.LinqToJdf
             var resourcePool = jdfNode.ResourcePool();
             var resourceLinkPool = jdfNode.ResourceLinkPool();
 
-            resourcePool.Add(
-                new XElement(resourceName,
-                    new XAttribute("ID", id)));
+            var resource = new XElement(resourceName,
+                                        new XAttribute("ID", id));
+            resourcePool.Add(resource);
+
+            var resourceLink = new XElement(resourceName.LinkName(),
+                                            new XAttribute("rRef", id),
+                                            new XAttribute("Usage", usage));
 
             resourceLinkPool.Add(
                 new XElement(resourceName.LinkName(),
                     new XAttribute("rRef", id),
                     new XAttribute("Usage", usage)));
+
+            if (additionalAction != null)
+            {
+                additionalAction(resource, resourceLink);
+            }
 
             return jdfNode;
         }

@@ -22,5 +22,16 @@ namespace Jdp.Jdf.LinqToJdf
 
             return XName.Get(string.Format("{0}Link", resourceName.LocalName), resourceName.NamespaceName);
         }
+
+        /// <summary>
+        /// Get the ref element name for a name.
+        /// </summary>
+        /// <returns></returns>
+        public static XName RefName(this XName elementName)
+        {
+            Contract.Requires(elementName != null);
+
+            return XName.Get(string.Format("{0}Ref", elementName.LocalName), elementName.NamespaceName);
+        }
     }
 }
