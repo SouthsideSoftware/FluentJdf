@@ -16,7 +16,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="parent"></param>
         /// <param name="jdfNodeCreationAttributes"></param>
         /// <returns></returns>
-        public static XElement CreateItentNode(this XContainer parent,
+        public static XElement AddItentNode(this XContainer parent,
                                                JdfNodeCreationAttributes jdfNodeCreationAttributes = null)
         {
             Contract.Requires(parent != null);
@@ -38,18 +38,6 @@ namespace Jdp.Jdf.LinqToJdf
             parent.Add(jdfNode);
 
             return jdfNode;
-        }
-
-        /// <summary>
-        /// Provides a resource factory used to add input resources.
-        /// </summary>
-        /// <param name="jdfNode"></param>
-        /// <returns></returns>
-        public static ResourceFactory AddInput(this XElement jdfNode) {
-            Contract.Requires(jdfNode != null);
-            jdfNode.ThrowExceptionIfNotJdfNode();
-
-            return new ResourceFactory(jdfNode, ResourceUsageType.Input);
         }
 
         /// <summary>
@@ -93,16 +81,69 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
-        /// Provides a resource factory used to add output resources.
+        /// Link a resource with the given name and id as an output.  If the id is null or
+        /// not provided, generate a unique id.  If
+        /// the resource does not exist in the current jdf or its ancestors, 
+        /// check descendants.  If it is found in the descendants, promote it.  If not in the 
+        /// ancestors or descendants, create it.
         /// </summary>
-        /// <param name="jdfNode"></param>
+        /// <remarks>If you do not pass an id (or you pass a null id), a new resource will
+        /// always be created.</remarks>
         /// <returns></returns>
-        public static ResourceFactory AddOutput(this XElement jdfNode)
+        public static XElement AddOutput(this XElement jdfNode, XName resourceName, string id = null)
         {
             Contract.Requires(jdfNode != null);
+
+            return jdfNode.LinkResource(ResourceUsageType.Output, resourceName, id);
+        }
+
+        /// <summary>
+        /// Link a resource with the given name and id as an input.  If the id is null or
+        /// not provided, generate a unique id.  If
+        /// the resource does not exist in the current jdf or its ancestors, 
+        /// check descendants.  If it is found in the descendants, promote it.  If not in the 
+        /// ancestors or descendants, create it.
+        /// </summary>
+        /// <remarks>If you do not pass an id (or you pass a null id), a new resource will
+        /// always be created.</remarks>
+        public static XElement AddInput(this XElement jdfNode, XName resourceName, string id = null)
+        {
+            Contract.Requires(jdfNode != null);
+
+            return jdfNode.LinkResource(ResourceUsageType.Input, resourceName, id);
+        }
+
+        /// <summary>
+        /// Link a resource with the given name and id with the given usage.  If the id is null or
+        /// not provided, generate a unique id.  If
+        /// the resource does not exist in the current jdf or its ancestors, 
+        /// check descendants.  If it is found in the descendants, promote it.  If not in the 
+        /// ancestors or descendants, create it.
+        /// </summary>
+        /// <remarks>If you do not pass an id (or you pass a null id), a new resource will
+        /// always be created.</remarks>
+        public static XElement LinkResource(this XElement jdfNode, ResourceUsageType usage, XName resourceName, string id = null) {
+            Contract.Requires(jdfNode != null);
+            Contract.Requires(resourceName != null);
             jdfNode.ThrowExceptionIfNotJdfNode();
 
-            return new ResourceFactory(jdfNode, ResourceUsageType.Output);
+            if (id == null) {
+                id = Globals.CreateUniqueId();
+            }
+
+            var resourcePool = jdfNode.ResourcePool();
+            var resourceLinkPool = jdfNode.ResourceLinkPool();
+
+            resourcePool.Add(
+                new XElement(resourceName,
+                    new XAttribute("ID", id)));
+
+            resourceLinkPool.Add(
+                new XElement(ElementNames.LinkNameForResource(resourceName),
+                    new XAttribute("rRef", id),
+                    new XAttribute("Usage", usage)));
+
+            return jdfNode;
         }
 
         /// <summary>

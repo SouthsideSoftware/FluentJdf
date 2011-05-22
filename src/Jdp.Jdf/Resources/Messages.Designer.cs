@@ -70,11 +70,11 @@ namespace Jdp.Jdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot add an intent node to a node named {0}.
+        ///   Looks up a localized string similar to Can only operate on resource link.  The node is a {0}.
         /// </summary>
-        internal static string JdfElementExtensions_CreateItentNode_CannotAddIntentToNonJdfNode {
+        internal static string CanOnlyOperateOnResourceLink {
             get {
-                return ResourceManager.GetString("JdfElementExtensions_CreateItentNode_CannotAddIntentToNonJdfNode", resourceCulture);
+                return ResourceManager.GetString("CanOnlyOperateOnResourceLink", resourceCulture);
             }
         }
     }

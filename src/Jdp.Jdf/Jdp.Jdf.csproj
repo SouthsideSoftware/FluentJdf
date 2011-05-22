@@ -106,9 +106,9 @@
     <Compile Include="LinqToJdf\ElementExtensions.cs" />
     <Compile Include="LinqToJdf\ElementNames.cs" />
     <Compile Include="LinqToJdf\Globals.cs" />
+    <Compile Include="LinqToJdf\Ticket.cs" />
     <Compile Include="LinqToJdf\JdfElementExtensions.cs" />
     <Compile Include="LinqToJdf\JdfNodeCreationAttributes.cs" />
-    <Compile Include="LinqToJdf\ResourceFactory.cs" />
     <Compile Include="LinqToJdf\ResourceExtensions.cs" />
     <Compile Include="LinqToJdf\ResourceUsageType.cs" />
     <Compile Include="Properties\CommonAssemblyInfo.cs" />

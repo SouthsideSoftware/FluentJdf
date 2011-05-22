@@ -90,6 +90,10 @@ namespace Jdp.Jdf.LinqToJdf
         public static XName Value = Globals.JdfName("Value");
         public static XName ViewBinder = Globals.JdfName("ViewBinder");
 
+        public static XName LinkNameForResource(XName resourceName) {
+            return XName.Get(string.Format("{0}Link", resourceName.LocalName), resourceName.NamespaceName);
+        }
+
 #pragma warning restore 1591
 
     }

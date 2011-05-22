@@ -14,7 +14,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
 
         Establish content = () => document = new XDocument();
         
-        Because of = () => document.CreateItentNode();
+        Because of = () => document.AddItentNode();
 
         It should_have_root_node = () => document.Root.ShouldNotBeNull();
 

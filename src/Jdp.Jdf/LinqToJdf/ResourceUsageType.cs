@@ -17,6 +17,10 @@ namespace Jdp.Jdf.LinqToJdf
         /// <summary>
         /// An output resource.
         /// </summary>
-        Output
+        Output,
+        /// <summary>
+        /// Unknown.
+        /// </summary>
+        Unknown
     }
 }
