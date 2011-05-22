@@ -23,5 +23,20 @@ namespace Jdp.Jdf.LinqToJdf
 
             return element.GetAttributeValueOrNull("DescriptiveName");
         }
+
+        /// <summary>
+        /// Adds arbitrary content to the element.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static XElement AddContent(this XElement element, params Object[] content) {
+            Contract.Requires(element != null);
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length > 0);
+
+            element.Add(content);
+            return element;
+        }
     }
 }

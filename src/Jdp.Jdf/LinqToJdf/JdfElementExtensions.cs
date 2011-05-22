@@ -139,7 +139,7 @@ namespace Jdp.Jdf.LinqToJdf
                     new XAttribute("ID", id)));
 
             resourceLinkPool.Add(
-                new XElement(ElementNames.LinkNameForResource(resourceName),
+                new XElement(resourceName.LinkName(),
                     new XAttribute("rRef", id),
                     new XAttribute("Usage", usage)));
 

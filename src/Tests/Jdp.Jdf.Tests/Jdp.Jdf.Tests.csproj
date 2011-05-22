@@ -113,8 +113,10 @@
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_resource_link_pool_when_it_exists.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_resource_pool_when_it_does_not_exist_yet.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_resource_pool_when_it_exists.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\When_using_get_usage.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_link_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_pool.cs" />
+    <Compile Include="Unit\LinqToJdf\XNameExtensions\when_using_link_name.cs" />
     <Compile Include="Unit\Utility\StringHelper\when_using_contains_that_support_case_insensitive_comparisons.cs" />
   </ItemGroup>
   <ItemGroup>

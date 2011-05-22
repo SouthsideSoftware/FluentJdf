@@ -7,16 +7,6 @@ namespace Jdp.Jdf.LinqToJdf
     /// </summary>
     public static class ElementNames
     {
-        /// <summary>
-        /// Generate the name of the link element
-        /// </summary>
-        /// <param name="elementName"></param>
-        /// <returns></returns>
-        public static XName Link(this XName elementName)
-        {
-            return elementName + "Link";
-        }
-
 #pragma warning disable 1591
 
         public static XName Address = Globals.JdfName("Address");
@@ -89,10 +79,6 @@ namespace Jdp.Jdf.LinqToJdf
         public static XName Transfer = Globals.JdfName("Transfer");
         public static XName Value = Globals.JdfName("Value");
         public static XName ViewBinder = Globals.JdfName("ViewBinder");
-
-        public static XName LinkNameForResource(XName resourceName) {
-            return XName.Get(string.Format("{0}Link", resourceName.LocalName), resourceName.NamespaceName);
-        }
 
 #pragma warning restore 1591
 
