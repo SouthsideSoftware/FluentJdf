@@ -9,12 +9,14 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ResourceExtensions {
 
         Establish content =
             () => {
-                jdf = Ticket.Create().AddItentNode().AddInput(ElementNames.BindingIntent).AddOutput(ElementNames.FoldingIntent);
+                jdf = Ticket.Create().AddItentNode()
+                    .AddInput(ElementNames.BindingIntent)
+                    .AddOutput(ElementNames.FoldingIntent);
+
                 jdf.ResourceLinkPool()
                     .AddContent(
                         new XElement(ElementNames.StitchingParams.LinkName()),
-                        new XElement(ElementNames.FoldingParams.LinkName()), new XAttribute("Usage", "Nuts"))
-                ;
+                        new XElement(ElementNames.FoldingParams.LinkName()), new XAttribute("Usage", "Nuts"));
             };
 
         It should_get_usage_input_when_usage_is_input =
