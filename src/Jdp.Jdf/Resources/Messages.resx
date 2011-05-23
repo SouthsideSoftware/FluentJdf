@@ -123,4 +123,7 @@
 	<data name="CanOnlyOperateOnResourceLink">
 		<value xml:space="preserve">Can only operate on resource link.  The node is a {0}</value>
 	</data>
+	<data name="ElementExtensions_JdfParent_NoJdfParentFound">
+		<value xml:space="preserve">Could not find JDF parent for element {0}</value>
+	</data>
 </root>

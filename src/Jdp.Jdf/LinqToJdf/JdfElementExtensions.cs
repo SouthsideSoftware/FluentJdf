@@ -39,9 +39,10 @@ namespace Jdp.Jdf.LinqToJdf
         /// Gets the resource pool of the jdf node.
         /// </summary>
         /// <param name="jdfNode"></param>
+        /// <param name="additionalAction">Additional action to be performed on the resource pool.</param>
         /// <returns></returns>
         /// <remarks>Creates the resource pool if it does not exist.</remarks>
-        public static XElement ResourcePool(this XElement jdfNode) {
+        public static XElement ResourcePool(this XElement jdfNode, Action<XElement> additionalAction = null) {
             Contract.Requires(jdfNode != null);
             jdfNode.ThrowExceptionIfNotJdfNode();
 
@@ -49,6 +50,10 @@ namespace Jdp.Jdf.LinqToJdf
             if (resourcePool == null) {
                 resourcePool = new XElement(ElementNames.ResourcePool);
                 jdfNode.Add(resourcePool);
+            }
+
+            if (additionalAction != null) {
+                additionalAction(resourcePool);
             }
 
             return resourcePool;

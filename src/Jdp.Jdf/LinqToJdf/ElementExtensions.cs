@@ -4,6 +4,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Jdp.Jdf.Resources;
 
 namespace Jdp.Jdf.LinqToJdf
 {
@@ -50,6 +51,38 @@ namespace Jdp.Jdf.LinqToJdf
 
             element.Add(content);
             return element;
+        }
+
+        /// <summary>
+        /// Get the first parent of this element that is a JDF.  
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>The first JDF parent</returns>
+        /// <exception cref="JdfException">If there is no JDF parent.</exception>
+        public static XElement JdfParent(this XElement element) {
+            Contract.Requires(element != null);
+
+            var jdfParent = element.GetJdfParentOrNull();
+            if (jdfParent == null) {
+                throw new JdfException(string.Format(Messages.ElementExtensions_JdfParent_NoJdfParentFound, element.Name));
+            }
+
+            return jdfParent;
+        }
+
+        /// <summary>
+        /// Gets the first jdf parent of this element or null.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static XElement GetJdfParentOrNull(this XElement element) {
+            Contract.Requires(element != null);
+
+            if (element.Parent != null) {
+                return element.Parent.IsJdfNode() ? element.Parent : element.Parent.GetJdfParentOrNull();
+            }
+
+            return null;
         }
     }
 }

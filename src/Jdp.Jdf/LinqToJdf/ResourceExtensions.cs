@@ -34,7 +34,7 @@ namespace Jdp.Jdf.LinqToJdf
         {
             Contract.Requires(element != null);
 
-            return element.SetId(Globals.CreateUniqueId());
+            return element.SetId(Globals.CreateUniqueId(), updateReferences);
         }
 
         /// <summary>
@@ -49,8 +49,23 @@ namespace Jdp.Jdf.LinqToJdf
             var oldId = element.GetId();
             element.SetAttributeValue("ID", id);
 
+            if (updateReferences) {
+                element.UpdateReferences();
+            }
+
             //todo: search for references and update if updateReference is ture
 
+            return element;
+        }
+
+        /// <summary>
+        /// Update references to the current element so
+        /// that they match the current id.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static XElement UpdateReferences(this XElement element) {
+            //todo implement
             return element;
         }
 
