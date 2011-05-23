@@ -26,6 +26,35 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
+        /// Sets a unique id for the resource and optionally updates the references.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="updateReferences">True to update references.  Default is true.</param>
+        public static XElement SetUniqueId(this XElement element, bool updateReferences = true)
+        {
+            Contract.Requires(element != null);
+
+            return element.SetId(Globals.CreateUniqueId());
+        }
+
+        /// <summary>
+        /// Sets the id of a resource and optionally updates the references.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="id"></param>
+        /// <param name="updateReferences">True to update references.  Default is true.</param>
+        public static XElement SetId(this XElement element, string id, bool updateReferences = true) {
+            Contract.Requires(element != null);
+
+            var oldId = element.GetId();
+            element.SetAttributeValue("ID", id);
+
+            //todo: search for references and update if updateReference is ture
+
+            return element;
+        }
+
+        /// <summary>
         /// Gets the rRef of an element.
         /// </summary>
         /// <param name="element"></param>

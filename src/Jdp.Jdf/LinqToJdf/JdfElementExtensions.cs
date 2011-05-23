@@ -14,10 +14,9 @@ namespace Jdp.Jdf.LinqToJdf
         /// Add an intent JDF to the current JDF
         /// </summary>
         /// <param name="parent"></param>
-        /// <param name="jdfNodeCreationAttributes"></param>
-        /// <returns></returns>
-        public static XElement AddItentNode(this XContainer parent,
-                                               JdfNodeCreationAttributes jdfNodeCreationAttributes = null)
+        /// <param name="additionalAction">Additional action to perform on newly created node.</param>
+        /// <returns>The newly created JDF node.</returns>
+        public static XElement AddItentNode(this XContainer parent, Action<XElement> additionalAction = null)
         {
             Contract.Requires(parent != null);
             if (parent is XElement)
@@ -25,17 +24,13 @@ namespace Jdp.Jdf.LinqToJdf
                 (parent as XElement).ThrowExceptionIfNotJdfNode();
             }
 
-            if (jdfNodeCreationAttributes == null)
-            {
-                jdfNodeCreationAttributes = new JdfNodeCreationAttributes();
-            }
-
             var jdfNode = new XElement(ElementNames.JDF);
-            jdfNode.SetAttributeValue("JobID", jdfNodeCreationAttributes.JobId);
-            jdfNode.SetAttributeValue("JobPartID", jdfNodeCreationAttributes.JobPartid);
-            jdfNode.SetAttributeValue("DescriptiveName", jdfNodeCreationAttributes.DescriptiveName);
             jdfNode.MakeJdfNodeAnIntent();
             parent.Add(jdfNode);
+
+            if (additionalAction != null) {
+                additionalAction(jdfNode);
+            }
 
             return jdfNode;
         }
@@ -211,6 +206,32 @@ namespace Jdp.Jdf.LinqToJdf
             Contract.Requires(element != null);
 
             return element.GetAttributeFromJdfNode("JobID");
+        }
+
+        /// <summary>
+        /// Gives the JDF node a unique job id.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static XElement SetUniqueJobId(this XElement element) {
+            Contract.Requires(element != null);
+
+            return element.SetJobId(Globals.CreateUniqueId("J"));
+        }
+
+        /// <summary>
+        /// Sets the job id of the jdf node to the given value.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static XElement SetJobId(this XElement element, string id) {
+            Contract.Requires(element != null);
+            element.ThrowExceptionIfNotJdfNode();
+
+            element.SetAttributeValue("JobID", id);
+
+            return element;
         }
 
         /// <summary>

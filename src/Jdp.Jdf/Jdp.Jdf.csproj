@@ -109,7 +109,6 @@
     <Compile Include="LinqToJdf\ResourceNames.cs" />
     <Compile Include="LinqToJdf\Ticket.cs" />
     <Compile Include="LinqToJdf\JdfElementExtensions.cs" />
-    <Compile Include="LinqToJdf\JdfNodeCreationAttributes.cs" />
     <Compile Include="LinqToJdf\ResourceExtensions.cs" />
     <Compile Include="LinqToJdf\ResourceUsageType.cs" />
     <Compile Include="LinqToJdf\XNameExtension.cs" />
