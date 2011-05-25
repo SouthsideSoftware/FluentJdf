@@ -31,6 +31,8 @@ namespace Jdp.Jdf.LinqToJdf
             if (additionalAction != null) {
                 additionalAction(jdfNode);
             }
+            if (jdfNode.GetJobId() == null)
+                jdfNode.SetUniqueJobId();
 
             return jdfNode;
         }
