@@ -22,5 +22,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
         It should_have_created_jdf_intent_node_off_nearest_jdf_parent_of_resource = () => newIntent.Document.Root.Descendants(Element.JDF).FirstOrDefault().IsJdfIntentNode().ShouldBeTrue();
 
         It should_have_job_id_on_the_newly_created_intent_node = () => newIntent.Document.Root.Descendants(Element.JDF).FirstOrDefault().GetJobId().ShouldNotBeNull();
+
+        It should_not_have_child_of_resource = () => resource.Elements().Count().ShouldEqual(0);
     }
 }
