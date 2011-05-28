@@ -130,6 +130,7 @@
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_resource_element_with_multiple_legal_and_illegall_references.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_resource_element_with_multiple_legal_references.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_resource_with_link_in_same_jdf.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_resource_with_link_with_option_set_so_references_are_not_updated.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_stand_alone_resource_element.cs" />
     <Compile Include="Unit\LinqToJdf\XNameExtensions\when_using_link_name.cs" />
     <Compile Include="Unit\Utility\StringHelper\when_using_contains_that_support_case_insensitive_comparisons.cs" />
