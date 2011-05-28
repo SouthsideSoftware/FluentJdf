@@ -12,14 +12,14 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions {
 
         Establish content = () => {
                                 ticket = Ticket.Create().AddItentNode().ResourcePool().Parent.AddItentNode().ResourceLinkPool().Document;
-                                elementWithoutJdf = new XElement(ElementNames.RivetsExposed);
+                                elementWithoutJdf = new XElement(Element.RivetsExposed);
                             };
 
         It should_get_the_node_on_jdf_node_that_has_one = () => {
                                                                 XElement nearestJdf =
-                                                                    ticket.Root.Element(ElementNames.JDF).NearestJdf();
+                                                                    ticket.Root.Element(Element.JDF).NearestJdf();
                                                                 nearestJdf.ShouldNotBeNull();
-                                                                nearestJdf.ShouldEqual(ticket.Root.Element(ElementNames.JDF));
+                                                                nearestJdf.ShouldEqual(ticket.Root.Element(Element.JDF));
                                                             };
 
         It should_get_jdf_parent_on_non_jdf_node_that_has_one = () => {

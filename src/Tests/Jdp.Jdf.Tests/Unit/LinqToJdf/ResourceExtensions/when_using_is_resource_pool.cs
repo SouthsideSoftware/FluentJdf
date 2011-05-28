@@ -13,11 +13,11 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ResourceExtensions
         static XElement jdf;
 
         Establish content = () => jdf = Ticket.Create().AddItentNode()
-                                    .AddInput(ResourceNames.BindingIntent)
+                                    .AddInput(Resource.BindingIntent)
                                     .NearestJdf();
                            
 
-        It should_have_is_resource_pool_true_in_root_resource_pool = () => jdf.Element(ElementNames.ResourcePool).IsResourcePool().ShouldBeTrue();
+        It should_have_is_resource_pool_true_in_root_resource_pool = () => jdf.Element(Element.ResourcePool).IsResourcePool().ShouldBeTrue();
 
         It should_have_is_resource_pool_false_on_root = () => jdf.IsResourcePool().ShouldBeFalse();
     }

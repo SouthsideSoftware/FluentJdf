@@ -8,14 +8,14 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ResourceExtensions {
         static XElement jdf;
 
         Establish content = () => jdf = Ticket.Create().AddItentNode()
-                                            .AddInput(ResourceNames.BindingIntent)
+                                            .AddInput(Resource.BindingIntent)
                                             .NearestJdf();
                            
 
-        It should_have_is_resource_link_pool_true_in_root_resource_link_pool = () => jdf.Element(ElementNames.ResourceLinkPool).IsResourceLinkPool().ShouldBeTrue();
+        It should_have_is_resource_link_pool_true_in_root_resource_link_pool = () => jdf.Element(Element.ResourceLinkPool).IsResourceLinkPool().ShouldBeTrue();
 
         It should_have_is_resource_link_pool_false_on_root = () => jdf.IsResourceLinkPool().ShouldBeFalse();
 
-        It should_have_is_resource_link_pool_false_on_root_resource_pool = () => jdf.Element(ElementNames.ResourcePool).IsResourceLinkPool().ShouldBeFalse();
+        It should_have_is_resource_link_pool_false_on_root_resource_pool = () => jdf.Element(Element.ResourcePool).IsResourceLinkPool().ShouldBeFalse();
     }
 }

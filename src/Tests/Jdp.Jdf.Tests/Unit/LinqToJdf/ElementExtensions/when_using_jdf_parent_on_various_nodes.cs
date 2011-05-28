@@ -12,12 +12,12 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions {
 
         Establish content = () => {
                                 ticket = Ticket.Create().AddItentNode().ResourcePool().Parent.AddItentNode().ResourceLinkPool().Document;
-                                elementWithoutJdf = new XElement(ElementNames.RivetsExposed);
+                                elementWithoutJdf = new XElement(Element.RivetsExposed);
                             };
 
         It should_get_jdf_parent_on_jdf_node_that_has_one = () => {
                                                                 XElement parent =
-                                                                    ticket.Root.Element(ElementNames.JDF).JdfParent();
+                                                                    ticket.Root.Element(Element.JDF).JdfParent();
                                                                 parent.ShouldNotBeNull();
                                                                 parent.ShouldEqual(ticket.Root);
                                                             };

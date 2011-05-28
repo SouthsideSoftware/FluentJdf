@@ -13,11 +13,11 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
         static XElement jdf;
         static XElement resourcePool;
 
-        Establish context = () => jdf = new XElement(ElementNames.JDF);
+        Establish context = () => jdf = new XElement(Element.JDF);
 
         Because of = () => resourcePool = jdf.ResourcePool();
 
-        It should_have_a_resource_pool_in_the_jdf = () => jdf.Element(ElementNames.ResourcePool).ShouldNotBeNull();
+        It should_have_a_resource_pool_in_the_jdf = () => jdf.Element(Element.ResourcePool).ShouldNotBeNull();
 
         It should_have_returned_the_resource_pool_when_ResourcePool_was_called = () => resourcePool.ShouldNotBeNull();
     }

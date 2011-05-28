@@ -10,7 +10,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions {
 
         Establish context = () => {
                                 ticket = Ticket.Create();
-                                ticket.Add(new XElement(ElementNames.Transfer));
+                                ticket.Add(new XElement(Element.Transfer));
                             };
 
         Because of = () => nearestJdf = ticket.Root.GetNearestJdfOrNull();

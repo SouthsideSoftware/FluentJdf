@@ -14,7 +14,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
         static XElement newIntent;
         static XElement root;
 
-        Establish content = () => root = new XDocument(new XElement(ElementNames.JDF)).Root;
+        Establish content = () => root = new XDocument(new XElement(Element.JDF)).Root;
 
         Because of = () => newIntent = root.AddItentNode(intent => intent.SetUniqueJobId());
 

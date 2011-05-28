@@ -24,7 +24,7 @@ namespace Jdp.Jdf.LinqToJdf
                 
             }
 
-            var jdfNode = new XElement(ElementNames.JDF);
+            var jdfNode = new XElement(Element.JDF);
             jdfNode.MakeJdfNodeAnIntent();
             parent.Add(jdfNode);
 
@@ -48,9 +48,9 @@ namespace Jdp.Jdf.LinqToJdf
             Contract.Requires(jdfNode != null);
             jdfNode.ThrowExceptionIfNotJdfNode();
 
-            var resourcePool = jdfNode.Element(ElementNames.ResourcePool);
+            var resourcePool = jdfNode.Element(Element.ResourcePool);
             if (resourcePool == null) {
-                resourcePool = new XElement(ElementNames.ResourcePool);
+                resourcePool = new XElement(Element.ResourcePool);
                 jdfNode.Add(resourcePool);
             }
 
@@ -72,10 +72,10 @@ namespace Jdp.Jdf.LinqToJdf
             Contract.Requires(jdfNode != null);
             jdfNode.ThrowExceptionIfNotJdfNode();
 
-            var resourceLinkPool = jdfNode.Element(ElementNames.ResourceLinkPool);
+            var resourceLinkPool = jdfNode.Element(Element.ResourceLinkPool);
             if (resourceLinkPool == null)
             {
-                resourceLinkPool = new XElement(ElementNames.ResourceLinkPool);
+                resourceLinkPool = new XElement(Element.ResourceLinkPool);
                 jdfNode.Add(resourceLinkPool);
             }
 
@@ -163,7 +163,7 @@ namespace Jdp.Jdf.LinqToJdf
         {
             Contract.Requires(element != null);
 
-            return element.Name == ElementNames.JDF;
+            return element.Name == Element.JDF;
         }
 
         /// <summary>

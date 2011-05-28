@@ -104,15 +104,20 @@
   <ItemGroup>
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
     <Compile Include="LinqToJdf\ElementExtensions.cs" />
-    <Compile Include="LinqToJdf\ElementNames.cs" />
+    <Compile Include="LinqToJdf\Element.cs" />
     <Compile Include="LinqToJdf\Globals.cs" />
+    <Compile Include="LinqToJdf\IJdfDifferenceListener.cs" />
+    <Compile Include="LinqToJdf\JdfDifferenceExtensions.cs" />
     <Compile Include="LinqToJdf\JdfException.cs" />
-    <Compile Include="LinqToJdf\ResourceNames.cs" />
+    <Compile Include="LinqToJdf\RefExtensions.cs" />
+    <Compile Include="LinqToJdf\Resource.cs" />
     <Compile Include="LinqToJdf\Ticket.cs" />
     <Compile Include="LinqToJdf\JdfElementExtensions.cs" />
     <Compile Include="LinqToJdf\ResourceExtensions.cs" />
     <Compile Include="LinqToJdf\ResourceUsageType.cs" />
     <Compile Include="LinqToJdf\XNameExtension.cs" />
+    <Compile Include="LinqToJdf\XPathDecorator.cs" />
+    <Compile Include="LinqToJdf\XPathExtensions.cs" />
     <Compile Include="Properties\CommonAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Messages.Designer.cs">

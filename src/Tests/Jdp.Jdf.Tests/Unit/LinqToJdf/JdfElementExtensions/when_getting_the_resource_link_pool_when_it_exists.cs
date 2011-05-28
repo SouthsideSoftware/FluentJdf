@@ -10,14 +10,14 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
         static XElement retrievedResourceLinkPool;
 
         Establish context = () => {
-                                jdf = new XElement(ElementNames.JDF);
-                                existingResourceLinkPool = new XElement(ElementNames.ResourceLinkPool);
+                                jdf = new XElement(Element.JDF);
+                                existingResourceLinkPool = new XElement(Element.ResourceLinkPool);
                                 jdf.Add(existingResourceLinkPool);
                             };
 
         Because of = () => retrievedResourceLinkPool = jdf.ResourceLinkPool();
 
-        It should_have_a_resource_link_pool_in_the_jdf = () => jdf.Element(ElementNames.ResourceLinkPool).ShouldNotBeNull();
+        It should_have_a_resource_link_pool_in_the_jdf = () => jdf.Element(Element.ResourceLinkPool).ShouldNotBeNull();
 
         It should_have_returned_the_existing_resource_link_pool_when_ResourceLinkPool_was_called =
             () => retrievedResourceLinkPool.ShouldEqual(existingResourceLinkPool);

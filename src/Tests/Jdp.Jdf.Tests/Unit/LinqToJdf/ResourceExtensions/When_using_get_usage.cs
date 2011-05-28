@@ -10,30 +10,30 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ResourceExtensions {
         Establish content =
             () => {
                 jdf = Ticket.Create().AddItentNode()
-                    .AddInput(ResourceNames.BindingIntent)
-                    .AddOutput(ResourceNames.FoldingIntent)
+                    .AddInput(Resource.BindingIntent)
+                    .AddOutput(Resource.FoldingIntent)
                     .NearestJdf();
 
                 jdf.ResourceLinkPool()
                     .AddContent(
-                        new XElement(ResourceNames.StitchingParams.LinkName()),
-                        new XElement(ResourceNames.FoldingParams.LinkName()), new XAttribute("Usage", "Nuts"));
+                        new XElement(Resource.StitchingParams.LinkName()),
+                        new XElement(Resource.FoldingParams.LinkName()), new XAttribute("Usage", "Nuts"));
             };
 
         It should_get_usage_input_when_usage_is_input =
-            () => jdf.ResourceLinkPool().Element(ResourceNames.BindingIntent.LinkName()).GetUsage().ShouldEqual(ResourceUsageType.Input);
+            () => jdf.ResourceLinkPool().Element(Resource.BindingIntent.LinkName()).GetUsage().ShouldEqual(ResourceUsageType.Input);
 
         It should_get_usage_output_when_usage_is_output =
-            () => jdf.ResourceLinkPool().Element(ResourceNames.FoldingIntent.LinkName()).GetUsage().ShouldEqual(ResourceUsageType.Output);
+            () => jdf.ResourceLinkPool().Element(Resource.FoldingIntent.LinkName()).GetUsage().ShouldEqual(ResourceUsageType.Output);
 
         It should_get_usage_unknown_when_usage_has_invalid_value =
             () =>
-            jdf.ResourceLinkPool().Element(ResourceNames.FoldingParams.LinkName()).GetUsage().ShouldEqual(
+            jdf.ResourceLinkPool().Element(Resource.FoldingParams.LinkName()).GetUsage().ShouldEqual(
                 ResourceUsageType.Unknown);
 
         It should_get_usage_unknown_when_usage_is_null =
             () =>
-            jdf.ResourceLinkPool().Element(ResourceNames.StitchingParams.LinkName()).GetUsage().ShouldEqual(
+            jdf.ResourceLinkPool().Element(Resource.StitchingParams.LinkName()).GetUsage().ShouldEqual(
                 ResourceUsageType.Unknown);
     }
 }

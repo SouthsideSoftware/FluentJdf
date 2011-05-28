@@ -18,9 +18,9 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions
         Establish content = () => ticket = Ticket.Create().AddItentNode().ResourcePool().Parent.AddItentNode().ResourceLinkPool().Document;
 
         Because of = () => {
-                         resourcePoolJdfParent = ticket.Root.ResourcePool(rp => rp.Add(new XElement(ElementNames.Comment))).GetJdfParentOrNull();
-                         resourceLinkPoolJdfParent = ticket.Root.Element(ElementNames.JDF).ResourceLinkPool().GetJdfParentOrNull();
-                         commentJdfParent = ticket.Root.Descendants(ElementNames.Comment).FirstOrDefault().GetJdfParentOrNull();
+                         resourcePoolJdfParent = ticket.Root.ResourcePool(rp => rp.Add(new XElement(Element.Comment))).GetJdfParentOrNull();
+                         resourceLinkPoolJdfParent = ticket.Root.Element(Element.JDF).ResourceLinkPool().GetJdfParentOrNull();
+                         commentJdfParent = ticket.Root.Descendants(Element.Comment).FirstOrDefault().GetJdfParentOrNull();
                      };
 
         It should_have_resource_pool_jdf_parent = () => resourcePoolJdfParent.ShouldNotBeNull();

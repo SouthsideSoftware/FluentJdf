@@ -70,6 +70,28 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
+        /// Gets all elements that reference the current element
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>An enumerable over the elements that reference the current element.</returns>
+        /// <remarks><para>This method searches from the root of the tree so it finds legally and
+        /// illegally linked elements.</para><para>If the element has no id, an empty enumerator is returned.</para></remarks>
+        public static IEnumerable<XElement> ReferencingElements(this XElement element) {
+            Contract.Requires(element != null);
+
+            string id = element.GetId();
+            
+            if (id == null) return new List<XElement>();
+
+            var root = element;
+            if (root.Document != null && root.Document.Root != null) {
+                root = root.Document.Root;
+            }
+
+            return root.JdfXPathSelectElements(string.Format("//*[@rRef='{0}']", id));
+        }
+
+        /// <summary>
         /// Gets the rRef of an element.
         /// </summary>
         /// <param name="element"></param>
@@ -130,7 +152,7 @@ namespace Jdp.Jdf.LinqToJdf
         public static bool IsResourcePool(this XElement element) {
             Contract.Requires(element != null);
 
-            return element.Name == ElementNames.ResourcePool;
+            return element.Name == Element.ResourcePool;
         }
 
         /// <summary>
@@ -142,7 +164,7 @@ namespace Jdp.Jdf.LinqToJdf
         {
             Contract.Requires(element != null);
 
-            return element.Name == ElementNames.ResourceLinkPool;
+            return element.Name == Element.ResourceLinkPool;
         }
     }
 }

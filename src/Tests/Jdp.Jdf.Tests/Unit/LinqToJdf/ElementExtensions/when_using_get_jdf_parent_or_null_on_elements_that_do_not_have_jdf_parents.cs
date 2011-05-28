@@ -11,7 +11,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions {
         
 
         Establish content = () => { ticket = Ticket.Create();
-        ticket.Add(new XElement(ElementNames.RingDiameter));};
+        ticket.Add(new XElement(Element.RingDiameter));};
 
         Because of = () => {
                          jdfParent = ticket.Root.GetJdfParentOrNull();

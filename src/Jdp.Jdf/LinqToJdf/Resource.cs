@@ -5,7 +5,7 @@ namespace Jdp.Jdf.LinqToJdf
     /// <summary>
     /// Name helpers for JDF
     /// </summary>
-    public static class ResourceNames
+    public static class Resource
     {
 #pragma warning disable 1591
 
