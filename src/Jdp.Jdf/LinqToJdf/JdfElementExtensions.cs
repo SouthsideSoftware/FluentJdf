@@ -18,9 +18,8 @@ namespace Jdp.Jdf.LinqToJdf
         public static XElement AddItentNode(this XContainer parent)
         {
             Contract.Requires(parent != null);
-            if (parent is XElement)
-            {
-                (parent as XElement).ThrowExceptionIfNotJdfNode();
+            if (parent is XElement) {
+                parent = (parent as XElement).NearestJdf();
             }
 
             var jdfNode = new XElement(Element.JDF);

@@ -18,9 +18,9 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
 
         Because of = () => newIntent = root.AddItentNode();
 
-        It should_have_jdf_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfNode();
+        It should_have_jdf_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfNode().ShouldBeTrue();
 
-        It should_have_jdf_intent_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfIntentNode();
+        It should_have_jdf_intent_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfIntentNode().ShouldBeTrue();
 
         It should_have_job_id = () => newIntent.GetJobId().ShouldNotBeNull();
     }
