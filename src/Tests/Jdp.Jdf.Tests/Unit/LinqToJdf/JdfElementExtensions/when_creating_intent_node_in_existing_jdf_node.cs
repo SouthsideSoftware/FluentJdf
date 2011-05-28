@@ -16,7 +16,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
 
         Establish content = () => root = new XDocument(new XElement(Element.JDF)).Root;
 
-        Because of = () => newIntent = root.AddItentNode(intent => intent.SetUniqueJobId());
+        Because of = () => newIntent = root.AddItentNode();
 
         It should_have_jdf_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfNode();
 

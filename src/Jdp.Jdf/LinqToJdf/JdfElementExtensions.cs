@@ -11,28 +11,23 @@ namespace Jdp.Jdf.LinqToJdf
     public static class JdfElementExtensions
     {
         /// <summary>
-        /// Add an intent JDF to the current JDF
+        /// Add an intent JDF to the current JDF or document
         /// </summary>
         /// <param name="parent"></param>
-        /// <param name="additionalAction">Additional action to perform on newly created node.</param>
         /// <returns>The newly created JDF node.</returns>
-        public static XElement AddItentNode(this XContainer parent, Action<XElement> additionalAction = null)
+        public static XElement AddItentNode(this XContainer parent)
         {
             Contract.Requires(parent != null);
             if (parent is XElement)
             {
-                
+                (parent as XElement).ThrowExceptionIfNotJdfNode();
             }
 
             var jdfNode = new XElement(Element.JDF);
             jdfNode.MakeJdfNodeAnIntent();
             parent.Add(jdfNode);
 
-            if (additionalAction != null) {
-                additionalAction(jdfNode);
-            }
-            if (jdfNode.GetJobId() == null)
-                jdfNode.SetUniqueJobId();
+            jdfNode.SetUniqueJobId();
 
             return jdfNode;
         }
