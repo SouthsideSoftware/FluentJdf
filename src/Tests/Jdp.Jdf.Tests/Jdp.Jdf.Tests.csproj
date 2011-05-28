@@ -124,9 +124,13 @@
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_link_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_referencing_elements_on_resource_element_with_multiple_legal_references.cs" />
-    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_referencing_elements_on_resource_element_with_multiple_lega_and_illegall_references.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_referencing_elements_on_resource_element_with_multiple_legal_and_illegall_references.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_referencing_elements_on_resource_with_link_in_same_jdf.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_referencing_elements_on_stand_alone_resource_element.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_resource_element_with_multiple_legal_and_illegall_references.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_resource_element_with_multiple_legal_references.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_resource_with_link_in_same_jdf.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_stand_alone_resource_element.cs" />
     <Compile Include="Unit\LinqToJdf\XNameExtensions\when_using_link_name.cs" />
     <Compile Include="Unit\Utility\StringHelper\when_using_contains_that_support_case_insensitive_comparisons.cs" />
   </ItemGroup>

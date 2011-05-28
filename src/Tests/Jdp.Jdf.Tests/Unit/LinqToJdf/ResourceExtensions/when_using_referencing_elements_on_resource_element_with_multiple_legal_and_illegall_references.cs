@@ -6,7 +6,7 @@ using Machine.Specifications;
 
 namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ResourceExtensions {
     [Subject(typeof (Jdf.LinqToJdf.ResourceExtensions))]
-    public class when_using_referencing_elements_on_resource_element_with_multiple_lega_and_illegall_references {
+    public class when_using_referencing_elements_on_resource_element_with_multiple_legal_and_illegall_references {
         static XElement bindingIntent;
         static List<XElement> references;
 

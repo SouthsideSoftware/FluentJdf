@@ -42,30 +42,19 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <param name="id"></param>
-        /// <param name="updateReferences">True to update references.  Default is true.</param>
+        /// <param name="updateReferences">True to update references.  Default is <see langword="true"/>.</param>
         public static XElement SetId(this XElement element, string id, bool updateReferences = true) {
             Contract.Requires(element != null);
 
-            var oldId = element.GetId();
+            if (updateReferences)
+            {
+                foreach (var referencingElement in element.ReferencingElements())
+                {
+                    referencingElement.SetRefId(id);
+                }
+            }
             element.SetAttributeValue("ID", id);
 
-            if (updateReferences) {
-                element.UpdateReferences();
-            }
-
-            //todo: search for references and update if updateReference is ture
-
-            return element;
-        }
-
-        /// <summary>
-        /// Update references to the current element so
-        /// that they match the current id.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static XElement UpdateReferences(this XElement element) {
-            //todo implement
             return element;
         }
 
@@ -101,6 +90,24 @@ namespace Jdp.Jdf.LinqToJdf
             Contract.Requires(element != null);
 
             return element.GetAttributeValueOrNull("rRef");
+        }
+
+        /// <summary>
+        /// Sets the rRef of the element.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="refId"></param>
+        /// <returns></returns>
+        /// <remarks>This method will break the link to the referenced
+        /// element.  Use SetId on the referenced element if you want
+        /// to maintain all links.</remarks>
+        public static XElement SetRefId(this XElement element, string refId) {
+            Contract.Requires(element != null);
+            Contract.Requires(!string.IsNullOrEmpty(refId));
+
+            element.SetAttributeValue("rRef", refId);
+
+            return element;
         }
 
         /// <summary>
