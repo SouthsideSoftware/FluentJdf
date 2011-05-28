@@ -54,6 +54,39 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
+        /// Get this node if it is a JDF.  If it is not a JDF, get nearest JDF parent.  
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>The first JDF parent</returns>
+        /// <exception cref="JdfException">If this node is not a JDF and there is no JDF parent.</exception>
+        public static XElement NearestJdf(this XElement element)
+        {
+            Contract.Requires(element != null);
+
+            var firstJdf = element.GetNearestJdfOrNull();
+            if (firstJdf == null)
+            {
+                throw new JdfException(string.Format(Messages.ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent, element.Name));
+            }
+
+            return firstJdf;
+        }
+
+        /// <summary>
+        /// Gets this node if it a JDF.  If this node is not a JDF, it gets
+        /// the first JDF parent.  Returns <see langword="null"/> if neither case is true.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static XElement GetNearestJdfOrNull(this XElement element) {
+            Contract.Requires(element != null);
+
+            if (element.IsJdfNode()) return element;
+
+            return element.GetJdfParentOrNull();
+        }
+
+        /// <summary>
         /// Get the first parent of this element that is a JDF.  
         /// </summary>
         /// <param name="element"></param>

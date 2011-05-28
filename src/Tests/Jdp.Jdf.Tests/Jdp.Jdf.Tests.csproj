@@ -104,7 +104,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_get_jdf_parent_or_null_on_elements_that_do_not_have_jdf_parents.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_get_nearest_jdf_or_null_on_child_of_jdf_element.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_get_nearest_jdf_or_null_on_element_with_no_jdf_nodes_associated.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_get_nearest_jdf_or_null_on_jdf_element.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_get_jdf_parent_or_null_on_elements_that_have_jdf_parents.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_jdf_parent_on_various_nodes.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_nearest_jdf_on_various_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_checking_nodes_to_see_if_they_are_jdf_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_an_input_of_a_new_resource.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_an_input_of_a_new_resource_and_performing_additional_action_on_resource.cs" />

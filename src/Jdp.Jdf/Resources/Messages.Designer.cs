@@ -79,6 +79,15 @@ namespace Jdp.Jdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This node is not a JDF and it does not have a JDF parent.  The node is {0}.
+        /// </summary>
+        internal static string ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent {
+            get {
+                return ResourceManager.GetString("ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find JDF parent for element {0}.
         /// </summary>
         internal static string ElementExtensions_JdfParent_NoJdfParentFound {

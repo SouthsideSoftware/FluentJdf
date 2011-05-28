@@ -12,18 +12,10 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
     public class when_creating_an_input_of_a_new_resource_and_performing_additional_action_on_resource
     {
         static XElement jdf;
-        static string id;
 
         Establish context = () => jdf = Ticket.Create().AddItentNode();
 
-        Because of = () => jdf.AddInput(ResourceNames.BindingIntent, null, (resource, link) =>
-                                                                              {
-                                                                                  id = resource.GetId();
-                                                                                  resource.SetDescriptiveName("fooey");
-                                                                              });
-
-        It should_have_resource_id_matching_captured_id =
-            () => jdf.ResourcePool().Element(ResourceNames.BindingIntent).GetAttributeValueOrNull("ID").ShouldEqual(id);
+        Because of = () => jdf.AddInput(ResourceNames.BindingIntent).SetDescriptiveName("fooey");
 
         It should_have_descriptive_name_set_in_action =
             () => jdf.ResourcePool().Element(ResourceNames.BindingIntent).GetDescriptiveName().ShouldEqual("fooey");

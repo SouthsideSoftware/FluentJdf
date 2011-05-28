@@ -11,7 +11,8 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ResourceExtensions {
             () => {
                 jdf = Ticket.Create().AddItentNode()
                     .AddInput(ResourceNames.BindingIntent)
-                    .AddOutput(ResourceNames.FoldingIntent);
+                    .AddOutput(ResourceNames.FoldingIntent)
+                    .NearestJdf();
 
                 jdf.ResourceLinkPool()
                     .AddContent(

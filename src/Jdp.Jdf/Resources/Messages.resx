@@ -126,4 +126,7 @@
 	<data name="ElementExtensions_JdfParent_NoJdfParentFound">
 		<value xml:space="preserve">Could not find JDF parent for element {0}</value>
 	</data>
+	<data name="ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent">
+		<value xml:space="preserve">This node is not a JDF and it does not have a JDF parent.  The node is {0}</value>
+	</data>
 </root>
