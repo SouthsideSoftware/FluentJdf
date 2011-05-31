@@ -49,3 +49,4 @@ dotcover.xml
 *_tcabanski
 OnpointConnect.esent/**
 OnpointConnect_subscriptions.esent/**
+packages/**

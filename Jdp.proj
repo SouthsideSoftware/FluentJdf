@@ -10,6 +10,7 @@
 		<MSpecDir>$(ToolsDir)\MSpec</MSpecDir>
     <agent_home_dir>dummy</agent_home_dir>
     <dotCover>$(agent_home_dir)\tools\dotCover\dotCover.exe</dotCover>
+    <NuGet>$(ToolsDir)\nuget.exe</NuGet>
 	</PropertyGroup>
 
 	<!-- Artifact Directories -->
@@ -58,7 +59,7 @@
   <Import Project="$(MSBuildAwsTasksPath)\Snowcode.S3BuildPublisher.Tasks.Targets"/>
   <Import Project="$(SouthSideTasksPath)\SouthSideBuildTasks.MSBuild.Tasks.Targets"/>
 
-	<Target Name="Dist" DependsOnTargets="Clean;Version;Build;Test;Document;Publish"/>
+	<Target Name="Dist" DependsOnTargets="Clean;InstallPackages;Version;Build;Test;Document;Publish"/>
 
 	<Target Name="Clean">
     <Message Importance="high" Text="Clean"/>
@@ -77,6 +78,22 @@
     <MakeDir Directories="$(FitnesseAssemblyDir)"/>
     <MakeDir Directories="$(FitnesseContentDir)"/>
 	</Target>
+
+  <ItemGroup>
+    <ProjectDir Include="src/Jdp.Jdf"/>
+    <ProjectDir Include="src/Jdp.Server"/>
+    <ProjectDir Include="src/Tests/Jdp.Jdf.Tests"/>
+  </ItemGroup>
+
+  <Target Name="InstallPackages" Outputs="%(ProjectDir.Identity)">
+    <Message Importance="high" Text="Installing packages for %(ProjectDir.Identity)"/>
+    <Exec Command="$(NuGet) install %(ProjectDir.Identity)\packages.config -o packages"/>
+  </Target>
+
+  <Target Name="UpdatePackages" Outputs="%(ProjectDir.Identity)">
+    <Message Importance="high" Text="Installing packages for %(ProjectDir.Identity)"/>
+    <Exec Command="$(NuGet) update %(ProjectDir.Identity)\packages.config"/>
+  </Target>
 
 	<Target Name="Version">
 		<Message Importance="high" Text="Version"/>
@@ -129,50 +146,40 @@
     <CallTarget Targets="TestInsideTeamCity" Condition="$(InTeamCity)"/>
 	</Target>
 
+  <ItemGroup>
+    <TestItem Include="Jdp.Jdf.Tests.dll">
+      <TestDir>$(MSBuildProjectDirectory)\src\Tests\Jdp.Jdf.Tests\bin\$(Configuration)</TestDir>
+      <TestReportName>Jdp.Jdf.Tests.Results.htm</TestReportName>
+      <CoverageXmlName>Jdp.Jdf.Tests.Coverage.xml</CoverageXmlName>
+    </TestItem>
+  </ItemGroup>
+
   <Target Name="TestOutsideTeamCity">
     <Message Importance="high" Text="TestOutsideTeamCity"/>
-    <PropertyGroup>
-      <TestDir>$(MSBuildProjectDirectory)\src\Tests\Jdp.Jdf.Tests\bin\$(Configuration)</TestDir>
-      <TestDll>Jdp.Jdf.Tests.dll</TestDll>
-      <TestReportName>Jdp.Jdf.Tests.Results.htm</TestReportName>
-    </PropertyGroup>
-    <MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName)'
-             Targets='MSpecTests'/>
-    <CallTarget Targets="FitnesseTests"/>
+    <CallTarget Targets="MSpecTests;FitnesseTests"/>
   </Target>
 
   <Target Name="TestInsideTeamCity">
     <Message Importance="high" Text="Test inside team city"/>
-    <Message Importance="high" Text="Test: src\Tests\Onpoint.Commons.Core.Tests\bin\$(Configuration)\Onpoint.Commons.Core.Tests.dll"/>
-    <PropertyGroup>
-      <TestDir>$(MSBuildProjectDirectory)\src\Tests\Jdp.Jdf.Tests\bin\$(Configuration)</TestDir>
-      <TestDll>Jdp.Jdf.Tests.dll</TestDll>
-      <TestReportName>Jdp.Jdf.Tests.Results.htm</TestReportName>
-      <CoverageXmlName>Jdp.Jdf.Tests.Coverage.xml</CoverageXmlName>
-    </PropertyGroup>
-    <MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName)'
-             Targets='MSpecTests'/>
-    <!--<MSBuild Projects="$(MSBuildProjectFullPath)" Properties='TestDir=$(TestDir);TestDll=$(TestDll);TestReportName=$(TestReportName);CoverageXmlName=$(CoverageXmlName)'
-             Targets='MSpecCoverage'/>-->
-    <CallTarget Targets="FitnesseTests"/>
+    <CallTarget Targets="MSpecTests;MSpecCoverage;FitnesseTests"/>
   </Target>
 
-  <Target Name="MSpecTests">
+  <Target Name="MSpecTests" Outputs="%(TestItem.Identity)">
     <Message Importance="high" Text="MSpec: $(MSpecDir)\mspec-clr4.exe"/>
-    <Message Importance="high" Text="Testing: $(TestDir)\$(TestDll)"/>
-    <Exec WorkingDirectory="$(TestDir)"
-          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\$(TestReportName) $(TestDll)"'
+    <Message Importance="high" Text="Testing: %(TestItem.TestDir)\%(TestItem.Identity)"/>
+    <Exec WorkingDirectory="%(TestItem.TestDir)"
+          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity)"'
           Condition='!$(InTeamCity)'/>
 
-    <Exec WorkingDirectory="$(TestDir)"
-          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\$(TestReportName) $(TestDll) --teamcity"'
+    <Exec WorkingDirectory="%(TestItem.TestDir)"
+          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity) --teamcity"'
           Condition='$(InTeamCity)'/>
   </Target>
 
-  <Target Name='MSpecCoverage'>
+  <Target Name='MSpecCoverage' Outputs="%(TestItem.Identity)">
     <Message Importance="high" Text="Code coverage on MSpec tests"/>
     <Message Importance="high" Text="dotCover: $(dotCover)"/>
-    <Message Importance="high" Text="Coverage Testing: $(TestDir)\$(TestDll)"/>
+    <Message Importance="high" Text="Coverage Testing: %(TestItem.TestDir)\%(TestItem.Identity)"/>
     <Copy SourceFiles="$(MSBuildProjectDirectory)\dotcoverTemplate.xml"
           DestinationFiles="$(MSBuildProjectDirectory)\dotcover.xml" SkipUnchangedFiles="false"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
@@ -180,12 +187,12 @@
                Value="$(MSpecDir)\mspec-clr4.exe"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
                XPath="//Arguments"
-               Value="$(TestDir)\$(TestDll)"/>
+               Value="%(TestItem.TestDir)\%(TestItem.Identity)"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
                XPath="//Output"
-               Value="$(TestOutputDir)\$(CoverageXmlName)"/>
+               Value="$(TestOutputDir)\%(TestItem.CoverageXmlName)"/>
     <Exec Command="$(dotCover) c dotcover.xml"/>
-    <Message Text="##teamcity[importData type='dotNetCoverage' tool='dotcover' path='$(TestOutputDir)\$(CoverageXmlName)']"/>
+    <Message Text="##teamcity[importData type='dotNetCoverage' tool='dotcover' path='$(TestOutputDir)\%(TestItem.CoverageXmlName)']"/>
   </Target>
   
   <Target Name="FitnesseTests">
