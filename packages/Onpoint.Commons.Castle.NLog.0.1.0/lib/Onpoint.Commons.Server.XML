@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Onpoint.Commons.Server</name>
+    </assembly>
+    <members>
+        <member name="T:Onpoint.Commons.Server.Configuration.ConfigurationReader">
+            <summary>
+            Reads configuration sections associated with the server.
+            </summary>
+        </member>
+        <member name="T:Onpoint.Commons.Server.Configuration.IConfigurationReader">
+            <summary>
+            Reads configuration sections associated with the server.
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Server.Configuration.IConfigurationReader.GetWcfServiceConfiguration">
+            <summary>
+            Gets the WCF service configuration
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Server.Configuration.ConfigurationReader.GetWcfServiceConfiguration">
+            <summary>
+            Gets the WCF service configuration
+            </summary>
+        </member>
+        <member name="T:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceElement">
+            <summary>
+            Configuration of an WcfService
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceElement.Name">
+            <summary>
+            Gets and sets the name.
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceElement.AssemblyQualifiedName">
+            <summary>
+            Gets and sets the assembly qualified name of the service (interface) type.
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceElement.Url">
+            <summary>
+            Gets and sets the url.
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceElement.Description">
+            <summary>
+            Gets and sets the description.
+            </summary>
+        </member>
+        <member name="T:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceElementCollection">
+            <summary>
+            A collection of WCF services
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceElementCollection.CreateNewElement">
+            <summary>
+            This override allows the .NET configuration system to create new members in the collection.
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            This override allows the .NET configuration system to get elements in 
+            the collection by name.
+            </summary>
+            <param name="element">The element that contains the key.</param>
+        </member>
+        <member name="T:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceSection">
+            <summary>
+            Reads configuration for WCF services
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Server.Wcf.Configuration.WcfServiceSection.Services">
+            <summary>
+            Gets the collection of service configurations
+            </summary>
+        </member>
+        <member name="T:Onpoint.Commons.Server.Wcf.IServiceManager">
+            <summary>
+            Interface to manage WCF services
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Server.Wcf.IServiceManager.Start">
+            <summary>
+            Start the configured services.
+            </summary>
+            <returns>True if the services were not previously started and have now started.</returns>
+        </member>
+        <member name="M:Onpoint.Commons.Server.Wcf.IServiceManager.Stop">
+            <summary>
+            Stop the configured services.
+            </summary>
+            <returns>True if the services were not previously stopped and have now stopped.</returns>
+        </member>
+        <member name="P:Onpoint.Commons.Server.Wcf.IServiceManager.IsStarted">
+            <summary>
+            Gets true if the services are started.
+            </summary>
+        </member>
+        <member name="T:Onpoint.Commons.Server.Wcf.ServiceManager">
+            <summary>
+            Loads the service configuration, instantiates the services and provides
+            facilities for starting and stopping them.
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Server.Wcf.ServiceManager.#ctor(Onpoint.Commons.Server.Configuration.IConfigurationReader)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Server.Wcf.ServiceManager.Start">
+            <summary>
+            Start the configured services.
+            </summary>
+            <returns>True if the services were not previously started and have now started.</returns>
+        </member>
+        <member name="M:Onpoint.Commons.Server.Wcf.ServiceManager.Stop">
+            <summary>
+            Stop the configured services.
+            </summary>
+            <returns>True if the services were not previously stopped and have now stopped.</returns>
+        </member>
+        <member name="P:Onpoint.Commons.Server.Wcf.ServiceManager.IsStarted">
+            <summary>
+            Gets true if the services are started.
+            </summary>
+        </member>
+    </members>
+</doc>

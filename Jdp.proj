@@ -3,7 +3,8 @@
   <!-- See https://onpointondemand.fogbugz.com/default.asp?W695 for documentation -->
 	<!-- Tools -->
 	<PropertyGroup>
-		<ToolsDir>$(MSBuildProjectDirectory)\tools</ToolsDir>
+    <ToolsDir>$(MSBuildProjectDirectory)\tools</ToolsDir>
+    <PackageDir>$(MSBuildProjectDirectory)\packages</PackageDir>
 		<MSBuildCommunityTasksPath>$(ToolsDir)\MSBuild\MSBuildCommunityTasks</MSBuildCommunityTasksPath>
     <MSBuildAwsTasksPath>$(ToolsDir)\MSBuild\MSBuild.AWS.Tasks.Release</MSBuildAwsTasksPath>
     <SouthSideTasksPath>$(ToolsDir)\MSBuild\SouthSideBuildTasks</SouthSideTasksPath>
@@ -87,7 +88,7 @@
 
   <Target Name="InstallPackages" Outputs="%(ProjectDir.Identity)">
     <Message Importance="high" Text="Installing packages for %(ProjectDir.Identity)"/>
-    <Exec Command="$(NuGet) install %(ProjectDir.Identity)\packages.config -o packages"/>
+    <Exec Command='$(NuGet) install %(ProjectDir.Identity)\packages.config -o $(MSBuildProjectDirectory)\packages'/>
   </Target>
 
   <Target Name="UpdatePackages" Outputs="%(ProjectDir.Identity)">
@@ -148,7 +149,8 @@
 
   <ItemGroup>
     <TestItem Include="Jdp.Jdf.Tests.dll">
-      <TestDir>$(MSBuildProjectDirectory)\src\Tests\Jdp.Jdf.Tests\bin\$(Configuration)</TestDir>
+      <TestProjectDir>$(MSBuildProjectDirectory)\src\Tests\Jdp.Jdf.Tests</TestProjectDir>
+      <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
       <TestReportName>Jdp.Jdf.Tests.Results.htm</TestReportName>
       <CoverageXmlName>Jdp.Jdf.Tests.Coverage.xml</CoverageXmlName>
     </TestItem>
@@ -165,14 +167,18 @@
   </Target>
 
   <Target Name="MSpecTests" Outputs="%(TestItem.Identity)">
-    <Message Importance="high" Text="MSpec: $(MSpecDir)\mspec-clr4.exe"/>
     <Message Importance="high" Text="Testing: %(TestItem.TestDir)\%(TestItem.Identity)"/>
+    <XmlRead XPath="//package[@id='Machine.Specifications']/@version"
+             XmlFileName="%(TestItem.TestProjectDir)\packages.config">
+      <Output TaskParameter="Value" PropertyName="MSpecVersion"/>
+    </XmlRead>
+    <Message Importance="high" Text="MSpec: $(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe"/>
     <Exec WorkingDirectory="%(TestItem.TestDir)"
-          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity)"'
+          Command='"$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity)"'
           Condition='!$(InTeamCity)'/>
 
     <Exec WorkingDirectory="%(TestItem.TestDir)"
-          Command='"$(MSpecDir)\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity) --teamcity"'
+          Command='"$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity) --teamcity"'
           Condition='$(InTeamCity)'/>
   </Target>
 
@@ -180,11 +186,15 @@
     <Message Importance="high" Text="Code coverage on MSpec tests"/>
     <Message Importance="high" Text="dotCover: $(dotCover)"/>
     <Message Importance="high" Text="Coverage Testing: %(TestItem.TestDir)\%(TestItem.Identity)"/>
+    <XmlRead XPath="//package[@id='Machine.Specifications']/@version"
+             XmlFileName="%(TestItem.TestProjectDir)\packages.config">
+      <Output TaskParameter="Value" PropertyName="MSpecVersion"/>
+    </XmlRead>
     <Copy SourceFiles="$(MSBuildProjectDirectory)\dotcoverTemplate.xml"
           DestinationFiles="$(MSBuildProjectDirectory)\dotcover.xml" SkipUnchangedFiles="false"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
                XPath="//Executable"
-               Value="$(MSpecDir)\mspec-clr4.exe"/>
+               Value="$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
                XPath="//Arguments"
                Value="%(TestItem.TestDir)\%(TestItem.Identity)"/>

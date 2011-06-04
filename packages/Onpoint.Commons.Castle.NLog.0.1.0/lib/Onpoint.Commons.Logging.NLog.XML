@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Onpoint.Commons.Logging.NLog</name>
+    </assembly>
+    <members>
+        <member name="T:Onpoint.Commons.Logging.NLog.ConfigurationExtension">
+            <summary>
+            Extensions for working with configuration.
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.ConfigurationExtension.LogWithNLog(Onpoint.Commons.Core.Configuration)">
+            <summary>
+            Log using NLog (default settings)
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Onpoint.Commons.Logging.NLog.NLogLog">
+            <summary>
+            Implementation of ILog for NLog.
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.#ctor(NLog.Logger)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Error(System.Object)">
+            <summary>
+            Log a message at the error level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the error level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the error level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Fatal(System.Object)">
+            <summary>
+            Log a message at the fatal level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message and an exception at the fatal level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the fatal level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Debug(System.Object)">
+            <summary>
+            Log a message at the debug level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the debug level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the debug level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Info(System.Object)">
+            <summary>
+            Log a message at the info level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the info level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the info level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Warn(System.Object)">
+            <summary>
+            Log a message at the warning level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the warning level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLog.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the warning level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="P:Onpoint.Commons.Logging.NLog.NLogLog.IsErrorEnabled">
+            <summary>
+            Gets <see langword="true"/> if error logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Logging.NLog.NLogLog.IsFatalEnabled">
+            <summary>
+            Gets <see langword="true"/> if logging is enabled at the fatal level.
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Logging.NLog.NLogLog.IsDebugEnabled">
+            <summary>
+            Gets <see langword="true"/> if debug level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Logging.NLog.NLogLog.IsInfoEnabled">
+            <summary>
+            Gets <see langword="true"/> if info level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Logging.NLog.NLogLog.IsWarnEnabled">
+            <summary>
+            Gets <see langword="true"/> if warning level logging is enabled.
+            </summary>
+        </member>
+        <member name="T:Onpoint.Commons.Logging.NLog.NLogLogProvider">
+            <summary>
+            Implementation of ILogProvider for NLog
+            </summary>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLogProvider.GetLogger(System.Type)">
+            <summary>
+            Gets the ILog implementation for the type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Onpoint.Commons.Logging.NLog.NLogLogProvider.GetLogger(System.String)">
+            <summary>
+            Gets the ILog implementation for the key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
