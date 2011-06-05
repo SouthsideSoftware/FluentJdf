@@ -15,7 +15,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions
         static XElement resourceLinkPoolJdfParent;
         static XElement commentJdfParent;
 
-        Establish content = () => ticket = Ticket.Create().AddItentNode().ResourcePool().Parent.AddItentNode().ResourceLinkPool().Document;
+        Establish content = () => ticket = Ticket.Create().AddIntentNode().ResourcePool().Parent.AddIntentNode().ResourceLinkPool().Document;
 
         Because of = () => {
                          resourcePoolJdfParent = ticket.Root.ResourcePool(rp => rp.Add(new XElement(Element.Comment))).GetJdfParentOrNull();

@@ -8,7 +8,7 @@ namespace Jdp.Jdf.LinqToJdf
     /// <summary>
     /// Type of resource link (input or output)
     /// </summary>
-    public enum ResourceUsageType
+    public enum ResourceUsage
     {
         /// <summary>
         /// An input resource.

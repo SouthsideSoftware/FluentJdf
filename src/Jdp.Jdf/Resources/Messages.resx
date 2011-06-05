@@ -129,4 +129,19 @@
 	<data name="ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent">
 		<value xml:space="preserve">This node is not a JDF and it does not have a JDF parent.  The node is {0}</value>
 	</data>
+	<data name="JdfElementExtensions_LinkResource_ResourceNameOrIdOrBothRequired">
+		<value xml:space="preserve">Linking a resource requires either the resource name or the id (or both).</value>
+	</data>
+	<data name="ElementExtensions_JdfRoot_NoJdfRootFound">
+		<value xml:space="preserve">The element {0} does not have a JDF root</value>
+	</data>
+	<data name="ElementExtensions_AddContent_RequiresContentToAdd">
+		<value xml:space="preserve">AddContent requires content to add</value>
+	</data>
+	<data name="ResourceExtensions_Resource_ResourceWithIdCannotBeFound">
+		<value xml:space="preserve">Resource with ID {0} cannot be found</value>
+	</data>
+	<data name="JdfElementExtensions_LinkResource_CouldNotFindResourceWithGivenIdAndNameWasNotProvided">
+		<value xml:space="preserve">Could not find resource with id {0} and could not create it because name was not provided</value>
+	</data>
 </root>

@@ -11,7 +11,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions {
         static Exception exception;
 
         Establish content = () => {
-                                ticket = Ticket.Create().AddItentNode().ResourcePool().Parent.AddItentNode().ResourceLinkPool().Document;
+                                ticket = Ticket.Create().AddIntentNode().ResourcePool().Parent.AddIntentNode().ResourceLinkPool().Document;
                                 elementWithoutJdf = new XElement(Element.RivetsExposed);
                             };
 

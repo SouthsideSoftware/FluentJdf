@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Jdp.Jdf.Resources;
+using Onpoint.Commons.Core.CodeContracts;
 
 namespace Jdp.Jdf.LinqToJdf
 {
@@ -20,7 +21,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static string GetId(this XElement element)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull("ID");
         }
@@ -32,7 +33,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="updateReferences">True to update references.  Default is true.</param>
         public static XElement SetUniqueId(this XElement element, bool updateReferences = true)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.SetId(Globals.CreateUniqueId(), updateReferences);
         }
@@ -44,7 +45,8 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="id"></param>
         /// <param name="updateReferences">True to update references.  Default is <see langword="true"/>.</param>
         public static XElement SetId(this XElement element, string id, bool updateReferences = true) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.StringRequiredAndNotWhitespace(id, "id");
 
             if (updateReferences)
             {
@@ -66,7 +68,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <remarks><para>This method searches from the root of the tree so it finds legally and
         /// illegally linked elements.</para><para>If the element has no id, an empty enumerator is returned.</para></remarks>
         public static IEnumerable<XElement> ReferencingElements(this XElement element) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             string id = element.GetId();
             
@@ -87,7 +89,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static string GetRefId(this XElement element)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull("rRef");
         }
@@ -102,8 +104,8 @@ namespace Jdp.Jdf.LinqToJdf
         /// element.  Use SetId on the referenced element if you want
         /// to maintain all links.</remarks>
         public static XElement SetRefId(this XElement element, string refId) {
-            Contract.Requires(element != null);
-            Contract.Requires(!string.IsNullOrEmpty(refId));
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.StringRequiredAndNotWhitespace(refId, "refId");
 
             element.SetAttributeValue("rRef", refId);
 
@@ -115,11 +117,11 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static ResourceUsageType GetUsage(this XElement element) {
-            Contract.Requires(element != null);
+        public static ResourceUsage GetUsage(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
             element.ThrowExceptionIfNotResourceLink();
 
-            var usage = ResourceUsageType.Unknown;
+            var usage = ResourceUsage.Unknown;
             var usageString = element.GetAttributeValueOrNull("Usage");
             if (!string.IsNullOrWhiteSpace(usageString)) {
                 Enum.TryParse(usageString, true, out usage);
@@ -133,7 +135,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         public static void ThrowExceptionIfNotResourceLink(this XElement element) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             if (!IsResourceLink(element)) {
                 throw new ArgumentException(string.Format(Messages.CanOnlyOperateOnResourceLink, element.Name));
@@ -146,7 +148,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="element"></param>
         /// <returns></returns>
         public static bool IsResourceLink(this XElement element) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return ((element.Parent == null || element.Parent.IsResourceLinkPool()) && element.Name.LocalName.EndsWith("Link"));
         }
@@ -157,7 +159,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="element"></param>
         /// <returns></returns>
         public static bool IsResourcePool(this XElement element) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.Name == Element.ResourcePool;
         }
@@ -169,9 +171,49 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static bool IsResourceLinkPool(this XElement element)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.Name == Element.ResourceLinkPool;
+        }
+
+        /// <summary>
+        /// Returns the first element with the given id starting in the root JDF.
+        /// Returns null if there is no JDF root or no element with the ID is found.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static XElement GetResourceOrNull(this XElement element, string id) {
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.StringRequiredAndNotWhitespace(id, "id");
+
+            XElement resource = null;
+
+            var root = element.GetJdfRootOrNull();
+            if (root != null) {
+                resource = root.JdfXPathSelectElement(string.Format("//*[@ID='{0}']", id));
+            }
+
+            return resource;
+
+        }
+
+        /// <summary>
+        /// Returns the first element with the given id.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="JdfException">If no element with the given id is found anywhere in the tree.</exception>
+        public static XElement Resource(this XElement element, string id) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            var resource = element.GetResourceOrNull(id);
+            if (resource == null) {
+                throw new JdfException(string.Format(Messages.ResourceExtensions_Resource_ResourceWithIdCannotBeFound, id));
+            }
+
+            return resource;
         }
     }
 }

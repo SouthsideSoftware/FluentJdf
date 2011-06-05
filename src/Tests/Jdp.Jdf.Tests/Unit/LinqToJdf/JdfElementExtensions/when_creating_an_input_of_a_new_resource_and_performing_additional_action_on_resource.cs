@@ -13,7 +13,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
     {
         static XElement jdf;
 
-        Establish context = () => jdf = Ticket.Create().AddItentNode();
+        Establish context = () => jdf = Ticket.Create().AddIntentNode();
 
         Because of = () => jdf.AddInput(Resource.BindingIntent).SetDescriptiveName("fooey");
 

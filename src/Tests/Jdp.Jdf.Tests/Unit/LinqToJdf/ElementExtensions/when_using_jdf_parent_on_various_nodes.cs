@@ -11,7 +11,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions {
         static Exception exception;
 
         Establish content = () => {
-                                ticket = Ticket.Create().AddItentNode().ResourcePool().Parent.AddItentNode().ResourceLinkPool().Document;
+                                ticket = Ticket.Create().AddIntentNode().ResourcePool().Parent.AddIntentNode().ResourceLinkPool().AddContent(new XElement(Element.RingSystem, new XElement(Element.RingDiameter))).Document;
                                 elementWithoutJdf = new XElement(Element.RivetsExposed);
                             };
 
@@ -34,5 +34,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions {
                                                                                                 exception.ShouldNotBeNull();
                                                                                                 exception.ShouldBeOfType(typeof (JdfException));
                                                                                             };
+
+        It should_find_correct_jdf_parent_for_deeply_nested_node = () => ticket.JdfXPathSelectElement("//RingDiameter").JdfParent().ShouldEqual(ticket.Root.Element(Element.JDF));
     }
 }

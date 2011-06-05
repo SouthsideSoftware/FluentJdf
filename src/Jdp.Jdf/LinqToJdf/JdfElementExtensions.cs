@@ -2,6 +2,7 @@
 using System.Diagnostics.Contracts;
 using System.Xml.Linq;
 using Jdp.Jdf.Resources;
+using Onpoint.Commons.Core.CodeContracts;
 
 namespace Jdp.Jdf.LinqToJdf
 {
@@ -15,9 +16,10 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="parent"></param>
         /// <returns>The newly created JDF node.</returns>
-        public static XElement AddItentNode(this XContainer parent)
+        public static XElement AddIntentNode(this XContainer parent)
         {
-            Contract.Requires(parent != null);
+            ParameterCheck.ParameterRequired(parent, "parent");
+            
             if (parent is XElement) {
                 parent = (parent as XElement).NearestJdf();
             }
@@ -39,7 +41,8 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         /// <remarks>Creates the resource pool if it does not exist.</remarks>
         public static XElement ResourcePool(this XElement jdfNode, Action<XElement> additionalAction = null) {
-            Contract.Requires(jdfNode != null);
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+
             jdfNode.ThrowExceptionIfNotJdfNode();
 
             var resourcePool = jdfNode.Element(Element.ResourcePool);
@@ -63,7 +66,8 @@ namespace Jdp.Jdf.LinqToJdf
         /// <remarks>Creates the resource link pool if it does not exist.</remarks>
         public static XElement ResourceLinkPool(this XElement jdfNode)
         {
-            Contract.Requires(jdfNode != null);
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+
             jdfNode.ThrowExceptionIfNotJdfNode();
 
             var resourceLinkPool = jdfNode.Element(Element.ResourceLinkPool);
@@ -74,6 +78,21 @@ namespace Jdp.Jdf.LinqToJdf
             }
 
             return resourceLinkPool;
+        }
+
+        /// <summary>
+        /// Link an existing resource with the given id as an output.  Promote the resource if required.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <param name="id"></param>
+        /// <exception cref="JdfException">If a resource with the given id cannot be found
+        /// and promoted without breaking any existing references.</exception>
+        /// <returns></returns>
+        public static XElement AddOutput(this XElement jdfNode, string id) {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            ParameterCheck.StringRequiredAndNotWhitespace(id, "id");
+
+            return jdfNode.LinkResource(ResourceUsage.Input, null, id);
         }
 
         /// <summary>
@@ -88,9 +107,25 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static XElement AddOutput(this XElement jdfNode, XName resourceName, string id = null)
         {
-            Contract.Requires(jdfNode != null);
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
-            return jdfNode.LinkResource(ResourceUsageType.Output, resourceName, id);
+            return jdfNode.LinkResource(ResourceUsage.Output, resourceName, id);
+        }
+
+        /// <summary>
+        /// Link an existing resource with the given id as an input.  Promote the resource if required.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <param name="id"></param>
+        /// <exception cref="JdfException">If a resource with the given id cannot be found
+        /// and promoted without breaking any existing references.</exception>
+        /// <returns></returns>
+        public static XElement AddInput(this XElement jdfNode, string id)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            ParameterCheck.StringRequiredAndNotWhitespace(id, "id");
+
+            return jdfNode.LinkResource(ResourceUsage.Input, null, id);
         }
 
         /// <summary>
@@ -104,9 +139,9 @@ namespace Jdp.Jdf.LinqToJdf
         /// always be created.</remarks>
         public static XElement AddInput(this XElement jdfNode, XName resourceName, string id = null)
         {
-            Contract.Requires(jdfNode != null);
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
-            return jdfNode.LinkResource(ResourceUsageType.Input, resourceName, id);
+            return jdfNode.LinkResource(ResourceUsage.Input, resourceName, id);
         }
 
         /// <summary>
@@ -119,32 +154,55 @@ namespace Jdp.Jdf.LinqToJdf
         /// <remarks>If you do not pass an id (or you pass a null id), a new resource will
         /// always be created.</remarks>
         /// <returns>The newly linked resource.</returns>
-        public static XElement LinkResource(this XElement jdfNode, ResourceUsageType usage, XName resourceName, string id = null) {
-            Contract.Requires(jdfNode != null);
-            Contract.Requires(resourceName != null);
+        public static XElement LinkResource(this XElement jdfNode, ResourceUsage usage, XName resourceName = null, string id = null) {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
             var nearestJdf = jdfNode.NearestJdf();
 
-            if (id == null) {
-                id = Globals.CreateUniqueId();
+            if (resourceName == null && id == null) {
+                throw new ArgumentException(Messages.JdfElementExtensions_LinkResource_ResourceNameOrIdOrBothRequired);
             }
 
             var resourcePool = nearestJdf.ResourcePool();
             var resourceLinkPool = nearestJdf.ResourceLinkPool();
 
-            var resource = new XElement(resourceName,
-                                        new XAttribute("ID", id));
-            resourcePool.Add(resource);
+            XElement resource = null;
+            if (id == null)
+            {
+                id = Globals.CreateUniqueId();
+            }
+            else {
+                resource = jdfNode.GetResourceOrNull(id);
+                if (resource == null) {
+                    if (resourceName != null) {
+                        resource = CreateResource(resourceName, id, resourcePool);
+                    }
+                    else {
+                        throw new JdfException(
+                            string.Format(Messages.JdfElementExtensions_LinkResource_CouldNotFindResourceWithGivenIdAndNameWasNotProvided, id));
+                    }
+                }
+            }
 
-            var resourceLink = new XElement(resourceName.LinkName(),
-                                            new XAttribute("rRef", id),
-                                            new XAttribute("Usage", usage));
+            if (resource == null) {
+                resource = CreateResource(resourceName, id, resourcePool);
+            } else {
+                //todo: promote if needed.
+            }
 
             resourceLinkPool.Add(
-                new XElement(resourceName.LinkName(),
+                new XElement(resource.Name.LinkName(),
                     new XAttribute("rRef", id),
                     new XAttribute("Usage", usage)));
 
+            return resource;
+        }
+
+        static XElement CreateResource(XName resourceName, string id, XElement resourcePool) {
+            XElement resource;
+            resource = new XElement(resourceName,
+                                    new XAttribute("ID", id));
+            resourcePool.Add(resource);
             return resource;
         }
 
@@ -155,7 +213,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static bool IsJdfNode(this XElement element)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.Name == Element.JDF;
         }
@@ -166,7 +224,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="element"></param>
         /// <returns></returns>
         public static bool IsJdfIntentNode(this XElement element) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.IsJdfNode() && element.GetJdfType() == "Product";
         }
@@ -177,7 +235,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="element"></param>
         /// <returns></returns>
         public static string GetJdfType(this XElement element) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeFromJdfNode("Type");
         }
@@ -189,7 +247,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static string GetJdfTypes(this XElement element)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeFromJdfNode("Types");
         }
@@ -201,7 +259,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static string GetJobId(this XElement element)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeFromJdfNode("JobID");
         }
@@ -212,7 +270,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="element"></param>
         /// <returns></returns>
         public static XElement SetUniqueJobId(this XElement element) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.SetJobId(Globals.CreateUniqueId("J"));
         }
@@ -224,7 +282,8 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="id"></param>
         /// <returns></returns>
         public static XElement SetJobId(this XElement element, string id) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
+
             element.ThrowExceptionIfNotJdfNode();
 
             element.SetAttributeValue("JobID", id);
@@ -239,14 +298,14 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static string GetJobPartId(this XElement element)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeFromJdfNode("JobPartID");
         }
 
         static string GetAttributeFromJdfNode(this XElement element, string attributeName) {
-            Contract.Requires(element != null);
-            Contract.Requires(!string.IsNullOrEmpty(attributeName));
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.StringRequiredAndNotWhitespace(attributeName, "attributeName");
 
             element.ThrowExceptionIfNotJdfNode();
 
@@ -260,7 +319,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static XElement MakeJdfNodeAnIntent(this XElement jdfNode)
         {
-            Contract.Requires(jdfNode != null);
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             jdfNode.ThrowExceptionIfNotJdfNode();
 
             jdfNode.SetTypeAndTypes("Product");
@@ -274,7 +333,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="jdfNode"></param>
         public static void ThrowExceptionIfNotJdfNode(this XElement jdfNode)
         {
-            Contract.Requires(jdfNode != null);
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
             if (!jdfNode.IsJdfNode())
             {
@@ -292,7 +351,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static XElement SetTypeAndTypes(this XElement jdfNode, string type, string types = null)
         {
-            Contract.Requires(jdfNode != null);
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             ThrowExceptionIfNotJdfNode(jdfNode);
 
             jdfNode.SetAttributeValue("Type", type);

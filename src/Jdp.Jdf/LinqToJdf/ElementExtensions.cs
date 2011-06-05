@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Jdp.Jdf.Resources;
+using Onpoint.Commons.Core.CodeContracts;
 
 namespace Jdp.Jdf.LinqToJdf
 {
@@ -20,7 +21,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static string GetDescriptiveName(this XElement element)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull("DescriptiveName");
         }
@@ -31,7 +32,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static XElement SetDescriptiveName(this XElement element, string value)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             element.SetAttributeValue("DescriptiveName", value);
 
@@ -45,9 +46,12 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="content"></param>
         /// <returns></returns>
         public static XElement AddContent(this XElement element, params Object[] content) {
-            Contract.Requires(element != null);
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length > 0);
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(content, "content");
+
+            if (content.Length == 0) {
+                throw new ArgumentException(Messages.ElementExtensions_AddContent_RequiresContentToAdd);
+            }
 
             element.Add(content);
             return element;
@@ -61,7 +65,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <exception cref="JdfException">If this node is not a JDF and there is no JDF parent.</exception>
         public static XElement NearestJdf(this XElement element)
         {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             var firstJdf = element.GetNearestJdfOrNull();
             if (firstJdf == null)
@@ -79,7 +83,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="element"></param>
         /// <returns></returns>
         public static XElement GetNearestJdfOrNull(this XElement element) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             if (element.IsJdfNode()) return element;
 
@@ -109,13 +113,46 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="element"></param>
         /// <returns></returns>
         public static XElement GetJdfParentOrNull(this XElement element) {
-            Contract.Requires(element != null);
+            ParameterCheck.ParameterRequired(element, "element");
 
             if (element.Parent != null) {
                 return element.Parent.IsJdfNode() ? element.Parent : element.Parent.GetJdfParentOrNull();
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Gets the root JDF of the element.  If none is found, throws an exception.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <exception cref="JdfException">If no JDF root is found.</exception>
+        /// <returns></returns>
+        public static XElement JdfRoot(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            var jdfRoot = element.GetJdfRootOrNull();
+            if (jdfRoot == null) {
+                throw new JdfException(string.Format(Messages.ElementExtensions_JdfRoot_NoJdfRootFound, element.Name));
+            }
+
+            return jdfRoot;
+        }
+
+        /// <summary>
+        /// Gets the root jdf associated with this element or null 
+        /// if the element is not JDF and there is no JDF ancestor.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static XElement GetJdfRootOrNull(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            if (element.GetJdfParentOrNull() != null) {
+                return element.GetJdfParentOrNull().GetJdfRootOrNull();
+            }
+
+            return element.IsJdfNode() ? element : null;
         }
     }
 }

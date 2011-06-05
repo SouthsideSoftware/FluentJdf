@@ -112,6 +112,9 @@
     <Reference Include="Onpoint.Commons.Server">
       <HintPath>..\..\..\packages\Onpoint.Commons.Castle.NLog.0.1.0\lib\Onpoint.Commons.Server.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\..\packages\RhinoMocks.3.6\lib\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -128,10 +131,13 @@
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_get_nearest_jdf_or_null_on_jdf_element.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_get_jdf_parent_or_null_on_elements_that_have_jdf_parents.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_jdf_parent_on_various_nodes.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_jdf_root_on_various_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_nearest_jdf_on_various_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_checking_nodes_to_see_if_they_are_jdf_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_an_input_of_a_new_resource.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_an_input_of_a_new_resource_and_performing_additional_action_on_resource.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_an_output_of_an_existing_resource.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_an_output_of_a_new_resource.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_intent_node_from_resource_in_jdf_node.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_intent_node_in_empty_document.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_intent_node_in_existing_jdf_node.cs" />
@@ -139,6 +145,8 @@
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_resource_link_pool_when_it_exists.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_resource_pool_when_it_does_not_exist_yet.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_resource_pool_when_it_exists.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_get_resource_or_null_with_resource_in_ancestor_resource_pool.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_get_resource_or_null_with_resource_in_local_resource_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\When_using_get_usage.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_link_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_pool.cs" />

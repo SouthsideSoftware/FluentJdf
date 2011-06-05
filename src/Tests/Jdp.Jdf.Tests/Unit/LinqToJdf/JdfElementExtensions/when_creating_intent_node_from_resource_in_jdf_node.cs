@@ -15,7 +15,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
                                 resource = doc.Root.AddInput(Resource.BindingIntent);
                             };
 
-        Because of = () => newIntent = resource.AddItentNode();
+        Because of = () => newIntent = resource.AddIntentNode();
 
         It should_create_jdf_node_off_nearest_jdf_parent_of_resource = () => newIntent.Document.Root.Descendants(Element.JDF).Count().ShouldEqual(1);
 
