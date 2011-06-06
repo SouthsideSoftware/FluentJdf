@@ -62,6 +62,21 @@
             <para>The parameter name is null, empty or all whitespace</para>
             </exception>
         </member>
+        <member name="M:Onpoint.Commons.Core.CodeContracts.ParameterCheck.MustContainAtLeastOne``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Throws a Precondition exception if the provided IEnumerable is null or does not contain at least one member
+            </summary>
+            <typeparam name="T">The type of enumerated object</typeparam>
+            <param name="enumerable">An IEnumerable of type T.</param>
+            <param name="parameterName">The name of the parameter</param>
+            <exception cref="T:Onpoint.Commons.Core.CodeContracts.PreconditionException">
+            <para>The enumerable is null</para>
+            <para>- or -</para>
+            <para>The enumerable does not contain at least one element</para>
+            <para>- or -</para>
+            <para>The parameter name is null, empty or all whitespace</para>
+            </exception>
+        </member>
         <member name="T:Onpoint.Commons.Core.CodeContracts.PreconditionException">
             <summary>
             Method preconditions not met.
@@ -214,7 +229,7 @@
         </member>
         <member name="P:Onpoint.Commons.Core.Resources.Messages.ParameterCheck_ListMustContainAtLeastOne">
             <summary>
-              Looks up a localized string similar to List {0} must contain at least one member.
+              Looks up a localized string similar to Enumerable {0} must contain at least one member.
             </summary>
         </member>
         <member name="P:Onpoint.Commons.Core.Resources.Messages.ParameterCheck_StringRequiredAndNotWhitespace">

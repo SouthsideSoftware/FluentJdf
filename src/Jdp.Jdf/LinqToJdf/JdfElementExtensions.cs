@@ -16,21 +16,67 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="parent"></param>
         /// <returns>The newly created JDF node.</returns>
-        public static XElement AddIntentNode(this XContainer parent)
+        public static XElement AddIntentNode(this XContainer parent) {
+            ParameterCheck.ParameterRequired(parent, "parent");
+
+            return parent.AddJdfNode("Product");
+        }
+
+        /// <summary>
+        /// Add a process JDF to the current JDF or document
+        /// </summary>
+        /// <returns>The newly created JDF node.</returns>
+        /// <remarks>If no types are passed, a process group node is created.</remarks>
+        public static XElement AddProcessNode(this XContainer parent, params string[] types)
         {
             ParameterCheck.ParameterRequired(parent, "parent");
-            
-            if (parent is XElement) {
+
+            return parent.AddJdfNode(types);
+        }
+
+        /// <summary>
+        /// Add a process group JDF to the current JDF or document
+        /// </summary>
+        /// <returns>The newly created JDF node.</returns>
+        public static XElement AddProcessGroupNode(this XContainer parent)
+        {
+            ParameterCheck.ParameterRequired(parent, "parent");
+
+            return parent.AddJdfNode("ProcessGroup");
+        }
+
+        /// <summary>
+        /// Add a JDF node to the current JDF or document
+        /// </summary>
+        /// <returns>The newly created JDF node.</returns>
+        public static XElement AddJdfNode(this XContainer parent, params string [] types)
+        {
+            ParameterCheck.ParameterRequired(parent, "parent");
+
+            if (parent is XElement)
+            {
                 parent = (parent as XElement).NearestJdf();
             }
 
             var jdfNode = new XElement(Element.JDF);
-            jdfNode.MakeJdfNodeAnIntent();
+            jdfNode.MakeJdfNodeAProcess(types);
             parent.Add(jdfNode);
 
             jdfNode.SetUniqueJobId();
 
             return jdfNode;
+        }
+
+        /// <summary>
+        /// Modify an existing JDF node.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        public static JdfNodeFactory ModifyJdfNode(this XElement jdfNode) {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfNode();
+
+            return new JdfNodeFactory(jdfNode);
         }
 
         /// <summary>
@@ -276,6 +322,18 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
+        /// Gets the element factory for this element so that elements can
+        /// be added.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <returns></returns>
+        public static ElementFactory AddNode(this XContainer container) {
+            ParameterCheck.ParameterRequired(container, "element");
+
+            return new ElementFactory(container);
+        }
+
+        /// <summary>
         /// Sets the job id of the jdf node to the given value.
         /// </summary>
         /// <param name="element"></param>
@@ -287,6 +345,23 @@ namespace Jdp.Jdf.LinqToJdf
             element.ThrowExceptionIfNotJdfNode();
 
             element.SetAttributeValue("JobID", id);
+
+            return element;
+        }
+
+        /// <summary>
+        /// Sets the job part id of the jdf node to the given value.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="jobPartId"></param>
+        /// <returns></returns>
+        public static XElement SetJobPartId(this XElement element, string jobPartId)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            element.ThrowExceptionIfNotJdfNode();
+
+            element.SetAttributeValue("JobPartID", jobPartId);
 
             return element;
         }
@@ -328,6 +403,35 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
+        /// Make the JDF node a process group node
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        public static XElement MakeJdfNodeAProcessGroup(this XElement jdfNode)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfNode();
+
+            jdfNode.SetTypeAndTypes("ProcessGroup");
+
+            return jdfNode;
+        }
+
+        /// <summary>
+        /// Make the JDF node a process
+        /// </summary>
+        /// <returns></returns>
+        public static XElement MakeJdfNodeAProcess(this XElement jdfNode, params string [] types)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfNode();
+
+            jdfNode.SetTypeAndTypes(types);
+
+            return jdfNode;
+        }
+
+        /// <summary>
         /// Throws an ArgumentException if the given node is not a JDF node.
         /// </summary>
         /// <param name="jdfNode"></param>
@@ -346,17 +450,25 @@ namespace Jdp.Jdf.LinqToJdf
         /// Set type and optionally types of a JDF node.
         /// </summary>
         /// <param name="jdfNode"></param>
-        /// <param name="type"></param>
         /// <param name="types"></param>
         /// <returns></returns>
-        public static XElement SetTypeAndTypes(this XElement jdfNode, string type, string types = null)
+        public static XElement SetTypeAndTypes(this XElement jdfNode, params string [] types)
         {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             ThrowExceptionIfNotJdfNode(jdfNode);
+            
+            if (types == null || types.Length == 0) {
+                jdfNode.SetAttributeValue("Type", "ProcessGroup");
+            }
+            if (types.Length == 1) {
+                jdfNode.SetAttributeValue("Type", types[0]);
+            }
+            else {
+                jdfNode.SetAttributeValue("Type", "Combined");
+                jdfNode.SetAttributeValue("Types", string.Join(" ", types));
+            }
 
-            jdfNode.SetAttributeValue("Type", type);
-            jdfNode.SetAttributeValue("Types", types);
-
+            
             return jdfNode;
         }
     }

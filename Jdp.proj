@@ -84,6 +84,9 @@
     <ProjectDir Include="src/Jdp.Jdf"/>
     <ProjectDir Include="src/Jdp.Server"/>
     <ProjectDir Include="src/Tests/Jdp.Jdf.Tests"/>
+    <ProjectDir Include="src/Jdp.Visualizer"/>
+    <ProjectDir Include="src/Jdp.Dsl"/>
+    <ProjectDir Include="src/Tests/Jdp.Dsl.Tests"/>
   </ItemGroup>
 
   <Target Name="InstallPackages" Outputs="%(ProjectDir.Identity)">
@@ -153,6 +156,12 @@
       <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
       <TestReportName>Jdp.Jdf.Tests.Results.htm</TestReportName>
       <CoverageXmlName>Jdp.Jdf.Tests.Coverage.xml</CoverageXmlName>
+    </TestItem>
+    <TestItem Include="Jdp.Dsl.Tests.dll">
+      <TestProjectDir>$(MSBuildProjectDirectory)\src\Tests\Jdp.Dsl.Tests</TestProjectDir>
+      <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
+      <TestReportName>Jdp.Dsl.Tests.Results.htm</TestReportName>
+      <CoverageXmlName>Jdp.Dsl.Tests.Coverage.xml</CoverageXmlName>
     </TestItem>
   </ItemGroup>
 

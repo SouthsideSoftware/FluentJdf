@@ -96,17 +96,21 @@
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NLog.2.0.0.0\lib\NET40\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Onpoint.Commons.Core">
-      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.1.0\lib\Onpoint.Commons.Core.dll</HintPath>
+    <Reference Include="Onpoint.Commons.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.2.0\lib\Onpoint.Commons.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Onpoint.Commons.Core.CastleWindsor">
-      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.1.0\lib\Onpoint.Commons.Core.CastleWindsor.dll</HintPath>
+    <Reference Include="Onpoint.Commons.Core.CastleWindsor, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.2.0\lib\Onpoint.Commons.Core.CastleWindsor.dll</HintPath>
     </Reference>
-    <Reference Include="Onpoint.Commons.Logging.NLog">
-      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.1.0\lib\Onpoint.Commons.Logging.NLog.dll</HintPath>
+    <Reference Include="Onpoint.Commons.Logging.NLog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.2.0\lib\Onpoint.Commons.Logging.NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Onpoint.Commons.Server">
-      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.1.0\lib\Onpoint.Commons.Server.dll</HintPath>
+    <Reference Include="Onpoint.Commons.Server, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.2.0\lib\Onpoint.Commons.Server.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -121,12 +125,18 @@
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
     <Compile Include="LinqToJdf\ElementExtensions.cs" />
     <Compile Include="LinqToJdf\Element.cs" />
+    <Compile Include="LinqToJdf\ElementFactory.cs" />
     <Compile Include="LinqToJdf\Globals.cs" />
     <Compile Include="LinqToJdf\IJdfDifferenceListener.cs" />
+    <Compile Include="LinqToJdf\JdfAttributeSetter.cs" />
     <Compile Include="LinqToJdf\JdfDifferenceExtensions.cs" />
     <Compile Include="LinqToJdf\JdfException.cs" />
+    <Compile Include="LinqToJdf\JdfNodeFactory.cs" />
+    <Compile Include="LinqToJdf\NodeFactoryBase.cs" />
     <Compile Include="LinqToJdf\RefExtensions.cs" />
     <Compile Include="LinqToJdf\Resource.cs" />
+    <Compile Include="LinqToJdf\ResourceNodeNameFactory.cs" />
+    <Compile Include="LinqToJdf\ResourceNodeFactory.cs" />
     <Compile Include="LinqToJdf\Ticket.cs" />
     <Compile Include="LinqToJdf\JdfElementExtensions.cs" />
     <Compile Include="LinqToJdf\ResourceExtensions.cs" />
