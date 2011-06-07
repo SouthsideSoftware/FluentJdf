@@ -29,6 +29,17 @@ namespace Jdp.Jdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Sets the ID of the resource to a unique value and optionally does not update the references.
+        /// </summary>
+        /// <param name="updateReferences"></param>
+        /// <returns></returns>
+        /// <remarks>By default, references are updated.</remarks>
+        public ResourceNodeAttributeBuilder UniqueId(bool updateReferences = true) {
+            Element.SetUniqueId(updateReferences);
+            return this;
+        }
+
+        /// <summary>
         /// Create an input
         /// </summary>
         public ResourceNodeNameBuilder WithInput() { return new ResourceNodeNameBuilder((NodeBuilderBase as ResourceNodeBuilder).ParentJdfNode, ResourceUsage.Input); }
