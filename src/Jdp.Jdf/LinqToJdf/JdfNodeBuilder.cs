@@ -30,7 +30,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <summary>
         /// Gets the attribute setter for this node.
         /// </summary>
-        public JdfNodeAttributeBuilder With() { return new JdfNodeAttributeBuilder(this);}
+        public new JdfNodeAttributeBuilder With() { return new JdfNodeAttributeBuilder(this);}
 
         /// <summary>
         /// Create an input

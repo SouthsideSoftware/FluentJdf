@@ -18,6 +18,11 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
+        /// Gets the attribute setter for this node.
+        /// </summary>
+        public new ResourceNodeAttributeBuilder With() { return new ResourceNodeAttributeBuilder(this); }
+
+        /// <summary>
         /// Create an input
         /// </summary>
         public ResourceNodeNameBuilder WithInput() { return ParentJdfNode.WithInput(); }

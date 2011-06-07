@@ -2,7 +2,7 @@
 using Jdp.Jdf.LinqToJdf;
 using Machine.Specifications;
 
-namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementBuilder
+namespace Jdp.Jdf.Tests.Unit.LinqToJdf.Builder
 {
     [Subject("Highly fluent interface")]
     public class when_using_the_highly_fluent_add_method_to_add_intent_and_set_attributes {

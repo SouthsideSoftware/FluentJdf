@@ -138,6 +138,7 @@
     <Compile Include="LinqToJdf\NodeBuilderBase.cs" />
     <Compile Include="LinqToJdf\RefExtensions.cs" />
     <Compile Include="LinqToJdf\Resource.cs" />
+    <Compile Include="LinqToJdf\ResourceNodeAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\ResourceNodeNameBuilder.cs" />
     <Compile Include="LinqToJdf\ResourceNodeBuilder.cs" />
     <Compile Include="LinqToJdf\Ticket.cs" />

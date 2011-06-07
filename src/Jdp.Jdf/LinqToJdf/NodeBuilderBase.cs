@@ -48,5 +48,13 @@ namespace Jdp.Jdf.LinqToJdf
         public NodeBuilder AddNode() {
             return new NodeBuilder(Element);
         }
+
+        /// <summary>
+        /// Gets the attribute builder that offers the most basic capabilities.
+        /// </summary>
+        /// <returns></returns>
+        public NodeAttributeBuilderBase With() {
+            return new NodeAttributeBuilderBase(this);
+        }
     }
 }
