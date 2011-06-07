@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using Jdp.Jdf.LinqToJdf;
 using Machine.Specifications;
 
-namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementFactory
+namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementBuilder
 {
     [Subject("Highly fluent interface")]
     public class when_using_the_highly_fluent_add_method_to_add_intent_and_set_attributes {

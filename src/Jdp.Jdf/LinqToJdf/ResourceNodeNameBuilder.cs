@@ -5,22 +5,23 @@ namespace Jdp.Jdf.LinqToJdf {
     /// <summary>
     /// Factory to create resources.
     /// </summary>
-    public class ResourceNodeNameFactory {
-        XContainer initiator;
+    public class ResourceNodeNameBuilder
+    {
+        internal JdfNodeBuilder ParentJdf;
         readonly ResourceUsage usage;
 
-        internal ResourceNodeNameFactory(XContainer initiator, ResourceUsage usage) {
-            ParameterCheck.ParameterRequired(initiator, "initiator");
+        internal ResourceNodeNameBuilder(JdfNodeBuilder jdfNodeBuilder, ResourceUsage usage) {
+            ParameterCheck.ParameterRequired(jdfNodeBuilder, "jdfNodeBuilder");
 
-            this.initiator = initiator;
+            ParentJdf = jdfNodeBuilder;
             this.usage = usage;
         }
 
         /// <summary>
         /// Create a binding intent and return a factory to operate on it.
         /// </summary>
-        public ResourceNodeFactory BindingIntent() {
-            return new ResourceNodeFactory(initiator, Resource.BindingIntent, usage); 
+        public ResourceNodeBuilder BindingIntent() {
+            return new ResourceNodeBuilder(ParentJdf, Resource.BindingIntent, usage); 
         }
 
         /// <summary>
@@ -28,10 +29,10 @@ namespace Jdp.Jdf.LinqToJdf {
         /// </summary>
         /// <param name="resourceName"></param>
         /// <returns></returns>
-        public ResourceNodeFactory ResourceWithName(XName resourceName) {
+        public ResourceNodeBuilder ResourceWithName(XName resourceName) {
             ParameterCheck.ParameterRequired(resourceName, "resourceName");
 
-            return new ResourceNodeFactory(initiator, resourceName, usage);
+            return new ResourceNodeBuilder(ParentJdf, resourceName, usage);
         }
     }
 }

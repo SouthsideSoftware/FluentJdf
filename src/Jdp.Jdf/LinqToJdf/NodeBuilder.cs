@@ -5,9 +5,9 @@ namespace Jdp.Jdf.LinqToJdf {
     /// <summary>
     /// Provides specific kinds of factories for creating specific kinds of elements.
     /// </summary>
-    public class ElementFactory {
-        internal ElementFactory(XContainer initiator) {
-            ParameterCheck.ParameterRequired(initiator, "Initiator");
+    public class NodeBuilder {
+        internal NodeBuilder(XContainer initiator) {
+            ParameterCheck.ParameterRequired(initiator, "InitiatorNode");
 
             Initiator = initiator;
         }
@@ -21,15 +21,15 @@ namespace Jdp.Jdf.LinqToJdf {
         /// Gets a factory for creating JDF for intent
         /// </summary>
         /// <returns></returns>
-        public JdfNodeFactory Intent() {
-            return new JdfNodeFactory(Initiator, "Product");
+        public JdfNodeBuilder Intent() {
+            return new JdfNodeBuilder(Initiator, "Product");
         }
 
         /// <summary>
         /// Create a process group node factory
         /// </summary>
-        public JdfNodeFactory ProcessGroup() {
-            return new JdfNodeFactory(Initiator, "ProcessGroup");
+        public JdfNodeBuilder ProcessGroup() {
+            return new JdfNodeBuilder(Initiator, "ProcessGroup");
         }
 
         /// <summary>
@@ -37,8 +37,8 @@ namespace Jdp.Jdf.LinqToJdf {
         /// </summary>
         /// <param name="types"></param>
         /// <returns></returns>
-        public JdfNodeFactory Process(params string[] types) {
-            return new JdfNodeFactory(Initiator, types);
+        public JdfNodeBuilder Process(params string[] types) {
+            return new JdfNodeBuilder(Initiator, types);
         }
     }
 }
