@@ -14,17 +14,17 @@ namespace Jdp.Jdf.LinqToJdf
         internal  ResourceNodeBuilder(JdfNodeBuilder parent, XName resourceName, ResourceUsage usage) : base(parent) {
             ParameterCheck.ParameterRequired(resourceName, "resourceName");
 
-            Node =  ParentJdf.Node.LinkResource(usage, resourceName);
+            Element =  ParentJdfNode.Element.LinkResource(usage, resourceName);
         }
 
         /// <summary>
         /// Create an input
         /// </summary>
-        public ResourceNodeNameBuilder WithInput() { return ParentJdf.WithInput(); }
+        public ResourceNodeNameBuilder WithInput() { return ParentJdfNode.WithInput(); }
 
         /// <summary>
         /// Creates an output.
         /// </summary>
-        public ResourceNodeNameBuilder WithOutput() { return ParentJdf.WithOutput(); }
+        public ResourceNodeNameBuilder WithOutput() { return ParentJdfNode.WithOutput(); }
     }
 }

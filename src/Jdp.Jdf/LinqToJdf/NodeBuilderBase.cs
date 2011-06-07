@@ -5,24 +5,24 @@ using Onpoint.Commons.Core.CodeContracts;
 namespace Jdp.Jdf.LinqToJdf
 {
     /// <summary>
-    /// Base class for node factories.
+    /// Base class for element builders.
     /// </summary>
     public abstract class NodeBuilderBase
     {
         internal NodeBuilderBase(JdfNodeBuilder parentJdfBuilder)
         {
-            ParentJdf = parentJdfBuilder;
+            ParentJdfNode = parentJdfBuilder;
         }
 
-        internal NodeBuilderBase(XElement node)
+        internal NodeBuilderBase(XElement element)
         {
-            ParameterCheck.ParameterRequired(node, "node");
+            ParameterCheck.ParameterRequired(element, "element");
 
-            Node = node;
+            Element = element;
 
-            if (ParentJdf != null && ParentJdf.Node.GetJdfParentOrNull() != null)
+            if (ParentJdfNode != null && ParentJdfNode.Element.GetJdfParentOrNull() != null)
             {
-                ParentJdf = new JdfNodeBuilder(ParentJdf.Node.JdfParent());
+                ParentJdfNode = new JdfNodeBuilder(ParentJdfNode.Element.JdfParent());
             }
         }
 
@@ -32,13 +32,13 @@ namespace Jdp.Jdf.LinqToJdf
         }
 
         /// <summary>
-        /// Gets the Node and allows set for inheritors
+        /// Gets the Element and allows set for inheritors
         /// </summary>
-        public XElement Node { get; protected set; }
+        public XElement Element { get; protected set; }
 
         /// <summary>
         /// Gets the container JDF builder.
         /// </summary>
-        public JdfNodeBuilder ParentJdf { get; protected set; }
+        public JdfNodeBuilder ParentJdfNode { get; protected set; }
     }
 }

@@ -3,7 +3,7 @@ using Onpoint.Commons.Core.CodeContracts;
 
 namespace Jdp.Jdf.LinqToJdf {
     /// <summary>
-    /// Provides specific kinds of factories for creating specific kinds of elements.
+    /// Provides specific kinds of builders for creating working with specific kinds of elements.
     /// </summary>
     public class NodeBuilder {
         internal NodeBuilder(XContainer initiator) {

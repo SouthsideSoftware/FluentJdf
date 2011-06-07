@@ -125,10 +125,11 @@
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
     <Compile Include="LinqToJdf\ElementExtensions.cs" />
     <Compile Include="LinqToJdf\Element.cs" />
+    <Compile Include="LinqToJdf\JdfNodeAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\NodeBuilder.cs" />
     <Compile Include="LinqToJdf\Globals.cs" />
     <Compile Include="LinqToJdf\IJdfDifferenceListener.cs" />
-    <Compile Include="LinqToJdf\JdfAttributeSetter.cs" />
+    <Compile Include="LinqToJdf\NodeAttributeBuilderBase.cs" />
     <Compile Include="LinqToJdf\JdfDifferenceExtensions.cs" />
     <Compile Include="LinqToJdf\JdfException.cs" />
     <Compile Include="LinqToJdf\JdfNodeBuilder.cs" />

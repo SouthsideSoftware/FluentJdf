@@ -14,21 +14,23 @@ namespace Jdp.Jdf.LinqToJdf
         internal JdfNodeBuilder(XContainer initiator, params string [] types) {
             ParameterCheck.ParameterRequired(initiator, "initiator");
 
-            Node = initiator.AddProcessJdfElement(types);
+            Element = initiator.AddProcessJdfElement(types);
             
-            if (Node.GetJdfParentOrNull() != null)
+            if (Element.GetJdfParentOrNull() != null)
             {
-                ParentJdf = new JdfNodeBuilder(Node.JdfParent());
+                ParentJdfNode = new JdfNodeBuilder(Element.JdfParent());
             }
         }
         
         internal JdfNodeBuilder(XElement node) : base(node) {
+            ParameterCheck.ParameterRequired(node, "node");
+            node.ThrowExceptionIfNotJdfElement();
         }
 
         /// <summary>
         /// Gets the attribute setter for this node.
         /// </summary>
-        public JdfAttributeSetter With() { return new JdfAttributeSetter(this);}
+        public JdfNodeAttributeBuilder With() { return new JdfNodeAttributeBuilder(this);}
 
         /// <summary>
         /// Create an input
