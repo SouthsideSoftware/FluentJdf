@@ -17,7 +17,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions
 
         Establish context = () =>
         {
-            ticket = Ticket.Create().AddIntentNode().AddIntentNode().Document;
+            ticket = Ticket.Create().AddIntentElement().AddIntentElement().Document;
             secondLevelJdf = ticket.Root.FirstNode as XElement;
         };
 

@@ -15,7 +15,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
                                 jdf.Add(existingResourcePool);
                             };
 
-        Because of = () => retrievedResourcePool = jdf.ResourcePool();
+        Because of = () => retrievedResourcePool = jdf.ResourcePoolElement();
 
         It should_have_a_resource_pool_in_the_jdf = () => jdf.Element(Element.ResourcePool).ShouldNotBeNull();
 

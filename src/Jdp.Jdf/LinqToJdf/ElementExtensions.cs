@@ -85,7 +85,7 @@ namespace Jdp.Jdf.LinqToJdf
         public static XElement GetNearestJdfOrNull(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            if (element.IsJdfNode()) return element;
+            if (element.IsJdfElement()) return element;
 
             return element.GetJdfParentOrNull();
         }
@@ -116,7 +116,7 @@ namespace Jdp.Jdf.LinqToJdf
             ParameterCheck.ParameterRequired(element, "element");
 
             if (element.Parent != null) {
-                return element.Parent.IsJdfNode() ? element.Parent : element.Parent.GetJdfParentOrNull();
+                return element.Parent.IsJdfElement() ? element.Parent : element.Parent.GetJdfParentOrNull();
             }
 
             return null;
@@ -152,7 +152,7 @@ namespace Jdp.Jdf.LinqToJdf
                 return element.GetJdfParentOrNull().GetJdfRootOrNull();
             }
 
-            return element.IsJdfNode() ? element : null;
+            return element.IsJdfElement() ? element : null;
         }
     }
 }

@@ -137,8 +137,8 @@
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_jdf_parent_on_various_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_jdf_root_on_various_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_nearest_jdf_on_various_nodes.cs" />
-    <Compile Include="Unit\LinqToJdf\ElementFactory\when_using_the_highly_fluent_add_method_to_add_input_and_output_resources.cs" />
-    <Compile Include="Unit\LinqToJdf\ElementFactory\when_using_the_highly_fluent_add_method_to_add_intent_and_set_attributes.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementBuilder\when_using_the_highly_fluent_add_method_to_add_input_and_output_resources.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementBuilder\when_using_the_highly_fluent_add_method_to_add_intent_and_set_attributes.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_checking_nodes_to_see_if_they_are_jdf_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_an_input_of_a_new_resource.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_an_input_of_a_new_resource_and_performing_additional_action_on_resource.cs" />

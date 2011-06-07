@@ -7,7 +7,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ResourceExtensions {
     public class when_using_is_resource_link_pool {
         static XElement jdf;
 
-        Establish content = () => jdf = Ticket.Create().AddIntentNode()
+        Establish content = () => jdf = Ticket.Create().AddIntentElement()
                                             .AddInput(Resource.BindingIntent)
                                             .NearestJdf();
                            

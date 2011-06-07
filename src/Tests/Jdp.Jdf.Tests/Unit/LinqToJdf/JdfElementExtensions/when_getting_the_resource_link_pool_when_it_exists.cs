@@ -15,7 +15,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
                                 jdf.Add(existingResourceLinkPool);
                             };
 
-        Because of = () => retrievedResourceLinkPool = jdf.ResourceLinkPool();
+        Because of = () => retrievedResourceLinkPool = jdf.ResourceLinkPoolElement();
 
         It should_have_a_resource_link_pool_in_the_jdf = () => jdf.Element(Element.ResourceLinkPool).ShouldNotBeNull();
 

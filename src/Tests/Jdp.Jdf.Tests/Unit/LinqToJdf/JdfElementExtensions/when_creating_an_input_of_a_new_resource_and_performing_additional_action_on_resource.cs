@@ -13,11 +13,11 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
     {
         static XElement jdf;
 
-        Establish context = () => jdf = Ticket.Create().AddIntentNode();
+        Establish context = () => jdf = Ticket.Create().AddIntentElement();
 
         Because of = () => jdf.AddInput(Resource.BindingIntent).SetDescriptiveName("fooey");
 
         It should_have_descriptive_name_set_in_action =
-            () => jdf.ResourcePool().Element(Resource.BindingIntent).GetDescriptiveName().ShouldEqual("fooey");
+            () => jdf.ResourcePoolElement().Element(Resource.BindingIntent).GetDescriptiveName().ShouldEqual("fooey");
     }
 }

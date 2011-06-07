@@ -16,11 +16,11 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
 
         Establish content = () => root = new XDocument(new XElement(Element.JDF)).Root;
 
-        Because of = () => newIntent = root.AddIntentNode();
+        Because of = () => newIntent = root.AddIntentElement();
 
-        It should_have_jdf_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfNode().ShouldBeTrue();
+        It should_have_jdf_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfElement().ShouldBeTrue();
 
-        It should_have_jdf_intent_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfIntentNode().ShouldBeTrue();
+        It should_have_jdf_intent_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfIntentElement().ShouldBeTrue();
 
         It should_have_job_id = () => newIntent.GetJobId().ShouldNotBeNull();
     }

@@ -9,14 +9,14 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
         static XElement jdf;
 
         Establish context =
-            () => jdf = Ticket.Create().AddIntentNode();
+            () => jdf = Ticket.Create().AddIntentElement();
 
         Because of = () => jdf.AddOutput(Resource.BindingIntent, "t").AddInput("t");
 
-        It should_have_one_hole_making_intent_in_resource_pool = () => jdf.ResourcePool().Elements(Resource.BindingIntent).Count().ShouldEqual(1);
+        It should_have_one_hole_making_intent_in_resource_pool = () => jdf.ResourcePoolElement().Elements(Resource.BindingIntent).Count().ShouldEqual(1);
 
         It should_have_two_hole_making_intent_links_in_the_resource_link_pool =
-            () => jdf.ResourceLinkPool().Elements(Resource.BindingIntent.LinkName()).Count().ShouldEqual(2);
+            () => jdf.ResourceLinkPoolElement().Elements(Resource.BindingIntent.LinkName()).Count().ShouldEqual(2);
 
         It should_have_one_hole_making_intent_link_as_input = () => jdf.JdfXPathSelectElements("//BindingIntentLink[@Usage='Input']").Count().ShouldEqual(1);
 

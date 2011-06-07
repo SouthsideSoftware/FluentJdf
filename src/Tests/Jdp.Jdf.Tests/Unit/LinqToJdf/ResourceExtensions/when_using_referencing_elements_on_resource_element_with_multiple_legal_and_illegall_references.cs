@@ -11,8 +11,8 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ResourceExtensions {
         static List<XElement> references;
 
         Establish content = () => {
-                                bindingIntent = Ticket.Create().AddIntentNode().AddIntentNode().AddInput(Resource.BindingIntent);
-                                bindingIntent.NearestJdf().Parent.AddIntentNode().ResourceLinkPool().Add(new XElement("Tom",
+                                bindingIntent = Ticket.Create().AddIntentElement().AddIntentElement().AddInput(Resource.BindingIntent);
+                                bindingIntent.NearestJdf().Parent.AddIntentElement().ResourceLinkPoolElement().Add(new XElement("Tom",
                                                                                                               new XAttribute("rRef",
                                                                                                                              bindingIntent.GetId())));
                             };

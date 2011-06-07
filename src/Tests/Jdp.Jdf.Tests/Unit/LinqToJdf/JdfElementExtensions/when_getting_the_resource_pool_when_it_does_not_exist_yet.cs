@@ -15,7 +15,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
 
         Establish context = () => jdf = new XElement(Element.JDF);
 
-        Because of = () => resourcePool = jdf.ResourcePool();
+        Because of = () => resourcePool = jdf.ResourcePoolElement();
 
         It should_have_a_resource_pool_in_the_jdf = () => jdf.Element(Element.ResourcePool).ShouldNotBeNull();
 

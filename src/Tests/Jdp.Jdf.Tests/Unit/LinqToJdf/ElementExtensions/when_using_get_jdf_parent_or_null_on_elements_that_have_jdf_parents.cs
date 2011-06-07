@@ -15,11 +15,11 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions
         static XElement resourceLinkPoolJdfParent;
         static XElement commentJdfParent;
 
-        Establish content = () => ticket = Ticket.Create().AddIntentNode().ResourcePool().Parent.AddIntentNode().ResourceLinkPool().Document;
+        Establish content = () => ticket = Ticket.Create().AddIntentElement().ResourcePoolElement().Parent.AddIntentElement().ResourceLinkPoolElement().Document;
 
         Because of = () => {
-                         resourcePoolJdfParent = ticket.Root.ResourcePool(rp => rp.Add(new XElement(Element.Comment))).GetJdfParentOrNull();
-                         resourceLinkPoolJdfParent = ticket.Root.Element(Element.JDF).ResourceLinkPool().GetJdfParentOrNull();
+                         resourcePoolJdfParent = ticket.Root.ResourcePoolElement(rp => rp.Add(new XElement(Element.Comment))).GetJdfParentOrNull();
+                         resourceLinkPoolJdfParent = ticket.Root.Element(Element.JDF).ResourceLinkPoolElement().GetJdfParentOrNull();
                          commentJdfParent = ticket.Root.Descendants(Element.Comment).FirstOrDefault().GetJdfParentOrNull();
                      };
 
@@ -33,7 +33,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions
 
         It should_have_resource_link_pool_parent = () => resourceLinkPoolJdfParent.ShouldNotBeNull();
 
-        It should_have_resource_link_pool_parent_is_jdf = () => resourceLinkPoolJdfParent.IsJdfNode();
+        It should_have_resource_link_pool_parent_is_jdf = () => resourceLinkPoolJdfParent.IsJdfElement();
 
         It should_have_resource_link_pool_parent_is_not_root = () => resourceLinkPoolJdfParent.ShouldNotEqual(ticket.Root);
     }

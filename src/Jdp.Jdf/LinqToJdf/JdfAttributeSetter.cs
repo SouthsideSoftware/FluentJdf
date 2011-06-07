@@ -6,12 +6,12 @@ namespace Jdp.Jdf.LinqToJdf {
     /// Set attributes on an intent node.
     /// </summary>
     public class JdfAttributeSetter {
-        readonly NodeFactoryBase nodeFactoryBase;
+        readonly NodeBuilderBase _nodeBuilderBase;
 
-        internal JdfAttributeSetter(NodeFactoryBase nodeFactoryBase) {
-            ParameterCheck.ParameterRequired(nodeFactoryBase, "nodeFactoryBase");
+        internal JdfAttributeSetter(NodeBuilderBase _nodeBuilderBase) {
+            ParameterCheck.ParameterRequired(_nodeBuilderBase, "NodeBuilderBase");
 
-            this.nodeFactoryBase = nodeFactoryBase;
+            this._nodeBuilderBase = _nodeBuilderBase;
         }
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace Jdp.Jdf.LinqToJdf {
         /// </summary>
         /// <returns></returns>
         public XElement Node {
-            get { return nodeFactoryBase.Node; }
+            get { return _nodeBuilderBase.Node; }
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Jdp.Jdf.LinqToJdf {
         public JdfAttributeSetter JobId(string jobId) {
             ParameterCheck.ParameterRequired(jobId, "jobId");
 
-            nodeFactoryBase.Node.SetJobId(jobId);
+            _nodeBuilderBase.Node.SetJobId(jobId);
             return this;
         }
 
@@ -42,7 +42,7 @@ namespace Jdp.Jdf.LinqToJdf {
         public JdfAttributeSetter JobPartId(string jobPartId) {
             ParameterCheck.ParameterRequired(jobPartId, "jobPartId");
 
-            nodeFactoryBase.Node.SetJobPartId(jobPartId);
+            _nodeBuilderBase.Node.SetJobPartId(jobPartId);
             return this;
         }
     }

@@ -16,10 +16,10 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="parent"></param>
         /// <returns>The newly created JDF node.</returns>
-        public static XElement AddIntentNode(this XContainer parent) {
+        public static XElement AddIntentElement(this XContainer parent) {
             ParameterCheck.ParameterRequired(parent, "parent");
 
-            return parent.AddJdfNode("Product");
+            return parent.AddJdfElement("Product");
         }
 
         /// <summary>
@@ -27,29 +27,29 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <returns>The newly created JDF node.</returns>
         /// <remarks>If no types are passed, a process group node is created.</remarks>
-        public static XElement AddProcessNode(this XContainer parent, params string[] types)
+        public static XElement AddProcessJdfElement(this XContainer parent, params string[] types)
         {
             ParameterCheck.ParameterRequired(parent, "parent");
 
-            return parent.AddJdfNode(types);
+            return parent.AddJdfElement(types);
         }
 
         /// <summary>
         /// Add a process group JDF to the current JDF or document
         /// </summary>
         /// <returns>The newly created JDF node.</returns>
-        public static XElement AddProcessGroupNode(this XContainer parent)
+        public static XElement AddProcessGroupElement(this XContainer parent)
         {
             ParameterCheck.ParameterRequired(parent, "parent");
 
-            return parent.AddJdfNode("ProcessGroup");
+            return parent.AddJdfElement("ProcessGroup");
         }
 
         /// <summary>
         /// Add a JDF node to the current JDF or document
         /// </summary>
         /// <returns>The newly created JDF node.</returns>
-        public static XElement AddJdfNode(this XContainer parent, params string [] types)
+        public static XElement AddJdfElement(this XContainer parent, params string [] types)
         {
             ParameterCheck.ParameterRequired(parent, "parent");
 
@@ -59,7 +59,7 @@ namespace Jdp.Jdf.LinqToJdf
             }
 
             var jdfNode = new XElement(Element.JDF);
-            jdfNode.MakeJdfNodeAProcess(types);
+            jdfNode.MakeJdfElementAProcess(types);
             parent.Add(jdfNode);
 
             jdfNode.SetUniqueJobId();
@@ -72,11 +72,11 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="jdfNode"></param>
         /// <returns></returns>
-        public static JdfNodeFactory ModifyJdfNode(this XElement jdfNode) {
+        public static JdfNodeBuilder ModifyJdfNode(this XElement jdfNode) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
-            jdfNode.ThrowExceptionIfNotJdfNode();
+            jdfNode.ThrowExceptionIfNotJdfElement();
 
-            return new JdfNodeFactory(jdfNode);
+            return new JdfNodeBuilder(jdfNode);
         }
 
         /// <summary>
@@ -86,10 +86,10 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="additionalAction">Additional action to be performed on the resource pool.</param>
         /// <returns></returns>
         /// <remarks>Creates the resource pool if it does not exist.</remarks>
-        public static XElement ResourcePool(this XElement jdfNode, Action<XElement> additionalAction = null) {
+        public static XElement ResourcePoolElement(this XElement jdfNode, Action<XElement> additionalAction = null) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
-            jdfNode.ThrowExceptionIfNotJdfNode();
+            jdfNode.ThrowExceptionIfNotJdfElement();
 
             var resourcePool = jdfNode.Element(Element.ResourcePool);
             if (resourcePool == null) {
@@ -110,11 +110,11 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="jdfNode"></param>
         /// <returns></returns>
         /// <remarks>Creates the resource link pool if it does not exist.</remarks>
-        public static XElement ResourceLinkPool(this XElement jdfNode)
+        public static XElement ResourceLinkPoolElement(this XElement jdfNode)
         {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
-            jdfNode.ThrowExceptionIfNotJdfNode();
+            jdfNode.ThrowExceptionIfNotJdfElement();
 
             var resourceLinkPool = jdfNode.Element(Element.ResourceLinkPool);
             if (resourceLinkPool == null)
@@ -209,8 +209,8 @@ namespace Jdp.Jdf.LinqToJdf
                 throw new ArgumentException(Messages.JdfElementExtensions_LinkResource_ResourceNameOrIdOrBothRequired);
             }
 
-            var resourcePool = nearestJdf.ResourcePool();
-            var resourceLinkPool = nearestJdf.ResourceLinkPool();
+            var resourcePool = nearestJdf.ResourcePoolElement();
+            var resourceLinkPool = nearestJdf.ResourceLinkPoolElement();
 
             XElement resource = null;
             if (id == null)
@@ -257,7 +257,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static bool IsJdfNode(this XElement element)
+        public static bool IsJdfElement(this XElement element)
         {
             ParameterCheck.ParameterRequired(element, "element");
 
@@ -269,10 +269,34 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static bool IsJdfIntentNode(this XElement element) {
+        public static bool IsJdfIntentElement(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            return element.IsJdfNode() && element.GetJdfType() == "Product";
+            return element.IsJdfElement() && element.GetJdfType() == "Product";
+        }
+
+        /// <summary>
+        /// Returns true if the node is a JDF process group node 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static bool IsJdfProcessGroupElement(this XElement element)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            return element.IsJdfElement() && element.GetJdfType() == "ProcessGroup";
+        }
+
+        /// <summary>
+        /// Returns true if the node is a JDF process node 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static bool IsJdfProcessElement(this XElement element)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            return element.IsJdfElement() && !element.IsJdfIntentElement() && !element.IsJdfProcessGroupElement();
         }
 
         /// <summary>
@@ -283,7 +307,7 @@ namespace Jdp.Jdf.LinqToJdf
         public static string GetJdfType(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            return element.GetAttributeFromJdfNode("Type");
+            return element.GetAttributeFromJdfElement("Type");
         }
 
         /// <summary>
@@ -291,11 +315,18 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string GetJdfTypes(this XElement element)
+        public static string [] GetJdfTypes(this XElement element)
         {
             ParameterCheck.ParameterRequired(element, "element");
 
-            return element.GetAttributeFromJdfNode("Types");
+            var typesString = element.GetAttributeFromJdfElement("Types");
+
+            if (string.IsNullOrWhiteSpace(typesString))
+            {
+                return null;
+            }
+
+            return typesString.Split(' ');
         }
 
         /// <summary>
@@ -307,7 +338,7 @@ namespace Jdp.Jdf.LinqToJdf
         {
             ParameterCheck.ParameterRequired(element, "element");
 
-            return element.GetAttributeFromJdfNode("JobID");
+            return element.GetAttributeFromJdfElement("JobID");
         }
 
         /// <summary>
@@ -327,10 +358,10 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        public static ElementFactory AddNode(this XContainer container) {
+        public static NodeBuilder AddNode(this XContainer container) {
             ParameterCheck.ParameterRequired(container, "element");
 
-            return new ElementFactory(container);
+            return new NodeBuilder(container);
         }
 
         /// <summary>
@@ -342,7 +373,7 @@ namespace Jdp.Jdf.LinqToJdf
         public static XElement SetJobId(this XElement element, string id) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            element.ThrowExceptionIfNotJdfNode();
+            element.ThrowExceptionIfNotJdfElement();
 
             element.SetAttributeValue("JobID", id);
 
@@ -359,7 +390,7 @@ namespace Jdp.Jdf.LinqToJdf
         {
             ParameterCheck.ParameterRequired(element, "element");
 
-            element.ThrowExceptionIfNotJdfNode();
+            element.ThrowExceptionIfNotJdfElement();
 
             element.SetAttributeValue("JobPartID", jobPartId);
 
@@ -375,14 +406,14 @@ namespace Jdp.Jdf.LinqToJdf
         {
             ParameterCheck.ParameterRequired(element, "element");
 
-            return element.GetAttributeFromJdfNode("JobPartID");
+            return element.GetAttributeFromJdfElement("JobPartID");
         }
 
-        static string GetAttributeFromJdfNode(this XElement element, string attributeName) {
+        static string GetAttributeFromJdfElement(this XElement element, string attributeName) {
             ParameterCheck.ParameterRequired(element, "element");
             ParameterCheck.StringRequiredAndNotWhitespace(attributeName, "attributeName");
 
-            element.ThrowExceptionIfNotJdfNode();
+            element.ThrowExceptionIfNotJdfElement();
 
             return element.GetAttributeValueOrNull(attributeName);
         }
@@ -392,10 +423,10 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="jdfNode"></param>
         /// <returns></returns>
-        public static XElement MakeJdfNodeAnIntent(this XElement jdfNode)
+        public static XElement MakeJdfElementAnIntent(this XElement jdfNode)
         {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
-            jdfNode.ThrowExceptionIfNotJdfNode();
+            jdfNode.ThrowExceptionIfNotJdfElement();
 
             jdfNode.SetTypeAndTypes("Product");
 
@@ -407,10 +438,10 @@ namespace Jdp.Jdf.LinqToJdf
         /// </summary>
         /// <param name="jdfNode"></param>
         /// <returns></returns>
-        public static XElement MakeJdfNodeAProcessGroup(this XElement jdfNode)
+        public static XElement MakeJdfElementAProcessGroup(this XElement jdfNode)
         {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
-            jdfNode.ThrowExceptionIfNotJdfNode();
+            jdfNode.ThrowExceptionIfNotJdfElement();
 
             jdfNode.SetTypeAndTypes("ProcessGroup");
 
@@ -421,10 +452,10 @@ namespace Jdp.Jdf.LinqToJdf
         /// Make the JDF node a process
         /// </summary>
         /// <returns></returns>
-        public static XElement MakeJdfNodeAProcess(this XElement jdfNode, params string [] types)
+        public static XElement MakeJdfElementAProcess(this XElement jdfNode, params string [] types)
         {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
-            jdfNode.ThrowExceptionIfNotJdfNode();
+            jdfNode.ThrowExceptionIfNotJdfElement();
 
             jdfNode.SetTypeAndTypes(types);
 
@@ -435,11 +466,11 @@ namespace Jdp.Jdf.LinqToJdf
         /// Throws an ArgumentException if the given node is not a JDF node.
         /// </summary>
         /// <param name="jdfNode"></param>
-        public static void ThrowExceptionIfNotJdfNode(this XElement jdfNode)
+        public static void ThrowExceptionIfNotJdfElement(this XElement jdfNode)
         {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
-            if (!jdfNode.IsJdfNode())
+            if (!jdfNode.IsJdfElement())
             {
                 throw new ArgumentException(string.Format(Messages.CanOnlyOperateOnJdfNode,
                                                           jdfNode.Name));
@@ -455,7 +486,7 @@ namespace Jdp.Jdf.LinqToJdf
         public static XElement SetTypeAndTypes(this XElement jdfNode, params string [] types)
         {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
-            ThrowExceptionIfNotJdfNode(jdfNode);
+            ThrowExceptionIfNotJdfElement(jdfNode);
             
             if (types == null || types.Length == 0) {
                 jdfNode.SetAttributeValue("Type", "ProcessGroup");
