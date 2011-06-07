@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Xml.Linq;
+using Jdp.Jdf.LinqToJdf.Configuration;
 using Jdp.Jdf.Resources;
 using Onpoint.Commons.Core.CodeContracts;
 
@@ -64,6 +65,46 @@ namespace Jdp.Jdf.LinqToJdf
 
             jdfNode.SetUniqueJobId();
 
+            if (jdfNode.IsJdfRoot() && JdpLibrary.Settings.AddCreateAuditOnNewRootJdf) {
+                jdfNode.AddAudit(Audit.Created);
+            }
+
+            return jdfNode;
+        }
+
+        /// <summary>
+        /// Add an audit to the JDF's audit pool.
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks>Configured values for author, agent name and 
+        /// agent version are used if they are not passed.</remarks>
+        public static XElement AddAudit(this XElement jdfNode, XName auditName, string author = null, DateTime? eventDateTime = null, string agentName = null, string agentVersion = null) {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            ParameterCheck.ParameterRequired(auditName, "auditName");
+            jdfNode.ThrowExceptionIfNotJdfElement();
+
+            if (agentName == null) {
+                agentName = JdpLibrary.Settings.AgentName;
+            }
+            if (agentVersion == null)
+            {
+                agentVersion = JdpLibrary.Settings.AgentVersion;
+            }
+            if (author == null)
+            {
+                author = JdpLibrary.Settings.Author;
+            }
+            if (eventDateTime == null) {
+                eventDateTime = DateTime.UtcNow;
+            }
+
+            var auditPool = jdfNode.AuditPoolElement();
+            auditPool.Add(new XElement(auditName, 
+                new XAttribute("AgentName", agentName),
+                new XAttribute("AgentVersion", agentVersion),
+                new XAttribute("Author", author),
+                new XAttribute("TimeStamp", eventDateTime.Value.ToString("O"))));
+
             return jdfNode;
         }
 
@@ -77,6 +118,17 @@ namespace Jdp.Jdf.LinqToJdf
             jdfNode.ThrowExceptionIfNotJdfElement();
 
             return new JdfNodeBuilder(jdfNode);
+        }
+
+        /// <summary>
+        /// Returns true if the JDF node is the root node.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        public static bool IsJdfRoot(this XElement jdfNode) {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfElement();
+            return (jdfNode.Document == null || jdfNode.Document.Root == jdfNode);
         }
 
         /// <summary>
@@ -102,6 +154,27 @@ namespace Jdp.Jdf.LinqToJdf
             }
 
             return resourcePool;
+        }
+
+        /// <summary>
+        /// Gets the audit pool of the jdf node.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        /// <remarks>Creates the resource link pool if it does not exist.</remarks>
+        public static XElement AuditPoolElement(this XElement jdfNode)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfElement();
+
+            var auditPoolElement = jdfNode.Element(Element.AuditPool);
+            if (auditPoolElement == null)
+            {
+                auditPoolElement = new XElement(Element.AuditPool);
+                jdfNode.Add(auditPoolElement);
+            }
+
+            return auditPoolElement;
         }
 
         /// <summary>

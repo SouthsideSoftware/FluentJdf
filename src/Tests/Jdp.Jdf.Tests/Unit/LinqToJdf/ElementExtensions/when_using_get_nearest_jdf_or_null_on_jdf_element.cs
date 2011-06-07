@@ -18,7 +18,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions
         Establish context = () =>
         {
             ticket = Ticket.Create().AddIntentElement().AddIntentElement().Document;
-            secondLevelJdf = ticket.Root.FirstNode as XElement;
+            secondLevelJdf = ticket.Root.Element(Element.JDF);
         };
 
         Because of = () => nearestJdf = secondLevelJdf.GetNearestJdfOrNull();

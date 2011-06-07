@@ -19,6 +19,6 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.Configuration
 
         It should_have_agent_version_same_as_application_version = () => JdpLibrary.Settings.AgentVersion.ShouldEqual(ApplicationInformation.Version);
 
-        It should_have_option_to_create_audit_on_ticket_create_on = () => JdpLibrary.Settings.AddAuditOnTicketCreate.ShouldBeTrue();
+        It should_have_option_to_create_audit_on_ticket_create_on = () => JdpLibrary.Settings.AddCreateAuditOnNewRootJdf.ShouldBeTrue();
     }
 }

@@ -6,9 +6,16 @@ namespace Jdp.Jdf.LinqToJdf {
     /// Set attributes on a JDF node.
     /// </summary>
     public class JdfNodeAttributeBuilder : NodeAttributeBuilderBase {
-        internal JdfNodeAttributeBuilder(NodeBuilderBase nodeBuilderBase) : base(nodeBuilderBase) {
+        internal JdfNodeAttributeBuilder(JdfNodeBuilder nodeBuilder) : base(nodeBuilder) {
         }
 
+        /// <summary>
+        /// Gets the JDF node builder for this attribute builder.
+        /// </summary>
+        /// <returns></returns>
+        public JdfNodeBuilder Node() {
+            return (NodeBuilderBase as JdfNodeBuilder);
+        }
         /// <summary>
         /// Sets the job id.
         /// </summary>

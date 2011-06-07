@@ -6,7 +6,7 @@ namespace Jdp.Jdf.LinqToJdf.Configuration {
     /// </summary>
     public class JdpLibrary {
         static readonly JdpLibrary settings = new JdpLibrary();
-        bool addAuditOnTicketCreate = true;
+        bool addCreateAuditOnNewRootJdf = true;
         string agentName;
         string agentVersion;
         string author;
@@ -18,11 +18,13 @@ namespace Jdp.Jdf.LinqToJdf.Configuration {
         /// <summary>
         /// Resets the configuration to default values.
         /// </summary>
-        public void ResetToDefaults() {
+        public JdpLibrary ResetToDefaults() {
             agentName = ApplicationInformation.Name;
             agentVersion = ApplicationInformation.Version;
             author = ApplicationInformation.Name;
-            addAuditOnTicketCreate = true;
+            addCreateAuditOnNewRootJdf = true;
+
+            return this;
         }
 
         /// <summary>
@@ -85,20 +87,20 @@ namespace Jdp.Jdf.LinqToJdf.Configuration {
 
         /// <summary>
         /// Sets option that controls whether or not an
-        /// audit is automatically added when the first JDF
-        /// is added after calling Ticket.Create().
+        /// audit is automatically added when the root JDF is 
+        /// created.
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
         /// <remarks>Defaults to true.</remarks>
-        public JdpLibrary AddAuditOnTicketCreateIs(bool val) {
-            addAuditOnTicketCreate = val;
+        public JdpLibrary AddCreateAuditOnNewRootJdfIs(bool val) {
+            addCreateAuditOnNewRootJdf = val;
             return this;
         }
 
         /// <summary>
         /// Gets the add audit on ticket create option.
         /// </summary>
-        public bool AddAuditOnTicketCreate { get { return addAuditOnTicketCreate; } }
+        public bool AddCreateAuditOnNewRootJdf { get { return addCreateAuditOnNewRootJdf; } }
     }
 }

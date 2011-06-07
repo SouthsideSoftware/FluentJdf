@@ -40,5 +40,13 @@ namespace Jdp.Jdf.LinqToJdf
         /// Gets the container JDF builder.
         /// </summary>
         public JdfNodeBuilder ParentJdfNode { get; protected set; }
+
+        /// <summary>
+        /// Allows a node to be added to this node.
+        /// </summary>
+        /// <returns></returns>
+        public NodeBuilder AddNode() {
+            return new NodeBuilder(Element);
+        }
     }
 }

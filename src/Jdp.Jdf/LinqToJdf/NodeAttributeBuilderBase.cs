@@ -6,12 +6,15 @@ namespace Jdp.Jdf.LinqToJdf {
     /// Base class for attribute builders
     /// </summary>
     public class NodeAttributeBuilderBase {
-        readonly NodeBuilderBase _nodeBuilderBase;
+        /// <summary>
+        /// The node builder base that created this attribute builder.
+        /// </summary>
+        protected NodeBuilderBase NodeBuilderBase;
 
-        internal NodeAttributeBuilderBase(NodeBuilderBase _nodeBuilderBase) {
-            ParameterCheck.ParameterRequired(_nodeBuilderBase, "NodeBuilderBase");
+        internal NodeAttributeBuilderBase(NodeBuilderBase nodeBuilderBase) {
+            ParameterCheck.ParameterRequired(nodeBuilderBase, "NodeBuilderBase");
 
-            this._nodeBuilderBase = _nodeBuilderBase;
+            NodeBuilderBase = nodeBuilderBase;
         }
 
         /// <summary>
@@ -19,7 +22,7 @@ namespace Jdp.Jdf.LinqToJdf {
         /// </summary>
         /// <returns></returns>
         public XElement Element {
-            get { return _nodeBuilderBase.Element; }
+            get { return NodeBuilderBase.Element; }
         }
 
         /// <summary>
@@ -48,6 +51,15 @@ namespace Jdp.Jdf.LinqToJdf {
             Element.SetDescriptiveName(descriptiveName);
 
             return this;
+        }
+
+        /// <summary>
+        /// Allows a node to be added to this node.
+        /// </summary>
+        /// <returns></returns>
+        public NodeBuilder AddNode()
+        {
+            return new NodeBuilder(Element);
         }
     }
 }

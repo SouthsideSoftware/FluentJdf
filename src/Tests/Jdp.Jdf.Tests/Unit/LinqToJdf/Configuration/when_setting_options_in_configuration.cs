@@ -14,7 +14,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.Configuration
         //reset to defaults is called here in case any other tests change the defaults because configuration is a singleton.
         Establish context = () => JdpLibrary.Settings.ResetToDefaults();
 
-        Because of = () => JdpLibrary.Settings.AgentNameIs("Agent").AuthorIs("Author").AgentVersionIs("x1.1x").AddAuditOnTicketCreateIs(false);
+        Because of = () => JdpLibrary.Settings.AgentNameIs("Agent").AuthorIs("Author").AgentVersionIs("x1.1x").AddCreateAuditOnNewRootJdfIs(false);
 
         It should_have_agent_name_as_set = () => JdpLibrary.Settings.AgentName.ShouldEqual("Agent");
 
@@ -22,6 +22,6 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.Configuration
 
         It should_have_agent_version_as_set = () => JdpLibrary.Settings.AgentVersion.ShouldEqual("x1.1x");
 
-        It should_have_option_to_create_audit_as_set = () => JdpLibrary.Settings.AddAuditOnTicketCreate.ShouldBeFalse();
+        It should_have_option_to_create_audit_as_set = () => JdpLibrary.Settings.AddCreateAuditOnNewRootJdf.ShouldBeFalse();
     }
 }

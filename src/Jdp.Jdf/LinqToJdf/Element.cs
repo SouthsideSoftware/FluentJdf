@@ -10,6 +10,7 @@ namespace Jdp.Jdf.LinqToJdf
 #pragma warning disable 1591
 
         public static XName Address = Globals.JdfName("Address");
+        public static XName AuditPool = Globals.JdfName("AuditPool");
         public static XName BinderBrand = Globals.JdfName("BinderBrand");
         public static XName BinderName = Globals.JdfName("BinderName");
         public static XName BindingSide = Globals.JdfName("BindingSide");

@@ -14,8 +14,8 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.ElementExtensions {
         Establish context = () =>
                             {
                                 ticket = Ticket.Create().AddIntentElement().AddIntentElement().ResourceLinkPoolElement().Document;
-                                secondLevelJdf = ticket.Root.FirstNode as XElement;
-                                secondLevelResourceLinkPool = secondLevelJdf.FirstNode as XElement;
+                                secondLevelJdf = ticket.Root.Element(Element.JDF);
+                                secondLevelResourceLinkPool = secondLevelJdf.Element(Element.ResourceLinkPool);
                             };
 
         Because of = () => nearestJdf = secondLevelResourceLinkPool.GetNearestJdfOrNull();
