@@ -1,5 +1,14 @@
 <CoverageParams>
 	<Executable>$(MSpecDir)\mspec-clr4.exe</Executable>
-  <Arguments>$(TestDllDir)\OnpointConnect.Tests.dll</Arguments>
-  <Output>$(TestOutputDir)\coverage.xml</Output>
+	<Arguments>$(TestDllDir)\OnpointConnect.Tests.dll</Arguments>
+	<Output>$(TestOutputDir)\coverage.xml</Output>
+	<Filters>
+		<ExcludeFilters>
+			<FilterEntry>
+				<ModuleMask>Jdp.Jdf.Tests</ModuleMask>
+				<ClassMask>*</ClassMask>
+				<FunctionMask>*</FunctionMask>
+			</FilterEntry>
+		</ExcludeFilters>
+	</Filters>
 </CoverageParams>
