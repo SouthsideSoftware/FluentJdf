@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
+    <Compile Include="LinqToJdf\Configuration\JdpLibrary.cs" />
     <Compile Include="LinqToJdf\ElementExtensions.cs" />
     <Compile Include="LinqToJdf\Element.cs" />
     <Compile Include="LinqToJdf\JdfNodeAttributeBuilder.cs" />
