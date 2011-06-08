@@ -39,5 +39,15 @@ namespace Jdp.Jdf.LinqToJdf {
             Element.SetJobPartId(jobPartId);
             return this;
         }
+
+        /// <summary>
+        /// Create an input
+        /// </summary>>
+        public ResourceNodeNameBuilder WithInput() { return new ResourceNodeNameBuilder((NodeBuilderBase as JdfNodeBuilder), ResourceUsage.Input); }
+
+        /// <summary>
+        /// Creates an output.
+        /// </summary>
+        public ResourceNodeNameBuilder WithOutput() { return new ResourceNodeNameBuilder((NodeBuilderBase as JdfNodeBuilder), ResourceUsage.Output); }
     }
 }
