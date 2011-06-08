@@ -48,7 +48,6 @@ namespace Jdp.Jdf.Schema
                 logger.ErrorFormat(Messages.Loader_Loader_FailedToLoadAndCompileSchema, err);
             }
 
-            //XmlReader xmlReader = XmlReader.Create(new StreamReader(Path.Combine(schemaDir, "jdf.xsd")));
             Schemas = new XmlSchemaSet();
             Schemas.Add(Globals.Namespace.NamespaceName, Path.Combine(schemaDir, "jdf.xsd"));
             Schemas.Compile();

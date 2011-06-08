@@ -1,5 +1,3 @@
-using System.IO;
-using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using Jdp.Jdf.LinqToJdf;
@@ -7,7 +5,7 @@ using Jdp.Jdf.Schema;
 using Machine.Specifications;
 using Onpoint.Commons.Core.Logging;
 
-namespace Jdp.Jdf.Tests.Unit.LinqToJdf.Builder {
+namespace Jdp.Jdf.Tests.Unit.Schema {
     [Subject("Schema PSVI experiements")]
     public class when_using_schema {
         static XElement intent;

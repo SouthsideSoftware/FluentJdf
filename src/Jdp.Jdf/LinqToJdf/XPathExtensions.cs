@@ -81,7 +81,7 @@ namespace Jdp.Jdf.LinqToJdf
         /// <returns></returns>
         public static string LocalElementXPath(this XElement element)
         {
-            if (element.Parent == null) return string.Empty;
+            if (element.Parent == null) return string.Format("/{0}", element.Name.LocalName);
             var parentPath = element.Parent.LocalElementXPath();
             return parentPath
                 + (parentPath.Length > 0 ? "/" : string.Empty)

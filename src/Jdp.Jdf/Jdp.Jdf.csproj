@@ -137,6 +137,7 @@
     <Compile Include="LinqToJdf\JdfException.cs" />
     <Compile Include="LinqToJdf\JdfNodeBuilder.cs" />
     <Compile Include="LinqToJdf\NodeBuilderBase.cs" />
+    <Compile Include="LinqToJdf\ProcessType.cs" />
     <Compile Include="LinqToJdf\RefExtensions.cs" />
     <Compile Include="LinqToJdf\Resource.cs" />
     <Compile Include="LinqToJdf\ResourceNodeAttributeBuilder.cs" />
@@ -157,6 +158,9 @@
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
     <Compile Include="Schema\SchemaSet.cs" />
+    <Compile Include="Schema\ValidationMessage.cs" />
+    <Compile Include="Schema\ValidationMessageType.cs" />
+    <Compile Include="Schema\Validator.cs" />
     <Compile Include="Utility\StringHelper.cs" />
     <Compile Include="Utility\UniqueGenerator.cs" />
   </ItemGroup>
