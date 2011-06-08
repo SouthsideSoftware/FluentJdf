@@ -144,4 +144,7 @@
 	<data name="JdfElementExtensions_LinkResource_CouldNotFindResourceWithGivenIdAndNameWasNotProvided">
 		<value xml:space="preserve">Could not find resource with id {0} and could not create it because name was not provided</value>
 	</data>
+	<data name="Loader_Loader_FailedToLoadAndCompileSchema">
+		<value xml:space="preserve">Failed to load and compile JDF schema.  The error is {0}</value>
+	</data>
 </root>

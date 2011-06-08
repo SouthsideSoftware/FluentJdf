@@ -134,6 +134,15 @@ namespace Jdp.Jdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load and compile JDF schema.  The error is {0}.
+        /// </summary>
+        internal static string Loader_Loader_FailedToLoadAndCompileSchema {
+            get {
+                return ResourceManager.GetString("Loader_Loader_FailedToLoadAndCompileSchema", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resource with ID {0} cannot be found.
         /// </summary>
         internal static string ResourceExtensions_Resource_ResourceWithIdCannotBeFound {
