@@ -121,6 +121,13 @@
             </summary>
             <returns>True if the services were not previously stopped and have now stopped.</returns>
         </member>
+        <member name="P:Onpoint.Commons.Server.Wcf.ServiceManager.Logger">
+            <summary>
+            Use this in code so that the logger is not used until after
+            the log provider is initialized by configuration.  Otherwise, you will always get 
+            the null logger provider.
+            </summary>
+        </member>
         <member name="P:Onpoint.Commons.Server.Wcf.ServiceManager.IsStarted">
             <summary>
             Gets true if the services are started.

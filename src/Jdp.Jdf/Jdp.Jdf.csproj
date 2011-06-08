@@ -96,21 +96,21 @@
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NLog.2.0.0.0\lib\NET40\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Onpoint.Commons.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Onpoint.Commons.Core, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.2.0\lib\Onpoint.Commons.Core.dll</HintPath>
+      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.3.0\lib\Onpoint.Commons.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Onpoint.Commons.Core.CastleWindsor, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Onpoint.Commons.Core.CastleWindsor, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.2.0\lib\Onpoint.Commons.Core.CastleWindsor.dll</HintPath>
+      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.3.0\lib\Onpoint.Commons.Core.CastleWindsor.dll</HintPath>
     </Reference>
-    <Reference Include="Onpoint.Commons.Logging.NLog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Onpoint.Commons.Logging.NLog, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.2.0\lib\Onpoint.Commons.Logging.NLog.dll</HintPath>
+      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.3.0\lib\Onpoint.Commons.Logging.NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Onpoint.Commons.Server, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Onpoint.Commons.Server, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.2.0\lib\Onpoint.Commons.Server.dll</HintPath>
+      <HintPath>..\..\packages\Onpoint.Commons.Castle.NLog.0.3.0\lib\Onpoint.Commons.Server.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -122,6 +122,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
     <Compile Include="LinqToJdf\Audit.cs" />
     <Compile Include="LinqToJdf\Configuration\JdpLibrary.cs" />

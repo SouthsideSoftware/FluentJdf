@@ -133,6 +133,13 @@
             Apply the configuration.
             </summary>
         </member>
+        <member name="P:Onpoint.Commons.Core.Configuration.Logger">
+            <summary>
+            Use this in code so that the logger is not used until after
+            the log provider is initialized by configuration.  Otherwise, you will always get 
+            the null logger provider.
+            </summary>
+        </member>
         <member name="P:Onpoint.Commons.Core.Configuration.LogProvider">
             <summary>
             Gets the configured log provider.
@@ -151,6 +158,13 @@
         <member name="M:Onpoint.Commons.Core.Helpers.ApplicationInformation.LogApplicationInfo">
             <summary>
             Logs information about the application to the configured loggers.
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Core.Helpers.ApplicationInformation.Logger">
+            <summary>
+            Use this in code so that the logger is not used until after
+            the log provider is initialized by configuration.  Otherwise, you will always get 
+            the null logger provider.
             </summary>
         </member>
         <member name="P:Onpoint.Commons.Core.Helpers.ApplicationInformation.Name">

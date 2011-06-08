@@ -84,6 +84,13 @@
             <typeparam name="T">The service type.</typeparam>
             <param name="container">The Windsor container.</param>
         </member>
+        <member name="P:Onpoint.Commons.Core.CastleWindsor.Extensions.Logger">
+            <summary>
+            Use this in code so that the logger is not used until after
+            the log provider is initialized by configuration.  Otherwise, you will always get 
+            the null logger provider.
+            </summary>
+        </member>
         <member name="T:Onpoint.Commons.Core.CastleWindsor.WindsorServiceLocator">
             <summary>
             Implementation of IServiceLocator for Castle Windsor.
@@ -183,6 +190,13 @@
             <summary>
             Register an implementation of the given interface type with a 
             lifestyle that defaults to singleton and the given key.
+            </summary>
+        </member>
+        <member name="P:Onpoint.Commons.Core.CastleWindsor.WindsorServiceLocator.Logger">
+            <summary>
+            Use this in code so that the logger is not used until after
+            the log provider is initialized by configuration.  Otherwise, you will always get 
+            the null logger provider.
             </summary>
         </member>
     </members>
