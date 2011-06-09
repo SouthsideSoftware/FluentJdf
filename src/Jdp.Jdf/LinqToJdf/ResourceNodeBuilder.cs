@@ -11,10 +11,10 @@ namespace Jdp.Jdf.LinqToJdf
     /// 
     /// </summary>
     public class ResourceNodeBuilder : NodeBuilderBase {
-        internal  ResourceNodeBuilder(JdfNodeBuilder parent, XName resourceName, ResourceUsage usage) : base(parent) {
+        internal  ResourceNodeBuilder(JdfNodeBuilder parent, XName resourceName, ResourceUsage usage, string id = null) : base(parent) {
             ParameterCheck.ParameterRequired(resourceName, "resourceName");
 
-            Element =  ParentJdfNode.Element.LinkResource(usage, resourceName);
+            Element =  ParentJdfNode.Element.LinkResource(usage, resourceName, id);
         }
 
         /// <summary>

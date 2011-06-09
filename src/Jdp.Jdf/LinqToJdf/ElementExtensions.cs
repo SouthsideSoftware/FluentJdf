@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using Jdp.Jdf.Resources;
+using Jdp.Jdf.Utility;
 using Onpoint.Commons.Core.CodeContracts;
 
 namespace Jdp.Jdf.LinqToJdf
@@ -37,6 +38,17 @@ namespace Jdp.Jdf.LinqToJdf
             element.SetAttributeValue("DescriptiveName", value);
 
             return element;
+        }
+
+        /// <summary>
+        /// Gets the depth of an element in the tree.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static int Depth(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            return element.LocalElementXPath().CountChar('/') -  1;
         }
 
         /// <summary>

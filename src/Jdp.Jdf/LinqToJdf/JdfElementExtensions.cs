@@ -306,7 +306,8 @@ namespace Jdp.Jdf.LinqToJdf
             if (resource == null) {
                 resource = CreateResource(resourceName, id, resourcePool);
             } else {
-                //todo: promote if needed.
+                //todo: promote
+                //PromoteResourceIfNeeded(resource);
             }
 
             resourceLinkPool.Add(
@@ -315,6 +316,22 @@ namespace Jdp.Jdf.LinqToJdf
                     new XAttribute("Usage", usage)));
 
             return resource;
+        }
+
+        static void PromoteResourceIfNeeded(XElement resource) {
+            int leastDepth = int.MaxValue;
+            XElement referenceClosestToRoot = null;
+            foreach (var reference in resource.ReferencingElements()) {
+                var depth = reference.Depth();
+                if (depth < leastDepth) {
+                    leastDepth = depth;
+                    referenceClosestToRoot = reference;
+                }
+            }
+            if (resource.Depth() >= leastDepth) {
+                resource.Remove();
+                referenceClosestToRoot.Parent.ResourcePoolElement().Add(resource);
+            }
         }
 
         static XElement CreateResource(XName resourceName, string id, XElement resourcePool) {

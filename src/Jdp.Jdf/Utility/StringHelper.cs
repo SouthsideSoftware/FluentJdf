@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using Onpoint.Commons.Core.CodeContracts;
 
 namespace Jdp.Jdf.Utility
 {
@@ -39,6 +40,26 @@ namespace Jdp.Jdf.Utility
                 source = source.Substring(0, length);
             }
             return source;
+        }
+
+        /// <summary>
+        /// Count the number of characters in a string.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static int CountChar(this string s, char c)
+        {
+            ParameterCheck.ParameterRequired(s, "s");
+            int pos = 0, count = 0;
+
+            while ((pos = s.IndexOf(c, pos)) != -1)
+            {
+                count++;
+                pos++;
+            }
+
+            return count;
         }
     }
 }

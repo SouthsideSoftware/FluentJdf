@@ -18,10 +18,33 @@ namespace Jdp.Jdf.LinqToJdf {
         }
 
         /// <summary>
-        /// Create a binding intent and return a factory to operate on it.
+        /// Create a folding intent and return a builder to operate on it.
         /// </summary>
-        public ResourceNodeBuilder BindingIntent() {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BindingIntent, usage); 
+        public ResourceNodeBuilder BindingIntent(string id = null) {
+            return new ResourceNodeBuilder(ParentJdf, Resource.BindingIntent, usage, id); 
+        }
+
+        /// <summary>
+        /// Create a component and return a builder to operate on it.
+        /// </summary>
+        public ResourceNodeBuilder Component()
+        {
+            return new ResourceNodeBuilder(ParentJdf, Resource.Component, usage);
+        }
+
+        /// <summary>
+        /// Create a folding intent and return a builder to operate on it.
+        /// </summary>
+        public ResourceNodeBuilder FoldingIntent() {
+            return new ResourceNodeBuilder(ParentJdf, Resource.FoldingIntent, usage);
+        }
+
+        /// <summary>
+        /// Create a media intent and return a builder to operate on it.
+        /// </summary>
+        public ResourceNodeBuilder MediaIntent()
+        {
+            return new ResourceNodeBuilder(ParentJdf, Resource.MediaIntent, usage);
         }
 
         /// <summary>

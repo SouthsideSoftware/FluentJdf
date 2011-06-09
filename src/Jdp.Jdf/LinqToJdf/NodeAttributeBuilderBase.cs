@@ -26,6 +26,11 @@ namespace Jdp.Jdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Gets the parent JDF node of the current node.
+        /// </summary>
+        public JdfNodeBuilder ParentJdfNode { get { return NodeBuilderBase.ParentJdfNode; } }
+
+        /// <summary>
         /// Sets any attribute value
         /// </summary>
         /// <param name="name"></param>

@@ -24,8 +24,9 @@ namespace Jdp.Jdf.LinqToJdf
         /// Validate the document.
         /// </summary>
         /// <param name="addSchemaInfo"></param>
-        public void ValidateJdf(bool addSchemaInfo = true) {
+        public Ticket ValidateJdf(bool addSchemaInfo = true) {
             validator.Validate(addSchemaInfo);
+            return this;
         }
 
         /// <summary>
