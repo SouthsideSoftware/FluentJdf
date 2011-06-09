@@ -49,5 +49,16 @@ namespace Jdp.Jdf.LinqToJdf {
         /// Creates an output.
         /// </summary>
         public ResourceNodeNameBuilder WithOutput() { return new ResourceNodeNameBuilder((NodeBuilderBase as JdfNodeBuilder), ResourceUsage.Output); }
+
+        /// <summary>
+        /// Validate the JDF
+        /// </summary>
+        /// <param name="addSchemaInfo"></param>
+        /// <returns></returns>
+        public new JdfNodeAttributeBuilder ValidateJdf(bool addSchemaInfo = true)
+        {
+            Element.ValidateJdf(addSchemaInfo);
+            return this;
+        }
     }
 }

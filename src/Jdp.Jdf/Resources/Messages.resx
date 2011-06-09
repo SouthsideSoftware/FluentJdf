@@ -147,4 +147,7 @@
 	<data name="Loader_Loader_FailedToLoadAndCompileSchema">
 		<value xml:space="preserve">Failed to load and compile JDF schema.  The error is {0}</value>
 	</data>
+	<data name="ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket">
+		<value xml:space="preserve">ValidateJdf requires the document to be of type Ticket.  Use Ticket.Create().</value>
+	</data>
 </root>

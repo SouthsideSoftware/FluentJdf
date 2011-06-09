@@ -115,6 +115,15 @@ namespace Jdp.Jdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ValidateJdf requires the document to be of type Ticket.  Use Ticket.Create()..
+        /// </summary>
+        internal static string ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket {
+            get {
+                return ResourceManager.GetString("ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find resource with id {0} and could not create it because name was not provided.
         /// </summary>
         internal static string JdfElementExtensions_LinkResource_CouldNotFindResourceWithGivenIdAndNameWasNotProvided {

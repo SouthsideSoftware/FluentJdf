@@ -61,5 +61,21 @@ namespace Jdp.Jdf.LinqToJdf {
         {
             return new NodeBuilder(Element);
         }
+
+        /// <summary>
+        /// Validate the JDF
+        /// </summary>
+        /// <param name="addSchemaInfo"></param>
+        /// <returns></returns>
+        public NodeAttributeBuilderBase ValidateJdf(bool addSchemaInfo = true)
+        {
+            Element.ValidateJdf(addSchemaInfo);
+            return this;
+        }
+
+        /// <summary>
+        /// Gets the ticket associated with this builder
+        /// </summary>
+        public Ticket Ticket { get { return Element.Document as Ticket; } }
     }
 }

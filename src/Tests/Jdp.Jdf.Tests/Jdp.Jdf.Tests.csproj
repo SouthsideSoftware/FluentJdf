@@ -131,6 +131,7 @@
     <Compile Include="AssemblyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\LinqToJdf\Builder\when_setting_id_through_the_builder_on_new_resources.cs" />
+    <Compile Include="Unit\Schema\FluentValidation\when_validating_using_the_fluent_interface.cs" />
     <Compile Include="Unit\Schema\ValidationMessage\when_creating_validation_messages_with_various_options.cs" />
     <Compile Include="Unit\Schema\Validator\when_validate_has_been_called.cs" />
     <Compile Include="Unit\Schema\Validator\when_validate_has_not_been_called_yet.cs" />
