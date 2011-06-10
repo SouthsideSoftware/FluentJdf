@@ -9,7 +9,7 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
     public class when_configuration_is_set_not_to_put_created_audit_in_root {
         static XDocument document;
 
-        Establish context = () => JdpLibrary.Settings.ResetToDefaults().AddCreateAuditOnNewRootJdfIs(false);
+        Establish context = () => JdpLibrary.Settings.AddCreateAuditOnNewRootJdfIs(false);
 
         Because of = () => document = Ticket.Create()
                                           .AddNode().Intent().With().JobId("foo")

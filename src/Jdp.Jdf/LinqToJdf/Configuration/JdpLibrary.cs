@@ -10,6 +10,8 @@ namespace Jdp.Jdf.LinqToJdf.Configuration {
         string agentName;
         string agentVersion;
         string author;
+        bool generateJobId;
+        bool generateJobPartId;
 
         JdpLibrary() {
             ResetToDefaults();
@@ -23,7 +25,52 @@ namespace Jdp.Jdf.LinqToJdf.Configuration {
             agentVersion = ApplicationInformation.Version;
             author = ApplicationInformation.Name;
             addCreateAuditOnNewRootJdf = true;
+            generateJobId = true;
+            generateJobPartId = true;
 
+            return this;
+        }
+
+        /// <summary>
+        /// Gets the setting for option of generating job id.
+        /// </summary>
+        /// <remarks>When true (the default), a unique job id
+        /// is generated and placed in the root node.</remarks>
+        public bool GenerateJobId {
+            get { return generateJobId; }
+        }
+
+        /// <summary>
+        /// Fluent setter for option of generating job id.
+        /// </summary>
+        /// <param name="generateJobId"></param>
+        /// <remarks>When true (the default), a unique job id
+        /// is generated and placed in the root node.</remarks>
+        /// <returns></returns>
+        public JdpLibrary GenerateJobIdIs(bool generateJobId) {
+            this.generateJobId = generateJobId;
+            return this;
+        }
+
+        /// <summary>
+        /// Gets the setting for option of generating job part id.
+        /// </summary>
+        /// <remarks>When true (the default), a unique job part id
+        /// is generated and placed in new jdf nodes that are not the root.</remarks>
+        public bool GenerateJobPartId
+        {
+            get { return generateJobPartId; }
+        }
+
+        /// <summary>
+        /// Fluent setter for option of generating job part id.
+        /// </summary>
+        /// <remarks>When true (the default), a unique job part id
+        /// is generated and placed in new jdf nodes that are not the root.</remarks>
+        /// <returns></returns>
+        public JdpLibrary GenerateJobPartIdIs(bool generateJobPartId)
+        {
+            this.generateJobPartId = generateJobPartId;
             return this;
         }
 

@@ -11,9 +11,6 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.Configuration
     [Subject(typeof(Jdf.LinqToJdf.Configuration.JdpLibrary))]
     public class when_setting_options_in_configuration
     {
-        //reset to defaults is called here in case any other tests change the defaults because configuration is a singleton.
-        Establish context = () => JdpLibrary.Settings.ResetToDefaults();
-
         Because of = () => JdpLibrary.Settings.AgentNameIs("Agent").AuthorIs("Author").AgentVersionIs("x1.1x").AddCreateAuditOnNewRootJdfIs(false);
 
         It should_have_agent_name_as_set = () => JdpLibrary.Settings.AgentName.ShouldEqual("Agent");

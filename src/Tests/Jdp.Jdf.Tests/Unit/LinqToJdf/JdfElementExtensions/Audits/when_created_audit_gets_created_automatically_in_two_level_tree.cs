@@ -9,8 +9,6 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
     public class when_created_audit_gets_created_automatically_in_two_level_tree {
         static XDocument document;
 
-        Establish context = () => JdpLibrary.Settings.ResetToDefaults();
-
         Because of = () => document = Ticket.Create()
                                     .AddNode().Intent().With().JobId("foo")
                                     .AddNode().Intent().With().JobId("foo").JobPartId("fi")

@@ -11,9 +11,6 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
         static XDocument document;
 
         Establish context = () => {
-                                //reset in case other tests changed
-                                JdpLibrary.Settings.ResetToDefaults();
-
                                 document = Ticket.Create()
                                     .AddNode().Intent().With().JobId("foo")
                                     .Element.Document;

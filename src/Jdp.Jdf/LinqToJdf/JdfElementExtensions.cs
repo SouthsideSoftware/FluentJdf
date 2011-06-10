@@ -63,7 +63,16 @@ namespace Jdp.Jdf.LinqToJdf
             jdfNode.MakeJdfElementAProcess(types);
             parent.Add(jdfNode);
 
-            jdfNode.SetUniqueJobId();
+            if (jdfNode.IsJdfRoot()) {
+                if (JdpLibrary.Settings.GenerateJobId) {
+                    jdfNode.SetUniqueJobId();
+                }
+            }
+            else {
+                if (JdpLibrary.Settings.GenerateJobPartId) {
+                    jdfNode.SetJobPartId(Globals.CreateUniqueId("JP_"));
+                }
+            }
 
             if (jdfNode.IsJdfRoot() && JdpLibrary.Settings.AddCreateAuditOnNewRootJdf) {
                 jdfNode.AddAudit(Audit.Created);

@@ -10,9 +10,6 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.Configuration
 {
     [Subject(typeof(Jdf.LinqToJdf.Configuration.JdpLibrary))]
     public class when_using_the_default_configuration {
-        //reset to defaults is called here in case any other tests change the defaults because configuration is a singleton.
-        Establish context = () => JdpLibrary.Settings.ResetToDefaults();
-
         It should_have_agent_name_same_as_application_name = () => JdpLibrary.Settings.AgentName.ShouldEqual(ApplicationInformation.Name);
 
         It should_have_author_same_as_application_name = () => JdpLibrary.Settings.Author.ShouldEqual(ApplicationInformation.Name);

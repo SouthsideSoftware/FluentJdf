@@ -22,6 +22,8 @@ namespace Jdp.Jdf.Tests.Unit.LinqToJdf.JdfElementExtensions
 
         It should_have_jdf_intent_node_as_first_child_of_root = () => (root.FirstNode as XElement).IsJdfIntentElement().ShouldBeTrue();
 
-        It should_have_job_id = () => newIntent.GetJobId().ShouldNotBeNull();
+        It should_not_have_job_id = () => newIntent.GetJobId().ShouldBeNull();
+
+        It should_have_job_part_id = () => newIntent.GetJobPartId().ShouldNotBeNull();
     }
 }

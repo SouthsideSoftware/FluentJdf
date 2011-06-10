@@ -1,5 +1,5 @@
+using System.Xml.Linq;
 using Jdp.Jdf.LinqToJdf;
-using Jdp.Jdf.LinqToJdf.Configuration;
 using Machine.Specifications;
 
 namespace Jdp.Jdf.Tests.Unit.Schema.FluentValidation {
@@ -9,9 +9,18 @@ namespace Jdp.Jdf.Tests.Unit.Schema.FluentValidation {
         static Ticket ticket;
 
         Because of = () => {
-                         ticket = null;
+                         ticket = Ticket.Create().AddNode().Intent()
+                             .WithInput().BindingIntent().With().Id("foo")
+                             .WithOutput().Component()
+                             .AddNode().ProcessGroup()
+                             .AddNode().Process(ProcessType.Creasing)
+                             .Ticket;
+                         ticket.Root.GetResourceOrNull("foo").SetId("fi");
+
+                        // var doc = new XDocument(new XElement(XName.Get("JDF", "http://www.CIP4.org/JDFSchema_1_1", new XAttribute("JobID"))));
+                        // doc.Save(@"c:\logs\test2.jdf");
                      };
 
-        It should_save = () => ticket.ValidateJdf().Save(@"c:\logs\test.jdf");
+        It should_save = () => ticket.ValidateJdf().Save(@"\logs\test.jdf");
     }
 }
