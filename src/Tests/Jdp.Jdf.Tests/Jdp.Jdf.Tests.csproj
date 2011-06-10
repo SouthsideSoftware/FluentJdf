@@ -131,11 +131,12 @@
     <Compile Include="AssemblyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\LinqToJdf\Builder\when_setting_id_through_the_builder_on_new_resources.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_adding_resource_links_into_sibling_when_resource_is_in_sibling.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_jdf_nodes_with_configuration_for_no_job_id.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_jdf_nodes_with_configuration_for_no_job_id_and_no_job_part_id.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_jdf_nodes_with_configuration_for_no_job_part_id.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_jdf_nodes_with_default_configuration.cs" />
-    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_adding_resource_links_requiring_promotion.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_adding_resource_links_into_same_node_as_existing_resource.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_checking_node_depth.cs" />
     <Compile Include="Unit\Schema\FluentValidation\when_demonstrating.cs" />
     <Compile Include="Unit\Schema\FluentValidation\when_validating_using_the_fluent_interface.cs" />

@@ -1,38 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using Jdp.Jdf.Resources;
 using Jdp.Jdf.Utility;
 using Onpoint.Commons.Core.CodeContracts;
 
-namespace Jdp.Jdf.LinqToJdf
-{
+namespace Jdp.Jdf.LinqToJdf {
     /// <summary>
     /// Extensions useful for all kinds of JDF nodes
     /// </summary>
-    public static class ElementExtensions
-    {
+    public static class ElementExtensions {
         /// <summary>
         /// Gets the DescriptiveName.
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string GetDescriptiveName(this XElement element)
-        {
+        public static string GetDescriptiveName(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull("DescriptiveName");
         }
 
         /// <summary>
+        /// Gets true if the target node's jdf element shares a common parent with the given node's jdf parent.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="possibleSibling"></param>
+        /// <returns></returns>
+        public static bool IsInSiblingJdf(this XElement element, XElement possibleSibling) {
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(possibleSibling, "possibleSibling");
+
+            return element.NearestJdf().HasJdfParent() && possibleSibling.NearestJdf().HasJdfParent() &&
+                   element.NearestJdf() != possibleSibling.NearestJdf() &&
+                   element.NearestJdf().JdfParent() == possibleSibling.NearestJdf().JdfParent();
+        }
+
+        /// <summary>
+        /// Gets true if the given element has a JDF parent.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static bool HasJdfParent(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            return element.GetJdfParentOrNull() != null;
+        }
+
+        /// <summary>
         /// Sets the DescriptiveName.
         /// </summary>
         /// <returns></returns>
-        public static XElement SetDescriptiveName(this XElement element, string value)
-        {
+        public static XElement SetDescriptiveName(this XElement element, string value) {
             ParameterCheck.ParameterRequired(element, "element");
 
             element.SetAttributeValue("DescriptiveName", value);
@@ -48,7 +67,7 @@ namespace Jdp.Jdf.LinqToJdf
         public static int Depth(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            return element.LocalElementXPath().CountChar('/') -  1;
+            return element.LocalElementXPath().CountChar('/') - 1;
         }
 
         /// <summary>
@@ -75,13 +94,11 @@ namespace Jdp.Jdf.LinqToJdf
         /// <param name="element"></param>
         /// <returns>The first JDF parent</returns>
         /// <exception cref="JdfException">If this node is not a JDF and there is no JDF parent.</exception>
-        public static XElement NearestJdf(this XElement element)
-        {
+        public static XElement NearestJdf(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             var firstJdf = element.GetNearestJdfOrNull();
-            if (firstJdf == null)
-            {
+            if (firstJdf == null) {
                 throw new JdfException(string.Format(Messages.ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent, element.Name));
             }
 
@@ -97,7 +114,9 @@ namespace Jdp.Jdf.LinqToJdf
         public static XElement GetNearestJdfOrNull(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            if (element.IsJdfElement()) return element;
+            if (element.IsJdfElement()) {
+                return element;
+            }
 
             return element.GetJdfParentOrNull();
         }
@@ -180,7 +199,7 @@ namespace Jdp.Jdf.LinqToJdf
                 throw new ArgumentException(Messages.ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket);
             }
             (element.Document as Ticket).ValidateJdf(addSchemaInfo);
-            
+
             return element;
         }
     }

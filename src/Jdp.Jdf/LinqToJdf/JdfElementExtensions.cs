@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Xml.Linq;
 using Jdp.Jdf.LinqToJdf.Configuration;
@@ -294,6 +295,7 @@ namespace Jdp.Jdf.LinqToJdf
             var resourcePool = nearestJdf.ResourcePoolElement();
             var resourceLinkPool = nearestJdf.ResourceLinkPoolElement();
 
+            bool resourceJustCreated = false;
             XElement resource = null;
             if (id == null)
             {
@@ -304,6 +306,7 @@ namespace Jdp.Jdf.LinqToJdf
                 if (resource == null) {
                     if (resourceName != null) {
                         resource = CreateResource(resourceName, id, resourcePool);
+                        resourceJustCreated = true;
                     }
                     else {
                         throw new JdfException(
@@ -311,12 +314,10 @@ namespace Jdp.Jdf.LinqToJdf
                     }
                 }
             }
-
+           
             if (resource == null) {
+                resourceJustCreated = true;
                 resource = CreateResource(resourceName, id, resourcePool);
-            } else {
-                //todo: promote
-                //PromoteResourceIfNeeded(resource);
             }
 
             resourceLinkPool.Add(
@@ -324,23 +325,64 @@ namespace Jdp.Jdf.LinqToJdf
                     new XAttribute("rRef", id),
                     new XAttribute("Usage", usage)));
 
+            //sorry about the flag, but the new resource link must exist before we look at resource promotion.
+            if (!resourceJustCreated) {
+                PromoteResourceIfNeeded(resource);
+            }
+
             return resource;
         }
 
         static void PromoteResourceIfNeeded(XElement resource) {
-            int leastDepth = int.MaxValue;
-            XElement referenceClosestToRoot = null;
-            foreach (var reference in resource.ReferencingElements()) {
-                var depth = reference.Depth();
-                if (depth < leastDepth) {
-                    leastDepth = depth;
-                    referenceClosestToRoot = reference;
+            List<XElement> referencesClosestToRoot = new List<XElement>();
+            int depthOfReferenceClosestToRoot = GetDepthOfReferenceClosestToRoot(resource, referencesClosestToRoot);
+
+            var resourceDepth = resource.Depth();
+            if (resourceDepth == depthOfReferenceClosestToRoot) {
+                if (ThereAreLinksInSiblings(resource, referencesClosestToRoot)) {
+                    resource.Remove();
+                    MoveResourceToCommonParent(resource, referencesClosestToRoot[0]);
                 }
             }
-            if (resource.Depth() >= leastDepth) {
+            else if (resource.Depth() > depthOfReferenceClosestToRoot) {
                 resource.Remove();
-                referenceClosestToRoot.Parent.ResourcePoolElement().Add(resource);
+                MoveResourceToLocationOfEarliestLink(resource, referencesClosestToRoot[0]);
+
             }
+        }
+
+        static bool ThereAreLinksInSiblings(XElement resource, List<XElement> referencesClosestToRoot) {
+            bool linksInSiblings = false;
+            foreach (var reference in referencesClosestToRoot) {
+                if (reference.IsInSiblingJdf(resource)) {
+                    linksInSiblings = true;
+                    break;
+                }
+            }
+            return linksInSiblings;
+        }
+
+        static int GetDepthOfReferenceClosestToRoot(XElement resource, List<XElement> referencesClosestToRoot) {
+            int depthOfReferenceClosestToRoot = int.MaxValue;
+            foreach (var reference in resource.ReferencingElements()) {
+                var depth = reference.Depth();
+                if (depth <= depthOfReferenceClosestToRoot) {
+                    if (depth < depthOfReferenceClosestToRoot) {
+                        referencesClosestToRoot.Clear();
+                        depthOfReferenceClosestToRoot = depth;
+                    }
+                    referencesClosestToRoot.Add(reference);
+                }
+            }
+            return depthOfReferenceClosestToRoot;
+        }
+
+        static void MoveResourceToLocationOfEarliestLink(XElement resource, XElement referenceClosestToRoot) {
+            referenceClosestToRoot.JdfParent().ResourcePoolElement().Add(resource);
+        }
+
+        static void MoveResourceToCommonParent(XElement resource, XElement referenceClosestToRoot) {
+            referenceClosestToRoot.JdfParent().JdfParent().ResourcePoolElement().Add(resource);
         }
 
         static XElement CreateResource(XName resourceName, string id, XElement resourcePool) {
@@ -361,6 +403,21 @@ namespace Jdp.Jdf.LinqToJdf
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.Name == Element.JDF;
+        }
+
+        /// <summary>
+        /// Gets true if the target JDF element and the given JDF element have a common parent.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <param name="possibleSiblingJdf"></param>
+        /// <returns></returns>
+        public static bool IsSiblingOf(this XElement jdfNode, XElement possibleSiblingJdf) {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            ParameterCheck.ParameterRequired(possibleSiblingJdf, "possibleSiblingJdf");
+            jdfNode.ThrowExceptionIfNotJdfElement();
+            possibleSiblingJdf.ThrowExceptionIfNotJdfElement();
+
+            return jdfNode.HasJdfParent() && possibleSiblingJdf.HasJdfParent() && jdfNode.JdfParent() == possibleSiblingJdf.JdfParent();
         }
 
         /// <summary>
