@@ -44,7 +44,7 @@
 		<BuildNumber Condition="!$(InTeamCity)">0</BuildNumber>
     <BuildNumber Condition="$(InTeamCity)">$(build_number)</BuildNumber>
 		<CompanyName>Onpoint On Demand</CompanyName>
-    <HelpTitle>JDF Workflow Foundation</HelpTitle>
+    <FluentJdfHelpTitle>Fluent JDF</FluentJdfHelpTitle>
 	</PropertyGroup>
 
   <!-- Misc -->
@@ -215,7 +215,7 @@
 
 	<Target Name="Document" Condition="$(GenerateDocs)">
 		<Message Importance="high" Text="Document"/>
-    <MSBuild Projects="$(MSBuildProjectDirectory)\$(ProductName).shfbproj" Properties="Configuration=$(Configuration);Platform=AnyCPU"/>
+    <MSBuild Projects="$(MSBuildProjectDirectory)\FluentJdf.shfbproj" Properties="Configuration=$(Configuration);Platform=AnyCPU"/>
 	</Target>
 
 	<Target Name="Publish">
