@@ -5,7 +5,7 @@
 	<Filters>
 		<ExcludeFilters>
 			<FilterEntry>
-				<ModuleMask>Jdp.Jdf.Tests</ModuleMask>
+				<ModuleMask>FluentJdf.Tests</ModuleMask>
 				<ClassMask>*</ClassMask>
 				<FunctionMask>*</FunctionMask>
 			</FilterEntry>
