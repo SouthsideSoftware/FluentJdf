@@ -1,0 +1,13 @@
+﻿<Application x:Class="FluentJdf.Visualizer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Visualizer="clr-namespace:FluentJdf.Visualizer">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <Visualizer:AppBootstrapper x:Key="bootstrapper" />
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

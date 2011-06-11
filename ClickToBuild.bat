@@ -1,2 +1,2 @@
-call build.bat /p:GenerateDocs=true
+call build.bat
 pause

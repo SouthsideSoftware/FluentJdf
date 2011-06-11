@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets ="Dist" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- See https://onpointondemand.fogbugz.com/default.asp?W695 for documentation -->
+	<!-- Tools -->
+	<PropertyGroup>
+    <ToolsDir>$(MSBuildProjectDirectory)\tools</ToolsDir>
+    <PackageDir>$(MSBuildProjectDirectory)\packages</PackageDir>
+		<MSBuildCommunityTasksPath>$(ToolsDir)\MSBuild\MSBuildCommunityTasks</MSBuildCommunityTasksPath>
+    <MSBuildAwsTasksPath>$(ToolsDir)\MSBuild\MSBuild.AWS.Tasks.Release</MSBuildAwsTasksPath>
+    <SouthSideTasksPath>$(ToolsDir)\MSBuild\SouthSideBuildTasks</SouthSideTasksPath>
+		<MSpecDir>$(ToolsDir)\MSpec</MSpecDir>
+    <agent_home_dir>dummy</agent_home_dir>
+    <dotCover>$(agent_home_dir)\tools\dotCover\dotCover.exe</dotCover>
+    <NuGet>$(ToolsDir)\nuget.exe</NuGet>
+	</PropertyGroup>
+
+	<!-- Artifact Directories -->
+	<PropertyGroup>
+		<OutputDir>$(MSBuildProjectDirectory)\BuildOutput</OutputDir>
+		<BinDir>$(OutputDir)\bin</BinDir>
+		<DistributionDir>$(OutputDir)\distribution</DistributionDir>
+    <HelpDir>$(OutputDir)\Help</HelpDir>
+    <TestOutputDir>$(OutputDir)\TestResults</TestOutputDir>
+    <FitnesseDir>$(OutputDir)\Fitnesse</FitnesseDir>
+    <FitnesseAssemblyDir>$(FitnesseDir)\assemblies</FitnesseAssemblyDir>
+    <FitnesseContentDir>$(FitnesseDir)\FitNesseRoot</FitnesseContentDir>
+  </PropertyGroup>
+
+	<!-- General Build Configuration Properties -->
+	<PropertyGroup>
+		<ProductName>JWf</ProductName>
+    <ProductDescription>JDF Workflow Foundation</ProductDescription>
+		<Configuration>Debug</Configuration>
+    <GenerateDocs>false</GenerateDocs>
+	</PropertyGroup>
+
+	<!-- Version Information -->
+	<PropertyGroup>
+		<AppVersion>0.1.0</AppVersion>
+		<SchemaVersion>0</SchemaVersion>
+    <PrintableSupportSchemaVersion>0</PrintableSupportSchemaVersion>
+    <InTeamCity Condition="'$(build_number)' == ''">false</InTeamCity>
+    <InTeamCity Condition="'$(build_number)' != ''">true</InTeamCity>
+		<BuildNumber Condition="!$(InTeamCity)">0</BuildNumber>
+    <BuildNumber Condition="$(InTeamCity)">$(build_number)</BuildNumber>
+		<CompanyName>Onpoint On Demand</CompanyName>
+    <HelpTitle>JDF Workflow Foundation</HelpTitle>
+	</PropertyGroup>
+
+  <!-- Misc -->
+  <PropertyGroup>
+    <ZipQualifier>_$(AppVersion).$(BuildNumber)_$(Configuration).zip</ZipQualifier>
+  </PropertyGroup>
+ 
+	<ItemGroup>
+		<ProjectToBuild Include="$(MSBuildProjectDirectory)\$(ProductName).sln"></ProjectToBuild>
+	</ItemGroup>
+
+	<Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
+  <Import Project="$(MSBuildAwsTasksPath)\Snowcode.S3BuildPublisher.Tasks.Targets"/>
+  <Import Project="$(SouthSideTasksPath)\SouthSideBuildTasks.MSBuild.Tasks.Targets"/>
+
+	<Target Name="Dist" DependsOnTargets="Clean;InstallPackages;Version;Build;Test;Document;Publish"/>
+
+	<Target Name="Clean">
+    <Message Importance="high" Text="Clean"/>
+		<Message Importance="high" Text="======================================================="/>
+		<Message Importance="high" Text="Configuration = $(Configuration)"/>
+		<Message Importance="high" Text="Version = $(AppVersion).$(BuildNumber)"/>
+    <Message Importance="high" Text="DB = $(SchemaVersion)"/>
+    <Message Importance="high" Text="MSBuild Path: $(MSBuildBinPath)"/>
+		<Message Importance="high" Text="======================================================="/>
+    <RemoveDir Directories="$(OutputDir)" ContinueOnError="true"/>
+		<MakeDir Directories="$(OutputDir)"/>
+		<MakeDir Directories="$(BinDir)"/>
+		<MakeDir Directories="$(DistributionDir)"/>
+		<MakeDir Directories="$(HelpDir)"/>
+    <MakeDir Directories="$(TestOutputDir)"/>
+    <MakeDir Directories="$(FitnesseAssemblyDir)"/>
+    <MakeDir Directories="$(FitnesseContentDir)"/>
+	</Target>
+
+  <ItemGroup>
+    <ProjectDir Include="src/FluentJdf"/>
+    <ProjectDir Include="src/Jwf.Server"/>
+    <ProjectDir Include="src/Tests/FluentJdf.Tests"/>
+    <ProjectDir Include="src/FluentJdf.Visualizer"/>
+  </ItemGroup>
+
+  <Target Name="InstallPackages" Outputs="%(ProjectDir.Identity)">
+    <Message Importance="high" Text="Installing packages for %(ProjectDir.Identity)"/>
+    <Exec Command='$(NuGet) install %(ProjectDir.Identity)\packages.config -o $(MSBuildProjectDirectory)\packages'/>
+  </Target>
+
+  <Target Name="UpdatePackages" Outputs="%(ProjectDir.Identity)">
+    <Message Importance="high" Text="Installing packages for %(ProjectDir.Identity)"/>
+    <Exec Command="$(NuGet) update %(ProjectDir.Identity)\packages.config"/>
+  </Target>
+
+	<Target Name="Version">
+		<Message Importance="high" Text="Version"/>
+		<Time>
+			<Output TaskParameter="Year" PropertyName="Year"/>
+		</Time>
+		<AssemblyInfo OutputFile="$(MSBuildProjectDirectory)\src\FluentJdf\Properties\CommonAssemblyInfo.cs" CodeLanguage="C#"
+					  ComVisible="false" AssemblyCulture=""
+					  AssemblyVersion="$(AppVersion)"
+					  AssemblyFileVersion="$(AppVersion).$(BuildNumber)"
+					  AssemblyCopyright="Copyright © $(CompanyName) $(Year)"
+					  AssemblyConfiguration="$(Configuration)"
+					  AssemblyCompany="$(CompanyName)"
+					  AssemblyProduct="$(ProductDescription) ($(Configuration) DB: $(SchemaVersion))"/>
+    
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\$(ProductName).shfbproj"
+               Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
+               Prefix="n"
+               XPath="//n:HelpTitle"
+               Value="$(HelpTitle) $(AppVersion).$(BuildNumber)"/>
+
+    <!-- File update tasks for pre and post deployment go here -->
+  </Target>
+
+	<Target Name="Build">
+		<Message Importance="high" Text="Build"/>
+    <Time>
+      <Output TaskParameter="Ticks" PropertyName="StartTick"/>
+    </Time>
+     <MSBuild Projects="@(ProjectToBuild)"
+				 Targets="Rebuild"
+				 Properties="Configuration=$(Configuration);Platform=Any CPU"/>
+    <Time>
+      <Output TaskParameter="Ticks" PropertyName="EndTick"/>
+    </Time>
+    <Math.Subtract Numbers="$(EndTick);$(StartTick)">
+      <Output TaskParameter="Result" PropertyName="ElapsedTicks" />
+    </Math.Subtract>
+    <Math.Divide Numbers="$(ElapsedTicks);10000000.0">
+      <Output TaskParameter="Result" PropertyName="ElapsedSeconds" />
+    </Math.Divide>
+
+
+    <Message Importance="high" Text="Compile Seconds: $(ElapsedSeconds)"/>
+  </Target>
+
+	<Target Name="Test">
+		<Message Importance="high" Text="Test"/>
+		<CallTarget Targets="TestOutsideTeamCity" Condition="!$(InTeamCity)"/>
+    <CallTarget Targets="TestInsideTeamCity" Condition="$(InTeamCity)"/>
+	</Target>
+
+  <ItemGroup>
+    <TestItem Include="FluentJdf.Tests.dll">
+      <TestProjectDir>$(MSBuildProjectDirectory)\src\Tests\FluentJdf.Tests</TestProjectDir>
+      <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
+      <TestReportName>FluentJdf.Tests.Results.htm</TestReportName>
+      <CoverageXmlName>FluentJdf.Tests.Coverage.xml</CoverageXmlName>
+    </TestItem>
+  </ItemGroup>
+
+  <Target Name="TestOutsideTeamCity">
+    <Message Importance="high" Text="TestOutsideTeamCity"/>
+    <CallTarget Targets="MSpecTests;FitnesseTests"/>
+  </Target>
+
+  <Target Name="TestInsideTeamCity">
+    <Message Importance="high" Text="Test inside team city"/>
+    <CallTarget Targets="MSpecTests;MSpecCoverage;FitnesseTests"/>
+  </Target>
+
+  <Target Name="MSpecTests" Outputs="%(TestItem.Identity)">
+    <Message Importance="high" Text="Testing: %(TestItem.TestDir)\%(TestItem.Identity)"/>
+    <XmlRead XPath="//package[@id='Machine.Specifications']/@version"
+             XmlFileName="%(TestItem.TestProjectDir)\packages.config">
+      <Output TaskParameter="Value" PropertyName="MSpecVersion"/>
+    </XmlRead>
+    <Message Importance="high" Text="MSpec: $(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe"/>
+    <Exec WorkingDirectory="%(TestItem.TestDir)"
+          Command='"$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity)"'
+          Condition='!$(InTeamCity)'/>
+
+    <Exec WorkingDirectory="%(TestItem.TestDir)"
+          Command='"$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity) --teamcity"'
+          Condition='$(InTeamCity)'/>
+  </Target>
+
+  <Target Name='MSpecCoverage' Outputs="%(TestItem.Identity)">
+    <Message Importance="high" Text="Code coverage on MSpec tests"/>
+    <Message Importance="high" Text="dotCover: $(dotCover)"/>
+    <Message Importance="high" Text="Coverage Testing: %(TestItem.TestDir)\%(TestItem.Identity)"/>
+    <XmlRead XPath="//package[@id='Machine.Specifications']/@version"
+             XmlFileName="%(TestItem.TestProjectDir)\packages.config">
+      <Output TaskParameter="Value" PropertyName="MSpecVersion"/>
+    </XmlRead>
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\dotcoverTemplate.xml"
+          DestinationFiles="$(MSBuildProjectDirectory)\dotcover.xml" SkipUnchangedFiles="false"/>
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
+               XPath="//Executable"
+               Value="$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe"/>
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
+               XPath="//Arguments"
+               Value="%(TestItem.TestDir)\%(TestItem.Identity)"/>
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
+               XPath="//Output"
+               Value="$(TestOutputDir)\%(TestItem.CoverageXmlName)"/>
+    <Exec Command="$(dotCover) c dotcover.xml"/>
+    <Message Text="##teamcity[importData type='dotNetCoverage' tool='dotcover' path='$(TestOutputDir)\%(TestItem.CoverageXmlName)']"/>
+  </Target>
+  
+  <Target Name="FitnesseTests">
+    <Message Importance="high" Text="FitnesseTests"/>
+    <Fitnesse WorkingDirectory="$(MSBuildProjectDirectory)\fitnesse" Suite="FrontPage.IntegrationTests" ExcludeSuiteFilter="failing"
+              OutputHtmlFileName="$(TestOutputDir)\FitnesseResults.htm"
+              InTeamCity="$(InTeamCity)"/>
+  </Target>
+
+	<Target Name="Document" Condition="$(GenerateDocs)">
+		<Message Importance="high" Text="Document"/>
+    <MSBuild Projects="$(MSBuildProjectDirectory)\$(ProductName).shfbproj" Properties="Configuration=$(Configuration);Platform=AnyCPU"/>
+	</Target>
+
+	<Target Name="Publish">
+		<Message Importance="high" Text="Publish"/>
+    <!--<ItemGroup>
+      <SJDFLibraryFiles 
+        Include="src\RICOH.SJDF.Tests\bin\$(Configuration)\*.*;src\RICOH.SJDF.ServerHost\bin\$(Configuration)\*.*;
+                 src\Printable\RICOH.SJDF.ApplicationServices.Printable.Tests\bin\$(Configuration)\*.*;
+                 src\RICOH.SJDF.Gui\bin\$(Configuration)\*.*"
+        Exclude="src\RICOH.SJDF.Tests\bin\$(Configuration)\script.dll"/>
+      <Log4NetLicenseFiles Include="lib\log4NetLicense\*.*"/>
+      <CastleWindsorLicenseFiles Include="lib\CastleWindsorLicense\*.*"/>
+      <FitnesseAssemblyFiles Include="fitnesse\assemblies\*.*"/>
+      <FitnesseContentFiles Include="fitnesse\FitNesseRoot\**\*.*" Exclude="fitnesse\FitNesseRoot\files\testResults\**\*.*"/>
+      <JdpConfigurationFiles Include="$(MSBuildProjectDirectory)\JdpInstallation\**\*.*"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(SJDFLibraryFiles)" DestinationFolder="$(SJDFLibraryDir)"/>
+    <Copy SourceFiles="@(FitnesseAssemblyFiles)" DestinationFolder="$(FitnesseAssemblyDir)"/>
+    <FileUpdate Files="$(FitnesseAssemblyDir)\RICOH.SJDF.Fitnesse.dll.Config" Regex="Initial Catalog=RicohSjdf" ReplacementText="Initial Catalog=RicohSjdfFitnesse"/>
+
+    <XmlUpdate XmlFileName="$(SJDFLibraryDir)\jdp.config"
+               XPath="//add[@key='InstallationRoot']/@value"
+               Value=".\JdpInstallation"/>
+
+    <Copy SourceFiles="@(JdpConfigurationFiles)" DestinationFolder="$(SJDFLibraryDir)\JdpInstallation\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(FitnesseContentFiles)" DestinationFolder="$(FitnesseContentDir)\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(Log4NetLicenseFiles)" DestinationFolder="$(SJDFLibraryDir)\log4NetLicense"/>
+    <Copy SourceFiles="@(CastleWindsorLicenseFiles)" DestinationFolder="$(SJDFLibraryDir)\CastleWindsorLicense"/>
+    <ItemGroup>
+      <ZipSJDFLibraryFiles Include="$(SJDFLibraryDir)\**\*.*;$(HelpDir)\*.*"/>
+    </ItemGroup>
+    <PropertyGroup>
+      <ZipFileName>$(DistributionDir)\RICOH.SJDF$(ZipQualifier)</ZipFileName>
+    </PropertyGroup>
+    <Zip Files="@(ZipSJDFLibraryFiles)" WorkingDirectory="$(SJDFLibraryDir)" ZipFileName="$(ZipFileName)"/>-->
+	</Target>
+</Project>
