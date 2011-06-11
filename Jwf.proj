@@ -28,7 +28,7 @@
 
 	<!-- General Build Configuration Properties -->
 	<PropertyGroup>
-		<ProductName>JWf</ProductName>
+		<ProductName>Jwf</ProductName>
     <ProductDescription>JDF Workflow Foundation</ProductDescription>
 		<Configuration>Debug</Configuration>
     <GenerateDocs>false</GenerateDocs>
@@ -111,7 +111,7 @@
 					  AssemblyCompany="$(CompanyName)"
 					  AssemblyProduct="$(ProductDescription) ($(Configuration) DB: $(SchemaVersion))"/>
     
-    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\$(ProductName).shfbproj"
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\FluentJdf.shfbproj"
                Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
                Prefix="n"
                XPath="//n:HelpTitle"
