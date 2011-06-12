@@ -18,12 +18,14 @@
 	<PropertyGroup>
 		<OutputDir>$(MSBuildProjectDirectory)\BuildOutput</OutputDir>
 		<BinDir>$(OutputDir)\bin</BinDir>
-		<DistributionDir>$(OutputDir)\distribution</DistributionDir>
+    <DistributionDir>$(OutputDir)\distribution</DistributionDir>
     <HelpDir>$(OutputDir)\Help</HelpDir>
     <TestOutputDir>$(OutputDir)\TestResults</TestOutputDir>
     <FitnesseDir>$(OutputDir)\Fitnesse</FitnesseDir>
     <FitnesseAssemblyDir>$(FitnesseDir)\assemblies</FitnesseAssemblyDir>
     <FitnesseContentDir>$(FitnesseDir)\FitNesseRoot</FitnesseContentDir>
+    <NuGetPackageDir>$(OutputDir)\NuGet</NuGetPackageDir>
+    <HelpWebDir></HelpWebDir>
   </PropertyGroup>
 
 	<!-- General Build Configuration Properties -->
@@ -45,6 +47,11 @@
     <BuildNumber Condition="$(InTeamCity)">$(build_number)</BuildNumber>
 		<CompanyName>Onpoint On Demand</CompanyName>
     <FluentJdfHelpTitle>Fluent JDF</FluentJdfHelpTitle>
+    <FluentJdfPackageSummary>
+      Fluent JDF contains everything you need to quickly
+      add JDF capabilities to any client application.  It includes powerful tools
+      that allow you to easily author, parse and send JDF from your client applications.
+    </FluentJdfPackageSummary>
 	</PropertyGroup>
 
   <!-- Misc -->
@@ -78,6 +85,7 @@
     <MakeDir Directories="$(TestOutputDir)"/>
     <MakeDir Directories="$(FitnesseAssemblyDir)"/>
     <MakeDir Directories="$(FitnesseContentDir)"/>
+    <MakeDir Directories="$(NuGetPackageDir)"/>
 	</Target>
 
   <ItemGroup>
@@ -115,7 +123,13 @@
                Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
                Prefix="n"
                XPath="//n:HelpTitle"
-               Value="$(HelpTitle) $(AppVersion).$(BuildNumber)"/>
+               Value="$(FluentJdfHelpTitle) $(AppVersion).$(BuildNumber)"/>
+
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\FluentJdf.nuspec"
+               Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+               Prefix="n"
+               XPath="//n:summary"
+               Value="$(FluentJdfPackageSummary) Version: $(AppVersion).$(BuildNumber) ($(Configuration))"/>
 
     <!-- File update tasks for pre and post deployment go here -->
   </Target>
@@ -220,36 +234,26 @@
 
 	<Target Name="Publish">
 		<Message Importance="high" Text="Publish"/>
-    <!--<ItemGroup>
-      <SJDFLibraryFiles 
-        Include="src\RICOH.SJDF.Tests\bin\$(Configuration)\*.*;src\RICOH.SJDF.ServerHost\bin\$(Configuration)\*.*;
-                 src\Printable\RICOH.SJDF.ApplicationServices.Printable.Tests\bin\$(Configuration)\*.*;
-                 src\RICOH.SJDF.Gui\bin\$(Configuration)\*.*"
-        Exclude="src\RICOH.SJDF.Tests\bin\$(Configuration)\script.dll"/>
-      <Log4NetLicenseFiles Include="lib\log4NetLicense\*.*"/>
-      <CastleWindsorLicenseFiles Include="lib\CastleWindsorLicense\*.*"/>
-      <FitnesseAssemblyFiles Include="fitnesse\assemblies\*.*"/>
-      <FitnesseContentFiles Include="fitnesse\FitNesseRoot\**\*.*" Exclude="fitnesse\FitNesseRoot\files\testResults\**\*.*"/>
-      <JdpConfigurationFiles Include="$(MSBuildProjectDirectory)\JdpInstallation\**\*.*"/>
-    </ItemGroup>
-    <Copy SourceFiles="@(SJDFLibraryFiles)" DestinationFolder="$(SJDFLibraryDir)"/>
-    <Copy SourceFiles="@(FitnesseAssemblyFiles)" DestinationFolder="$(FitnesseAssemblyDir)"/>
-    <FileUpdate Files="$(FitnesseAssemblyDir)\RICOH.SJDF.Fitnesse.dll.Config" Regex="Initial Catalog=RicohSjdf" ReplacementText="Initial Catalog=RicohSjdfFitnesse"/>
-
-    <XmlUpdate XmlFileName="$(SJDFLibraryDir)\jdp.config"
-               XPath="//add[@key='InstallationRoot']/@value"
-               Value=".\JdpInstallation"/>
-
-    <Copy SourceFiles="@(JdpConfigurationFiles)" DestinationFolder="$(SJDFLibraryDir)\JdpInstallation\%(RecursiveDir)"/>
-    <Copy SourceFiles="@(FitnesseContentFiles)" DestinationFolder="$(FitnesseContentDir)\%(RecursiveDir)"/>
-    <Copy SourceFiles="@(Log4NetLicenseFiles)" DestinationFolder="$(SJDFLibraryDir)\log4NetLicense"/>
-    <Copy SourceFiles="@(CastleWindsorLicenseFiles)" DestinationFolder="$(SJDFLibraryDir)\CastleWindsorLicense"/>
     <ItemGroup>
-      <ZipSJDFLibraryFiles Include="$(SJDFLibraryDir)\**\*.*;$(HelpDir)\*.*"/>
+      <FluentJdfLibraryFiles Include="src\FluentJdf\bin\$(Configuration)\*.*"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(FluentJdfLibraryFiles)" DestinationFolder="$(BinDir)\FluentJdf"/>
+    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) pack $(MSBuildProjectDirectory)\FluentJdf.nuspec"/>
+    <ItemGroup>
+      <ZipFluentJdfLibraryFiles Include="$(BinDir)\FluentJdf\**\*.*"/>
     </ItemGroup>
     <PropertyGroup>
-      <ZipFileName>$(DistributionDir)\RICOH.SJDF$(ZipQualifier)</ZipFileName>
+      <FluentJdfZipFileName>$(DistributionDir)\FluentJDF$(ZipQualifier)</FluentJdfZipFileName>
     </PropertyGroup>
-    <Zip Files="@(ZipSJDFLibraryFiles)" WorkingDirectory="$(SJDFLibraryDir)" ZipFileName="$(ZipFileName)"/>-->
+    <Zip Files="@(ZipFluentJdfLibraryFiles)" WorkingDirectory="$(BinDir)\FluentJdf" ZipFileName="$(FluentJdfZipFileName)"/>
+    <CallTarget Targets="PublishWebHelp" Condition="$(HelpWebDir) != ''"/>
 	</Target>
+
+  <Target Name="PublishWebHelp">
+    <ItemGroup>
+      <FluentJdfHelpFiles Include="$(HelpDir)\FluentJdf\**\*.*"/>
+    </ItemGroup>
+    <RemoveDir Directories="$(HelpWebDir)" ContinueOnError="true"/>
+    <Copy SourceFiles="@(FluentJdfHelpFiles)" DestinationFolder="$(HelpWebDir)\FluentJdf\%(RecursiveDir)"/>
+  </Target>
 </Project>

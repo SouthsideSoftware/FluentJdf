@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>FluentJdf</id>
+    <version>0.1.0</version>
+    <authors>Onpoint On Demand</authors>
+    <owners>Onpoint On Demand</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>JDF client library for .NET</description>
+    <summary>
+      Fluent JDF contains everything you need to quickly
+      add JDF capabilities to any client application.  It includes powerful tools
+      that allow you to easily author, parse and send JDF from your client applications.
+     Version: 0.1.0.0 (Debug)</summary>
+    <dependencies>
+      <dependency id="OnpointCommons.Castle.NLog" version="0.3.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="BuildOutput\bin\FluentJdf\FluentJdf.dll" target="lib" />
+    <file src="BuildOutput\bin\FluentJdf\FluentJdf.xml" target="lib" />
+  </files>
+</package>
