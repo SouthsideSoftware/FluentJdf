@@ -14,16 +14,6 @@
 				<ClassMask>*</ClassMask>
 				<FunctionMask>*</FunctionMask>
 			</FilterEntry>
-			<FilterEntry>
-				<ModuleMask>Infrastructure.Container.CastleWindsor.Tests</ModuleMask>
-				<ClassMask>*</ClassMask>
-				<FunctionMask>*</FunctionMask>
-			</FilterEntry>
-			<FilterEntry>
-				<ModuleMask>Infrastructure.Core.Tests</ModuleMask>
-				<ClassMask>*</ClassMask>
-				<FunctionMask>*</FunctionMask>
-			</FilterEntry>
 		</ExcludeFilters>
 	</Filters>
 </CoverageParams>
