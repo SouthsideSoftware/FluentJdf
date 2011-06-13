@@ -1,0 +1,32 @@
+<TemplatesExport family="Live Templates">
+  <Template uid="7426cda0-b428-439c-9d87-2a22619f6a16" shortcut="parmr" description="Check for parameter required" text="global:: Infrastructure.Core.CodeContracts.ParameterCheck.ParameterRequired($parm$, &quot;$parm$&quot;);" reformat="True" shortenQualifiedReferences="True">
+    <Context>
+      <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+    </Context>
+    <Categories />
+    <Variables>
+      <Variable name="parm" expression="" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="24ae0f80-9c6a-4ad4-8f28-0539d9576c7d" shortcut="parms" description="Check for string required and not empty." text="global:: Infrastructure.Core.CodeContracts.ParameterCheck.StringRequiredAndNotWhitespace($parm$, &quot;$parm$&quot;);" reformat="True" shortenQualifiedReferences="True">
+    <Context>
+      <CSharpContext context="Everywhere" minimumLanguageVersion="2.0" />
+    </Context>
+    <Categories />
+    <Variables>
+      <Variable name="parm" expression="" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="a6b10406-bc00-44e7-bb32-1d8f9739fb8b" shortcut="should" description="" text="It should_$should$ =()=&gt; $END$;" reformat="True" shortenQualifiedReferences="True">
+    <Context>
+      <CSharpContext context="Everywhere" minimumLanguageVersion="3.0" />
+    </Context>
+    <Categories />
+    <Variables>
+      <Variable name="should" expression="" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+</TemplatesExport>

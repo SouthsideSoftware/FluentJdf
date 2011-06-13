@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using System.Xml.Schema;
 using FluentJdf.LinqToJdf;
-using Onpoint.Commons.Core.CodeContracts;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.Schema
 {

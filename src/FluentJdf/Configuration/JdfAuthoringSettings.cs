@@ -1,4 +1,4 @@
-﻿using Onpoint.Commons.Core.Helpers;
+﻿using Infrastructure.Core.Helpers;
 
 namespace FluentJdf.Configuration {
     /// <summary>

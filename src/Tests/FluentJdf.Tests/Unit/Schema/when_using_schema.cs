@@ -2,8 +2,8 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using FluentJdf.LinqToJdf;
 using FluentJdf.Schema;
+using Infrastructure.Core.Logging;
 using Machine.Specifications;
-using Onpoint.Commons.Core.Logging;
 
 namespace FluentJdf.Tests.Unit.Schema {
     [Subject("Schema PSVI experiements")]

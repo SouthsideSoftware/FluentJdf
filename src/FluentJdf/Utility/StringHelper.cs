@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
-using Onpoint.Commons.Core.CodeContracts;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.Utility
 {

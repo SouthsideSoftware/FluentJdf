@@ -51,6 +51,8 @@
       Fluent JDF contains everything you need to quickly
       add JDF capabilities to any client application.  It includes powerful tools
       that allow you to easily author, parse and send JDF from your client applications.
+      By default, uses Castle Windsor and NLog.  See NuGet for related packages
+      to add optional support for other IoC/DI containers and logging frameworks.
     </FluentJdfPackageSummary>
 	</PropertyGroup>
 
@@ -89,10 +91,16 @@
 	</Target>
 
   <ItemGroup>
-    <ProjectDir Include="src/FluentJdf"/>
-    <ProjectDir Include="src/Jwf.Server"/>
-    <ProjectDir Include="src/Tests/FluentJdf.Tests"/>
-    <ProjectDir Include="src/FluentJdf.Visualizer"/>
+    <ProjectDir Include="src\FluentJdf"/>
+    <ProjectDir Include="src\Tests\FluentJdf.Tests"/>
+    <ProjectDir Include="src\Jwf.Server"/>
+    <ProjectDir Include="src\FluentJdf.Visualizer"/>
+<!--    <ProjectDir Include="src\Infrastructure\Infrastructure.Core"/> -->
+    <ProjectDir Include="src\Infrastructure\Tests\Infrastructure.Core.Tests"/>
+    <ProjectDir Include="src\Infrastructure\Infrastructure.Container.CastleWindsor"/>
+    <ProjectDir Include="src\Infrastructure\Tests\Infrastructure.Container.CastleWindsor.Tests"/>
+    <ProjectDir Include="src\Infrastructure\Infrastructure.Logging.Log4Net"/>
+    <ProjectDir Include="src\Infrastructure\Infrastructure.Logging.NLog"/>
   </ItemGroup>
 
   <Target Name="InstallPackages" Outputs="%(ProjectDir.Identity)">
@@ -131,6 +139,12 @@
                XPath="//n:summary"
                Value="$(FluentJdfPackageSummary) Version: $(AppVersion).$(BuildNumber) ($(Configuration))"/>
 
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\FluentJdf.nuspec"
+               Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+               Prefix="n"
+               XPath="//n:version"
+               Value="$(AppVersion)"/>
+
     <!-- File update tasks for pre and post deployment go here -->
   </Target>
 
@@ -168,6 +182,18 @@
       <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
       <TestReportName>FluentJdf.Tests.Results.htm</TestReportName>
       <CoverageXmlName>FluentJdf.Tests.Coverage.xml</CoverageXmlName>
+    </TestItem>
+    <TestItem Include="Infrastructure.Core.Tests.dll">
+      <TestProjectDir>$(MSBuildProjectDirectory)\src\Infrastructure\Tests\Infrastructure.Core.Tests</TestProjectDir>
+      <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
+      <TestReportName>Infrastructure.Core.Tests.Results.htm</TestReportName>
+      <CoverageXmlName>Infrastructure.Core.Tests.Coverage.xml</CoverageXmlName>
+    </TestItem>
+    <TestItem Include="Infrastructure.Container.CastleWindsor.Tests.dll">
+      <TestProjectDir>$(MSBuildProjectDirectory)\src\Infrastructure\Tests\Infrastructure.Container.CastleWindsor.Tests</TestProjectDir>
+      <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
+      <TestReportName>Infrastructure.Container.CastleWindsor.Tests.Results.htm</TestReportName>
+      <CoverageXmlName>Infrastructure.Container.CastleWindsor.Tests.Coverage.xml</CoverageXmlName>
     </TestItem>
   </ItemGroup>
 
@@ -235,7 +261,11 @@
 	<Target Name="Publish">
 		<Message Importance="high" Text="Publish"/>
     <ItemGroup>
-      <FluentJdfLibraryFiles Include="src\FluentJdf\bin\$(Configuration)\*.*"/>
+      <FluentJdfLibraryFiles Include="src\FluentJdf\bin\$(Configuration)\*.*;
+                             src\Infrastructure\Infrastructure.Core\bin\$(Configuration)\*.*;
+                             src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\$(Configuration)\*.*;
+                             src\Infrastructure\Infrastructure.Logging.Log4Net\bin\$(Configuration)\*.*;
+                             src\Infrastructure\Infrastructure.Logging.NLog\bin\$(Configuration)\*.*;"/>
     </ItemGroup>
     <Copy SourceFiles="@(FluentJdfLibraryFiles)" DestinationFolder="$(BinDir)\FluentJdf"/>
     <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) pack $(MSBuildProjectDirectory)\FluentJdf.nuspec"/>

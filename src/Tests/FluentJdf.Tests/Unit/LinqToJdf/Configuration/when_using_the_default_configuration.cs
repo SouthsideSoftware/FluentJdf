@@ -1,6 +1,6 @@
 ﻿using FluentJdf.Configuration;
+using Infrastructure.Core.Helpers;
 using Machine.Specifications;
-using Onpoint.Commons.Core.Helpers;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.Configuration
 {

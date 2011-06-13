@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml.Schema;
 using FluentJdf.LinqToJdf;
 using FluentJdf.Resources;
-using Onpoint.Commons.Core.Logging;
+using Infrastructure.Core.Logging;
 
 namespace FluentJdf.Schema
 {

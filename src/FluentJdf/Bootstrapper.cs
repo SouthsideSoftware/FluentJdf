@@ -1,8 +1,4 @@
-﻿using Onpoint.Commons.Core;
-using Onpoint.Commons.Core.CastleWindsor;
-using Onpoint.Commons.Logging.NLog;
-
-namespace FluentJdf
+﻿namespace FluentJdf
 {
     /// <summary>
     /// Used to initialize logging and DI container.
@@ -15,7 +11,7 @@ namespace FluentJdf
         /// </summary>
         public static void Initialize() {
             if (!isInitialized) {
-                Onpoint.Commons.Core.Configuration.Instance.UseCastleWindsor().LogWithNLog().Configure();
+                Infrastructure.Core.Configuration.Instance.Configure();
                 isInitialized = true;
             }
         }

@@ -1,4 +1,4 @@
-using Onpoint.Commons.Core.CodeContracts;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf {
     /// <summary>

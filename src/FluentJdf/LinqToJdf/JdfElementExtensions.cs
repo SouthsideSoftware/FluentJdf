@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using FluentJdf.Configuration;
 using FluentJdf.Resources;
-using Onpoint.Commons.Core.CodeContracts;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf
 {

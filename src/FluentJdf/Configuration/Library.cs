@@ -1,6 +1,4 @@
-﻿using Onpoint.Commons.Core.Helpers;
-
-namespace FluentJdf.Configuration {
+﻿namespace FluentJdf.Configuration {
     /// <summary>
     /// Holds JDP settings.
     /// </summary>

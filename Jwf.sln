@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwf.Server", "src\Jwf.Serve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwf.Host", "src\Jwf.Host\Jwf.Host.csproj", "{185BF0C7-14F5-45A3-B2AA-22898CAB03DD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{B27A1A8B-AAFD-441F-A37E-93A84354FAD8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6CAB9D69-9717-42E1-B7E6-A7EBE2F66D2C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentJdf.Tests", "src\Tests\FluentJdf.Tests\FluentJdf.Tests.csproj", "{AB646A3D-481D-4776-A0D2-EA9FAC30954B}"
