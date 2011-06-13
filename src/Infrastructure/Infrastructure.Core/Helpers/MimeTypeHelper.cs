@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Infrastructure.Core.CodeContracts;
@@ -17,34 +18,40 @@ namespace Infrastructure.Core.Helpers
     public static class MimeTypeHelper
     {
         /// <summary>
-        /// Gets the mime type of the given extension.
+        /// Gets the mime type of the given extension or file name.
         /// </summary>
-        /// <param name="extension"></param>
+        /// <param name="fileNameOrExtension"></param>
         /// <returns></returns>
         /// <remarks>Returns application/pdf for pdf files,
         /// goes to registry for other types and returns application/octet-stream
         /// if type cannot be found.
         /// </remarks>
-        public static string MimeType(this string extension) {
-            ParameterCheck.ParameterRequired(extension, "extension");
+        public static string MimeType(this string fileNameOrExtension) {
+            ParameterCheck.ParameterRequired(fileNameOrExtension, "fileNameOrExtension");
 
-            var parsedExtension = string.Copy(extension);
-            if (!parsedExtension.StartsWith(".")) {
-                parsedExtension = "." + parsedExtension;
-            }
-            parsedExtension = parsedExtension.ToLower();
+            string normalizedExtension = GetNormalizedExtension(fileNameOrExtension);
 
-            switch (parsedExtension) {
+            switch (normalizedExtension) {
                 case ".pdf":
                     return "application/pdf";
             }
-            RegistryKey key = Registry.ClassesRoot.OpenSubKey(parsedExtension);
+            RegistryKey key = Registry.ClassesRoot.OpenSubKey(normalizedExtension);
             if (key != null)
             {
                 return (string)key.GetValue("Content Type");
             }
 
             return "application/octet-stream";
+        }
+
+        static string GetNormalizedExtension(string fileNameOrExtension) {
+            var normalizedExtension = string.Copy(fileNameOrExtension);
+            normalizedExtension = Path.GetExtension(fileNameOrExtension);
+            if (!normalizedExtension.StartsWith(".")) {
+                normalizedExtension = "." + normalizedExtension;
+            }
+            normalizedExtension = normalizedExtension.ToLower();
+            return normalizedExtension;
         }
 
         /// <summary>

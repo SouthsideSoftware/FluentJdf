@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using System.IO;
 using System.Xml;
+using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Logging;
 using Infrastructure.Core.Resources;
 
@@ -1359,9 +1360,8 @@ namespace Infrastructure.Core.Mime
 		/// Set body of the message from file.
 		/// </summary>
 		/// <param name="fileName">The file to read from.</param>
-		public void SetBodyFromFile(string fileName)
-		{
-			string contentType = Config.MimeTypeOfExtension(Path.GetExtension(fileName));
+		public void SetBodyFromFile(string fileName) {
+		    string contentType = fileName.MimeType();
 			if (contentType != null)
 			{
 				_contentType = contentType;
