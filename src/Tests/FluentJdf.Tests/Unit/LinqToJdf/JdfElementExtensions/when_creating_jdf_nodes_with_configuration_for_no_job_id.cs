@@ -1,5 +1,5 @@
+using FluentJdf.Configuration;
 using FluentJdf.LinqToJdf;
-using FluentJdf.LinqToJdf.Configuration;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
     {
         static Ticket ticket;
 
-        Establish context = () => JdpLibrary.Settings.GenerateJobIdIs(false);
+        Establish context = () => Library.Settings.WithJdfAuthoringSettings().GenerateJobId(false);
 
         Because of = () => ticket = Ticket.Create().AddNode().Intent().AddNode().Intent().Ticket;
 

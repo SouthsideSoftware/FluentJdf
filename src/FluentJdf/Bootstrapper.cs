@@ -15,7 +15,7 @@ namespace FluentJdf
         /// </summary>
         public static void Initialize() {
             if (!isInitialized) {
-                Configuration.Instance.UseCastleWindsor().LogWithNLog().Configure();
+                Onpoint.Commons.Core.Configuration.Instance.UseCastleWindsor().LogWithNLog().Configure();
                 isInitialized = true;
             }
         }

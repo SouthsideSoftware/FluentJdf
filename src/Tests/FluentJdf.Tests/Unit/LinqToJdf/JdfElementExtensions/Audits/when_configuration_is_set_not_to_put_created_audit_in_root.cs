@@ -1,6 +1,6 @@
 using System.Xml.Linq;
+using FluentJdf.Configuration;
 using FluentJdf.LinqToJdf;
-using FluentJdf.LinqToJdf.Configuration;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
     public class when_configuration_is_set_not_to_put_created_audit_in_root {
         static XDocument document;
 
-        Establish context = () => JdpLibrary.Settings.AddCreateAuditOnNewRootJdfIs(false);
+        Establish context = () => Library.Settings.WithJdfAuthoringSettings().CreateAuditOnNewRootJdf(false);
 
         Because of = () => document = Ticket.Create()
                                           .AddNode().Intent().With().JobId("foo")

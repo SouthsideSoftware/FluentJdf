@@ -1,4 +1,4 @@
-﻿using FluentJdf.LinqToJdf.Configuration;
+﻿using FluentJdf.Configuration;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests {
@@ -14,7 +14,7 @@ namespace FluentJdf.Tests {
         #endregion
 
         public void AfterContextCleanup() {
-            JdpLibrary.Settings.ResetToDefaults();
+            Library.Settings.ResetToDefaults();
         }
     }
 }

@@ -123,9 +123,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Configuration\JdfAuthoringSettings.cs" />
+    <Compile Include="Configuration\JdfAuthoringSettingsBuilder.cs" />
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
     <Compile Include="LinqToJdf\Audit.cs" />
-    <Compile Include="LinqToJdf\Configuration\JdpLibrary.cs" />
+    <Compile Include="Configuration\Library.cs" />
     <Compile Include="LinqToJdf\ElementExtensions.cs" />
     <Compile Include="LinqToJdf\Element.cs" />
     <Compile Include="LinqToJdf\JdfNodeAttributeBuilder.cs" />
