@@ -9,6 +9,11 @@
 				<ClassMask>*</ClassMask>
 				<FunctionMask>*</FunctionMask>
 			</FilterEntry>
+			<FilterEntry>
+				<ModuleMask>Castle.Windsor</ModuleMask>
+				<ClassMask>*</ClassMask>
+				<FunctionMask>*</FunctionMask>
+			</FilterEntry>
 		</ExcludeFilters>
 	</Filters>
 </CoverageParams>
