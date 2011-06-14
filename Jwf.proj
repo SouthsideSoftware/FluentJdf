@@ -206,8 +206,7 @@
 
   <Target Name="TestInsideTeamCity">
     <Message Importance="high" Text="Test inside team city"/>
-    <!--<CallTarget Targets="MSpecTests;MSpecCoverage;NUnitCoverage;FitnesseTests"/>-->
-    <CallTarget Targets="NunitCoverage"/>
+    <CallTarget Targets="MSpecTests;MSpecCoverage;NUnitCoverage;FitnesseTests"/>
   </Target>
 
   <Target Name="MSpecTests" Outputs="%(TestItem.Identity)">
