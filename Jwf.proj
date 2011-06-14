@@ -83,7 +83,7 @@
 		<MakeDir Directories="$(BinDir)"/>
 		<MakeDir Directories="$(DistributionDir)"/>
 		<MakeDir Directories="$(HelpDir)"/>
-    <MakeDir Directories="$(TestOutputDir)"/>
+    <MakeDir Directories="$(TestOutputDir);$(TestOutputDir)/NUnit"/>
     <MakeDir Directories="$(FitnesseAssemblyDir)"/>
     <MakeDir Directories="$(FitnesseContentDir)"/>
     <MakeDir Directories="$(NuGetPackageDir)"/>
