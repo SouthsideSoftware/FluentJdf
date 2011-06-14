@@ -8,7 +8,6 @@
 		<MSBuildCommunityTasksPath>$(ToolsDir)\MSBuild\MSBuildCommunityTasks</MSBuildCommunityTasksPath>
     <MSBuildAwsTasksPath>$(ToolsDir)\MSBuild\MSBuild.AWS.Tasks.Release</MSBuildAwsTasksPath>
     <SouthSideTasksPath>$(ToolsDir)\MSBuild\SouthSideBuildTasks</SouthSideTasksPath>
-		<MSpecDir>$(ToolsDir)\MSpec</MSpecDir>
     <agent_home_dir>dummy</agent_home_dir>
     <dotCover>$(agent_home_dir)\tools\dotCover\dotCover.exe</dotCover>
     <NuGet>$(ToolsDir)\nuget.exe</NuGet>
@@ -182,11 +181,13 @@
       <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
       <TestReportName>FluentJdf.Tests.Results.htm</TestReportName>
       <CoverageXmlName>FluentJdf.Tests.Coverage.xml</CoverageXmlName>
+      <NunitTestReportName></NunitTestReportName>
     </TestItem>
     <TestItem Include="Infrastructure.Core.Tests.dll">
       <TestProjectDir>$(MSBuildProjectDirectory)\src\Infrastructure\Tests\Infrastructure.Core.Tests</TestProjectDir>
       <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
       <TestReportName>Infrastructure.Core.Tests.Results.htm</TestReportName>
+      <NunitTestReportName>Infrastructure.Core.Nunit.Tests.Results.xml</NunitTestReportName>
       <CoverageXmlName>Infrastructure.Core.Tests.Coverage.xml</CoverageXmlName>
     </TestItem>
     <TestItem Include="Infrastructure.Container.CastleWindsor.Tests.dll">
@@ -194,12 +195,13 @@
       <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
       <TestReportName>Infrastructure.Container.CastleWindsor.Tests.Results.htm</TestReportName>
       <CoverageXmlName>Infrastructure.Container.CastleWindsor.Tests.Coverage.xml</CoverageXmlName>
+      <NunitTestReportName></NunitTestReportName>
     </TestItem>
   </ItemGroup>
 
   <Target Name="TestOutsideTeamCity">
     <Message Importance="high" Text="TestOutsideTeamCity"/>
-    <CallTarget Targets="MSpecTests;FitnesseTests"/>
+    <CallTarget Targets="MSpecTests;NUnitTests;FitnesseTests"/>
   </Target>
 
   <Target Name="TestInsideTeamCity">
@@ -221,6 +223,38 @@
     <Exec WorkingDirectory="%(TestItem.TestDir)"
           Command='"$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity) --teamcity"'
           Condition='$(InTeamCity)'/>
+  </Target>
+
+  <Target Name="NUnitTests" Outputs="%(TestItem.Identity)">
+    <Message Importance="high" Text="Testing in NUnit: %(TestItem.TestDir)\%(TestItem.Identity)"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
+    
+    <XmlRead Condition="%(TestItem.NUnitTestReportName) != ''"
+             XPath="//package[@id='NUnit']/@version"
+             XmlFileName="%(TestItem.TestProjectDir)\packages.config">
+      <Output TaskParameter="Value" PropertyName="NUnitVersion"/>
+    </XmlRead>
+    
+    <Message Importance="high" Text="NUnit: $(PackageDir)\Nunit.$(NUnitVersion)\tools\nunit-console.exe"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
+    
+    <Exec WorkingDirectory="%(TestItem.TestDir)"
+          Command='"$(PackageDir)\NUnit.$(NUnitVersion)\tools\nunit-console.exe" %(TestItem.Identity) /xml=$(TestOutputDir)\%(TestItem.NUnitTestReportName)"'  
+          Condition="%(TestItem.NUnitTestReportName) != ''"/>
+  </Target>
+
+  <Target Name="NUnitTestsInsideTeamCity" Outputs="%(TestItem.Identity)">
+    <Message Importance="high" Text="Testing in NUnit: %(TestItem.TestDir)\%(TestItem.Identity)"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
+
+    <XmlRead Condition="%(TestItem.NUnitTestReportName) != ''"
+             XPath="//package[@id='NUnit']/@version"
+             XmlFileName="%(TestItem.TestProjectDir)\packages.config">
+      <Output TaskParameter="Value" PropertyName="NUnitVersion"/>
+    </XmlRead>
+
+    <Message Importance="high" Text="NUnit: $(PackageDir)\Nunit.$(NUnitVersion)\tools\nunit-console.exe"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
+
+    <Exec WorkingDirectory="%(TestItem.TestDir)"
+          Command='"$(teamcity_dotnet_nunitlauncher) v4.0 MSIL 2.5.8 %(TestItem.Identity)"'
+          Condition="%(TestItem.NUnitTestReportName) != ''"/>
   </Target>
 
   <Target Name='MSpecCoverage' Outputs="%(TestItem.Identity)">
