@@ -241,6 +241,8 @@
           Condition="%(TestItem.NUnitTestReportName) != ''"/>
   </Target>
 
+  <UsingTask TaskName="NUnitTeamCity" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)" Condition="$(InTeamCity)" />
+
   <Target Name="NUnitTestsInsideTeamCity" Outputs="%(TestItem.Identity)">
     <Message Importance="high" Text="Testing in NUnit: %(TestItem.TestDir)\%(TestItem.Identity)"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
 
@@ -252,7 +254,7 @@
 
     <Message Importance="high" Text="NUnit: $(PackageDir)\Nunit.$(NUnitVersion)\tools\nunit-console.exe"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
 
-    <Exec Command='"$(teamcity_dotnet_nunitlauncher) v4.0 x86 NUnit-2.5.8 %(TestItem.TestDir)\%(TestItem.Identity)"'
+    <NunitTeamCity Assemblies="%(TestItem.TestDir)\%(TestItem.Identity)"
           Condition="%(TestItem.NUnitTestReportName) != ''"/>
   </Target>
 
