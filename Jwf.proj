@@ -206,7 +206,7 @@
 
   <Target Name="TestInsideTeamCity">
     <Message Importance="high" Text="Test inside team city"/>
-    <CallTarget Targets="MSpecTests;MSpecCoverage;NUnitTestsInsideTeamCity;FitnesseTests"/>
+    <CallTarget Targets="MSpecTests;MSpecCoverage;NUnitCoverage;FitnesseTests"/>
   </Target>
 
   <Target Name="MSpecTests" Outputs="%(TestItem.Identity)">
@@ -237,24 +237,7 @@
     <Message Importance="high" Text="NUnit: $(PackageDir)\Nunit.$(NUnitVersion)\tools\nunit-console.exe"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
     
     <Exec WorkingDirectory="%(TestItem.TestDir)"
-          Command='"$(PackageDir)\NUnit.$(NUnitVersion)\tools\nunit-console.exe" %(TestItem.Identity) /xml=$(TestOutputDir)\%(TestItem.NUnitTestReportName)"'  
-          Condition="%(TestItem.NUnitTestReportName) != ''"/>
-  </Target>
-
-  <UsingTask TaskName="NUnitTeamCity" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)" Condition="$(InTeamCity)" />
-
-  <Target Name="NUnitTestsInsideTeamCity" Outputs="%(TestItem.Identity)">
-    <Message Importance="high" Text="Testing in NUnit: %(TestItem.TestDir)\%(TestItem.Identity)"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
-
-    <XmlRead Condition="%(TestItem.NUnitTestReportName) != ''"
-             XPath="//package[@id='NUnit']/@version"
-             XmlFileName="%(TestItem.TestProjectDir)\packages.config">
-      <Output TaskParameter="Value" PropertyName="NUnitVersion"/>
-    </XmlRead>
-
-    <Message Importance="high" Text="NUnit: $(PackageDir)\Nunit.$(NUnitVersion)\tools\nunit-console.exe"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
-
-    <NunitTeamCity Assemblies="%(TestItem.TestDir)\%(TestItem.Identity)"
+          Command='"$(PackageDir)\NUnit.$(NUnitVersion)\tools\nunit-console.exe" %(TestItem.Identity) /xml=$(TestOutputDir)\NUnit\%(TestItem.NUnitTestReportName)"'  
           Condition="%(TestItem.NUnitTestReportName) != ''"/>
   </Target>
 
@@ -279,6 +262,32 @@
                Value="$(TestOutputDir)\%(TestItem.CoverageXmlName)"/>
     <Exec Command="$(dotCover) c dotcover.xml"/>
     <Message Text="##teamcity[importData type='dotNetCoverage' tool='dotcover' path='$(TestOutputDir)\%(TestItem.CoverageXmlName)']"/>
+  </Target>
+
+  <Target Name='NUnitCoverage' Outputs="%(TestItem.Identity)">
+    <Message Importance="high" Text="Code coverage on NUnit tests"/>
+    <Message Importance="high" Text="dotCover: $(dotCover)"/>
+    <Message Importance="high" Text="NUnit Coverage Testing: %(TestItem.TestDir)\%(TestItem.Identity)"/>
+    
+    <XmlRead Condition="%(TestItem.NUnitTestReportName) != ''"
+            XPath="//package[@id='NUnit']/@version"
+            XmlFileName="%(TestItem.TestProjectDir)\packages.config">
+      <Output TaskParameter="Value" PropertyName="NUnitVersion"/>
+    </XmlRead>
+    
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\dotcoverTemplate.xml"
+          DestinationFiles="$(MSBuildProjectDirectory)\dotcover.xml" SkipUnchangedFiles="false"/>
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
+               XPath="//Executable"
+               Value="$(PackageDir)\NUnit.$(NUnitVersion)\tools\nunit-console.exe"/>
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
+               XPath="//Arguments"
+               Value="%(TestItem.Identity) /xml=$(TestOutputDir)\Nunit\%(TestItem.NUnitTestReportName)"/>
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml"
+               XPath="//Output"
+               Value="$(TestOutputDir)\NUnit_%(TestItem.CoverageXmlName)"/>
+    <Exec Command="$(dotCover) c dotcover.xml"/>
+    <Message Text="##teamcity[importData type='dotNetCoverage' tool='dotcover' path='$(TestOutputDir)\NUnit_%(TestItem.CoverageXmlName)']"/>
   </Target>
   
   <Target Name="FitnesseTests">
