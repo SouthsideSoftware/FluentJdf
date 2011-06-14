@@ -283,7 +283,7 @@
                Value="$(PackageDir)\NUnit.$(NUnitVersion)\tools\nunit-console.exe"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml" Condition="%(TestItem.NUnitTestReportName) != ''"
                XPath="//Arguments"
-               Value="%(TestItem.Identity) /xml=$(TestOutputDir)\Nunit\%(TestItem.NUnitTestReportName)"/>
+               Value="%(TestItem.TestDir)\%(TestItem.Identity) /xml=$(TestOutputDir)\Nunit\%(TestItem.NUnitTestReportName)"/>
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\dotcover.xml" Condition="%(TestItem.NUnitTestReportName) != ''"
                XPath="//Output"
                Value="$(TestOutputDir)\NUnit_%(TestItem.CoverageXmlName)"/>
