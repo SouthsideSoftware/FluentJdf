@@ -70,6 +70,7 @@
     <Compile Include="Legacy\AssertionHelper.cs" />
     <Compile Include="Legacy\Mime\MimeHeaderTest.cs" />
     <Compile Include="Legacy\Mime\MimeMessageTest.cs" />
+    <Compile Include="Legacy\Mime\OldMimeFogbugzCases.cs" />
     <Compile Include="Legacy\SetUpFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataHelper.cs" />
@@ -93,6 +94,7 @@
     </None>
     <None Include="packages.config" />
     <EmbeddedResource Include="TestData\binaryChilkatMime.mim" />
+    <EmbeddedResource Include="TestData\Case16992.mim" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestData\mimeMultipart.txt" />
