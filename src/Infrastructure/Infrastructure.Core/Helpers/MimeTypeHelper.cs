@@ -15,14 +15,59 @@ namespace Infrastructure.Core.Helpers
     /// The pdf, jdf, and jmf mime types are hard-coded.  The rest
     /// rely on the registry.
     /// </summary>
-    public static class MimeTypeHelper
-    {
+    public static class MimeTypeHelper {
+        /// <summary>
+        /// Gets the standard mime type for PDF
+        /// </summary>
+        public const string PdfMimeType = "application/pdf";
+
+        /// <summary>
+        /// Gets the standard mime type for JDF
+        /// </summary>
+        public const string JdfMimeType = "application/vnd.cip4-jdf+xml";
+
+        /// <summary>
+        /// Gets the standard mime type for JMF
+        /// </summary>
+        public const string JmfMimeType = "application/vnd.cip4-jmf+xml";
+
+        /// <summary>
+        /// Gets the standard mime type for mime multipart
+        /// </summary>
+        public const string MimeMultipartMimeType = "multipart/related";
+
+        /// <summary>
+        /// Gets the standard extension for JDF
+        /// </summary>
+        public const string JdfExtension = ".jdf";
+
+        /// <summary>
+        /// Gets the standard extension for JMF.
+        /// </summary>
+        public const string JmfExtension = ".jmf";
+
+        /// <summary>
+        /// Gets the standard extension for mime where the first part if JDF
+        /// </summary>
+        public const string MimeJdfFirstPartExtension = ".mjd";
+
+        /// <summary>
+        /// Gets the standard extension for mime when the first part is JMF.
+        /// </summary>
+        public const string MimeJmfFirstPartExtension = ".mjm";
+
+        /// <summary>
+        /// Gets the standard extension for PDF.
+        /// </summary>
+        public const string PdfExtension = ".pdf";
+
+
         /// <summary>
         /// Gets the mime type of the given extension or file name.
         /// </summary>
         /// <param name="fileNameOrExtension"></param>
         /// <returns></returns>
-        /// <remarks>Returns application/pdf for pdf files,
+        /// <remarks>Returns standard types for pdf. jdf, jmf, mjd (mime with JDF first), and mjm (mime with JMF first),
         /// goes to registry for other types and returns application/octet-stream
         /// if type cannot be found.
         /// </remarks>
@@ -32,8 +77,16 @@ namespace Infrastructure.Core.Helpers
             string normalizedExtension = GetNormalizedExtension(fileNameOrExtension);
 
             switch (normalizedExtension) {
-                case ".pdf":
-                    return "application/pdf";
+                case PdfExtension:
+                    return PdfMimeType;
+                case JdfExtension:
+                    return JdfMimeType;
+                case JmfExtension:
+                    return JmfMimeType;
+                case MimeJdfFirstPartExtension:
+                    return MimeMultipartMimeType;
+                case MimeJmfFirstPartExtension:
+                    return MimeMultipartMimeType;
             }
             RegistryKey key = Registry.ClassesRoot.OpenSubKey(normalizedExtension);
             if (key != null)
@@ -47,26 +100,26 @@ namespace Infrastructure.Core.Helpers
         static string GetNormalizedExtension(string fileNameOrExtension) {
             var normalizedExtension = string.Copy(fileNameOrExtension);
             normalizedExtension = Path.GetExtension(fileNameOrExtension);
-            if (!normalizedExtension.StartsWith(".")) {
-                normalizedExtension = "." + normalizedExtension;
+            if (string.IsNullOrWhiteSpace(normalizedExtension) && !fileNameOrExtension.StartsWith(".")) {
+                normalizedExtension = "." + string.Copy(fileNameOrExtension);
             }
             normalizedExtension = normalizedExtension.ToLower();
             return normalizedExtension;
         }
 
         /// <summary>
-        /// Gets the mime type of the given extension.
+        /// Gets the mime type of the given extension or file name.
         /// </summary>
-        /// <param name="extension"></param>
+        /// <param name="fileNameOrExtension"></param>
         /// <returns></returns>
-        /// <remarks>Returns application/pdf for pdf files,
+        /// <remarks>Returns standard types for pdf. jdf, jmf, mjd (mime with JDF first), and mjm (mime with JMF first),
         /// goes to registry for other types and returns application/octet-stream
         /// if type cannot be found.
         /// </remarks>
-        public static string MimeTypeOf(string extension) {
-            ParameterCheck.ParameterRequired(extension, "extension");
+        public static string MimeTypeOf(string fileNameOrExtension) {
+            ParameterCheck.ParameterRequired(fileNameOrExtension, "fileNameOrExtension");
 
-            return extension.MimeType();
+            return fileNameOrExtension.MimeType();
         }
 
         /// <summary>
@@ -84,8 +137,15 @@ namespace Infrastructure.Core.Helpers
             parsedMimeType = parsedMimeType.ToLower();
 
             switch (parsedMimeType) {
-                case "application/pdf":
-                    return ".pdf";
+                case PdfMimeType:
+                    return PdfExtension;
+                case JdfMimeType:
+                    return JdfExtension;
+                case JmfMimeType:
+                    return JmfExtension;
+                case MimeMultipartMimeType:
+                    //todo: Can't tell from mime type so we just guess the most likely.  Is this OK?
+                    return MimeJmfFirstPartExtension;
             }
 
             RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"MIME\Database\Content Type\" + parsedMimeType);

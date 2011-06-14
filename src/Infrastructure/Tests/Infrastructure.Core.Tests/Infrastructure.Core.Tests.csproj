@@ -50,6 +50,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Helpers\ApplicationInformation\when_reading_application_information.cs" />
+    <Compile Include="Unit\Helpers\MimeTypeHelper\when_getting_extensions_of_mime_types.cs" />
     <Compile Include="Unit\Helpers\MimeTypeHelper\when_getting_mime_types_of_extensions.cs" />
   </ItemGroup>
   <ItemGroup>
