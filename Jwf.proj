@@ -253,7 +253,7 @@
     <Message Importance="high" Text="NUnit: $(PackageDir)\Nunit.$(NUnitVersion)\tools\nunit-console.exe"  Condition="%(TestItem.NUnitTestReportName) != ''"/>
 
     <Exec WorkingDirectory="%(TestItem.TestDir)"
-          Command='"$(teamcity_dotnet_nunitlauncher) v4.0 MSIL 2.5.8 %(TestItem.Identity)"'
+          Command='"$(teamcity_dotnet_nunitlauncher) v4.0 MSIL NUnit-2.5.8 %(TestItem.Identity)"'
           Condition="%(TestItem.NUnitTestReportName) != ''"/>
   </Target>
 
