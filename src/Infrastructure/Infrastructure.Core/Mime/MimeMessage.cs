@@ -1,6 +1,8 @@
 using System;
 using System.Text;
 using System.IO;
+using Infrastructure.Core.Logging;
+using Infrastructure.Core.Resources;
 
 namespace Infrastructure.Core.Mime
 {
@@ -8,8 +10,8 @@ namespace Infrastructure.Core.Mime
 	/// Represents a mime message with a collection of headers and a 
 	/// body.
 	/// </summary>
-	public class MimeMessage
-	{
+	public class MimeMessage {
+	    static ILog logger = LogManager.GetLogger(typeof (MimeMessage));
 		private MimeHeaderCollection _headers = new MimeHeaderCollection();
 		private MimeBodyPart _body = null;
 
@@ -99,9 +101,8 @@ namespace Infrastructure.Core.Mime
 		{
 			get
 			{
-				if (_body == null)
-				{
-					OAIException.Throw(new MimeException("Content type is unknown because message has no body"));
+				if (_body == null) {
+                    MimeException.ThrowAndLog(Messages.MimeMessage_ContentTypeUnknownBecauseNoBody, GetType());
 				} 
 				else 
 				{
@@ -221,7 +222,7 @@ namespace Infrastructure.Core.Mime
 		{
 			if (_body == null)
 			{
-				OAIException.Throw(new MimeException("Mime message must have a body part"));
+                MimeException.ThrowAndLog(Messages.MimeMessage_Write_MimeMustHaveBody, GetType());
 			}
 
 			StreamWriter writer = new StreamWriter(stream);
@@ -234,7 +235,8 @@ namespace Infrastructure.Core.Mime
 			}
 			catch(Exception err)
 			{
-				OAIException.Throw(new OAIException(err.Message));
+                logger.Error(err);
+                throw;
 			}
 			finally 
 			{
@@ -252,7 +254,8 @@ namespace Infrastructure.Core.Mime
 			} 
 			catch(Exception err) 
 			{
-				OAIException.Throw(new OAIException(err.Message));
+                logger.Error(err);
+			    throw;
 			}
 		}
 
@@ -306,7 +309,8 @@ namespace Infrastructure.Core.Mime
 			}
 			catch(Exception err)
 			{
-				OAIException.Throw(new OAIException(err.Message, err));
+                logger.Error(err);
+                throw;
 			}
 		}
 
@@ -399,7 +403,8 @@ namespace Infrastructure.Core.Mime
 			}
 			catch(Exception err)
 			{
-				OAIException.Throw(new OAIException(err.Message));
+                logger.Error(err);
+                throw;
 			}
 			return sb.ToString();
 		}
@@ -432,7 +437,8 @@ namespace Infrastructure.Core.Mime
 			}
 			catch(Exception err)
 			{
-				OAIException.Throw(new OAIException(err.Message));
+                logger.Error(err);
+                throw;
 			}
 			return memStream.ToArray();
 		}

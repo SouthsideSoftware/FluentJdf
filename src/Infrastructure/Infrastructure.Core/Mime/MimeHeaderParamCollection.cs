@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
+using Infrastructure.Core.Logging;
+using Infrastructure.Core.Resources;
 
 namespace Infrastructure.Core.Mime
 {
@@ -11,6 +13,7 @@ namespace Infrastructure.Core.Mime
 	{
 		private HybridDictionary _headers = new HybridDictionary();
 		private ArrayList _listHeaders = new ArrayList();
+	    static ILog logger = LogManager.GetLogger(typeof (MimeHeaderParamCollection));
 
 		/// <summary>
 		/// Constructor.
@@ -26,9 +29,10 @@ namespace Infrastructure.Core.Mime
 		/// <returns>The newly added header.</returns>
 		public MimeHeaderParam Add(MimeHeaderParam header)
 		{
-			if (_headers.Contains(header.Name))
-			{
-				OAIException.Throw(new MimeException("Header param with same name already exists.  The header is " + header.ToString()));
+			if (_headers.Contains(header.Name)) {
+			    var err = new MimeException(string.Format(Messages.MimeHeaderParamCollection_Add_HeaderParamWithNameExists, header));
+                logger.Error(err);
+			    throw err;
 			}
 			_listHeaders.Add(header);
 			_headers.Add(header.Name, header);
@@ -43,13 +47,15 @@ namespace Infrastructure.Core.Mime
 		/// <returns>The newly added header.</returns>
 		public MimeHeaderParam AddAt(int index, MimeHeaderParam header)
 		{
-			if (_headers.Contains(header.Name))
-			{
-				OAIException.Throw(new MimeException("Header param with same name already exists.  The header is " + header.ToString()));
+			if (_headers.Contains(header.Name)) {
+			    var err = new MimeException(string.Format(Messages.MimeHeaderParamCollection_Add_HeaderParamWithNameExists, header));
+                logger.Error(err);
+			    throw err;
 			}
-			if (index < 0)
-			{
-				OAIException.Throw(new MimeException("Invalid position " + index.ToString() + " to add a parameter in a Mime Header."));
+			if (index < 0) {
+			    var err = new MimeException(string.Format(Messages.MimeHeaderParamCollection_AddAt_InvalidPositionForMiimeHeader, index));
+                logger.Error(err);
+			    throw err;
 			}
 			if (index >= _listHeaders.Count)
 			{

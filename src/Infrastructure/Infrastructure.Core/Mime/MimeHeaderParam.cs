@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using Infrastructure.Core.Logging;
 
 namespace Infrastructure.Core.Mime
 {
@@ -13,8 +14,8 @@ namespace Infrastructure.Core.Mime
 	/// Per the RFC, text enclosed in parenthesis is treated as a comment
 	/// and is ignored and stripped from the header value.
 	/// </remarks>
-	public class MimeHeaderParam : MimeHeaderBase
-	{
+	public class MimeHeaderParam : MimeHeaderBase {
+	    static ILog logger = LogManager.GetLogger(typeof (MimeHeaderParam));
 		private int _section = -1;
 		private string _charset = "";
 		private string _language = "";
@@ -48,9 +49,10 @@ namespace Infrastructure.Core.Mime
 		public override void ParseLine(string line, out string name, out string val)
 		{
 			line = line.Trim();
-			if (line.IndexOf("=") == -1 )
-			{
-				OAIException.Throw(new MimeException("Header Parameter is not in the expected name=value form.  The raw data is " + line));
+			if (line.IndexOf("=") == -1 ) {
+			    var err = new MimeException(string.Format("Header Parameter is not in the expected name=value form.  The raw data is {0}", line));
+                logger.Error(err);
+			    throw err;
 			}
 
 			//Note handle

@@ -1,14 +1,15 @@
 using System;
 using System.IO;
 using System.Text;
+using Infrastructure.Core.Logging;
 
 namespace Infrastructure.Core.Mime
 {
 	/// <summary>
 	/// Summary description for MimeStreamReader.
 	/// </summary>
-	public class MimeStreamReader
-	{
+	public class MimeStreamReader {
+	    static ILog logger = LogManager.GetLogger(typeof (MimeStreamReader));
 		private Stream _stream;
 		private char _lastChar;
 
@@ -82,7 +83,8 @@ namespace Infrastructure.Core.Mime
 			}
 			catch(Exception err)
 			{
-				oai.errorhandling.OAIException.Throw(new oai.errorhandling.OAIException(err.Message, err));
+                logger.Error(err);
+			    throw;
 			}
 			return line.ToString();
 		}
@@ -217,7 +219,8 @@ namespace Infrastructure.Core.Mime
 				}
 				catch(Exception err)
 				{
-					oai.errorhandling.OAIException.Throw(new oai.errorhandling.OAIException(err.Message, err));
+                    logger.Error(err);
+				    throw;
 				}
 				finally
 				{

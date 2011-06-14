@@ -1220,11 +1220,12 @@ namespace Infrastructure.Core.Mime
 			}
 		}
 
-        /// <summary>
-        /// Set body of the message from plain text
-        /// </summary>
-        /// <param name="plainText">plain text to set the body</param>
-        public void SetBodyFromPlainText(string plainText, MimeCharset charset)
+	    /// <summary>
+	    /// Set body of the message from plain text
+	    /// </summary>
+	    /// <param name="plainText">plain text to set the body</param>
+	    /// <param name="charset"></param>
+	    public void SetBodyFromPlainText(string plainText, MimeCharset charset)
         {
             SetText(plainText, charset);
         }
@@ -1600,12 +1601,19 @@ namespace Infrastructure.Core.Mime
 		}
 		#endregion
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="isDisposing"></param>
         protected virtual void Dispose(bool isDisposing)
         {
             if (isDisposing)
@@ -1620,7 +1628,7 @@ namespace Infrastructure.Core.Mime
                         }
                         catch (Exception err)
                         {
-                            OAIException.Ignore(new Exception(string.Format("Could not delete mime buffer file {0}", _bufferFileName), err));
+                            logger.ErrorFormat(Messages.Mime_Dispose_CouldNoDeleteMimeBufferFile, _bufferFileName, err);
                         }
                     } 
                 }

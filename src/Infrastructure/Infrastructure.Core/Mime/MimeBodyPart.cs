@@ -1,14 +1,16 @@
 using System;
 using System.IO;
 using System.Text;
+using Infrastructure.Core.Logging;
+using Infrastructure.Core.Resources;
 
 namespace Infrastructure.Core.Mime
 {
 	/// <summary>
 	/// The body of a mime message.  
 	/// </summary>
-	public abstract class MimeBodyPart
-	{
+	public abstract class MimeBodyPart {
+	    static ILog logger = LogManager.GetLogger(typeof (MimeBodyPart));
 		/// <summary>
 		/// The mime type of the part content.
 		/// </summary>
@@ -83,7 +85,7 @@ namespace Infrastructure.Core.Mime
 				case "quoted-printable":
 					return MimeEncoding.QuotedPrintable;
 			}
-			throw new OAIException("Unrecognized MimeEncoding: " + encoding);
+			throw new Exception(Messages.MimeBodyPart_GetMimeEncoding_UnrecognizedMimeEncoding + encoding);
 		}
 
 		/// <summary>
@@ -125,7 +127,7 @@ namespace Infrastructure.Core.Mime
 				case "utf8":
 					return MimeCharset.Utf8;
 			}
-			throw new OAIException("Unrecognized charset: " + charset);
+			throw new Exception(Messages.MimeBodyPart_GetMimeCharsetUnrecognizedCharset + charset);
 		}
 
 		/// <summary>
@@ -434,7 +436,8 @@ namespace Infrastructure.Core.Mime
 			}
 			catch(Exception err)
 			{
-				OAIException.Throw(new OAIException(err.Message));
+                logger.Error(err);
+			    throw;
 			}
 			return sb.ToString();
 		}
@@ -493,7 +496,8 @@ namespace Infrastructure.Core.Mime
 			}
 			catch(Exception err)
 			{
-				OAIException.Throw(new OAIException(err.Message));
+                logger.Error(err);
+			    throw;
 			}
 			return _buffer;
 		}

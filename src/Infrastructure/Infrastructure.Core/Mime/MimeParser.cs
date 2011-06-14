@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Text;
+using Infrastructure.Core.Logging;
+using Infrastructure.Core.Resources;
 
 namespace Infrastructure.Core.Mime
 {
 	/// <summary>
 	/// Parses a mime message stream.
 	/// </summary>
-	public class MimeParser
-	{
+	public class MimeParser {
+	    static ILog logger = LogManager.GetLogger(typeof (MimeParser));
 		/// <summary>
 		/// The type of thing returned by Read routines
 		/// </summary>
@@ -42,7 +44,11 @@ namespace Infrastructure.Core.Mime
 			/// <summary>
 			/// EOF reached.
 			/// </summary>
-			EOF
+			EOF,
+            /// <summary>
+            /// Unknown
+            /// </summary>
+            Unknown
 		}
 
 		private MimeStreamReader _sReader;
@@ -270,7 +276,8 @@ namespace Infrastructure.Core.Mime
 			}
 			catch(Exception err)
 			{
-				OAIException.Throw(new OAIException(err.Message, err));
+                logger.Error(err);
+                throw;
 			}
 			return chunkType;
 		}
@@ -297,7 +304,7 @@ namespace Infrastructure.Core.Mime
 		{
 			if (!IsMimeVersionHeader(sLine))
 			{
-				OAIException.Throw(new MimeException("Invalid MIME stream"));
+                MimeException.ThrowAndLog(Messages.MimeParser_ValidateVersionHeader_InvalidMimeStream, GetType());
 			}
 			_isValid = true;
 			chunkString = sLine.Trim();
@@ -330,13 +337,15 @@ namespace Infrastructure.Core.Mime
 				}
 				else
 				{
-					throw new OAIException("Invalid boundary string");
+                    MimeException.ThrowAndLog(Messages.MimeParser_ParseBoundary_InvalidBoundaryString, GetType());
 				}
 			}
 			else
 			{
-				throw new OAIException("Invalid multipart");
+                MimeException.ThrowAndLog(Messages.MimeParser_ParseBoundary_InvalidMultipart, GetType());
 			}
+
+		    return ChunkType.Unknown;
 		}
 
 		private bool IsMimeVersionHeader(string streamLine)

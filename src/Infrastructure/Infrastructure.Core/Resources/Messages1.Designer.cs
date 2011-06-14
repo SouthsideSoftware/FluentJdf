@@ -61,6 +61,15 @@ namespace Infrastructure.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not delete mime buffer file {0}.
+        /// </summary>
+        public static string Mime_Dispose_CouldNoDeleteMimeBufferFile {
+            get {
+                return ResourceManager.GetString("Mime_Dispose_CouldNoDeleteMimeBufferFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unrecognized charset: {0}.
         /// </summary>
         public static string Mime_GetMimeCharset_UnrecognizedCharset {
@@ -93,6 +102,96 @@ namespace Infrastructure.Core.Resources {
         public static string Mime_GetMimeStream_CouldNotDeleteTempFileUsedToCreateBody {
             get {
                 return ResourceManager.GetString("Mime_GetMimeStream_CouldNotDeleteTempFileUsedToCreateBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unrecognized charset: .
+        /// </summary>
+        public static string MimeBodyPart_GetMimeCharsetUnrecognizedCharset {
+            get {
+                return ResourceManager.GetString("MimeBodyPart_GetMimeCharsetUnrecognizedCharset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unrecognized MimeEncoding: .
+        /// </summary>
+        public static string MimeBodyPart_GetMimeEncoding_UnrecognizedMimeEncoding {
+            get {
+                return ResourceManager.GetString("MimeBodyPart_GetMimeEncoding_UnrecognizedMimeEncoding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Header is not in the expected name:value form.  The raw data is {0}.
+        /// </summary>
+        public static string MimeHeader_ParseLine_HeaderIsNotInCorrectForm {
+            get {
+                return ResourceManager.GetString("MimeHeader_ParseLine_HeaderIsNotInCorrectForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Header param with same name already exists.  The header is {0}.
+        /// </summary>
+        public static string MimeHeaderParamCollection_Add_HeaderParamWithNameExists {
+            get {
+                return ResourceManager.GetString("MimeHeaderParamCollection_Add_HeaderParamWithNameExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid position {0} to add a parameter in a Mime Header..
+        /// </summary>
+        public static string MimeHeaderParamCollection_AddAt_InvalidPositionForMiimeHeader {
+            get {
+                return ResourceManager.GetString("MimeHeaderParamCollection_AddAt_InvalidPositionForMiimeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content type is unknown because message has no body.
+        /// </summary>
+        public static string MimeMessage_ContentTypeUnknownBecauseNoBody {
+            get {
+                return ResourceManager.GetString("MimeMessage_ContentTypeUnknownBecauseNoBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mime message must have a body part.
+        /// </summary>
+        public static string MimeMessage_Write_MimeMustHaveBody {
+            get {
+                return ResourceManager.GetString("MimeMessage_Write_MimeMustHaveBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid boundary string.
+        /// </summary>
+        public static string MimeParser_ParseBoundary_InvalidBoundaryString {
+            get {
+                return ResourceManager.GetString("MimeParser_ParseBoundary_InvalidBoundaryString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid multipart.
+        /// </summary>
+        public static string MimeParser_ParseBoundary_InvalidMultipart {
+            get {
+                return ResourceManager.GetString("MimeParser_ParseBoundary_InvalidMultipart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid MIME stream.
+        /// </summary>
+        public static string MimeParser_ValidateVersionHeader_InvalidMimeStream {
+            get {
+                return ResourceManager.GetString("MimeParser_ValidateVersionHeader_InvalidMimeStream", resourceCulture);
             }
         }
         

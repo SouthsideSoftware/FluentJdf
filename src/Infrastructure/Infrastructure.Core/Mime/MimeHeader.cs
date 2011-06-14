@@ -1,4 +1,6 @@
 using System.Text;
+using Infrastructure.Core.Logging;
+using Infrastructure.Core.Resources;
 
 namespace Infrastructure.Core.Mime
 {
@@ -10,6 +12,7 @@ namespace Infrastructure.Core.Mime
 	public class MimeHeader : MimeHeaderBase
 	{
 		private MimeHeaderParamCollection _parameters = new MimeHeaderParamCollection();
+	    static ILog logger = LogManager.GetLogger(typeof (MimeHeaderBase));
 
 		/// <summary>
 		/// Construct a mime header from a line.  
@@ -39,9 +42,10 @@ namespace Infrastructure.Core.Mime
 		public override void ParseLine(string line, out string name, out string val)
 		{
 			string [] parts = line.Trim().Split(':');
-			if (parts.Length < 2)
-			{
-				OAIException.Throw(new MimeException("Header is not in the expected name:value form.  The raw data is " + line));
+			if (parts.Length < 2) {
+			    var err = new MimeException(string.Format(Messages.MimeHeader_ParseLine_HeaderIsNotInCorrectForm, line));
+                logger.Error(err);
+			    throw err;
 			}
 			name = parts[0].Trim();
 			//Attempt to parse

@@ -1,4 +1,5 @@
 using System.IO;
+using Infrastructure.Core.Helpers;
 
 namespace Infrastructure.Core.Mime
 {
@@ -19,18 +20,27 @@ namespace Infrastructure.Core.Mime
 		/// mime type from the file name.
 		/// </summary>
 		/// <param name="fileName">The file to read from.</param>
-		public MimeBasicPart(string fileName)
-		{
-			string contentType = Config.MimeTypeOfExtension(Path.GetExtension(fileName));
+		public MimeBasicPart(string fileName) {
+		    var contentType = fileName.MimeType();
 			if (contentType != null)
 			{
 				_contentType = contentType;
 			}
 
 			//Copy the file to the buffer of the part
-			MemoryStream memStream = StreamHelper.CopyToMemoryStream(File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read));
-			_buffer = memStream.ToArray();
-			memStream.Close();
+		    var memStream = new MemoryStream();
+            try
+            {
+                using (var sourceStream = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    sourceStream.CopyTo(memStream);
+                    memStream.Seek(0, SeekOrigin.Begin);
+                }
+                _buffer = memStream.ToArray();
+            }
+            finally {
+                memStream.Close();
+            }
 		}
 	}
 }

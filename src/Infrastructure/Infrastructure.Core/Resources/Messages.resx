@@ -147,4 +147,37 @@
 	<data name="Mime_GetMimeCollectionFile_ErrorDuringEncoding">
 		<value xml:space="preserve">Error occurred during mime encoding</value>
 	</data>
+	<data name="Mime_Dispose_CouldNoDeleteMimeBufferFile">
+		<value xml:space="preserve">Could not delete mime buffer file {0}</value>
+	</data>
+	<data name="MimeBodyPart_GetMimeEncoding_UnrecognizedMimeEncoding">
+		<value><![CDATA[Unrecognized MimeEncoding: ]]></value>
+	</data>
+	<data name="MimeBodyPart_GetMimeCharsetUnrecognizedCharset">
+		<value><![CDATA[Unrecognized charset: ]]></value>
+	</data>
+	<data name="MimeHeader_ParseLine_HeaderIsNotInCorrectForm">
+		<value xml:space="preserve">Header is not in the expected name:value form.  The raw data is {0}</value>
+	</data>
+	<data name="MimeHeaderParamCollection_Add_HeaderParamWithNameExists">
+		<value xml:space="preserve">Header param with same name already exists.  The header is {0}</value>
+	</data>
+	<data name="MimeHeaderParamCollection_AddAt_InvalidPositionForMiimeHeader">
+		<value xml:space="preserve">Invalid position {0} to add a parameter in a Mime Header.</value>
+	</data>
+	<data name="MimeMessage_ContentTypeUnknownBecauseNoBody">
+		<value xml:space="preserve">Content type is unknown because message has no body</value>
+	</data>
+	<data name="MimeMessage_Write_MimeMustHaveBody">
+		<value xml:space="preserve">Mime message must have a body part</value>
+	</data>
+	<data name="MimeParser_ValidateVersionHeader_InvalidMimeStream">
+		<value xml:space="preserve">Invalid MIME stream</value>
+	</data>
+	<data name="MimeParser_ParseBoundary_InvalidBoundaryString">
+		<value xml:space="preserve">Invalid boundary string</value>
+	</data>
+	<data name="MimeParser_ParseBoundary_InvalidMultipart">
+		<value xml:space="preserve">Invalid multipart</value>
+	</data>
 </root>
