@@ -4,26 +4,6 @@
 	<Output>$(TestOutputDir)\coverage.xml</Output>
 	<Filters>
 		<ExcludeFilters>
-			<FilterEntry>
-				<ModuleMask>FluentJdf.Tests</ModuleMask>
-				<ClassMask>*</ClassMask>
-				<FunctionMask>*</FunctionMask>
-			</FilterEntry>
-			<FilterEntry>
-				<ModuleMask>Castle.Windsor</ModuleMask>
-				<ClassMask>*</ClassMask>
-				<FunctionMask>*</FunctionMask>
-			</FilterEntry>
-			<FilterEntry>
-				<ModuleMask>Infrastructure.Core.Tests</ModuleMask>
-				<ClassMask>*</ClassMask>
-				<FunctionMask>*</FunctionMask>
-			</FilterEntry>
-			<FilterEntry>
-				<ModuleMask>Infrastructure.Container.CastleWindsor.Tests</ModuleMask>
-				<ClassMask>*</ClassMask>
-				<FunctionMask>*</FunctionMask>
-			</FilterEntry>
 		</ExcludeFilters>
 	</Filters>
 </CoverageParams>
