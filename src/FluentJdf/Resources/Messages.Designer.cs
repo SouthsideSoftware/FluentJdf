@@ -152,6 +152,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pass through encoder cannot encode a transmission part collection containing more than one part..
+        /// </summary>
+        internal static string PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart {
+            get {
+                return ResourceManager.GetString("PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resource with ID {0} cannot be found.
         /// </summary>
         internal static string ResourceExtensions_Resource_ResourceWithIdCannotBeFound {

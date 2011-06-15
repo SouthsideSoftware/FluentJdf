@@ -11,12 +11,11 @@ namespace FluentJdf.Encoding
     /// transmissions.
     /// </summary>
     /// <remarks>For example, a JDF ticket, a JMF command or a PDF attachment.</remarks>
-    public interface ITransmissionPart : IDisposable
-    {
+    public interface ITransmissionPart : IDisposable {
         /// <summary>
-        /// Gets the stream associated with the part.
+        /// Gets a copy of the stream associated with the part.
         /// </summary>
-        Stream Stream { get; }
+        Stream CopyOfStream();
         /// <summary>
         /// Gets the name of the part.  May not be unique.
         /// </summary>

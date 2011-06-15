@@ -105,6 +105,9 @@
     <Compile Include="Encoding\IEncoder.cs" />
     <Compile Include="Encoding\ITransmissionPart.cs" />
     <Compile Include="Encoding\ITransmissionPartCollection.cs" />
+    <Compile Include="Encoding\IXmlTransmissionPart.cs" />
+    <Compile Include="Encoding\PassThroughEncoder.cs" />
+    <Compile Include="Encoding\TransmissionPart.cs" />
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
     <Compile Include="LinqToJdf\Audit.cs" />
     <Compile Include="Configuration\Library.cs" />

@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using Infrastructure.Core.CodeContracts;
-using Infrastructure.Core.Helpers;
-using Infrastructure.Core.Logging;
 
-namespace Infrastructure.Core.Tests {
+namespace Infrastructure.Core.Testing {
+    /// <summary>
+    /// Helps get test data from resources
+    /// </summary>
     public class TestDataHelper {
         static string testDir = "TestData";
         static TestDataHelper instance = new TestDataHelper();
-        const string resourcePrefix = "Infrastructure.Core.Tests.TestData.";
+
+        bool filesExtracted = false;
 
         TestDataHelper() {
             if (Directory.Exists(testDir)) {
@@ -17,18 +19,24 @@ namespace Infrastructure.Core.Tests {
             }
          
             Directory.CreateDirectory(testDir);
-            ExtractTestFiles();
         }
 
-        void ExtractTestFiles() {
-            foreach (string manifestResourceName in GetType().Assembly.GetManifestResourceNames()) {
-                if (manifestResourceName.StartsWith(resourcePrefix)) {
-                    var testFileName = manifestResourceName.Replace(resourcePrefix, "");
-                    ExtractFile(testFileName, manifestResourceName);
+        void ExtractTestFilesIfNeeded(Assembly callingAssembly) {
+            if (!filesExtracted) {
+                var resourcePrefix = string.Format("{0}.TestData.", callingAssembly.GetName().Name);
+                foreach (string manifestResourceName in callingAssembly.GetManifestResourceNames()) {
+                    if (manifestResourceName.StartsWith(resourcePrefix)) {
+                        var testFileName = manifestResourceName.Replace(resourcePrefix, "");
+                        ExtractFile(testFileName, manifestResourceName, callingAssembly);
+                    }
                 }
+                filesExtracted = true;
             }
         }
 
+        /// <summary>
+        /// Gets the singleton instance of the test data helper.
+        /// </summary>
         public static TestDataHelper Instance {
             get { return instance; }
         }
@@ -43,6 +51,7 @@ namespace Infrastructure.Core.Tests {
         public string PathToTestFile(string testFileName) {
             ParameterCheck.StringRequiredAndNotWhitespace(testFileName, "testFileName");
 
+            ExtractTestFilesIfNeeded(Assembly.GetCallingAssembly());
             string testFilePath = Path.Combine(testDir, testFileName);
 
             if (!File.Exists(testFilePath)) {
@@ -52,9 +61,9 @@ namespace Infrastructure.Core.Tests {
             return testFilePath;
         }
 
-        void ExtractFile(string testFileName, string manifestResourceName) {
+        void ExtractFile(string testFileName, string manifestResourceName, Assembly resourceAssembly) {
             string testFilePath = Path.Combine(testDir, testFileName);
-            using (var stream = GetType().Assembly.GetManifestResourceStream(manifestResourceName)) {
+            using (var stream = resourceAssembly.GetManifestResourceStream(manifestResourceName)) {
                 using (var file = File.OpenWrite(testFilePath)) {
                     if (stream == null) {
                         throw new Exception(string.Format("Manifest resource stream for {0} was not found", testFileName));

@@ -150,4 +150,7 @@
 	<data name="ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket">
 		<value xml:space="preserve">ValidateJdf requires the document to be of type Ticket.  Use Ticket.Create().</value>
 	</data>
+	<data name="PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart">
+		<value xml:space="preserve">Pass through encoder cannot encode a transmission part collection containing more than one part.</value>
+	</data>
 </root>
