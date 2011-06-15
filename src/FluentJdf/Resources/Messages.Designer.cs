@@ -168,5 +168,32 @@ namespace FluentJdf.Resources {
                 return ResourceManager.GetString("ResourceExtensions_Resource_ResourceWithIdCannotBeFound", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create transmission part from file {0} because it does not exist.
+        /// </summary>
+        internal static string TransmissionPart_CannotCreatePartAsFileDoesNotExist {
+            get {
+                return ResourceManager.GetString("TransmissionPart_CannotCreatePartAsFileDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load XDocument from {0}.
+        /// </summary>
+        internal static string XmlTransmissionPart_FailedToLoadXDocumentFromFile {
+            get {
+                return ResourceManager.GetString("XmlTransmissionPart_FailedToLoadXDocumentFromFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load XDocument from stream.
+        /// </summary>
+        internal static string XmlTransmissionPart_FailedToLoadXDocumentFromStream {
+            get {
+                return ResourceManager.GetString("XmlTransmissionPart_FailedToLoadXDocumentFromStream", resourceCulture);
+            }
+        }
     }
 }

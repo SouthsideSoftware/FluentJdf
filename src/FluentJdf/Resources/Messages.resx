@@ -153,4 +153,13 @@
 	<data name="PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart">
 		<value xml:space="preserve">Pass through encoder cannot encode a transmission part collection containing more than one part.</value>
 	</data>
+	<data name="TransmissionPart_CannotCreatePartAsFileDoesNotExist">
+		<value xml:space="preserve">Cannot create transmission part from file {0} because it does not exist</value>
+	</data>
+	<data name="XmlTransmissionPart_FailedToLoadXDocumentFromFile">
+		<value xml:space="preserve">Failed to load XDocument from {0}</value>
+	</data>
+	<data name="XmlTransmissionPart_FailedToLoadXDocumentFromStream">
+		<value xml:space="preserve">Failed to load XDocument from stream</value>
+	</data>
 </root>

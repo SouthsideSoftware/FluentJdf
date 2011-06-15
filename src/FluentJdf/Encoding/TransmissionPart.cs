@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using FluentJdf.Resources;
 using FluentJdf.Utility;
 using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
@@ -22,7 +23,7 @@ namespace FluentJdf.Encoding {
             ParameterCheck.StringRequiredAndNotWhitespace(fileName, "fileName");
 
             if (!File.Exists(fileName)) {
-                throw new ArgumentException(string.Format("Cannot create transmission part from file {0} because it does not exist", fileName));
+                throw new ArgumentException(string.Format(Messages.TransmissionPart_CannotCreatePartAsFileDoesNotExist, fileName));
             }
 
             InitalizeProperties(fileName, fileName.MimeType(), id);
@@ -89,7 +90,7 @@ namespace FluentJdf.Encoding {
         /// <summary>
         /// Gets the stream associated with the part.
         /// </summary>
-        public Stream CopyOfStream() {
+        public virtual Stream CopyOfStream() {
             var tempStream = new TempFileStream();
             stream.CopyTo(tempStream);
             tempStream.Seek(0, SeekOrigin.Begin);

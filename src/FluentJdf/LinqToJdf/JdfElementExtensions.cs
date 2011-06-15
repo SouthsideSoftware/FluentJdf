@@ -4,6 +4,7 @@ using System.Xml.Linq;
 using FluentJdf.Configuration;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
+using Infrastructure.Core.Helpers;
 
 namespace FluentJdf.LinqToJdf
 {
@@ -33,6 +34,19 @@ namespace FluentJdf.LinqToJdf
             ParameterCheck.ParameterRequired(parent, "parent");
 
             return parent.AddJdfElement(types);
+        }
+
+        /// <summary>
+        /// Gets the mime type associated with the given node.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public static string MimeType(this XElement node) {
+            ParameterCheck.ParameterRequired(node, "node");
+
+            if (node.Name == Element.JDF) return MimeTypeHelper.JdfMimeType;
+            if (node.Name == Element.JMF) return MimeTypeHelper.JmfMimeType;
+            return "text/xml";
         }
 
         /// <summary>

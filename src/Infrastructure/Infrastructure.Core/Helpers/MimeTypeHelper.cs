@@ -37,6 +37,11 @@ namespace Infrastructure.Core.Helpers
         public const string MimeMultipartMimeType = "multipart/related";
 
         /// <summary>
+        /// Gets the standard mime type for xml.
+        /// </summary>
+        public const string XmlMimeType = "text/xml";
+
+        /// <summary>
         /// Gets the standard extension for JDF
         /// </summary>
         public const string JdfExtension = ".jdf";
@@ -45,6 +50,11 @@ namespace Infrastructure.Core.Helpers
         /// Gets the standard extension for JMF.
         /// </summary>
         public const string JmfExtension = ".jmf";
+
+        /// <summary>
+        /// Gets the standard extension for xml.
+        /// </summary>
+        public const string XmlExtension = ".xml";
 
         /// <summary>
         /// Gets the standard extension for mime where the first part if JDF
@@ -87,6 +97,8 @@ namespace Infrastructure.Core.Helpers
                     return MimeMultipartMimeType;
                 case MimeJmfFirstPartExtension:
                     return MimeMultipartMimeType;
+                case XmlExtension:
+                    return XmlMimeType;
             }
             RegistryKey key = Registry.ClassesRoot.OpenSubKey(normalizedExtension);
             if (key != null)
@@ -139,6 +151,8 @@ namespace Infrastructure.Core.Helpers
             switch (parsedMimeType) {
                 case PdfMimeType:
                     return PdfExtension;
+                case XmlMimeType:
+                    return XmlExtension;
                 case JdfMimeType:
                     return JdfExtension;
                 case JmfMimeType:

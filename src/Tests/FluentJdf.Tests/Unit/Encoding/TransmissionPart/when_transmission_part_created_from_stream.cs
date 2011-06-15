@@ -15,6 +15,6 @@ namespace FluentJdf.Tests.Unit.Encoding.TransmissionPart {
 
         It should_have_an_id = () => transmissionPart.Id.ShouldNotBeEmpty();
 
-        It should_be_able_to_get_strean = () => transmissionPart.CopyOfStream().ShouldNotBeNull();
+        It should_be_able_to_get_stream = () => transmissionPart.CopyOfStream().ShouldNotBeNull();
     }
 }

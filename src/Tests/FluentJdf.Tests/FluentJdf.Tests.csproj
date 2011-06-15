@@ -116,6 +116,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Encoding\TransmissionPart\when_transmission_part_created_from_file.cs" />
     <Compile Include="Unit\Encoding\TransmissionPart\when_transmission_part_created_from_stream.cs" />
+    <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_jdf_document.cs" />
+    <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_jmf_document.cs" />
+    <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_stream.cs" />
+    <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_file.cs" />
+    <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_xml_no_root.cs" />
+    <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_xml_that_is_neither_jdf_nor_jmf.cs" />
     <Compile Include="Unit\LinqToJdf\Builder\when_setting_id_through_the_builder_on_new_resources.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_adding_resource_links_into_sibling_when_resource_is_in_sibling.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_jdf_nodes_with_configuration_for_no_job_id.cs" />
@@ -201,6 +207,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestData\Signs.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\sampleJDF.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
