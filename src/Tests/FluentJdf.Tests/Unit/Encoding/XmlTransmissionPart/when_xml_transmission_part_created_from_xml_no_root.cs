@@ -1,4 +1,5 @@
 using System.Xml.Linq;
+using FluentJdf.Encoding;
 using Infrastructure.Core.Helpers;
 using Machine.Specifications;
 
@@ -16,5 +17,7 @@ namespace FluentJdf.Tests.Unit.Encoding.XmlTransmissionPart {
         It should_have_an_id = () => transmissionPart.Id.ShouldNotBeEmpty();
 
         It throws_exception_when_trying_to_get_stream = () => Catch.Exception(() => transmissionPart.CopyOfStream()).ShouldNotBeNull();
+
+        It should_have_xml_type_jdf = () => transmissionPart.XmlType.ShouldEqual(XmlType.Other);
     }
 }

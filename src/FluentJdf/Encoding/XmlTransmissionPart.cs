@@ -141,6 +141,16 @@ namespace FluentJdf.Encoding
         public string MimeType { get; private set; }
 
         /// <summary>
+        /// Gets the xml type of this part -- jdf, jmf or other.
+        /// </summary>
+        public XmlType XmlType {
+            get {
+                if (MimeType == MimeTypeHelper.JdfMimeType) return XmlType.Jdf;
+                if (MimeType == MimeTypeHelper.JmfMimeType) return XmlType.Jmf;
+                return XmlType.Other;
+            }
+        }
+        /// <summary>
         /// Gets the document for the transmission part.
         /// </summary>
         public XDocument Document { get; private set; }
