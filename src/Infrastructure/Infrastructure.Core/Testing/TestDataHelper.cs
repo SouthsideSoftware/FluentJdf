@@ -44,14 +44,16 @@ namespace Infrastructure.Core.Testing {
         /// <summary>
         /// Gets the full path of the desired test file.
         /// </summary>
-        /// <param name="testFileName"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">If the file does not exist in the test data folder extracted
         /// from the embedded resources.</exception>
-        public string PathToTestFile(string testFileName) {
+        public string PathToTestFile(string testFileName, Assembly resourceAssembly = null) {
             ParameterCheck.StringRequiredAndNotWhitespace(testFileName, "testFileName");
 
-            ExtractTestFilesIfNeeded(Assembly.GetCallingAssembly());
+            if (resourceAssembly == null) {
+                resourceAssembly = Assembly.GetCallingAssembly();
+            }
+            ExtractTestFilesIfNeeded(resourceAssembly);
             string testFilePath = Path.Combine(testDir, testFileName);
 
             if (!File.Exists(testFilePath)) {
@@ -81,7 +83,7 @@ namespace Infrastructure.Core.Testing {
         public Stream GetTestStream(string testFileName) {
             ParameterCheck.StringRequiredAndNotWhitespace(testFileName, "testFileName");
 
-            return File.OpenRead(PathToTestFile(testFileName));
+            return File.OpenRead(PathToTestFile(testFileName, Assembly.GetCallingAssembly()));
         }
     }
 }
