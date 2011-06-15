@@ -80,6 +80,7 @@
     <Compile Include="Unit\Result\ResultBaseTests.cs" />
     <Compile Include="Unit\Result\ResultItemBaseTests.cs" />
     <Compile Include="Unit\Result\ResultOfTests.cs" />
+    <Compile Include="Unit\TempFileStream\when_using_temp_file_stream.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure.Core\Infrastructure.Core.csproj">

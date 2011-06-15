@@ -96,6 +96,7 @@
     <Compile Include="Result\ResultItemCollection.cs" />
     <Compile Include="Result\ResultItemType.cs" />
     <Compile Include="Result\ResultOf.cs" />
+    <Compile Include="TempFileStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Messages.resx">

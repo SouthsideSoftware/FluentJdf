@@ -101,6 +101,10 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Configuration\JdfAuthoringSettings.cs" />
     <Compile Include="Configuration\JdfAuthoringSettingsBuilder.cs" />
+    <Compile Include="Encoding\EncodingResult.cs" />
+    <Compile Include="Encoding\IEncoder.cs" />
+    <Compile Include="Encoding\ITransmissionPart.cs" />
+    <Compile Include="Encoding\ITransmissionPartCollection.cs" />
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
     <Compile Include="LinqToJdf\Audit.cs" />
     <Compile Include="Configuration\Library.cs" />
@@ -179,9 +183,7 @@
       <Name>Infrastructure.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Encoding\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
