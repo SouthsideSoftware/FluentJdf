@@ -102,11 +102,11 @@
     <Compile Include="Configuration\JdfAuthoringSettings.cs" />
     <Compile Include="Configuration\JdfAuthoringSettingsBuilder.cs" />
     <Compile Include="Encoding\EncodingResult.cs" />
-    <Compile Include="Encoding\IEncoder.cs" />
+    <Compile Include="Encoding\IEncoding.cs" />
     <Compile Include="Encoding\ITransmissionPart.cs" />
     <Compile Include="Encoding\ITransmissionPartCollection.cs" />
     <Compile Include="Encoding\IXmlTransmissionPart.cs" />
-    <Compile Include="Encoding\PassThroughEncoder.cs" />
+    <Compile Include="Encoding\PassThroughEncoding.cs" />
     <Compile Include="Encoding\TransmissionPart.cs" />
     <Compile Include="Encoding\XmlTransmissionPart.cs" />
     <Compile Include="Encoding\XmlType.cs" />

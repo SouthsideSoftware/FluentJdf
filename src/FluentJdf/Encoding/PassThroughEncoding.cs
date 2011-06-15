@@ -14,7 +14,7 @@ namespace FluentJdf.Encoding
     /// any parsing.  That is, the raw data is in the format
     /// expected by the transmission part.
     /// </summary>
-    public class PassThroughEncoder : IEncoder
+    public class PassThroughEncoding : IEncoding
     {
         /// <summary>
         /// Encode a collection of parts.

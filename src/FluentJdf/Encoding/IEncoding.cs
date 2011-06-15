@@ -9,7 +9,7 @@ namespace FluentJdf.Encoding
     /// <summary>
     /// Encodes and decodes JDF transmissions.
     /// </summary>
-    public interface IEncoder {
+    public interface IEncoding {
         /// <summary>
         /// Encode a collection of transmission parts to a stream.
         /// </summary>
