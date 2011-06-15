@@ -143,6 +143,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can only operate on JMF nodes.  The name is {0}..
+        /// </summary>
+        internal static string JmfElementExtensions_ThrowExceptionIfNotJmfElement_CanOnlyOperateOnJmfNodes {
+            get {
+                return ResourceManager.GetString("JmfElementExtensions_ThrowExceptionIfNotJmfElement_CanOnlyOperateOnJmfNodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to load and compile JDF schema.  The error is {0}.
         /// </summary>
         internal static string Loader_Loader_FailedToLoadAndCompileSchema {

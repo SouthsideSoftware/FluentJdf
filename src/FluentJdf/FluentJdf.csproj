@@ -116,6 +116,8 @@
     <Compile Include="LinqToJdf\ElementExtensions.cs" />
     <Compile Include="LinqToJdf\Element.cs" />
     <Compile Include="LinqToJdf\JdfNodeAttributeBuilder.cs" />
+    <Compile Include="LinqToJdf\JmfElementExtensions.cs" />
+    <Compile Include="LinqToJdf\JmfNodeBuilder.cs" />
     <Compile Include="LinqToJdf\NodeBuilder.cs" />
     <Compile Include="LinqToJdf\Globals.cs" />
     <Compile Include="LinqToJdf\IJdfDifferenceListener.cs" />

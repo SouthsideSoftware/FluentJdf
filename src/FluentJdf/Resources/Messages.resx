@@ -162,4 +162,7 @@
 	<data name="XmlTransmissionPart_FailedToLoadXDocumentFromStream">
 		<value xml:space="preserve">Failed to load XDocument from stream</value>
 	</data>
+	<data name="JmfElementExtensions_ThrowExceptionIfNotJmfElement_CanOnlyOperateOnJmfNodes">
+		<value xml:space="preserve">Can only operate on JMF nodes.  The name is {0}.</value>
+	</data>
 </root>

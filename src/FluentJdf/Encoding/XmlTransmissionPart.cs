@@ -6,16 +6,14 @@ using FluentJdf.Resources;
 using FluentJdf.Utility;
 using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
-using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Logging;
 
-namespace FluentJdf.Encoding
-{
+namespace FluentJdf.Encoding {
     /// <summary>
     /// A basic transmission part.
     /// </summary>
     public class XmlTransmissionPart : IXmlTransmissionPart {
-        static ILog logger = LogManager.GetLogger(typeof (XmlTransmissionPart));
+        static readonly ILog logger = LogManager.GetLogger(typeof (XmlTransmissionPart));
 
         /// <summary>
         /// Construct a part from a document
@@ -23,25 +21,23 @@ namespace FluentJdf.Encoding
         /// <param name="doc"></param>
         /// <param name="name"></param>
         /// <param name="id"></param>
-        public XmlTransmissionPart(XDocument doc, string name, string id = null)
-        {
+        public XmlTransmissionPart(XDocument doc, string name, string id = null) {
             ParameterCheck.ParameterRequired(doc, "doc");
             ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
 
             InitalizeProperties(doc, name, id);
         }
+
         /// <summary>
         /// Creates a transmission part from the given file name.
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="id"></param>
         /// <exception cref="ArgumentException">If the named file does not exist.</exception>
-        public XmlTransmissionPart(string fileName, string id = null)
-        {
+        public XmlTransmissionPart(string fileName, string id = null) {
             ParameterCheck.StringRequiredAndNotWhitespace(fileName, "fileName");
 
-            if (!File.Exists(fileName))
-            {
+            if (!File.Exists(fileName)) {
                 throw new ArgumentException(string.Format(Messages.TransmissionPart_CannotCreatePartAsFileDoesNotExist, fileName));
             }
 
@@ -62,8 +58,7 @@ namespace FluentJdf.Encoding
         /// stream is disposed by the constructor.
         /// </summary>
         /// <remarks>mimeType is ignored.  It is taken from the parsed xml root node.</remarks>
-        public XmlTransmissionPart(Stream sourceStream, string name, string mimeType = null, string id = null)
-        {
+        public XmlTransmissionPart(Stream sourceStream, string name, string mimeType = null, string id = null) {
             ParameterCheck.ParameterRequired(sourceStream, "sourceStream");
             ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
 
@@ -71,12 +66,10 @@ namespace FluentJdf.Encoding
                 sourceStream.Seek(0, SeekOrigin.Begin);
             }
             XDocument document = null;
-            try
-            {
+            try {
                 document = XDocument.Load(sourceStream);
             }
-            catch (Exception err)
-            {
+            catch (Exception err) {
                 string mess = string.Format(Messages.XmlTransmissionPart_FailedToLoadXDocumentFromStream);
                 logger.Error(mess, err);
                 throw;
@@ -84,38 +77,28 @@ namespace FluentJdf.Encoding
             InitalizeProperties(document, document.MimeType(), id);
         }
 
-        void InitalizeProperties(XDocument document, string name, string id) {
-            if (string.IsNullOrWhiteSpace(id)) {
-                id = string.Format("P_{0}", UniqueGenerator.MakeUnique());
-            }
-
-            Name = name;
-            MimeType = document.MimeType();
-            Id = id;
-            Document = document;
+        /// <summary>
+        /// Gets the xml type of this part -- jdf, jmf or other.
+        /// </summary>
+        public XmlType XmlType {
+            get { return Document.XmlType(); }
         }
+
+        #region IXmlTransmissionPart Members
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         /// <filterpriority>2</filterpriority>
-        public void Dispose()
-        {
+        public void Dispose() {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         /// <summary>
-        /// Override this to change disposal behavior.
-        /// </summary>
-        /// <param name="isDisposing"></param>
-        protected virtual void Dispose(bool isDisposing) {}
-
-        /// <summary>
         /// Gets the stream associated with the part.
         /// </summary>
-        public Stream CopyOfStream()
-        {
+        public Stream CopyOfStream() {
             var tempStream = new TempFileStream();
             Document.Save(tempStream);
             tempStream.Seek(0, SeekOrigin.Begin);
@@ -141,18 +124,27 @@ namespace FluentJdf.Encoding
         public string MimeType { get; private set; }
 
         /// <summary>
-        /// Gets the xml type of this part -- jdf, jmf or other.
-        /// </summary>
-        public XmlType XmlType {
-            get {
-                if (MimeType == MimeTypeHelper.JdfMimeType) return XmlType.Jdf;
-                if (MimeType == MimeTypeHelper.JmfMimeType) return XmlType.Jmf;
-                return XmlType.Other;
-            }
-        }
-        /// <summary>
         /// Gets the document for the transmission part.
         /// </summary>
         public XDocument Document { get; private set; }
+
+        #endregion
+
+        void InitalizeProperties(XDocument document, string name, string id) {
+            if (string.IsNullOrWhiteSpace(id)) {
+                id = string.Format("P_{0}", UniqueGenerator.MakeUnique());
+            }
+
+            Name = name;
+            MimeType = document.MimeType();
+            Id = id;
+            Document = document;
+        }
+
+        /// <summary>
+        /// Override this to change disposal behavior.
+        /// </summary>
+        /// <param name="isDisposing"></param>
+        protected virtual void Dispose(bool isDisposing) {}
     }
 }
