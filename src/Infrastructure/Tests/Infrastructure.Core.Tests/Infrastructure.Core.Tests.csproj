@@ -77,6 +77,9 @@
     <Compile Include="Unit\Helpers\ApplicationInformation\when_reading_application_information.cs" />
     <Compile Include="Unit\Helpers\MimeTypeHelper\when_getting_extensions_of_mime_types.cs" />
     <Compile Include="Unit\Helpers\MimeTypeHelper\when_getting_mime_types_of_extensions.cs" />
+    <Compile Include="Unit\Result\ResultBaseTests.cs" />
+    <Compile Include="Unit\Result\ResultItemBaseTests.cs" />
+    <Compile Include="Unit\Result\ResultOfTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure.Core\Infrastructure.Core.csproj">
