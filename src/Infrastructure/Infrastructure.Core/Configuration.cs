@@ -11,7 +11,13 @@ namespace Infrastructure.Core {
     public class Configuration {
         static ILog logger;
 
-        static Configuration instance;
+        static Configuration settings = new Configuration();
+
+        /// <summary>
+        /// Gets the settings instance.
+        /// </summary>
+        public static Configuration Settings {get { return settings; }}
+
         IServiceLocator serviceLocator;
 
         Configuration() {
@@ -33,16 +39,14 @@ namespace Infrastructure.Core {
         }
 
         /// <summary>
+        /// Gets the service locator configured.
+        /// </summary>
+        public IServiceLocator ServiceLocator {get { return serviceLocator; }}
+
+        /// <summary>
         /// Gets the configured log provider.
         /// </summary>
         internal ILogProvider LogProvider { get; private set; }
-
-        /// <summary>
-        /// Gets the singleton instance.
-        /// </summary>
-        public static Configuration Instance {
-            get { return instance ?? (instance = new Configuration()); }
-        }
 
         /// <summary>
         /// Assigns the service locator builder.

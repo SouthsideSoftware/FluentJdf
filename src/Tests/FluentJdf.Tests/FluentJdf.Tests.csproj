@@ -196,9 +196,9 @@
       <Project>{941D0CE6-D735-47AD-8521-7171BCB2833A}</Project>
       <Name>Infrastructure.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure.Logging.Log4Net\Infrastructure.Logging.Log4Net.csproj">
-      <Project>{689CE7FE-36A7-4910-A646-C0033C78787E}</Project>
-      <Name>Infrastructure.Logging.Log4Net</Name>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure.Logging.NLog\Infrastructure.Logging.NLog.csproj">
+      <Project>{E1A4F08F-33A0-4CCB-8098-8C0E9856CF86}</Project>
+      <Name>Infrastructure.Logging.NLog</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

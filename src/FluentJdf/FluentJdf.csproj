@@ -98,7 +98,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Configuration\EncodingSettings.cs" />
+    <Compile Include="Configuration\EncodingSettingsBuilder.cs" />
     <Compile Include="Configuration\JdfAuthoringSettings.cs" />
     <Compile Include="Configuration\JdfAuthoringSettingsBuilder.cs" />
     <Compile Include="Encoding\EncodingResult.cs" />

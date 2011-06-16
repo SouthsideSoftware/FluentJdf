@@ -8,7 +8,7 @@ namespace Infrastructure.Core.Logging {
         static ILogProvider logProvider;
 
         static ILogProvider LogProvider {
-            get { return logProvider ?? (logProvider = Configuration.Instance.LogProvider); }
+            get { return logProvider ?? (logProvider = Configuration.Settings.LogProvider); }
         }
 
         /// <summary>

@@ -7,6 +7,6 @@ using NUnit.Framework;
 public class SetUpFixture {
     [SetUp]
     public void SetUp() {
-        Configuration.Instance.LogWithNLog().Configure();
+        Configuration.Settings.LogWithNLog().Configure();
     }
 }

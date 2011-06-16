@@ -1,4 +1,6 @@
 ﻿using FluentJdf.Configuration;
+using Infrastructure.Container.CastleWindsor;
+using Infrastructure.Logging.NLog;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests {
@@ -6,7 +8,7 @@ namespace FluentJdf.Tests {
         #region IAssemblyContext Members
 
         public void OnAssemblyStart() {
-            Bootstrapper.Initialize();
+            Library.Settings.Infrastructure.UseCastleWindsor().LogWithNLog();
         }
 
         public void OnAssemblyComplete() {}
