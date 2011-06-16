@@ -26,10 +26,10 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory
                          defaultMultiPartEncoding = factory.GetDefaultEncodingForMultiPart();
                      };
 
-        It should_have_default_encoding_passthrough = () => defaultEncoding.ShouldBeOfType(typeof(PassThroughEncoding));
+        It should_have_default_encoding_passthrough = () => defaultEncoding.ShouldBeOfType(typeof(FluentJdf.Encoding.PassThroughEncoding));
 
-        It should_have_default_single_part_encoding_passthrough = () => defaultSinglePartEncoding.ShouldBeOfType(typeof(PassThroughEncoding));
+        It should_have_default_single_part_encoding_passthrough = () => defaultSinglePartEncoding.ShouldBeOfType(typeof(FluentJdf.Encoding.PassThroughEncoding));
 
-        It should_have_default_multi_part_encoding_passthrough = () => defaultMultiPartEncoding.ShouldBeOfType(typeof(PassThroughEncoding));
+        It should_have_default_multi_part_encoding_passthrough = () => defaultMultiPartEncoding.ShouldBeOfType(typeof(FluentJdf.Encoding.PassThroughEncoding));
     }
 }

@@ -94,6 +94,7 @@ namespace FluentJdf.Encoding {
             var tempStream = new TempFileStream();
             stream.CopyTo(tempStream);
             tempStream.Seek(0, SeekOrigin.Begin);
+            stream.Seek(0, SeekOrigin.Begin);
 
             return tempStream;
         }

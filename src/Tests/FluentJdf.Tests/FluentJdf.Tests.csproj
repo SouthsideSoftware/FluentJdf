@@ -117,6 +117,10 @@
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_encodings.cs" />
     <Compile Include="Unit\Encoding\EncodingFactory\when_creating_encodings.cs" />
     <Compile Include="Unit\Encoding\EncodingFactory\when_creating_encodings_by_mime_type_with_some_registered.cs" />
+    <Compile Include="Unit\Encoding\PassThroughEncoding\when_encoding_a_graphic.cs" />
+    <Compile Include="Unit\Encoding\PassThroughEncoding\when_encoding_generic_xml.cs" />
+    <Compile Include="Unit\Encoding\PassThroughEncoding\when_encoding_jdf_xml.cs" />
+    <Compile Include="Unit\Encoding\PassThroughEncoding\when_encoding_jmf_xml.cs" />
     <Compile Include="Unit\Encoding\TransmissionPart\when_transmission_part_created_from_file.cs" />
     <Compile Include="Unit\Encoding\TransmissionPart\when_transmission_part_created_from_stream.cs" />
     <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_jdf_document.cs" />

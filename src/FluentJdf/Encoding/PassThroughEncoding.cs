@@ -21,12 +21,12 @@ namespace FluentJdf.Encoding
         /// </summary>
         /// <param name="transmissionParts"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentException">If the collection contains more than 1 part.</exception>
+        /// <exception cref="NotSupportedException">If the collection contains more than 1 part.</exception>
         public EncodingResult Encode(ITransmissionPartCollection transmissionParts) {
             ParameterCheck.ParameterRequired(transmissionParts, "transmissionParts");
 
             if (transmissionParts.Count() > 1) {
-                throw new ArgumentException(Messages.PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart);
+                throw new NotSupportedException(Messages.PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart);
             }
             return Encode(transmissionParts.First());
         }
