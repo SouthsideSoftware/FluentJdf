@@ -168,4 +168,7 @@
 	<data name="EncodingSettings_ThrowExceptionIfTypeIsNotIEncoding">
 		<value xml:space="preserve">Encodings must be of type IEncoding</value>
 	</data>
+	<data name="TransmissionPartSettings_ThrowExceptionIfTypeIsNotITransmissionPart">
+		<value xml:space="preserve">TransmissionParts must be of type ITransmissionPart</value>
+	</data>
 </root>

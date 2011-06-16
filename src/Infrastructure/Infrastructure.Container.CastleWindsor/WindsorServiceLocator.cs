@@ -5,6 +5,7 @@ using System.IO;
 using Castle.Core;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Container;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Logging;
@@ -34,6 +35,11 @@ namespace Infrastructure.Container.CastleWindsor
             }
         }
 
+        /// <summary>
+        /// Gets the windsor container.
+        /// </summary>
+        public IWindsorContainer Container {get { return container; }}
+
         IWindsorContainer container;
 
         /// <summary>
@@ -41,9 +47,10 @@ namespace Infrastructure.Container.CastleWindsor
         /// </summary>
         /// <param name="container"></param>
         public WindsorServiceLocator(IWindsorContainer container) {
-            Contract.Requires(container != null);
+            ParameterCheck.ParameterRequired(container, "container");
 
             this.container = container;
+            InitializeContainerSettings();
         }
 
         /// <summary>
@@ -174,13 +181,18 @@ namespace Infrastructure.Container.CastleWindsor
         /// Register an implementation of the given interface type with a 
         /// lifestyle that defaults to singleton and the given key.
         /// </summary>
-        public void Register(string key, Type interfaceType, Type instanceType, ComponentLifestyle componentLifestyle = ComponentLifestyle.Singleton)
-        {
+        public void Register(string key, Type interfaceType, Type instanceType, ComponentLifestyle componentLifestyle = ComponentLifestyle.Singleton){
+
+            bool untracked = false;
             LifestyleType castleLifestyle = LifestyleType.Singleton;
             switch (componentLifestyle)
             {
                 case ComponentLifestyle.Transient:
                     castleLifestyle = LifestyleType.Transient;
+                    break;
+                case ComponentLifestyle.TransientNoTracking:
+                    castleLifestyle = LifestyleType.Custom;
+                    untracked = true;
                     break;
                 case ComponentLifestyle.Thread:
                     castleLifestyle = LifestyleType.Thread;
@@ -189,15 +201,26 @@ namespace Infrastructure.Container.CastleWindsor
                     castleLifestyle = LifestyleType.PerWebRequest;
                     break;
             }
-            container.Register(Component.For(interfaceType).ImplementedBy(instanceType).LifeStyle.Is(castleLifestyle).Named(key));
+            if (untracked) {
+                container.Register(Component.For(interfaceType).ImplementedBy(instanceType).LifeStyle.Custom<NonTrackedTransientLifestyle>().Named(key));
+            }
+            else {
+                container.Register(Component.For(interfaceType).ImplementedBy(instanceType).LifeStyle.Is(castleLifestyle).Named(key));
+            }
+            
         }
 
         /// <summary>
         /// Resets the container.
         /// </summary>
-        public void Reset()
-        {
+        public void Reset() {
+            container.Dispose();
             container = new WindsorContainer();
+            InitializeContainerSettings();
+        }
+
+        void InitializeContainerSettings() {
+            container.Kernel.ReleasePolicy = new LifecycledComponentsReleasePolicyWithNonTrackedTransientOption();
         }
     }
 }

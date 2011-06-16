@@ -197,6 +197,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TransmissionParts must be of type ITransmissionPart.
+        /// </summary>
+        internal static string TransmissionPartSettings_ThrowExceptionIfTypeIsNotITransmissionPart {
+            get {
+                return ResourceManager.GetString("TransmissionPartSettings_ThrowExceptionIfTypeIsNotITransmissionPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to load XDocument from {0}.
         /// </summary>
         internal static string XmlTransmissionPart_FailedToLoadXDocumentFromFile {

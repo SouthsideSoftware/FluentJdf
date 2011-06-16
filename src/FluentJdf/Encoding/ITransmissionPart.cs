@@ -30,5 +30,9 @@ namespace FluentJdf.Encoding
         /// Gets the mime type of the part.
         /// </summary>
         string MimeType { get; }
+        /// <summary>
+        /// Initialize an instance from the factory.
+        /// </summary>
+        void Initialize(string name, Stream stream, string mimeType, string id = null);
     }
 }

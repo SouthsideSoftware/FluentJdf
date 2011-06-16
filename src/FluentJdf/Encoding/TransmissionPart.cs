@@ -14,6 +14,14 @@ namespace FluentJdf.Encoding {
         Stream stream;
 
         /// <summary>
+        /// This constructor should only be used by the factory.  It
+        /// should not be called directly by user code.
+        /// </summary>
+        public TransmissionPart() {
+            
+        }
+
+        /// <summary>
         /// Creates a transmission part from the given file name.
         /// </summary>
         /// <param name="fileName"></param>
@@ -115,5 +123,17 @@ namespace FluentJdf.Encoding {
         /// Gets the mime type of the part.
         /// </summary>
         public string MimeType { get; private set; }
+
+        /// <summary>
+        /// Initialize an instance from the factory.
+        /// </summary>
+        public void Initialize(string name, Stream stream, string mimeType, string id = null) {
+            ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
+            ParameterCheck.ParameterRequired(stream, "stream");
+            ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
+
+            CopyToPartStream(stream);
+            InitalizeProperties(name, mimeType, id);
+        }
     }
 }

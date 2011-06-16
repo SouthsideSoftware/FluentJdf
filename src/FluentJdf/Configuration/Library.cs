@@ -6,10 +6,12 @@
         static readonly Library settings = new Library();
         readonly JdfAuthoringSettings jdfAuthoringSettings;
         readonly EncodingSettings encodingSettings;
+        readonly TransmissionPartSettings transmissionPartSettings;
 
         Library() {
             jdfAuthoringSettings = new JdfAuthoringSettings();
             encodingSettings = new EncodingSettings();
+            transmissionPartSettings = new TransmissionPartSettings();
             ResetToDefaults();
         }
 
@@ -28,6 +30,13 @@
         }
 
         /// <summary>
+        /// Gets the transmission part settings 
+        /// </summary>
+        public TransmissionPartSettings TransmissionPartSettings {
+            get { return transmissionPartSettings; }
+        }
+
+        /// <summary>
         /// Gets the encoding settings.
         /// </summary>
         public EncodingSettings EncodingSettings { get { return encodingSettings; }} 
@@ -39,7 +48,16 @@
         public Library ResetToDefaults() {
             jdfAuthoringSettings.ResetToDefaults();
             encodingSettings.ResetToDefault();
+            transmissionPartSettings.ResetToDefault();
             return this;
+        }
+
+        /// <summary>
+        /// Gets the transmission part settings builder.
+        /// </summary>
+        /// <returns></returns>
+        public TransmissionPartSettingsBuilder WithTransmissionPartSettings() {
+            return new TransmissionPartSettingsBuilder(this, transmissionPartSettings);
         }
 
         /// <summary>

@@ -20,6 +20,11 @@
         /// <summary>
         /// One instance per web request.
         /// </summary>
-        PerWebRequest
+        PerWebRequest,
+        /// <summary>
+        /// For containers that track transients by default, this
+        /// lifestyle is a true transient with no tracking.
+        /// </summary>
+        TransientNoTracking
     }
 }

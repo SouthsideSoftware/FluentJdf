@@ -16,6 +16,13 @@ namespace FluentJdf.Encoding {
         static readonly ILog logger = LogManager.GetLogger(typeof (XmlTransmissionPart));
 
         /// <summary>
+        /// This constructor for use by factories.  Should not
+        /// be called from user code.
+        /// </summary>
+        public XmlTransmissionPart() {
+            
+        }
+        /// <summary>
         /// Construct a part from a document
         /// </summary>
         /// <param name="doc"></param>
@@ -122,6 +129,18 @@ namespace FluentJdf.Encoding {
         /// Gets the mime type of the part.
         /// </summary>
         public string MimeType { get; private set; }
+
+        /// <summary>
+        /// Initialize an instance from the factory.
+        /// </summary>
+        /// <remarks>This ignores mime type because it is determined by xml content.</remarks>
+        public void Initialize(string name, Stream stream, string mimeType, string id) {
+            ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
+            ParameterCheck.ParameterRequired(stream, "stream");
+            ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
+
+            InitalizeProperties(XDocument.Load(stream), name, id);
+        }
 
         /// <summary>
         /// Gets the document for the transmission part.
