@@ -14,8 +14,8 @@ namespace FluentJdf.Encoding
     /// any parsing.  That is, the raw data is in the format
     /// expected by the transmission part.
     /// </summary>
-    public class PassThroughEncoding : IEncoding
-    {
+    public class PassThroughEncoding : IEncoding {
+        ITransmissionPartFactory transmissionPartFactory = new TransmissionPartFactory();
         /// <summary>
         /// Encode a collection of parts.
         /// </summary>
@@ -45,15 +45,14 @@ namespace FluentJdf.Encoding
         /// <summary>
         /// Decode the given stream into a collection of parts.
         /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="mimeType"></param>
         /// <returns></returns>
-        public ITransmissionPartCollection Decode(Stream stream, string mimeType)
+        public ITransmissionPartCollection Decode(string name, Stream stream, string mimeType, string id = null)
         {
             ParameterCheck.ParameterRequired(stream, "stream");
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
-            throw new NotImplementedException();
+            transmissionPartFactory.CreateTransmissionPart(name, stream, mimeType, id);
+            return null;
         }
     }
 }

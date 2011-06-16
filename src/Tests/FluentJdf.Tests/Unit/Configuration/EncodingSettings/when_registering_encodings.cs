@@ -94,7 +94,7 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
             throw new NotImplementedException();
         }
 
-        public ITransmissionPartCollection Decode(Stream stream, string mimeType) {
+        public ITransmissionPartCollection Decode(string name, Stream stream, string mimeType, string id = null) {
             throw new NotImplementedException();
         }
     }

@@ -26,9 +26,7 @@ namespace FluentJdf.Encoding
         /// Decode a stream with a mime type to a collection
         /// of transmission parts.
         /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="mimeType"></param>
         /// <returns></returns>
-        ITransmissionPartCollection Decode(Stream stream, string mimeType);
+        ITransmissionPartCollection Decode(string name, Stream stream, string mimeType, string id = null);
     }
 }
