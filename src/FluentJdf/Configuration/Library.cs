@@ -21,11 +21,6 @@
         }
 
         /// <summary>
-        /// Gets the infrastructure settings.
-        /// </summary>
-        public Infrastructure.Core.Configuration Infrastructure { get { return global::Infrastructure.Core.Configuration.Settings; } }
-
-        /// <summary>
         /// Gets the JDF authoring settings.
         /// </summary>
         public JdfAuthoringSettings JdfAuthoringSettings {

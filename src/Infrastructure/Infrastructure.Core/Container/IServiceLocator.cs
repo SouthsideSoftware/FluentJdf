@@ -89,5 +89,9 @@ namespace Infrastructure.Core.Container
         /// </summary>
         void Register(string key, Type interfaceType, Type instanceType,
                       ComponentLifestyle componentLifestyle = ComponentLifestyle.Singleton);
+        /// <summary>
+        /// Clear all components from the container.
+        /// </summary>
+        void Reset();
     }
 }

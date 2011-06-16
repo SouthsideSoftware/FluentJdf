@@ -102,6 +102,8 @@
     <Compile Include="Configuration\EncodingSettingsBuilder.cs" />
     <Compile Include="Configuration\JdfAuthoringSettings.cs" />
     <Compile Include="Configuration\JdfAuthoringSettingsBuilder.cs" />
+    <Compile Include="Encoding\IEncodingFactory.cs" />
+    <Compile Include="Encoding\EncodingFactory.cs" />
     <Compile Include="Encoding\EncodingResult.cs" />
     <Compile Include="Encoding\IEncoding.cs" />
     <Compile Include="Encoding\ITransmissionPart.cs" />

@@ -124,6 +124,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encodings must be of type IEncoding.
+        /// </summary>
+        internal static string EncodingSettings_ThrowExceptionIfTypeIsNotIEncoding {
+            get {
+                return ResourceManager.GetString("EncodingSettings_ThrowExceptionIfTypeIsNotIEncoding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find resource with id {0} and could not create it because name was not provided.
         /// </summary>
         internal static string JdfElementExtensions_LinkResource_CouldNotFindResourceWithGivenIdAndNameWasNotProvided {

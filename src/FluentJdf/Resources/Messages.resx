@@ -165,4 +165,7 @@
 	<data name="JmfElementExtensions_ThrowExceptionIfNotJmfElement_CanOnlyOperateOnJmfNodes">
 		<value xml:space="preserve">Can only operate on JMF nodes.  The name is {0}.</value>
 	</data>
+	<data name="EncodingSettings_ThrowExceptionIfTypeIsNotIEncoding">
+		<value xml:space="preserve">Encodings must be of type IEncoding</value>
+	</data>
 </root>

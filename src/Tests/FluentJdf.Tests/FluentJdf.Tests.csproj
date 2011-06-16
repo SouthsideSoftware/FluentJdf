@@ -114,6 +114,9 @@
   <ItemGroup>
     <Compile Include="AssemblyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\Configuration\EncodingSettings\when_registering_encodings.cs" />
+    <Compile Include="Unit\Encoding\EncodingFactory\when_creating_encodings.cs" />
+    <Compile Include="Unit\Encoding\EncodingFactory\when_creating_encodings_by_mime_type_with_some_registered.cs" />
     <Compile Include="Unit\Encoding\TransmissionPart\when_transmission_part_created_from_file.cs" />
     <Compile Include="Unit\Encoding\TransmissionPart\when_transmission_part_created_from_stream.cs" />
     <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_jdf_document.cs" />
@@ -213,6 +216,7 @@
   <ItemGroup>
     <EmbeddedResource Include="TestData\sampleJDF.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

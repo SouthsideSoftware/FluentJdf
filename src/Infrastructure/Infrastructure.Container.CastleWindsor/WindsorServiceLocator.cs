@@ -34,7 +34,7 @@ namespace Infrastructure.Container.CastleWindsor
             }
         }
 
-        readonly IWindsorContainer container;
+        IWindsorContainer container;
 
         /// <summary>
         /// Constructor.
@@ -92,9 +92,8 @@ namespace Infrastructure.Container.CastleWindsor
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public bool CanResolve(Type type)
-        {
-            throw new NotImplementedException();
+        public bool CanResolve(Type type) {
+            return container.Kernel.HasComponent(type.Name);
         }
 
         /// <summary>
@@ -103,9 +102,8 @@ namespace Infrastructure.Container.CastleWindsor
         /// <param name="type"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public bool CanResolve(Type type, string key)
-        {
-            throw new NotImplementedException();
+        public bool CanResolve(Type type, string key) {
+            return container.Kernel.HasComponent(key) && container.Kernel.GetHandler(key).ComponentModel.Service.Name == type.Name;
         }
 
         /// <summary>
@@ -192,6 +190,14 @@ namespace Infrastructure.Container.CastleWindsor
                     break;
             }
             container.Register(Component.For(interfaceType).ImplementedBy(instanceType).LifeStyle.Is(castleLifestyle).Named(key));
+        }
+
+        /// <summary>
+        /// Resets the container.
+        /// </summary>
+        public void Reset()
+        {
+            container = new WindsorContainer();
         }
     }
 }

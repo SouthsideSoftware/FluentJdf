@@ -8,7 +8,7 @@ namespace FluentJdf.Tests {
         #region IAssemblyContext Members
 
         public void OnAssemblyStart() {
-            Library.Settings.Infrastructure.UseCastleWindsor().LogWithNLog();
+            Infrastructure.Core.Configuration.Settings.UseCastleWindsor().LogWithNLog().Configure();
         }
 
         public void OnAssemblyComplete() {}

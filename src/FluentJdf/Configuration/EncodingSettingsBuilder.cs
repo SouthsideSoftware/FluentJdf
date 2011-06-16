@@ -29,19 +29,13 @@ namespace FluentJdf.Configuration {
         /// </summary>
         /// <param name="mimeType"></param>
         /// <param name="encodingType"></param>
-        public EncodingSettingsBuilder RegisterEncoding(string mimeType, Type encodingType) {
+        public EncodingSettingsBuilder EncodingForMimeType(string mimeType, Type encodingType) {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
             ParameterCheck.ParameterRequired(encodingType, "encodingType");
 
-            RegisterEncodingIfRequired(encodingType);
-            encodingSettings.EncodingsByMimeType[mimeType] = encodingType.Name;
-            return this;
-        }
+            encodingSettings.RegisterEncodingForMimeType(mimeType, encodingType);
 
-        void RegisterEncodingIfRequired(Type encodingType) {
-            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof(IEncoding), encodingType.Name)) {
-                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (IEncoding), encodingType);
-            }
+            return this;
         }
 
         /// <summary>
@@ -49,11 +43,40 @@ namespace FluentJdf.Configuration {
         /// </summary>
         /// <param name="encodingType"></param>
         /// <returns></returns>
-        public EncodingSettingsBuilder RegisterDefaultEncoding(Type encodingType) {
+        public EncodingSettingsBuilder DefaultEncoding(Type encodingType)
+        {
             ParameterCheck.ParameterRequired(encodingType, "encodingType");
 
-            RegisterEncodingIfRequired(encodingType);
-            encodingSettings.DefaultEncoding = encodingType.Name;
+            encodingSettings.DefaultEncoding = encodingType;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Register a default encoding for transmission part
+        /// collection that contain a single part.
+        /// </summary>
+        /// <param name="encodingType"></param>
+        /// <returns></returns>
+        public EncodingSettingsBuilder DefaultSinglePartEncoding(Type encodingType) {
+            ParameterCheck.ParameterRequired(encodingType, "encodingType");
+
+            encodingSettings.DefaultSinglePartEncoding = encodingType;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Register a default encoding for transmission part
+        /// collection that contain multiple parts.
+        /// </summary>
+        /// <param name="encodingType"></param>
+        /// <returns></returns>
+        public EncodingSettingsBuilder DefaultMultiPartEncoding(Type encodingType)
+        {
+            ParameterCheck.ParameterRequired(encodingType, "encodingType");
+
+            encodingSettings.DefaultMultiPartEncoding = encodingType;
 
             return this;
         }
