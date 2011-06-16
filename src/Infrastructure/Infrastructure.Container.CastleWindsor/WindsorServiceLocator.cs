@@ -111,9 +111,8 @@ namespace Infrastructure.Container.CastleWindsor
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public IEnumerable<T> ResolveAll<T>()
-        {
-            throw new NotImplementedException();
+        public IEnumerable<T> ResolveAll<T>() {
+            return container.ResolveAll<T>();
         }
 
         /// <summary>
@@ -132,7 +131,7 @@ namespace Infrastructure.Container.CastleWindsor
         /// <param name="item"></param>
         public void Release(object item)
         {
-            throw new NotImplementedException();
+            container.Release(item);
         }
 
         /// <summary>
@@ -140,6 +139,7 @@ namespace Infrastructure.Container.CastleWindsor
         /// </summary>
         public void LogRegisteredComponents()
         {
+            container.LogRegisteredComponents();
         }
 
         /// <summary>

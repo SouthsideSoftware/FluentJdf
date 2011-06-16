@@ -28,13 +28,7 @@ namespace FluentJdf.Tests.Unit.Schema {
 
         Because of = () => {
                          intent.Document.Validate(SchemaSet.Instance.Schemas, (o, e) => {
-                                                               if (e.Severity == XmlSeverityType.Error) {
-                                                                   logger.Error(e.Message);
-                                                               }
-                                                               else {
-                                                                   logger.Warn(e.Message);
-                                                               }
-                                                           }, true);
+                                                               }, true);
                      };
 
         It should_have_element_schema_type_on_root = () => {
