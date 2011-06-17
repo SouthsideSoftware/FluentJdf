@@ -206,6 +206,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The assigned transmitter must implement ITransmitter.
+        /// </summary>
+        internal static string TransmissionSettings_ThrowExceptionIfTypeIsNotITransmitter {
+            get {
+                return ResourceManager.GetString("TransmissionSettings_ThrowExceptionIfTypeIsNotITransmitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to load XDocument from {0}.
         /// </summary>
         internal static string XmlTransmissionPart_FailedToLoadXDocumentFromFile {

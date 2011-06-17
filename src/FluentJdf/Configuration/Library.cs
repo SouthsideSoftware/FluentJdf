@@ -7,11 +7,13 @@
         readonly JdfAuthoringSettings jdfAuthoringSettings;
         readonly EncodingSettings encodingSettings;
         readonly TransmissionPartSettings transmissionPartSettings;
+        readonly TransmitterSettings transmitterSettings;
 
         Library() {
             jdfAuthoringSettings = new JdfAuthoringSettings();
             encodingSettings = new EncodingSettings();
             transmissionPartSettings = new TransmissionPartSettings();
+            transmitterSettings = new TransmitterSettings();
             ResetToDefaults();
         }
 
@@ -37,6 +39,11 @@
         }
 
         /// <summary>
+        /// Gets the transmitter settings.
+        /// </summary>
+        public TransmitterSettings TransmitterSettings { get { return transmitterSettings; } }
+
+        /// <summary>
         /// Gets the encoding settings.
         /// </summary>
         public EncodingSettings EncodingSettings { get { return encodingSettings; }} 
@@ -49,7 +56,16 @@
             jdfAuthoringSettings.ResetToDefaults();
             encodingSettings.ResetToDefault();
             transmissionPartSettings.ResetToDefault();
+            transmitterSettings.ResetToDefault();
             return this;
+        }
+
+        /// <summary>
+        /// Gets the transmitter settings builder.
+        /// </summary>
+        /// <returns></returns>
+        public TransmitterSettingsBuilder WithTransmitterSettings() {
+            return new TransmitterSettingsBuilder(this, transmitterSettings);
         }
 
         /// <summary>
