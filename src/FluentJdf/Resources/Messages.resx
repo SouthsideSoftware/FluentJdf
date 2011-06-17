@@ -174,4 +174,7 @@
 	<data name="TransmissionSettings_ThrowExceptionIfTypeIsNotITransmitter">
 		<value xml:space="preserve">The assigned transmitter must implement ITransmitter</value>
 	</data>
+	<data name="TransmitterFactory_GetTransmitterForScheme_SchemeNotConfigured">
+		<value xml:space="preserve">Scheme {0} is not configured with a transmitter.</value>
+	</data>
 </root>

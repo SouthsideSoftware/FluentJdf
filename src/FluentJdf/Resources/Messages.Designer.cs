@@ -215,6 +215,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scheme {0} is not configured with a transmitter..
+        /// </summary>
+        internal static string TransmitterFactory_GetTransmitterForScheme_SchemeNotConfigured {
+            get {
+                return ResourceManager.GetString("TransmitterFactory_GetTransmitterForScheme_SchemeNotConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to load XDocument from {0}.
         /// </summary>
         internal static string XmlTransmissionPart_FailedToLoadXDocumentFromFile {
