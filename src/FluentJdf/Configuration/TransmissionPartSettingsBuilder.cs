@@ -40,7 +40,7 @@ namespace FluentJdf.Configuration {
         /// </summary>
         /// <param name="transmissionPartType"></param>
         /// <returns></returns>
-        public TransmissionPartSettingsBuilder DefaultEncoding(Type transmissionPartType)
+        public TransmissionPartSettingsBuilder DefaultTransmissionPart(Type transmissionPartType)
         {
             ParameterCheck.ParameterRequired(transmissionPartType, "transmissionPartType");
 
