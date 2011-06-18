@@ -197,6 +197,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transmission part with id {0} already exists.
+        /// </summary>
+        internal static string TransmissionPartCollection_Add_TransmissionPartExists {
+            get {
+                return ResourceManager.GetString("TransmissionPartCollection_Add_TransmissionPartExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TransmissionParts must be of type ITransmissionPart.
         /// </summary>
         internal static string TransmissionPartSettings_ThrowExceptionIfTypeIsNotITransmissionPart {

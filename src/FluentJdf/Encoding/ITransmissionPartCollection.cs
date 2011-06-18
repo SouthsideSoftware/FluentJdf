@@ -8,7 +8,7 @@ namespace FluentJdf.Encoding
     /// <summary>
     /// A collection of transmission parts indexed by id.
     /// </summary>
-    public interface ITransmissionPartCollection : IDisposable, IEnumerable<ITransmissionPart>
+    public interface ITransmissionPartCollection : IDisposable, ICollection<ITransmissionPart>
     {
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Xml.Linq;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf
 {
@@ -18,7 +19,7 @@ namespace FluentJdf.LinqToJdf
         ///<returns></returns>
         public static bool IsEmpty(this XAttribute source)
         {
-            Contract.Requires(source != null);
+            ParameterCheck.ParameterRequired(source, "source");
 
             return String.IsNullOrEmpty(source.Value);
         }
@@ -31,8 +32,8 @@ namespace FluentJdf.LinqToJdf
         /// <returns>The string value of the attribute or null if it does not exist.</returns>
         public static string GetAttributeValueOrNull(this XElement element, XName attributeName)
         {
-            Contract.Requires(element != null);
-            Contract.Requires(attributeName != null);
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(attributeName, "attributeName");
 
             if (element.Attribute(attributeName) == null) return null;
             return element.Attribute(attributeName).Value;
@@ -46,8 +47,8 @@ namespace FluentJdf.LinqToJdf
         /// <returns>The string value of the attribute or empty string if it does not exist.</returns>
         public static string GetAttributeValueOrEmpty(this XElement element, XName attributeName)
         {
-            Contract.Requires(element != null);
-            Contract.Requires(attributeName != null);
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(attributeName, "attributeName");
 
             if (element.Attribute(attributeName) == null) return string.Empty;
             return element.Attribute(attributeName).Value;
@@ -61,8 +62,8 @@ namespace FluentJdf.LinqToJdf
         /// <returns>The double value of the attribute or null if it does not exist or cannot be parsed to a double.</returns>
         public static double? GetAttributeValueAsDoubleOrNull(this XElement element, XName attributeName)
         {
-            Contract.Requires(element != null);
-            Contract.Requires(attributeName != null);
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(attributeName, "attributeName");
 
             var doubleString = element.GetAttributeValueOrNull(attributeName);
             if (doubleString == null) return null;
@@ -79,8 +80,8 @@ namespace FluentJdf.LinqToJdf
         /// <returns>The int value of the attribute or null if it does not exist or cannot be parsed to an int.</returns>
         public static int? GetAttributeValueAsIntOrNull(this XElement element, XName attributeName)
         {
-            Contract.Requires(element != null);
-            Contract.Requires(attributeName != null);
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(attributeName, "attributeName");
 
             var intString = element.GetAttributeValueOrNull(attributeName);
             if (intString == null) return null;
@@ -97,8 +98,8 @@ namespace FluentJdf.LinqToJdf
         /// <param name="name">The name of the attribute to find</param>
         public static IEnumerable<XAttribute> GetAttributesByAttributeName<T>(this IEnumerable<T> source, XName name) where T : XNode
         {
-            Contract.Requires(source != null);
-            Contract.Requires(name != null);
+            ParameterCheck.ParameterRequired(source, "source");
+            ParameterCheck.ParameterRequired(name, "name");
 
             IEnumerable<XElement> item = (from t in
                                               ((IEnumerable<XElement>)source).Where(n => n.Attributes().Where(a => a.Name == name).Count() > 0)
@@ -116,8 +117,8 @@ namespace FluentJdf.LinqToJdf
         /// <remarks></remarks>
         public static XElement AddOrReplaceAttribute(this XElement source, XAttribute newAttr)
         {
-            Contract.Requires(source != null);
-            Contract.Requires(newAttr != null);
+            ParameterCheck.ParameterRequired(source, "source");
+            ParameterCheck.ParameterRequired(newAttr, "newAttr");
 
             var foundAttr = source.Attributes(newAttr.Name.LocalName).FirstOrDefault();
             if (foundAttr != null)
@@ -137,8 +138,8 @@ namespace FluentJdf.LinqToJdf
         /// found either, returns null.</returns>
         public static string GetSpanAttributeActualPreferredOrNull(this XElement source, string attributeName)
         {
-            Contract.Requires(source != null);
-            Contract.Requires(attributeName != null);
+            ParameterCheck.ParameterRequired(source, "source");
+            ParameterCheck.ParameterRequired(attributeName, "attributeName");
 
             return GetSpanAttributeActualPreferredOrNull(source,
                                                          XName.Get(attributeName, Globals.Namespace.ToString()));
@@ -153,8 +154,8 @@ namespace FluentJdf.LinqToJdf
         /// found either, returns null.</returns>
         public static string GetSpanAttributeActualPreferredOrNull(this XElement source, XName attributeName)
         {
-            Contract.Requires(source != null);
-            Contract.Requires(attributeName != null);
+            ParameterCheck.ParameterRequired(source, "source");
+            ParameterCheck.ParameterRequired(attributeName, "attributeName");
 
             return source.Descendants(attributeName).FirstOrDefault().GetActualPreferredOrNull();
         }
@@ -166,7 +167,7 @@ namespace FluentJdf.LinqToJdf
         /// <returns></returns>
         public static string GetActualPreferredOrNull(this XElement source)
         {
-            Contract.Requires(source != null);
+            ParameterCheck.ParameterRequired(source, "source");
 
             return source == null
                        ? null
