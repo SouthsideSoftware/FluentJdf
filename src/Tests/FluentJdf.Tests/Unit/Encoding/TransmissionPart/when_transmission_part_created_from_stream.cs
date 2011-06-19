@@ -1,3 +1,4 @@
+using System.IO;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Testing;
 using Machine.Specifications;
@@ -6,8 +7,11 @@ namespace FluentJdf.Tests.Unit.Encoding.TransmissionPart {
     [Subject(typeof(FluentJdf.Encoding.TransmissionPart))]
     public class when_transmission_part_created_from_stream {
         static FluentJdf.Encoding.TransmissionPart transmissionPart;
+        static Stream stream;
 
-        Because of = () => transmissionPart = new FluentJdf.Encoding.TransmissionPart(TestDataHelper.Instance.GetTestStream("signs.jpg"), "signs.jpg", "signs.jpg".MimeType());
+        Establish context = () => stream = TestDataHelper.Instance.GetTestStream("signs.jpg");
+
+        Because of = () => transmissionPart = new FluentJdf.Encoding.TransmissionPart(stream, "signs.jpg", "signs.jpg".MimeType());
 
         It should_have_mime_type_for_jpg = () => transmissionPart.MimeType.ShouldEqual(".jpg".MimeType());
 

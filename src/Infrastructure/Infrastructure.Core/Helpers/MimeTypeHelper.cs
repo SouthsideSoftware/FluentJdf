@@ -57,6 +57,36 @@ namespace Infrastructure.Core.Helpers
         public const string XmlExtension = ".xml";
 
         /// <summary>
+        /// Extension for PNG files.
+        /// </summary>
+        public const string PngExtension = ".png";
+
+        /// <summary>
+        /// PNG mime type
+        /// </summary>
+        public const string PngMimeType = "image/png";
+
+        /// <summary>
+        /// JPEG extension
+        /// </summary>
+        public const string JpegExtension = ".jpg";
+
+        /// <summary>
+        /// JPEG mime type
+        /// </summary>
+        public const string JpegMimeType = "image/jpeg";
+
+        /// <summary>
+        /// GIF extension.
+        /// </summary>
+        public const string GifExtension = ".gif";
+
+        /// <summary>
+        /// GIF mime type.
+        /// </summary>
+        public const string GifMimeType = "image/gif";
+
+        /// <summary>
         /// Gets the standard extension for mime where the first part if JDF
         /// </summary>
         public const string MimeJdfFirstPartExtension = ".mjd";

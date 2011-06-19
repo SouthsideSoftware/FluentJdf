@@ -51,8 +51,9 @@ namespace FluentJdf.Encoding
             ParameterCheck.ParameterRequired(stream, "stream");
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
-            transmissionPartFactory.CreateTransmissionPart(name, stream, mimeType, id);
-            return null;
+            var transmissionPartCollection = new TransmissionPartCollection();
+            transmissionPartCollection.Add(transmissionPartFactory.CreateTransmissionPart(name, stream, mimeType, id));
+            return transmissionPartCollection;
         }
     }
 }
