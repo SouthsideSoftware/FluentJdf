@@ -4,11 +4,11 @@
     /// </summary>
     public class Library {
         static readonly Library settings = new Library();
-        readonly JdfAuthoringSettings jdfAuthoringSettings;
         readonly EncodingSettings encodingSettings;
+        readonly HttpTransmissionSettings httpTransmissionSettings;
+        readonly JdfAuthoringSettings jdfAuthoringSettings;
         readonly TransmissionPartSettings transmissionPartSettings;
         readonly TransmitterSettings transmitterSettings;
-        readonly HttpTransmissionSettings httpTransmissionSettings;
 
         Library() {
             jdfAuthoringSettings = new JdfAuthoringSettings();
@@ -24,6 +24,13 @@
         /// </summary>
         public static Library Settings {
             get { return settings; }
+        }
+
+        /// <summary>
+        /// Gets the http transmission settings.
+        /// </summary>
+        public HttpTransmissionSettings HttpTransmissionSettings {
+            get { return httpTransmissionSettings; }
         }
 
         /// <summary>
@@ -43,12 +50,16 @@
         /// <summary>
         /// Gets the transmitter settings.
         /// </summary>
-        public TransmitterSettings TransmitterSettings { get { return transmitterSettings; } }
+        public TransmitterSettings TransmitterSettings {
+            get { return transmitterSettings; }
+        }
 
         /// <summary>
         /// Gets the encoding settings.
         /// </summary>
-        public EncodingSettings EncodingSettings { get { return encodingSettings; }} 
+        public EncodingSettings EncodingSettings {
+            get { return encodingSettings; }
+        }
 
         /// <summary>
         /// Make all settings default.

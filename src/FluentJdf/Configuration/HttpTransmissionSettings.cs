@@ -60,5 +60,15 @@ namespace FluentJdf.Configuration
         /// be bypassed for local requests.
         /// </summary>
         public bool BypassProxyOnLocal { get; internal set; }
+
+        /// <summary>
+        /// Gets flag indicating whether or not there are proxy settings configured.
+        /// </summary>
+        public bool HasProxySettings { get { return !string.IsNullOrWhiteSpace(ProxyUrl); } }
+
+        /// <summary>
+        /// Gets flag indicating whether or not the proxy has credentials.
+        /// </summary>
+        public bool HasProxyCredentials { get { return HasProxySettings && !string.IsNullOrWhiteSpace(ProxyUserName); } }
     }
 }
