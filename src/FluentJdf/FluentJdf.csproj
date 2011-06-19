@@ -100,6 +100,8 @@
   <ItemGroup>
     <Compile Include="Configuration\EncodingSettings.cs" />
     <Compile Include="Configuration\EncodingSettingsBuilder.cs" />
+    <Compile Include="Configuration\HttpTransmissionSettings.cs" />
+    <Compile Include="Configuration\HttpTransmissionSettingsBuilder.cs" />
     <Compile Include="Configuration\JdfAuthoringSettings.cs" />
     <Compile Include="Configuration\JdfAuthoringSettingsBuilder.cs" />
     <Compile Include="Configuration\TransmissionPartSettings.cs" />
@@ -150,7 +152,7 @@
     <Compile Include="LinqToJdf\XNameExtension.cs" />
     <Compile Include="LinqToJdf\XPathDecorator.cs" />
     <Compile Include="LinqToJdf\XPathExtensions.cs" />
-    <Compile Include="Messaging\Result.cs" />
+    <Compile Include="Messaging\JmfResult.cs" />
     <Compile Include="Messaging\ReturnCode.cs" />
     <Compile Include="Properties\CommonAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,10 +165,11 @@
     <Compile Include="Schema\ValidationMessage.cs" />
     <Compile Include="Schema\ValidationMessageType.cs" />
     <Compile Include="Schema\Validator.cs" />
+    <Compile Include="Transmission\HttpTransmitter.cs" />
     <Compile Include="Transmission\ITransmitter.cs" />
     <Compile Include="Transmission\ITransmitterFactory.cs" />
     <Compile Include="Transmission\TransmitterFactory.cs" />
-    <Compile Include="Messaging\IResult.cs" />
+    <Compile Include="Messaging\IJmfResult.cs" />
     <Compile Include="Utility\StringHelper.cs" />
     <Compile Include="Utility\UniqueGenerator.cs" />
   </ItemGroup>

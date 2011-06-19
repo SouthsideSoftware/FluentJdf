@@ -1,17 +1,16 @@
 ﻿using FluentJdf.Encoding;
-using FluentJdf.Messaging;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.Utility {
+namespace FluentJdf.Messaging {
     /// <summary>
     /// The result of a JMF message.
     /// </summary>
-    public class Result : IResult {
+    public class JmfResult : IJmfResult {
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="transmissionPartCollection"></param>
-        public Result(ITransmissionPartCollection transmissionPartCollection) {
+        public JmfResult(ITransmissionPartCollection transmissionPartCollection) {
             ParameterCheck.ParameterRequired(transmissionPartCollection, "transmissionPartCollection");
 
             TransmissionPartCollection = transmissionPartCollection;

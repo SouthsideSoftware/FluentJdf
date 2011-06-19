@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentJdf.Encoding;
-using FluentJdf.Messaging;
+﻿using FluentJdf.Encoding;
 
-namespace FluentJdf.Utility
+namespace FluentJdf.Messaging
 {
     /// <summary>
     /// The result of a JMF message transmission.
     /// </summary>
-    public interface IResult
+    public interface IJmfResult
     {
         /// <summary>
         /// The collection of parts associated with the response.

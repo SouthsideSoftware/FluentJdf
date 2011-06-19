@@ -180,4 +180,7 @@
 	<data name="TransmissionPartCollection_Add_TransmissionPartExists">
 		<value xml:space="preserve">Transmission part with id {0} already exists</value>
 	</data>
+	<data name="HttpTransmissionSettingsBuilder_TimeoutInSeconds_MustNotBeLessThanZero">
+		<value xml:space="preserve">Timeout in seconds must not be less than zero unless set to Timeout.Infinite</value>
+	</data>
 </root>

@@ -133,6 +133,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Timeout in seconds must not be less than zero unless set to Timeout.Infinite.
+        /// </summary>
+        internal static string HttpTransmissionSettingsBuilder_TimeoutInSeconds_MustNotBeLessThanZero {
+            get {
+                return ResourceManager.GetString("HttpTransmissionSettingsBuilder_TimeoutInSeconds_MustNotBeLessThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find resource with id {0} and could not create it because name was not provided.
         /// </summary>
         internal static string JdfElementExtensions_LinkResource_CouldNotFindResourceWithGivenIdAndNameWasNotProvided {

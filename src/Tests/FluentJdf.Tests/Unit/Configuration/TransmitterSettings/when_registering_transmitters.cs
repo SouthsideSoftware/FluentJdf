@@ -1,6 +1,7 @@
 using System;
 using FluentJdf.Configuration;
 using FluentJdf.Encoding;
+using FluentJdf.Messaging;
 using FluentJdf.Tests.Unit.Configuration.TransmissionPartSettings;
 using FluentJdf.Transmission;
 using Infrastructure.Core.Result;
@@ -24,11 +25,11 @@ namespace FluentJdf.Tests.Unit.Configuration.TransmitterSettings {
     }
 
     public class MockTransmitter : ITransmitter {
-        public ResultOf<ITransmissionPartCollection> Transmit(Uri uri, ITransmissionPartCollection partsToSend) {
+        public IJmfResult Transmit(Uri uri, ITransmissionPartCollection partsToSend) {
             throw new NotImplementedException();
         }
 
-        public ResultOf<ITransmissionPartCollection> Transmit(string uri, ITransmissionPartCollection partsToSend) {
+        public IJmfResult Transmit(string uri, ITransmissionPartCollection partsToSend) {
             throw new NotImplementedException();
         }
     }

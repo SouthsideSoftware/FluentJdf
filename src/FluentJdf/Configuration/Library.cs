@@ -8,12 +8,14 @@
         readonly EncodingSettings encodingSettings;
         readonly TransmissionPartSettings transmissionPartSettings;
         readonly TransmitterSettings transmitterSettings;
+        readonly HttpTransmissionSettings httpTransmissionSettings;
 
         Library() {
             jdfAuthoringSettings = new JdfAuthoringSettings();
             encodingSettings = new EncodingSettings();
             transmissionPartSettings = new TransmissionPartSettings();
             transmitterSettings = new TransmitterSettings();
+            httpTransmissionSettings = new HttpTransmissionSettings();
             ResetToDefaults();
         }
 
@@ -57,6 +59,7 @@
             encodingSettings.ResetToDefault();
             transmissionPartSettings.ResetToDefault();
             transmitterSettings.ResetToDefault();
+            httpTransmissionSettings.ResetToDefaults();
             return this;
         }
 
@@ -90,6 +93,14 @@
         /// <returns></returns>
         public EncodingSettingsBuilder WithEncodingSettings() {
             return new EncodingSettingsBuilder(this, encodingSettings);
+        }
+
+        /// <summary>
+        /// Gets the http transmission settings builder.
+        /// </summary>
+        /// <returns></returns>
+        public HttpTransmissionSettingsBuilder WithHttpTransmissionSettings() {
+            return new HttpTransmissionSettingsBuilder(this, httpTransmissionSettings);
         }
     }
 }
