@@ -151,6 +151,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HttpTransmitter failed to transmit {0} because of unexpected exception.
+        /// </summary>
+        internal static string HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException {
+            get {
+                return ResourceManager.GetString("HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HTTP transmitter only works with http urls.
         /// </summary>
         internal static string HttpTransmitter_Transmit_RequiresHttpUrl {

@@ -189,4 +189,7 @@
 	<data name="HttpTransmitter_Transmit_RequiresHttpUrl">
 		<value xml:space="preserve">HTTP transmitter only works with http urls</value>
 	</data>
+	<data name="HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException">
+		<value xml:space="preserve">HttpTransmitter failed to transmit {0} because of unexpected exception</value>
+	</data>
 </root>

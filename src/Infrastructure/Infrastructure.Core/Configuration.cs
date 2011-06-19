@@ -10,7 +10,6 @@ namespace Infrastructure.Core {
     /// </summary>
     public class Configuration {
         static ILog logger;
-
         static Configuration settings = new Configuration();
 
         /// <summary>

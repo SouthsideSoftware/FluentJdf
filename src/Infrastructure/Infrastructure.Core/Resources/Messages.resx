@@ -180,4 +180,10 @@
 	<data name="MimeParser_ParseBoundary_InvalidMultipart">
 		<value xml:space="preserve">Invalid multipart</value>
 	</data>
+	<data name="LogInitializer_HookUnhandledExceptionEvents_UnhandledException">
+		<value xml:space="preserve">Unhandled exception</value>
+	</data>
+	<data name="LogInitializer_HookUnhandledExceptionEvents_Unhandled_UnknownException">
+		<value xml:space="preserve">Unhandled exception.  Actual exception is not known.</value>
+	</data>
 </root>

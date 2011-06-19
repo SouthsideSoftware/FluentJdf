@@ -8,14 +8,16 @@ using FluentJdf.Encoding;
 using FluentJdf.Messaging;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
+using Infrastructure.Core.Logging;
 
 namespace FluentJdf.Transmission
 {
     /// <summary>
     /// Transmit JDF over HTTP and collect a response.
     /// </summary>
-    public class HttpTransmitter : ITransmitter
-    {
+    public class HttpTransmitter : ITransmitter {
+        static ILog logger = LogManager.GetLogger(typeof (HttpTransmitter));
+
         readonly IEncodingFactory encodingfactory;
 
         /// <summary>
@@ -44,9 +46,15 @@ namespace FluentJdf.Transmission
                 throw new PreconditionException(Messages.HttpTransmitter_Transmit_RequiresHttpUrl);
             }
 
-            return null;
+            try {
+                var encodingResult = encodingfactory.GetEncodingForTransmissionParts(partsToSend);
+            } catch (Exception err) {
+                logger.Error(string.Format(Messages.HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException, uri), err);
+                throw;
+            }
 
-            //var encodingResult = encodingfactory.
+            //todo: finish implementation
+            return null;
         }
 
         /// <summary>

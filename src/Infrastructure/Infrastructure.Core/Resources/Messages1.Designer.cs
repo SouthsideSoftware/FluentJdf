@@ -61,6 +61,24 @@ namespace Infrastructure.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unhandled exception.  Actual exception is not known..
+        /// </summary>
+        public static string LogInitializer_HookUnhandledExceptionEvents_Unhandled_UnknownException {
+            get {
+                return ResourceManager.GetString("LogInitializer_HookUnhandledExceptionEvents_Unhandled_UnknownException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled exception.
+        /// </summary>
+        public static string LogInitializer_HookUnhandledExceptionEvents_UnhandledException {
+            get {
+                return ResourceManager.GetString("LogInitializer_HookUnhandledExceptionEvents_UnhandledException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not delete mime buffer file {0}.
         /// </summary>
         public static string Mime_Dispose_CouldNoDeleteMimeBufferFile {
