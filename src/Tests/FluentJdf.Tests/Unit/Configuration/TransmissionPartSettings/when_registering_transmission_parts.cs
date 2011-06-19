@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using FluentJdf.Configuration;
 using FluentJdf.Encoding;
 using Machine.Specifications;
@@ -28,31 +26,5 @@ namespace FluentJdf.Tests.Unit.Configuration.TransmissionPartSettings {
                                                                  Library.Settings.TransmissionPartSettings.TransmissionPartsByMimeType["boohoo"].
                                                                      ShouldEqual(typeof (MockTransmissionPart).FullName);
                                                              };
-    }
-
-    public class MockTransmissionPart : ITransmissionPart {
-        public void Dispose() {
-            throw new NotImplementedException();
-        }
-
-        public Stream CopyOfStream() {
-            throw new NotImplementedException();
-        }
-
-        public string Name {
-            get { throw new NotImplementedException(); }
-        }
-
-        public string Id {
-            get { throw new NotImplementedException(); }
-        }
-
-        public string MimeType {
-            get { throw new NotImplementedException(); }
-        }
-
-        public void Initialize(string name, Stream stream, string mimeType, string id) {
-            throw new NotImplementedException();
-        }
     }
 }

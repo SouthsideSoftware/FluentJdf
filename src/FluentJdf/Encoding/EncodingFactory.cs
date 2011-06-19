@@ -44,5 +44,20 @@ namespace FluentJdf.Encoding
         public IEncoding GetDefaultEncodingForMultiPart() {
             return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Library.Settings.EncodingSettings.DefaultMultiPartEncoding.FullName);
         }
+
+        /// <summary>
+        /// Gets the encoder for the given transmission part collection.
+        /// </summary>
+        /// <param name="transmissionPartCollection"></param>
+        /// <returns></returns>
+        public IEncoding GetEncodingForTransmissionParts(ITransmissionPartCollection transmissionPartCollection) {
+            ParameterCheck.ParameterRequired(transmissionPartCollection, "transmissionPartCollection");
+            
+            if (transmissionPartCollection.Count > 1) {
+                return GetDefaultEncodingForMultiPart();
+            }
+
+            return GetDefaultEncodingForSinglePart();
+        }
     }
 }

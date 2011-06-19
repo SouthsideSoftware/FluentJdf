@@ -142,6 +142,24 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to At least one transmission part is required for transmission..
+        /// </summary>
+        internal static string HttpTransmitter_Transmit_AtLeastOneTransmissionPartIsRequired {
+            get {
+                return ResourceManager.GetString("HttpTransmitter_Transmit_AtLeastOneTransmissionPartIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTTP transmitter only works with http urls.
+        /// </summary>
+        internal static string HttpTransmitter_Transmit_RequiresHttpUrl {
+            get {
+                return ResourceManager.GetString("HttpTransmitter_Transmit_RequiresHttpUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find resource with id {0} and could not create it because name was not provided.
         /// </summary>
         internal static string JdfElementExtensions_LinkResource_CouldNotFindResourceWithGivenIdAndNameWasNotProvided {

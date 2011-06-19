@@ -183,4 +183,10 @@
 	<data name="HttpTransmissionSettingsBuilder_TimeoutInSeconds_MustNotBeLessThanZero">
 		<value xml:space="preserve">Timeout in seconds must not be less than zero unless set to Timeout.Infinite</value>
 	</data>
+	<data name="HttpTransmitter_Transmit_AtLeastOneTransmissionPartIsRequired">
+		<value xml:space="preserve">At least one transmission part is required for transmission.</value>
+	</data>
+	<data name="HttpTransmitter_Transmit_RequiresHttpUrl">
+		<value xml:space="preserve">HTTP transmitter only works with http urls</value>
+	</data>
 </root>

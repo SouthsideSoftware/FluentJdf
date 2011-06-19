@@ -29,5 +29,12 @@ namespace FluentJdf.Encoding
         /// </summary>
         /// <returns></returns>
         IEncoding GetDefaultEncodingForMultiPart();
+
+        /// <summary>
+        /// Gets the encoder for the given transmission part collection.
+        /// </summary>
+        /// <param name="transmissionPartCollection"></param>
+        /// <returns></returns>
+        IEncoding GetEncodingForTransmissionParts(ITransmissionPartCollection transmissionPartCollection);
     }
 }
