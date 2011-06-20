@@ -17,6 +17,7 @@ namespace FluentJdf.Transmission
     /// </summary>
     public class HttpTransmitter : ITransmitter {
         static ILog logger = LogManager.GetLogger(typeof (HttpTransmitter));
+        IHttpWebRequestFactory httpWebRequestFactory;
 
         readonly IEncodingFactory encodingfactory;
 
@@ -24,10 +25,13 @@ namespace FluentJdf.Transmission
         /// Constructor.
         /// </summary>
         /// <param name="encodingfactory"></param>
-        public HttpTransmitter(IEncodingFactory encodingfactory) {
+        /// <param name="httpWebRequestFactory"></param>
+        public HttpTransmitter(IEncodingFactory encodingfactory, IHttpWebRequestFactory httpWebRequestFactory) {
             ParameterCheck.ParameterRequired(encodingfactory, "encodingfactory");
+            ParameterCheck.ParameterRequired(httpWebRequestFactory, "httpWebRequestFactory");
 
             this.encodingfactory = encodingfactory;
+            this.httpWebRequestFactory = httpWebRequestFactory;
         }
 
         /// <summary>
@@ -67,56 +71,6 @@ namespace FluentJdf.Transmission
             ParameterCheck.StringRequiredAndNotWhitespace(uri, "uri");
 
             return Transmit(new Uri(uri), partsToSend);
-        }
-
-        /// <summary>
-        /// Initialize the web request
-        /// </summary>
-        /// <param name="uri">The request URL</param>
-        /// <param name="contentType">The content type of the request.</param>
-        /// <returns>The web request.</returns>
-        protected HttpWebRequest InitializeWebRequest(Uri uri, string contentType)
-        {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(uri);
-            var settings = Library.Settings.HttpTransmissionSettings;
-            if (settings.HasProxySettings)
-            {
-                NetworkCredential credentials = null;
-                if (settings.HasProxyCredentials)
-                {
-                    if (!string.IsNullOrWhiteSpace(settings.ProxyDomain))
-                    {
-                        credentials = new NetworkCredential(settings.ProxyUserName, settings.ProxyPassword, settings.ProxyDomain);
-                    }
-                    else
-                    {
-                        credentials = new NetworkCredential(settings.ProxyUserName, settings.ProxyPassword);
-                    }
-                }
-
-                WebProxy proxy = null;
-                if (credentials != null)
-                {
-                    proxy = new WebProxy(settings.ProxyUrl, settings.BypassProxyOnLocal, null, credentials);
-                }
-                else
-                {
-                    proxy = new WebProxy(settings.ProxyUrl, settings.BypassProxyOnLocal);
-                }
-                request.Proxy = proxy;
-            }
-            request.Timeout = settings.TimeoutInSeconds*1000;
-            if (contentType != null && contentType.IndexOf(";") > 0)
-            {
-                request.ContentType = contentType.Substring(0, contentType.IndexOf(";"));
-            }
-            else
-            {
-                request.ContentType = contentType;
-            }
-            request.Method = "POST";
-
-            return request;
         }
     }
 }

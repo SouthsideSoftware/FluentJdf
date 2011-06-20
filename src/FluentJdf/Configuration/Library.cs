@@ -71,6 +71,7 @@
             transmissionPartSettings.ResetToDefault();
             transmitterSettings.ResetToDefault();
             httpTransmissionSettings.ResetToDefaults();
+            Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
             return this;
         }
 

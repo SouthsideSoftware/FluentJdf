@@ -125,6 +125,8 @@
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_jdf_xml.cs" />
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_jmf_xml.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartCollection\when_adding_transmission_parts_to_a_transmission_part_collection.cs" />
+    <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_default_configuration.cs" />
+    <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_non_default_configuration.cs" />
     <Compile Include="Unit\Transmission\when_creating_transmitters_from_some_registered_schemes.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartFactory\when_creating_transmission_parts.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartFactory\when_creating_transmission_parts_by_mime_type_with_some_registered.cs" />

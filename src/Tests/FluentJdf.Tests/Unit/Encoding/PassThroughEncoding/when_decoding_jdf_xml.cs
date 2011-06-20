@@ -1,5 +1,6 @@
 using System.IO;
 using System.Linq;
+using FluentJdf.Configuration;
 using FluentJdf.Encoding;
 using FluentJdf.LinqToJdf;
 using Infrastructure.Core.Helpers;
@@ -13,11 +14,12 @@ namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding {
         static Stream stream;
 
         Establish context = () => {
-                                stream =
-                                    new FluentJdf.Encoding.XmlTransmissionPart(Ticket.Create().AddNode().Intent().Element.Document, "test").
-                                        CopyOfStream();
-                                originalStreamLength = stream.Length;
-                            };
+            Library.Settings.ResetToDefaults();
+            stream =
+                new FluentJdf.Encoding.XmlTransmissionPart(Ticket.Create().AddNode().Intent().Element.Document, "test").
+                    CopyOfStream();
+            originalStreamLength = stream.Length;
+        };
 
         Because of = () => transmissionPartCollection =
                            new FluentJdf.Encoding.PassThroughEncoding().Decode("test", stream,
@@ -29,9 +31,9 @@ namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding {
         It should_have_a_xml_transmission_part_in_collection =
             () => transmissionPartCollection.First().ShouldBe(typeof (FluentJdf.Encoding.XmlTransmissionPart));
 
-        It should_have_one_part_in_the_collection = () => transmissionPartCollection.Count.ShouldEqual(1);
-
         It should_have_jdf_mime_type_in_transmission_part =
             () => transmissionPartCollection.First().MimeType.ShouldEqual(MimeTypeHelper.JdfMimeType);
+
+        It should_have_one_part_in_the_collection = () => transmissionPartCollection.Count.ShouldEqual(1);
     }
 }

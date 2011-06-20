@@ -1,4 +1,5 @@
-﻿using FluentJdf.Configuration;
+﻿using System;
+using FluentJdf.Configuration;
 using Infrastructure.Container.CastleWindsor;
 using Infrastructure.Logging.NLog;
 using Machine.Specifications;

@@ -72,24 +72,25 @@ namespace Infrastructure.Core {
         public void Configure() {
             LogInitializer.Initialize();
             try {
-                foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
-                    try {
-                        foreach (Type t in assembly.GetTypes()) {
-                            if (typeof (IComponentInstaller).IsAssignableFrom(t) && t.IsClass && !t.IsAbstract &&
-                                t.IsPublic) {
-                                (Activator.CreateInstance(t) as IComponentInstaller).Install(serviceLocator);
-                            }
-                        }
-                    }
-                    catch (ReflectionTypeLoadException tle) {
-                        Logger.ErrorFormat(
-                            "Failed to load types from assembly {0}.  Details will follow this message.  The exception is {1}",
-                            assembly.FullName, tle);
-                        foreach (Exception e in tle.LoaderExceptions) {
-                            Logger.ErrorFormat("\tLoader Error: {0}", e.Message);
-                        }
-                    }
-                }
+                //todo:  good idea to load assemblies but not really complete yet
+                //foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
+                //    try {
+                //        foreach (Type t in assembly.GetTypes()) {
+                //            if (typeof (IComponentInstaller).IsAssignableFrom(t) && t.IsClass && !t.IsAbstract &&
+                //                t.IsPublic) {
+                //                (Activator.CreateInstance(t) as IComponentInstaller).Install(serviceLocator);
+                //            }
+                //        }
+                //    }
+                //    catch (ReflectionTypeLoadException tle) {
+                //        Logger.ErrorFormat(
+                //            "Failed to load types from assembly {0}.  Details will follow this message.  The exception is {1}",
+                //            assembly.FullName, tle);
+                //        foreach (Exception e in tle.LoaderExceptions) {
+                //            Logger.ErrorFormat("\tLoader Error: {0}", e.Message);
+                //        }
+                //    }
+                //}
                 serviceLocator.NativelyRegisterComponentsAndPlugins();
                 serviceLocator.LogRegisteredComponents();
             }
