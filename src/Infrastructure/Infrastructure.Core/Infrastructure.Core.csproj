@@ -61,7 +61,6 @@
     <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Logging\NullLog.cs" />
     <Compile Include="Logging\NullLogProvider.cs" />
-    <Compile Include="Logging\UnhandledExceptionHandler.cs" />
     <Compile Include="Mime\Mime.cs" />
     <Compile Include="Mime\MimeBasicPart.cs" />
     <Compile Include="Mime\MimeBodyPart.cs" />
