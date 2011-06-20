@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <appender name="A1" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="elk-press.log" />
+        <param name="MaxFileSize" value="500KB" />
+        <param name="MaxBackupIndex" value="10" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p [%c] %m%n" />
+            <!-- Pattern for debugging. Warning: Degrades performace!
+                <param name="ConversionPattern" value="%d %5p [%t] {%C.%M:%L} - %m%n"/> 
+            -->
+        </layout>
+    </appender>
+
+    <appender name="A2" class="org.apache.log4j.ConsoleAppender">
+        
+        <!-- 
+        <layout class="org.apache.log4j.SimpleLayout" />
+         -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p [%c{1}] %m%n" />
+        </layout>
+        
+    </appender>
+
+    <!--
+        <appender name="A3" class="org.apache.log4j.net.SocketAppender">
+        <param name="RemoteHost" value="localhost"/>
+        <param name="Port" value="4445"/>
+        </appender>
+    -->
+
+    <category name="org.cip4.elk">
+        <priority value="INFO" />
+    </category>
+    <category name="org.cip4.elk.impl.process.state">
+        <priority value="DEBUG" />
+    </category>
+    <category name="org.cip4.elk.impl.process">
+        <priority value="DEBUG" />
+    </category>
+    <category name="org.cip4.elk.impl.subscriptions.AsyncSimpleSubscriptionManager">
+        <priority value="DEBUG" />
+    </category>
+    <category name="org.cip4.elk.impl.queue">
+        <priority value="DEBUG" />
+    </category>
+    <category name="org.springframework">
+        <priority value="INFO" />
+    </category>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="A1"/>
+        <appender-ref ref="A2" />
+    </root>
+
+
+</log4j:configuration>

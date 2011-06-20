@@ -5,31 +5,20 @@ namespace FluentJdf.LinqToJdf {
     /// <summary>
     /// Factory for creating intent nodes.
     /// </summary>
-    public class JmfNodeBuilder : NodeBuilderBase {
-        internal JmfNodeBuilder(XContainer initiator) {
-            ParameterCheck.ParameterRequired(initiator, "initiator");
+    public class JmfNodeBuilder : JmfNodeBuilderBase {
+        internal JmfNodeBuilder(Message message) {
+            ParameterCheck.ParameterRequired(message, "message");
 
             Element = new XElement(LinqToJdf.Element.JMF);
-            initiator.Add(Element);
-            if (Element.GetJdfParentOrNull() != null)
-            {
-                ParentJdfNode = new JdfNodeBuilder(Element.JdfParent());
-            }
-        }
-        
-        internal JmfNodeBuilder(XElement node) : base(node) {
-            ParameterCheck.ParameterRequired(node, "node");
-            node.ThrowExceptionIfNotJmfElement();
+            message.Add(Element);
         }
 
         /// <summary>
-        /// Validate the JDF
+        /// Add a command.
         /// </summary>
-        /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        public new JmfNodeBuilder ValidateJdf(bool addSchemaInfo = true) {
-            Element.ValidateJdf(addSchemaInfo);
-            return this;
+        public JmfCommandTypeBuilder AddCommand() {
+            return new JmfCommandTypeBuilder(this);
         }
     }
 }

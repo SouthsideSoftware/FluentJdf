@@ -14,10 +14,10 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.XElementExtensions
     {
         It should_get_jdf_mime_type_from_jdf_node = () => Ticket.Create().AddNode().Intent().Element.MimeType().ShouldEqual(MimeTypeHelper.JdfMimeType);
 
-        It should_get_jmf_mime_type_from_jmf_node = () => Ticket.Create().AddNode().Message().Element.MimeType().ShouldEqual(MimeTypeHelper.JmfMimeType);
+        It should_get_jmf_mime_type_from_jmf_node = () => Message.Create().Element.MimeType().ShouldEqual(MimeTypeHelper.JmfMimeType);
 
         It should_get_other_mime_type_from_other_node_in_jmf = () => {
-                                                                   var message = Ticket.Create().AddNode().Message().Element;
+                                                                   var message = Message.Create().Element;
                                                                    var otherElement = new XElement("other");
                                                                    message.Add(otherElement);
                                                                    otherElement.MimeType().ShouldEqual(MimeTypeHelper.XmlMimeType);

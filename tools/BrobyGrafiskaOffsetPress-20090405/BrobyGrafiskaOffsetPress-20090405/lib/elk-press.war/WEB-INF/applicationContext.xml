@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+    default-init-method="init" default-destroy-method="destroy">
+
+    <!--///// Elk Configuration Properties /////////////////////////-->
+
+    <bean id="deviceID" class="java.lang.String" scope="singleton">
+        <constructor-arg value="${device.id}" />
+    </bean>
+    <bean id="deviceSpeed" class="java.lang.Integer" scope="singleton">
+        <constructor-arg value="${device.speed}" />
+    </bean>
+    <bean id="queueSize" class="java.lang.Integer" scope="singleton">
+        <constructor-arg value="${queue.size}" />
+    </bean>
+    <bean id="typeExpression" class="java.lang.String" scope="singleton">
+        <constructor-arg value="${type.expression}" />
+    </bean>
+    <bean id="jmfUrl" class="java.net.URL" scope="singleton">
+        <constructor-arg value="${jmf.url}" />
+    </bean>
+    <bean id="baseUrl" class="java.net.URL" scope="singleton">
+        <constructor-arg value="${public.base.url}" />
+    </bean>
+    <bean id="baseDir" class="java.io.File" scope="singleton">
+        <constructor-arg value="${public.base.dir}" />
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_NEVER" />
+        <!-- <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/> -->
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="locations">
+            <!-- Configuration file from which the properties are loaded -->
+            <list>
+                <!-- File in the user dir overrides the one in the classpath root -->
+                <value>classpath:elk.properties</value>
+                <value>file:elk.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--///// Elk Components /////////////////////////-->
+
+    <bean id="deviceConfig" class="org.cip4.elk.impl.device.DeviceConfigImpl" scope="singleton">
+        <property name="agentName" value="Elk Press" />
+        <property name="agentVersion" value="2.0" />
+        <property name="deviceID" ref="deviceID" />
+        <property name="senderID" ref="deviceID" />
+        <property name="JMFURL" ref="jmfUrl" />
+        <property name="publicBaseDir" ref="baseDir" />
+        <property name="publicBaseURL" ref="baseUrl" />
+        <property name="deviceContext" ref="deviceContext" />
+    </bean>
+
+    <bean id="deviceContext" class="org.cip4.elk.impl.device.DeviceContextImpl" scope="singleton">
+        <property name="deviceConfig" ref="deviceConfig" />
+        <property name="subscriptionManager" ref="subscriptionManager" />
+        <property name="incomingJMFDispatcher" ref="incomingDispatcher" />
+        <property name="outgoingJMFDispatcher" ref="outgoingDispatcher" />
+        <property name="queue" ref="queue" />
+        <property name="process" ref="process" />
+    </bean>
+
+    <bean id="fileService" class="org.cip4.elk.impl.util.FileService" scope="singleton">
+        <constructor-arg ref="baseDir" />
+        <constructor-arg ref="baseUrl" />
+    </bean>
+
+    <bean id="queue" class="org.cip4.elk.impl.queue.QueueImpl" scope="singleton">
+        <constructor-arg ref="queueSize" index="0" />
+        <constructor-arg ref="deviceID" index="1" />
+        <constructor-arg ref="nodeSelector" index="2" />
+        <constructor-arg ref="process" index="3" />
+        <property name="queueStatusListeners">
+            <list value-type="org.cip4.elk.queue.QueueStatusListener">
+                <ref bean="subscriptionManager" />
+            </list>
+        </property>
+        <property name="queueEntryStatusListeners">
+            <list value-type="org.cip4.elk.queue.QueueEntryStatusListener">
+                <ref bean="returnQueueEntrySender" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="nodeSelector" class="org.cip4.elk.device.process.RegexJDFNodeSelector" scope="singleton">
+        <constructor-arg ref="typeExpression" />
+    </bean>
+
+    <bean id="process" class="org.cip4.elk.impl.device.process.ConventionalPrintingSimulation">
+        <constructor-arg ref="deviceSpeed" />
+        <constructor-arg ref="nodeSelector" />
+        <constructor-arg ref="deviceConfig" />
+        <property name="processStatusEventListeners">
+            <list value-type="org.cip4.elk.device.process.ProcessStatusEventListener">
+                <ref bean="subscriptionManager" />
+            </list>
+        </property>
+        <property name="resourceEventListeners">
+            <list value-type="org.cip4.elk.device.process.ResourceEventListener">
+                <ref bean="subscriptionManager" />
+            </list>
+        </property>
+        <property name="jobStatusEventListeners">
+            <list value-type="org.cip4.elk.device.process.JobStatusEventListener">
+                <ref bean="subscriptionManager" />
+            </list>
+        </property>
+    </bean>
+
+    <!--///// JMF Messaging /////////////////////////-->
+
+    <bean id="subscriptionManager" class="org.cip4.elk.impl.subscriptions.AsyncSimpleSubscriptionManager"
+        scope="singleton">
+        <constructor-arg index="0">
+            <ref bean="outgoingDispatcher" />
+        </constructor-arg>
+        <constructor-arg index="1">
+            <ref bean="deviceConfig" />
+        </constructor-arg>
+        <constructor-arg index="2">
+            <map>
+                <entry key="org.cip4.elk.queue.QueueStatusEvent">
+                    <value>QueueStatus</value>
+                </entry>
+                <entry key="org.cip4.elk.device.process.ProcessStatusEvent">
+                    <value>Status</value>
+                </entry>
+                <entry key="org.cip4.elk.device.process.ResourceEvent">
+                    <value>Resource</value>
+                </entry>
+            </map>
+        </constructor-arg>
+        <constructor-arg index="3">
+            <list>
+                <value>Events</value>
+                <value>KnownDevices</value>
+                <value>KnownMessages</value>
+                <value>QueueStatus</value>
+                <value>Status</value>
+                <value>Resource</value>
+                <value>SubmissionMethods</value>
+            </list>
+        </constructor-arg>
+        <property name="incomingDispatcher">
+            <ref bean="incomingDispatcher" />
+        </property>
+    </bean>
+
+    <bean id="returnQueueEntrySender" class="org.cip4.elk.impl.jmf.ReturnQueueEntrySender" scope="singleton">
+        <constructor-arg index="0">
+            <ref bean="deviceContext" />
+        </constructor-arg>
+        <constructor-arg index="1">
+            <ref bean="fileService" />
+        </constructor-arg>
+        <constructor-arg index="2">
+            <ref bean="nodeSelector" />
+        </constructor-arg>
+    </bean>
+
+    <bean id="submitQueueEntryProcessor" class="org.cip4.elk.impl.queue.jmf.SubmitQueueEntryJMFProcessor"
+        scope="singleton">
+        <constructor-arg index="0">
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+    <bean id="statusProcessor" class="org.cip4.elk.impl.device.jmf.StatusJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="deviceConfig" />
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+    <bean id="queueStatusProcessor" class="org.cip4.elk.impl.queue.jmf.QueueStatusJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+    <bean id="closeQueueProcessor" class="org.cip4.elk.impl.queue.jmf.CloseQueueJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+    <bean id="openQueueProcessor" class="org.cip4.elk.impl.queue.jmf.OpenQueueJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+    <bean id="removeQueueEntryProcessor" class="org.cip4.elk.impl.queue.jmf.RemoveQueueEntryJMFProcessor"
+        scope="singleton">
+        <constructor-arg>
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+    <bean id="holdQueueProcessor" class="org.cip4.elk.impl.queue.jmf.HoldQueueJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+    <bean id="resumeQueueProcessor" class="org.cip4.elk.impl.queue.jmf.ResumeQueueJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+    <bean id="knownMessagesProcessor" class="org.cip4.elk.impl.jmf.KnownMessagesJMFProcessor" scope="singleton">
+        <property name="incomingJMFDispatcher">
+            <ref bean="incomingDispatcher" />
+        </property>
+    </bean>
+    <bean id="knownDevicesProcessor" class="org.cip4.elk.impl.jmf.KnownDevicesJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="deviceConfig" />
+        </constructor-arg>
+    </bean>
+    <bean id="submissionMethodsProcessor" class="org.cip4.elk.impl.jmf.SubmissionMethodsJMFProcessor"
+        scope="singleton">
+        <constructor-arg>
+            <ref bean="deviceConfig" />
+        </constructor-arg>
+    </bean>
+    <bean id="abortQueueEntryProcessor" class="org.cip4.elk.impl.queue.jmf.AbortQueueEntryJMFProcessor"
+        scope="singleton">
+        <constructor-arg index="0">
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+    <bean id="eventsProcessor" class="org.cip4.elk.impl.jmf.EventsJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="subscriptionManager" />
+        </constructor-arg>
+    </bean>
+    <bean id="stopPersChProcessor" class="org.cip4.elk.impl.jmf.StopPersistentChannelJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="subscriptionManager" />
+        </constructor-arg>
+    </bean>
+    <bean id="notImplementedProcessor" class="org.cip4.elk.impl.jmf.NotImplementedJMFProcessor" scope="singleton" />
+
+    <bean id="resourceProcessor" class="org.cip4.elk.impl.jmf.ResourceJMFProcessor" scope="singleton">
+        <constructor-arg>
+            <ref bean="deviceConfig" />
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="queue" />
+        </constructor-arg>
+    </bean>
+
+    <bean id="incomingDispatcher" class="org.cip4.elk.impl.jmf.SubscribingIncomingJMFDispatcher" scope="singleton">
+        <constructor-arg>
+            <ref bean="deviceConfig" />
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="subscriptionManager" />
+        </constructor-arg>
+        <property name="processors">
+            <map>
+                <entry key="default">
+                    <ref bean="notImplementedProcessor" />
+                </entry>
+                <entry key="StopPersistentChannel">
+                    <ref bean="stopPersChProcessor" />
+                </entry>
+                <entry key="SubmitQueueEntry">
+                    <ref bean="submitQueueEntryProcessor" />
+                </entry>
+                <entry key="QueueStatus">
+                    <ref bean="queueStatusProcessor" />
+                </entry>
+                <entry key="KnownMessages">
+                    <ref bean="knownMessagesProcessor" />
+                </entry>
+                <entry key="KnownDevices">
+                    <ref bean="knownDevicesProcessor" />
+                </entry>
+                <entry key="Status">
+                    <ref bean="statusProcessor" />
+                </entry>
+                <entry key="RemoveQueueEntry">
+                    <ref bean="removeQueueEntryProcessor" />
+                </entry>
+                <entry key="CloseQueue">
+                    <ref bean="closeQueueProcessor" />
+                </entry>
+                <entry key="OpenQueue">
+                    <ref bean="openQueueProcessor" />
+                </entry>
+                <entry key="Events">
+                    <ref bean="eventsProcessor" />
+                </entry>
+                <entry key="HoldQueue">
+                    <ref bean="holdQueueProcessor" />
+                </entry>
+                <entry key="ResumeQueue">
+                    <ref bean="resumeQueueProcessor" />
+                </entry>
+                <entry key="SubmissionMethods">
+                    <ref bean="submissionMethodsProcessor" />
+                </entry>
+                <entry key="AbortQueueEntry">
+                    <ref bean="abortQueueEntryProcessor" />
+                </entry>
+                <entry key="Resource">
+                    <ref bean="resourceProcessor" />
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="outgoingDispatcher" class="org.cip4.elk.impl.jmf.AsyncHttpOutgoingJMFDispatcher" scope="singleton">
+        <constructor-arg>
+            <ref bean="deviceConfig" />
+        </constructor-arg>
+    </bean>
+
+    <!--///// JMX /////////////////////////-->
+
+    <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+        <property name="beans">
+            <map>
+                <entry key="bean:name=DeviceConfig" value-ref="deviceConfig" />
+                <entry key="bean:name=Process" value-ref="process" />
+                <entry key="bean:name=Queue" value-ref="queue" />
+                <entry key="bean:name=DeviceContext" value-ref="deviceContext" />
+                <entry key="bean:name=IncomingJMFDispatcher" value-ref="incomingDispatcher" />
+                <entry key="bean:name=SubscriptionManager" value-ref="subscriptionManager" />
+            </map>
+        </property>
+    </bean>
+
+</beans>

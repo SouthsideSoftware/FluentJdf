@@ -188,6 +188,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can only add JMF as root element.  Root element {0} already exists.
+        /// </summary>
+        internal static string JmfElementExtensions_AddJmfElement_JMFMustBeRoot {
+            get {
+                return ResourceManager.GetString("JmfElementExtensions_AddJmfElement_JMFMustBeRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can only operate on JMF nodes.  The name is {0}..
         /// </summary>
         internal static string JmfElementExtensions_ThrowExceptionIfNotJmfElement_CanOnlyOperateOnJmfNodes {
@@ -220,6 +229,15 @@ namespace FluentJdf.Resources {
         internal static string ResourceExtensions_Resource_ResourceWithIdCannotBeFound {
             get {
                 return ResourceManager.GetString("ResourceExtensions_Resource_ResourceWithIdCannotBeFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to transmit ticket to {0}.
+        /// </summary>
+        internal static string Ticket_Transmit_Failed {
+            get {
+                return ResourceManager.GetString("Ticket_Transmit_Failed", resourceCulture);
             }
         }
         

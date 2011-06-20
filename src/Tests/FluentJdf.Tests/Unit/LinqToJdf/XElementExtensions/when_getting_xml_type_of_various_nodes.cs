@@ -9,10 +9,10 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.XElementExtensions {
     public class when_getting_xml_type_of_various_nodes {
         It should_get_jdf_xml_type_from_jdf_node = () => Ticket.Create().AddNode().Intent().Element.XmlType().ShouldEqual(XmlType.Jdf);
 
-        It should_get_jmf_xml_type_from_jmf_node = () => Ticket.Create().AddNode().Message().Element.XmlType().ShouldEqual(XmlType.Jmf);
+        It should_get_jmf_xml_type_from_jmf_node = () => Message.Create().Element.XmlType().ShouldEqual(XmlType.Jmf);
 
         It should_get_other_xml_type_from_other_node_in_jmf = () => {
-                                                                   var message = Ticket.Create().AddNode().Message().Element;
+                                                                   var message = Message.Create().Element;
                                                                    var otherElement = new XElement("other");
                                                                    message.Add(otherElement);
                                                                    otherElement.XmlType().ShouldEqual(XmlType.Other);

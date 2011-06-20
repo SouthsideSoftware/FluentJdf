@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JDF Activation="Active" DescriptiveName="Interface Brochure"
+  ICSVersions="Base_L1-1.0 MIS_L1-1.0 MISPRE_L1-1.0" ID="ORDER_2409"
+  JobID="LS2409" JobPartID="2409" MaxVersion="1.2"
+  ProjectID="Interface Brochure" Status="Waiting" Type="Product" Version="1.2"
+  xmlns="http://www.CIP4.org/JDFSchema_1_1" xmlns:SSi="//SSiJDFExtensions.xsd"
+  xmlns:agfa="http://www.agfa.com/w3c/gs/jdf/agfaextensions.xsd"
+  xmlns:agfadelano="http://www.agfa.com/w3c/gs/jdf/agfadelano.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <AuditPool>
+    <Created AgentName="Order Management" AgentVersion="2.10.22"
+      Author="Technique Group" ID="AP01" TimeStamp="2008-02-07T14:03:21+00:00"/>
+  </AuditPool>
+  <CustomerInfo CustomerID="10000102" CustomerJobName="Interface Brochure"
+    CustomerOrderID="1" agfadelano:MisID="10000102">
+    <Contact ContactTypes="Customer">
+      <Company OrganizationName="Technique Group"/>
+      <Address City="Leeds" Country="United Kingdom" CountryCode="GB"
+        PostalCode="LS11 8LZ" Region="West Yorkshire" Street="Turing House"/>
+      <ComChannel ChannelType="Phone" ChannelTypeDetails="LandLine"
+        ChannelUsage="Business" Locator="0113 383 6000"/>
+      <ComChannel ChannelType="Fax" ChannelUsage="Business"
+        Locator="0113 383 6010"/>
+      <ComChannel ChannelType="WWW" ChannelUsage="Business"
+        Locator="www.technique.co.uk"/>
+      <Person FamilyName="Shepherd" FirstName="Heidi" JobTitle="Print Buyer"
+        NamePrefix="Ms.">
+        <ComChannel ChannelType="Phone" ChannelTypeDetails="LandLine"
+          ChannelUsage="Business" Locator="0113 383 6000"/>
+        <ComChannel ChannelType="Fax" ChannelUsage="Business"
+          Locator="0113 383 6010"/>
+      </Person>
+    </Contact>
+  </CustomerInfo>
+  <JDF DescriptiveName="4pp Cover" ID="CMPNT_2409_01" JobPartID="2409_01"
+    Status="Ready" Type="Product">
+    <JDF DescriptiveName="4ppCover" ID="PCS_CVP_LS2409-001"
+      JobPartID="PCS_CVP_LS2409-001" Status="Waiting" Type="ProcessGroup"
+      Types="InkZoneCalculation ConventionalPrinting">
+      <ResourceLinkPool>
+        <ConventionalPrintingParamsLink Usage="Input" rRef="CVP_LS2409-001"/>
+        <DeviceLink Usage="Input" rRef="PRESS_0063"/>
+        <ColorantControlLink Usage="Input" rRef="COLORANT_CONTROL">
+          <Part SignatureName="LS2409-001"/>
+        </ColorantControlLink>
+        <ExposedMediaLink ProcessUsage="Plate" Usage="Input"
+          rRef="EXPOSED_MEDIA">
+          <Part SheetName="Sheet01" SignatureName="LS2409-001"/>
+        </ExposedMediaLink>
+        <LayoutLink Usage="Input" rRef="LAYOUT_01"/>
+        <MediaLink Amount="0" Usage="Input" rRef="PAPER_000000"/>
+        <PreviewLink Usage="Input" rRef="PREVIEW">
+          <Part SheetName="Sheet01" SignatureName="LS2409-001"/>
+        </PreviewLink>
+        <ComponentLink Usage="Output" rRef="PARTREF_CVP_LS2409-001">
+          <Part SheetName="Sheet01" SignatureName="LS2409-001"/>
+          <AmountPool>
+            <PartAmount Amount="3187">
+              <Part Condition="Good" SheetName="Sheet01"
+                SignatureName="LS2409-001"/>
+            </PartAmount>
+            <PartAmount Amount="12388">
+              <Part Condition="Waste" SheetName="Sheet01"
+                SignatureName="LS2409-001"/>
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+      </ResourceLinkPool>
+      <ResourcePool>
+        <ConventionalPrintingParams Class="Parameter" ID="CVP_LS2409-001"
+          PrintingType="SheetFed" Status="Available" WorkStyle="WorkAndBack"/>
+      </ResourcePool>
+    </JDF>
+    <JDF Category="PrePress" DescriptiveName="LS2409 4pp Cover"
+      ID="PRE_PRESS_01" JobID="LS2409" JobPartID="LS2409-1" Status="Waiting"
+      Type="ProcessGroup">
+      <JDF Category="ImpositionPreparation"
+        DescriptiveName="Imposition Preparation for 4pp Cover" ID="IMP_PREP_01"
+        JobPartID="IMP_PREP_01" Status="Waiting" Type="ProcessGroup"
+        Types="ImpositionPreparation">
+        <ResourceLinkPool>
+          <StrippingParamsLink Usage="Input" rRef="STRIP_01"/>
+          <AssemblyLink Usage="Input" rRef="ASSEMBLY_01"/>
+          <LayoutLink Usage="Output" rRef="LAYOUT_01"/>
+          <RunListLink ProcessUsage="Marks" Usage="Output"
+            rRef="RUNLIST_MARKS_01"/>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="PrePressPreparation"
+        DescriptiveName="Pre-press Preparation for 4pp Cover" ID="PRE_PREP_01"
+        JobPartID="PRE_PREP_01" Status="Waiting" Type="ProcessGroup"
+        Types="PrePressPreparation DigitalDelivery Preflight Approval">
+        <ResourceLinkPool>
+          <RunListLink CombinedProcessIndex="0 1" Usage="Input"
+            rRef="RUNLIST_CONTENT_01"/>
+          <RunListLink CombinedProcessIndex="0 3" ProcessUsage="Document"
+            Usage="Output" rRef="RUNLIST_DOCUMENT_01"/>
+          <RunListLink CombinedProcessIndex="2" ProcessUsage="Document"
+            Usage="Output" rRef="RUNLIST_PREFLIGHT_01"/>
+          <DigitalDeliveryParamsLink CombinedProcessIndex="1" Usage="Input"
+            rRef="DIG_DEL_01"/>
+          <ApprovalSuccessLink CombinedProcessIndex="3" Usage="Output"
+            rRef="APPROVAL_01"/>
+        </ResourceLinkPool>
+        <ResourcePool>
+          <ApprovalSuccess Class="Parameter"
+            DescriptiveName="Approval for 4pp Cover" ID="APPROVAL_01"
+            Status="Unavailable"/>
+          <DigitalDeliveryParams Class="Parameter" ID="DIG_DEL_01"
+            Status="Available" agfadelano:ThumbnailGeneration="true"/>
+          <RunList Class="Parameter" ID="RUNLIST_PREFLIGHT_01" NPage="4"
+            Status="Unavailable"/>
+        </ResourcePool>
+      </JDF>
+      <JDF Category="FinalImaging" DescriptiveName="Final Imaging for 4pp Cover"
+        ID="RIP_01" JobPartID="RIP_01" Status="Waiting" Type="ProcessGroup"
+        Types="Imposition RIPing PreviewGeneration ImageSetting">
+        <NodeInfo End="2008-02-07T12:53:33+00:00"
+          LastEnd="2008-02-07T12:53:33+00:00"/>
+        <ResourceLinkPool>
+          <RunListLink ProcessUsage="Document" Usage="Input"
+            rRef="RUNLIST_DOCUMENT_01"/>
+          <RunListLink ProcessUsage="Marks" Usage="Input"
+            rRef="RUNLIST_MARKS_01"/>
+          <LayoutLink Usage="Input" rRef="LAYOUT_01"/>
+          <ColorantControlLink Usage="Input" rRef="COLORANT_CONTROL">
+            <Part SignatureName="LS2409-001"/>
+          </ColorantControlLink>
+          <InterpretingParamsLink Usage="Input" rRef="PARAMS_01"/>
+          <MediaLink Usage="Input" rRef="PLATE_000000"/>
+          <DeviceLink Usage="Input" rRef="SETTER_0000"/>
+          <ExposedMediaLink Amount="1" Usage="Output" rRef="EXPOSED_MEDIA">
+            <Part SheetName="Sheet01" SignatureName="LS2409-001"/>
+          </ExposedMediaLink>
+          <PreviewLink Usage="Output" rRef="PREVIEW">
+            <Part SheetName="Sheet01" SignatureName="LS2409-001"/>
+          </PreviewLink>
+        </ResourceLinkPool>
+        <ResourcePool/>
+      </JDF>
+      <ResourceLinkPool/>
+      <ResourcePool>
+        <Assembly BindingSide="Left" Class="Parameter" ID="ASSEMBLY_01"
+          Order="Collecting" Status="Available"/>
+        <BinderySignature Class="Parameter" FoldCatalog="F4-1" ID="LS2409-001"
+          NumberUp="2 1" Status="Available"/>
+        <InterpretingParams Class="Parameter" ID="PARAMS_01" Status="Available">
+          <MediaRef rRef="PAPER_000000"/>
+        </InterpretingParams>
+        <RunList Class="Parameter" ID="RUNLIST_DOCUMENT_01" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RUNLIST_MARKS_01" Status="Unavailable"/>
+        <StrippingParams Class="Parameter" ID="STRIP_01"
+          PartIDKeys="SignatureName SheetName" Status="Available">
+          <StrippingParams SignatureName="LS2409-001" WorkStyle="WorkAndBack">
+            <StrippingParams SheetName="Sheet01" agfa:RoughRelativeBox="true">
+              <StripCellParams Spine="0" TrimFace="0" TrimFoot="0" TrimHead="0"
+                TrimSize="595.275590551181 841.889763779528"/>
+              <DeviceRef rRef="PRESS_0063"/>
+              <MediaRef rRef="PLATE_000000"/>
+              <BinderySignatureRef rRef="LS2409-001"/>
+              <Position
+                RelativeBox="0.00000000 0.50000000 0.50000000 1.00000000"/>
+              <Position
+                RelativeBox="0.50000000 0.50000000 1.00000000 1.00000000"/>
+              <Position
+                RelativeBox="0.00000000 0.00000000 0.50000000 0.50000000"/>
+              <Position
+                RelativeBox="0.50000000 0.00000000 1.00000000 0.50000000"/>
+            </StrippingParams>
+          </StrippingParams>
+        </StrippingParams>
+      </ResourcePool>
+    </JDF>
+    <ResourceLinkPool>
+      <ComponentLink Usage="Output" rRef="PARTREF_SIG_LS2409-001"/>
+      <BindingIntentLink Usage="Input" rRef="BIND_INTENT_00"/>
+      <ArtDeliveryIntentLink Usage="Input" rRef="ARTDLVRY_INTENT_01"/>
+      <LayoutIntentLink Usage="Input" rRef="LAYOUT_INTENT_01"/>
+      <MediaIntentLink Usage="Input" rRef="MEDIA_INTENT_01"/>
+      <ColorIntentLink Usage="Input" rRef="COLOR_INTENT_01"/>
+    </ResourceLinkPool>
+    <ResourcePool>
+      <ArtDeliveryIntent Class="Intent" ID="ARTDLVRY_INTENT_01"
+        Status="Available">
+        <ArtDelivery ArtDeliveryType="DigitalNetwork">
+          <RunListRef rRef="RUNLIST_CONTENT_01"/>
+        </ArtDelivery>
+      </ArtDeliveryIntent>
+      <ColorIntent Class="Intent" ID="COLOR_INTENT_01" PartIDKeys="Side"
+        Status="Available">
+        <ColorPoolRef rRef="COLOR_POOL"/>
+        <ColorIntent Side="Front">
+          <ColorsUsed>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+          </ColorsUsed>
+        </ColorIntent>
+        <ColorIntent Side="Back">
+          <ColorsUsed>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+          </ColorsUsed>
+        </ColorIntent>
+      </ColorIntent>
+      <Component Class="Quantity" ComponentType="PartialProduct"
+        DescriptiveName="4ppCover" ID="PARTREF_CVP_LS2409-001"
+        PartIDKeys="SignatureName SheetName Condition" Status="Unavailable">
+        <LayoutRef rRef="LAYOUT_01"/>
+        <Component SignatureName="LS2409-001">
+          <Component SheetName="Sheet01">
+            <Component Condition="Good" IsWaste="false"/>
+            <Component Condition="Waste" IsWaste="true"/>
+          </Component>
+        </Component>
+      </Component>
+      <Component Class="Quantity" ComponentType="PartialProduct"
+        DescriptiveName="4ppCover" ID="PARTREF_SIG_LS2409-001"
+        ProductType="Cover" Status="Unavailable"/>
+      <Layout Class="Parameter" ID="LAYOUT_01" Name="Layout 4pp Cover"
+        Status="Available">
+        <Signature Name="LS2409-001">
+          <Sheet Name="Sheet01">
+            <MediaRef rRef="PAPER_000000"/>
+            <Surface Side="Front"/>
+            <Surface Side="Back"/>
+          </Sheet>
+        </Signature>
+      </Layout>
+      <LayoutIntent Class="Intent" ID="LAYOUT_INTENT_01" Status="Available">
+        <FinishedDimensions Actual="595.275590551181 841.889763779528 0"
+          DataType="ShapeSpan" Preferred="595.275590551181 841.889763779528 0"/>
+        <Pages Actual="4" DataType="IntegerSpan" Preferred="4"/>
+      </LayoutIntent>
+      <MediaIntent Class="Intent" ID="MEDIA_INTENT_01" Status="Available">
+        <Weight Actual="150" DataType="NumberSpan" Preferred="150"/>
+        <Thickness Actual="0.129999995231628" DataType="NumberSpan"
+          Preferred="0.129999995231628"/>
+      </MediaIntent>
+      <RunList Class="Parameter" ID="RUNLIST_CONTENT_01" NPage="4"
+        PartIDKeys="Run" Status="Available">
+        <RunList NPage="1" Run="0" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="C1"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="1" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="C2"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="2" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="C3"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="3" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="C4"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+      </RunList>
+    </ResourcePool>
+  </JDF>
+  <JDF DescriptiveName="24pp" ID="CMPNT_2409_02" JobPartID="2409_02"
+    Status="Ready" Type="Product">
+    <JDF DescriptiveName="16ppSection" ID="PCS_CVP_LS2409-002"
+      JobPartID="PCS_CVP_LS2409-002" Status="Waiting" Type="ProcessGroup"
+      Types="InkZoneCalculation ConventionalPrinting">
+      <ResourceLinkPool>
+        <ConventionalPrintingParamsLink Usage="Input" rRef="CVP_LS2409-002"/>
+        <DeviceLink Usage="Input" rRef="PRESS_0061"/>
+        <ColorantControlLink Usage="Input" rRef="COLORANT_CONTROL">
+          <Part SignatureName="LS2409-002"/>
+        </ColorantControlLink>
+        <ExposedMediaLink ProcessUsage="Plate" Usage="Input"
+          rRef="EXPOSED_MEDIA">
+          <Part SheetName="Sheet02" SignatureName="LS2409-002"/>
+        </ExposedMediaLink>
+        <LayoutLink Usage="Input" rRef="LAYOUT_02"/>
+        <MediaLink Amount="0" Usage="Input" rRef="PAPER_000000"/>
+        <PreviewLink Usage="Input" rRef="PREVIEW">
+          <Part SheetName="Sheet02" SignatureName="LS2409-002"/>
+        </PreviewLink>
+        <ComponentLink Usage="Output" rRef="PARTREF_CVP_LS2409-002">
+          <Part SheetName="Sheet02" SignatureName="LS2409-002"/>
+          <AmountPool>
+            <PartAmount Amount="63750">
+              <Part Condition="Good" SheetName="Sheet02"
+                SignatureName="LS2409-002"/>
+            </PartAmount>
+            <PartAmount Amount="34545">
+              <Part Condition="Waste" SheetName="Sheet02"
+                SignatureName="LS2409-002"/>
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+      </ResourceLinkPool>
+      <ResourcePool>
+        <ConventionalPrintingParams Class="Parameter" ID="CVP_LS2409-002"
+          PrintingType="WebFed" Status="Available" WorkStyle="Perfecting"/>
+      </ResourcePool>
+    </JDF>
+    <JDF DescriptiveName="8ppSection" ID="PCS_CVP_LS2409-003"
+      JobPartID="PCS_CVP_LS2409-003" Status="Waiting" Type="ProcessGroup"
+      Types="InkZoneCalculation ConventionalPrinting">
+      <ResourceLinkPool>
+        <ConventionalPrintingParamsLink Usage="Input" rRef="CVP_LS2409-003"/>
+        <DeviceLink Usage="Input" rRef="PRESS_0061"/>
+        <ColorantControlLink Usage="Input" rRef="COLORANT_CONTROL">
+          <Part SignatureName="LS2409-003"/>
+        </ColorantControlLink>
+        <ExposedMediaLink ProcessUsage="Plate" Usage="Input"
+          rRef="EXPOSED_MEDIA">
+          <Part SheetName="Sheet03" SignatureName="LS2409-003"/>
+        </ExposedMediaLink>
+        <LayoutLink Usage="Input" rRef="LAYOUT_02"/>
+        <MediaLink Amount="0" Usage="Input" rRef="PAPER_000000"/>
+        <PreviewLink Usage="Input" rRef="PREVIEW">
+          <Part SheetName="Sheet03" SignatureName="LS2409-003"/>
+        </PreviewLink>
+        <ComponentLink Usage="Output" rRef="PARTREF_CVP_LS2409-003">
+          <Part SheetName="Sheet03" SignatureName="LS2409-003"/>
+          <AmountPool>
+            <PartAmount Amount="63750">
+              <Part Condition="Good" SheetName="Sheet03"
+                SignatureName="LS2409-003"/>
+            </PartAmount>
+            <PartAmount Amount="34545">
+              <Part Condition="Waste" SheetName="Sheet03"
+                SignatureName="LS2409-003"/>
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+      </ResourceLinkPool>
+      <ResourcePool>
+        <ConventionalPrintingParams Class="Parameter" ID="CVP_LS2409-003"
+          PrintingType="WebFed" Status="Available" WorkStyle="Perfecting"/>
+      </ResourcePool>
+    </JDF>
+    <JDF Category="PrePress" DescriptiveName="LS2409 24pp" ID="PRE_PRESS_02"
+      JobID="LS2409" JobPartID="LS2409-2" Status="Waiting" Type="ProcessGroup">
+      <JDF Category="ImpositionPreparation"
+        DescriptiveName="Imposition Preparation for 24pp" ID="IMP_PREP_02"
+        JobPartID="IMP_PREP_02" Status="Waiting" Type="ProcessGroup"
+        Types="ImpositionPreparation">
+        <ResourceLinkPool>
+          <StrippingParamsLink Usage="Input" rRef="STRIP_02"/>
+          <AssemblyLink Usage="Input" rRef="ASSEMBLY_02"/>
+          <LayoutLink Usage="Output" rRef="LAYOUT_02"/>
+          <RunListLink ProcessUsage="Marks" Usage="Output"
+            rRef="RUNLIST_MARKS_02"/>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="PrePressPreparation"
+        DescriptiveName="Pre-press Preparation for 24pp" ID="PRE_PREP_02"
+        JobPartID="PRE_PREP_02" Status="Waiting" Type="ProcessGroup"
+        Types="PrePressPreparation DigitalDelivery Preflight Approval">
+        <ResourceLinkPool>
+          <RunListLink CombinedProcessIndex="0 1" Usage="Input"
+            rRef="RUNLIST_CONTENT_02"/>
+          <RunListLink CombinedProcessIndex="0 3" ProcessUsage="Document"
+            Usage="Output" rRef="RUNLIST_DOCUMENT_02"/>
+          <RunListLink CombinedProcessIndex="2" ProcessUsage="Document"
+            Usage="Output" rRef="RUNLIST_PREFLIGHT_02"/>
+          <DigitalDeliveryParamsLink CombinedProcessIndex="1" Usage="Input"
+            rRef="DIG_DEL_02"/>
+          <ApprovalSuccessLink CombinedProcessIndex="3" Usage="Output"
+            rRef="APPROVAL_02"/>
+        </ResourceLinkPool>
+        <ResourcePool>
+          <ApprovalSuccess Class="Parameter" DescriptiveName="Approval for 24pp"
+            ID="APPROVAL_02" Status="Unavailable"/>
+          <DigitalDeliveryParams Class="Parameter" ID="DIG_DEL_02"
+            Status="Available" agfadelano:ThumbnailGeneration="true"/>
+          <RunList Class="Parameter" ID="RUNLIST_PREFLIGHT_02" NPage="24"
+            Status="Unavailable"/>
+        </ResourcePool>
+      </JDF>
+      <JDF Category="FinalImaging" DescriptiveName="Final Imaging for 24pp"
+        ID="RIP_02" JobPartID="RIP_02" Status="Waiting" Type="ProcessGroup"
+        Types="Imposition RIPing PreviewGeneration ImageSetting">
+        <NodeInfo End="2008-02-07T12:53:33+00:00"
+          LastEnd="2008-02-07T12:53:33+00:00"/>
+        <ResourceLinkPool>
+          <RunListLink ProcessUsage="Document" Usage="Input"
+            rRef="RUNLIST_DOCUMENT_02"/>
+          <RunListLink ProcessUsage="Marks" Usage="Input"
+            rRef="RUNLIST_MARKS_02"/>
+          <LayoutLink Usage="Input" rRef="LAYOUT_02"/>
+          <ColorantControlLink Usage="Input" rRef="COLORANT_CONTROL">
+            <Part SignatureName="LS2409-002"/>
+            <Part SignatureName="LS2409-003"/>
+          </ColorantControlLink>
+          <InterpretingParamsLink Usage="Input" rRef="PARAMS_02"/>
+          <MediaLink Usage="Input" rRef="PLATE_000677"/>
+          <DeviceLink Usage="Input" rRef="SETTER_0000"/>
+          <DeviceLink Usage="Input" rRef="SETTER_0000"/>
+          <ExposedMediaLink Amount="1" Usage="Output" rRef="EXPOSED_MEDIA">
+            <Part SheetName="Sheet02" SignatureName="LS2409-002"/>
+            <Part SheetName="Sheet03" SignatureName="LS2409-003"/>
+          </ExposedMediaLink>
+          <PreviewLink Usage="Output" rRef="PREVIEW">
+            <Part SheetName="Sheet02" SignatureName="LS2409-002"/>
+            <Part SheetName="Sheet03" SignatureName="LS2409-003"/>
+          </PreviewLink>
+        </ResourceLinkPool>
+        <ResourcePool/>
+      </JDF>
+      <ResourceLinkPool/>
+      <ResourcePool>
+        <Assembly BindingSide="Left" Class="Parameter" ID="ASSEMBLY_02"
+          Order="Collecting" Status="Available"/>
+        <BinderySignature Class="Parameter" FoldCatalog="F16-7" ID="LS2409-002"
+          NumberUp="4 2" Status="Available"/>
+        <BinderySignature Class="Parameter" FoldCatalog="F8-7" ID="LS2409-003"
+          NumberUp="2 2" Status="Available"/>
+        <InterpretingParams Class="Parameter" ID="PARAMS_02" Status="Available">
+          <MediaRef rRef="PAPER_000000"/>
+        </InterpretingParams>
+        <RunList Class="Parameter" ID="RUNLIST_DOCUMENT_02" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RUNLIST_MARKS_02" Status="Unavailable"/>
+        <StrippingParams Class="Parameter" ID="STRIP_02"
+          PartIDKeys="SignatureName SheetName" Status="Available">
+          <StrippingParams SignatureName="LS2409-002" WorkStyle="Perfecting">
+            <StrippingParams SheetName="Sheet02" agfa:RoughRelativeBox="true">
+              <StripCellParams Spine="0" TrimFace="0" TrimFoot="0" TrimHead="0"
+                TrimSize="595.275590551181 841.889763779528"/>
+              <DeviceRef rRef="PRESS_0061"/>
+              <MediaRef rRef="PLATE_000677"/>
+              <BinderySignatureRef rRef="LS2409-002"/>
+              <Position
+                RelativeBox="0.00000000 0.00000000 1.00000000 1.00000000"/>
+            </StrippingParams>
+          </StrippingParams>
+          <StrippingParams SignatureName="LS2409-003" WorkStyle="Perfecting">
+            <StrippingParams SheetName="Sheet03" agfa:RoughRelativeBox="true">
+              <StripCellParams Spine="0" TrimFace="0" TrimFoot="0" TrimHead="0"
+                TrimSize="595.275590551181 841.889763779528"/>
+              <DeviceRef rRef="PRESS_0061"/>
+              <MediaRef rRef="PLATE_000677"/>
+              <BinderySignatureRef rRef="LS2409-003"/>
+              <Position
+                RelativeBox="0.00000000 0.00000000 0.50000000 1.00000000"/>
+              <Position
+                RelativeBox="0.50000000 0.00000000 1.00000000 1.00000000"/>
+            </StrippingParams>
+          </StrippingParams>
+        </StrippingParams>
+      </ResourcePool>
+    </JDF>
+    <ResourceLinkPool>
+      <ComponentLink Usage="Output" rRef="PARTREF_SIG_LS2409-002"/>
+      <ComponentLink Usage="Output" rRef="PARTREF_SIG_LS2409-003"/>
+      <BindingIntentLink Usage="Input" rRef="BIND_INTENT_00"/>
+      <ArtDeliveryIntentLink Usage="Input" rRef="ARTDLVRY_INTENT_02"/>
+      <LayoutIntentLink Usage="Input" rRef="LAYOUT_INTENT_02"/>
+      <MediaIntentLink Usage="Input" rRef="MEDIA_INTENT_02"/>
+      <ColorIntentLink Usage="Input" rRef="COLOR_INTENT_02"/>
+    </ResourceLinkPool>
+    <ResourcePool>
+      <ArtDeliveryIntent Class="Intent" ID="ARTDLVRY_INTENT_02"
+        Status="Available">
+        <ArtDelivery ArtDeliveryType="DigitalNetwork">
+          <RunListRef rRef="RUNLIST_CONTENT_02"/>
+        </ArtDelivery>
+      </ArtDeliveryIntent>
+      <ColorIntent Class="Intent" ID="COLOR_INTENT_02" PartIDKeys="Side"
+        Status="Available">
+        <ColorPoolRef rRef="COLOR_POOL"/>
+        <ColorIntent Side="Front">
+          <ColorsUsed>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+          </ColorsUsed>
+        </ColorIntent>
+        <ColorIntent Side="Back">
+          <ColorsUsed>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+          </ColorsUsed>
+        </ColorIntent>
+      </ColorIntent>
+      <Component Class="Quantity" ComponentType="PartialProduct"
+        DescriptiveName="16ppSection" ID="PARTREF_CVP_LS2409-002"
+        PartIDKeys="SignatureName SheetName Condition" Status="Unavailable">
+        <LayoutRef rRef="LAYOUT_02"/>
+        <Component SignatureName="LS2409-002">
+          <Component SheetName="Sheet02">
+            <Component Condition="Good" IsWaste="false"/>
+            <Component Condition="Waste" IsWaste="true"/>
+          </Component>
+        </Component>
+      </Component>
+      <Component Class="Quantity" ComponentType="PartialProduct"
+        DescriptiveName="8ppSection" ID="PARTREF_CVP_LS2409-003"
+        PartIDKeys="SignatureName SheetName Condition" Status="Unavailable">
+        <LayoutRef rRef="LAYOUT_02"/>
+        <Component SignatureName="LS2409-003">
+          <Component SheetName="Sheet03">
+            <Component Condition="Good" IsWaste="false"/>
+            <Component Condition="Waste" IsWaste="true"/>
+          </Component>
+        </Component>
+      </Component>
+      <Component Class="Quantity" ComponentType="PartialProduct"
+        DescriptiveName="16ppSection" ID="PARTREF_SIG_LS2409-002"
+        ProductType="Body" Status="Unavailable"/>
+      <Component Class="Quantity" ComponentType="PartialProduct"
+        DescriptiveName="8ppSection" ID="PARTREF_SIG_LS2409-003"
+        ProductType="Body" Status="Unavailable"/>
+      <Layout Class="Parameter" ID="LAYOUT_02" Name="Layout 24pp"
+        Status="Available">
+        <Signature Name="LS2409-002">
+          <Sheet Name="Sheet02">
+            <MediaRef rRef="PAPER_000000"/>
+            <Surface Side="Front"/>
+            <Surface Side="Back"/>
+          </Sheet>
+        </Signature>
+        <Signature Name="LS2409-003">
+          <Sheet Name="Sheet03">
+            <MediaRef rRef="PAPER_000000"/>
+            <Surface Side="Front"/>
+            <Surface Side="Back"/>
+          </Sheet>
+        </Signature>
+      </Layout>
+      <LayoutIntent Class="Intent" ID="LAYOUT_INTENT_02" Status="Available">
+        <FinishedDimensions Actual="595.275590551181 841.889763779528 0"
+          DataType="ShapeSpan" Preferred="595.275590551181 841.889763779528 0"/>
+        <Pages Actual="24" DataType="IntegerSpan" Preferred="24"/>
+      </LayoutIntent>
+      <MediaIntent Class="Intent" ID="MEDIA_INTENT_02" Status="Available">
+        <Weight Actual="60" DataType="NumberSpan" Preferred="60"/>
+        <Thickness Actual="5.49999997019768E-02" DataType="NumberSpan"
+          Preferred="5.49999997019768E-02"/>
+      </MediaIntent>
+      <RunList Class="Parameter" ID="RUNLIST_CONTENT_02" NPage="24"
+        PartIDKeys="Run" Status="Available">
+        <RunList NPage="1" Run="0" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="1"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="1" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="2"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="2" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="3"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="3" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="4"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="4" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="5"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="5" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="6"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="6" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="7"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="7" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="8"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="8" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="9"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="9" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="10"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="10" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="11"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="11" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="12"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="12" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="13"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="13" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="14"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="14" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="15"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="15" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="16"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="16" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="17"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="17" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="18"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="18" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="19"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="19" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="20"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="20" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="21"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="21" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="22"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="22" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="23"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+        <RunList NPage="1" Run="23" Status="Unavailable">
+          <LayoutElement>
+            <SeparationSpec Name="Cyan"/>
+            <SeparationSpec Name="Magenta"/>
+            <SeparationSpec Name="Yellow"/>
+            <SeparationSpec Name="Black"/>
+            <ColorPoolRef rRef="COLOR_POOL"/>
+            <PageList>
+              <PageData PageLabel="24"/>
+            </PageList>
+          </LayoutElement>
+        </RunList>
+      </RunList>
+    </ResourcePool>
+  </JDF>
+  <NodeInfo DueLevel="Penalty" End="2008-04-07T00:00:00+00:00"
+    LastEnd="2008-04-07T00:00:00+00:00">
+    <Employee PersonalID="7" Roles="CSR" agfadelano:MisID="7">
+      <Person Class="Parameter" FamilyName="Brooks" FirstName="Claire"/>
+    </Employee>
+    <JMF SenderID="Technique Connect" TimeStamp="2008-02-07T14:03:21+00:00"
+      Version="1.2" xmlns="http://www.CIP4.org/JDFSchema_1_1"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <Query ID="LS2409Q01" Type="Resource" xsi:type="QueryResource">
+        <Subscription
+          URL="http://jdf.technique-group.com/JDFConsumer/JMFListener.aspx"/>
+        <ResourceQuParams Exact="true" JobID="LS2409" Usage="Output"/>
+      </Query>
+      <Query ID="LS2409Q02" Type="Status" xsi:type="QueryStatus">
+        <Subscription
+          URL="http://jdf.technique-group.com/JDFConsumer/JMFListener.aspx"/>
+        <StatusQuParams DeviceDetails="Details" JobDetails="Brief"
+          JobID="LS2409" QueueInfo="false"/>
+      </Query>
+    </JMF>
+  </NodeInfo>
+  <ResourceLinkPool>
+    <ComponentLink Amount="50000" Usage="Output" rRef="PARTREF_FIN_LS2409-0000"/>
+    <BindingIntentLink Usage="Input" rRef="BIND_INTENT_00"/>
+  </ResourceLinkPool>
+  <ResourcePool>
+    <BindingIntent BindingOrder="Collecting" Class="Intent" ID="BIND_INTENT_00"
+      Status="Available">
+      <BindingType Actual="SaddleStitch" DataType="EnumerationSpan"
+        Preferred="SaddleStitch"/>
+      <SaddleStitching>
+        <StitchNumber Actual="2" DataType="IntegerSpan"/>
+      </SaddleStitching>
+    </BindingIntent>
+    <ColorPool Class="Parameter" DescriptiveName="Job Colors" ID="COLOR_POOL"
+      Status="Available">
+      <Color CMYK="1 0 0 0" Name="Cyan"/>
+      <Color CMYK="0 1 0 0" Name="Magenta"/>
+      <Color CMYK="0 0 1 0" Name="Yellow"/>
+      <Color CMYK="0 0 0 1" Name="Black"/>
+    </ColorPool>
+    <ColorantControl Class="Parameter" DescriptiveName="Colors of the job"
+      ID="COLORANT_CONTROL" PartIDKeys="SignatureName" PartUsage="Implicit"
+      Status="Available">
+      <ColorPoolRef rRef="COLOR_POOL"/>
+      <ColorantControl SignatureName="LS2409-001">
+        <ColorantParams>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="LS2409-002">
+        <ColorantParams>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="LS2409-003">
+        <ColorantParams>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+        </ColorantOrder>
+      </ColorantControl>
+    </ColorantControl>
+    <Component Class="Quantity" ComponentType="FinalProduct"
+      ID="PARTREF_FIN_LS2409-0000" Status="Unavailable"/>
+    <Device Class="Implementation" DescriptiveName="Komori 16pp" DeviceID="61"
+      FriendlyName="Komori 16pp" ID="PRESS_0061" Status="Available"/>
+    <Device Class="Implementation" DescriptiveName="Lithrone Sheetfed 5unit"
+      DeviceID="63" FriendlyName="Lithrone Sheetfed 5unit" ID="PRESS_0063"
+      Status="Available"/>
+    <Device Class="Implementation" DescriptiveName="Unknown Platesetter"
+      DeviceID="PlateSetterTIFF" FriendlyName="Unknown Platesetter"
+      ID="SETTER_0000" Status="Available"/>
+    <ExposedMedia Class="Handling" ID="EXPOSED_MEDIA"
+      PartIDKeys="SignatureName SheetName Side Separation" PartUsage="Explicit"
+      Status="Available">
+      <ExposedMedia SignatureName="LS2409-001">
+        <MediaRef rRef="PLATE_000000"/>
+        <ExposedMedia SheetName="Sheet01">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="001" Separation="Cyan"/>
+            <ExposedMedia ProductID="002" Separation="Magenta"/>
+            <ExposedMedia ProductID="003" Separation="Yellow"/>
+            <ExposedMedia ProductID="004" Separation="Black"/>
+          </ExposedMedia>
+          <ExposedMedia Side="Back">
+            <ExposedMedia ProductID="005" Separation="Cyan"/>
+            <ExposedMedia ProductID="006" Separation="Magenta"/>
+            <ExposedMedia ProductID="007" Separation="Yellow"/>
+            <ExposedMedia ProductID="008" Separation="Black"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="LS2409-002">
+        <MediaRef rRef="PLATE_000677"/>
+        <ExposedMedia SheetName="Sheet02">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="009" Separation="Cyan"/>
+            <ExposedMedia ProductID="010" Separation="Magenta"/>
+            <ExposedMedia ProductID="011" Separation="Yellow"/>
+            <ExposedMedia ProductID="012" Separation="Black"/>
+          </ExposedMedia>
+          <ExposedMedia Side="Back">
+            <ExposedMedia ProductID="013" Separation="Cyan"/>
+            <ExposedMedia ProductID="014" Separation="Magenta"/>
+            <ExposedMedia ProductID="015" Separation="Yellow"/>
+            <ExposedMedia ProductID="016" Separation="Black"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="LS2409-003">
+        <MediaRef rRef="PLATE_000677"/>
+        <ExposedMedia SheetName="Sheet03">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="017" Separation="Cyan"/>
+            <ExposedMedia ProductID="018" Separation="Magenta"/>
+            <ExposedMedia ProductID="019" Separation="Yellow"/>
+            <ExposedMedia ProductID="020" Separation="Black"/>
+          </ExposedMedia>
+          <ExposedMedia Side="Back">
+            <ExposedMedia ProductID="021" Separation="Cyan"/>
+            <ExposedMedia ProductID="022" Separation="Magenta"/>
+            <ExposedMedia ProductID="023" Separation="Yellow"/>
+            <ExposedMedia ProductID="024" Separation="Black"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+    </ExposedMedia>
+    <Media Brand="Unknown" Class="Consumable" DescriptiveName="Unknown Paper"
+      Grade="1" ID="PAPER_000000" MediaType="Paper" ProductID="UNKNOWN"
+      Status="Available"/>
+    <Media Brand="Unknown" Class="Consumable" DescriptiveName="Unknown Plate"
+      Dimension="3203 2571" ID="PLATE_000000" MediaType="Plate"
+      ProductID="UNKNOWN" Status="Available"/>
+    <Media Brand="Agfa" Class="Consumable" DescriptiveName="Agfa Plate 900x630"
+      Dimension="2551 1786" ID="PLATE_000677" MediaType="Plate"
+      ProductID="UNKNOWN" Status="Available"/>
+    <Preview Class="Parameter" DescriptiveName="Preview" ID="PREVIEW"
+      PartIDKeys="SignatureName SheetName Side Separation" PartUsage="Explicit"
+      PreviewUsage="Separation" Status="Available">
+      <Preview SignatureName="LS2409-001">
+        <Preview SheetName="Sheet01">
+          <Preview Side="Front">
+            <Preview ProductID="001" Separation="Cyan"/>
+            <Preview ProductID="002" Separation="Magenta"/>
+            <Preview ProductID="003" Separation="Yellow"/>
+            <Preview ProductID="004" Separation="Black"/>
+          </Preview>
+          <Preview Side="Back">
+            <Preview ProductID="005" Separation="Cyan"/>
+            <Preview ProductID="006" Separation="Magenta"/>
+            <Preview ProductID="007" Separation="Yellow"/>
+            <Preview ProductID="008" Separation="Black"/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="LS2409-002">
+        <Preview SheetName="Sheet02">
+          <Preview Side="Front">
+            <Preview ProductID="009" Separation="Cyan"/>
+            <Preview ProductID="010" Separation="Magenta"/>
+            <Preview ProductID="011" Separation="Yellow"/>
+            <Preview ProductID="012" Separation="Black"/>
+          </Preview>
+          <Preview Side="Back">
+            <Preview ProductID="013" Separation="Cyan"/>
+            <Preview ProductID="014" Separation="Magenta"/>
+            <Preview ProductID="015" Separation="Yellow"/>
+            <Preview ProductID="016" Separation="Black"/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="LS2409-003">
+        <Preview SheetName="Sheet03">
+          <Preview Side="Front">
+            <Preview ProductID="017" Separation="Cyan"/>
+            <Preview ProductID="018" Separation="Magenta"/>
+            <Preview ProductID="019" Separation="Yellow"/>
+            <Preview ProductID="020" Separation="Black"/>
+          </Preview>
+          <Preview Side="Back">
+            <Preview ProductID="021" Separation="Cyan"/>
+            <Preview ProductID="022" Separation="Magenta"/>
+            <Preview ProductID="023" Separation="Yellow"/>
+            <Preview ProductID="024" Separation="Black"/>
+          </Preview>
+        </Preview>
+      </Preview>
+    </Preview>
+  </ResourcePool>
+</JDF>

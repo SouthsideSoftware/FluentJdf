@@ -192,4 +192,10 @@
 	<data name="HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException">
 		<value xml:space="preserve">HttpTransmitter failed to transmit {0} because of unexpected exception</value>
 	</data>
+	<data name="Ticket_Transmit_Failed">
+		<value xml:space="preserve">Failed to transmit ticket to {0}</value>
+	</data>
+	<data name="JmfElementExtensions_AddJmfElement_JMFMustBeRoot">
+		<value xml:space="preserve">Can only add JMF as root element.  Root element {0} already exists</value>
+	</data>
 </root>

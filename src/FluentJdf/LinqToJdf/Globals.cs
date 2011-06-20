@@ -10,6 +10,7 @@ namespace FluentJdf.LinqToJdf
     /// </summary>
     public static class Globals
     {
+
         ///<summary>
         /// The XML namespace for JDF 1.1 and higher
         ///</summary>

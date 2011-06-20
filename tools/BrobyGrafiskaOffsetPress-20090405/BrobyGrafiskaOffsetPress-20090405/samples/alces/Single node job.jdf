@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JDF DescriptiveName="Single Node Job" ID="PCS_CVP1058430001"
+  ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3" JobID="Single Node Job"
+  JobPartID="PCS_CVP1058430001.0" Type="ProcessGroup" MaxVersion="1.3"
+  Version="1.3" Status="Waiting" Types="InkZoneCalculation ConventionalPrinting"
+  xsi:type="ProcessGroup" xmlns="http://www.CIP4.org/JDFSchema_1_1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Comment Name="Description"> Cover, 12500 copies </Comment>
+  <Comment Name="Instruction"> Instructions go here... </Comment>
+  <AuditPool>
+    <Created AgentName="MIS" AgentVersion="v1.0" Author="Miss Prepress"
+      ID="a060513_030838680_000016" TimeStamp="2006-05-15T12:00:00+01:00"/>
+  </AuditPool>
+  <ResourcePool>
+    <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+      DescriptiveName="Cover  ConvPrint" Dimensions="2494 1786 0"
+      ID="COMPCS_CVP1058430001" PartIDKeys="SignatureName SheetName Condition"
+      Status="Unavailable">
+      <LayoutRef rRef="LAYCover01">
+        <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+      </LayoutRef>
+      <Component SignatureName="SIG_C1">
+        <Component SheetName="SHT_C1">
+          <Component Condition="Good" IsWaste="false"/>
+          <Component Condition="Waste" IsWaste="true"/>
+        </Component>
+      </Component>
+    </Component>
+    <Device Class="Implementation" DescriptiveName="A1--5" DeviceID="5150"
+    FriendlyName="A1--5" ID="PRS5150" Status="Available"/>
+    <ColorPool Class="Parameter" DescriptiveName="Colors for the job"
+      ID="ColorPool" Status="Available">
+      <Color CMYK="1 0 0 0" Name="Cyan"/>
+      <Color CMYK="0 1 0 0" Name="Magenta"/>
+      <Color CMYK="0 0 1 0" Name="Yellow"/>
+      <Color CMYK="0 0 0 1" Name="Black"/>
+      <Color ColorBook="PANTONE" ColorBookEntry="375" MediaType="Coated" Name="PANTONE 375 C"/>
+    </ColorPool>
+    <ColorantControl Class="Parameter" DescriptiveName="Colors of the job"
+      ID="ID_ColorantControl" PartIDKeys="SignatureName" PartUsage="Implicit"
+      Status="Available">
+      <ColorPoolRef rRef="ColorPool"/>
+      <ColorantControl SignatureName="SIG_C1">
+        <ColorantParams>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="SIG_B1">
+        <ColorantParams>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="SIG_B2">
+        <ColorantParams>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="SIG_B3">
+        <ColorantParams>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="SIG_I1">
+        <ColorantParams>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+    </ColorantControl>
+    <ConventionalPrintingParams Class="Parameter" ID="CVP1058430001"
+    PrintingType="SheetFed" Status="Available" WorkStyle="WorkAndTurn"/>
+    <Media Class="Consumable" DescriptiveName="Temporary Plate"
+      ID="Plate000001" MediaType="Plate" ProductID="Plate000001" Status="Available"/>
+    <ExposedMedia Class="Handling" ID="ExposedMedia"
+      PartIDKeys="SignatureName SheetName Side Separation" PartUsage="Explicit"
+      Status="Unavailable">
+      <MediaRef rRef="Plate000001"/>
+      <ExposedMedia SignatureName="SIG_C1">
+        <ExposedMedia SheetName="SHT_C1">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0001" Separation="Cyan"/>
+            <ExposedMedia ProductID="0002" Separation="Magenta"/>
+            <ExposedMedia ProductID="0003" Separation="Yellow"/>
+            <ExposedMedia ProductID="0004" Separation="Black"/>
+            <ExposedMedia ProductID="0005" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_B1">
+        <ExposedMedia SheetName="SHT_B1">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0006" Separation="Black"/>
+            <ExposedMedia ProductID="0007" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+          <ExposedMedia Side="Back">
+            <ExposedMedia ProductID="0008" Separation="Black"/>
+            <ExposedMedia ProductID="0009" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_B2">
+        <ExposedMedia SheetName="SHT_B2">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0010" Separation="Black"/>
+            <ExposedMedia ProductID="0011" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+          <ExposedMedia Side="Back">
+            <ExposedMedia ProductID="0012" Separation="Black"/>
+            <ExposedMedia ProductID="0013" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_B3">
+        <ExposedMedia SheetName="SHT_B3">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0014" Separation="Black"/>
+            <ExposedMedia ProductID="0015" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+          <ExposedMedia Side="Back">
+            <ExposedMedia ProductID="0016" Separation="Black"/>
+            <ExposedMedia ProductID="0017" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_I1">
+        <ExposedMedia SheetName="SHT_I1">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0018" Separation="Cyan"/>
+            <ExposedMedia ProductID="0019" Separation="Magenta"/>
+            <ExposedMedia ProductID="0020" Separation="Yellow"/>
+            <ExposedMedia ProductID="0021" Separation="Black"/>
+            <ExposedMedia ProductID="0022" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+    </ExposedMedia>
+    <NodeInfo Class="Parameter" End="2006-05-29T11:00:00+02:00"
+      ID="r060513_030838679_000015" PartUsage="Implicit"
+      Start="2006-05-15T12:00:00+01:00" Status="Available"
+      TotalDuration="P0DT4H10M0S"/>
+    <Layout Class="Parameter" ID="LAYCover01" Name="LAYCover01"
+      PartIDKeys="SignatureName SheetName Side" Status="Available">
+      <Layout SignatureName="SIG_C1">
+        <Layout SheetName="SHT_C1">
+          <MediaRef rRef="PAP352063N2HA"/>
+          <Layout Side="Front"/>
+        </Layout>
+      </Layout>
+    </Layout>
+    <Media Brand="MACO SATINE WOODFREE WHITE" Class="Consumable"
+      DescriptiveName="MACO SATINE WOODFREE WHITE 880x630 mm 200 g/m²"
+      Dimension="2494 1786" GrainDirection="ShortEdge" Grade="1"
+      ID="PAP352063N2HA" MediaType="Paper" MediaUnit="Sheet"
+      ProductID="PAP352063N2HA" Status="Available" Thickness="200" Weight="200"/>
+    <Preview Class="Parameter" DescriptiveName="Preview" ID="Preview"
+      PartIDKeys="SignatureName SheetName Side Separation" PartUsage="Explicit"
+      PreviewUsage="Separation" Status="Unavailable"
+      URL="http://www.avoiderrors.com">
+      <Preview SignatureName="SIG_C1">
+        <Preview SheetName="SHT_C1">
+          <Preview Side="Front">
+            <Preview Separation="Cyan" URL=""/>
+            <Preview Separation="Magenta" URL=""/>
+            <Preview Separation="Yellow" URL=""/>
+            <Preview Separation="Black" URL=""/>
+            <Preview Separation="PANTONE 375 C" URL=""/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="SIG_B1">
+        <Preview SheetName="SHT_B1">
+          <Preview Side="Front">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+          <Preview Side="Back">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="SIG_B2">
+        <Preview SheetName="SHT_B2">
+          <Preview Side="Front">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+          <Preview Side="Back">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="SIG_B3">
+        <Preview SheetName="SHT_B3">
+          <Preview Side="Front">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+          <Preview Side="Back">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="SIG_I1">
+        <Preview SheetName="SHT_I1">
+          <Preview Side="Front">
+            <Preview Separation="Cyan"/>
+            <Preview Separation="Magenta"/>
+            <Preview Separation="Yellow"/>
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+        </Preview>
+      </Preview>
+    </Preview>
+  </ResourcePool>
+  <ResourceLinkPool>
+    <ConventionalPrintingParamsLink Usage="Input" rRef="CVP1058430001"/>
+    <DeviceLink Usage="Input" rRef="PRS5150"/>
+    <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+      <Part SignatureName="SIG_C1"/>
+    </ColorantControlLink>
+    <ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="ExposedMedia">
+      <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+    </ExposedMediaLink>
+    <LayoutLink Usage="Input" rRef="LAYCover01"/>
+    <MediaLink Amount="2500" Usage="Input" rRef="PAP352063N2HA"/>
+    <PreviewLink Usage="Input" rRef="Preview">
+      <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+    </PreviewLink>
+    <ComponentLink Usage="Output" rRef="COMPCS_CVP1058430001">
+      <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+      <AmountPool>
+        <PartAmount Amount="2000">
+          <Part Condition="Good" SheetName="SHT_C1" SignatureName="SIG_C1"/>
+        </PartAmount>
+        <PartAmount Amount="20">
+          <Part Condition="Waste" SheetName="SHT_C1" SignatureName="SIG_C1"/>
+        </PartAmount>
+      </AmountPool>
+    </ComponentLink>
+    <NodeInfoLink Usage="Input" rRef="r060513_030838679_000015"/>
+  </ResourceLinkPool>
+</JDF>

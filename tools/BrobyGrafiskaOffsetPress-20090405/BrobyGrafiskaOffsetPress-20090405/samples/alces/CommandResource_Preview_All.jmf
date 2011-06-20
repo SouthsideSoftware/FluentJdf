@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    SenderID="Alces 0.9.9.1" TimeStamp="2007-12-06T21:22:34+01:00" Version="1.3">
+    <Command ID="JobPartID" Type="Resource" xsi:type="CommandResource" xmlns="http://www.CIP4.org/JDFSchema_1_1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <ResourceCmdParams JobID="Single Node Job" JobPartID="PCS_CVP1058430001.0" ResourceName="Preview"
+            Exact="true" UpdateMethod="Incremental">
+            <Preview Class="Parameter" DescriptiveName="Preview" ID="Preview"
+                PartIDKeys="SignatureName SheetName Side Separation" PartUsage="Explicit" PreviewUsage="Separation"
+                Status="Incomplete" URL="http://www.avoiderrors.com">
+                <Preview SignatureName="SIG_C1" Status="Available">
+                    <Preview SheetName="SHT_C1" Status="Available">
+                        <Preview Side="Front" Status="Available">
+                            <Preview Separation="Cyan" Status="Available" URL="samples/alces/previews/Cyan.png"/>
+                            <Preview Separation="Magenta" Status="Available" URL="samples/alces/previews/Magenta.png"/>
+                            <Preview Separation="Yellow" Status="Available" URL="samples/alces/previews/Yellow.png"/>
+                            <Preview Separation="Black" Status="Available" URL="samples/alces/previews/Black.png"/>
+                            <Preview Separation="PANTONE 375 C" Status="Available" URL="samples/alces/previews/Process.png"/>
+                        </Preview>
+                    </Preview>
+                </Preview>
+            </Preview>
+            <Part SignatureName="SIG_C1" SheetName="SHT_C1" Side="Front" Separation="Cyan" />
+            <Part SignatureName="SIG_C1" SheetName="SHT_C1" Side="Front" Separation="Magenta" />
+            <Part SignatureName="SIG_C1" SheetName="SHT_C1" Side="Front" Separation="Yellow" />
+            <Part SignatureName="SIG_C1" SheetName="SHT_C1" Side="Front" Separation="Black" />
+            <Part SignatureName="SIG_C1" SheetName="SHT_C1" Side="Front" Separation="PANTONE 375 C" />
+            <Part SignatureName="SIG_C1" SheetName="SHT_C1" Side="Front" />
+            <Part SignatureName="SIG_C1" SheetName="SHT_C1" />
+            <Part SignatureName="SIG_C1" />
+        </ResourceCmdParams>
+    </Command>
+</JMF>
+
+
+
+
+

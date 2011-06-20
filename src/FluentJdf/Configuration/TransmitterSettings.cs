@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using FluentJdf.Encoding;
 using FluentJdf.Resources;
 using FluentJdf.Transmission;
 using Infrastructure.Core.CodeContracts;
-using Infrastructure.Core.Container;
-using Infrastructure.Core.Helpers;
 
 namespace FluentJdf.Configuration {
     /// <summary>
@@ -17,12 +14,20 @@ namespace FluentJdf.Configuration {
         /// </summary>
         public TransmitterSettings() {
             TransmittersByScheme = new Dictionary<string, string>();
+            ResetToDefault();
         }
 
         /// <summary>
         /// Gets dictionary of transmitters by scheme.
         /// </summary>
         public Dictionary<string, string> TransmittersByScheme { get; private set; }
+
+        void RegisterTransmitterFactoryIfRequired() {
+            Type t = typeof (TransmitterFactory);
+            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (ITransmitterFactory), t.FullName)) {
+                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (ITransmitterFactory), t);
+            }
+        }
 
         /// <summary>
         /// Register a transmitter for a scheme
@@ -48,6 +53,7 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public TransmitterSettings ResetToDefault() {
             TransmittersByScheme.Clear();
+            RegisterTransmitterFactoryIfRequired();
             return this;
         }
 

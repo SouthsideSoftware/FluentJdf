@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JDF DescriptiveName="MISPRE Complex 1.3 v3"
+  ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3" ID="ID_Complex"
+  JobID="MISPRE_Complex13" JobPartID="MISPRE_Complex-root jobpartid"
+  MaxVersion="1.3" Status="Waiting" Type="Product" Version="1.3"
+  xmlns="http://www.CIP4.org/JDFSchema_1_1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Product">
+  <!--History:
+-	2006-05-14 v1 	derived from 1.2 version 23, corrected with CheckJDF
+								simpler sheet and sig names, reduced nr of pages of body 40
+								removed mirrored Stripping Positions
+								updated ICS Versions
+								adjusted graybox names
+								reordered ProductID for plates
+	2007-07-04 v2 moved ICS versions
+	2007-10-12 v3 added Exact=True and ObservationTarget after Foster City
+-->
+  <Comment ID="c060513_030838669_000009" Name="JobDescription">Complex
+    MIS-Prepress Sample JDF 1.3 -v3  * 50.000 ex.; Format: Finished: 210
+    x 297 mm - Open: 420 x 297 mm;  * Cover - 4 pages; Paper: Coated
+    Satine Woodfree White 200 gr; Printing: Recto: Full colour + 1 PMS
+    color, Verso: Full colour + 1 PMS color;  * Body - 40 pages; Paper:
+    White 90 gr; Printing: Recto: Black + 1 PMS color, Verso: Black + 1
+    PMS color;  * Insert - 4 pages; Paper: Offset Woodfree White 150 gr;
+    Printing: Recto: Full colour + 1 PMS color, Verso: Full colour + 1
+    PMS color simpler sheet and sig names, reduced nr of pages of body
+    40 updated ICSVersions removed simpler positions adjusted graybox
+    names reordered ProductID for plates  </Comment>
+  <AuditPool>
+    <Created AgentName="MIS" AgentVersion="v1.0" Author="Miss Prepress"
+      ID="AP1" TimeStamp="2006-05-15T12:00:00+01:00"/>
+  </AuditPool>
+  <ResourcePool>
+    <BindingIntent BindingOrder="Collecting" Class="Intent"
+      ID="BII100002" Status="Available">
+      <BindingSide Actual="Left" DataType="EnumerationSpan" Preferred="Left"/>
+      <BindingType Actual="SaddleStitch" DataType="EnumerationSpan" Preferred="SaddleStitch"/>
+    </BindingIntent>
+    <ColorPool Class="Parameter" DescriptiveName="Colors for the job"
+      ID="ColorPool" Status="Available">
+      <Color CMYK="1 0 0 0" Name="Cyan"/>
+      <Color CMYK="0 1 0 0" Name="Magenta"/>
+      <Color CMYK="0 0 1 0" Name="Yellow"/>
+      <Color CMYK="0 0 0 1" Name="Black"/>
+      <Color ColorBook="PANTONE" ColorBookEntry="375" MediaType="Coated" Name="PANTONE 375 C"/>
+    </ColorPool>
+    <ColorantControl Class="Parameter"
+      DescriptiveName="Colors of the job" ID="ID_ColorantControl"
+      PartIDKeys="SignatureName" PartUsage="Implicit" Status="Available">
+      <ColorPoolRef rRef="ColorPool"/>
+      <ColorantControl SignatureName="SIG_C1">
+        <ColorantParams>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="SIG_B1">
+        <ColorantParams>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="SIG_B2">
+        <ColorantParams>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="SIG_B3">
+        <ColorantParams>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+      <ColorantControl SignatureName="SIG_I1">
+        <ColorantParams>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantParams>
+        <ColorantOrder>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorantOrder>
+      </ColorantControl>
+    </ColorantControl>
+    <!-- need proper dimensions here !! -->
+    <Component Class="Quantity" ComponentType="FinalProduct Sheet"
+      Dimensions="0 0 0" ID="CompID_030006_G" Status="Unavailable"/>
+    <DeliveryIntent Class="Intent" DescriptiveName="Delivery"
+      ID="DLI030006" Status="Available">
+      <DropIntent>
+        <Method Actual="CompanyTruck" DataType="NameSpan" Preferred="CompanyTruck"/>
+        <Required Actual="2005-03-14T00:00:00+01:00" DataType="TimeSpan" Preferred="2005-03-14T00:00:00+01:00"/>
+        <Contact ContactTypes="Delivery Customer">
+          <Address City="Ieper" Country="België" CountryCode="BE"
+            PostalCode="8900" Street="Kleine Molenstraat 1"/>
+          <Company OrganizationName="DIOXINUS  BV"/>
+          <Person FamilyName="Mestdagh" FirstName="André" JobTitle="Productie-directeur"/>
+          <ComChannel ChannelType="Phone" Locator="051-41.36.35"/>
+          <ComChannel ChannelType="Fax" Locator="051-41.36.10"/>
+        </Contact>
+        <DropItemIntent Amount="50000">
+          <ComponentRef rRef="CompID_030006_G"/>
+        </DropItemIntent>
+      </DropIntent>
+    </DeliveryIntent>
+    <Device Class="Implementation" DescriptiveName="A1--5"
+      DeviceID="5150" FriendlyName="A1--5" ID="PRS5150" Status="Available"/>
+    <Device Class="Implementation" DescriptiveName="A1--4"
+      DeviceID="5140" FriendlyName="A1--4" ID="PRS5140" Status="Available"/>
+    <Device Class="Implementation"
+      DescriptiveName="Temporary Platemaker" DeviceID="PLA1001"
+      FriendlyName="Temporary Platemaker" ID="PLA1001" Status="Available"/>
+    <ExposedMedia Class="Handling" ID="ExposedMedia"
+      PartIDKeys="SignatureName SheetName Side Separation"
+      PartUsage="Explicit" Status="Available">
+      <MediaRef rRef="Plate000001"/>
+      <ExposedMedia SignatureName="SIG_C1">
+        <ExposedMedia SheetName="SHT_C1">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0001" Separation="Cyan"/>
+            <ExposedMedia ProductID="0002" Separation="Magenta"/>
+            <ExposedMedia ProductID="0003" Separation="Yellow"/>
+            <ExposedMedia ProductID="0004" Separation="Black"/>
+            <ExposedMedia ProductID="0005" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_B1">
+        <ExposedMedia SheetName="SHT_B1">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0006" Separation="Black"/>
+            <ExposedMedia ProductID="0007" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+          <ExposedMedia Side="Back">
+            <ExposedMedia ProductID="0008" Separation="Black"/>
+            <ExposedMedia ProductID="0009" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_B2">
+        <ExposedMedia SheetName="SHT_B2">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0010" Separation="Black"/>
+            <ExposedMedia ProductID="0011" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+          <ExposedMedia Side="Back">
+            <ExposedMedia ProductID="0012" Separation="Black"/>
+            <ExposedMedia ProductID="0013" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_B3">
+        <ExposedMedia SheetName="SHT_B3">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0014" Separation="Black"/>
+            <ExposedMedia ProductID="0015" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+          <ExposedMedia Side="Back">
+            <ExposedMedia ProductID="0016" Separation="Black"/>
+            <ExposedMedia ProductID="0017" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_I1">
+        <ExposedMedia SheetName="SHT_I1">
+          <ExposedMedia Side="Front">
+            <ExposedMedia ProductID="0018" Separation="Cyan"/>
+            <ExposedMedia ProductID="0019" Separation="Magenta"/>
+            <ExposedMedia ProductID="0020" Separation="Yellow"/>
+            <ExposedMedia ProductID="0021" Separation="Black"/>
+            <ExposedMedia ProductID="0022" Separation="PANTONE 375 C"/>
+          </ExposedMedia>
+        </ExposedMedia>
+      </ExposedMedia>
+    </ExposedMedia>
+    <ExposedMedia Class="Handling" DescriptiveName="ImpositionProof"
+      ID="ImpositionProof" PartIDKeys="SignatureName SheetName Side" Status="Unavailable">
+      <MediaRef rRef="ImpoProof01"/>
+      <ExposedMedia SignatureName="SIG_C1">
+        <ExposedMedia SheetName="SHT_C1">
+          <ExposedMedia Side="Front"/>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_B1">
+        <ExposedMedia SheetName="SHT_B1">
+          <ExposedMedia Side="Front"/>
+          <ExposedMedia Side="Back"/>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_B2">
+        <ExposedMedia SheetName="SHT_B2">
+          <ExposedMedia Side="Front"/>
+          <ExposedMedia Side="Back"/>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_B3">
+        <ExposedMedia SheetName="SHT_B3">
+          <ExposedMedia Side="Front"/>
+          <ExposedMedia Side="Back"/>
+        </ExposedMedia>
+      </ExposedMedia>
+      <ExposedMedia SignatureName="SIG_I1">
+        <ExposedMedia SheetName="SHT_I1">
+          <ExposedMedia Side="Front"/>
+        </ExposedMedia>
+      </ExposedMedia>
+    </ExposedMedia>
+    <Media Brand="MACO SATINE WOODFREE WHITE" Class="Consumable"
+      DescriptiveName="MACO SATINE WOODFREE WHITE 880x630 mm 200 g/m²"
+      Dimension="2494 1786" GrainDirection="ShortEdge" Grade="1"
+      ID="PAP352063N2HA" MediaType="Paper" MediaUnit="Sheet"
+      ProductID="PAP352063N2HA" Status="Available" Thickness="200" Weight="200"/>
+    <Media Brand="MACO SATINE WOODFREE WHITE" Class="Consumable"
+      DescriptiveName="MACO SATINE WOODFREE WHITE 880x630 mm 90 g/m²"
+      Dimension="2494 1786" GrainDirection="ShortEdge"
+      ID="PAPMSVA_90_WIT_880x630" MediaType="Paper" MediaUnit="Sheet"
+      ProductID="PAPMSVA_90_WIT_880x630" Status="Available"
+      Thickness="90" Weight="90"/>
+    <Media Brand="OFFSET WOODFREE WHITE" Class="Consumable"
+      DescriptiveName="OFFSET WOODFREE WHITE 1000x700 mm 150 g/m²"
+      Dimension="2835 1984" GrainDirection="LongEdge" ID="PAP100532"
+      MediaType="Paper" MediaUnit="Sheet" ProductID="PAP100532"
+      Status="Available" Thickness="150" Weight="150"/>
+    <Media Class="Consumable" DescriptiveName="Temporary Plate"
+      ID="Plate000001" MediaType="Plate" ProductID="Plate000001" Status="Available"/>
+    <Media Class="Consumable" DescriptiveName="ImpoProof"
+      ID="ImpoProof01" MediaType="Paper" Status="Available"/>
+    <MediaIntent Class="Intent"
+      DescriptiveName="MACO SATINE WOODFREE WHITE 880x630 mm 200 g/m²"
+      ID="MEI352063N2HA" ProductID="MEI352063N2HA" Status="Available">
+      <Dimensions Actual="2494 1786" DataType="XYPairSpan" Preferred="2494 1786"/>
+      <StockBrand
+        Actual="MACO SATINE WOODFREE WHITE 880x630 mm 200 g/m²"
+        DataType="StringSpan" Preferred="MACO SATINE WOODFREE WHITE 880x630 mm 200 g/m²"/>
+      <Weight Actual="200" DataType="NumberSpan" Preferred="200"/>
+    </MediaIntent>
+    <MediaIntent Class="Intent"
+      DescriptiveName="MACO SATINE WOODFREE WHITE 880x630 mm 90 g/m²"
+      ID="MEIMSVA_90_WIT_880x630" ProductID="MEIMSVA_90_WIT_880x630" Status="Available">
+      <Dimensions Actual="2494 1786" DataType="XYPairSpan" Preferred="2494 1786"/>
+      <StockBrand Actual="MACO SATINE WOODFREE WHITE 880x630 mm 90 g/m²"
+        DataType="StringSpan" Preferred="MACO SATINE WOODFREE WHITE 880x630 mm 90 g/m²"/>
+      <Weight Actual="90" DataType="NumberSpan" Preferred="90"/>
+    </MediaIntent>
+    <MediaIntent Class="Intent"
+      DescriptiveName="OFFSET WOODFREE WHITE 1000x700 mm 150 g/m²"
+      ID="MEI100532" ProductID="MEI100532" Status="Available">
+      <Dimensions Actual="2835 1984" DataType="XYPairSpan" Preferred="2835 1984"/>
+      <StockBrand Actual="OFFSET WOODFREE WHITE 1000x700 mm 150 g/m²"
+        DataType="StringSpan" Preferred="OFFSET WOODFREE WHITE 1000x700 mm 150 g/m²"/>
+      <Weight Actual="150" DataType="NumberSpan" Preferred="150"/>
+    </MediaIntent>
+    <Preview Class="Parameter" DescriptiveName="Preview" ID="Preview"
+      PartIDKeys="SignatureName SheetName Side Separation"
+      PartUsage="Explicit" PreviewUsage="Separation" Status="Available" URL="http://www.avoiderrors.com">
+      <Preview SignatureName="SIG_C1">
+        <Preview SheetName="SHT_C1">
+          <Preview Side="Front">
+            <Preview Separation="Cyan" URL="samples/previews/Cyan.png"/>
+            <Preview Separation="Magenta" URL="samples/previews/Magenta.png"/>
+            <Preview Separation="Yellow" URL="samples/previews/Yellow.png"/>
+            <Preview Separation="Black" URL="samples/previews/Black.png"/>
+            <Preview Separation="PANTONE 375 C" URL="samples/previews/Process.png"/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="SIG_B1">
+        <Preview SheetName="SHT_B1">
+          <Preview Side="Front">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+          <Preview Side="Back">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="SIG_B2">
+        <Preview SheetName="SHT_B2">
+          <Preview Side="Front">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+          <Preview Side="Back">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="SIG_B3">
+        <Preview SheetName="SHT_B3">
+          <Preview Side="Front">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+          <Preview Side="Back">
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+        </Preview>
+      </Preview>
+      <Preview SignatureName="SIG_I1">
+        <Preview SheetName="SHT_I1">
+          <Preview Side="Front">
+            <Preview Separation="Cyan"/>
+            <Preview Separation="Magenta"/>
+            <Preview Separation="Yellow"/>
+            <Preview Separation="Black"/>
+            <Preview Separation="PANTONE 375 C"/>
+          </Preview>
+        </Preview>
+      </Preview>
+    </Preview>
+    <CustomerInfo Class="Parameter" CustomerID="100002"
+      CustomerJobName="ICS sample" CustomerOrderID="ICS sample"
+      ID="r060513_030838667_000007" PartUsage="Implicit" Status="Available">
+      <Contact ContactTypes="Administrator Customer">
+        <Address City="Izegem" Country="België" CountryCode="BE"
+          PostalCode="8870" Street="Grote Moerstraat 88"/>
+        <Company OrganizationName="DIOXINUS BV"/>
+        <Person FamilyName="MESTDAGH" FirstName="André" JobTitle="Produktie-direkteur">
+          <ComChannel ChannelType="Phone" Locator="051-41.36.15"/>
+          <ComChannel ChannelType="Email" Locator="andré@dioxinus.be"/>
+        </Person>
+        <ComChannel ChannelType="Phone" Locator="051-41.36.35"/>
+        <ComChannel ChannelType="Fax" Locator="051-41.36.10"/>
+        <ComChannel ChannelType="Email" Locator="info@dioxinus.be"/>
+        <ComChannel ChannelType="WWW" Locator="www.dioxinus.be"/>
+      </Contact>
+    </CustomerInfo>
+    <NodeInfo Class="Parameter" ID="r060513_030838668_000008"
+      PartUsage="Implicit" Status="Available">
+      <Employee PersonalID="Always on the phone" Roles="CSR"/>
+      <JMF MaxVersion="1.3" SenderID="MISPrepress"
+        TimeStamp="2006-05-15T12:00:00+01:00" Version="1.3">
+        <Query ID="QUERY_Resource_Complex" Type="Resource" xsi:type="QueryResource">
+          <ResourceQuParams Classes="Consumable Handling Parameter"
+            Exact="true" JobID="MISPRE_Complex13" Usage="Output"/>
+          <Subscription URL="http://www.misprepress.org/jmfserver"/>
+        </Query>
+        <Query ID="QUERY_Status_Complex" Type="Status" xsi:type="QueryStatus">
+          <StatusQuParams DeviceDetails="Details" JobDetails="Brief"
+            JobID="MISPRE_Complex13" QueueInfo="false"/>
+          <Subscription URL="http://www.misprepress.org/jmfserver">
+            <ObservationTarget ObservationPath="//*/@*"/>
+          </Subscription>
+        </Query>
+      </JMF>
+    </NodeInfo>
+  </ResourcePool>
+  <ResourceLinkPool>
+    <ComponentLink Amount="50000" Usage="Output" rRef="CompID_030006_G"/>
+    <BindingIntentLink Usage="Input" rRef="BII100002"/>
+    <DeliveryIntentLink Usage="Input" rRef="DLI030006"/>
+    <CustomerInfoLink Usage="Input" rRef="r060513_030838667_000007"/>
+    <NodeInfoLink Usage="Input" rRef="r060513_030838668_000008"/>
+  </ResourceLinkPool>
+  <JDF DescriptiveName="Cover Complex" ID="SUB100" JobPartID="SUB100"
+    Status="Waiting" Type="Product" xsi:type="Product">
+    <AuditPool>
+      <Created AgentName="MIS" AgentVersion="v1.0"
+        Author="Miss Prepress" ID="AP2" TimeStamp="2006-05-15T12:00:00+01:00"/>
+    </AuditPool>
+    <ResourcePool>
+      <ColorIntent Class="Intent" ID="COI100" Status="Available">
+        <ColorPoolRef rRef="ColorPool"/>
+        <ColorsUsed>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorsUsed>
+      </ColorIntent>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Cover  ConvPrint" Dimensions="2494 1786 0"
+        ID="COMPCS_CVP1058430001"
+        PartIDKeys="SignatureName SheetName Condition" Status="Unavailable">
+        <LayoutRef rRef="LAYCover01">
+          <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+        </LayoutRef>
+        <Component SignatureName="SIG_C1">
+          <Component SheetName="SHT_C1">
+            <Component Condition="Good" IsWaste="false"/>
+            <Component Condition="Waste" IsWaste="true"/>
+          </Component>
+        </Component>
+      </Component>
+      <FoldingIntent Class="Intent" ID="FOI100001186" Status="Available">
+        <FoldingCatalog Actual="F4-1" DataType="NameSpan" Preferred="F4-1"/>
+      </FoldingIntent>
+      <LayoutIntent Class="Intent" ID="LAI100" Status="Available">
+        <FinishedDimensions Actual="595.27559 841.88976 0"
+          DataType="ShapeSpan" Preferred="595.27559 841.88976 0"/>
+        <Pages Actual="4" DataType="IntegerSpan" Preferred="4"/>
+      </LayoutIntent>
+      <Layout Class="Parameter" ID="LAYCover01" Name="LAYCover01"
+        PartIDKeys="SignatureName SheetName Side" Status="Available">
+        <Layout SignatureName="SIG_C1">
+          <Layout SheetName="SHT_C1">
+            <MediaRef rRef="PAP352063N2HA"/>
+            <Layout Side="Front"/>
+          </Layout>
+        </Layout>
+      </Layout>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Cover " Dimensions="1219 913 0"
+        ID="COMPCS_FPS1058430036" ProductType="Cover" Status="Unavailable"/>
+    </ResourcePool>
+    <ResourceLinkPool>
+      <FoldingIntentLink Usage="Input" rRef="FOI100001186"/>
+      <LayoutIntentLink Usage="Input" rRef="LAI100"/>
+      <ColorIntentLink Usage="Input" rRef="COI100"/>
+      <MediaIntentLink Usage="Input" rRef="MEI352063N2HA"/>
+      <ComponentLink Amount="50000.00000" Usage="Output" rRef="COMPCS_FPS1058430036"/>
+    </ResourceLinkPool>
+    <JDF Category="PrePress" DescriptiveName="PrePress Complex Cover"
+      ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+      ID="PRE100" JobPartID="PRE100" Status="Waiting"
+      Type="ProcessGroup" xsi:type="ProcessGroup">
+      <AuditPool>
+        <Created AgentName="MIS" AgentVersion="v1.0"
+          Author="Miss Prepress" ID="AP3" TimeStamp="2006-05-15T12:00:00+01:00"/>
+      </AuditPool>
+      <ResourcePool>
+        <Assembly BindingSide="Left" Class="Parameter" ID="ASM100"
+          Order="Collecting" Status="Available"/>
+        <BinderySignature Class="Parameter" FoldCatalog="F4-1"
+          ID="BIS100001186" Status="Available"/>
+        <InterpretingParams Class="Parameter"
+          ID="INPPAP352063N2HAPlate000001" Status="Available">
+          <MediaRef rRef="PAP352063N2HA"/>
+          <MediaRef rRef="Plate000001"/>
+        </InterpretingParams>
+        <RunList Class="Parameter" ID="RNL100_D" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RNL100_M" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RNL100" NPage="4" Status="Available">
+          <LayoutElement>
+            <FileSpec MimeType="application/pdf" URL="Content/ComplexCover.pdf"/>
+          </LayoutElement>
+        </RunList>
+        <StrippingParams Class="Parameter" ID="STP100"
+          PartIDKeys="SignatureName SheetName" Status="Available">
+          <StrippingParams SignatureName="SIG_C1">
+            <StrippingParams SectionList="0" SheetName="SHT_C1" WorkStyle="WorkAndTurn">
+              <StripCellParams BackOverfold="0.00000"
+                BleedFace="5.66929" BleedFoot="5.66929"
+                BleedHead="5.66929" BleedSpine="0.000"
+                FrontOverfold="0.00000" MillingDepth="0.00000"
+                Spine="0.00000" TrimFace="14.17323" TrimFoot="14.17323"
+                TrimHead="14.17323" TrimSize="595.27559 841.88976"/>
+              <BinderySignatureRef rRef="BIS100001186"/>
+              <DeviceRef rRef="PRS5150"/>
+              <MediaRef rRef="PAP352063N2HA"/>
+              <MediaRef rRef="Plate000001"/>
+              <!-- removed 2 positions beause of mirroring -->
+              <Position MarginBottom="0.00000" MarginLeft="0.00000"
+                MarginRight="0.00000" MarginTop="22.67717" RelativeBox="0.00000 0.50000 0.50000 1.00000"/>
+              <Position MarginBottom="22.67717" MarginLeft="0.00000"
+                MarginRight="0.00000" MarginTop="0.00000" RelativeBox="0.00000 0.00000 0.50000 0.50000"/>
+            </StrippingParams>
+          </StrippingParams>
+        </StrippingParams>
+      </ResourcePool>
+      <JDF Category="MISPRE.PrePressPreparation"
+        DescriptiveName="PrePressPreparation of PrePress Cover"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="PPP100" JobPartID="PPP100" Status="Waiting"
+        Type="ProcessGroup" Types="PrePressPreparation" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="AP4" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <RunListLink Usage="Input" rRef="RNL100"/>
+          <RunListLink ProcessUsage="Document" Usage="Output" rRef="RNL100_D"/>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="MISPRE.ImpositionPreparation"
+        DescriptiveName="ImpositionPreparation of PrePress Cover"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="STR100" JobPartID="STR100" Status="Waiting"
+        Type="ProcessGroup" Types="ImpositionPreparation" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838678_000011" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <StrippingParamsLink Usage="Input" rRef="STP100"/>
+          <AssemblyLink Usage="Input" rRef="ASM100"/>
+          <LayoutLink Usage="Output" rRef="LAYCover01"/>
+          <RunListLink ProcessUsage="Marks" Usage="Output" rRef="RNL100_M"/>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="MISPRE.ProofImaging"
+        DescriptiveName="ProofImaging of PrePress Cover"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="PRI100" JobPartID="PRI100" Status="Waiting"
+        Type="ProcessGroup" Types="Imposition ProofImaging" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838678_000012" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <RunListLink ProcessUsage="Document" Usage="Input" rRef="RNL100_D"/>
+          <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RNL100_M"/>
+          <LayoutLink Usage="Input" rRef="LAYCover01"/>
+          <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+            <Part SignatureName="SIG_C1"/>
+          </ColorantControlLink>
+          <InterpretingParamsLink Usage="Input" rRef="INPPAP352063N2HAPlate000001"/>
+          <MediaLink Usage="Input" rRef="ImpoProof01"/>
+          <ExposedMediaLink Amount="1" Usage="Output" rRef="ImpositionProof">
+            <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+          </ExposedMediaLink>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="MISPRE.PlateMaking"
+        DescriptiveName="FinalImaging of PrePress Cover"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="RIP100" JobPartID="RIP100" Status="Waiting"
+        Type="ProcessGroup"
+        Types="Imposition RIPing PreviewGeneration ImageSetting" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838679_000014" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <RunListLink ProcessUsage="Document" Usage="Input" rRef="RNL100_D"/>
+          <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RNL100_M"/>
+          <LayoutLink Usage="Input" rRef="LAYCover01"/>
+          <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+            <Part SignatureName="SIG_C1"/>
+          </ColorantControlLink>
+          <InterpretingParamsLink Usage="Input" rRef="INPPAP352063N2HAPlate000001"/>
+          <MediaLink Usage="Input" rRef="Plate000001"/>
+          <DeviceLink Usage="Input" rRef="PLA1001"/>
+          <ExposedMediaLink Amount="1" Usage="Output" rRef="ExposedMedia">
+            <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+          </ExposedMediaLink>
+          <PreviewLink Usage="Output" rRef="Preview">
+            <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+          </PreviewLink>
+          <NodeInfoLink Usage="Input" rRef="r060513_030838678_000013"/>
+        </ResourceLinkPool>
+        <ResourcePool>
+          <NodeInfo Class="Parameter" End="2006-05-29T11:00:00+02:00"
+            ID="r060513_030838678_000013" PartUsage="Implicit" Status="Available"/>
+        </ResourcePool>
+      </JDF>
+    </JDF>
+    <JDF DescriptiveName="Cover ConvPrint" ID="PCS_CVP1058430001"
+      JobPartID="PCS_CVP1058430001" Status="Waiting" Type="ProcessGroup"
+      Types="InkZoneCalculation ConventionalPrinting" xsi:type="ProcessGroup">
+		<Comment Name="Description">
+			Cover, 12500 copies
+		</Comment>
+		<Comment Name="Instruction">
+			Instructions go here...
+		</Comment>
+      <AuditPool>
+        <Created AgentName="MIS" AgentVersion="v1.0"
+          Author="Miss Prepress" ID="a060513_030838680_000016" TimeStamp="2006-05-15T12:00:00+01:00"/>
+      </AuditPool>
+      <ResourcePool>
+        <ConventionalPrintingParams Class="Parameter" ID="CVP1058430001"
+          PrintingType="SheetFed" Status="Available" WorkStyle="WorkAndTurn"/>
+        <NodeInfo Class="Parameter" End="2006-05-29T11:00:00+02:00"
+          ID="r060513_030838679_000015" PartUsage="Implicit"
+          Start="2006-05-15T12:00:00+01:00" Status="Available" TotalDuration="P0DT4H10M0S"/>
+      </ResourcePool>
+      <ResourceLinkPool>
+        <ConventionalPrintingParamsLink Usage="Input" rRef="CVP1058430001"/>
+        <DeviceLink Usage="Input" rRef="PRS5150"/>
+        <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+          <Part SignatureName="SIG_C1"/>
+        </ColorantControlLink>
+        <ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="ExposedMedia">
+          <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+        </ExposedMediaLink>
+        <LayoutLink Usage="Input" rRef="LAYCover01"/>
+        <MediaLink Amount="12982" Usage="Input" rRef="PAP352063N2HA"/>
+        <PreviewLink Usage="Input" rRef="Preview">
+          <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+        </PreviewLink>
+        <ComponentLink Usage="Output" rRef="COMPCS_CVP1058430001">
+          <Part SheetName="SHT_C1" SignatureName="SIG_C1"/>
+          <AmountPool>
+            <PartAmount Amount="12500">
+              <Part Condition="Good" SheetName="SHT_C1" SignatureName="SIG_C1"/>
+            </PartAmount>
+            <PartAmount Amount="482">
+              <Part Condition="Waste" SheetName="SHT_C1" SignatureName="SIG_C1"/>
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+        <NodeInfoLink Usage="Input" rRef="r060513_030838679_000015"/>
+      </ResourceLinkPool>
+    </JDF>
+  </JDF>
+  <JDF DescriptiveName="Body Complex" ID="SUB210" JobPartID="SUB210"
+    Status="Waiting" Type="Product" xsi:type="Product">
+    <AuditPool>
+      <Created AgentName="MIS" AgentVersion="v1.0"
+        Author="Miss Prepress" ID="a060513_030838680_000017" TimeStamp="2006-05-15T12:00:00+01:00"/>
+    </AuditPool>
+    <ResourcePool>
+      <ColorIntent Class="Intent" ID="COI210" Status="Available">
+        <ColorPoolRef rRef="ColorPool"/>
+        <ColorsUsed>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorsUsed>
+      </ColorIntent>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Body 8 p. 00 ConvPrint"
+        Dimensions="2494 1786 0" ID="COMPCS_CVP1058460009"
+        PartIDKeys="SignatureName SheetName Condition" Status="Unavailable">
+        <LayoutRef rRef="LAYBody01">
+          <Part SheetName="SHT_B1" SignatureName="SIG_B1"/>
+        </LayoutRef>
+        <Component SignatureName="SIG_B1">
+          <Component SheetName="SHT_B1">
+            <Component Condition="Good" IsWaste="false"/>
+            <Component Condition="Waste" IsWaste="true"/>
+          </Component>
+        </Component>
+      </Component>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Body 16 p. 01 ConvPrint"
+        Dimensions="2494 1786 0" ID="COMPCS_CVP1058470004"
+        PartIDKeys="SignatureName SheetName Condition" Status="Unavailable">
+        <LayoutRef rRef="LAYBody01">
+          <Part SheetName="SHT_B2" SignatureName="SIG_B2"/>
+        </LayoutRef>
+        <Component SignatureName="SIG_B2">
+          <Component SheetName="SHT_B2">
+            <Component Condition="Good" IsWaste="false"/>
+            <Component Condition="Waste" IsWaste="true"/>
+          </Component>
+        </Component>
+      </Component>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Body 16 p. 02  ConvPrint"
+        Dimensions="2494 1786 0" ID="COMPCS_CVP1058480005"
+        PartIDKeys="SignatureName SheetName Condition" Status="Unavailable">
+        <LayoutRef rRef="LAYBody01">
+          <Part SheetName="SHT_B3" SignatureName="SIG_B3"/>
+        </LayoutRef>
+        <Component SignatureName="SIG_B3">
+          <Component SheetName="SHT_B3">
+            <Component Condition="Good" IsWaste="false"/>
+            <Component Condition="Waste" IsWaste="true"/>
+          </Component>
+        </Component>
+      </Component>
+      <FoldingIntent Class="Intent" ID="FOI210000075" Status="Available">
+        <!-- CheckJDF does not like this DataType="NameSpan" Preferred="F8-7" Actual="F8-7"/-->
+        <FoldingCatalog Actual="F16-6" DataType="NameSpan" Preferred="F16-6"/>
+      </FoldingIntent>
+      <LayoutIntent Class="Intent" ID="LAI210" Status="Available">
+        <FinishedDimensions Actual="595.27559 841.88976 0"
+          DataType="ShapeSpan" Preferred="595.27559 841.88976 0"/>
+        <Pages Actual="40" DataType="IntegerSpan" Preferred="40"/>
+      </LayoutIntent>
+      <Layout Class="Parameter" ID="LAYBody01" Name="LAYBody01"
+        PartIDKeys="SignatureName SheetName Side" Status="Available">
+        <Layout SignatureName="SIG_B1">
+          <Layout SheetName="SHT_B1">
+            <MediaRef rRef="PAPMSVA_90_WIT_880x630"/>
+            <Layout Side="Front"/>
+            <Layout Side="Back"/>
+          </Layout>
+        </Layout>
+        <Layout SignatureName="SIG_B2">
+          <Layout SheetName="SHT_B2">
+            <MediaRef rRef="PAPMSVA_90_WIT_880x630"/>
+            <Layout Side="Front"/>
+            <Layout Side="Back"/>
+          </Layout>
+        </Layout>
+        <Layout SignatureName="SIG_B3">
+          <Layout SheetName="SHT_B3">
+            <MediaRef rRef="PAPMSVA_90_WIT_880x630"/>
+            <Layout Side="Front"/>
+            <Layout Side="Back"/>
+          </Layout>
+        </Layout>
+      </Layout>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Body 8 p. 00 " Dimensions="1247 1783 0"
+        ID="COMPCS_FPS1058460038" ProductType="Body" Status="Unavailable"/>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Body 16 p. 01 " Dimensions="2494 1786 0"
+        ID="COMPCS_FPS1058470013" ProductType="Body" Status="Unavailable"/>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Body 16 p. 02 " Dimensions="2494 1786 0"
+        ID="COMPCS_FPS1058480015" ProductType="Body" Status="Unavailable"/>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Body 16 p. 03 " Dimensions="2494 1786 0"
+        ID="COMPCS_FPS1058490017" ProductType="Body" Status="Unavailable"/>
+    </ResourcePool>
+    <ResourceLinkPool>
+      <FoldingIntentLink Usage="Input" rRef="FOI210000075"/>
+      <LayoutIntentLink Usage="Input" rRef="LAI210"/>
+      <ColorIntentLink Usage="Input" rRef="COI210"/>
+      <MediaIntentLink Usage="Input" rRef="MEIMSVA_90_WIT_880x630"/>
+      <ComponentLink Amount="50000.00000" Usage="Output" rRef="COMPCS_FPS1058460038"/>
+      <ComponentLink Amount="50000.00000" Usage="Output" rRef="COMPCS_FPS1058470013"/>
+      <ComponentLink Amount="50000.00000" Usage="Output" rRef="COMPCS_FPS1058480015"/>
+      <ComponentLink Amount="50000.00000" Usage="Output" rRef="COMPCS_FPS1058490017"/>
+    </ResourceLinkPool>
+    <JDF Category="PrePress" DescriptiveName="PrePress Complex Body"
+      ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+      ID="PRE210" JobPartID="PRE210" Status="Waiting"
+      Type="ProcessGroup" xsi:type="ProcessGroup">
+      <AuditPool>
+        <Created AgentName="MIS" AgentVersion="v1.0"
+          Author="Miss Prepress" ID="a060513_030838694_000018" TimeStamp="2006-05-15T12:00:00+01:00"/>
+      </AuditPool>
+      <ResourcePool>
+        <Assembly BindingSide="Left" Class="Parameter" ID="ASM210"
+          Order="Collecting" Status="Available"/>
+        <BinderySignature Class="Parameter" FoldCatalog="F8-7"
+          ID="BIS210000075" Status="Available"/>
+        <BinderySignature Class="Parameter" FoldCatalog="F16-6"
+          ID="BIS210000105" Status="Available"/>
+        <InterpretingParams Class="Parameter"
+          ID="INPPAPMSVA_90_WIT_880x630Plate000001" Status="Available">
+          <MediaRef rRef="PAPMSVA_90_WIT_880x630"/>
+          <MediaRef rRef="Plate000001"/>
+        </InterpretingParams>
+        <RunList Class="Parameter" ID="RNL210_D" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RNL210_M" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RNL210" NPage="40" Status="Available">
+          <LayoutElement>
+            <FileSpec MimeType="application/pdf" URL="Content/ComplexBody.pdf"/>
+          </LayoutElement>
+        </RunList>
+        <StrippingParams Class="Parameter" ID="STP210"
+          PartIDKeys="SignatureName SheetName" Status="Available" WorkStyle="Perfecting">
+          <StrippingParams SignatureName="SIG_B1">
+            <StrippingParams SectionList="0" SheetName="SHT_B1">
+              <StripCellParams BackOverfold="0.00000"
+                BleedFace="5.66929" BleedFoot="5.66929"
+                BleedHead="5.66929" BleedSpine="0.000"
+                FrontOverfold="28.34646" MillingDepth="0.00000"
+                Spine="0.00000" TrimFace="14.17323" TrimFoot="14.17323"
+                TrimHead="14.17323" TrimSize="595.27559 841.88976"/>
+              <BinderySignatureRef rRef="BIS210000075"/>
+              <DeviceRef rRef="PRS5140"/>
+              <MediaRef rRef="PAPMSVA_90_WIT_880x630"/>
+              <MediaRef rRef="Plate000001"/>
+              <Position MarginBottom="19.84252" MarginLeft="0.00000"
+                MarginRight="0.00000" MarginTop="22.67717"
+                Orientation="Flip90" RelativeBox="0.00000 0.00000 0.50000 1.00000"/>
+              <Position MarginBottom="19.84252" MarginLeft="0.00000"
+                MarginRight="0.00000" MarginTop="22.67717"
+                Orientation="Flip90" RelativeBox="0.50000 0.00000 1.00000 1.00000"/>
+            </StrippingParams>
+          </StrippingParams>
+          <StrippingParams SignatureName="SIG_B2">
+            <StrippingParams SectionList="1" SheetName="SHT_B2">
+              <StripCellParams BackOverfold="0.00000"
+                BleedFace="5.66929" BleedFoot="5.66929"
+                BleedHead="5.66929" BleedSpine="0.000"
+                FrontOverfold="28.34646" MillingDepth="0.00000"
+                Spine="0.00000" TrimFace="14.17323" TrimFoot="14.17323"
+                TrimHead="14.17323" TrimSize="595.27559 841.88976"/>
+              <BinderySignatureRef rRef="BIS210000105"/>
+              <DeviceRef rRef="PRS5140"/>
+              <MediaRef rRef="PAPMSVA_90_WIT_880x630"/>
+              <MediaRef rRef="Plate000001"/>
+              <Position MarginBottom="19.84252" MarginLeft="0.00000"
+                MarginRight="0.00000" MarginTop="22.67717"
+                Orientation="Flip0" RelativeBox="0.00000 0.00000 1.00000 1.00000"/>
+            </StrippingParams>
+          </StrippingParams>
+          <StrippingParams SignatureName="SIG_B3">
+            <StrippingParams SectionList="2" SheetName="SHT_B3">
+              <StripCellParams BackOverfold="0.00000"
+                BleedFace="5.66929" BleedFoot="5.66929"
+                BleedHead="5.66929" BleedSpine="0.000"
+                FrontOverfold="28.34646" MillingDepth="0.00000"
+                Spine="0.00000" TrimFace="14.17323" TrimFoot="14.17323"
+                TrimHead="14.17323" TrimSize="595.27559 841.88976"/>
+              <BinderySignatureRef rRef="BIS210000105"/>
+              <DeviceRef rRef="PRS5140"/>
+              <MediaRef rRef="PAPMSVA_90_WIT_880x630"/>
+              <MediaRef rRef="Plate000001"/>
+              <Position MarginBottom="19.84252" MarginLeft="0.00000"
+                MarginRight="0.00000" MarginTop="22.67717"
+                Orientation="Flip0" RelativeBox="0.00000 0.00000 1.00000 1.00000"/>
+            </StrippingParams>
+          </StrippingParams>
+        </StrippingParams>
+      </ResourcePool>
+      <JDF Category="MISPRE.PrePressPreparation"
+        DescriptiveName="PrePressPreparation of PrePress Body"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="PPP210" JobPartID="PPP210" Status="Waiting"
+        Type="ProcessGroup" Types="PrePressPreparation" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838695_000019" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <RunListLink Usage="Input" rRef="RNL210"/>
+          <RunListLink ProcessUsage="Document" Usage="Output" rRef="RNL210_D"/>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="MISPRE.ImpositionPreparation"
+        DescriptiveName="ImpositionPreparation of PrePress Body"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="STR210" JobPartID="STR210" Status="Waiting"
+        Type="ProcessGroup" Types="ImpositionPreparation" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838695_000020" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <StrippingParamsLink Usage="Input" rRef="STP210"/>
+          <AssemblyLink Usage="Input" rRef="ASM210"/>
+          <LayoutLink Usage="Output" rRef="LAYBody01"/>
+          <RunListLink ProcessUsage="Marks" Usage="Output" rRef="RNL210_M"/>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="MISPRE.ProofImaging"
+        DescriptiveName="ProofImaging of PrePress Body"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="PRI210" JobPartID="PRI210" Status="Waiting"
+        Type="ProcessGroup" Types="Imposition ProofImaging" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838695_000021" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <RunListLink ProcessUsage="Document" Usage="Input" rRef="RNL210_D"/>
+          <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RNL210_M"/>
+          <LayoutLink Usage="Input" rRef="LAYBody01"/>
+          <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+            <Part SignatureName="SIG_B1"/>
+            <Part SignatureName="SIG_B2"/>
+            <Part SignatureName="SIG_B3"/>
+          </ColorantControlLink>
+          <InterpretingParamsLink Usage="Input" rRef="INPPAPMSVA_90_WIT_880x630Plate000001"/>
+          <MediaLink Usage="Input" rRef="ImpoProof01"/>
+          <ExposedMediaLink Amount="1" Usage="Output" rRef="ImpositionProof">
+            <Part SheetName="SHT_B1" SignatureName="SIG_B1"/>
+            <Part SheetName="SHT_B2" SignatureName="SIG_B2"/>
+            <Part SheetName="SHT_B3" SignatureName="SIG_B3"/>
+          </ExposedMediaLink>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="MISPRE.PlateMaking"
+        DescriptiveName="FinalImaging of PrePress Body"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="RIP210" JobPartID="RIP210" Status="Waiting"
+        Type="ProcessGroup"
+        Types="Imposition RIPing PreviewGeneration ImageSetting" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838696_000023" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <RunListLink ProcessUsage="Document" Usage="Input" rRef="RNL210_D"/>
+          <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RNL210_M"/>
+          <LayoutLink Usage="Input" rRef="LAYBody01"/>
+          <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+            <Part SignatureName="SIG_B1"/>
+            <Part SignatureName="SIG_B2"/>
+            <Part SignatureName="SIG_B3"/>
+          </ColorantControlLink>
+          <InterpretingParamsLink Usage="Input" rRef="INPPAPMSVA_90_WIT_880x630Plate000001"/>
+          <MediaLink Usage="Input" rRef="Plate000001"/>
+          <DeviceLink Usage="Input" rRef="PLA1001"/>
+          <ExposedMediaLink Amount="1" Usage="Output" rRef="ExposedMedia">
+            <Part SheetName="SHT_B1" SignatureName="SIG_B1"/>
+            <Part SheetName="SHT_B2" SignatureName="SIG_B2"/>
+            <Part SheetName="SHT_B3" SignatureName="SIG_B3"/>
+          </ExposedMediaLink>
+          <PreviewLink Usage="Output" rRef="Preview">
+            <Part SheetName="SHT_B1" SignatureName="SIG_B1"/>
+            <Part SheetName="SHT_B2" SignatureName="SIG_B2"/>
+            <Part SheetName="SHT_B3" SignatureName="SIG_B3"/>
+          </PreviewLink>
+          <NodeInfoLink Usage="Input" rRef="r060513_030838695_000022"/>
+        </ResourceLinkPool>
+        <ResourcePool>
+          <NodeInfo Class="Parameter" End="2006-05-29T11:00:00+02:00"
+            ID="r060513_030838695_000022" PartUsage="Implicit" Status="Available"/>
+        </ResourcePool>
+      </JDF>
+    </JDF>
+    <JDF DescriptiveName="Body 8 p. 00 ConvPrint" ID="PCS_CVP1058460009"
+      JobPartID="PCS_CVP1058460009" Status="Waiting" Type="ProcessGroup"
+      Types="InkZoneCalculation ConventionalPrinting" xsi:type="ProcessGroup">
+      <AuditPool>
+        <Created AgentName="MIS" AgentVersion="v1.0"
+          Author="Miss Prepress" ID="a060513_030838696_000025" TimeStamp="2006-05-15T12:00:00+01:00"/>
+      </AuditPool>
+      <ResourcePool>
+        <ConventionalPrintingParams Class="Parameter" ID="CVP1058460009"
+          PrintingType="SheetFed" Status="Available" WorkStyle="Perfecting"/>
+        <NodeInfo Class="Parameter" End="2006-05-29T11:00:00+02:00"
+          ID="r060513_030838696_000024" PartUsage="Implicit"
+          Start="2006-05-15T12:00:00+01:00" Status="Available" TotalDuration="P0DT4H17M0S"/>
+      </ResourcePool>
+      <ResourceLinkPool>
+        <ConventionalPrintingParamsLink Usage="Input" rRef="CVP1058460009"/>
+        <DeviceLink Usage="Input" rRef="PRS5140"/>
+        <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+          <Part SignatureName="SIG_B1"/>
+        </ColorantControlLink>
+        <ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="ExposedMedia">
+          <Part SheetName="SHT_B1" SignatureName="SIG_B1"/>
+        </ExposedMediaLink>
+        <PreviewLink Usage="Input" rRef="Preview">
+          <Part SheetName="SHT_B1" SignatureName="SIG_B1"/>
+        </PreviewLink>
+        <LayoutLink Usage="Input" rRef="LAYBody01"/>
+        <MediaLink Amount="25858" Usage="Input" rRef="PAPMSVA_90_WIT_880x630"/>
+        <ComponentLink Usage="Output" rRef="COMPCS_CVP1058460009">
+          <Part SheetName="SHT_B1" SignatureName="SIG_B1"/>
+          <AmountPool>
+            <PartAmount Amount="25000">
+              <Part Condition="Good" SheetName="SHT_B1" SignatureName="SIG_B1"/>
+            </PartAmount>
+            <PartAmount Amount="858">
+              <Part Condition="Waste" SheetName="SHT_B1" SignatureName="SIG_B1"/>
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+        <NodeInfoLink Usage="Input" rRef="r060513_030838696_000024"/>
+      </ResourceLinkPool>
+    </JDF>
+    <JDF DescriptiveName="Body 16 p. 01 ConvPrint"
+      ID="PCS_CVP1058470004" JobPartID="PCS_CVP1058470004"
+      Status="Waiting" Type="ProcessGroup"
+      Types="InkZoneCalculation ConventionalPrinting" xsi:type="ProcessGroup">
+      <AuditPool>
+        <Created AgentName="MIS" AgentVersion="v1.0"
+          Author="Miss Prepress" ID="a060513_030838697_000027" TimeStamp="2006-05-15T12:00:00+01:00"/>
+      </AuditPool>
+      <ResourcePool>
+        <ConventionalPrintingParams Class="Parameter" ID="CVP1058470004"
+          PrintingType="SheetFed" Status="Available" WorkStyle="Perfecting"/>
+        <NodeInfo Class="Parameter" End="2006-05-29T11:00:00+02:00"
+          ID="r060513_030838697_000026" PartUsage="Implicit"
+          Start="2006-05-15T12:00:00+01:00" Status="Available" TotalDuration="P0DT6H58M0S"/>
+      </ResourcePool>
+      <ResourceLinkPool>
+        <ConventionalPrintingParamsLink Usage="Input" rRef="CVP1058470004"/>
+        <DeviceLink Usage="Input" rRef="PRS5140"/>
+        <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+          <Part SignatureName="SIG_B2"/>
+        </ColorantControlLink>
+        <ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="ExposedMedia">
+          <Part SheetName="SHT_B2" SignatureName="SIG_B2"/>
+        </ExposedMediaLink>
+        <PreviewLink Usage="Input" rRef="Preview">
+          <Part SheetName="SHT_B2" SignatureName="SIG_B2"/>
+        </PreviewLink>
+        <LayoutLink Usage="Input" rRef="LAYBody01"/>
+        <MediaLink Amount="51393" Usage="Input" rRef="PAPMSVA_90_WIT_880x630"/>
+        <ComponentLink Usage="Output" rRef="COMPCS_CVP1058470004">
+          <Part SheetName="SHT_B2" SignatureName="SIG_B2"/>
+          <AmountPool>
+            <PartAmount Amount="50000">
+              <Part Condition="Good" SheetName="SHT_B2" SignatureName="SIG_B2"/>
+            </PartAmount>
+            <PartAmount Amount="1393">
+              <Part Condition="Waste" SheetName="SHT_B2" SignatureName="SIG_B2"/>
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+        <NodeInfoLink Usage="Input" rRef="r060513_030838697_000026"/>
+      </ResourceLinkPool>
+    </JDF>
+    <JDF DescriptiveName="Body 16 p. 02 ConvPrint"
+      ID="PCS_CVP1058480005" JobPartID="PCS_CVP1058480005"
+      Status="Waiting" Type="ProcessGroup"
+      Types="InkZoneCalculation ConventionalPrinting" xsi:type="ProcessGroup">
+      <AuditPool>
+        <Created AgentName="MIS" AgentVersion="v1.0"
+          Author="Miss Prepress" ID="a060513_030838698_000029" TimeStamp="2006-05-15T12:00:00+01:00"/>
+      </AuditPool>
+      <ResourcePool>
+        <ConventionalPrintingParams Class="Parameter" ID="CVP1058480005"
+          PrintingType="SheetFed" Status="Available" WorkStyle="Perfecting"/>
+        <NodeInfo Class="Parameter" End="2006-05-29T11:00:00+02:00"
+          ID="r060513_030838698_000028" PartUsage="Implicit"
+          Start="2006-05-15T12:00:00+01:00" Status="Available" TotalDuration="P0DT6H56M0S"/>
+      </ResourcePool>
+      <ResourceLinkPool>
+        <ConventionalPrintingParamsLink Usage="Input" rRef="CVP1058480005"/>
+        <DeviceLink Usage="Input" rRef="PRS5140"/>
+        <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+          <Part SignatureName="SIG_B3"/>
+        </ColorantControlLink>
+        <ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="ExposedMedia">
+          <Part SheetName="SHT_B3" SignatureName="SIG_B3"/>
+        </ExposedMediaLink>
+        <PreviewLink Usage="Input" rRef="Preview">
+          <Part SheetName="SHT_B3" SignatureName="SIG_B3"/>
+        </PreviewLink>
+        <LayoutLink Usage="Input" rRef="LAYBody01"/>
+        <MediaLink Amount="51388" Usage="Input" rRef="PAPMSVA_90_WIT_880x630"/>
+        <ComponentLink Usage="Output" rRef="COMPCS_CVP1058480005">
+          <Part SheetName="SHT_B3" SignatureName="SIG_B3"/>
+          <AmountPool>
+            <PartAmount Amount="50000">
+              <Part Condition="Good" SheetName="SHT_B3" SignatureName="SIG_B3"/>
+            </PartAmount>
+            <PartAmount Amount="1388">
+              <Part Condition="Waste" SheetName="SHT_B3" SignatureName="SIG_B3"/>
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+        <NodeInfoLink Usage="Input" rRef="r060513_030838698_000028"/>
+      </ResourceLinkPool>
+    </JDF>
+  </JDF>
+  <JDF DescriptiveName="Insert Complex" ID="SUB220" JobPartID="SUB220"
+    Status="Waiting" Type="Product" xsi:type="Product">
+    <AuditPool>
+      <Created AgentName="MIS" AgentVersion="v1.0"
+        Author="Miss Prepress" ID="a060513_030838699_000032" TimeStamp="2006-05-15T12:00:00+01:00"/>
+    </AuditPool>
+    <ResourcePool>
+      <ColorIntent Class="Intent" ID="COI220" Status="Available">
+        <ColorPoolRef rRef="ColorPool"/>
+        <ColorsUsed>
+          <SeparationSpec Name="Cyan"/>
+          <SeparationSpec Name="Magenta"/>
+          <SeparationSpec Name="Yellow"/>
+          <SeparationSpec Name="Black"/>
+          <SeparationSpec Name="PANTONE 375 C"/>
+        </ColorsUsed>
+      </ColorIntent>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Insert  ConvPrint" Dimensions="2835 1984 0"
+        ID="COMPCS_CVP1058500007"
+        PartIDKeys="SignatureName SheetName Condition" Status="Unavailable">
+        <LayoutRef rRef="LAYInsert01">
+          <Part SheetName="SHT_I1" SignatureName="SIG_I1"/>
+        </LayoutRef>
+        <Component SignatureName="SIG_I1">
+          <Component SheetName="SHT_I1">
+            <Component Condition="Good" IsWaste="false"/>
+            <Component Condition="Waste" IsWaste="true"/>
+          </Component>
+        </Component>
+      </Component>
+      <FoldingIntent Class="Intent" ID="FOI220000050" Status="Available">
+        <FoldingCatalog Actual="F4-1" DataType="NameSpan" Preferred="F4-1"/>
+      </FoldingIntent>
+      <LayoutIntent Class="Intent" ID="LAI220" Status="Available">
+        <FinishedDimensions Actual="448 842 0" DataType="ShapeSpan" Preferred="448 842 0"/>
+        <Pages Actual="4" DataType="IntegerSpan" Preferred="4"/>
+      </LayoutIntent>
+      <Layout Class="Parameter" ID="LAYInsert01" Name="LAYInsert01"
+        PartIDKeys="SignatureName SheetName Side" Status="Available">
+        <Layout SignatureName="SIG_I1">
+          <Layout SheetName="SHT_I1">
+            <MediaRef rRef="PAP100532"/>
+            <Layout Side="Front"/>
+          </Layout>
+        </Layout>
+      </Layout>
+      <Component Class="Quantity" ComponentType="PartialProduct Sheet"
+        DescriptiveName="Insert " Dimensions="870 981 0"
+        ID="COMPCS_FPS1058500040" ProductType="Insert" Status="Unavailable"/>
+    </ResourcePool>
+    <ResourceLinkPool>
+      <FoldingIntentLink Usage="Input" rRef="FOI220000050"/>
+      <LayoutIntentLink Usage="Input" rRef="LAI220"/>
+      <ColorIntentLink Usage="Input" rRef="COI220"/>
+      <MediaIntentLink Usage="Input" rRef="MEI100532"/>
+      <ComponentLink Amount="50004.00000" Usage="Output" rRef="COMPCS_FPS1058500040"/>
+    </ResourceLinkPool>
+    <JDF Category="PrePress" DescriptiveName="PrePress Complex Insert"
+      ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+      ID="PRE220" JobPartID="PRE220" Status="Waiting"
+      Type="ProcessGroup" xsi:type="ProcessGroup">
+      <AuditPool>
+        <Created AgentName="MIS" AgentVersion="v1.0"
+          Author="Miss Prepress" ID="a060513_030838701_000033" TimeStamp="2006-05-15T12:00:00+01:00"/>
+      </AuditPool>
+      <ResourcePool>
+        <Assembly BindingSide="Left" Class="Parameter" ID="ASM220"
+          Order="Collecting" Status="Available"/>
+        <BinderySignature Class="Parameter" FoldCatalog="F4-1"
+          ID="BIS220000050" Status="Available"/>
+        <InterpretingParams Class="Parameter"
+          ID="INPPAP100532Plate000001" Status="Available">
+          <MediaRef rRef="PAP100532"/>
+          <MediaRef rRef="Plate000001"/>
+        </InterpretingParams>
+        <RunList Class="Parameter" ID="RNL220_D" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RNL220_M" Status="Unavailable"/>
+        <RunList Class="Parameter" ID="RNL220" NPage="4" Status="Available">
+          <LayoutElement>
+            <FileSpec MimeType="application/pdf" URL="Content/ComplexInsert.pdf"/>
+          </LayoutElement>
+        </RunList>
+        <StrippingParams Class="Parameter" ID="STP220"
+          PartIDKeys="SignatureName SheetName" Status="Available">
+          <StrippingParams SignatureName="SIG_I1">
+            <StrippingParams SectionList="0" SheetName="SHT_I1" WorkStyle="WorkAndTumble">
+              <StripCellParams BackOverfold="0.00000"
+                BleedFace="5.66929" BleedFoot="5.66929"
+                BleedHead="5.66929" BleedSpine="0.000"
+                FrontOverfold="28.34646" MillingDepth="0.00000"
+                Spine="0.00000" TrimFace="14.17323" TrimFoot="14.17323"
+                TrimHead="14.17323" TrimSize="447.87402 841.88976"/>
+              <BinderySignatureRef rRef="BIS220000050"/>
+              <DeviceRef rRef="PRS5150"/>
+              <MediaRef rRef="PAP100532"/>
+              <MediaRef rRef="Plate000001"/>
+              <!-- removed mirrrored positions-->
+              <Position Orientation="Flip90" RelativeBox="0.00000 0.00000 0.33333 0.50000"/>
+              <Position Orientation="Flip90" RelativeBox="0.33333 0.00000 0.66667 0.50000"/>
+              <Position Orientation="Flip90" RelativeBox="0.66667 0.00000 1.00000 0.50000"/>
+            </StrippingParams>
+          </StrippingParams>
+        </StrippingParams>
+      </ResourcePool>
+      <JDF Category="MISPRE.PrePressPreparation"
+        DescriptiveName="PrePressPreparation of PrePress Insert"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="PPP220" JobPartID="PPP220" Status="Waiting"
+        Type="ProcessGroup" Types="PrePressPreparation" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838702_000034" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <RunListLink Usage="Input" rRef="RNL220"/>
+          <RunListLink ProcessUsage="Document" Usage="Output" rRef="RNL220_D"/>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="MISPRE.ImpositionPreparation"
+        DescriptiveName="ImpositionPreparation of PrePress Insert"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="STR220" JobPartID="STR220" Status="Waiting"
+        Type="ProcessGroup" Types="ImpositionPreparation" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838702_000035" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <StrippingParamsLink Usage="Input" rRef="STP220"/>
+          <AssemblyLink Usage="Input" rRef="ASM220"/>
+          <LayoutLink Usage="Output" rRef="LAYInsert01"/>
+          <RunListLink ProcessUsage="Marks" Usage="Output" rRef="RNL220_M"/>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="MISPRE.ProofImaging"
+        DescriptiveName="ProofImaging of PrePress Insert"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="PRI220" JobPartID="PRI220" Status="Waiting"
+        Type="ProcessGroup" Types="Imposition ProofImaging" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838702_000036" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <RunListLink ProcessUsage="Document" Usage="Input" rRef="RNL220_D"/>
+          <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RNL220_M"/>
+          <LayoutLink Usage="Input" rRef="LAYInsert01"/>
+          <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+            <Part SignatureName="SIG_I1"/>
+          </ColorantControlLink>
+          <InterpretingParamsLink Usage="Input" rRef="INPPAP100532Plate000001"/>
+          <MediaLink Usage="Input" rRef="ImpoProof01"/>
+          <ExposedMediaLink Amount="1" Usage="Output" rRef="ImpositionProof">
+            <Part SheetName="SHT_I1" SignatureName="SIG_I1"/>
+          </ExposedMediaLink>
+        </ResourceLinkPool>
+      </JDF>
+      <JDF Category="MISPRE.PlateMaking"
+        DescriptiveName="FinalImaging of PrePress Insert"
+        ICSVersions="Base_L2-1.3 JMF_L2-1.3 MIS_L2-1.3 MISPRE_L1-1.3"
+        ID="RIP220" JobPartID="RIP220" Status="Waiting"
+        Type="ProcessGroup"
+        Types="Imposition RIPing PreviewGeneration ImageSetting" xsi:type="ProcessGroup">
+        <AuditPool>
+          <Created AgentName="MIS" AgentVersion="v1.0"
+            Author="Miss Prepress" ID="a060513_030838703_000038" TimeStamp="2006-05-15T12:00:00+01:00"/>
+        </AuditPool>
+        <ResourceLinkPool>
+          <RunListLink ProcessUsage="Document" Usage="Input" rRef="RNL220_D"/>
+          <RunListLink ProcessUsage="Marks" Usage="Input" rRef="RNL220_M"/>
+          <LayoutLink Usage="Input" rRef="LAYInsert01"/>
+          <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+            <Part SignatureName="SIG_I1"/>
+          </ColorantControlLink>
+          <InterpretingParamsLink Usage="Input" rRef="INPPAP100532Plate000001"/>
+          <MediaLink Usage="Input" rRef="Plate000001"/>
+          <DeviceLink Usage="Input" rRef="PLA1001"/>
+          <ExposedMediaLink Amount="1" Usage="Output" rRef="ExposedMedia">
+            <Part SheetName="SHT_I1" SignatureName="SIG_I1"/>
+          </ExposedMediaLink>
+          <PreviewLink Usage="Output" rRef="Preview">
+            <Part SheetName="SHT_I1" SignatureName="SIG_I1"/>
+          </PreviewLink>
+          <NodeInfoLink Usage="Input" rRef="r060513_030838702_000037"/>
+        </ResourceLinkPool>
+        <ResourcePool>
+          <NodeInfo Class="Parameter" End="2006-05-29T11:00:00+02:00"
+            ID="r060513_030838702_000037" PartUsage="Implicit" Status="Available"/>
+        </ResourcePool>
+      </JDF>
+    </JDF>
+    <JDF DescriptiveName="Insert ConvPrint" ID="PCS_CVP1058500007"
+      JobPartID="PCS_CVP1058500007" Status="Waiting" Type="ProcessGroup"
+      Types="InkZoneCalculation ConventionalPrinting" xsi:type="ProcessGroup">
+      <AuditPool>
+        <Created AgentName="MIS" AgentVersion="v1.0"
+          Author="Miss Prepress" ID="a060513_030838703_000040" TimeStamp="2006-05-15T12:00:00+01:00"/>
+      </AuditPool>
+      <ResourcePool>
+        <ConventionalPrintingParams Class="Parameter" ID="CVP1058500007"
+          PrintingType="SheetFed" Status="Available" WorkStyle="WorkAndTumble"/>
+        <NodeInfo Class="Parameter" End="2006-05-29T11:00:00+02:00"
+          ID="r060513_030838703_000039" PartUsage="Implicit"
+          Start="2006-05-15T12:00:00+01:00" Status="Available" TotalDuration="P0DT2H45M0S"/>
+      </ResourcePool>
+      <ResourceLinkPool>
+        <ConventionalPrintingParamsLink Usage="Input" rRef="CVP1058500007"/>
+        <DeviceLink Usage="Input" rRef="PRS5150"/>
+        <ColorantControlLink Usage="Input" rRef="ID_ColorantControl">
+          <Part SignatureName="SIG_I1"/>
+        </ColorantControlLink>
+        <ExposedMediaLink ProcessUsage="Plate" Usage="Input" rRef="ExposedMedia">
+          <Part SheetName="SHT_I1" SignatureName="SIG_I1"/>
+        </ExposedMediaLink>
+        <PreviewLink Usage="Input" rRef="Preview">
+          <Part SheetName="SHT_I1" SignatureName="SIG_I1"/>
+        </PreviewLink>
+        <LayoutLink Usage="Input" rRef="LAYInsert01"/>
+        <MediaLink Amount="8655" Usage="Input" rRef="PAP100532"/>
+        <ComponentLink Usage="Output" rRef="COMPCS_CVP1058500007">
+          <Part SheetName="SHT_I1" SignatureName="SIG_I1"/>
+          <AmountPool>
+            <PartAmount Amount="8334">
+              <Part Condition="Good" SheetName="SHT_I1" SignatureName="SIG_I1"/>
+            </PartAmount>
+            <PartAmount Amount="321">
+              <Part Condition="Waste" SheetName="SHT_I1" SignatureName="SIG_I1"/>
+            </PartAmount>
+          </AmountPool>
+        </ComponentLink>
+        <NodeInfoLink Usage="Input" rRef="r060513_030838703_000039"/>
+      </ResourceLinkPool>
+    </JDF>
+  </JDF>
+</JDF>

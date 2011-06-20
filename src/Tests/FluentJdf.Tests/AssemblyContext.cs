@@ -10,6 +10,7 @@ namespace FluentJdf.Tests {
 
         public void OnAssemblyStart() {
             Infrastructure.Core.Configuration.Settings.UseCastleWindsor().LogWithNLog().Configure();
+            Library.Settings.ResetToDefaults();
         }
 
         public void OnAssemblyComplete() {}

@@ -40,13 +40,5 @@ namespace FluentJdf.LinqToJdf {
         public JdfNodeBuilder Process(params string[] types) {
             return new JdfNodeBuilder(Initiator, types);
         }
-
-        /// <summary>
-        /// Creates a JMF
-        /// </summary>
-        /// <returns></returns>
-        public JmfNodeBuilder Message() {
-            return new JmfNodeBuilder(Initiator);
-        }
     }
 }

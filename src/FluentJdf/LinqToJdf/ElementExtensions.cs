@@ -202,5 +202,18 @@ namespace FluentJdf.LinqToJdf {
 
             return element;
         }
+
+        /// <summary>
+        /// Set the xsi:type attribute of the node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="xsiType"></param>
+        /// <returns></returns>
+        public static XElement SetXsiType(this XElement element, string xsiType) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            element.SetAttributeValue(XName.Get("type", "http://www.w3.org/2001/XMLSchema-instance"), xsiType);
+            return element;
+        }
     }
 }
