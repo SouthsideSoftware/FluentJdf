@@ -51,14 +51,35 @@ namespace FluentJdf.Transmission
             }
 
             try {
-                var encodingResult = encodingfactory.GetEncodingForTransmissionParts(partsToSend);
+                var encodingResult = encodingfactory.GetEncodingForTransmissionParts(partsToSend).Encode(partsToSend);
+                var request = httpWebRequestFactory.Create(uri, encodingResult.ContentType);
+                using (var outStream = request.GetRequestStream()) {
+                    encodingResult.Stream.CopyTo(outStream);
+                }
+                var response = (HttpWebResponse) request.GetResponse();
+                try {
+                    var contentType = GetContentTypeOfResponse(response);
+                    var responseParts = encodingfactory.GetEncodingForMimeType(contentType).Decode("httpContent", response.GetResponseStream(),
+                                                                                                   contentType);
+                    return new JmfResult(responseParts);
+                } finally {
+                    response.Close();
+                }
             } catch (Exception err) {
                 logger.Error(string.Format(Messages.HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException, uri), err);
                 throw;
             }
+        }
 
-            //todo: finish implementation
-            return null;
+        string GetContentTypeOfResponse(HttpWebResponse response) {
+            var contentType = response.ContentType.ToLower();
+            string[] contentElements = contentType.Split(';');
+            if (contentElements.Length > 1)
+            {
+                contentType = contentElements[0];
+            }
+
+            return contentType;
         }
 
         /// <summary>
