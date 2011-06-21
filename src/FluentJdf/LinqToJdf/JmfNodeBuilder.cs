@@ -7,10 +7,30 @@ namespace FluentJdf.LinqToJdf {
     /// </summary>
     public class JmfNodeBuilder : JmfNodeBuilderBase {
         internal JmfNodeBuilder(Message message) {
-            ParameterCheck.ParameterRequired(message, "message");
+            Initialize(message);
+        }
 
-            Element = new XElement(LinqToJdf.Element.JMF);
-            message.Add(Element);
+        void Initialize(Message message) {
+            ParameterCheck.ParameterRequired(message, "message");
+            if (message.Root != null) {
+                message.Root.ThrowExceptionIfNotJmfElement();
+            }
+
+            if (message.Root == null) {
+                Element = new XElement(LinqToJdf.Element.JMF);
+                message.Add(Element);
+            }
+            else {
+                Element = message.Root;
+            }
+            ParentJmfNode = this;
+        }
+
+        internal JmfNodeBuilder(XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+            element.ThrowExceptionIfNotInMessage();
+
+            Initialize(element.Document as Message);
         }
 
         /// <summary>

@@ -197,6 +197,16 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The element must be contained in a Message object.
+        /// </summary>
+        internal static string JmfElementExtensions_ThrowExceptionIfNotInMessage_CannotOperateOnElementUnlessItIsInMessage {
+            get {
+                return ResourceManager.GetString("JmfElementExtensions_ThrowExceptionIfNotInMessage_CannotOperateOnElementUnlessItI" +
+                        "sInMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can only operate on JMF nodes.  The name is {0}..
         /// </summary>
         internal static string JmfElementExtensions_ThrowExceptionIfNotJmfElement_CanOnlyOperateOnJmfNodes {

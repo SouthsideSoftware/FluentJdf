@@ -5,24 +5,23 @@ namespace FluentJdf.LinqToJdf {
     /// <summary>
     /// Base class for JMF element builders.
     /// </summary>
-    public abstract class JmfNodeBuilderBase
-    {
+    public abstract class JmfNodeBuilderBase : IJmfNodeBuilderBase {
+        internal JmfNodeBuilderBase() {
+            
+        }
+
         internal JmfNodeBuilderBase(JmfNodeBuilder parentJmfBuilder)
         {
             ParentJmfNode = parentJmfBuilder;
         }
 
-        //todo: not right yet
         internal JmfNodeBuilderBase(XElement element)
         {
             ParameterCheck.ParameterRequired(element, "element");
+            element.ThrowExceptionIfNotInMessage();
 
             Element = element;
-        }
-
-        internal JmfNodeBuilderBase()
-        {
-            
+            ParentJmfNode = new JmfNodeBuilder(element.Document as Message);
         }
 
         /// <summary>

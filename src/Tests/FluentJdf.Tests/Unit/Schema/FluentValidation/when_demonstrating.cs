@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using FluentJdf.LinqToJdf;
 using Machine.Specifications;
 
@@ -16,9 +17,14 @@ namespace FluentJdf.Tests.Unit.Schema.FluentValidation {
                              .Ticket;
                          ticket.Root.ModifyJdfNode().WithOutput().BindingIntent("foo");
 
-                         // var doc = new XDocument(new XElement(XName.Get("JDF", "http://www.CIP4.org/JDFSchema_1_1", new XAttribute("JobID"))));
-                         // doc.Save(@"c:\logs\test2.jdf");
-                     };
+            var doc = new XDocument();
+            doc.Add(new XElement(Element.JDF));
+
+            Message.Create().AddCommand().SubmitQueueEntry();
+
+            // var doc = new XDocument(new XElement(XName.Get("JDF", "http://www.CIP4.org/JDFSchema_1_1", new XAttribute("JobID"))));
+            //ticket.Save(@"c:\logs\test2.jdf");
+        };
 
         It should_save = () => ticket.ValidateJdf().Save(@"\logs\test.jdf");
     }

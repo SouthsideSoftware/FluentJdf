@@ -25,14 +25,6 @@ namespace FluentJdf.LinqToJdf {
             return new JmfNodeBuilder(message);
         }
 
-        /// <summary>
-        /// Gets the node builder so nodes can be added.
-        /// </summary>
-        /// <returns></returns>
-        public JmfNodeBuilder AddNode() {
-            return new JmfNodeBuilder(this);
-        }
-
         private Message(ITransmitterFactory transmitterFactory) {
             ParameterCheck.ParameterRequired(transmitterFactory, "transmitterFactory");
 
@@ -43,7 +35,7 @@ namespace FluentJdf.LinqToJdf {
         /// Validate the document.
         /// </summary>
         /// <param name="addSchemaInfo"></param>
-        public Message ValidateJdf(bool addSchemaInfo = true)
+        public Message ValidateJmf(bool addSchemaInfo = true)
         {
             validator.Validate(addSchemaInfo);
             return this;

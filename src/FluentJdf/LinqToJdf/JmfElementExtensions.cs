@@ -28,6 +28,17 @@ namespace FluentJdf.LinqToJdf
         }
 
         /// <summary>
+        /// Throw an exception if the element is not in a Message.
+        /// </summary>
+        /// <param name="element"></param>
+        public static void ThrowExceptionIfNotInMessage(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+            if (element.Document == null || !(element.Document is Message)) {
+                throw new ArgumentException(Messages.JmfElementExtensions_ThrowExceptionIfNotInMessage_CannotOperateOnElementUnlessItIsInMessage);
+            }
+        }
+
+        /// <summary>
         /// Gets true if the element is a JF node.
         /// </summary>
         /// <param name="element"></param>
@@ -37,6 +48,18 @@ namespace FluentJdf.LinqToJdf
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.Name == Element.JMF;
+        }
+
+        /// <summary>
+        /// Gets the builder for an existing JMF node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static JmfNodeBuilder ModifyJmfNode(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+            element.ThrowExceptionIfNotJmfElement();
+
+            return new JmfNodeBuilder(element);
         }
     }
 }

@@ -10,12 +10,12 @@ namespace FluentJdf.LinqToJdf
     /// Create commands of various types
     /// </summary>
     public class JmfCommandTypeBuilder {
-        internal JmfNodeBuilder ParentJmf;
+        readonly JmfNodeBuilder parentJmf;
 
         internal JmfCommandTypeBuilder(JmfNodeBuilder jmfNodeBuilder) {
             ParameterCheck.ParameterRequired(jmfNodeBuilder, "jmfNodeBuilder");
 
-            ParentJmf = jmfNodeBuilder;
+            parentJmf = jmfNodeBuilder;
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <returns></returns>
         public JmfCommandBuilder SubmitQueueEntry() {
-            return new JmfCommandBuilder(ParentJmf, Command.SubmitQueueEntry);
+            return new JmfSubmitQueueEntryCommandBuilder(parentJmf);
         }
     }
 }

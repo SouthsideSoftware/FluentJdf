@@ -198,4 +198,7 @@
 	<data name="JmfElementExtensions_AddJmfElement_JMFMustBeRoot">
 		<value xml:space="preserve">Can only add JMF as root element.  Root element {0} already exists</value>
 	</data>
+	<data name="JmfElementExtensions_ThrowExceptionIfNotInMessage_CannotOperateOnElementUnlessItIsInMessage">
+		<value xml:space="preserve">The element must be contained in a Message object</value>
+	</data>
 </root>

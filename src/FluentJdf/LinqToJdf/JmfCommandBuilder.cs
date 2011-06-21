@@ -14,13 +14,14 @@ namespace FluentJdf.LinqToJdf
     public class JmfCommandBuilder : JmfNodeBuilderBase {
         string commandType;
 
-        internal  JmfCommandBuilder(JmfNodeBuilder parent, string commandType) : base(parent) {
+        internal  JmfCommandBuilder(JmfNodeBuilder parent, string commandType, string idPrefix = "C") : base(parent) {
             ParameterCheck.StringRequiredAndNotWhitespace(commandType, "commandType");
+            ParameterCheck.StringRequiredAndNotWhitespace(idPrefix, "idPrefix");
 
             this.commandType = commandType;
             
-            Element = new XElement(Command.SubmitQueueEntry);
-            Element.SetAttributeValue("ID", Globals.CreateUniqueId("C_"));
+            Element = new XElement(commandType);
+            Element.SetAttributeValue("ID", Globals.CreateUniqueId(idPrefix));
             Element.SetAttributeValue("Type", commandType);
             Element.SetXsiType(Command.XsiTypeOfCommand(commandType));
             parent.Element.Add(Element);

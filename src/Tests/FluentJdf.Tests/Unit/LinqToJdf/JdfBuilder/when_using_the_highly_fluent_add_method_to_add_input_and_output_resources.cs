@@ -3,7 +3,7 @@ using System.Xml.Linq;
 using FluentJdf.LinqToJdf;
 using Machine.Specifications;
 
-namespace FluentJdf.Tests.Unit.LinqToJdf.Builder {
+namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder {
     [Subject("Highly fluent interface")]
     public class when_using_the_highly_fluent_add_method_to_add_input_and_output_resources {
         static XElement intent;

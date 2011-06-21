@@ -144,7 +144,7 @@
     <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_file.cs" />
     <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_xml_no_root.cs" />
     <Compile Include="Unit\Encoding\XmlTransmissionPart\when_xml_transmission_part_created_from_xml_that_is_neither_jdf_nor_jmf.cs" />
-    <Compile Include="Unit\LinqToJdf\Builder\when_setting_id_through_the_builder_on_new_resources.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfBuilder\when_setting_id_through_the_builder_on_new_resources.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_adding_resource_links_into_sibling_when_resource_is_in_sibling.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_jdf_nodes_with_configuration_for_no_job_id.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_creating_jdf_nodes_with_configuration_for_no_job_id_and_no_job_part_id.cs" />
@@ -170,8 +170,8 @@
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_jdf_parent_on_various_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_jdf_root_on_various_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_using_nearest_jdf_on_various_nodes.cs" />
-    <Compile Include="Unit\LinqToJdf\Builder\when_using_the_highly_fluent_add_method_to_add_input_and_output_resources.cs" />
-    <Compile Include="Unit\LinqToJdf\Builder\when_using_the_highly_fluent_add_method_to_add_intent_and_set_attributes.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfBuilder\when_using_the_highly_fluent_add_method_to_add_input_and_output_resources.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfBuilder\when_using_the_highly_fluent_add_method_to_add_intent_and_set_attributes.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\Audits\when_adding_an_audit_with_defaults.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\Audits\when_adding_an_audit_with_explicit_values.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\Audits\when_configuration_is_set_not_to_put_created_audit_in_root.cs" />
@@ -236,7 +236,9 @@
   <ItemGroup>
     <EmbeddedResource Include="TestData\sampleJDF.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Unit\LinqToJdf\JmfBuilder\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
