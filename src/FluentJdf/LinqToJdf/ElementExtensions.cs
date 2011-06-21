@@ -209,11 +209,24 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="element"></param>
         /// <param name="xsiType"></param>
         /// <returns></returns>
-        public static XElement SetXsiType(this XElement element, string xsiType) {
+        public static XElement SetXsiType(this XElement element, string xsiType)
+        {
             ParameterCheck.ParameterRequired(element, "element");
 
-            element.SetAttributeValue(XName.Get("type", "http://www.w3.org/2001/XMLSchema-instance"), xsiType);
+            element.SetAttributeValue(Globals.XsiNamespace.GetName("type"), xsiType);
             return element;
+        }
+
+        /// <summary>
+        /// Gets the xsi:type attribute.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static string GetXsiTypeAttribute(this XElement element)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            return element.GetAttributeValueOrNull(Globals.XsiNamespace.GetName("type"));
         }
     }
 }

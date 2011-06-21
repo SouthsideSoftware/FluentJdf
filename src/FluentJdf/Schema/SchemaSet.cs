@@ -44,7 +44,7 @@ namespace FluentJdf.Schema
             }
 
             Schemas = new XmlSchemaSet();
-            Schemas.Add(Globals.Namespace.NamespaceName, Path.Combine(schemaDir, "jdf.xsd"));
+            Schemas.Add(Globals.JdfNamespace.NamespaceName, Path.Combine(schemaDir, "jdf.xsd"));
             Schemas.Compile();
         }
 

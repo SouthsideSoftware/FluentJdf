@@ -32,6 +32,18 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Gets the builder for the root.
+        /// </summary>
+        /// <returns></returns>
+        public JmfNodeBuilder ModifyJmfNode() {
+            if (Root == null || Root.Name != LinqToJdf.Element.JMF) {
+                throw new Exception(Messages.Message_ModifyJmfNode_RootMustExistAndMustbeJmf);
+            }
+
+            return new JmfNodeBuilder(Root);
+        }
+
+        /// <summary>
         /// Validate the document.
         /// </summary>
         /// <param name="addSchemaInfo"></param>

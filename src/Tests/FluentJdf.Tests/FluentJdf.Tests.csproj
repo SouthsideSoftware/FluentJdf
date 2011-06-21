@@ -125,6 +125,9 @@
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_jdf_xml.cs" />
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_jmf_xml.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartCollection\when_adding_transmission_parts_to_a_transmission_part_collection.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_creating_submit_queue_entry_fluently.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_message.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_root.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_default_configuration.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_non_default_configuration.cs" />
     <Compile Include="Unit\Transmission\when_creating_transmitters_from_some_registered_schemes.cs" />
@@ -236,9 +239,7 @@
   <ItemGroup>
     <EmbeddedResource Include="TestData\sampleJDF.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Unit\LinqToJdf\JmfBuilder\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

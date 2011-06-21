@@ -7,7 +7,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.XNameExtensions
     [Subject(typeof(XNameExtension))]
     public class when_using_link_name
     {
-        It should_have_jdf_namespace_when_created_from_element_in_jdf_namespace = () => Resource.BindingIntent.LinkName().NamespaceName.ShouldEqual(Globals.Namespace.ToString());
+        It should_have_jdf_namespace_when_created_from_element_in_jdf_namespace = () => Resource.BindingIntent.LinkName().NamespaceName.ShouldEqual(Globals.JdfNamespace.ToString());
 
         It should_end_in_link_when_created_from_element_in_jdf_namespace = () => Resource.BindingIntent.LinkName().LocalName.ShouldEndWith("Link");
 

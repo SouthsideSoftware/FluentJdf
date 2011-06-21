@@ -201,4 +201,7 @@
 	<data name="JmfElementExtensions_ThrowExceptionIfNotInMessage_CannotOperateOnElementUnlessItIsInMessage">
 		<value xml:space="preserve">The element must be contained in a Message object</value>
 	</data>
+	<data name="Message_ModifyJmfNode_RootMustExistAndMustbeJmf">
+		<value xml:space="preserve">The root of the Message must exist and must be a JMF</value>
+	</data>
 </root>

@@ -14,7 +14,12 @@ namespace FluentJdf.LinqToJdf
         ///<summary>
         /// The XML namespace for JDF 1.1 and higher
         ///</summary>
-        public static XNamespace Namespace = "http://www.CIP4.org/JDFSchema_1_1";
+        public static XNamespace JdfNamespace = "http://www.CIP4.org/JDFSchema_1_1";
+
+        /// <summary>
+        /// Gets the xsi schema namespace.
+        /// </summary>
+        public static XNamespace XsiNamespace = "http://www.w3.org/2001/XMLSchema-instance";
 
         /// <summary>
         /// Creates a unique id suitable for use as a resource id, job id etc.
@@ -31,7 +36,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static XName JdfName(string name) { return Namespace + name; }
+        public static XName JdfName(string name) { return JdfNamespace + name; }
 
         /// <summary>
         /// Gets the namespace manager.

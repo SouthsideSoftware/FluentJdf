@@ -142,7 +142,7 @@ namespace FluentJdf.LinqToJdf
             ParameterCheck.ParameterRequired(attributeName, "attributeName");
 
             return GetSpanAttributeActualPreferredOrNull(source,
-                                                         XName.Get(attributeName, Globals.Namespace.ToString()));
+                                                         XName.Get(attributeName, Globals.JdfNamespace.ToString()));
         }
 
         /// <summary>

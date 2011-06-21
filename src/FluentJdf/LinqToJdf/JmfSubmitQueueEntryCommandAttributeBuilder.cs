@@ -10,7 +10,7 @@ namespace FluentJdf.LinqToJdf
     /// <summary>
     /// Build attributes for JmfSubmitQueueEntryCommand
     /// </summary>
-    public class JmfSubmitQueueEntryCommandAttributeBuilder : IJmfNodeBuilderBase {
+    public class JmfSubmitQueueEntryCommandAttributeBuilder : IJmfSubmitQueueEntryCommandBuilder {
         readonly JmfSubmitQueueEntryCommandBuilder builder;
 
         /// <summary>

@@ -225,6 +225,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The root of the Message must exist and must be a JMF.
+        /// </summary>
+        internal static string Message_ModifyJmfNode_RootMustExistAndMustbeJmf {
+            get {
+                return ResourceManager.GetString("Message_ModifyJmfNode_RootMustExistAndMustbeJmf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pass through encoder cannot encode a transmission part collection containing more than one part..
         /// </summary>
         internal static string PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart {

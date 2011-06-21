@@ -18,6 +18,7 @@ namespace FluentJdf.LinqToJdf
         public static XName BinderMaterial = Globals.JdfName("BinderMaterial");
         public static XName BindingColor = Globals.JdfName("BindingColor");
         public static XName BindingColorDetails = Globals.JdfName("BindingColorDetails");
+        public static XName Command = Globals.JdfName("Command");
         public static XName Comment = Globals.JdfName("Comment");
         public static XName DevCapPool = Globals.JdfName("DevCapPool");
         public static XName DevCap = Globals.JdfName("DevCap");

@@ -20,9 +20,9 @@ namespace FluentJdf.LinqToJdf
 
             this.commandType = commandType;
             
-            Element = new XElement(commandType);
-            Element.SetAttributeValue("ID", Globals.CreateUniqueId(idPrefix));
-            Element.SetAttributeValue("Type", commandType);
+            Element = new XElement(LinqToJdf.Element.Command);
+            Element.SetUniqueId(idPrefix);
+            Element.SetTypeAttribute(commandType);
             Element.SetXsiType(Command.XsiTypeOfCommand(commandType));
             parent.Element.Add(Element);
         }

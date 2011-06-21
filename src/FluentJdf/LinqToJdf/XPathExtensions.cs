@@ -138,7 +138,7 @@ namespace FluentJdf.LinqToJdf
             var resolver = namespaceManager ?? new XmlNamespaceManager(new NameTable());
             if (!resolver.HasNamespace("jdf"))
             {
-                resolver.AddNamespace("jdf", Globals.Namespace.ToString());
+                resolver.AddNamespace("jdf", Globals.JdfNamespace.ToString());
             }
             return resolver;
         }
