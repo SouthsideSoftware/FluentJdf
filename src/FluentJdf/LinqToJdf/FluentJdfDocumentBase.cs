@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
+using FluentJdf.Resources;
 using FluentJdf.Schema;
 
 namespace FluentJdf.LinqToJdf {
@@ -17,6 +19,16 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         protected FluentJdfDocumentBase() {
             validator = new Validator(this);
+        }
+
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="document"></param>
+        public FluentJdfDocumentBase(XDocument document) : base(document) {
+            if (document.Root == null) {
+                throw new ArgumentException(Messages.FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired);
+            }
         }
 
         /// <summary>

@@ -204,4 +204,7 @@
 	<data name="Message_ModifyJmfNode_RootMustExistAndMustbeJmf">
 		<value xml:space="preserve">The root of the Message must exist and must be a JMF</value>
 	</data>
+	<data name="FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired">
+		<value xml:space="preserve">FluentJDF requires a root node when copying a document.</value>
+	</data>
 </root>

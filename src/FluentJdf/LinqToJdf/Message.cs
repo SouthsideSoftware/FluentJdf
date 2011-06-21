@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Xml.Linq;
 using FluentJdf.Encoding;
 using FluentJdf.Messaging;
@@ -14,21 +15,34 @@ namespace FluentJdf.LinqToJdf {
     /// </summary>
     public class Message : FluentJdfDocumentBase {
         static ILog logger = LogManager.GetLogger(typeof (Message));
-        readonly ITransmitterFactory transmitterFactory;
+        readonly ITransmitterFactory transmitterFactory = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmitterFactory>();
 
         /// <summary>
         /// Create a message.
         /// </summary>
         /// <returns></returns>
         public static JmfNodeBuilder Create() {
-            var message = new Message(Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmitterFactory>());
+            var message = new Message();
             return new JmfNodeBuilder(message);
         }
 
-        private Message(ITransmitterFactory transmitterFactory) {
-            ParameterCheck.ParameterRequired(transmitterFactory, "transmitterFactory");
+        /// <summary>
+        /// Loads the message from a stream.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        public new static Message Load(Stream stream) {
+            return new Message(XDocument.Load(stream));
+        }
 
-            this.transmitterFactory = transmitterFactory;
+        private Message(){}
+
+        /// <summary>
+        /// Copy constructor
+        /// </summary>
+        /// <param name="document"></param>
+        public Message(XDocument document) : base(document) {
+            document.Root.ThrowExceptionIfNotJmfElement();            
         }
 
         /// <summary>

@@ -133,6 +133,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FluentJDF requires a root node when copying a document..
+        /// </summary>
+        internal static string FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired {
+            get {
+                return ResourceManager.GetString("FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Timeout in seconds must not be less than zero unless set to Timeout.Infinite.
         /// </summary>
         internal static string HttpTransmissionSettingsBuilder_TimeoutInSeconds_MustNotBeLessThanZero {
