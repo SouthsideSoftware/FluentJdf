@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ResourceExtensions
     public class when_using_is_resource_pool {
         static XElement jdf;
 
-        Establish content = () => jdf = Ticket.Create().AddIntentElement()
+        Establish content = () => jdf = Ticket.CreateIntent().Element
                                     .AddInput(Resource.BindingIntent)
                                     .NearestJdf();
                            

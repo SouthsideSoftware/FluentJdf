@@ -11,7 +11,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ElementExtensions {
         static Exception exception;
 
         Establish content = () => {
-                                ticket = Ticket.Create().AddIntentElement().ResourcePoolElement().Parent.AddIntentElement().ResourceLinkPoolElement().AddContent(new XElement(Element.RingSystem, new XElement(Element.RingDiameter))).Document;
+                                ticket = Ticket.CreateIntent().Element.ResourcePoolElement().Parent.AddIntentElement().ResourceLinkPoolElement().AddContent(new XElement(Element.RingSystem, new XElement(Element.RingDiameter))).Document;
                                 elementWithoutJdf = new XElement(Element.RivetsExposed);
                             };
 

@@ -9,7 +9,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ElementExtensions {
         static XElement jdfParent;
         
 
-        Establish content = () => { ticket = Ticket.Create();
+        Establish content = () => { ticket = new XDocument();
         ticket.Add(new XElement(Element.RingDiameter));};
 
         Because of = () => {

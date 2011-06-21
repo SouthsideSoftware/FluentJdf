@@ -7,7 +7,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ResourceExtensions {
     public class when_using_get_resource_or_null_with_resource_in_ancestor_resource_pool {
         static XDocument ticket;
 
-        Establish context = () => ticket = Ticket.Create().AddIntentElement().AddIntentElement().AddInput(Resource.BindingIntent, "bi").NearestJdf().AddIntentElement().AddOutput(Resource.Component, "c").Document;
+        Establish context = () => ticket = Ticket.CreateIntent().Element.AddIntentElement().AddInput(Resource.BindingIntent, "bi").NearestJdf().AddIntentElement().AddOutput(Resource.Component, "c").Document;
 
         It should_be_able_to_find_the_binding_intent = () => ticket.Root.GetResourceOrNull("bi").ShouldEqual(ticket.Root.Element(Element.JDF).ResourcePoolElement().Element(Resource.BindingIntent));
 

@@ -25,7 +25,7 @@ namespace FluentJdf.LinqToJdf {
             var message = new Message();
             return new JmfNodeBuilder(message);
         }
-
+        //todo: implement remainder of load and parse here and in Ticket class
         /// <summary>
         /// Loads the message from a stream.
         /// </summary>
@@ -50,7 +50,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <returns></returns>
         public JmfNodeBuilder ModifyJmfNode() {
-            if (Root == null || Root.Name != LinqToJdf.Element.JMF) {
+            if (Root == null || !Root.IsJmfElement()) {
                 throw new Exception(Messages.Message_ModifyJmfNode_RootMustExistAndMustbeJmf);
             }
 

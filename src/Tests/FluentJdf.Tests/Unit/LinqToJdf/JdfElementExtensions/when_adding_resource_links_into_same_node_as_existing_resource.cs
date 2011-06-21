@@ -7,7 +7,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
     public class when_adding_resource_links_into_same_node_as_existing_resource {
         static Ticket ticket;
 
-        Establish context = () => ticket = Ticket.Create().AddNode().Intent()
+        Establish context = () => ticket = Ticket.CreateIntent()
                                                .AddNode().Intent().WithInput().BindingIntent("testRef").Ticket;
 
         Because of = () => ticket.Root.Element(Element.JDF).ModifyJdfNode()

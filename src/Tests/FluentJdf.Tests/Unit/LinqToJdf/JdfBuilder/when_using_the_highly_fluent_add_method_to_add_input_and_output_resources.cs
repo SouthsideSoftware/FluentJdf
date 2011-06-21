@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder {
     public class when_using_the_highly_fluent_add_method_to_add_input_and_output_resources {
         static XElement intent;
 
-        Establish context = () => intent = Ticket.Create().AddNode().Intent().With().JobId("FOO").Element;
+        Establish context = () => intent = Ticket.CreateIntent().With().JobId("FOO").Element;
 
         Because of = () => intent.ModifyJdfNode().WithInput().BindingIntent().WithOutput().BindingIntent();
 

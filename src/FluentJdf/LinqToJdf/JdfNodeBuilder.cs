@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
+using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf
@@ -6,27 +8,45 @@ namespace FluentJdf.LinqToJdf
     /// <summary>
     /// Factory for creating intent nodes.
     /// </summary>
-    public class JdfNodeBuilder : NodeBuilderBase {
-        internal JdfNodeBuilder(XContainer initiator, params string [] types) {
-            ParameterCheck.ParameterRequired(initiator, "initiator");
+    public class JdfNodeBuilder : JdfNodeBuilderBase, IJdfNodeBuilder {
+        internal JdfNodeBuilder(Ticket ticket, params string [] types) {
+            ParameterCheck.ParameterRequired(ticket, "ticket");
+            Initalize(ticket, types);
+        }
 
-            Element = initiator.AddProcessJdfElement(types);
-            
+        void Initalize(Ticket ticket, string[] types) {
+            if (ticket.Root != null) {
+                ticket.Root.ThrowExceptionIfNotJdfElement();
+            }
+
+            if (ticket.Root == null) {
+                Element = ticket.AddProcessJdfElement(types);
+            } else {
+                Element = ticket.Root;
+            }
+
             if (Element.GetJdfParentOrNull() != null)
             {
                 ParentJdfNode = new JdfNodeBuilder(Element.JdfParent());
             }
         }
-        
-        internal JdfNodeBuilder(XElement node) : base(node) {
+
+        internal JdfNodeBuilder(XElement node, params string [] types) {
             ParameterCheck.ParameterRequired(node, "node");
             node.ThrowExceptionIfNotJdfElement();
+
+            if (types == null || types.Length == 0) {
+                InitializeFromElement(node);
+            }
+            else {
+                InitializeFromElement(node.AddProcessJdfElement(types));
+            }
         }
 
         /// <summary>
         /// Gets the attribute setter for this node.
         /// </summary>
-        public new JdfNodeAttributeBuilder With() { return new JdfNodeAttributeBuilder(this);}
+        public JdfNodeAttributeBuilder With() { return new JdfNodeAttributeBuilder(this);}
 
         /// <summary>
         /// Create an input
@@ -37,6 +57,36 @@ namespace FluentJdf.LinqToJdf
         /// Creates an output.
         /// </summary>
         public ResourceNodeNameBuilder WithOutput() { return new ResourceNodeNameBuilder(this, ResourceUsage.Output); }
+
+        /// <summary>
+        /// Adds a new intent JDF.
+        /// </summary>
+        /// <returns></returns>
+        public JdfNodeBuilder AddIntent() {
+            return new JdfNodeBuilder(Element, LinqToJdf.Ticket.Intent);
+        }
+
+        /// <summary>
+        /// Adds a new intent JDF.
+        /// </summary>
+        /// <returns></returns>
+        public JdfNodeBuilder AddProcessGroup()
+        {
+            return new JdfNodeBuilder(Element, LinqToJdf.Ticket.ProcessGroup);
+        }
+
+        /// <summary>
+        /// Adds a new process JDF
+        /// </summary>
+        /// <param name="types"></param>
+        /// <returns></returns>
+        public JdfNodeBuilder AddProcess(params string [] types) {
+            if (types == null || types.Length == 0)
+            {
+                throw new ArgumentException(Messages.AtLeastOneProcessMustBeSpecified);
+            }
+            return new JdfNodeBuilder(Element, types);
+        }
 
         /// <summary>
         /// Validate the JDF

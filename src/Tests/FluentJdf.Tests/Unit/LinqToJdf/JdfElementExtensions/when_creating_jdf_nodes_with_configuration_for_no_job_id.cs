@@ -10,7 +10,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
 
         Establish context = () => Library.Settings.WithJdfAuthoringSettings().GenerateJobId(false);
 
-        Because of = () => ticket = Ticket.Create().AddNode().Intent().AddNode().Intent().Ticket;
+        Because of = () => ticket = Ticket.CreateIntent().AddNode().Intent().Ticket;
 
         It should_not_have_job_id_in_root = () => ticket.Root.GetJobId().ShouldBeNull();
 

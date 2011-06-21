@@ -7,9 +7,7 @@ namespace FluentJdf.Tests.Unit.Schema.FluentValidation
     public class when_validating_using_the_fluent_interface {
         static Ticket ticket;
 
-        Establish context = () => ticket = Ticket.Create()
-            .AddNode().Intent()
-            .WithInput().BindingIntent().Ticket;
+        Establish context = () => ticket = Ticket.CreateIntent().WithInput().BindingIntent().Ticket;
 
         Because of = () => ticket.ValidateJdf();
 

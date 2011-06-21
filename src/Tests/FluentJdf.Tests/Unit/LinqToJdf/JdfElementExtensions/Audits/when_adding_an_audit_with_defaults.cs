@@ -10,8 +10,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
         static XDocument document;
 
         Establish context = () => {
-                                document = Ticket.Create()
-                                    .AddNode().Intent().With().JobId("foo")
+                                document = Ticket.CreateIntent().With().JobId("foo")
                                     .Element.Document;
                             };
 

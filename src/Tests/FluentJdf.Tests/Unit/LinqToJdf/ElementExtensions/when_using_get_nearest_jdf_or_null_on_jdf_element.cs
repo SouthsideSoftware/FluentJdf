@@ -13,7 +13,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ElementExtensions
 
         Establish context = () =>
         {
-            ticket = Ticket.Create().AddIntentElement().AddIntentElement().Document;
+            ticket = Ticket.CreateIntent().Element.AddIntentElement().Document;
             secondLevelJdf = ticket.Root.Element(Element.JDF);
         };
 

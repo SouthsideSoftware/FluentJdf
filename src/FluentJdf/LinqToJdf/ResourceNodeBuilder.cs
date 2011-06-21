@@ -6,7 +6,7 @@ namespace FluentJdf.LinqToJdf
     /// <summary>
     /// 
     /// </summary>
-    public class ResourceNodeBuilder : NodeBuilderBase {
+    public class ResourceNodeBuilder : JdfNodeBuilderBase, IResourceNodeBuilder {
         internal  ResourceNodeBuilder(JdfNodeBuilder parent, XName resourceName, ResourceUsage usage, string id = null) : base(parent) {
             ParameterCheck.ParameterRequired(resourceName, "resourceName");
 
@@ -16,7 +16,7 @@ namespace FluentJdf.LinqToJdf
         /// <summary>
         /// Gets the attribute setter for this node.
         /// </summary>
-        public new ResourceNodeAttributeBuilder With() { return new ResourceNodeAttributeBuilder(this); }
+        public ResourceNodeAttributeBuilder With() { return new ResourceNodeAttributeBuilder(this); }
 
         /// <summary>
         /// Create an input

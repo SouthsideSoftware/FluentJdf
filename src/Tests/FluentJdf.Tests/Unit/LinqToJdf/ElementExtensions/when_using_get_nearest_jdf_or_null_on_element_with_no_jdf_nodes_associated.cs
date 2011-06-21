@@ -9,7 +9,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ElementExtensions {
         static XElement nearestJdf;
 
         Establish context = () => {
-                                ticket = Ticket.Create();
+                                ticket = new XDocument();
                                 ticket.Add(new XElement(Element.Transfer));
                             };
 

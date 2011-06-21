@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder
     public class when_using_the_highly_fluent_add_method_to_add_intent_and_set_attributes {
         static XElement intent;
 
-        Because of = () => intent = Ticket.Create().AddNode().Intent().With().JobId("FOO").Element;
+        Because of = () => intent = Ticket.CreateIntent().With().JobId("FOO").Element;
 
         It should_have_intent_node_as_root = () => intent.Document.Root.ShouldEqual(intent);
 

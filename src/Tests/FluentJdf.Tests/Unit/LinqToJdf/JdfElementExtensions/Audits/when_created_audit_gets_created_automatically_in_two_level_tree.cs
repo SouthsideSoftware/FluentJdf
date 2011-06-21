@@ -9,8 +9,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
     public class when_created_audit_gets_created_automatically_in_two_level_tree {
         static XDocument document;
 
-        Because of = () => document = Ticket.Create()
-                                          .AddNode().Intent().With().JobId("foo")
+        Because of = () => document = Ticket.CreateIntent().With().JobId("foo")
                                           .AddNode().Intent().With().JobId("foo").JobPartId("fi")
                                           .Element.Document;
 

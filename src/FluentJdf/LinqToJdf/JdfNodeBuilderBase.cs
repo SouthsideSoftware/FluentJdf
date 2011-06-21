@@ -6,29 +6,33 @@ namespace FluentJdf.LinqToJdf
     /// <summary>
     /// Base class for element builders.
     /// </summary>
-    public abstract class NodeBuilderBase
+    public abstract class JdfNodeBuilderBase
     {
-        internal NodeBuilderBase(JdfNodeBuilder parentJdfBuilder)
+        internal JdfNodeBuilderBase(JdfNodeBuilder parentJdfBuilder)
         {
             ParentJdfNode = parentJdfBuilder;
         }
 
-        internal NodeBuilderBase(XElement element)
-        {
+        internal JdfNodeBuilderBase(XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
+            InitializeFromElement(element);
+        }
+
+        /// <summary>
+        /// Initialize from an element.
+        /// </summary>
+        /// <param name="element"></param>
+        protected void InitializeFromElement(XElement element) {
             Element = element;
 
-            if (ParentJdfNode != null && ParentJdfNode.Element.GetJdfParentOrNull() != null)
+            if (element.GetJdfParentOrNull() != null)
             {
-                ParentJdfNode = new JdfNodeBuilder(ParentJdfNode.Element.JdfParent());
+                ParentJdfNode = new JdfNodeBuilder(element.JdfParent());
             }
         }
 
-        internal NodeBuilderBase()
-        {
-            
-        }
+        internal JdfNodeBuilderBase(){}
 
         /// <summary>
         /// Gets the Element and allows set for inheritors
@@ -41,27 +45,11 @@ namespace FluentJdf.LinqToJdf
         public JdfNodeBuilder ParentJdfNode { get; protected set; }
 
         /// <summary>
-        /// Allows a node to be added to this node.
-        /// </summary>
-        /// <returns></returns>
-        public NodeBuilder AddNode() {
-            return new NodeBuilder(Element);
-        }
-
-        /// <summary>
-        /// Gets the attribute builder that offers the most basic capabilities.
-        /// </summary>
-        /// <returns></returns>
-        public NodeAttributeBuilderBase With() {
-            return new NodeAttributeBuilderBase(this);
-        }
-
-        /// <summary>
         /// Validate the JDF
         /// </summary>
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        public NodeBuilderBase ValidateJdf(bool addSchemaInfo = true)
+        public JdfNodeBuilderBase ValidateJdf(bool addSchemaInfo = true)
         {
             Element.ValidateJdf(addSchemaInfo);
             return this;

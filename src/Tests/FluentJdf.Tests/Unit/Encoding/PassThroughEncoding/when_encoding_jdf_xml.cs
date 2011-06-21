@@ -11,7 +11,7 @@ namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding {
         static EncodingResult result;
         static FluentJdf.Encoding.XmlTransmissionPart transmissionPart;
 
-        Establish context = () => transmissionPart = new FluentJdf.Encoding.XmlTransmissionPart(Ticket.Create().AddNode().Intent().Element.Document, "test");
+        Establish context = () => transmissionPart = new FluentJdf.Encoding.XmlTransmissionPart(Ticket.CreateIntent().Element.Document, "test");
 
         Because of = () => {
                          result = new FluentJdf.Encoding.PassThroughEncoding().Encode(transmissionPart);

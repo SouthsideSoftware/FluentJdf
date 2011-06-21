@@ -11,7 +11,7 @@ namespace FluentJdf.Tests.Unit.Schema.Validator {
 
         Establish context =
             () => {
-                document = Ticket.Create().AddNode().Process(ProcessType.Cutting, ProcessType.Creasing).WithInput().BindingIntent().Element.Document;
+                document = Ticket.CreateProcess(ProcessType.Cutting, ProcessType.Creasing).WithInput().BindingIntent().Element.Document;
                 document.Root.Add(new XElement(XName.Get("local", "foo")));
             };
 

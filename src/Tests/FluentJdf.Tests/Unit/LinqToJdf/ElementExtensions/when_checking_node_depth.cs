@@ -7,7 +7,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ElementExtensions
     public class when_checking_node_depth {
         static Ticket ticket;
 
-        Establish context = () => ticket = Ticket.Create().AddNode().Intent().WithInput().BindingIntent()
+        Establish context = () => ticket = Ticket.CreateIntent().WithInput().BindingIntent()
                                                .AddNode().Intent().WithInput().BindingIntent().Ticket;
 
         It should_have_zero_depth_on_root = () => ticket.Root.Depth().ShouldEqual(0);

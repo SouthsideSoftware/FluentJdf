@@ -1,9 +1,18 @@
+using System;
+using System.Xml.Linq;
+using Infrastructure.Core.CodeContracts;
+
 namespace FluentJdf.LinqToJdf {
     /// <summary>
     /// Set attributes on a JDF node.
     /// </summary>
-    public class ResourceNodeAttributeBuilder : NodeAttributeBuilderBase {
-        internal ResourceNodeAttributeBuilder(ResourceNodeBuilder nodeBuilder) : base(nodeBuilder) {
+    public class ResourceNodeAttributeBuilder : IResourceNodeBuilder {
+        ResourceNodeBuilder resourceNodeBuilder;
+
+        internal ResourceNodeAttributeBuilder(ResourceNodeBuilder resourceNodeBuilder) {
+            ParameterCheck.ParameterRequired(resourceNodeBuilder, "resourceNodeBuilder");
+
+            this.resourceNodeBuilder = resourceNodeBuilder;
         }
 
         /// <summary>
@@ -11,7 +20,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <returns></returns>
         public ResourceNodeBuilder Node() {
-            return (NodeBuilderBase as ResourceNodeBuilder);
+            return resourceNodeBuilder;
         }
 
         /// <summary>
@@ -40,22 +49,40 @@ namespace FluentJdf.LinqToJdf {
         /// <summary>
         /// Create an input
         /// </summary>
-        public ResourceNodeNameBuilder WithInput() { return new ResourceNodeNameBuilder((NodeBuilderBase as ResourceNodeBuilder).ParentJdfNode, ResourceUsage.Input); }
+        public ResourceNodeNameBuilder WithInput() { return new ResourceNodeNameBuilder(resourceNodeBuilder.ParentJdfNode, ResourceUsage.Input); }
 
         /// <summary>
         /// Creates an output.
         /// </summary>
-        public ResourceNodeNameBuilder WithOutput() { return new ResourceNodeNameBuilder((NodeBuilderBase as ResourceNodeBuilder).ParentJdfNode, ResourceUsage.Output); }
+        public ResourceNodeNameBuilder WithOutput() { return new ResourceNodeNameBuilder(resourceNodeBuilder.ParentJdfNode, ResourceUsage.Output); }
+
+        /// <summary>
+        /// Gets the ticket associated with this builder
+        /// </summary>
+        public Ticket Ticket {
+            get { return resourceNodeBuilder.Ticket; }
+        }
 
         /// <summary>
         /// Validate the JDF
         /// </summary>
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        public new ResourceNodeAttributeBuilder ValidateJdf(bool addSchemaInfo = true)
-        {
-            Element.ValidateJdf(addSchemaInfo);
-            return this;
+        public ResourceNodeBuilder ValidateJdf(bool addSchemaInfo) {
+            return resourceNodeBuilder.ValidateJdf(addSchemaInfo);
+        }
+        /// <summary>
+        /// Gets the Element and allows set for inheritors
+        /// </summary>
+        public XElement Element {
+            get { return resourceNodeBuilder.Element; }
+        }
+
+        /// <summary>
+        /// Gets the container JDF builder.
+        /// </summary>
+        public JdfNodeBuilder ParentJdfNode {
+            get { return resourceNodeBuilder.ParentJdfNode; }
         }
     }
 }

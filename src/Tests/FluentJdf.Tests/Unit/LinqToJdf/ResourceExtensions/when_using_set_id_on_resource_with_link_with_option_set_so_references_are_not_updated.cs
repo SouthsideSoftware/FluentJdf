@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ResourceExtensions {
     public class when_using_set_id_on_resource_with_link_with_option_set_so_references_are_not_updated {
         static XElement bindingIntent;
 
-        Establish content = () => bindingIntent = Ticket.Create().AddIntentElement().AddInput(Resource.BindingIntent);
+        Establish content = () => bindingIntent = Ticket.CreateIntent().Element.AddInput(Resource.BindingIntent);
 
         Because of = () => bindingIntent.SetId("c1", false);
 

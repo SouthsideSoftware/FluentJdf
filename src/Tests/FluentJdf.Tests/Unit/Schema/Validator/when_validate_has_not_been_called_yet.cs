@@ -11,7 +11,7 @@ namespace FluentJdf.Tests.Unit.Schema.Validator
         static FluentJdf.Schema.Validator validator;
 
         Establish context =
-            () => document = Ticket.Create().AddNode().Process(ProcessType.Cutting, ProcessType.Creasing).WithInput().BindingIntent().Element.Document;
+            () => document = Ticket.CreateProcess(ProcessType.Cutting, ProcessType.Creasing).WithInput().BindingIntent().Element.Document;
 
         Because of = () => validator = new FluentJdf.Schema.Validator(document);
 

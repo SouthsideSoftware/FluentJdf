@@ -11,7 +11,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ResourceExtensions
         static XElement bindingIntent;
         static List<XElement> references;
 
-        Establish content = () => bindingIntent = Ticket.Create().AddIntentElement().AddInput(Resource.BindingIntent);
+        Establish content = () => bindingIntent = Ticket.CreateIntent().Element.AddInput(Resource.BindingIntent);
 
         Because of = () => references = bindingIntent.ReferencingElements().ToList();
 

@@ -61,6 +61,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must pass at least one type in order to create a process.
+        /// </summary>
+        internal static string AtLeastOneProcessMustBeSpecified {
+            get {
+                return ResourceManager.GetString("AtLeastOneProcessMustBeSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can only operate on JDF node.  The node is a {0}.
         /// </summary>
         internal static string CanOnlyOperateOnJdfNode {
@@ -257,6 +266,15 @@ namespace FluentJdf.Resources {
         internal static string ResourceExtensions_Resource_ResourceWithIdCannotBeFound {
             get {
                 return ResourceManager.GetString("ResourceExtensions_Resource_ResourceWithIdCannotBeFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Root must exist and must be JDF.
+        /// </summary>
+        internal static string Ticket_ModifyJdfNode_RootMustExistAndBeJdf {
+            get {
+                return ResourceManager.GetString("Ticket_ModifyJdfNode_RootMustExistAndBeJdf", resourceCulture);
             }
         }
         

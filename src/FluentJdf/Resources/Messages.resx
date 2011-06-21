@@ -207,4 +207,10 @@
 	<data name="FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired">
 		<value xml:space="preserve">FluentJDF requires a root node when copying a document.</value>
 	</data>
+	<data name="Ticket_ModifyJdfNode_RootMustExistAndBeJdf">
+		<value xml:space="preserve">Root must exist and must be JDF</value>
+	</data>
+	<data name="AtLeastOneProcessMustBeSpecified">
+		<value xml:space="preserve">You must pass at least one type in order to create a process</value>
+	</data>
 </root>

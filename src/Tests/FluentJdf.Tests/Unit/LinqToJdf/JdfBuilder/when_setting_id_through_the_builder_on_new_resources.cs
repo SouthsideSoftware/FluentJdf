@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder {
     public class when_setting_id_through_the_builder_on_new_resources {
         static XElement intent;
 
-        Establish context = () => intent = Ticket.Create().AddNode().Intent().With().JobId("FOO").Element;
+        Establish context = () => intent = Ticket.CreateIntent().With().JobId("FOO").Element;
 
         Because of = () => intent.ModifyJdfNode().WithInput().BindingIntent().With().Id("foo").WithOutput().BindingIntent().With().Id("fi");
 

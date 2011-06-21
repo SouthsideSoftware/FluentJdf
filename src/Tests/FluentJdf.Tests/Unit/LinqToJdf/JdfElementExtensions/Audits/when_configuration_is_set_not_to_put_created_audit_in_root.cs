@@ -10,8 +10,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
 
         Establish context = () => Library.Settings.WithJdfAuthoringSettings().CreateAuditOnNewRootJdf(false);
 
-        Because of = () => document = Ticket.Create()
-                                          .AddNode().Intent().With().JobId("foo")
+        Because of = () => document = Ticket.CreateIntent().With().JobId("foo")
                                           .AddNode().Intent().With().JobId("foo").JobPartId("fi")
                                           .Element.Document;
 

@@ -522,18 +522,6 @@ namespace FluentJdf.LinqToJdf
         }
 
         /// <summary>
-        /// Gets the element factory for this element so that elements can
-        /// be added.
-        /// </summary>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public static NodeBuilder AddNode(this XContainer container) {
-            ParameterCheck.ParameterRequired(container, "element");
-
-            return new NodeBuilder(container);
-        }
-
-        /// <summary>
         /// Sets the job id of the jdf node to the given value.
         /// </summary>
         /// <param name="element"></param>

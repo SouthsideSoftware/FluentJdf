@@ -129,9 +129,11 @@
     <Compile Include="LinqToJdf\ElementExtensions.cs" />
     <Compile Include="LinqToJdf\Element.cs" />
     <Compile Include="LinqToJdf\FluentJdfDocumentBase.cs" />
+    <Compile Include="LinqToJdf\IJdfNodeBuilder.cs" />
     <Compile Include="LinqToJdf\IJmfCommandBuilder.cs" />
     <Compile Include="LinqToJdf\IJmfNodeBuilderBase.cs" />
     <Compile Include="LinqToJdf\IJmfSubmitQueueEntryCommandBuilder.cs" />
+    <Compile Include="LinqToJdf\IResourceNodeBuilder.cs" />
     <Compile Include="LinqToJdf\JdfNodeAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\JmfCommandBuilder.cs" />
     <Compile Include="LinqToJdf\JmfCommandTypeBuilder.cs" />
@@ -149,7 +151,7 @@
     <Compile Include="LinqToJdf\JdfDifferenceExtensions.cs" />
     <Compile Include="LinqToJdf\JdfException.cs" />
     <Compile Include="LinqToJdf\JdfNodeBuilder.cs" />
-    <Compile Include="LinqToJdf\NodeBuilderBase.cs" />
+    <Compile Include="LinqToJdf\JdfNodeBuilderBase.cs" />
     <Compile Include="LinqToJdf\ProcessType.cs" />
     <Compile Include="LinqToJdf\RefExtensions.cs" />
     <Compile Include="LinqToJdf\Resource.cs" />
