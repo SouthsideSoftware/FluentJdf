@@ -10,7 +10,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
         static XDocument document;
 
         Because of = () => document = Ticket.CreateIntent().With().JobId("foo")
-                                          .AddNode().Intent().With().JobId("foo").JobPartId("fi")
+                                          .AddIntent().With().JobId("foo").JobPartId("fi")
                                           .Element.Document;
 
         It should_have_a_timestamp_ending_with_z_since_it_was_utc =

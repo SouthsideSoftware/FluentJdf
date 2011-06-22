@@ -22,7 +22,7 @@ namespace FluentJdf.LinqToJdf
             
             Element = new XElement(LinqToJdf.Element.Command);
             Element.SetUniqueId(idPrefix);
-            Element.SetTypeAttribute(commandType);
+            Element.SetMessageType(commandType);
             Element.SetXsiType(Command.XsiTypeOfCommand(commandType));
             parent.Element.Add(Element);
         }

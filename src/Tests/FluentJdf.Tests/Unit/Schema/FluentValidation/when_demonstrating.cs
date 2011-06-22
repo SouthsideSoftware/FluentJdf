@@ -9,11 +9,11 @@ namespace FluentJdf.Tests.Unit.Schema.FluentValidation {
         static Ticket ticket;
 
         Because of = () => {
-                         ticket = Ticket.CreateIntent().AddNode().Intent()
+                         ticket = Ticket.CreateIntent().AddIntent()
                              .WithOutput().Component()
-                             .AddNode().Intent().WithInput().BindingIntent("foo")
-                             .AddNode().ProcessGroup()
-                             .AddNode().Process(ProcessType.Creasing)
+                             .AddIntent().WithInput().BindingIntent("foo")
+                             .AddProcessGroup()
+                             .AddProcess(ProcessType.Creasing)
                              .Ticket;
                          ticket.Root.ModifyJdfNode().WithOutput().BindingIntent("foo");
 

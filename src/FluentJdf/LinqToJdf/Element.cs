@@ -25,10 +25,14 @@ namespace FluentJdf.LinqToJdf
         public static XName DevCaps = Globals.JdfName("DevCaps");
         public static XName DeviceCap = Globals.JdfName("DeviceCap");
         public static XName Drop = Globals.JdfName("Drop");
+        public static XName DropIntent = Globals.JdfName("DropIntent");
         public static XName DropItem = Globals.JdfName("DropItem");
+        public static XName DropItemIntent = Globals.JdfName("DropItemIntent");
         public static XName Earliest = Globals.JdfName("Earliest");
         public static XName ExtendedAddress = Globals.JdfName("ExtendedAddress");
         public static XName FoldingCatalog = Globals.JdfName("FoldingCatalog");
+        public static XName GeneralId = Globals.JdfName("GeneralID");
+        public static XName HoleList = Globals.JdfName("HoleList");
         public static XName HoleType = Globals.JdfName("HoleType");
         public static XName JDF = Globals.JdfName("JDF");
         public static XName JMF = Globals.JdfName("JMF");

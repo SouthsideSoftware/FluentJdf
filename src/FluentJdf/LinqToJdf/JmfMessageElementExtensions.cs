@@ -17,7 +17,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string GetTypeAttribute(this XElement element) {
+        public static string GetMessageType(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull("Type");
@@ -27,7 +27,7 @@ namespace FluentJdf.LinqToJdf
         /// Sets the Type attribute.
         /// </summary>
         /// <returns></returns>
-        public static XElement SetTypeAttribute(this XElement element, string type)
+        public static XElement SetMessageType(this XElement element, string type)
         {
             ParameterCheck.ParameterRequired(element, "element");
 
