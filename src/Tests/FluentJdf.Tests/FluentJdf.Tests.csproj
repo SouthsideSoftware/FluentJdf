@@ -236,6 +236,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="TestData\ProcessTwoMediaFiery.jdf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestData\Signs.jpg" />

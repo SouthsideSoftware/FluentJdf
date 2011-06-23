@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using FluentJdf.Configuration;
 using FluentJdf.Resources;
@@ -661,6 +662,38 @@ namespace FluentJdf.LinqToJdf
 
             
             return jdfNode;
+        }
+
+        /// <summary>
+        /// Gets all resources with a particular usage associated with a JDF element.
+        /// </summary>
+        /// <param name="jdfElement">The JDF element to search</param>
+        /// <param name="usage">The resorce usage -- input or output</param>
+        /// <param name="resourceRoot">The root element for finding resources - default is the document root</param>
+        /// <returns>An IEnumerable{XElement} containing a list of resources with the correct usage.  
+        /// The list will be empty if there are no resources linked with the given usage.</returns>
+        /// <exception cref="PreconditionException">If the given XElement is not a JDf element.</exception>
+        public static IEnumerable<XElement> ResourcesByUsage(this XElement jdfElement, ResourceUsage usage, XElement resourceRoot = null)
+        {
+            ParameterCheck.ParameterRequired(jdfElement, "jdfElement");
+            jdfElement.ThrowExceptionIfNotJdfElement();
+
+            var linkPool = jdfElement.Element(Element.ResourceLinkPool);
+
+            if (linkPool == null) return new List<XElement>();
+
+            var qualifiedLinkIds = (from resourceLink in linkPool.Elements()
+                                    where
+                                        resourceLink.Attribute("Usage") != null &&
+                                        resourceLink.Attribute("Usage").Value == usage.ToString() &&
+                                        resourceLink.Attribute("rRef") != null
+                                    select resourceLink.Attribute("rRef").Value);
+
+            var resources = (from resource in (resourceRoot ?? linkPool.Document.Root).Descendants()
+                             where resource.Attribute("ID") != null &&
+                                   qualifiedLinkIds.Contains(resource.Attribute("ID").Value)
+                             select resource);
+            return resources;
         }
     }
 }
