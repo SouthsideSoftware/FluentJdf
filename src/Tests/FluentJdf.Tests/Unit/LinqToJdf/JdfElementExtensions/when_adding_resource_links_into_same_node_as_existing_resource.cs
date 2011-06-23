@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
         static Ticket ticket;
 
         Establish context = () => ticket = Ticket.CreateIntent()
-                                               .AddNode().Intent().WithInput().BindingIntent("testRef").Ticket;
+                                               .AddIntent().WithInput().BindingIntent("testRef").Ticket;
 
         Because of = () => ticket.Root.Element(Element.JDF).ModifyJdfNode()
                                .WithOutput().BindingIntent("testRef");

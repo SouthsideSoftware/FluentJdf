@@ -8,10 +8,10 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
         static Ticket ticket;
 
         Establish context = () => ticket = Ticket.CreateIntent()
-                                               .AddNode().Intent().WithInput().BindingIntent("testRef").Ticket;
+                                               .AddIntent().WithInput().BindingIntent("testRef").Ticket;
 
         Because of = () => ticket.Root.ModifyJdfNode()
-                               .AddNode().Intent().WithInput().BindingIntent("testRef");
+                               .AddIntent().WithInput().BindingIntent("testRef");
 
         It should_have_resource_in_parent_pool = () => ticket.Root.ResourcePoolElement().Element(Resource.BindingIntent).ShouldNotBeNull();
 

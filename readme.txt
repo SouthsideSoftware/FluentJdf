@@ -1,5 +1,5 @@
 =============================================
-JDF Workflow Foundation
+JDF Workflow Foundation with FluentJdf
 =============================================
 The JDF Workflow Foundation takes full advantage of .NET 4.0, dependency injection and a message bus to deliver a faster, richer, 
 more scalable infrastructure for building applications that process and create JDF. 

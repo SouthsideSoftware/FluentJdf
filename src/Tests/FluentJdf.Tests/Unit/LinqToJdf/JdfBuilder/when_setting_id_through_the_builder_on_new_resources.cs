@@ -4,7 +4,7 @@ using FluentJdf.LinqToJdf;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder {
-    [Subject("Highly fluent interface")]
+    [Subject("Highly fluent JDF interface")]
     public class when_setting_id_through_the_builder_on_new_resources {
         static XElement intent;
 

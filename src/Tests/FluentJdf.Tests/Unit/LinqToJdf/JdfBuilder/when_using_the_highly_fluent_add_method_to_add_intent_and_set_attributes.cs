@@ -4,7 +4,7 @@ using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder
 {
-    [Subject("Highly fluent interface")]
+    [Subject("Highly fluent JDF interface")]
     public class when_using_the_highly_fluent_add_method_to_add_intent_and_set_attributes {
         static XElement intent;
 

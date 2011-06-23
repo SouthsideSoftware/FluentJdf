@@ -12,20 +12,13 @@ namespace FluentJdf.LinqToJdf
     /// </summary>
     public class Ticket : FluentJdfDocumentBase {
         static ILog logger = LogManager.GetLogger(typeof (FluentJdfDocumentBase));
-        internal const string Intent = "Product";
-        internal const string ProcessGroup = "ProcessGroup";
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        private Ticket() : this(Intent) {
+        private Ticket() {
         }
 
-        private Ticket(params string [] types) {
-            if (types == null || types.Length == 0) {
-                types = new string[] {Intent};
-            }
-        }
 
         /// <summary>
         /// Loads the ticket from a stream.
@@ -64,7 +57,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <returns></returns>
         public static JdfNodeBuilder CreateIntent() {
-            return new JdfNodeBuilder(new Ticket(Intent));
+            return new JdfNodeBuilder(new Ticket(), JdfElementType.Intent);
         }
 
         /// <summary>
@@ -76,7 +69,7 @@ namespace FluentJdf.LinqToJdf
             if (types == null || types.Length == 0) {
                 throw new ArgumentException(Messages.AtLeastOneProcessMustBeSpecified);
             }
-            return new JdfNodeBuilder(new Ticket(types));
+            return new JdfNodeBuilder(new Ticket(), types);
         }
 
         /// <summary>
@@ -85,7 +78,7 @@ namespace FluentJdf.LinqToJdf
         /// <returns></returns>
         public static JdfNodeBuilder CreateProcessGroup()
         {
-            return new JdfNodeBuilder(new Ticket(ProcessGroup));
+            return new JdfNodeBuilder(new Ticket(), JdfElementType.ProcessGroup);
         }
 
         /// <summary>

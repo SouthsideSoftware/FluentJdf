@@ -11,7 +11,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
         Establish context = () => Library.Settings.WithJdfAuthoringSettings().CreateAuditOnNewRootJdf(false);
 
         Because of = () => document = Ticket.CreateIntent().With().JobId("foo")
-                                          .AddNode().Intent().With().JobId("foo").JobPartId("fi")
+                                          .AddIntent().With().JobId("foo").JobPartId("fi")
                                           .Element.Document;
 
         It should_not_have_an_audit_pool_in_root = () => document.Root.Element(Element.AuditPool).ShouldBeNull();

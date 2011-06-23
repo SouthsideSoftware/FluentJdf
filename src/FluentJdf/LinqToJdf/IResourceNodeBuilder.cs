@@ -1,6 +1,9 @@
 using System.Xml.Linq;
 
 namespace FluentJdf.LinqToJdf {
+    /// <summary>
+    /// Node builder interface for resources.
+    /// </summary>
     public interface IResourceNodeBuilder {
         /// <summary>
         /// Create an input
@@ -33,12 +36,5 @@ namespace FluentJdf.LinqToJdf {
         /// Gets the ticket associated with this builder
         /// </summary>
         Ticket Ticket { get; }
-
-        /// <summary>
-        /// Validate the JDF
-        /// </summary>
-        /// <param name="addSchemaInfo"></param>
-        /// <returns></returns>
-        JdfNodeBuilderBase ValidateJdf(bool addSchemaInfo = true);
     }
 }

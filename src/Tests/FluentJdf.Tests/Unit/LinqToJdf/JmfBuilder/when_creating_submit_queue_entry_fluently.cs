@@ -13,7 +13,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
 
         It should_have_command_in_jmf = () => message.Root.Element(Element.Command).ShouldNotBeNull();
 
-        It should_have_type_submit_queue_entry = () => message.Root.Element(Element.Command).GetTypeAttribute().ShouldEqual(Command.SubmitQueueEntry);
+        It should_have_type_submit_queue_entry = () => message.Root.Element(Element.Command).GetMessageType().ShouldEqual(Command.SubmitQueueEntry);
 
         It should_have_xsi_type_submit_queue_entry_command = () => message.Root.Element(Element.Command).GetXsiTypeAttribute().ShouldEqual(Command.XsiTypeOfCommand(Command.SubmitQueueEntry));
 

@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions
     {
         static Ticket ticket;
 
-        Because of = () => ticket = Ticket.CreateIntent().AddNode().Intent().Ticket;
+        Because of = () => ticket = Ticket.CreateIntent().AddIntent().Ticket;
 
         It should_have_job_id_in_root = () => ticket.Root.GetJobId().ShouldNotBeNull();
 
