@@ -162,7 +162,6 @@
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_checking_node_depth.cs" />
     <Compile Include="Unit\LinqToJdf\XElementExtensions\when_getting_mime_type_of_various_nodes.cs" />
     <Compile Include="Unit\LinqToJdf\XElementExtensions\when_getting_xml_type_of_various_nodes.cs" />
-    <Compile Include="Unit\Schema\FluentValidation\when_demonstrating.cs" />
     <Compile Include="Unit\Schema\FluentValidation\when_validating_using_the_fluent_interface.cs" />
     <Compile Include="Unit\Schema\ValidationMessage\when_creating_validation_messages_with_various_options.cs" />
     <Compile Include="Unit\Schema\Validator\when_validate_has_been_called.cs" />

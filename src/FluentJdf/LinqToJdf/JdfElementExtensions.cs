@@ -74,8 +74,8 @@ namespace FluentJdf.LinqToJdf
             }
 
             var jdfNode = new XElement(Element.JDF);
-            jdfNode.MakeJdfElementAProcess(types);
             parent.Add(jdfNode);
+            jdfNode.MakeJdfElementAProcess(types);
 
             if (jdfNode.IsJdfRoot()) {
                 if (Library.Settings.JdfAuthoringSettings.GenerateJobId) {
@@ -655,7 +655,7 @@ namespace FluentJdf.LinqToJdf
             }
             else {
                 jdfNode.SetAttributeValue("Type", JdfElementType.Combined);
-                jdfNode.SetXsiType(JdfElementType.XsiJdfElementType(JdfElementType.Combined).ToString());
+                jdfNode.SetXsiType(JdfElementType.XsiJdfElementType(JdfElementType.Combined));
                 jdfNode.SetAttributeValue("Types", string.Join(" ", types));
             }
 

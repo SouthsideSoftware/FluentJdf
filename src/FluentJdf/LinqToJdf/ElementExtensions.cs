@@ -97,7 +97,7 @@ namespace FluentJdf.LinqToJdf {
         public static XElement NearestJdf(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            var firstJdf = element.GetNearestJdfOrNull();
+            XElement firstJdf = element.GetNearestJdfOrNull();
             if (firstJdf == null) {
                 throw new JdfException(string.Format(Messages.ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent, element.Name));
             }
@@ -130,7 +130,7 @@ namespace FluentJdf.LinqToJdf {
         public static XElement JdfParent(this XElement element) {
             Contract.Requires(element != null);
 
-            var jdfParent = element.GetJdfParentOrNull();
+            XElement jdfParent = element.GetJdfParentOrNull();
             if (jdfParent == null) {
                 throw new JdfException(string.Format(Messages.ElementExtensions_JdfParent_NoJdfParentFound, element.Name));
             }
@@ -162,7 +162,7 @@ namespace FluentJdf.LinqToJdf {
         public static XElement JdfRoot(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            var jdfRoot = element.GetJdfRootOrNull();
+            XElement jdfRoot = element.GetJdfRootOrNull();
             if (jdfRoot == null) {
                 throw new JdfException(string.Format(Messages.ElementExtensions_JdfRoot_NoJdfRootFound, element.Name));
             }
@@ -209,12 +209,26 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="element"></param>
         /// <param name="xsiType"></param>
         /// <returns></returns>
-        public static XElement SetXsiType(this XElement element, string xsiType)
-        {
+        public static XElement SetXsiType(this XElement element, XName xsiType) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            element.SetAttributeValue(Globals.XsiNamespace.GetName("type"), xsiType);
+            element.SetAttributeValue(Globals.XsiNamespace.GetName("type"), element.GetXsiTypeNameForType(xsiType));
             return element;
+        }
+
+        /// <summary>
+        /// Gets the value for an xsi:type attribute for a fully qualified type name
+        /// based on the namespace context of the element.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="xsiType"></param>
+        /// <returns></returns>
+        public static string GetXsiTypeNameForType(this XElement element, XName xsiType) {
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(xsiType, "xsiType");
+
+            //todo: we need to handle prefixed namespaces here.  The problem is, we can't get namespace information on the element except when parsing xml data or loading from a file.
+            return xsiType.LocalName;
         }
 
         /// <summary>
@@ -222,8 +236,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string GetXsiTypeAttribute(this XElement element)
-        {
+        public static string GetXsiTypeAttribute(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull(Globals.XsiNamespace.GetName("type"));
