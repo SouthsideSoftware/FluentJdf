@@ -46,7 +46,7 @@ namespace FluentJdf.LinqToJdf
         {
             if (Root == null || !Root.IsJdfElement())
             {
-                throw new Exception(Messages.Ticket_ModifyJdfNode_RootMustExistAndBeJdf);
+                throw new Exception(Resources.Messages.Ticket_ModifyJdfNode_RootMustExistAndBeJdf);
             }
 
             return new JdfNodeBuilder(Root);
@@ -67,7 +67,7 @@ namespace FluentJdf.LinqToJdf
         public static JdfNodeBuilder CreateProcess(params string [] types)
         {
             if (types == null || types.Length == 0) {
-                throw new ArgumentException(Messages.AtLeastOneProcessMustBeSpecified);
+                throw new ArgumentException(Resources.Messages.AtLeastOneProcessMustBeSpecified);
             }
             return new JdfNodeBuilder(new Ticket(), types);
         }

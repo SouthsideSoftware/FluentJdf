@@ -42,7 +42,7 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public JmfNodeBuilderBase ValidateJmf(bool addSchemaInfo = true)
         {
-            Element.ValidateJdf(addSchemaInfo);
+            Element.ValidateJmf(addSchemaInfo);
             return this;
         }
 

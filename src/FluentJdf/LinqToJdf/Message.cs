@@ -51,7 +51,7 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public JmfNodeBuilder ModifyJmfNode() {
             if (Root == null || !Root.IsJmfElement()) {
-                throw new Exception(Messages.Message_ModifyJmfNode_RootMustExistAndMustbeJmf);
+                throw new Exception(Resources.Messages.Message_ModifyJmfNode_RootMustExistAndMustbeJmf);
             }
 
             return new JmfNodeBuilder(Root);
@@ -111,7 +111,7 @@ namespace FluentJdf.LinqToJdf {
             }
             catch (Exception err)
             {
-                logger.Error(string.Format(Messages.Ticket_Transmit_Failed, url), err);
+                logger.Error(string.Format(Resources.Messages.Ticket_Transmit_Failed, url), err);
                 throw;
             }
         }

@@ -213,4 +213,7 @@
 	<data name="AtLeastOneProcessMustBeSpecified">
 		<value xml:space="preserve">You must pass at least one type in order to create a process</value>
 	</data>
+	<data name="ElementExtensions_ValidateJmf_MessageRequired">
+		<value xml:space="preserve">ValidateJmf requires the document to be of type Message.  Use Message.Create()</value>
+	</data>
 </root>

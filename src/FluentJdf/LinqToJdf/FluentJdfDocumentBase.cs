@@ -27,7 +27,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="document"></param>
         public FluentJdfDocumentBase(XDocument document) : base(document) {
             if (document.Root == null) {
-                throw new ArgumentException(Messages.FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired);
+                throw new ArgumentException(Resources.Messages.FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired);
             }
         }
 
@@ -46,5 +46,10 @@ namespace FluentJdf.LinqToJdf {
         /// Gets the current collection of validation warnings.
         /// </summary>
         public IList<ValidationMessage> Warnings {get { return validator.Warnings; }}
+
+        /// <summary>
+        /// Gets the current collection of validation warnings and errors.
+        /// </summary>
+        public IList<ValidationMessage> ValidationMessages { get { return validator.Messages; } }
     }
 }

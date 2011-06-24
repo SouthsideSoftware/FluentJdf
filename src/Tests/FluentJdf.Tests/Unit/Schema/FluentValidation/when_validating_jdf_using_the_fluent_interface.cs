@@ -4,7 +4,7 @@ using Machine.Specifications;
 namespace FluentJdf.Tests.Unit.Schema.FluentValidation
 {
     [Subject("Fluent Validation")]
-    public class when_validating_using_the_fluent_interface {
+    public class when_validating_jdf_using_the_fluent_interface {
         static Ticket ticket;
 
         Establish context = () => ticket = Ticket.CreateIntent().WithInput().BindingIntent().Ticket;

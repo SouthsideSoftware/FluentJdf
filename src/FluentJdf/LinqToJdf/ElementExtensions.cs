@@ -204,6 +204,25 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Validate the jmf.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="addSchemaInfo"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If the element does not belong to an XDocument of type Ticket.</exception>
+        public static XElement ValidateJmf(this XElement element, bool addSchemaInfo = true)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+            if (element.Document == null || !(element.Document is Message))
+            {
+                throw new ArgumentException(Messages.ElementExtensions_ValidateJmf_MessageRequired);
+            }
+            (element.Document as Message).ValidateJmf(addSchemaInfo);
+
+            return element;
+        }
+
+        /// <summary>
         /// Set the xsi:type attribute of the node.
         /// </summary>
         /// <param name="element"></param>

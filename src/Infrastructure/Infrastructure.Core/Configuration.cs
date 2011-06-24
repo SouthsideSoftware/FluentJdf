@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Reflection;
+using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Container;
 using Infrastructure.Core.Logging;
 
@@ -51,7 +52,7 @@ namespace Infrastructure.Core {
         /// Assigns the service locator builder.
         /// </summary>
         public void BuildWith(IServiceLocator serviceLocator) {
-            Contract.Requires(serviceLocator != null);
+            ParameterCheck.ParameterRequired(serviceLocator, "serviceLocator");
 
             this.serviceLocator = serviceLocator;
         }
@@ -61,7 +62,7 @@ namespace Infrastructure.Core {
         /// </summary>
         /// <param name="logProvider"></param>
         public void LogWith(ILogProvider logProvider) {
-            Contract.Requires(logProvider != null);
+            ParameterCheck.ParameterRequired(logProvider, "logProvider");
 
             LogProvider = logProvider;
         }
