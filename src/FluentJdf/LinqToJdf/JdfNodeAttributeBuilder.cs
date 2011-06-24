@@ -23,11 +23,12 @@ namespace FluentJdf.LinqToJdf {
             return jdfNodeBuilder;
         }
         /// <summary>
-        /// Sets the job id.
+        /// Sets the job id if given.  If no
+        /// job id is provided, a unique value is generated.
         /// </summary>
         /// <param name="jobId"></param>
         /// <returns></returns>
-        public JdfNodeAttributeBuilder JobId(string jobId)
+        public JdfNodeAttributeBuilder JobId(string jobId = null)
         {
             ParameterCheck.ParameterRequired(jobId, "jobId");
 
@@ -36,10 +37,11 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
-        /// Sets the job part id.
+        /// Sets the job part id if given.  If no
+        /// job part id is provided, a unique value is generated.
         /// </summary>
         /// <returns></returns>
-        public JdfNodeAttributeBuilder JobPartId(string jobPartId) {
+        public JdfNodeAttributeBuilder JobPartId(string jobPartId = null) {
             ParameterCheck.ParameterRequired(jobPartId, "jobPartId");
 
             Element.SetJobPartId(jobPartId);

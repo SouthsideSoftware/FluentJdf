@@ -100,6 +100,18 @@ namespace FluentJdf.Configuration
             authoringSettings.JdfVersion = jdfVersion;
             return this;
         }
+
+        /// <summary>
+        /// Sets the JMF sender id.
+        /// </summary>
+        /// <param name="senderId"></param>
+        /// <returns></returns>
+        public JdfAuthoringSettingsBuilder SenderId(string senderId) {
+            ParameterCheck.StringRequiredAndNotWhitespace(senderId, "senderId");
+
+            authoringSettings.SenderId = senderId;
+            return this;
+        }
     }
 
 }

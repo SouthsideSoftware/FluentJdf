@@ -233,6 +233,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The provided sender id is null or whitespace and no default sender id is configured.
+        /// </summary>
+        internal static string JmfElementExtensions_SetSenderId_SenderIdMustBeProvided {
+            get {
+                return ResourceManager.GetString("JmfElementExtensions_SetSenderId_SenderIdMustBeProvided", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The element must be contained in a Message object.
         /// </summary>
         internal static string JmfElementExtensions_ThrowExceptionIfNotInMessage_CannotOperateOnElementUnlessItIsInMessage {

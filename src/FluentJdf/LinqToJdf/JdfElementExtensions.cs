@@ -80,14 +80,14 @@ namespace FluentJdf.LinqToJdf
 
             if (jdfNode.IsJdfRoot()) {
                 if (Library.Settings.JdfAuthoringSettings.GenerateJobId) {
-                    jdfNode.SetUniqueJobId();
+                    jdfNode.SetJobId();
                 }
                 jdfNode.SetAttributeValue(XNamespace.Xmlns.GetName("xsi"), Globals.XsiNamespace.NamespaceName);
                 jdfNode.SetVersion();
             }
             else {
                 if (Library.Settings.JdfAuthoringSettings.GenerateJobPartId) {
-                    jdfNode.SetJobPartId(Globals.CreateUniqueId("JP_"));
+                    jdfNode.SetJobPartId();
                 }
             }
 
@@ -514,26 +514,20 @@ namespace FluentJdf.LinqToJdf
         }
 
         /// <summary>
-        /// Gives the JDF node a unique job id.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static XElement SetUniqueJobId(this XElement element) {
-            ParameterCheck.ParameterRequired(element, "element");
-
-            return element.SetJobId(Globals.CreateUniqueId("J"));
-        }
-
-        /// <summary>
-        /// Sets the job id of the jdf node to the given value.
+        /// Sets the job id of the jdf node to the id value
+        /// given.  If no id is provided, a unique value 
+        /// is generated.
         /// </summary>
         /// <param name="element"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static XElement SetJobId(this XElement element, string id) {
+        public static XElement SetJobId(this XElement element, string id = null) {
             ParameterCheck.ParameterRequired(element, "element");
-
             element.ThrowExceptionIfNotJdfElement();
+
+            if (id == null) {
+                id = Globals.CreateUniqueId("J_");
+            }
 
             element.SetAttributeValue("JobID", id);
 
@@ -541,16 +535,21 @@ namespace FluentJdf.LinqToJdf
         }
 
         /// <summary>
-        /// Sets the job part id of the jdf node to the given value.
+        /// Sets the job part id of the jdf node to
+        /// the id value given.  If no id is provied,
+        /// a unique valuie is generated.
         /// </summary>
         /// <param name="element"></param>
         /// <param name="jobPartId"></param>
         /// <returns></returns>
-        public static XElement SetJobPartId(this XElement element, string jobPartId)
+        public static XElement SetJobPartId(this XElement element, string jobPartId = null)
         {
             ParameterCheck.ParameterRequired(element, "element");
-
             element.ThrowExceptionIfNotJdfElement();
+
+            if (jobPartId == null) {
+                jobPartId = Globals.CreateUniqueId("JP_");
+            }
 
             element.SetAttributeValue("JobPartID", jobPartId);
 

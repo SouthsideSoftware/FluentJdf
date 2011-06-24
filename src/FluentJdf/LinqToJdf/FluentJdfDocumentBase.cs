@@ -5,6 +5,7 @@ using FluentJdf.Resources;
 using FluentJdf.Schema;
 
 namespace FluentJdf.LinqToJdf {
+    //todo: provide option to pass override JdfAuthoringSettings configuration to constructor and use throughout
     /// <summary>
     /// Base class for XDocument descendants in FluentJDF.
     /// </summary>

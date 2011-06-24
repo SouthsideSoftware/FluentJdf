@@ -68,7 +68,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        public ResourceNodeBuilder ValidateJdf(bool addSchemaInfo) {
+        public JdfNodeBuilder ValidateJdf(bool addSchemaInfo) {
             return resourceNodeBuilder.ValidateJdf(addSchemaInfo);
         }
         /// <summary>

@@ -125,12 +125,14 @@
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_jdf_xml.cs" />
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_jmf_xml.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartCollection\when_adding_transmission_parts_to_a_transmission_part_collection.cs" />
+    <Compile Include="Unit\LinqToJdf\ElementExtensions\when_setting_and_getting_timestamp.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_combined_jdf_process.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_intent.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_node_with_older_version_as_configured_default.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_process_group.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_simple_jdf_process.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_creating_jmf_with_older_version_of_jdf_configured_as_default.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_creating_jmf_with_sender_id_configured.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_creating_submit_queue_entry_fluently.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_file.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_message.cs" />

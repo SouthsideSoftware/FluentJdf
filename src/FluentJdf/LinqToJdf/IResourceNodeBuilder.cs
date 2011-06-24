@@ -1,10 +1,12 @@
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
-namespace FluentJdf.LinqToJdf {
+namespace FluentJdf.LinqToJdf
+{
     /// <summary>
     /// Node builder interface for resources.
     /// </summary>
-    public interface IResourceNodeBuilder {
+    public interface IResourceNodeBuilder
+    {
         /// <summary>
         /// Create an input
         /// </summary>
@@ -20,7 +22,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        ResourceNodeBuilder ValidateJdf(bool addSchemaInfo = true);
+        JdfNodeBuilder ValidateJdf(bool addSchemaInfo = true);
 
         /// <summary>
         /// Gets the Element and allows set for inheritors

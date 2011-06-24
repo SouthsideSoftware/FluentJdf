@@ -219,4 +219,7 @@
 	<data name="ElementExtensions_ThrowExceptionIfNotJdfOrJmfElement">
 		<value xml:space="preserve">Cannot operate on {0} element.  This extension only operate on JDF or JMF nodes.</value>
 	</data>
+	<data name="JmfElementExtensions_SetSenderId_SenderIdMustBeProvided">
+		<value xml:space="preserve">The provided sender id is null or whitespace and no default sender id is configured</value>
+	</data>
 </root>

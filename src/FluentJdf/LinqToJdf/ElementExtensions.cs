@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Xml.Linq;
 using FluentJdf.Configuration;
 using FluentJdf.Resources;
@@ -309,6 +310,47 @@ namespace FluentJdf.LinqToJdf {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull(Globals.XsiNamespace.GetName("type"));
+        }
+
+        /// <summary>
+        /// Sets the time stamp attribute to the current date time in utc format.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static XElement SetTimeStampToUtcNow(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+            return element.SetTimeStamp(DateTime.UtcNow);
+        }
+
+        /// <summary>
+        /// Sets the time stamp attribute to the given value.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="timeStamp"></param>
+        /// <returns></returns>
+        public static XElement SetTimeStamp(this XElement element, DateTime timeStamp)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            element.SetAttributeValue("TimeStamp", timeStamp.ToString("O"));
+            return element;
+        }
+
+        /// <summary>
+        /// Gets the time stamp or null if there is none.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        /// <exception cref="FormatException">If the value of the time stamp attribute cannot be converted to a date time.</exception>
+        public static DateTime? GetTimeStamp(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            var sTimeStamp = element.GetAttributeValueOrNull("TimeStamp");
+            if (sTimeStamp == null) {
+                return null;
+            }
+
+            return DateTime.Parse(sTimeStamp, null, DateTimeStyles.RoundtripKind);
         }
     }
 }

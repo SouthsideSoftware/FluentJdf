@@ -13,6 +13,7 @@ namespace FluentJdf.Configuration {
         bool generateJobId;
         bool generateJobPartId;
         string jdfVersion;
+        string senderId;
 
 
         /// <summary>
@@ -85,6 +86,22 @@ namespace FluentJdf.Configuration {
         }
 
         /// <summary>
+        /// Gets the default JMF sender id.  
+        /// </summary>
+        /// <remarks>This defaults to null.  If you
+        /// do not specify a sender in configuration
+        /// or pass one when you send JMF, the JMF will be invalid.</remarks>
+        public string SenderId {
+            get { return senderId; }
+            internal set { senderId = value; }
+        }
+
+        /// <summary>
+        /// Gets true if the configured default sender id is not <see langword="null"/> nor whitespace.
+        /// </summary>
+        public bool HasDefaultSenderId { get { return !string.IsNullOrWhiteSpace(senderId); } }
+
+        /// <summary>
         /// Resets the configuration to default values.
         /// </summary>
         public JdfAuthoringSettings ResetToDefaults() {
@@ -95,7 +112,7 @@ namespace FluentJdf.Configuration {
             generateJobId = true;
             generateJobPartId = true;
             jdfVersion = LinqToJdf.JdfVersion.Version_1_4;
-
+            senderId = null;
             return this;
         }
     }

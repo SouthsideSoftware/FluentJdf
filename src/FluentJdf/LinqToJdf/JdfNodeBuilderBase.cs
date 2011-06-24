@@ -6,8 +6,7 @@ namespace FluentJdf.LinqToJdf
     /// <summary>
     /// Base class for element builders.
     /// </summary>
-    public abstract class JdfNodeBuilderBase
-    {
+    public abstract class JdfNodeBuilderBase : IJdfNodeBuilderBase {
         internal JdfNodeBuilderBase(JdfNodeBuilder parentJdfBuilder)
         {
             ParentJdfNode = parentJdfBuilder;
@@ -43,17 +42,6 @@ namespace FluentJdf.LinqToJdf
         /// Gets the container JDF builder.
         /// </summary>
         public JdfNodeBuilder ParentJdfNode { get; protected set; }
-
-        /// <summary>
-        /// Validate the JDF
-        /// </summary>
-        /// <param name="addSchemaInfo"></param>
-        /// <returns></returns>
-        public JdfNodeBuilderBase ValidateJdf(bool addSchemaInfo = true)
-        {
-            Element.ValidateJdf(addSchemaInfo);
-            return this;
-        }
 
         /// <summary>
         /// Gets the ticket associated with this builder
