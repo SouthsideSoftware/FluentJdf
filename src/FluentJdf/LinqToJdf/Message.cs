@@ -18,6 +18,11 @@ namespace FluentJdf.LinqToJdf {
         readonly ITransmitterFactory transmitterFactory = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmitterFactory>();
 
         /// <summary>
+        /// Gets the JDF ticket (if any) associated with this message.
+        /// </summary>
+        public Ticket AssociatedTicket { get; internal set; }
+
+        /// <summary>
         /// Create a message.
         /// </summary>
         /// <returns></returns>
