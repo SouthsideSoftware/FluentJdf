@@ -20,5 +20,8 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
         It should_have_an_id_in_command = () => message.Root.Element(Element.Command).GetId().ShouldNotBeNull();
 
         It should_have_id_starts_with_sqe = () => message.Root.Element(Element.Command).GetId().ShouldStartWith("SQE_");
+
+        It should_have_namespace_definition_for_xsi_with_xsi_prefix =
+            () => message.Root.ToString().ShouldContain("xsi:");
     }
 }

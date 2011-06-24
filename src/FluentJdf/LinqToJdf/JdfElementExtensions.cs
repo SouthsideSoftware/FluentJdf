@@ -82,6 +82,7 @@ namespace FluentJdf.LinqToJdf
                 if (Library.Settings.JdfAuthoringSettings.GenerateJobId) {
                     jdfNode.SetUniqueJobId();
                 }
+                jdfNode.SetAttributeValue(XNamespace.Xmlns.GetName("xsi"), Globals.XsiNamespace.NamespaceName);
             }
             else {
                 if (Library.Settings.JdfAuthoringSettings.GenerateJobPartId) {
@@ -647,16 +648,16 @@ namespace FluentJdf.LinqToJdf
             ThrowExceptionIfNotJdfElement(jdfNode);
             
             if (types == null || types.Length == 0) {
-                jdfNode.SetAttributeValue("Type", JdfElementType.ProcessGroup);
-                jdfNode.SetXsiType(JdfElementType.XsiJdfElementType(JdfElementType.ProcessGroup).ToString());
+                jdfNode.SetAttributeValue("Type", ProcessType.ProcessGroup);
+                jdfNode.SetXsiType(ProcessType.XsiJdfElementType(ProcessType.ProcessGroup).ToString());
             }
             if (types.Length == 1) {
                 jdfNode.SetAttributeValue("Type", types[0]);
-                jdfNode.SetXsiType(JdfElementType.XsiJdfElementType(types[0]).ToString());
+                jdfNode.SetXsiType(ProcessType.XsiJdfElementType(types[0]).ToString());
             }
             else {
-                jdfNode.SetAttributeValue("Type", JdfElementType.Combined);
-                jdfNode.SetXsiType(JdfElementType.XsiJdfElementType(JdfElementType.Combined));
+                jdfNode.SetAttributeValue("Type", ProcessType.Combined);
+                jdfNode.SetXsiType(ProcessType.XsiJdfElementType(ProcessType.Combined));
                 jdfNode.SetAttributeValue("Types", string.Join(" ", types));
             }
 

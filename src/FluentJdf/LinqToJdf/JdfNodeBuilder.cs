@@ -63,7 +63,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <returns></returns>
         public JdfNodeBuilder AddIntent() {
-            return new JdfNodeBuilder(Element, JdfElementType.Intent);
+            return new JdfNodeBuilder(Element, ProcessType.Intent);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace FluentJdf.LinqToJdf
         /// <returns></returns>
         public JdfNodeBuilder AddProcessGroup()
         {
-            return new JdfNodeBuilder(Element, JdfElementType.ProcessGroup);
+            return new JdfNodeBuilder(Element, ProcessType.ProcessGroup);
         }
 
         /// <summary>

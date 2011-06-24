@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+
 namespace FluentJdf.LinqToJdf
 {
     /// <summary>
@@ -6,6 +8,16 @@ namespace FluentJdf.LinqToJdf
     public static class ProcessType
     {
 #pragma warning disable 1591
+
+        /// <summary>
+        /// Gets the fully qualified name of a JDF type attribute in the JDF namespace.
+        /// </summary>
+        /// <param name="jdfElementType"></param>
+        /// <returns></returns>
+        public static XName XsiJdfElementType(string jdfElementType)
+        {
+            return Globals.JdfNamespace.GetName(jdfElementType);
+        }
 
         public static string AdhesiveBinding = "AdhesiveBinding";
         public static string Approval = "Approval";
@@ -57,6 +69,7 @@ namespace FluentJdf.LinqToJdf
         public static string Imposition = "Imposition";
         public static string InkZoneCalculation = "InkZoneCalculation";
         public static string Inserting = "Inserting";
+        public static string Intent = "Product";
         public static string Interpreting = "Interpreting";
         public static string Jacketing = "Jacketing";
         public static string Labeling = "Labeling";

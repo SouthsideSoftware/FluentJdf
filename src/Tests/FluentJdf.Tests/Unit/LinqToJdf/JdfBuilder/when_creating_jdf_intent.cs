@@ -14,5 +14,10 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder
         Because of = () => ticket = Ticket.CreateIntent().Ticket;
 
         It should_have_root_with_type_product = () => ticket.Root.GetMessageType().ShouldEqual("Product");
+
+        It should_have_xsi_type_for_intent = () => ticket.Root.GetXsiTypeAttribute().ShouldEqual(ProcessType.Intent);
+
+        It should_have_namespace_definition_for_xsi_with_xsi_prefix =
+            () => ticket.Root.ToString().ShouldContain("xsi:");
     }
 }
