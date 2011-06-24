@@ -83,6 +83,7 @@ namespace FluentJdf.LinqToJdf
                     jdfNode.SetUniqueJobId();
                 }
                 jdfNode.SetAttributeValue(XNamespace.Xmlns.GetName("xsi"), Globals.XsiNamespace.NamespaceName);
+                jdfNode.SetVersion();
             }
             else {
                 if (Library.Settings.JdfAuthoringSettings.GenerateJobPartId) {

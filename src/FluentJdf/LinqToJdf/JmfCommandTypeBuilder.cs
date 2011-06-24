@@ -22,7 +22,7 @@ namespace FluentJdf.LinqToJdf
         /// Create a submit queue entry command.
         /// </summary>
         /// <returns></returns>
-        public JmfCommandBuilder SubmitQueueEntry() {
+        public JmfSubmitQueueEntryCommandBuilder SubmitQueueEntry() {
             return new JmfSubmitQueueEntryCommandBuilder(parentJmf);
         }
     }

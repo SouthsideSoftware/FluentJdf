@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Xml.Linq;
+using FluentJdf.Configuration;
 using FluentJdf.Resources;
 using FluentJdf.Utility;
 using Infrastructure.Core.CodeContracts;
@@ -184,6 +185,55 @@ namespace FluentJdf.LinqToJdf {
             }
 
             return element.IsJdfElement() ? element : null;
+        }
+
+        /// <summary>
+        /// Sets the JDF version
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If the node is not JDF or JMF.</exception>
+        /// <remarks>It is recommended that you only put a version attribute on
+        /// the root JDF/JMF.</remarks>
+        public static XElement SetVersion(this XElement jdfNode, string version = null)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfOrJmfElement();
+
+            if (version == null) {
+                version = Library.Settings.JdfAuthoringSettings.JdfVersion;
+            }
+            jdfNode.SetAttributeValue("Version", version);
+            return jdfNode;
+        }
+
+        /// <summary>
+        /// Gets the JDF version.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        //// <exception cref="ArgumentException">If the node is not JDF or JMF.</exception>
+        public static string GetVersion(this XElement jdfNode)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfOrJmfElement();
+
+            return jdfNode.GetAttributeValueOrNull("Version");
+        }
+
+        /// <summary>
+        /// Throws an ArgumentException if the given node is not a JDF or JMF node.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        public static void ThrowExceptionIfNotJdfOrJmfElement(this XElement jdfNode)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+
+            if (!jdfNode.IsJdfElement() && !jdfNode.IsJmfElement())
+            {
+                throw new ArgumentException(string.Format(Messages.ElementExtensions_ThrowExceptionIfNotJdfOrJmfElement, jdfNode.Name));
+            }
         }
 
         /// <summary>

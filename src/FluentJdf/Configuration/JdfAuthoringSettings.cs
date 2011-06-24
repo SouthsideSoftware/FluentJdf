@@ -1,4 +1,5 @@
-﻿using Infrastructure.Core.Helpers;
+﻿using FluentJdf.LinqToJdf;
+using Infrastructure.Core.Helpers;
 
 namespace FluentJdf.Configuration {
     /// <summary>
@@ -8,9 +9,10 @@ namespace FluentJdf.Configuration {
         string agentName;
         string agentVersion;
         string author;
-        bool createAuditOnNewRootJdf = true;
+        bool createAuditOnNewRootJdf;
         bool generateJobId;
         bool generateJobPartId;
+        string jdfVersion;
 
 
         /// <summary>
@@ -36,6 +38,8 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets the agent name for this configuration.
         /// </summary>
+        /// <remarks>Defaults to value in the AssemblyProduct
+        /// attribute of the entry assembly.</remarks>
         public string AgentName {
             get { return agentName; }
             set { agentName = value; }
@@ -44,6 +48,8 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets the agent version.
         /// </summary>
+        /// <remarks>Defaults to value in the AssemblyFileVersion
+        /// attribute of the entry assembly.</remarks>
         public string AgentVersion {
             get { return agentVersion; }
             internal set { agentVersion = value; }
@@ -52,6 +58,8 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets the author.
         /// </summary>
+        /// <remarks>Defaults to value in the AssemblyProduct
+        /// attribute of the entry assembly.</remarks>
         public string Author {
             get { return author; }
             internal set { author = value; }
@@ -61,9 +69,19 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets the add audit on ticket create option.
         /// </summary>
+        /// <remarks>Defaults to true.</remarks>
         public bool CreateAuditOnNewRootJdf {
             get { return createAuditOnNewRootJdf; }
             internal set { createAuditOnNewRootJdf = value; }
+        }
+
+        /// <summary>
+        /// Gets the JDF version that will be used by default.
+        /// </summary>
+        /// <remarks>Defaults to 1.4.</remarks>
+        public string JdfVersion {
+            get { return jdfVersion; }
+            internal set { jdfVersion = value; }
         }
 
         /// <summary>
@@ -76,6 +94,7 @@ namespace FluentJdf.Configuration {
             createAuditOnNewRootJdf = true;
             generateJobId = true;
             generateJobPartId = true;
+            jdfVersion = LinqToJdf.JdfVersion.Version_1_4;
 
             return this;
         }

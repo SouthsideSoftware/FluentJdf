@@ -19,6 +19,7 @@ namespace FluentJdf.LinqToJdf {
             if (message.Root == null) {
                 Element = new XElement(LinqToJdf.Element.JMF);
                 Element.SetAttributeValue(XNamespace.Xmlns.GetName("xsi"), Globals.XsiNamespace.NamespaceName);
+                Element.SetVersion();
                 message.Add(Element);
             }
             else {

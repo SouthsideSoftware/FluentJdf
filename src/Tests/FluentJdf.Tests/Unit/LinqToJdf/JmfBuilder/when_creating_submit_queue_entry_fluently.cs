@@ -23,5 +23,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
 
         It should_have_namespace_definition_for_xsi_with_xsi_prefix =
             () => message.Root.ToString().ShouldContain("xsi:");
+
+        It should_have_version_attribute_in_jmfwith_default_value = () => message.Root.GetVersion().ShouldEqual("1.4");
     }
 }

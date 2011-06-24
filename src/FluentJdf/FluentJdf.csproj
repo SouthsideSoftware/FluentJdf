@@ -135,6 +135,7 @@
     <Compile Include="LinqToJdf\IJmfSubmitQueueEntryCommandBuilder.cs" />
     <Compile Include="LinqToJdf\IResourceNodeBuilder.cs" />
     <Compile Include="LinqToJdf\JdfNodeAttributeBuilder.cs" />
+    <Compile Include="LinqToJdf\JdfVersion.cs" />
     <Compile Include="LinqToJdf\JmfCommandBuilder.cs" />
     <Compile Include="LinqToJdf\JmfCommandTypeBuilder.cs" />
     <Compile Include="LinqToJdf\JmfElementExtensions.cs" />

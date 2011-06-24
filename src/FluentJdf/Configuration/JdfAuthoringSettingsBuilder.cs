@@ -11,14 +11,14 @@ namespace FluentJdf.Configuration
     /// </summary>
     public class JdfAuthoringSettingsBuilder {
         Library library;
-        JdfAuthoringSettings authoringSettingsSettings;
+        JdfAuthoringSettings authoringSettings;
 
-        internal JdfAuthoringSettingsBuilder(Library library, JdfAuthoringSettings authoringSettingsSettings) {
+        internal JdfAuthoringSettingsBuilder(Library library, JdfAuthoringSettings authoringSettings) {
             ParameterCheck.ParameterRequired(library, "library");
-            ParameterCheck.ParameterRequired(authoringSettingsSettings, "authoringSettingsSettings");
+            ParameterCheck.ParameterRequired(authoringSettings, "authoringSettings");
 
             this.library = library;
-            this.authoringSettingsSettings = authoringSettingsSettings;
+            this.authoringSettings = authoringSettings;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace FluentJdf.Configuration
         /// <param name="generateJobId"></param>
         /// <returns></returns>
         public JdfAuthoringSettingsBuilder GenerateJobId(bool generateJobId) {
-            authoringSettingsSettings.GenerateJobId = generateJobId;
+            authoringSettings.GenerateJobId = generateJobId;
             return this;
         }
 
@@ -42,7 +42,7 @@ namespace FluentJdf.Configuration
         /// <param name="generatejobPartId"></param>
         /// <returns></returns>
         public JdfAuthoringSettingsBuilder GenerateJobPartId(bool generatejobPartId) {
-            authoringSettingsSettings.GenerateJobPartId = generatejobPartId;
+            authoringSettings.GenerateJobPartId = generatejobPartId;
             return this;
         }
 
@@ -52,7 +52,7 @@ namespace FluentJdf.Configuration
         /// <param name="agentName"></param>
         /// <returns></returns>
         public JdfAuthoringSettingsBuilder AgentName(string agentName) {
-            authoringSettingsSettings.AgentName = agentName;
+            authoringSettings.AgentName = agentName;
             return this;
         }
 
@@ -63,7 +63,7 @@ namespace FluentJdf.Configuration
         /// <returns></returns>
         public JdfAuthoringSettingsBuilder AgentVersion(string agentVersion)
         {
-            authoringSettingsSettings.AgentVersion = agentVersion;
+            authoringSettings.AgentVersion = agentVersion;
             return this;
         }
 
@@ -74,7 +74,7 @@ namespace FluentJdf.Configuration
         /// <returns></returns>
         public JdfAuthoringSettingsBuilder Author(string author)
         {
-            authoringSettingsSettings.Author = author;
+            authoringSettings.Author = author;
             return this;
         }
 
@@ -85,7 +85,19 @@ namespace FluentJdf.Configuration
         /// <returns></returns>
         public JdfAuthoringSettingsBuilder CreateAuditOnNewRootJdf(bool createAuditOnNewRootJdf)
         {
-            authoringSettingsSettings.CreateAuditOnNewRootJdf = createAuditOnNewRootJdf;
+            authoringSettings.CreateAuditOnNewRootJdf = createAuditOnNewRootJdf;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the default JDF version placed in newly created JDF and JMF root nodes.
+        /// </summary>
+        /// <param name="jdfVersion"></param>
+        /// <returns></returns>
+        public JdfAuthoringSettingsBuilder JdfVersion(string jdfVersion) {
+            ParameterCheck.StringRequiredAndNotWhitespace(jdfVersion, "jdfVersion");
+
+            authoringSettings.JdfVersion = jdfVersion;
             return this;
         }
     }

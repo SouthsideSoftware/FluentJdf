@@ -8,7 +8,7 @@ namespace FluentJdf.LinqToJdf {
     /// <summary>
     /// Base class for XDocument descendants in FluentJDF.
     /// </summary>
-    public class FluentJdfDocumentBase : XDocument {
+    public abstract class FluentJdfDocumentBase : XDocument {
         /// <summary>
         /// Gets and sets the validator.
         /// </summary>
