@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JDF Activation="Active" DescriptiveName="Adobe PinknGreen"
+  ID="1646" Status="Ready" Type="Combined"
+  Types="LayoutPreparation Imposition Interpreting Rendering DigitalPrinting"
+  Version="1.1" xmlns="http://www.CIP4.org/JDFSchema_1_1"
+  xmlns:jdftyp="http://www.CIP4.org/JDFSchema_1_1_Types"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.CIP4.org/JDFSchema_1_1 http://www.cip4.org/Schema/JDFSchema_1_1/JDF.xsd">
+  <ResourcePool>
+    <!--		<RunList Class="Parameter" ID="rl01" Locked="false" NPage="[b212ac64-5e4f-44ac-bd95-b2cfa49d3bc4]" Status="Available">-->
+    <Component Amount="1" Class="Quantity" ComponentType="FinalProduct"
+      DescriptiveName="Adobe PinknGreen" ID="c01" Status="Unavailable"/>
+    <DigitalPrintingParams Class="Parameter" ID="dpp01" Status="Available" PartIDKeys="RunIndex">
+      <MediaRef rRef="m01"/>
+      <DigitalPrintingParams RunIndex="1">
+        <MediaRef rRef="m02"/>
+      </DigitalPrintingParams>
+    </DigitalPrintingParams>
+    <InterpretingParams Class="Parameter" ID="ip01" Status="Available"/>
+    <LayoutPreparationParams Class="Parameter" ID="lpp01" Status="Available"/>
+    <Media BackCoatings="None" Brand="Plain" DescriptiveName="RK_Paper_Size"
+                           Dimension="612 792" EFI:EFPaperCatalogID="32285" EFI:EngineMID="196611" EFI:MappedPageSize="612 792" EngineMID="196611" xmlns="http://www.CIP4.org/JDFSchema_1_1"
+                           FrontCoatings="None" ID="m01" ImagableSide="Both" MID="32285" MediaColorName="Green" MediaSetCount="1" MediaType="Paper"
+                           MediaTypeDetails="Stationery" Opacity="Opaque" RecycledPercentage="0" Texture="Smooth" Weight="100" xmlns:EFI="http://www.efi.com/efijdf"  Status="Available"/>
+    <Media BackCoatings="None" Brand="Plain"
+      DescriptiveName="Pink" Dimension="612 792"
+      EFI:EFPaperCatalogID="32285" EFI:EngineMID="196611"
+      EFI:MappedPageSize="612 792" EngineMID="196611"
+      FrontCoatings="None" ID="m02" ImagableSide="Both" MID="32285"
+      MediaColorName="Green" MediaSetCount="1" MediaType="Paper"
+      MediaTypeDetails="Stationery" Opacity="Opaque"
+      RecycledPercentage="0" Texture="Smooth" Weight="100" xmlns:EFI="http://www.efi.com/efijdf" Status="Available"/>
+    <RenderingParams Class="Parameter" ID="rp01" Status="Available"/>
+    <RunList Class="Parameter" ID="rl01" Pages="0~1" Status="Available">
+      <LayoutElement>
+        <FileSpec URL="GreenPinkPaper.pdf"/>
+      </LayoutElement>
+    </RunList>
+  </ResourcePool>
+</JDF>

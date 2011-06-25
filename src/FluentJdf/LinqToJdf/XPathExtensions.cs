@@ -39,7 +39,14 @@ namespace FluentJdf.LinqToJdf {
             ParameterCheck.ParameterRequired(element, "xPathExpression");
 
             var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
-            return element.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager));
+
+            //TODO talk about why we need to do this and when we should place the document into the original state.
+            var retVal = new List<XElement>();
+
+            using (var normalizer = new RefExtensionsNormalizer(element)) {
+                retVal.AddRange(normalizer.Node.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager)));
+            }
+            return retVal;
         }
 
         /// <summary>
@@ -75,6 +82,7 @@ namespace FluentJdf.LinqToJdf {
         private static string MakePrefixedXPath(string xpath) {
             return xpath;
         }
+
         private static IXmlNamespaceResolver MakeNamespaceResolver(XmlNamespaceManager namespaceManager) {
             var resolver = namespaceManager ?? new XmlNamespaceManager(new NameTable());
             if (!resolver.HasNamespace("jdf")) {
