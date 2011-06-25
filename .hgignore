@@ -51,3 +51,4 @@ OnpointConnect.esent/**
 OnpointConnect_subscriptions.esent/**
 packages/**
 glob:Jwf.sln.docstates
+glob:*.csproj.vs10x
