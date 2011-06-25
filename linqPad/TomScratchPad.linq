@@ -21,12 +21,14 @@ Ticket GetJdf() {
 }
 	
 Message GetJmf() {
-	return Message.Create().AddCommand().SubmitQueueEntry().ValidateJmf().Message;
+	return Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(GetJdf()).AddQuery().QueueStatus().ValidateJmf().Message;
 }
 
 void Main()
 {
 	InitializeFluentJdf();
+	
+	
 	
 	var ticket = GetJdf().Dump();
 	ticket.ValidationMessages.Dump();
@@ -34,6 +36,7 @@ void Main()
 	
 	var message = GetJmf().Dump();
 	message.ValidationMessages.Dump();
+	message.AssociatedTicket.Root.GetJobId().Dump();
 	"*****************".Dump();
 }
 

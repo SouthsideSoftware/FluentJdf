@@ -6,7 +6,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Factory for creating intent nodes.
     /// </summary>
-    public class JmfNodeBuilder : JmfNodeBuilderBase, IJmfNodeBuilder {
+    public class JmfNodeBuilder : JmfBuilderBase, IJmfNodeBuilder {
         internal JmfNodeBuilder(Message message) {
             Initialize(message);
         }
@@ -49,13 +49,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
             return new JmfNodeAttributeBuilder(this);
         }
 
-        /// <summary>
-        /// Add a command.
-        /// </summary>
-        /// <returns></returns>
-        public CommandTypeBuilder AddCommand()
-        {
-            return new CommandTypeBuilder(this);
-        }
+        
     }
 }

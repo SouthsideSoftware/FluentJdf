@@ -125,7 +125,10 @@
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
     <Compile Include="LinqToJdf\Audit.cs" />
     <Compile Include="Configuration\Library.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\JmfAttributeBuilderBase.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\MessageTypeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\QueryBuilder.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\QueryTypeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\QueueStatusQueryAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\QueueStatusQueryBuilder.cs" />
     <Compile Include="LinqToJdf\Command.cs" />
@@ -136,7 +139,7 @@
     <Compile Include="LinqToJdf\Builder\Jdf\IJdfNodeBuilderBase.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\IJmfCommandBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\IJmfNodeBuilder.cs" />
-    <Compile Include="LinqToJdf\Builder\Jmf\IJmfNodeBuilderBase.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\IJmfBuilderBase.cs" />
     <Compile Include="LinqToJdf\IResourceNodeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jdf\JdfNodeAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\JdfVersion.cs" />
@@ -146,7 +149,7 @@
     <Compile Include="LinqToJdf\JmfMessageElementExtensions.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\JmfNodeAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\JmfNodeBuilder.cs" />
-    <Compile Include="LinqToJdf\Builder\Jmf\JmfNodeBuilderBase.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\JmfBuilderBase.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\SubmitQueueEntryCommandAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\SubmitQueueEntryCommandBuilder.cs" />
     <Compile Include="LinqToJdf\Message.cs" />

@@ -7,7 +7,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
     public class when_creating_queue_status_fluently {
         static Message message;
 
-        Because of = () => message = Message.Create().AddCommand().QueueStatus().Message;
+        Because of = () => message = Message.Create().AddQuery().QueueStatus().Message;
 
         It should_have_jmf_at_root = () => message.Root.Name.ShouldEqual(Element.JMF);
 

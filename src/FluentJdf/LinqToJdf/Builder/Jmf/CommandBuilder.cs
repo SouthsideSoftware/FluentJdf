@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf
@@ -6,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
     /// <summary>
     /// Used to build JMF commands 
     /// </summary>
-    public class CommandBuilder : JmfNodeBuilderBase, IJmfNodeBuilder {
+    public class CommandBuilder : JmfBuilderBase, IJmfNodeBuilder {
         string commandType;
 
         internal  CommandBuilder(JmfNodeBuilder parent, string commandType, string idPrefix = "C") : base(parent) {
@@ -20,14 +21,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
             Element.SetMessageType(commandType);
             Element.SetXsiType(Command.XsiType(commandType));
             parent.Element.Add(Element);
-        }
-
-        /// <summary>
-        /// Add a command.
-        /// </summary>
-        /// <returns></returns>
-        public CommandTypeBuilder AddCommand() {
-            return ParentJmfNode.AddCommand();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Xml.Linq;
+﻿using System;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf
@@ -6,18 +6,12 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
     /// <summary>
     /// Build attributes for the submit queue entry command.
     /// </summary>
-    public class SubmitQueueEntryCommandAttributeBuilder : IJmfCommandBuilder {
-        readonly SubmitQueueEntryCommandBuilder builder;
-
+    public class SubmitQueueEntryCommandAttributeBuilder : JmfAttributeBuilderBase {
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="builder"></param>
-        internal SubmitQueueEntryCommandAttributeBuilder(SubmitQueueEntryCommandBuilder builder) {
-            ParameterCheck.ParameterRequired(builder, "builder");
-
-            this.builder = builder;
-        }
+        internal SubmitQueueEntryCommandAttributeBuilder(SubmitQueueEntryCommandBuilder builder) : base(builder) {}
 
         /// <summary>
         /// Set the id.
@@ -27,7 +21,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
         public SubmitQueueEntryCommandAttributeBuilder Id(string id)
         {
 
-            builder.Element.SetAttributeValue("ID", id);
+            ParentJmfNode.Element.SetAttributeValue("ID", id);
             return this;
         }
 
@@ -38,44 +32,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
         public SubmitQueueEntryCommandAttributeBuilder UniqueId()
         {
             return Id(Globals.CreateUniqueId(SubmitQueueEntryCommandBuilder.IdPrefix));
-        }
-
-        /// <summary>
-        /// Gets the Element and allows set for inheritors
-        /// </summary>
-        public XElement Element {
-            get { return builder.Element; }
-        }
-
-        /// <summary>
-        /// Gets the container JMF builder.
-        /// </summary>
-        public JmfNodeBuilder ParentJmfNode {
-            get { return builder.ParentJmfNode; }
-        }
-
-        /// <summary>
-        /// Gets the messsage associated with this builder
-        /// </summary>
-        public Message Message {
-            get { return builder.Message;  }
-        }
-
-        /// <summary>
-        /// Validate the JMF
-        /// </summary>
-        /// <param name="addSchemaInfo"></param>
-        /// <returns></returns>
-        public JmfNodeBuilderBase ValidateJmf(bool addSchemaInfo = true) {
-            return builder.ValidateJmf(addSchemaInfo);
-        }
-
-        /// <summary>
-        /// Add a command.
-        /// </summary>
-        /// <returns></returns>
-        public CommandTypeBuilder AddCommand() {
-            return ParentJmfNode.AddCommand();
         }
 
         /// <summary>
