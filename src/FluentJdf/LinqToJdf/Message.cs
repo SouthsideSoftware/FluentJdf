@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml.Linq;
 using FluentJdf.Encoding;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using FluentJdf.Messaging;
 using FluentJdf.Resources;
 using FluentJdf.Transmission;
@@ -16,6 +17,11 @@ namespace FluentJdf.LinqToJdf {
     public class Message : FluentJdfDocumentBase {
         static ILog logger = LogManager.GetLogger(typeof (Message));
         readonly ITransmitterFactory transmitterFactory = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmitterFactory>();
+
+        /// <summary>
+        /// Gets the JDF ticket (if any) associated with this message.
+        /// </summary>
+        public Ticket AssociatedTicket { get; internal set; }
 
         /// <summary>
         /// Create a message.
@@ -51,7 +57,7 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public JmfNodeBuilder ModifyJmfNode() {
             if (Root == null || !Root.IsJmfElement()) {
-                throw new Exception(Messages.Message_ModifyJmfNode_RootMustExistAndMustbeJmf);
+                throw new Exception(Resources.Messages.Message_ModifyJmfNode_RootMustExistAndMustbeJmf);
             }
 
             return new JmfNodeBuilder(Root);
@@ -111,7 +117,7 @@ namespace FluentJdf.LinqToJdf {
             }
             catch (Exception err)
             {
-                logger.Error(string.Format(Messages.Ticket_Transmit_Failed, url), err);
+                logger.Error(string.Format(Resources.Messages.Ticket_Transmit_Failed, url), err);
                 throw;
             }
         }

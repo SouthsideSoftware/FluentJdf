@@ -1,11 +1,12 @@
 using System.Xml.Linq;
+using FluentJdf.Configuration;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf {
+namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Factory for creating intent nodes.
     /// </summary>
-    public class JmfNodeBuilder : JmfNodeBuilderBase {
+    public class JmfNodeBuilder : JmfBuilderBase, IJmfNodeBuilder {
         internal JmfNodeBuilder(Message message) {
             Initialize(message);
         }
@@ -18,6 +19,12 @@ namespace FluentJdf.LinqToJdf {
 
             if (message.Root == null) {
                 Element = new XElement(LinqToJdf.Element.JMF);
+                Element.SetAttributeValue(XNamespace.Xmlns.GetName("xsi"), Globals.XsiNamespace.NamespaceName);
+                Element.SetVersion();
+                if (Library.Settings.JdfAuthoringSettings.HasDefaultSenderId) {
+                    Element.SetSenderId();
+                }
+                Element.SetTimeStampToUtcNow();
                 message.Add(Element);
             }
             else {
@@ -34,11 +41,14 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
-        /// Add a command.
+        /// Gets the attribute builder for this JMF node.
         /// </summary>
         /// <returns></returns>
-        public JmfCommandTypeBuilder AddCommand() {
-            return new JmfCommandTypeBuilder(this);
+        public JmfNodeAttributeBuilder With()
+        {
+            return new JmfNodeAttributeBuilder(this);
         }
+
+        
     }
 }

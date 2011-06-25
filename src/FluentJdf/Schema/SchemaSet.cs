@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Schema;
 using FluentJdf.LinqToJdf;
 using FluentJdf.Resources;
+using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Logging;
 
 namespace FluentJdf.Schema
@@ -14,7 +15,7 @@ namespace FluentJdf.Schema
     public class SchemaSet {
         static ILog logger = LogManager.GetLogger(typeof (SchemaSet));
 
-        static string schemaDir = "schema"; 
+        static string relativeSchemaDir = "schema"; 
 
         /// <summary>
         /// Get the singleton instance
@@ -22,6 +23,7 @@ namespace FluentJdf.Schema
         public static SchemaSet Instance = new SchemaSet();
 
         private SchemaSet() {
+            var schemaDir = Path.Combine(ApplicationInformation.Directory, relativeSchemaDir);
             try {
                 if (Directory.Exists(schemaDir)) {
                     Directory.Delete(schemaDir, true);
@@ -41,6 +43,7 @@ namespace FluentJdf.Schema
                 }
             } catch (Exception err) {
                 logger.ErrorFormat(Messages.Loader_Loader_FailedToLoadAndCompileSchema, err);
+                throw;
             }
 
             Schemas = new XmlSchemaSet();

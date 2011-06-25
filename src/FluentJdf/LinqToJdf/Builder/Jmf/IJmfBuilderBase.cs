@@ -1,10 +1,10 @@
 using System.Xml.Linq;
 
-namespace FluentJdf.LinqToJdf {
+namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Interface for the JMF node builder base.
     /// </summary>
-    public interface IJmfNodeBuilderBase {
+    public interface IJmfBuilderBase {
         /// <summary>
         /// Gets the Element and allows set for inheritors
         /// </summary>
@@ -25,6 +25,18 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        JmfNodeBuilderBase ValidateJmf(bool addSchemaInfo = true);
+        JmfBuilderBase ValidateJmf(bool addSchemaInfo = true);
+
+        /// <summary>
+        /// Add a command.
+        /// </summary>
+        /// <returns></returns>
+        CommandTypeBuilder AddCommand();
+
+        /// <summary>
+        /// Add a query.
+        /// </summary>
+        /// <returns></returns>
+        QueryTypeBuilder AddQuery();
     }
 }

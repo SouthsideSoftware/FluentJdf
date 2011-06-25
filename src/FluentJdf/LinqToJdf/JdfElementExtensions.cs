@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using FluentJdf.Configuration;
+using FluentJdf.LinqToJdf.Builder.Jdf;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
@@ -74,17 +76,19 @@ namespace FluentJdf.LinqToJdf
             }
 
             var jdfNode = new XElement(Element.JDF);
-            jdfNode.MakeJdfElementAProcess(types);
             parent.Add(jdfNode);
+            jdfNode.MakeJdfElementAProcess(types);
 
             if (jdfNode.IsJdfRoot()) {
                 if (Library.Settings.JdfAuthoringSettings.GenerateJobId) {
-                    jdfNode.SetUniqueJobId();
+                    jdfNode.SetJobId();
                 }
+                jdfNode.SetAttributeValue(XNamespace.Xmlns.GetName("xsi"), Globals.XsiNamespace.NamespaceName);
+                jdfNode.SetVersion();
             }
             else {
                 if (Library.Settings.JdfAuthoringSettings.GenerateJobPartId) {
-                    jdfNode.SetJobPartId(Globals.CreateUniqueId("JP_"));
+                    jdfNode.SetJobPartId();
                 }
             }
 
@@ -511,26 +515,20 @@ namespace FluentJdf.LinqToJdf
         }
 
         /// <summary>
-        /// Gives the JDF node a unique job id.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static XElement SetUniqueJobId(this XElement element) {
-            ParameterCheck.ParameterRequired(element, "element");
-
-            return element.SetJobId(Globals.CreateUniqueId("J"));
-        }
-
-        /// <summary>
-        /// Sets the job id of the jdf node to the given value.
+        /// Sets the job id of the jdf node to the id value
+        /// given.  If no id is provided, a unique value 
+        /// is generated.
         /// </summary>
         /// <param name="element"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static XElement SetJobId(this XElement element, string id) {
+        public static XElement SetJobId(this XElement element, string id = null) {
             ParameterCheck.ParameterRequired(element, "element");
-
             element.ThrowExceptionIfNotJdfElement();
+
+            if (id == null) {
+                id = Globals.CreateUniqueId("J_");
+            }
 
             element.SetAttributeValue("JobID", id);
 
@@ -538,16 +536,21 @@ namespace FluentJdf.LinqToJdf
         }
 
         /// <summary>
-        /// Sets the job part id of the jdf node to the given value.
+        /// Sets the job part id of the jdf node to
+        /// the id value given.  If no id is provied,
+        /// a unique valuie is generated.
         /// </summary>
         /// <param name="element"></param>
         /// <param name="jobPartId"></param>
         /// <returns></returns>
-        public static XElement SetJobPartId(this XElement element, string jobPartId)
+        public static XElement SetJobPartId(this XElement element, string jobPartId = null)
         {
             ParameterCheck.ParameterRequired(element, "element");
-
             element.ThrowExceptionIfNotJdfElement();
+
+            if (jobPartId == null) {
+                jobPartId = Globals.CreateUniqueId("JP_");
+            }
 
             element.SetAttributeValue("JobPartID", jobPartId);
 
@@ -646,21 +649,53 @@ namespace FluentJdf.LinqToJdf
             ThrowExceptionIfNotJdfElement(jdfNode);
             
             if (types == null || types.Length == 0) {
-                jdfNode.SetAttributeValue("Type", JdfElementType.ProcessGroup);
-                jdfNode.SetXsiType(JdfElementType.XsiJdfElementType(JdfElementType.ProcessGroup).ToString());
+                jdfNode.SetAttributeValue("Type", ProcessType.ProcessGroup);
+                jdfNode.SetXsiType(ProcessType.XsiJdfElementType(ProcessType.ProcessGroup).ToString());
             }
             if (types.Length == 1) {
                 jdfNode.SetAttributeValue("Type", types[0]);
-                jdfNode.SetXsiType(JdfElementType.XsiJdfElementType(types[0]).ToString());
+                jdfNode.SetXsiType(ProcessType.XsiJdfElementType(types[0]).ToString());
             }
             else {
-                jdfNode.SetAttributeValue("Type", JdfElementType.Combined);
-                jdfNode.SetXsiType(JdfElementType.XsiJdfElementType(JdfElementType.Combined).ToString());
+                jdfNode.SetAttributeValue("Type", ProcessType.Combined);
+                jdfNode.SetXsiType(ProcessType.XsiJdfElementType(ProcessType.Combined));
                 jdfNode.SetAttributeValue("Types", string.Join(" ", types));
             }
 
             
             return jdfNode;
+        }
+
+        /// <summary>
+        /// Gets all resources with a particular usage associated with a JDF element.
+        /// </summary>
+        /// <param name="jdfElement">The JDF element to search</param>
+        /// <param name="usage">The resorce usage -- input or output</param>
+        /// <param name="resourceRoot">The root element for finding resources - default is the document root</param>
+        /// <returns>An IEnumerable{XElement} containing a list of resources with the correct usage.  
+        /// The list will be empty if there are no resources linked with the given usage.</returns>
+        /// <exception cref="PreconditionException">If the given XElement is not a JDf element.</exception>
+        public static IEnumerable<XElement> ResourcesByUsage(this XElement jdfElement, ResourceUsage usage, XElement resourceRoot = null)
+        {
+            ParameterCheck.ParameterRequired(jdfElement, "jdfElement");
+            jdfElement.ThrowExceptionIfNotJdfElement();
+
+            var linkPool = jdfElement.Element(Element.ResourceLinkPool);
+
+            if (linkPool == null) return new List<XElement>();
+
+            var qualifiedLinkIds = (from resourceLink in linkPool.Elements()
+                                    where
+                                        resourceLink.Attribute("Usage") != null &&
+                                        resourceLink.Attribute("Usage").Value == usage.ToString() &&
+                                        resourceLink.Attribute("rRef") != null
+                                    select resourceLink.Attribute("rRef").Value);
+
+            var resources = (from resource in (resourceRoot ?? linkPool.Document.Root).Descendants()
+                             where resource.Attribute("ID") != null &&
+                                   qualifiedLinkIds.Contains(resource.Attribute("ID").Value)
+                             select resource);
+            return resources;
         }
     }
 }

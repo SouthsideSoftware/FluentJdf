@@ -1,8 +1,7 @@
-﻿using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf
+namespace FluentJdf.LinqToJdf.Builder.Jdf
 {
     /// <summary>
     /// 
@@ -54,30 +53,13 @@ namespace FluentJdf.LinqToJdf
             return ParentJdfNode.AddProcess(types);
         }
 
-        //note: the following method does not have a default specified for addSchemaInfo.  See additional info below note for more. 
-        //The default will be taken from the interface.
-        //If the default was put here, it would be ignored and a compiler warning would be issued.
-        //see http://stackoverflow.com/questions/5683111/warning-from-explicitly-implementing-an-interface-with-optional-paramters 
-        //for more information.
-
         /// <summary>
         /// Validate the JDF
         /// </summary>
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        JdfNodeBuilder IJdfNodeBuilder.ValidateJdf(bool addSchemaInfo) {
+        public JdfNodeBuilder ValidateJdf(bool addSchemaInfo = true) {
             return ParentJdfNode.ValidateJdf(addSchemaInfo);
-        }
-
-        /// <summary>
-        /// Validate the JDF
-        /// </summary>
-        /// <param name="addSchemaInfo"></param>
-        /// <returns></returns>
-        public new ResourceNodeBuilder ValidateJdf(bool addSchemaInfo = true)
-        {
-            Element.ValidateJdf(addSchemaInfo);
-            return this;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
+using NLog.Config;
 
 namespace Infrastructure.Logging.NLog
 {
@@ -8,6 +10,21 @@ namespace Infrastructure.Logging.NLog
     /// </summary>
     public class NLogLogProvider : ILogProvider
     {
+        /// <summary>
+        /// Constructor that gets nlog configuration from NLog.config.
+        /// </summary>
+        public NLogLogProvider(){}
+
+        /// <summary>
+        /// Constructor that gets nlog configuration from configuration object.
+        /// </summary>
+        /// <param name="config"></param>
+        public NLogLogProvider(LoggingConfiguration config)
+        {
+            ParameterCheck.ParameterRequired(config, "config");
+
+            global::NLog.LogManager.Configuration = config;
+        }
         /// <summary>
         /// Gets the ILog implementation for the type.
         /// </summary>

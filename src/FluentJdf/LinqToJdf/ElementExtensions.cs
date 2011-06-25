@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Xml.Linq;
+using FluentJdf.Configuration;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using FluentJdf.Resources;
 using FluentJdf.Utility;
 using Infrastructure.Core.CodeContracts;
@@ -97,7 +100,7 @@ namespace FluentJdf.LinqToJdf {
         public static XElement NearestJdf(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            var firstJdf = element.GetNearestJdfOrNull();
+            XElement firstJdf = element.GetNearestJdfOrNull();
             if (firstJdf == null) {
                 throw new JdfException(string.Format(Messages.ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent, element.Name));
             }
@@ -130,7 +133,7 @@ namespace FluentJdf.LinqToJdf {
         public static XElement JdfParent(this XElement element) {
             Contract.Requires(element != null);
 
-            var jdfParent = element.GetJdfParentOrNull();
+            XElement jdfParent = element.GetJdfParentOrNull();
             if (jdfParent == null) {
                 throw new JdfException(string.Format(Messages.ElementExtensions_JdfParent_NoJdfParentFound, element.Name));
             }
@@ -162,7 +165,7 @@ namespace FluentJdf.LinqToJdf {
         public static XElement JdfRoot(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            var jdfRoot = element.GetJdfRootOrNull();
+            XElement jdfRoot = element.GetJdfRootOrNull();
             if (jdfRoot == null) {
                 throw new JdfException(string.Format(Messages.ElementExtensions_JdfRoot_NoJdfRootFound, element.Name));
             }
@@ -187,6 +190,55 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Sets the JDF version
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If the node is not JDF or JMF.</exception>
+        /// <remarks>It is recommended that you only put a version attribute on
+        /// the root JDF/JMF.</remarks>
+        public static XElement SetVersion(this XElement jdfNode, string version = null)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfOrJmfElement();
+
+            if (version == null) {
+                version = Library.Settings.JdfAuthoringSettings.JdfVersion;
+            }
+            jdfNode.SetAttributeValue("Version", version);
+            return jdfNode;
+        }
+
+        /// <summary>
+        /// Gets the JDF version.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        //// <exception cref="ArgumentException">If the node is not JDF or JMF.</exception>
+        public static string GetVersion(this XElement jdfNode)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfOrJmfElement();
+
+            return jdfNode.GetAttributeValueOrNull("Version");
+        }
+
+        /// <summary>
+        /// Throws an ArgumentException if the given node is not a JDF or JMF node.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        public static void ThrowExceptionIfNotJdfOrJmfElement(this XElement jdfNode)
+        {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+
+            if (!jdfNode.IsJdfElement() && !jdfNode.IsJmfElement())
+            {
+                throw new ArgumentException(string.Format(Messages.ElementExtensions_ThrowExceptionIfNotJdfOrJmfElement, jdfNode.Name));
+            }
+        }
+
+        /// <summary>
         /// Validate the jdf.
         /// </summary>
         /// <param name="element"></param>
@@ -204,17 +256,50 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Validate the jmf.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="addSchemaInfo"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If the element does not belong to an XDocument of type Ticket.</exception>
+        public static XElement ValidateJmf(this XElement element, bool addSchemaInfo = true)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+            if (element.Document == null || !(element.Document is Message))
+            {
+                throw new ArgumentException(Messages.ElementExtensions_ValidateJmf_MessageRequired);
+            }
+            (element.Document as Message).ValidateJmf(addSchemaInfo);
+
+            return element;
+        }
+
+        /// <summary>
         /// Set the xsi:type attribute of the node.
         /// </summary>
         /// <param name="element"></param>
         /// <param name="xsiType"></param>
         /// <returns></returns>
-        public static XElement SetXsiType(this XElement element, string xsiType)
-        {
+        public static XElement SetXsiType(this XElement element, XName xsiType) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            element.SetAttributeValue(Globals.XsiNamespace.GetName("type"), xsiType);
+            element.SetAttributeValue(Globals.XsiNamespace.GetName("type"), element.GetXsiTypeNameForType(xsiType));
             return element;
+        }
+
+        /// <summary>
+        /// Gets the value for an xsi:type attribute for a fully qualified type name
+        /// based on the namespace context of the element.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="xsiType"></param>
+        /// <returns></returns>
+        public static string GetXsiTypeNameForType(this XElement element, XName xsiType) {
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(xsiType, "xsiType");
+
+            //todo: we need to handle prefixed namespaces here.  The problem is, we can't get namespace information on the element except when parsing xml data or loading from a file.
+            return xsiType.LocalName;
         }
 
         /// <summary>
@@ -222,11 +307,51 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string GetXsiTypeAttribute(this XElement element)
-        {
+        public static string GetXsiTypeAttribute(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull(Globals.XsiNamespace.GetName("type"));
+        }
+
+        /// <summary>
+        /// Sets the time stamp attribute to the current date time in utc format.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static XElement SetTimeStampToUtcNow(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+            return element.SetTimeStamp(DateTime.UtcNow);
+        }
+
+        /// <summary>
+        /// Sets the time stamp attribute to the given value.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="timeStamp"></param>
+        /// <returns></returns>
+        public static XElement SetTimeStamp(this XElement element, DateTime timeStamp)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            element.SetAttributeValue("TimeStamp", timeStamp.ToString("O"));
+            return element;
+        }
+
+        /// <summary>
+        /// Gets the time stamp or null if there is none.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        /// <exception cref="FormatException">If the value of the time stamp attribute cannot be converted to a date time.</exception>
+        public static DateTime? GetTimeStamp(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            var sTimeStamp = element.GetAttributeValueOrNull("TimeStamp");
+            if (sTimeStamp == null) {
+                return null;
+            }
+
+            return DateTime.Parse(sTimeStamp, null, DateTimeStyles.RoundtripKind);
         }
     }
 }

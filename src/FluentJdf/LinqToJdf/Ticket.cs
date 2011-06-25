@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Linq;
+using FluentJdf.LinqToJdf.Builder.Jdf;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
@@ -46,7 +47,7 @@ namespace FluentJdf.LinqToJdf
         {
             if (Root == null || !Root.IsJdfElement())
             {
-                throw new Exception(Messages.Ticket_ModifyJdfNode_RootMustExistAndBeJdf);
+                throw new Exception(Resources.Messages.Ticket_ModifyJdfNode_RootMustExistAndBeJdf);
             }
 
             return new JdfNodeBuilder(Root);
@@ -57,7 +58,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <returns></returns>
         public static JdfNodeBuilder CreateIntent() {
-            return new JdfNodeBuilder(new Ticket(), JdfElementType.Intent);
+            return new JdfNodeBuilder(new Ticket(), ProcessType.Intent);
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace FluentJdf.LinqToJdf
         public static JdfNodeBuilder CreateProcess(params string [] types)
         {
             if (types == null || types.Length == 0) {
-                throw new ArgumentException(Messages.AtLeastOneProcessMustBeSpecified);
+                throw new ArgumentException(Resources.Messages.AtLeastOneProcessMustBeSpecified);
             }
             return new JdfNodeBuilder(new Ticket(), types);
         }
@@ -78,7 +79,7 @@ namespace FluentJdf.LinqToJdf
         /// <returns></returns>
         public static JdfNodeBuilder CreateProcessGroup()
         {
-            return new JdfNodeBuilder(new Ticket(), JdfElementType.ProcessGroup);
+            return new JdfNodeBuilder(new Ticket(), ProcessType.ProcessGroup);
         }
 
         /// <summary>

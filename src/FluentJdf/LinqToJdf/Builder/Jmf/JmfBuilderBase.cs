@@ -1,21 +1,21 @@
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf {
+namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Base class for JMF element builders.
     /// </summary>
-    public abstract class JmfNodeBuilderBase : IJmfNodeBuilderBase {
-        internal JmfNodeBuilderBase() {
+    public abstract class JmfBuilderBase : IJmfBuilderBase {
+        internal JmfBuilderBase() {
             
         }
 
-        internal JmfNodeBuilderBase(JmfNodeBuilder parentJmfBuilder)
+        internal JmfBuilderBase(JmfNodeBuilder parentJmfBuilder)
         {
             ParentJmfNode = parentJmfBuilder;
         }
 
-        internal JmfNodeBuilderBase(XElement element)
+        internal JmfBuilderBase(XElement element)
         {
             ParameterCheck.ParameterRequired(element, "element");
             element.ThrowExceptionIfNotInMessage();
@@ -40,9 +40,9 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        public JmfNodeBuilderBase ValidateJmf(bool addSchemaInfo = true)
+        public JmfBuilderBase ValidateJmf(bool addSchemaInfo = true)
         {
-            Element.ValidateJdf(addSchemaInfo);
+            Element.ValidateJmf(addSchemaInfo);
             return this;
         }
 
@@ -50,5 +50,24 @@ namespace FluentJdf.LinqToJdf {
         /// Gets the messsage associated with this builder
         /// </summary>
         public Message Message { get { return Element.Document as Message; } }
+
+        /// <summary>
+        /// Add a command.
+        /// </summary>
+        /// <returns></returns>
+        public CommandTypeBuilder AddCommand()
+        {
+            return new CommandTypeBuilder(ParentJmfNode);
+        }
+
+        /// <summary>
+        /// Add a query.
+        /// </summary>
+        /// <returns></returns>
+        public QueryTypeBuilder AddQuery()
+        {
+            return new QueryTypeBuilder(ParentJmfNode);
+        }
+
     }
 }

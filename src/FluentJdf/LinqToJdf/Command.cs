@@ -21,7 +21,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        public static string XsiTypeOfCommand(string command) {
+        public static string XsiType(string command) {
             return string.Format("Command{0}", command);
         }
     }
