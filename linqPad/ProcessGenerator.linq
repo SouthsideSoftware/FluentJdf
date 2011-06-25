@@ -1,7 +1,9 @@
 <Query Kind="Program" />
 
 void Main() {
-	var path = @"C:\development\jwf\src\FluentJdf\Resources\Schema\JDFProcess.xsd";
+
+	var basePath = new FileInfo(Util.CurrentQueryPath).DirectoryName;
+	var path = Path.Combine(basePath,  @"..\src\FluentJdf\Resources\Schema\JDFProcess.xsd");
 	
 	var xmlDoc = new XmlDocument();
 	xmlDoc.Load(path);
