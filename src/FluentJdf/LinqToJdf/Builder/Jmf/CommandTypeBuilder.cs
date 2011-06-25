@@ -5,30 +5,15 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
     /// <summary>
     /// Create commands of various types
     /// </summary>
-    public class CommandTypeBuilder {
-        readonly JmfNodeBuilder parentJmf;
-
-        internal CommandTypeBuilder(JmfNodeBuilder jmfNodeBuilder) {
-            ParameterCheck.ParameterRequired(jmfNodeBuilder, "jmfNodeBuilder");
-
-            parentJmf = jmfNodeBuilder;
-        }
+    public class CommandTypeBuilder : MessageTypeBuilder {
+        internal CommandTypeBuilder(JmfNodeBuilder jmfBuilder) : base(jmfBuilder) {}
 
         /// <summary>
         /// Create a submit queue entry command.
         /// </summary>
         /// <returns></returns>
         public SubmitQueueEntryCommandBuilder SubmitQueueEntry() {
-            return new SubmitQueueEntryCommandBuilder(parentJmf);
-        }
-
-        /// <summary>
-        /// Create a queue status query
-        /// </summary>
-        /// <returns></returns>
-        public QueueStatusQueryBuilder QueueStatus()
-        {
-            return new QueueStatusQueryBuilder(parentJmf);
+            return new SubmitQueueEntryCommandBuilder(ParentJmf);
         }
     }
 }

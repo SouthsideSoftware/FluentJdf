@@ -21,7 +21,7 @@ Ticket GetJdf() {
 }
 	
 Message GetJmf() {
-	return Message.Create().AddCommand().SubmitQueueEntry().ValidateJmf().Message;
+	return Message.Create().AddCommand().SubmitQueueEntry().AddQuery().QueueStatus().ValidateJmf().Message;
 }
 
 void Main()
