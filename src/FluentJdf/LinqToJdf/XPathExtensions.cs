@@ -12,6 +12,81 @@ namespace FluentJdf.LinqToJdf {
     /// Extensions for working with xpath.
     /// </summary>
     public static class XPathExtensions {
+
+        /// <summary>
+        /// Evaluate an xpath against JDF with optional foreign namespaces.
+        /// </summary>
+        /// <param name="document">The document to operate upon.</param>
+        /// <param name="xpath">The xpath query.</param>
+        /// <param name="namespaceManager">Optional namespace manager containing foreign namespace definitions.</param>
+        /// <returns>An <see cref="XElement"/>.</returns>
+        public static XElement JdfXPathSelectElement(this XNode document, string xpath,
+                                                     XmlNamespaceManager namespaceManager = null) {
+            return JdfXPathSelectElements(document, xpath, namespaceManager).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="xPathExpression"></param>
+        /// <param name="namespaceManager"></param>
+        /// <returns></returns>
+        public static XObject JdfXPathSelectObject(this XNode element, string xPathExpression, XmlNamespaceManager namespaceManager = null) {
+            var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
+            return ((IEnumerable)element.XPathEvaluate(xPath, MakeNamespaceResolver(namespaceManager))).Cast<XObject>().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="xPathExpression"></param>
+        /// <param name="namespaceManager"></param>
+        /// <returns></returns>
+        public static IEnumerable<XElement> JdfXPathSelectElements(this XNode element, string xPathExpression, XmlNamespaceManager namespaceManager = null) {
+            var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
+            return element.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager));
+        }
+
+        /// <summary>
+        /// Create an XPath of local names
+        /// </summary>
+        /// <param name="attribute"></param>
+        /// <returns></returns>
+        public static string LocalAttributeXPath(this XAttribute attribute) {
+            var parentPath = attribute.Parent.LocalElementXPath();
+            return parentPath
+                + (parentPath.Length > 0 ? "/" : string.Empty)
+                + "@"
+                + attribute.Name.LocalName;
+        }
+
+        private static string MakePrefixedXPath(string xpath) {
+            return xpath;
+        }
+        private static IXmlNamespaceResolver MakeNamespaceResolver(XmlNamespaceManager namespaceManager) {
+            var resolver = namespaceManager ?? new XmlNamespaceManager(new NameTable());
+            if (!resolver.HasNamespace("jdf")) {
+                resolver.AddNamespace("jdf", Globals.JdfNamespace.ToString());
+            }
+            return resolver;
+        }
+
+        /// <summary>
+        /// Create an XPath of local names
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static string LocalElementXPath(this XElement element) {
+            if (element.Parent == null)
+                return string.Format("/{0}", element.Name.LocalName);
+            var parentPath = element.Parent.LocalElementXPath();
+            return parentPath
+                + (parentPath.Length > 0 ? "/" : string.Empty)
+                + element.Name.LocalName;
+        }
+
         /// <summary>
         /// Evaluate an xpath in an <see cref="XContainer"/> against a selected resource in a selected process by xpath
         /// </summary>
@@ -58,79 +133,5 @@ namespace FluentJdf.LinqToJdf {
             return null;
         }
 
-        /// <summary>
-        /// Evaluate an xpath against JDF with optional foreign namespaces.
-        /// </summary>
-        /// <param name="document">The document to operate upon.</param>
-        /// <param name="xpath">The xpath query.</param>
-        /// <param name="namespaceManager">Optional namespace manager containing foreign namespace definitions.</param>
-        /// <returns>An <see cref="XElement"/>.</returns>
-        public static XElement JdfXPathSelectElement(this XNode document, string xpath,
-                                                     XmlNamespaceManager namespaceManager = null) {
-            return JdfXPathSelectElements(document, xpath, namespaceManager).FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Create an XPath of local names
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        public static string LocalElementXPath(this XElement element) {
-            if (element.Parent == null)
-                return string.Format("/{0}", element.Name.LocalName);
-            var parentPath = element.Parent.LocalElementXPath();
-            return parentPath
-                + (parentPath.Length > 0 ? "/" : string.Empty)
-                + element.Name.LocalName;
-        }
-
-        /// <summary>
-        /// Create an XPath of local names
-        /// </summary>
-        /// <param name="attribute"></param>
-        /// <returns></returns>
-        public static string LocalAttributeXPath(this XAttribute attribute) {
-            var parentPath = attribute.Parent.LocalElementXPath();
-            return parentPath
-                + (parentPath.Length > 0 ? "/" : string.Empty)
-                + "@"
-                + attribute.Name.LocalName;
-        }
-
-        private static string MakePrefixedXPath(string xpath) {
-            return xpath;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="xPathExpression"></param>
-        /// <param name="namespaceManager"></param>
-        /// <returns></returns>
-        public static XObject JdfXPathSelectObject(this XNode element, string xPathExpression, XmlNamespaceManager namespaceManager = null) {
-            var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
-            return ((IEnumerable)element.XPathEvaluate(xPath, MakeNamespaceResolver(namespaceManager))).Cast<XObject>().FirstOrDefault();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="xPathExpression"></param>
-        /// <param name="namespaceManager"></param>
-        /// <returns></returns>
-        public static IEnumerable<XElement> JdfXPathSelectElements(this XNode element, string xPathExpression, XmlNamespaceManager namespaceManager = null) {
-            var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
-            return element.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager));
-        }
-
-        private static IXmlNamespaceResolver MakeNamespaceResolver(XmlNamespaceManager namespaceManager) {
-            var resolver = namespaceManager ?? new XmlNamespaceManager(new NameTable());
-            if (!resolver.HasNamespace("jdf")) {
-                resolver.AddNamespace("jdf", Globals.JdfNamespace.ToString());
-            }
-            return resolver;
-        }
     }
 }
