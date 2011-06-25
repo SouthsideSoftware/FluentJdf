@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentJdf.LinqToJdf;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder

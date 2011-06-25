@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using FluentJdf.LinqToJdf.Builder.Jdf;
 
 namespace FluentJdf.LinqToJdf
 {

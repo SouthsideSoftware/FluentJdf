@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace FluentJdf.LinqToJdf
+﻿namespace FluentJdf.LinqToJdf.Builder.Jmf
 {
     /// <summary>
     /// Interface for building JMF commands.

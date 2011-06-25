@@ -2,7 +2,7 @@ using System.Xml.Linq;
 using FluentJdf.Configuration;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf {
+namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Factory for creating intent nodes.
     /// </summary>
@@ -53,9 +53,9 @@ namespace FluentJdf.LinqToJdf {
         /// Add a command.
         /// </summary>
         /// <returns></returns>
-        public JmfCommandTypeBuilder AddCommand()
+        public CommandTypeBuilder AddCommand()
         {
-            return new JmfCommandTypeBuilder(this);
+            return new CommandTypeBuilder(this);
         }
     }
 }

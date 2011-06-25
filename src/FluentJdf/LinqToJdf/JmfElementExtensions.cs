@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 using FluentJdf.Configuration;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 

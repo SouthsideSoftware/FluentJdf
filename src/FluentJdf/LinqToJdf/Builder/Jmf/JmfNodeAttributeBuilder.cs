@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf
+namespace FluentJdf.LinqToJdf.Builder.Jmf
 {
     /// <summary>
     /// Builder for JMF attributes
@@ -52,7 +48,7 @@ namespace FluentJdf.LinqToJdf
         /// Add a command.
         /// </summary>
         /// <returns></returns>
-        public JmfCommandTypeBuilder AddCommand() {
+        public CommandTypeBuilder AddCommand() {
             return jmfNodeBuilder.AddCommand();
         }
 

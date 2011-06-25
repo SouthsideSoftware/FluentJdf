@@ -1,5 +1,6 @@
 using FluentJdf.Configuration;
 using FluentJdf.LinqToJdf;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {

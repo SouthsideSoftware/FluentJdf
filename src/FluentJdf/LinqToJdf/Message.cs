@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml.Linq;
 using FluentJdf.Encoding;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using FluentJdf.Messaging;
 using FluentJdf.Resources;
 using FluentJdf.Transmission;

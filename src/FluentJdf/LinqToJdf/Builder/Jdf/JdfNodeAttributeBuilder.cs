@@ -1,8 +1,7 @@
-using System;
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf {
+namespace FluentJdf.LinqToJdf.Builder.Jdf {
     /// <summary>
     /// Set attributes on a JDF node.
     /// </summary>

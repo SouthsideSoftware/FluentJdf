@@ -1,4 +1,4 @@
-﻿namespace FluentJdf.LinqToJdf {
+﻿namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Interface for building JMF nodes.
     /// </summary>
@@ -7,6 +7,6 @@
         /// Add a command.
         /// </summary>
         /// <returns></returns>
-        JmfCommandTypeBuilder AddCommand();
+        CommandTypeBuilder AddCommand();
     }
 }

@@ -1,7 +1,7 @@
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf {
+namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Base class for JMF element builders.
     /// </summary>

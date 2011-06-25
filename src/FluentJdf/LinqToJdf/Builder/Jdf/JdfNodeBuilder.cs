@@ -3,7 +3,7 @@ using System.Xml.Linq;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf
+namespace FluentJdf.LinqToJdf.Builder.Jdf
 {
     /// <summary>
     /// Factory for creating intent nodes.

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Linq;
+using FluentJdf.LinqToJdf.Builder.Jdf;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;

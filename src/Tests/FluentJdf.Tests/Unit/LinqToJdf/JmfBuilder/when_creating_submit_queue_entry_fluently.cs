@@ -1,5 +1,6 @@
 using System.Xml.Linq;
 using FluentJdf.LinqToJdf;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
@@ -15,7 +16,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
 
         It should_have_type_submit_queue_entry = () => message.Root.Element(Element.Command).GetMessageType().ShouldEqual(Command.SubmitQueueEntry);
 
-        It should_have_xsi_type_submit_queue_entry_command = () => message.Root.Element(Element.Command).GetXsiTypeAttribute().ShouldEqual(Command.XsiTypeOfCommand(Command.SubmitQueueEntry));
+        It should_have_xsi_type_submit_queue_entry_command = () => message.Root.Element(Element.Command).GetXsiTypeAttribute().ShouldEqual(Command.XsiType(Command.SubmitQueueEntry));
 
         It should_have_an_id_in_command = () => message.Root.Element(Element.Command).GetId().ShouldNotBeNull();
 

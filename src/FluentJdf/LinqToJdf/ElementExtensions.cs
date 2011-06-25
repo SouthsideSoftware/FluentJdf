@@ -3,6 +3,7 @@ using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Xml.Linq;
 using FluentJdf.Configuration;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using FluentJdf.Resources;
 using FluentJdf.Utility;
 using Infrastructure.Core.CodeContracts;

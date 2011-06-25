@@ -10,7 +10,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
 
         Establish context = () => ticket = Ticket.CreateIntent().Ticket;
 
-        Because of = () => message = Message.Create().AddCommand().SubmitQueueEntry().WithJdf(ticket).Message;
+        Because of = () => message = Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
 
         It should_have_associated_ticket = () => message.AssociatedTicket.ShouldNotBeNull();
 
