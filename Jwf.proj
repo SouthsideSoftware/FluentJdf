@@ -201,7 +201,8 @@
 
   <Target Name="TestOutsideTeamCity">
     <Message Importance="high" Text="TestOutsideTeamCity"/>
-    <CallTarget Targets="MSpecTests;NUnitTests;FitnesseTests"/>
+    <!--<CallTarget Targets="MSpecTests;NUnitTests;FitnesseTests"/>-->
+    <CallTarget Targets="MSpecTests;NUnitTests"/>
   </Target>
 
   <Target Name="TestInsideTeamCity">
