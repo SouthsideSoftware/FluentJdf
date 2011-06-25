@@ -20,7 +20,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="xpath">The xpath query.</param>
         /// <param name="namespaceManager">Optional namespace manager containing foreign namespace definitions.</param>
         /// <returns>An <see cref="XElement"/>.</returns>
-        public static XElement JdfXPathSelectElement(this XNode document, string xpath,
+        public static XElement JdfXPathSelectElement(this XContainer document, string xpath,
                                                      XmlNamespaceManager namespaceManager = null) {
             return JdfXPathSelectElements(document, xpath, namespaceManager).FirstOrDefault();
         }
@@ -32,9 +32,14 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="xPathExpression"></param>
         /// <param name="namespaceManager"></param>
         /// <returns></returns>
-        public static XObject JdfXPathSelectObject(this XNode element, string xPathExpression, XmlNamespaceManager namespaceManager = null) {
+        public static IEnumerable<XElement> JdfXPathSelectElements(this XContainer element, string xPathExpression,
+            XmlNamespaceManager namespaceManager = null) {
+
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(element, "xPathExpression");
+
             var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
-            return ((IEnumerable)element.XPathEvaluate(xPath, MakeNamespaceResolver(namespaceManager))).Cast<XObject>().FirstOrDefault();
+            return element.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager));
         }
 
         /// <summary>
@@ -44,9 +49,14 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="xPathExpression"></param>
         /// <param name="namespaceManager"></param>
         /// <returns></returns>
-        public static IEnumerable<XElement> JdfXPathSelectElements(this XNode element, string xPathExpression, XmlNamespaceManager namespaceManager = null) {
+        public static XObject JdfXPathSelectObject(this XContainer element, string xPathExpression,
+            XmlNamespaceManager namespaceManager = null) {
+
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(element, "xPathExpression");
+
             var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
-            return element.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager));
+            return ((IEnumerable)element.XPathEvaluate(xPath, MakeNamespaceResolver(namespaceManager))).Cast<XObject>().FirstOrDefault();
         }
 
         /// <summary>
@@ -120,7 +130,7 @@ namespace FluentJdf.LinqToJdf {
         /// <para>The xpath default namespace is the JDF namespace.</para>
         /// <para>The remaining xpath will automatically traverse ref elements.</para></remarks>
         /// <returns>An IEnumerable{<see cref="XElement"/>} containing matching <see cref="XElement"/> objects.</returns>
-        public static IEnumerable<XElement> ProcessXPathSelectElements(this XNode document, string processXPath,
+        public static IEnumerable<XElement> ProcessXPathSelectElements(this XContainer document, string processXPath,
                                                                        XmlNamespaceManager namespaceManager = null) {
             //process:DigitalPrinting/DigitalPrintingParams[@usage=input]/rest of the xpath executed against JdfXPathSelectElement(s)
             ParameterCheck.ParameterRequired(document, "document");
