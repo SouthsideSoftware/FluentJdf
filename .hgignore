@@ -50,3 +50,4 @@ dotcover.xml
 OnpointConnect.esent/**
 OnpointConnect_subscriptions.esent/**
 packages/**
+glob:Jwf.sln.docstates
