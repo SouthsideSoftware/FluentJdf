@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Linq;
+using FluentJdf.Configuration;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 
@@ -60,6 +59,38 @@ namespace FluentJdf.LinqToJdf
             element.ThrowExceptionIfNotJmfElement();
 
             return new JmfNodeBuilder(element);
+        }
+
+        /// <summary>
+        /// Gets the sender ID of the JMF node.
+        /// </summary>
+        /// <param name="jmfNode"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If the node is not a JMF node.</exception>
+        public static string GetSenderId(this XElement jmfNode) {
+            ParameterCheck.ParameterRequired(jmfNode, "jmfNode");
+            jmfNode.ThrowExceptionIfNotJmfElement();
+
+            return jmfNode.GetAttributeValueOrNull("SenderID");
+        }
+
+        /// <summary>
+        /// Sets the sender ID of the JMF node.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If the node is not a JMF node.</exception>
+        public static XElement SetSenderId(this XElement jmfNode, string senderId = null)
+        {
+            ParameterCheck.ParameterRequired(jmfNode, "jmfNode");
+            jmfNode.ThrowExceptionIfNotJmfElement();
+
+            if (string.IsNullOrWhiteSpace(senderId)) {
+                senderId = Library.Settings.JdfAuthoringSettings.SenderId;
+            }
+            
+
+            jmfNode.SetAttributeValue("SenderID", senderId);
+            return jmfNode;
         }
     }
 }

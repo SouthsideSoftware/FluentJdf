@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using FluentJdf.Utility;
+﻿using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf
+namespace FluentJdf.LinqToJdf.Builder.Jmf
 {
     /// <summary>
     /// Used to build JMF commands 
     /// </summary>
-    public class JmfCommandBuilder : JmfNodeBuilderBase {
+    public class CommandBuilder : JmfNodeBuilderBase, IJmfNodeBuilder {
         string commandType;
 
-        internal  JmfCommandBuilder(JmfNodeBuilder parent, string commandType, string idPrefix = "C") : base(parent) {
+        internal  CommandBuilder(JmfNodeBuilder parent, string commandType, string idPrefix = "C") : base(parent) {
             ParameterCheck.StringRequiredAndNotWhitespace(commandType, "commandType");
             ParameterCheck.StringRequiredAndNotWhitespace(idPrefix, "idPrefix");
 
@@ -23,8 +18,16 @@ namespace FluentJdf.LinqToJdf
             Element = new XElement(LinqToJdf.Element.Command);
             Element.SetUniqueId(idPrefix);
             Element.SetMessageType(commandType);
-            Element.SetXsiType(Command.XsiTypeOfCommand(commandType));
+            Element.SetXsiType(Command.XsiType(commandType));
             parent.Element.Add(Element);
+        }
+
+        /// <summary>
+        /// Add a command.
+        /// </summary>
+        /// <returns></returns>
+        public CommandTypeBuilder AddCommand() {
+            return ParentJmfNode.AddCommand();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using FluentJdf.LinqToJdf;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using Infrastructure.Core;
 using Machine.Specifications;
 

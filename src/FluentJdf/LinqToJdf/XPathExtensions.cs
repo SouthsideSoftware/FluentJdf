@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf
 {
@@ -50,7 +51,8 @@ namespace FluentJdf.LinqToJdf
         public static IEnumerable<XElement> ProcessXPathSelectElements(this XNode document, string processXPath,
                                                                        XmlNamespaceManager namespaceManager = null)
         {
-            Contract.Requires(document != null);
+            //process:DigitalPrinting/DigitalPrintingParams[@usage=input]/rest of the xpath executed against JdfXPathSelectElement(s)
+            ParameterCheck.ParameterRequired(document, "document");
             Contract.Requires(!string.IsNullOrEmpty(processXPath));
 
             if (!processXPath.StartsWith("process:"))

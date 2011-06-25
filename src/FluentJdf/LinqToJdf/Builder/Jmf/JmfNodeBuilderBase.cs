@@ -1,7 +1,7 @@
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf {
+namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Base class for JMF element builders.
     /// </summary>
@@ -42,7 +42,7 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public JmfNodeBuilderBase ValidateJmf(bool addSchemaInfo = true)
         {
-            Element.ValidateJdf(addSchemaInfo);
+            Element.ValidateJmf(addSchemaInfo);
             return this;
         }
 
@@ -50,5 +50,6 @@ namespace FluentJdf.LinqToJdf {
         /// Gets the messsage associated with this builder
         /// </summary>
         public Message Message { get { return Element.Document as Message; } }
+
     }
 }

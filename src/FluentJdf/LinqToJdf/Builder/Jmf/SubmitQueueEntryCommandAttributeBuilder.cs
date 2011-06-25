@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf
+namespace FluentJdf.LinqToJdf.Builder.Jmf
 {
     /// <summary>
-    /// Build attributes for JmfSubmitQueueEntryCommand
+    /// Build attributes for the submit queue entry command.
     /// </summary>
-    public class JmfSubmitQueueEntryCommandAttributeBuilder : IJmfSubmitQueueEntryCommandBuilder {
-        readonly JmfSubmitQueueEntryCommandBuilder builder;
+    public class SubmitQueueEntryCommandAttributeBuilder : IJmfCommandBuilder {
+        readonly SubmitQueueEntryCommandBuilder builder;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="builder"></param>
-        internal JmfSubmitQueueEntryCommandAttributeBuilder(JmfSubmitQueueEntryCommandBuilder builder) {
+        internal SubmitQueueEntryCommandAttributeBuilder(SubmitQueueEntryCommandBuilder builder) {
             ParameterCheck.ParameterRequired(builder, "builder");
 
             this.builder = builder;
@@ -28,7 +24,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public JmfSubmitQueueEntryCommandAttributeBuilder Id(string id)
+        public SubmitQueueEntryCommandAttributeBuilder Id(string id)
         {
 
             builder.Element.SetAttributeValue("ID", id);
@@ -39,9 +35,9 @@ namespace FluentJdf.LinqToJdf
         /// Sets a unique id
         /// </summary>
         /// <returns></returns>
-        public JmfSubmitQueueEntryCommandAttributeBuilder UniqueId()
+        public SubmitQueueEntryCommandAttributeBuilder UniqueId()
         {
-            return Id(Globals.CreateUniqueId(JmfSubmitQueueEntryCommandBuilder.IdPrefix));
+            return Id(Globals.CreateUniqueId(SubmitQueueEntryCommandBuilder.IdPrefix));
         }
 
         /// <summary>
@@ -72,6 +68,27 @@ namespace FluentJdf.LinqToJdf
         /// <returns></returns>
         public JmfNodeBuilderBase ValidateJmf(bool addSchemaInfo = true) {
             return builder.ValidateJmf(addSchemaInfo);
+        }
+
+        /// <summary>
+        /// Add a command.
+        /// </summary>
+        /// <returns></returns>
+        public CommandTypeBuilder AddCommand() {
+            return ParentJmfNode.AddCommand();
+        }
+
+        /// <summary>
+        /// Add a JDF that will be sent with this submit queue entry.
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <returns></returns>
+        public SubmitQueueEntryCommandAttributeBuilder Ticket(Ticket ticket)
+        {
+            ParameterCheck.ParameterRequired(ticket, "ticket");
+
+            ParentJmfNode.Message.AssociatedTicket = ticket;
+            return this;
         }
     }
 }

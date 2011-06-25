@@ -124,11 +124,29 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot operate on {0} element.  This extension only operate on JDF or JMF nodes..
+        /// </summary>
+        internal static string ElementExtensions_ThrowExceptionIfNotJdfOrJmfElement {
+            get {
+                return ResourceManager.GetString("ElementExtensions_ThrowExceptionIfNotJdfOrJmfElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ValidateJdf requires the document to be of type Ticket.  Use Ticket.Create()..
         /// </summary>
         internal static string ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket {
             get {
                 return ResourceManager.GetString("ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ValidateJmf requires the document to be of type Message.  Use Message.Create().
+        /// </summary>
+        internal static string ElementExtensions_ValidateJmf_MessageRequired {
+            get {
+                return ResourceManager.GetString("ElementExtensions_ValidateJmf_MessageRequired", resourceCulture);
             }
         }
         
@@ -211,6 +229,15 @@ namespace FluentJdf.Resources {
         internal static string JmfElementExtensions_AddJmfElement_JMFMustBeRoot {
             get {
                 return ResourceManager.GetString("JmfElementExtensions_AddJmfElement_JMFMustBeRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided sender id is null or whitespace and no default sender id is configured.
+        /// </summary>
+        internal static string JmfElementExtensions_SetSenderId_SenderIdMustBeProvided {
+            get {
+                return ResourceManager.GetString("JmfElementExtensions_SetSenderId_SenderIdMustBeProvided", resourceCulture);
             }
         }
         

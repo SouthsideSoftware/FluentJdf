@@ -3,7 +3,7 @@ using System.Xml.Linq;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf
+namespace FluentJdf.LinqToJdf.Builder.Jdf
 {
     /// <summary>
     /// Factory for creating intent nodes.
@@ -63,7 +63,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <returns></returns>
         public JdfNodeBuilder AddIntent() {
-            return new JdfNodeBuilder(Element, JdfElementType.Intent);
+            return new JdfNodeBuilder(Element, ProcessType.Intent);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace FluentJdf.LinqToJdf
         /// <returns></returns>
         public JdfNodeBuilder AddProcessGroup()
         {
-            return new JdfNodeBuilder(Element, JdfElementType.ProcessGroup);
+            return new JdfNodeBuilder(Element, ProcessType.ProcessGroup);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        public new JdfNodeBuilder ValidateJdf(bool addSchemaInfo = true) {
+        public JdfNodeBuilder ValidateJdf(bool addSchemaInfo = true) {
             Element.ValidateJdf(addSchemaInfo);
             return this;
         }

@@ -1,6 +1,6 @@
 using System.Xml.Linq;
 
-namespace FluentJdf.LinqToJdf {
+namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Interface for the JMF node builder base.
     /// </summary>
