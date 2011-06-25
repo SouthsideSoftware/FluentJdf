@@ -26,7 +26,7 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
-        /// 
+        /// Evaluate an xpath against JDF with optional foreign namespaces.
         /// </summary>
         /// <param name="element"></param>
         /// <param name="xPathExpression"></param>
@@ -36,7 +36,7 @@ namespace FluentJdf.LinqToJdf {
             XmlNamespaceManager namespaceManager = null) {
 
             ParameterCheck.ParameterRequired(element, "element");
-            ParameterCheck.ParameterRequired(element, "xPathExpression");
+            ParameterCheck.StringRequiredAndNotWhitespace(xPathExpression, "xPathExpression");
 
             var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
 
@@ -56,7 +56,7 @@ namespace FluentJdf.LinqToJdf {
             XmlNamespaceManager namespaceManager = null) {
 
             ParameterCheck.ParameterRequired(element, "element");
-            ParameterCheck.ParameterRequired(element, "xPathExpression");
+            ParameterCheck.StringRequiredAndNotWhitespace(xPathExpression, "xPathExpression");
 
             var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
             return ((IEnumerable)element.XPathEvaluate(xPath, MakeNamespaceResolver(namespaceManager))).Cast<XObject>().FirstOrDefault();
@@ -68,6 +68,8 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="attribute"></param>
         /// <returns></returns>
         public static string LocalAttributeXPath(this XAttribute attribute) {
+            ParameterCheck.ParameterRequired(attribute, "attribute");
+
             var parentPath = attribute.Parent.LocalElementXPath();
             return parentPath
                 + (parentPath.Length > 0 ? "/" : string.Empty)
@@ -80,6 +82,7 @@ namespace FluentJdf.LinqToJdf {
         }
 
         private static IXmlNamespaceResolver MakeNamespaceResolver(XmlNamespaceManager namespaceManager) {
+
             var resolver = namespaceManager ?? new XmlNamespaceManager(new NameTable());
             if (!resolver.HasNamespace("jdf")) {
                 resolver.AddNamespace("jdf", Globals.JdfNamespace.ToString());
@@ -93,6 +96,8 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="element"></param>
         /// <returns></returns>
         public static string LocalElementXPath(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
             if (element.Parent == null)
                 return string.Format("/{0}", element.Name.LocalName);
             var parentPath = element.Parent.LocalElementXPath();
@@ -138,7 +143,7 @@ namespace FluentJdf.LinqToJdf {
                                                                        XmlNamespaceManager namespaceManager = null) {
             //process:DigitalPrinting/DigitalPrintingParams[@usage=input]/rest of the xpath executed against JdfXPathSelectElement(s)
             ParameterCheck.ParameterRequired(document, "document");
-            Contract.Requires(!string.IsNullOrEmpty(processXPath));
+            ParameterCheck.StringRequiredAndNotWhitespace(processXPath, "processXPath");
 
             if (!processXPath.StartsWith("process:")) {
                 return document.JdfXPathSelectElements(processXPath, namespaceManager);
