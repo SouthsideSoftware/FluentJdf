@@ -15,6 +15,20 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         }
 
         /// <summary>
+        /// Sets any attribute.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public QueueStatusQueryAttributeBuilder Attribute(XName name, string value)
+        {
+            ParameterCheck.ParameterRequired(name, "name");
+
+            Element.SetAttributeValue(name, value);
+            return this;
+        }
+
+        /// <summary>
         /// Set the id.
         /// </summary>
         /// <param name="id"></param>

@@ -134,7 +134,7 @@
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_associating_ticket_with_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_creating_jmf_with_older_version_of_jdf_configured_as_default.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_creating_jmf_with_sender_id_configured.cs" />
-    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_creating_queue_status_fluently.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_attribute_on_queue_status.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_creating_submit_queue_entry_fluently.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_file.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_message.cs" />
