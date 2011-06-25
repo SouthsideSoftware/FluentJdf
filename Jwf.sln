@@ -6,7 +6,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA105616-C5B0-4D3B-BA17-DB686117D4C7}"
 	ProjectSection(SolutionItems) = preProject
 		Jwf.proj = Jwf.proj
-		readme.txt = readme.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jwf.Server", "src\Jwf.Server\Jwf.Server.csproj", "{93DCAB4B-C97E-4903-9616-02697A59BFB1}"
