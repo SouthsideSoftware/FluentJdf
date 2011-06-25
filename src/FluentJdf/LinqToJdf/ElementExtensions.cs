@@ -198,8 +198,7 @@ namespace FluentJdf.LinqToJdf {
         /// <exception cref="ArgumentException">If the node is not JDF or JMF.</exception>
         /// <remarks>It is recommended that you only put a version attribute on
         /// the root JDF/JMF.</remarks>
-        public static XElement SetVersion(this XElement jdfNode, string version = null)
-        {
+        public static XElement SetVersion(this XElement jdfNode, string version = null) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             jdfNode.ThrowExceptionIfNotJdfOrJmfElement();
 
@@ -216,8 +215,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="jdfNode"></param>
         /// <returns></returns>
         //// <exception cref="ArgumentException">If the node is not JDF or JMF.</exception>
-        public static string GetVersion(this XElement jdfNode)
-        {
+        public static string GetVersion(this XElement jdfNode) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             jdfNode.ThrowExceptionIfNotJdfOrJmfElement();
 
@@ -228,12 +226,10 @@ namespace FluentJdf.LinqToJdf {
         /// Throws an ArgumentException if the given node is not a JDF or JMF node.
         /// </summary>
         /// <param name="jdfNode"></param>
-        public static void ThrowExceptionIfNotJdfOrJmfElement(this XElement jdfNode)
-        {
+        public static void ThrowExceptionIfNotJdfOrJmfElement(this XElement jdfNode) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
-            if (!jdfNode.IsJdfElement() && !jdfNode.IsJmfElement())
-            {
+            if (!jdfNode.IsJdfElement() && !jdfNode.IsJmfElement()) {
                 throw new ArgumentException(string.Format(Messages.ElementExtensions_ThrowExceptionIfNotJdfOrJmfElement, jdfNode.Name));
             }
         }
@@ -262,11 +258,9 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">If the element does not belong to an XDocument of type Ticket.</exception>
-        public static XElement ValidateJmf(this XElement element, bool addSchemaInfo = true)
-        {
+        public static XElement ValidateJmf(this XElement element, bool addSchemaInfo = true) {
             ParameterCheck.ParameterRequired(element, "element");
-            if (element.Document == null || !(element.Document is Message))
-            {
+            if (element.Document == null || !(element.Document is Message)) {
                 throw new ArgumentException(Messages.ElementExtensions_ValidateJmf_MessageRequired);
             }
             (element.Document as Message).ValidateJmf(addSchemaInfo);
@@ -329,8 +323,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="element"></param>
         /// <param name="timeStamp"></param>
         /// <returns></returns>
-        public static XElement SetTimeStamp(this XElement element, DateTime timeStamp)
-        {
+        public static XElement SetTimeStamp(this XElement element, DateTime timeStamp) {
             ParameterCheck.ParameterRequired(element, "element");
 
             element.SetAttributeValue("TimeStamp", timeStamp.ToString("O"));
