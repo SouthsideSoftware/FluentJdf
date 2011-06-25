@@ -40,13 +40,9 @@ namespace FluentJdf.LinqToJdf {
 
             var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
 
-            //TODO talk about why we need to do this and when we should place the document into the original state.
-            var retVal = new List<XElement>();
-
             using (var normalizer = new RefExtensionsNormalizer(element)) {
-                retVal.AddRange(normalizer.Node.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager)));
+                return normalizer.Node.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager)).ToList(); //can't be lazy
             }
-            return retVal;
         }
 
         /// <summary>
