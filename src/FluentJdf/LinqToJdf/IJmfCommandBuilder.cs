@@ -8,7 +8,7 @@ namespace FluentJdf.LinqToJdf
     /// <summary>
     /// Interface for building JMF commands.
     /// </summary>
-    public interface IJmfCommandBuilder : IJmfNodeBuilderBase
+    public interface IJmfCommandBuilder : IJmfNodeBuilder
     {
     }
 }

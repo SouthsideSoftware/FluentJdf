@@ -50,5 +50,6 @@ namespace FluentJdf.LinqToJdf {
         /// Gets the messsage associated with this builder
         /// </summary>
         public Message Message { get { return Element.Document as Message; } }
+
     }
 }

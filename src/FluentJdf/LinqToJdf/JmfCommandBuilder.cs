@@ -11,7 +11,7 @@ namespace FluentJdf.LinqToJdf
     /// <summary>
     /// Used to build JMF commands 
     /// </summary>
-    public class JmfCommandBuilder : JmfNodeBuilderBase {
+    public class JmfCommandBuilder : JmfNodeBuilderBase, IJmfNodeBuilder {
         string commandType;
 
         internal  JmfCommandBuilder(JmfNodeBuilder parent, string commandType, string idPrefix = "C") : base(parent) {
@@ -25,6 +25,14 @@ namespace FluentJdf.LinqToJdf
             Element.SetMessageType(commandType);
             Element.SetXsiType(Command.XsiTypeOfCommand(commandType));
             parent.Element.Add(Element);
+        }
+
+        /// <summary>
+        /// Add a command.
+        /// </summary>
+        /// <returns></returns>
+        public JmfCommandTypeBuilder AddCommand() {
+            return ParentJmfNode.AddCommand();
         }
     }
 }

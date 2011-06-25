@@ -10,7 +10,7 @@ namespace FluentJdf.LinqToJdf
     /// <summary>
     /// Build attributes for JmfSubmitQueueEntryCommand
     /// </summary>
-    public class JmfSubmitQueueEntryCommandAttributeBuilder : IJmfSubmitQueueEntryCommandBuilder {
+    public class JmfSubmitQueueEntryCommandAttributeBuilder : IJmfCommandBuilder {
         readonly JmfSubmitQueueEntryCommandBuilder builder;
 
         /// <summary>
@@ -72,6 +72,14 @@ namespace FluentJdf.LinqToJdf
         /// <returns></returns>
         public JmfNodeBuilderBase ValidateJmf(bool addSchemaInfo = true) {
             return builder.ValidateJmf(addSchemaInfo);
+        }
+
+        /// <summary>
+        /// Add a command.
+        /// </summary>
+        /// <returns></returns>
+        public JmfCommandTypeBuilder AddCommand() {
+            return ParentJmfNode.AddCommand();
         }
     }
 }

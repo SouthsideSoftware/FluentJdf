@@ -41,19 +41,21 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
-        /// Add a command.
-        /// </summary>
-        /// <returns></returns>
-        public JmfCommandTypeBuilder AddCommand() {
-            return new JmfCommandTypeBuilder(this);
-        }
-
-        /// <summary>
         /// Gets the attribute builder for this JMF node.
         /// </summary>
         /// <returns></returns>
-        public JmfNodeAttributeBuilder With() {
+        public JmfNodeAttributeBuilder With()
+        {
             return new JmfNodeAttributeBuilder(this);
+        }
+
+        /// <summary>
+        /// Add a command.
+        /// </summary>
+        /// <returns></returns>
+        public JmfCommandTypeBuilder AddCommand()
+        {
+            return new JmfCommandTypeBuilder(this);
         }
     }
 }
