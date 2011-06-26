@@ -14,7 +14,6 @@ namespace FluentJdf.Configuration {
         /// </summary>
         public TransmitterSettings() {
             TransmittersByScheme = new Dictionary<string, string>();
-            ResetToDefault();
         }
 
         /// <summary>
@@ -54,6 +53,7 @@ namespace FluentJdf.Configuration {
         public TransmitterSettings ResetToDefault() {
             TransmittersByScheme.Clear();
             RegisterTransmitterFactoryIfRequired();
+            RegisterTransmitterForScheme("http", typeof(HttpTransmitter));
             return this;
         }
 

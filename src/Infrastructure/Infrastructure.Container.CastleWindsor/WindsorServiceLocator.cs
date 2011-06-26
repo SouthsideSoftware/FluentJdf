@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.IO;
+using System.Reflection;
 using Castle.Core;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -221,6 +222,14 @@ namespace Infrastructure.Container.CastleWindsor
 
         void InitializeContainerSettings() {
             container.Kernel.ReleasePolicy = new LifecycledComponentsReleasePolicyWithNonTrackedTransientOption();
+        }
+
+        /// <summary>
+        /// Register remaining interface implementations
+        /// in the given assembly.
+        /// </summary>
+        public void RegisterRemainingInterfaceImplementations(Assembly assembly) {
+            container.RegisterRemainingInterfaceImplementations(assembly);
         }
     }
 }

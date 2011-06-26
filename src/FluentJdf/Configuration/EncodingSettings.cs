@@ -9,9 +9,9 @@ namespace FluentJdf.Configuration {
     /// Settings for encoding.
     /// </summary>
     public class EncodingSettings {
+        Type defaultEncoding;
         Type defaultMultiPartEncoding;
         Type defaultSinglePartEncoding;
-        Type defaultEncoding;
 
         /// <summary>
         /// Constructor.
@@ -41,11 +41,9 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets the default encoding.
         /// </summary>
-        public Type DefaultEncoding
-        {
+        public Type DefaultEncoding {
             get { return defaultEncoding; }
-            internal set
-            {
+            internal set {
                 ParameterCheck.ParameterRequired(value, "value");
                 ThrowExceptionIfTypeIsNotIEncoding(value);
                 RegisterEncodingIfRequired(value);
@@ -56,11 +54,9 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets the default encoding for transmission part collections containing multiple parts.
         /// </summary>
-        public Type DefaultMultiPartEncoding
-        {
+        public Type DefaultMultiPartEncoding {
             get { return defaultMultiPartEncoding; }
-            internal set
-            {
+            internal set {
                 ParameterCheck.ParameterRequired(value, "value");
                 ThrowExceptionIfTypeIsNotIEncoding(value);
                 RegisterEncodingIfRequired(value);
@@ -94,7 +90,8 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public EncodingSettings ResetToDefault() {
             EncodingsByMimeType.Clear();
-            DefaultEncoding = typeof(PassThroughEncoding);
+            RegisterEncodingFactoryIfRequired();
+            DefaultEncoding = typeof (PassThroughEncoding);
             DefaultSinglePartEncoding = typeof (PassThroughEncoding);
             DefaultMultiPartEncoding = typeof (PassThroughEncoding);
             return this;
@@ -103,6 +100,13 @@ namespace FluentJdf.Configuration {
         void RegisterEncodingIfRequired(Type encodingType) {
             if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (IEncoding), encodingType.FullName)) {
                 Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (IEncoding), encodingType);
+            }
+        }
+
+        void RegisterEncodingFactoryIfRequired() {
+            Type t = typeof (EncodingFactory);
+            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (IEncodingFactory), t.FullName)) {
+                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (IEncodingFactory), t);
             }
         }
     }

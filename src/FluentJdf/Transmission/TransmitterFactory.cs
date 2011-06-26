@@ -19,7 +19,7 @@ namespace FluentJdf.Transmission {
             ParameterCheck.StringRequiredAndNotWhitespace(scheme, "scheme");
 
             if (!Library.Settings.TransmitterSettings.TransmittersByScheme.ContainsKey(scheme)) {
-                throw new ArgumentException(Messages.TransmitterFactory_GetTransmitterForScheme_SchemeNotConfigured, scheme);
+                throw new ArgumentException(string.Format(Messages.TransmitterFactory_GetTransmitterForScheme_SchemeNotConfigured, scheme));
             }
 
             return

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Infrastructure.Core.Container
 {
@@ -93,5 +94,11 @@ namespace Infrastructure.Core.Container
         /// Clear all components from the container.
         /// </summary>
         void Reset();
+
+        /// <summary>
+        /// Register remaining interface implementations as singletons
+        /// in the given assmebly.
+        /// </summary>
+        void RegisterRemainingInterfaceImplementations(Assembly assembly);
     }
 }

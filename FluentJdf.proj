@@ -320,7 +320,7 @@
       <FluentJdfZipFileName>$(DistributionDir)\FluentJDF$(ZipQualifier)</FluentJdfZipFileName>
     </PropertyGroup>
     <Zip Files="@(ZipFluentJdfLibraryFiles)" WorkingDirectory="$(BinDir)\FluentJdf" ZipFileName="$(FluentJdfZipFileName)"/>
-    <XmlMassUpdate ContentFile="$(HelpDir)\FluentJdf\Web.config"
+    <XmlMassUpdate Condition="$(GenerateDocs)" ContentFile="$(HelpDir)\FluentJdf\Web.config"
                NamespaceDefinitions="msb=http://schemas.microsoft.com/developer/msbuild/2003"
                ContentRoot="configuration"
                SubstitutionsFile="$(MSBuildProjectDirectory)/FluentJdf.proj"
