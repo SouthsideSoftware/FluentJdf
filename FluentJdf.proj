@@ -323,7 +323,7 @@
     <XmlMassUpdate ContentFile="$(HelpDir)\FluentJdf\Web.config"
                NamespaceDefinitions="msb=http://schemas.microsoft.com/developer/msbuild/2003"
                ContentRoot="configuration"
-               SubstitutionsFile="$(MSBuildProjectFullPath)"
+               SubstitutionsFile="$(MSBuildProjectDirectory)/FluentJdf.proj"
                SubstitutionsRoot="/msb:Project/msb:ProjectExtensions/msb:helpWebConfigContent" />
     <CallTarget Targets="PublishWebHelp" Condition="$(HelpWebDir) != ''"/>
 	</Target>
