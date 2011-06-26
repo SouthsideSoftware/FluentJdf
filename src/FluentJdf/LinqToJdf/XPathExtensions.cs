@@ -115,7 +115,7 @@ namespace FluentJdf.LinqToJdf {
         /// will be added if it does not exist and will be for the JDF namespace.</param>
         /// <remarks><para>Process resource xpath allows you
         /// to easily find XObjects within a resource.</para>
-        /// <para>Syntax is process:[process]/[resource[@usage=input|output (defaults to input]]/[remaining xpath]</para>
+        /// <para>Syntax is process:[process]/[resource[@usage=input|output (defaults to input)]]/[remaining xpath]</para>
         /// <para>If the "process:" prefix is not provided, regular xpath will be used</para>
         /// <para>The xpath default namespace is the JDF namespace.</para>
         /// <para>The remaining xpath will automatically traverse ref elements.</para></remarks>
@@ -134,7 +134,7 @@ namespace FluentJdf.LinqToJdf {
         /// will be added if it does not exist and will be for the JDF namespace.</param>
         /// <remarks><para>Process resource xpath allows you
         /// to easily find XObjects within a resource.</para>
-        /// <para>Syntax is process:[process]/[resource[@usage=input|output (defaults to input]]/[remaining xpath]</para>
+        /// <para>Syntax is process:[process]/[resource[@usage=input|output (defaults to input)]]/[remaining xpath]</para>
         /// <para>If the "process:" prefix is not provided, regular xpath will be used</para>
         /// <para>The xpath default namespace is the JDF namespace.</para>
         /// <para>The remaining xpath will automatically traverse ref elements.</para></remarks>
@@ -145,8 +145,15 @@ namespace FluentJdf.LinqToJdf {
             ParameterCheck.ParameterRequired(document, "document");
             ParameterCheck.StringRequiredAndNotWhitespace(processXPath, "processXPath");
 
-            if (!processXPath.StartsWith("process:")) {
+            if (!processXPath.StartsWith(ProcessXPathParser.PROCESS)) {
                 return document.JdfXPathSelectElements(processXPath, namespaceManager);
+            }
+            else {
+                //we need to perform the following.
+                //1. parse the express
+                //2. obtain the list of Link elements
+                //3. resolve them to the actual item in the pool
+                //4. for each item, call the xpath and yield that result.
             }
 
             return null;
