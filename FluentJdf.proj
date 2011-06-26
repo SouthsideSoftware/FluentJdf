@@ -320,8 +320,25 @@
       <FluentJdfZipFileName>$(DistributionDir)\FluentJDF$(ZipQualifier)</FluentJdfZipFileName>
     </PropertyGroup>
     <Zip Files="@(ZipFluentJdfLibraryFiles)" WorkingDirectory="$(BinDir)\FluentJdf" ZipFileName="$(FluentJdfZipFileName)"/>
+    <XmlMassUpdate ContentFile="$(HelpDir)\FluentJdf\Web.config"
+               NamespaceDefinitions="msb=http://schemas.microsoft.com/developer/msbuild/2003"
+               ContentRoot="configuration"
+               SubstitutionsFile="$(MSBuildProjectFullPath)"
+               SubstitutionsRoot="/msb:Project/msb:ProjectExtensions/msb:helpWebConfigContent" />
     <CallTarget Targets="PublishWebHelp" Condition="$(HelpWebDir) != ''"/>
 	</Target>
+
+  <ProjectExtensions>
+    <helpWebConfigContent>
+      <system.webServer>
+        <defaultDocument>
+          <files>
+            <add value="index.aspx" />
+          </files>
+        </defaultDocument>
+      </system.webServer>
+    </helpWebConfigContent>
+  </ProjectExtensions>
 
   <Target Name="PublishWebHelp">
     <ItemGroup>
