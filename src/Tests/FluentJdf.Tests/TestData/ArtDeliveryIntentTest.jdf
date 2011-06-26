@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<JDF Status="Setup" xmlns:oai="http://www.oai.cc/JDFExtension_1_1" xmlns="http://www.CIP4.org/JDFSchema_1_1" Version="1.1" DescriptiveName="Brochure Example" ID="JDF_8e0894b5-7013-4d97-8647-f323d70eeb99" Type="Product" JobID="Job1">
+  <ResourcePool>
+    <Component ID="Component_5fd7a69f-7944-4495-a5ca-7260824bf41e" Status="Unavailable" ComponentType="FinalProduct" DescriptiveName="Finished Brochure" />
+    <Component ID="Component_9c0f01e9-9764-48b6-8ec7-90048586dbd3" Status="Unavailable" ComponentType="PartialProduct" DescriptiveName="Cover" />
+    <Component ID="Component_b8e75ebe-c8c1-434c-a9ef-d7fe49047ba4" Status="Unavailable" ComponentType="PartialProduct" DescriptiveName="Text" />
+    <BindingIntent BindingOrder="Collecting" ID="BindingIntent_a961c68a-d2e3-4696-820b-4ffaef7ff282" Status="Unavailable" DescriptiveName="Finished Brochure Binding">
+      <BindingType Preferred="SaddleStitch" />
+      <SaddleStitching>
+        <StitchNumber DescriptiveName="Brochure Example" />
+      </SaddleStitching>
+    </BindingIntent>
+    <FoldingIntent ID="FoldingIntent_9f78bffe-e4c7-4ec3-b889-ce9afd7dd3d3" Status="Unavailable" DescriptiveName="Brochure Folding">
+      <FoldingCatalog DescriptiveName="Cover" Preferred="F4-1" />
+    </FoldingIntent>
+    <Media Status="Complete" DescriptiveName="Blank Plates" ID="Media_4735fe19-b64f-4a5c-91aa-88cebfaf4a08" MediaType="Plate" Amount="10.0" />
+    <ArtDeliveryIntent Status="Available" DescriptiveName="Brochure Example" ID="ArtDeliveryIntent_5eaf599a-0d57-4f21-b77e-b50d5d5c785f">
+      <ArtDelivery DescriptiveName="Brochure Example" ArtDeliveryType="DigitalNetwork">
+        <RunListRef rRef="RunList_8319ddd4-12d1-4a46-b031-2f8fb857eb07" />
+        <Contact ContactTypes="Delivery">
+          <ComChannel Locator="12345" ChannelTypeDetails="WamnetResourceId" DescriptiveName="WAM!NET" ChannelType="PrivateDirectory" />
+        </Contact>
+      </ArtDelivery>
+    </ArtDeliveryIntent>
+    <RunList ID="RunList_8319ddd4-12d1-4a46-b031-2f8fb857eb07" DescriptiveName="Files to use in Product" Status="Unavailable">
+      <LayoutElement DescriptiveName="Brochure Example">
+        <FileSpec DescriptiveName="Original file location on sender" URL="file:///c:/temp/pdfFile.pdf" />
+      </LayoutElement>
+    </RunList>
+  </ResourcePool>
+  <ResourceLinkPool>
+    <ComponentLink Usage="Output" rRef="Component_5fd7a69f-7944-4495-a5ca-7260824bf41e" />
+    <BindingIntentLink Usage="Input" rRef="BindingIntent_a961c68a-d2e3-4696-820b-4ffaef7ff282" />
+    <ComponentLink Usage="Input" rRef="Component_9c0f01e9-9764-48b6-8ec7-90048586dbd3" />
+    <ComponentLink Usage="Input" rRef="Component_b8e75ebe-c8c1-434c-a9ef-d7fe49047ba4" />
+    <ArtDeliveryIntentLink Usage="Input" rRef="ArtDeliveryIntent_5eaf599a-0d57-4f21-b77e-b50d5d5c785f" />
+  </ResourceLinkPool>
+  <AuditPool>
+    <Created TimeStamp="2004-01-13T09:34:17Z" Author="gobrien - Objective Advantage JDF IDE" />
+    <Modified TimeStamp="2004-01-23T22:59:38Z" Author="gobrien - Objective Advantage JDF IDE" />
+    <Modified TimeStamp="2004-02-12T03:22:30Z" Author="gobrien - Objective Advantage JDF IDE" />
+    <Modified TimeStamp="2004-02-12T03:28:56Z" Author="gobrien - Objective Advantage JDF IDE" />
+    <Modified TimeStamp="2004-02-14T18:39:40Z" Author="gobrien - Objective Advantage JDF IDE" />
+    <Modified TimeStamp="2004-02-14T19:00:48Z" Author="gobrien - Objective Advantage JDF IDE" />
+    <Modified TimeStamp="2004-02-15T22:05:57Z" Author="gobrien - Objective Advantage JDF IDE" />
+    <Modified TimeStamp="2004-02-16T03:37:44Z" Author="gobrien - Objective Advantage JDF IDE" />
+  </AuditPool>
+  <JDF Type="Product" ID="JDF_02a993d8-f06c-4926-a5c2-29e1f986c8cc" Status="Waiting" DescriptiveName="Cover">
+    <ResourcePool>
+      <ColorIntent ID="ColorIntent_6e67c2d4-6e95-4603-97f8-c0b2d2c67358" Status="Unavailable" DescriptiveName="Cover">
+        <ColorPool DescriptiveName="Cover">
+          <Color ColorBook="Pantone" Name="PMS 485 Red" ColorBookEntry="485" DescriptiveName="Cover" ColorBookPrefix="PMS" />
+        </ColorPool>
+      </ColorIntent>
+      <MediaIntent ID="MediaIntent_a3af1559-b22f-46ef-b896-69db7456b3a4" Status="Unavailable" DescriptiveName="Cover">
+        <Weight DescriptiveName="Cover" />
+        <MediaColor />
+      </MediaIntent>
+      <LayoutIntent ID="LayoutIntent_12e8a3a7-572d-4e82-b3fc-bdf61827a9bc" Status="Unavailable" DescriptiveName="Cover">
+        <Pages DescriptiveName="Cover" />
+        <FinishedDimensions DescriptiveName="Cover" />
+      </LayoutIntent>
+    </ResourcePool>
+    <ResourceLinkPool>
+      <ColorIntentLink Usage="Input" rRef="ColorIntent_6e67c2d4-6e95-4603-97f8-c0b2d2c67358" />
+      <MediaIntentLink Usage="Input" rRef="MediaIntent_a3af1559-b22f-46ef-b896-69db7456b3a4" />
+      <LayoutIntentLink Usage="Input" rRef="LayoutIntent_12e8a3a7-572d-4e82-b3fc-bdf61827a9bc" />
+      <FoldingIntentLink Usage="Input" rRef="FoldingIntent_9f78bffe-e4c7-4ec3-b889-ce9afd7dd3d3" />
+      <ComponentLink Usage="Output" rRef="Component_9c0f01e9-9764-48b6-8ec7-90048586dbd3" />
+    </ResourceLinkPool>
+  </JDF>
+  <JDF Type="Product" ID="JDF_6af4cdb6-c38a-40c4-b507-a59185533bb5" Status="Waiting" DescriptiveName="Text">
+    <ResourcePool>
+      <LayoutIntent ID="LayoutIntent_7a1fc059-07a4-467b-b6c9-1ee1d03defc4" Status="Unavailable" DescriptiveName="Text">
+        <Pages DescriptiveName="Text" />
+        <FinishedDimensions DescriptiveName="Text" />
+      </LayoutIntent>
+      <ColorIntent ID="ColorIntent_e4d5e036-b191-42d3-b792-3695a9f705fe" Status="Unavailable" DescriptiveName="Text" />
+      <MediaIntent ID="MediaIntent_c4cf5133-e6b6-4844-9bfe-82038858c36f" Status="Unavailable" DescriptiveName="Text">
+        <Weight DescriptiveName="Text" />
+        <MediaColor />
+      </MediaIntent>
+    </ResourcePool>
+    <ResourceLinkPool>
+      <FoldingIntentLink Usage="Input" rRef="FoldingIntent_9f78bffe-e4c7-4ec3-b889-ce9afd7dd3d3" />
+      <LayoutIntentLink Usage="Input" rRef="LayoutIntent_7a1fc059-07a4-467b-b6c9-1ee1d03defc4" />
+      <ColorIntentLink Usage="Input" rRef="ColorIntent_e4d5e036-b191-42d3-b792-3695a9f705fe" />
+      <MediaIntentLink Usage="Input" rRef="MediaIntent_c4cf5133-e6b6-4844-9bfe-82038858c36f" />
+      <ComponentLink Usage="Output" rRef="Component_b8e75ebe-c8c1-434c-a9ef-d7fe49047ba4" />
+    </ResourceLinkPool>
+  </JDF>
+</JDF>
