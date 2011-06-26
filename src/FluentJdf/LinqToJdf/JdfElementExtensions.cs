@@ -455,6 +455,21 @@ namespace FluentJdf.LinqToJdf {
             return element.IsJdfElement() && !element.IsJdfIntentElement() && !element.IsJdfProcessGroupElement();
         }
 
+        //TODO Does the method GetJdfNodesContainingProcessType throw off the intellisense for the builders and should it just be a static method?
+
+        /// <summary>
+        /// Get any JDF Node that contains the processType passed in.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="processType"></param>
+        /// <returns></returns>
+        public static IEnumerable<XElement> GetJdfNodesContainingProcessType(this XElement element, string processType) {
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.StringRequiredAndNotWhitespace(processType, "processType");
+
+            return element.JdfXPathSelectElements("//JDF").Where(item => GetJdfTypes(item).Any(t => t == processType));
+        }
+
         /// <summary>
         /// Gets the type of the node.
         /// </summary>

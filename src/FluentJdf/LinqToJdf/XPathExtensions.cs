@@ -150,7 +150,7 @@ namespace FluentJdf.LinqToJdf {
             }
             else {
                 //we need to perform the following.
-                //1. parse the express
+                var parser = ProcessXPathParser.Parse(processXPath);
                 //2. obtain the list of Link elements
                 //3. resolve them to the actual item in the pool
                 //4. for each item, call the xpath and yield that result.
