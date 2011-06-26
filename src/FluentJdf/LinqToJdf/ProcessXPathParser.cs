@@ -89,7 +89,7 @@ namespace FluentJdf.LinqToJdf {
                 var tempExpression = FullExpression.Substring(PROCESS.Length);
                 var findIndex = tempExpression.IndexOf('/');
                 if (findIndex == -1) {
-                    throw new ApplicationException(string.Format("Invalid Expression at Process {0}", FullExpression));
+                    throw new JdfException(string.Format("Invalid Expression at Process {0}", FullExpression));
                 }
                 ProcessName = tempExpression.Substring(0, findIndex);
 
@@ -113,7 +113,7 @@ namespace FluentJdf.LinqToJdf {
                     tempExpression = tempExpression.Substring(0, tempExpression.Length - 1);
                     var parts = tempExpression.Split('=');
                     if (parts.Length < 2) {
-                        throw new ApplicationException(string.Format("Invalid Expression at Usage {0}", FullExpression));
+                        throw new JdfException(string.Format("Invalid Expression at Usage {0}", FullExpression));
                     }
                     ResourceUsage usage = LinqToJdf.ResourceUsage.Unknown;
                     if (Enum.TryParse<ResourceUsage>(parts[1], true, out usage)) {
