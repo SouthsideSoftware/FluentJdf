@@ -23,8 +23,13 @@ void Main() {
 	//jdf.Dump();
 
 	var pt = node.GetJdfNodesContainingProcessType("DigitalPrinting");
-	
-	pt.Dump();
+	//pt.Dump();
+
+	foreach (var element in pt) {
+		var link = element.GetResourceLinkPoolResolvedItem("DigitalPrintingParams", ResourceUsage.Input);
+		link.Dump();
+		
+	}
 
 }
 

@@ -64,6 +64,34 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Given a resource name and the input type, return the resolved resource that belongs to the resource link.
+        /// </summary>
+        /// <remarks>
+        /// It is assumed that the element should stay untouched and not be normalized.
+        /// </remarks>
+        /// <param name="element">The element to process</param>
+        /// <param name="resourceName">The resource name</param>
+        /// <param name="usage">The <see cref="ResourceUsage"/></param>
+        /// <returns></returns>
+        public static XElement GetResourceLinkPoolResolvedItem(this XContainer element, string resourceName, ResourceUsage usage) {
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.StringRequiredAndNotWhitespace(resourceName, "resourceName");
+
+            if (!resourceName.EndsWith("Link")) {
+                resourceName += "Link";
+            }
+            var xpath = string.Format("//ResourceLinkPool/{0}[@Usage = '{1}']", resourceName, usage.ToString());
+            var resourceLinkNode = element.JdfXPathSelectElement(xpath);
+            if (resourceLinkNode != null) {
+                var resourceLink = element.JdfXPathSelectElement(string.Format("//ResourcePool/*[@ID = '{0}']", resourceLinkNode.Attribute("rRef").Value));
+                if (resourceLink != null) {
+                    return resourceLink;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Gets all elements that reference the current element
         /// </summary>
         /// <param name="element"></param>
