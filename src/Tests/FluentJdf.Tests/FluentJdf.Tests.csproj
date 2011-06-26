@@ -143,6 +143,7 @@
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_root.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_no_usage_type.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_no_usage_type_no_xpath.cs" />
+    <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_validates_no_xpath_has_usage.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_validates_process_and_resource.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_GetResourceLinkPoolResolvedItem_for_DigitalPrintingParams.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_jdfXPathSelectElement_using_multilevel_document.cs" />

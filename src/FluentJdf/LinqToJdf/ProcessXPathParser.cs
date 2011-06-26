@@ -97,12 +97,10 @@ namespace FluentJdf.LinqToJdf {
 
                 tempExpression = tempExpression.Substring(findIndex + 1);
                 findIndex = tempExpression.IndexOf('/');
-                if (findIndex == -1) {
-                    ResourceName = tempExpression;
-                    return;
+                if (findIndex > -1) {
+                    XPathStatement = tempExpression.Substring(findIndex + 1);
+                    tempExpression = tempExpression.Substring(0, findIndex);
                 }
-                XPathStatement = tempExpression.Substring(findIndex + 1);
-                tempExpression = tempExpression.Substring(0, findIndex);
                 findIndex = tempExpression.IndexOf('[');
                 if (findIndex == -1) {
                     ResourceName = tempExpression;
