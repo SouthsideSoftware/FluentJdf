@@ -4,20 +4,17 @@ using System.Xml.Linq;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf
-{
+namespace FluentJdf.LinqToJdf {
     /// <summary>
     /// Extensions for working with resources.
     /// </summary>
-    public static class ResourceExtensions
-    {
+    public static class ResourceExtensions {
         /// <summary>
         /// Gets the id of an element.
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string GetId(this XElement element)
-        {
+        public static string GetId(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull("ID");
@@ -28,8 +25,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <param name="updateReferences">True to update references.  Default is true.</param>
-        public static XElement SetUniqueId(this XElement element, bool updateReferences = true)
-        {
+        public static XElement SetUniqueId(this XElement element, bool updateReferences = true) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.SetUniqueId("R_", updateReferences);
@@ -41,8 +37,7 @@ namespace FluentJdf.LinqToJdf
         /// <param name="element"></param>
         /// <param name="idPrefix">The prefix to use in front of the GUID ID.  Default is "R_".</param>
         /// <param name="updateReferences">True to update references.  Default is true.</param>
-        public static XElement SetUniqueId(this XElement element, string idPrefix = "R_", bool updateReferences = true)
-        {
+        public static XElement SetUniqueId(this XElement element, string idPrefix = "R_", bool updateReferences = true) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.SetId(Globals.CreateUniqueId(idPrefix), updateReferences);
@@ -58,10 +53,8 @@ namespace FluentJdf.LinqToJdf
             ParameterCheck.ParameterRequired(element, "element");
             ParameterCheck.StringRequiredAndNotWhitespace(id, "id");
 
-            if (updateReferences)
-            {
-                foreach (var referencingElement in element.ReferencingElements())
-                {
+            if (updateReferences) {
+                foreach (var referencingElement in element.ReferencingElements()) {
                     referencingElement.SetRefId(id);
                 }
             }
@@ -81,8 +74,9 @@ namespace FluentJdf.LinqToJdf
             ParameterCheck.ParameterRequired(element, "element");
 
             string id = element.GetId();
-            
-            if (id == null) return new List<XElement>();
+
+            if (id == null)
+                return new List<XElement>();
 
             var root = element;
             if (root.Document != null && root.Document.Root != null) {
@@ -97,8 +91,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string GetRefId(this XElement element)
-        {
+        public static string GetRefId(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeValueOrNull("rRef");
@@ -179,8 +172,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static bool IsResourceLinkPool(this XElement element)
-        {
+        public static bool IsResourceLinkPool(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.Name == Element.ResourceLinkPool;
