@@ -463,7 +463,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="element"></param>
         /// <param name="processType"></param>
         /// <returns></returns>
-        public static IEnumerable<XElement> GetJdfNodesContainingProcessType(this XElement element, string processType) {
+        public static IEnumerable<XElement> GetJdfNodesContainingProcessType(this XContainer element, string processType) {
             ParameterCheck.ParameterRequired(element, "element");
             ParameterCheck.StringRequiredAndNotWhitespace(processType, "processType");
 

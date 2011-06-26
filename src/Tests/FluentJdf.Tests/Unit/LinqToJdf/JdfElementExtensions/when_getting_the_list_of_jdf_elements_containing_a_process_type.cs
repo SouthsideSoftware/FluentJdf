@@ -17,9 +17,9 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
 
         Because of = () => ticket = l.Ticket.Load(TestDataHelper.Instance.PathToTestFile("ProcessTwoMediaFiery.jdf"));
 
-        It should_find_DigitalPrinting_process_type = () => ((XElement) ticket.FirstNode).GetJdfNodesContainingProcessType("DigitalPrinting").ShouldNotBeNull();
+        It should_find_DigitalPrinting_process_type = () => ticket.GetJdfNodesContainingProcessType("DigitalPrinting").ShouldNotBeNull();
 
-        It should_not_find_Car_process_type = () => ((XElement)ticket.FirstNode).GetJdfNodesContainingProcessType("Car").ShouldBeEmpty();
+        It should_not_find_Car_process_type = () => ticket.GetJdfNodesContainingProcessType("Car").ShouldBeEmpty();
 
     }
 }
