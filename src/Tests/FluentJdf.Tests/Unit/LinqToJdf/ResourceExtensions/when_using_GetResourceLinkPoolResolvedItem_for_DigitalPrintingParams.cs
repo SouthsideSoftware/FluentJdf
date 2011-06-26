@@ -15,7 +15,9 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ResourceExtensions {
     public class when_using_GetResourceLinkPoolResolvedItem_for_DigitalPrintingParams {
         static XDocument ticket;
 
-        Because of = () => ticket = l.Ticket.Load(TestDataHelper.Instance.PathToTestFile("ProcessTwoMediaFiery.jdf"));
+        Establish context = () => {
+            ticket = l.Ticket.Load(TestDataHelper.Instance.PathToTestFile("ProcessTwoMediaFiery.jdf"));
+        };
 
         It should_find_DigitalPrintingParams = () => ticket.GetResourceLinkPoolResolvedItem("DigitalPrintingParams", ResourceUsage.Input).ShouldNotBeNull();
 

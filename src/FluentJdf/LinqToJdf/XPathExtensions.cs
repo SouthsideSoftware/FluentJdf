@@ -146,18 +146,31 @@ namespace FluentJdf.LinqToJdf {
             ParameterCheck.StringRequiredAndNotWhitespace(processXPath, "processXPath");
 
             if (!processXPath.StartsWith(ProcessXPathParser.PROCESS)) {
-                return document.JdfXPathSelectElements(processXPath, namespaceManager);
+                foreach (var item in document.JdfXPathSelectElements(processXPath, namespaceManager)) {
+                    yield return item;
+                }
             }
             else {
-                //we need to perform the following.
                 var parser = ProcessXPathParser.Parse(processXPath);
-                //2. obtain the list of Link elements
-                //3. resolve them to the actual item in the pool
-                //4. for each item, call the xpath and yield that result.
+                var processElements = document.GetJdfNodesContainingProcessType(parser.ProcessName);
+                foreach (var processElement in processElements) {
+                    var link = processElement.GetResourceLinkPoolResolvedItem(parser.ResourceName, parser.ResourceUsage);
+                    if (link != null) {
+                        if (!string.IsNullOrWhiteSpace(parser.XPathStatement)) {
+                            //You must wrap the document in the normalizer or you may not obtain the xml correctly.
+                            using (var resolver = new RefExtensionsNormalizer(processElement)) {
+                                var xPath = new XPathDecorator(parser.XPathStatement).PrefixNames("jdf");
+                                foreach (var item in link.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager))) {
+                                    yield return item;
+                                }
+                            }
+                        }
+                        else {
+                            yield return link;
+                        }
+                    }
+                }
             }
-
-            return null;
         }
-
     }
 }

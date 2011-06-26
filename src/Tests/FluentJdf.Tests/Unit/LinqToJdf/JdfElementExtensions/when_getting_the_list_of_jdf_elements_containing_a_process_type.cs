@@ -15,7 +15,9 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
     public class when_getting_the_list_of_jdf_elements_containing_a_process_type {
         static XDocument ticket;
 
-        Because of = () => ticket = l.Ticket.Load(TestDataHelper.Instance.PathToTestFile("ProcessTwoMediaFiery.jdf"));
+        Establish context = () => {
+            ticket = l.Ticket.Load(TestDataHelper.Instance.PathToTestFile("ProcessTwoMediaFiery.jdf"));
+        };
 
         It should_find_DigitalPrinting_process_type = () => ticket.GetJdfNodesContainingProcessType("DigitalPrinting").ShouldNotBeNull();
 

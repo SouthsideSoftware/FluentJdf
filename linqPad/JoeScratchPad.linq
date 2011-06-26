@@ -27,9 +27,22 @@ void Main() {
 
 	foreach (var element in pt) {
 		var link = element.GetResourceLinkPoolResolvedItem("DigitalPrintingParams", ResourceUsage.Input);
-		link.Dump();
+		//link.Dump();
 		
 	}
+	
+	var toParse = "process:DigitalPrinting/DigitalPrintingParams[@usage=input]/./DigitalPrintingParams/Media"; //;/./DigitalPrintingParams
+	
+	var parse = FluentJdf.LinqToJdf.ProcessXPathParser.Parse(toParse);
+	parse.Dump();
+	
+	//ticket.DenormalizeRefElements();
+	//ticket.Dump();
+	//ticket.RenormalizeRefElements();
+	
+	var results = ticket.ProcessXPathSelectElements(toParse);
+	
+	results.Dump();
 
 }
 

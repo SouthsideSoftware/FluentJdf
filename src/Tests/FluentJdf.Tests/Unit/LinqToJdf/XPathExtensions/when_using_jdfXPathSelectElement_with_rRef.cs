@@ -16,7 +16,9 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.XPathExtensions {
 
         static XDocument ticket;
 
-        Because of = () => ticket = l.Ticket.Load(TestDataHelper.Instance.PathToTestFile("ProcessTwoMediaFiery.jdf"));
+        Establish context = () => {
+            ticket = l.Ticket.Load(TestDataHelper.Instance.PathToTestFile("ProcessTwoMediaFiery.jdf"));
+        };
 
         It should_have_DigitalPrintingParams_Media_resolved_by_xpath =
             () => x.JdfXPathSelectElement(ticket, @"/JDF/ResourcePool/DigitalPrintingParams/Media").ShouldNotBeNull();
@@ -29,9 +31,5 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.XPathExtensions {
 
         It should_have_two_media_items_in_resource_pool =
             () => x.JdfXPathSelectElements(ticket, @"/JDF/ResourcePool/Media").Count().ShouldEqual(2);
-
-
-
-        //
     }
 }
