@@ -8,13 +8,11 @@ using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
 
-namespace FluentJdf.LinqToJdf
-{
+namespace FluentJdf.LinqToJdf {
     /// <summary>
     /// Extensions meant to operate on JDF elements
     /// </summary>
-    public static class JdfElementExtensions
-    {
+    public static class JdfElementExtensions {
         /// <summary>
         /// Add an intent JDF to the current JDF or document
         /// </summary>
@@ -31,8 +29,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <returns>The newly created JDF node.</returns>
         /// <remarks>If no types are passed, a process group node is created.</remarks>
-        public static XElement AddProcessJdfElement(this XContainer parent, params string[] types)
-        {
+        public static XElement AddProcessJdfElement(this XContainer parent, params string[] types) {
             ParameterCheck.ParameterRequired(parent, "parent");
 
             return parent.AddJdfElement(types);
@@ -46,8 +43,10 @@ namespace FluentJdf.LinqToJdf
         public static string MimeType(this XElement node) {
             ParameterCheck.ParameterRequired(node, "node");
 
-            if (node.Name == Element.JDF) return MimeTypeHelper.JdfMimeType;
-            if (node.Name == Element.JMF) return MimeTypeHelper.JmfMimeType;
+            if (node.Name == Element.JDF)
+                return MimeTypeHelper.JdfMimeType;
+            if (node.Name == Element.JMF)
+                return MimeTypeHelper.JmfMimeType;
             return "text/xml";
         }
 
@@ -55,8 +54,7 @@ namespace FluentJdf.LinqToJdf
         /// Add a process group JDF to the current JDF or document
         /// </summary>
         /// <returns>The newly created JDF node.</returns>
-        public static XElement AddProcessGroupElement(this XContainer parent)
-        {
+        public static XElement AddProcessGroupElement(this XContainer parent) {
             ParameterCheck.ParameterRequired(parent, "parent");
 
             return parent.AddJdfElement("ProcessGroup");
@@ -66,12 +64,10 @@ namespace FluentJdf.LinqToJdf
         /// Add a JDF node to the current JDF or document
         /// </summary>
         /// <returns>The newly created JDF node.</returns>
-        public static XElement AddJdfElement(this XContainer parent, params string [] types)
-        {
+        public static XElement AddJdfElement(this XContainer parent, params string[] types) {
             ParameterCheck.ParameterRequired(parent, "parent");
 
-            if (parent is XElement)
-            {
+            if (parent is XElement) {
                 parent = (parent as XElement).NearestJdf();
             }
 
@@ -113,12 +109,10 @@ namespace FluentJdf.LinqToJdf
             if (agentName == null) {
                 agentName = Library.Settings.JdfAuthoringSettings.AgentName;
             }
-            if (agentVersion == null)
-            {
+            if (agentVersion == null) {
                 agentVersion = Library.Settings.JdfAuthoringSettings.AgentVersion;
             }
-            if (author == null)
-            {
+            if (author == null) {
                 author = Library.Settings.JdfAuthoringSettings.Author;
             }
             if (eventDateTime == null) {
@@ -126,7 +120,7 @@ namespace FluentJdf.LinqToJdf
             }
 
             var auditPool = jdfNode.AuditPoolElement();
-            auditPool.Add(new XElement(auditName, 
+            auditPool.Add(new XElement(auditName,
                 new XAttribute("AgentName", agentName),
                 new XAttribute("AgentVersion", agentVersion),
                 new XAttribute("Author", author),
@@ -189,14 +183,12 @@ namespace FluentJdf.LinqToJdf
         /// <param name="jdfNode"></param>
         /// <returns></returns>
         /// <remarks>Creates the resource link pool if it does not exist.</remarks>
-        public static XElement AuditPoolElement(this XElement jdfNode)
-        {
+        public static XElement AuditPoolElement(this XElement jdfNode) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             jdfNode.ThrowExceptionIfNotJdfElement();
 
             var auditPoolElement = jdfNode.Element(Element.AuditPool);
-            if (auditPoolElement == null)
-            {
+            if (auditPoolElement == null) {
                 auditPoolElement = new XElement(Element.AuditPool);
                 jdfNode.Add(auditPoolElement);
             }
@@ -210,15 +202,13 @@ namespace FluentJdf.LinqToJdf
         /// <param name="jdfNode"></param>
         /// <returns></returns>
         /// <remarks>Creates the resource link pool if it does not exist.</remarks>
-        public static XElement ResourceLinkPoolElement(this XElement jdfNode)
-        {
+        public static XElement ResourceLinkPoolElement(this XElement jdfNode) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
             jdfNode.ThrowExceptionIfNotJdfElement();
 
             var resourceLinkPool = jdfNode.Element(Element.ResourceLinkPool);
-            if (resourceLinkPool == null)
-            {
+            if (resourceLinkPool == null) {
                 resourceLinkPool = new XElement(Element.ResourceLinkPool);
                 jdfNode.Add(resourceLinkPool);
             }
@@ -251,8 +241,7 @@ namespace FluentJdf.LinqToJdf
         /// <remarks>If you do not pass an id (or you pass a null id), a new resource will
         /// always be created.</remarks>
         /// <returns></returns>
-        public static XElement AddOutput(this XElement jdfNode, XName resourceName, string id = null)
-        {
+        public static XElement AddOutput(this XElement jdfNode, XName resourceName, string id = null) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
             return jdfNode.LinkResource(ResourceUsage.Output, resourceName, id);
@@ -266,8 +255,7 @@ namespace FluentJdf.LinqToJdf
         /// <exception cref="JdfException">If a resource with the given id cannot be found
         /// and promoted without breaking any existing references.</exception>
         /// <returns></returns>
-        public static XElement AddInput(this XElement jdfNode, string id)
-        {
+        public static XElement AddInput(this XElement jdfNode, string id) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             ParameterCheck.StringRequiredAndNotWhitespace(id, "id");
 
@@ -283,8 +271,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <remarks>If you do not pass an id (or you pass a null id), a new resource will
         /// always be created.</remarks>
-        public static XElement AddInput(this XElement jdfNode, XName resourceName, string id = null)
-        {
+        public static XElement AddInput(this XElement jdfNode, XName resourceName, string id = null) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
             return jdfNode.LinkResource(ResourceUsage.Input, resourceName, id);
@@ -314,8 +301,7 @@ namespace FluentJdf.LinqToJdf
 
             bool resourceJustCreated = false;
             XElement resource = null;
-            if (id == null)
-            {
+            if (id == null) {
                 id = Globals.CreateUniqueId();
             }
             else {
@@ -331,7 +317,7 @@ namespace FluentJdf.LinqToJdf
                     }
                 }
             }
-           
+
             if (resource == null) {
                 resourceJustCreated = true;
                 resource = CreateResource(resourceName, id, resourcePool);
@@ -415,8 +401,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static bool IsJdfElement(this XElement element)
-        {
+        public static bool IsJdfElement(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.Name == Element.JDF;
@@ -453,8 +438,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static bool IsJdfProcessGroupElement(this XElement element)
-        {
+        public static bool IsJdfProcessGroupElement(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.IsJdfElement() && element.GetJdfType() == "ProcessGroup";
@@ -465,8 +449,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static bool IsJdfProcessElement(this XElement element)
-        {
+        public static bool IsJdfProcessElement(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.IsJdfElement() && !element.IsJdfIntentElement() && !element.IsJdfProcessGroupElement();
@@ -488,14 +471,12 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string [] GetJdfTypes(this XElement element)
-        {
+        public static string[] GetJdfTypes(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             var typesString = element.GetAttributeFromJdfElement("Types");
 
-            if (string.IsNullOrWhiteSpace(typesString))
-            {
+            if (string.IsNullOrWhiteSpace(typesString)) {
                 return null;
             }
 
@@ -507,8 +488,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string GetJobId(this XElement element)
-        {
+        public static string GetJobId(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeFromJdfElement("JobID");
@@ -543,8 +523,7 @@ namespace FluentJdf.LinqToJdf
         /// <param name="element"></param>
         /// <param name="jobPartId"></param>
         /// <returns></returns>
-        public static XElement SetJobPartId(this XElement element, string jobPartId = null)
-        {
+        public static XElement SetJobPartId(this XElement element, string jobPartId = null) {
             ParameterCheck.ParameterRequired(element, "element");
             element.ThrowExceptionIfNotJdfElement();
 
@@ -562,8 +541,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static string GetJobPartId(this XElement element)
-        {
+        public static string GetJobPartId(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.GetAttributeFromJdfElement("JobPartID");
@@ -583,8 +561,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="jdfNode"></param>
         /// <returns></returns>
-        public static XElement MakeJdfElementAnIntent(this XElement jdfNode)
-        {
+        public static XElement MakeJdfElementAnIntent(this XElement jdfNode) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             jdfNode.ThrowExceptionIfNotJdfElement();
 
@@ -598,8 +575,7 @@ namespace FluentJdf.LinqToJdf
         /// </summary>
         /// <param name="jdfNode"></param>
         /// <returns></returns>
-        public static XElement MakeJdfElementAProcessGroup(this XElement jdfNode)
-        {
+        public static XElement MakeJdfElementAProcessGroup(this XElement jdfNode) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             jdfNode.ThrowExceptionIfNotJdfElement();
 
@@ -612,8 +588,7 @@ namespace FluentJdf.LinqToJdf
         /// Make the JDF node a process
         /// </summary>
         /// <returns></returns>
-        public static XElement MakeJdfElementAProcess(this XElement jdfNode, params string [] types)
-        {
+        public static XElement MakeJdfElementAProcess(this XElement jdfNode, params string[] types) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             jdfNode.ThrowExceptionIfNotJdfElement();
 
@@ -626,12 +601,10 @@ namespace FluentJdf.LinqToJdf
         /// Throws an ArgumentException if the given node is not a JDF node.
         /// </summary>
         /// <param name="jdfNode"></param>
-        public static void ThrowExceptionIfNotJdfElement(this XElement jdfNode)
-        {
+        public static void ThrowExceptionIfNotJdfElement(this XElement jdfNode) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
 
-            if (!jdfNode.IsJdfElement())
-            {
+            if (!jdfNode.IsJdfElement()) {
                 throw new ArgumentException(string.Format(Messages.CanOnlyOperateOnJdfNode,
                                                           jdfNode.Name));
             }
@@ -643,11 +616,10 @@ namespace FluentJdf.LinqToJdf
         /// <param name="jdfNode"></param>
         /// <param name="types"></param>
         /// <returns></returns>
-        public static XElement SetTypeAndTypes(this XElement jdfNode, params string [] types)
-        {
+        public static XElement SetTypeAndTypes(this XElement jdfNode, params string[] types) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             ThrowExceptionIfNotJdfElement(jdfNode);
-            
+
             if (types == null || types.Length == 0) {
                 jdfNode.SetAttributeValue("Type", ProcessType.ProcessGroup);
                 jdfNode.SetXsiType(ProcessType.XsiJdfElementType(ProcessType.ProcessGroup).ToString());
@@ -662,7 +634,7 @@ namespace FluentJdf.LinqToJdf
                 jdfNode.SetAttributeValue("Types", string.Join(" ", types));
             }
 
-            
+
             return jdfNode;
         }
 
@@ -675,14 +647,14 @@ namespace FluentJdf.LinqToJdf
         /// <returns>An IEnumerable{XElement} containing a list of resources with the correct usage.  
         /// The list will be empty if there are no resources linked with the given usage.</returns>
         /// <exception cref="PreconditionException">If the given XElement is not a JDf element.</exception>
-        public static IEnumerable<XElement> ResourcesByUsage(this XElement jdfElement, ResourceUsage usage, XElement resourceRoot = null)
-        {
+        public static IEnumerable<XElement> ResourcesByUsage(this XElement jdfElement, ResourceUsage usage, XElement resourceRoot = null) {
             ParameterCheck.ParameterRequired(jdfElement, "jdfElement");
             jdfElement.ThrowExceptionIfNotJdfElement();
 
             var linkPool = jdfElement.Element(Element.ResourceLinkPool);
 
-            if (linkPool == null) return new List<XElement>();
+            if (linkPool == null)
+                return new List<XElement>();
 
             var qualifiedLinkIds = (from resourceLink in linkPool.Elements()
                                     where
