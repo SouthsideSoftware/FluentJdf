@@ -6,7 +6,7 @@ namespace Infrastructure.Core.Tests.Unit.Helpers.ApplicationInformation
     public class when_reading_application_information
     {
         It should_have_the_expected_application_name =
-            () => Core.Helpers.ApplicationInformation.Name.ShouldContain("JDF Workflow Foundation");
+            () => Core.Helpers.ApplicationInformation.Name.ShouldContain("Fluent JDF");
 
         It should_have_a_version = () => Core.Helpers.ApplicationInformation.Version.ShouldNotBeNull();
 

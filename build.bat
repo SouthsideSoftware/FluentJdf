@@ -1,2 +1,2 @@
 @echo off
-msbuild /verbosity:minimal %* Jwf.proj
+msbuild /verbosity:minimal %* FluentJdf.proj

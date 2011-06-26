@@ -29,8 +29,8 @@
 
 	<!-- General Build Configuration Properties -->
 	<PropertyGroup>
-		<ProductName>Jwf</ProductName>
-    <ProductDescription>JDF Workflow Foundation</ProductDescription>
+		<ProductName>FluentJdf</ProductName>
+    <ProductDescription>Fluent JDF</ProductDescription>
 		<Configuration>Debug</Configuration>
     <GenerateDocs>false</GenerateDocs>
 	</PropertyGroup>
@@ -92,7 +92,6 @@
   <ItemGroup>
     <ProjectDir Include="src\FluentJdf"/>
     <ProjectDir Include="src\Tests\FluentJdf.Tests"/>
-    <ProjectDir Include="src\Jwf.Server"/>
     <ProjectDir Include="src\FluentJdf.Visualizer"/>
 <!--    <ProjectDir Include="src\Infrastructure\Infrastructure.Core"/> -->
     <ProjectDir Include="src\Infrastructure\Tests\Infrastructure.Core.Tests"/>
