@@ -92,6 +92,9 @@ namespace FluentJdf.LinqToJdf {
                     throw new ApplicationException(string.Format("Invalid Expression at Process {0}", FullExpression));
                 }
                 ProcessName = tempExpression.Substring(0, findIndex);
+
+                //TODO determine if we validate it against the ProcessType Valid list.
+
                 tempExpression = tempExpression.Substring(findIndex + 1);
                 findIndex = tempExpression.IndexOf('/');
                 if (findIndex == -1) {
