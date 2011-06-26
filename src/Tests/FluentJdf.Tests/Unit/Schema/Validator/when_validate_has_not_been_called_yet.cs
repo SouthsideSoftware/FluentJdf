@@ -22,5 +22,7 @@ namespace FluentJdf.Tests.Unit.Schema.Validator
         It should_have_zero_errors = () => validator.Errors.Count.ShouldEqual(0);
 
         It should_have_zero_warnings = () => validator.Warnings.Count.ShouldEqual(0);
+
+        It should_have_has_been_validated_at_least_once_false = () => validator.HasValidatedAtLeastOnce.ShouldBeFalse();
     }
 }

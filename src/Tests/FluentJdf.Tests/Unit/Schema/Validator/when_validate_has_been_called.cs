@@ -31,5 +31,7 @@ namespace FluentJdf.Tests.Unit.Schema.Validator {
         It should_have_zero_warning_messages = () => validator.Warnings.Count.ShouldEqual(0);
 
         It should_have_message_count_equal_to_errors_plus_warnings = () => validator.Messages.Count.ShouldEqual(validator.Warnings.Count + validator.Errors.Count);
+
+        It should_have_has_been_validated_at_least_once_true = () => validator.HasValidatedAtLeastOnce.ShouldBeTrue();
     }
 }

@@ -25,6 +25,12 @@ namespace FluentJdf.Schema {
         }
 
         /// <summary>
+        /// Gets true if the validate method of this validator has
+        /// been called at least once.
+        /// </summary>
+        public bool HasValidatedAtLeastOnce { get; private set; }
+
+        /// <summary>
         /// Gets a readonly collection of messages from the last
         /// validation call.  Will be empty until Validate is called
         /// for the first time.
@@ -67,7 +73,7 @@ namespace FluentJdf.Schema {
                                      addSchemaInfo);
             IsValid = messages.Where(m => m.ValidationMessageType == ValidationMessageType.Error).Count() == 0;
             Messages = new ReadOnlyCollection<ValidationMessage>(messages);
-
+            HasValidatedAtLeastOnce = true;
             return IsValid.Value;
         }
     }

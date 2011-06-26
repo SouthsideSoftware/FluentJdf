@@ -177,6 +177,8 @@
     <Compile Include="LinqToJdf\XPathDecorator.cs" />
     <Compile Include="LinqToJdf\XPathExtensions.cs" />
     <Compile Include="Messaging\JmfResult.cs" />
+    <Compile Include="Messaging\Notification.cs" />
+    <Compile Include="Messaging\NotificationClass.cs" />
     <Compile Include="Messaging\ReturnCode.cs" />
     <Compile Include="Properties\CommonAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

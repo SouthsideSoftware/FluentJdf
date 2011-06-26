@@ -19,6 +19,10 @@ namespace FluentJdf.LinqToJdf {
         /// Constructor.
         /// </summary>
         protected FluentJdfDocumentBase() {
+            Initialize();
+        }
+
+        void Initialize() {
             validator = new Validator(this);
         }
 
@@ -30,6 +34,7 @@ namespace FluentJdf.LinqToJdf {
             if (document.Root == null) {
                 throw new ArgumentException(Resources.Messages.FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired);
             }
+            Initialize();
         }
 
         /// <summary>
@@ -52,5 +57,13 @@ namespace FluentJdf.LinqToJdf {
         /// Gets the current collection of validation warnings and errors.
         /// </summary>
         public IList<ValidationMessage> ValidationMessages { get { return validator.Messages; } }
+
+        /// <summary>
+        /// Gets true if the document has been validated at least once.
+        /// </summary>
+        /// <remarks>A return of true only means the document was 
+        /// validuated at some point.  It does not mean it was
+        /// validated in its current state.</remarks>
+        public bool HasBeenValidatedAtLeastOnce { get { return validator.HasValidatedAtLeastOnce; } }
     }
 }
