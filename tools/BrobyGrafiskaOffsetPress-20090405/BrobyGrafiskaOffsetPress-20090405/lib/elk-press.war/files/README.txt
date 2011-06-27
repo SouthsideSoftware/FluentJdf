@@ -1,1 +1,0 @@
-JDF and content files will be published to this directory.
