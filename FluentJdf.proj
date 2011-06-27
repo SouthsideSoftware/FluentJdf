@@ -6,7 +6,6 @@
     <ToolsDir>$(MSBuildProjectDirectory)\tools</ToolsDir>
     <PackageDir>$(MSBuildProjectDirectory)\packages</PackageDir>
 		<MSBuildCommunityTasksPath>$(ToolsDir)\MSBuild\MSBuildCommunityTasks</MSBuildCommunityTasksPath>
-    <MSBuildAwsTasksPath>$(ToolsDir)\MSBuild\MSBuild.AWS.Tasks.Release</MSBuildAwsTasksPath>
     <SouthSideTasksPath>$(ToolsDir)\MSBuild\SouthSideBuildTasks</SouthSideTasksPath>
     <agent_home_dir>dummy</agent_home_dir>
     <dotCover>$(agent_home_dir)\tools\dotCover\dotCover.exe</dotCover>
@@ -65,7 +64,6 @@
 	</ItemGroup>
 
 	<Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets"/>
-  <Import Project="$(MSBuildAwsTasksPath)\Snowcode.S3BuildPublisher.Tasks.Targets"/>
   <Import Project="$(SouthSideTasksPath)\SouthSideBuildTasks.MSBuild.Tasks.Targets"/>
 
 	<Target Name="Dist" DependsOnTargets="Clean;InstallPackages;Version;Build;Test;Document;Publish"/>
