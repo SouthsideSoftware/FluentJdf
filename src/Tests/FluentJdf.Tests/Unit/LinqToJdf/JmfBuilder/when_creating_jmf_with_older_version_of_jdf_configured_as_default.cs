@@ -7,7 +7,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
     public class when_creating_jmf_with_older_version_of_jdf_configured_as_default {
         static Message message;
 
-        Establish context = () => Library.Settings.WithJdfAuthoringSettings().JdfVersion(JdfVersion.Version_1_1);
+        Establish context = () => FluentJdf.Configuration.FluentJdfLibrary.Settings.WithJdfAuthoringSettings().JdfVersion(JdfVersion.Version_1_1);
 
         Because of = () => message = Message.Create().AddCommand().SubmitQueueEntry().Message;
 

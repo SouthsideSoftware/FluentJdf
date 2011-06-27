@@ -18,13 +18,13 @@ namespace FluentJdf.Transmission {
         public ITransmitter GetTransmitterForScheme(string scheme) {
             ParameterCheck.StringRequiredAndNotWhitespace(scheme, "scheme");
 
-            if (!Library.Settings.TransmitterSettings.TransmittersByScheme.ContainsKey(scheme)) {
+            if (!Configuration.FluentJdfLibrary.Settings.TransmitterSettings.TransmittersByScheme.ContainsKey(scheme)) {
                 throw new ArgumentException(string.Format(Messages.TransmitterFactory_GetTransmitterForScheme_SchemeNotConfigured, scheme));
             }
 
             return
                 Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmitter>(
-                    Library.Settings.TransmitterSettings.TransmittersByScheme[scheme]);
+                    Configuration.FluentJdfLibrary.Settings.TransmitterSettings.TransmittersByScheme[scheme]);
         }
 
         /// <summary>

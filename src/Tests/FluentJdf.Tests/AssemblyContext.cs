@@ -10,7 +10,7 @@ namespace FluentJdf.Tests {
 
         public void OnAssemblyStart() {
             Infrastructure.Core.Configuration.Settings.UseCastleWindsor().LogWithNLog().Configure();
-            Library.Settings.ResetToDefaults();
+            Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
         }
 
         public void OnAssemblyComplete() {}
@@ -18,7 +18,7 @@ namespace FluentJdf.Tests {
         #endregion
 
         public void AfterContextCleanup() {
-            Library.Settings.ResetToDefaults();
+            Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
         }
     }
 }

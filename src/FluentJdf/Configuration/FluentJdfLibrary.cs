@@ -2,15 +2,15 @@
     /// <summary>
     /// Holds JDP settings.
     /// </summary>
-    public class Library {
-        static readonly Library settings = new Library();
+    public class FluentJdfLibrary {
+        static readonly FluentJdfLibrary settings = new FluentJdfLibrary();
         readonly EncodingSettings encodingSettings;
         readonly HttpTransmissionSettings httpTransmissionSettings;
         readonly JdfAuthoringSettings jdfAuthoringSettings;
         readonly TransmissionPartSettings transmissionPartSettings;
         readonly TransmitterSettings transmitterSettings;
 
-        Library() {
+        FluentJdfLibrary() {
             jdfAuthoringSettings = new JdfAuthoringSettings();
             encodingSettings = new EncodingSettings();
             transmissionPartSettings = new TransmissionPartSettings();
@@ -22,7 +22,7 @@
         /// <summary>
         /// The singleton settings instance (defaults)
         /// </summary>
-        public static Library Settings {
+        public static FluentJdfLibrary Settings {
             get { return settings; }
         }
 
@@ -65,7 +65,7 @@
         /// Make all settings default.
         /// </summary>
         /// <returns></returns>
-        public Library ResetToDefaults() {
+        public FluentJdfLibrary ResetToDefaults() {
             jdfAuthoringSettings.ResetToDefaults();
             encodingSettings.ResetToDefault();
             transmissionPartSettings.ResetToDefault();

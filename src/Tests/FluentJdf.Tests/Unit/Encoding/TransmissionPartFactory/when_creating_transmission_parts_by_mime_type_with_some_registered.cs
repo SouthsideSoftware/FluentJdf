@@ -11,17 +11,17 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory {
         static TransmissionPartFactory factory;
 
         Establish context = () => {
-                                Library.Settings.ResetToDefaults();
-                                Library.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType("one", typeof (FluentJdf.Encoding.TransmissionPart));
-                                Library.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType("two", typeof(FluentJdf.Encoding.TransmissionPart));
-                                Library.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType("three", typeof (MockTransmissionPart3));
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType("one", typeof (FluentJdf.Encoding.TransmissionPart));
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType("two", typeof(FluentJdf.Encoding.TransmissionPart));
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType("three", typeof (MockTransmissionPart3));
                                 factory = new TransmissionPartFactory();
                             };
 
         It should_fall_back_to_default_when_mime_type_is_not_registered =
             () =>
             factory.CreateTransmissionPart("name", TestDataHelper.Instance.GetTestStream("signs.jpg"), "xxx").ShouldBeOfType(
-                Library.Settings.TransmissionPartSettings.DefaultTransmissionPart);
+                FluentJdf.Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.DefaultTransmissionPart);
 
         It should_get_class_registered_for_mime_type_one =
             () =>

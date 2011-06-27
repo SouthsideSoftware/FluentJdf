@@ -22,19 +22,19 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
         It should_have_agent_name_from_configuration =
             () =>
             document.Root.AuditPoolElement().Element(Audit.Modified).GetAttributeValueOrNull("AgentName").ShouldEqual(
-                Library.Settings.JdfAuthoringSettings.AgentName);
+                FluentJdf.Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.AgentName);
 
         It should_have_agent_version_from_configuration =
             () =>
             document.Root.AuditPoolElement().Element(Audit.Modified).GetAttributeValueOrNull("AgentVersion").ShouldEqual(
-                Library.Settings.JdfAuthoringSettings.AgentVersion);
+                FluentJdf.Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.AgentVersion);
 
         It should_have_an_audit_pool_in_root = () => document.Root.Element(Element.AuditPool).ShouldNotBeNull();
 
         It should_have_author_from_configuration =
             () =>
             document.Root.AuditPoolElement().Element(Audit.Modified).GetAttributeValueOrNull("Author").ShouldEqual(
-                Library.Settings.JdfAuthoringSettings.Author);
+                FluentJdf.Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.Author);
 
         It should_have_one_modified_audit_in_the_audit_pool = () => document.Root.AuditPoolElement().Elements(Audit.Modified).Count().ShouldEqual(1);
     }

@@ -10,21 +10,21 @@ namespace FluentJdf.Configuration
     /// Fluent setting for authoring settings
     /// </summary>
     public class JdfAuthoringSettingsBuilder {
-        Library library;
+        FluentJdfLibrary fluentJdfLibrary;
         JdfAuthoringSettings authoringSettings;
 
-        internal JdfAuthoringSettingsBuilder(Library library, JdfAuthoringSettings authoringSettings) {
-            ParameterCheck.ParameterRequired(library, "library");
+        internal JdfAuthoringSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, JdfAuthoringSettings authoringSettings) {
+            ParameterCheck.ParameterRequired(fluentJdfLibrary, "FluentJdfLibrary");
             ParameterCheck.ParameterRequired(authoringSettings, "authoringSettings");
 
-            this.library = library;
+            this.fluentJdfLibrary = fluentJdfLibrary;
             this.authoringSettings = authoringSettings;
         }
 
         /// <summary>
-        /// Gets the owning library settings.
+        /// Gets the owning FluentJdfLibrary settings.
         /// </summary>
-        public Library Settings { get { return library; }}
+        public FluentJdfLibrary Settings { get { return fluentJdfLibrary; }}
 
         /// <summary>
         /// Sets option for generating job id

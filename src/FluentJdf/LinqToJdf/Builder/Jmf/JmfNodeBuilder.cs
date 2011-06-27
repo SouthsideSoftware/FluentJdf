@@ -21,7 +21,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
                 Element = new XElement(LinqToJdf.Element.JMF);
                 Element.SetAttributeValue(XNamespace.Xmlns.GetName("xsi"), Globals.XsiNamespace.NamespaceName);
                 Element.SetVersion();
-                if (Library.Settings.JdfAuthoringSettings.HasDefaultSenderId) {
+                if (Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.HasDefaultSenderId) {
                     Element.SetSenderId();
                 }
                 Element.SetTimeStampToUtcNow();

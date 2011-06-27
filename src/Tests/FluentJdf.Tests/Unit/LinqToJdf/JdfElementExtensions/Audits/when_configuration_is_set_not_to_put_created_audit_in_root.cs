@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
     public class when_configuration_is_set_not_to_put_created_audit_in_root {
         static XDocument document;
 
-        Establish context = () => Library.Settings.WithJdfAuthoringSettings().CreateAuditOnNewRootJdf(false);
+        Establish context = () => FluentJdf.Configuration.FluentJdfLibrary.Settings.WithJdfAuthoringSettings().CreateAuditOnNewRootJdf(false);
 
         Because of = () => document = Ticket.CreateIntent().With().JobId("foo")
                                           .AddIntent().With().JobId("foo").JobPartId("fi")

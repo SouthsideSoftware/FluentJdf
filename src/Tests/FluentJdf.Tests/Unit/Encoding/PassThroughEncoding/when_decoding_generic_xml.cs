@@ -14,7 +14,7 @@ namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding {
         static Stream stream;
 
         Establish context = () => {
-            Library.Settings.ResetToDefaults();
+            FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
             stream = new FluentJdf.Encoding.XmlTransmissionPart(new XDocument(new XElement("foo")), "test").CopyOfStream();
             originalStreamLength = stream.Length;
         };

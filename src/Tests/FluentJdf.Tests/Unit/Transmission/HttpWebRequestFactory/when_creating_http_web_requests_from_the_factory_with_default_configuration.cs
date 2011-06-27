@@ -12,7 +12,7 @@ namespace FluentJdf.Tests.Unit.Transmission.HttpWebRequestFactory
 
         Establish context = () => {
             factory = new FluentJdf.Transmission.HttpWebRequestFactory();
-            Library.Settings.ResetToDefaults();
+            FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
         };
 
         Because of = () => httpWebRequest = factory.Create(new Uri("http://foo"), "text/xml"); 

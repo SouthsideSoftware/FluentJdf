@@ -19,19 +19,19 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions.Audits {
         It should_have_agent_name_from_configuration =
             () =>
             document.Root.AuditPoolElement().Element(Audit.Created).GetAttributeValueOrNull("AgentName").ShouldEqual(
-                Library.Settings.JdfAuthoringSettings.AgentName);
+                FluentJdf.Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.AgentName);
 
         It should_have_agent_version_from_configuration =
             () =>
             document.Root.AuditPoolElement().Element(Audit.Created).GetAttributeValueOrNull("AgentVersion").ShouldEqual(
-                Library.Settings.JdfAuthoringSettings.AgentVersion);
+                FluentJdf.Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.AgentVersion);
 
         It should_have_an_audit_pool_in_root = () => document.Root.Element(Element.AuditPool).ShouldNotBeNull();
 
         It should_have_author_from_configuration =
             () =>
             document.Root.AuditPoolElement().Element(Audit.Created).GetAttributeValueOrNull("Author").ShouldEqual(
-                Library.Settings.JdfAuthoringSettings.Author);
+                FluentJdf.Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.Author);
 
         It should_have_one_created_audit_in_the_audit_pool = () => document.Root.AuditPoolElement().Elements(Audit.Created).Count().ShouldEqual(1);
         It should_not_have_an_audit_pool_in_second_level_jdf = () => document.Root.Element(Element.JDF).Element(Element.AuditPool).ShouldBeNull();

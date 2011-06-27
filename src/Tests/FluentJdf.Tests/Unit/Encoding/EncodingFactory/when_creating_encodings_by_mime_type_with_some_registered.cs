@@ -10,10 +10,10 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory {
         static FluentJdf.Encoding.EncodingFactory factory;
 
         Establish context = () => {
-                                Library.Settings.ResetToDefaults();
-                                Library.Settings.WithEncodingSettings().EncodingForMimeType("one", typeof (MockEncoding));
-                                Library.Settings.WithEncodingSettings().EncodingForMimeType("two", typeof(MockEncoding));
-                                Library.Settings.WithEncodingSettings().EncodingForMimeType("three", typeof(MockEncoding3));
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings().EncodingForMimeType("one", typeof (MockEncoding));
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings().EncodingForMimeType("two", typeof(MockEncoding));
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings().EncodingForMimeType("three", typeof(MockEncoding3));
                                 factory = new FluentJdf.Encoding.EncodingFactory();
                             };
 
@@ -23,7 +23,7 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory {
 
         It should_get_class_registered_for_mime_type_three = () => factory.GetEncodingForMimeType("three").ShouldBeOfType(typeof(MockEncoding3));
 
-        It should_fall_back_to_default_when_mime_type_is_not_registered = () => factory.GetEncodingForMimeType("four").ShouldBeOfType(Library.Settings.EncodingSettings.DefaultEncoding);
+        It should_fall_back_to_default_when_mime_type_is_not_registered = () => factory.GetEncodingForMimeType("four").ShouldBeOfType(FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.DefaultEncoding);
     }
 
     public class MockEncoding : IEncoding {

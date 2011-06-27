@@ -7,7 +7,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder {
     public class when_creating_jdf_node_with_older_version_as_configured_default {
         static Ticket ticket;
 
-        Establish context = () => Library.Settings.WithJdfAuthoringSettings().JdfVersion(JdfVersion.Version_1_1);
+        Establish context = () => FluentJdf.Configuration.FluentJdfLibrary.Settings.WithJdfAuthoringSettings().JdfVersion(JdfVersion.Version_1_1);
 
         Because of = () => ticket = Ticket.CreateProcess(ProcessType.Cutting, ProcessType.Creasing, ProcessType.AssetListCreation).Ticket;
 

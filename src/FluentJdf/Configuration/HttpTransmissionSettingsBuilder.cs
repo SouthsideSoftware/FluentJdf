@@ -13,20 +13,20 @@ namespace FluentJdf.Configuration
     /// </summary>
     public class HttpTransmissionSettingsBuilder {
         HttpTransmissionSettings httpTransmissionSettings;
-        Library library;
+        FluentJdfLibrary fluentJdfLibrary;
 
-        internal HttpTransmissionSettingsBuilder(Library library, HttpTransmissionSettings httpTransmissionSettings) {
-            ParameterCheck.ParameterRequired(library, "library");
+        internal HttpTransmissionSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, HttpTransmissionSettings httpTransmissionSettings) {
+            ParameterCheck.ParameterRequired(fluentJdfLibrary, "FluentJdfLibrary");
             ParameterCheck.ParameterRequired(httpTransmissionSettings, "httpTransmissionSettings");
 
-            this.library = library;
+            this.fluentJdfLibrary = fluentJdfLibrary;
             this.httpTransmissionSettings = httpTransmissionSettings;
         }
 
         /// <summary>
-        /// Gets the owning library settings.
+        /// Gets the owning FluentJdfLibrary settings.
         /// </summary>
-        public Library Settings { get { return library; } }
+        public FluentJdfLibrary Settings { get { return fluentJdfLibrary; } }
 
         /// <summary>
         /// Sets the timeout in seconds.

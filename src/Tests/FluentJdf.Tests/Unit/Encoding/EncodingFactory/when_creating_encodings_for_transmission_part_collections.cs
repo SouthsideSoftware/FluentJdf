@@ -13,7 +13,7 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory {
         static IEncoding threePartEncoding;
 
         Establish context = () => {
-            Library.Settings.ResetToDefaults();
+            FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
             factory = new FluentJdf.Encoding.EncodingFactory();
         };
 
@@ -31,12 +31,12 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory {
             threePartEncoding = factory.GetEncodingForTransmissionParts(transmissionParts);
         };
 
-        It should_have_default_single_part_encoding_when_getting_encoding_with_zero_transmission_parts = () => zeroPartEncoding.ShouldBe(Library.Settings.EncodingSettings.DefaultSinglePartEncoding);
+        It should_have_default_single_part_encoding_when_getting_encoding_with_zero_transmission_parts = () => zeroPartEncoding.ShouldBe(FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.DefaultSinglePartEncoding);
 
-        It should_have_default_single_part_encoding_when_getting_encoding_with_one_transmission_parts = () => onePartEncoding.ShouldBe(Library.Settings.EncodingSettings.DefaultSinglePartEncoding);
+        It should_have_default_single_part_encoding_when_getting_encoding_with_one_transmission_parts = () => onePartEncoding.ShouldBe(FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.DefaultSinglePartEncoding);
 
-        It should_have_default_multi_part_encoding_when_getting_encoding_with_two_transmission_parts = () => twoPartEncoding.ShouldBe(Library.Settings.EncodingSettings.DefaultMultiPartEncoding);
+        It should_have_default_multi_part_encoding_when_getting_encoding_with_two_transmission_parts = () => twoPartEncoding.ShouldBe(FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.DefaultMultiPartEncoding);
 
-        It should_have_default_multi_part_encoding_when_getting_encoding_with_three_transmission_parts = () => threePartEncoding.ShouldBe(Library.Settings.EncodingSettings.DefaultMultiPartEncoding);
+        It should_have_default_multi_part_encoding_when_getting_encoding_with_three_transmission_parts = () => threePartEncoding.ShouldBe(FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.DefaultMultiPartEncoding);
     }
 }

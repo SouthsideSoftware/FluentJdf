@@ -14,7 +14,7 @@ namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding {
         static Stream stream;
 
         Establish context = () => {
-            Library.Settings.ResetToDefaults();
+            FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
             stream = TestDataHelper.Instance.GetTestStream("signs.jpg");
             originalStreamLength = stream.Length;
         };

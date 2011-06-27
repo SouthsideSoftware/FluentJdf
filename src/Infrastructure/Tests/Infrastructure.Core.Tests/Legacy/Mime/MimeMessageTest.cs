@@ -271,7 +271,7 @@ namespace Infrastructure.Core.Tests.Legacy.Mime
 					mime.Headers["content-type"].Parameters["type"].Value.ToLower().Equals(p1.Headers["content-type"].Value.ToLower()));
 			}
 
-			string dir = Path.Combine(Path.GetTempPath(),"JdpBinary");
+			string dir = Path.Combine(Path.GetTempPath(),"FluentJdfBinary");
 			for (int i = 0; i < mime.NumParts; i++)
 			{
 				SaveToFile(dir, mime.GetPart(i), true);
@@ -329,7 +329,7 @@ namespace Infrastructure.Core.Tests.Legacy.Mime
                 AssertionHelper.IsTrue("The content type is multipart/related", outputMime.GetHeaderField("content-type").CompareTo("multipart/related") == 0);
                 AssertionHelper.IsTrue("There are 4 parts", outputMime.NumParts == 4);
 
-                string dir = Path.Combine(Path.GetTempPath(), "JdpBinary");
+                string dir = Path.Combine(Path.GetTempPath(), "FluentJdfBinary");
                 for (int i = 0; i < outputMime.NumParts; i++)
                 {
                     SaveToFile(dir, outputMime.GetPart(i), false);
@@ -387,118 +387,5 @@ namespace Infrastructure.Core.Tests.Legacy.Mime
 				}
 			}
 		}
-
-        //todo: bring this back once we have a concept of transmission part collections.
-        //[Test]
-        //public void TestContentDispositionAttachmentFilename()
-        //{
-        //    TransmissionPartCollection parts = new TransmissionPartCollection();
-        //    //Add jmf part
-        //    parts.Add(TransmissionPart.CreatePart("jmf1", Path.Combine(Config.JdpTestDataFolder, "SimpleCommandAbortQEntry.xml")));
-        //    //Add jdf part
-        //    parts.Add(TransmissionPart.CreatePart("jdf1", Path.Combine(Config.JdpTestDataFolder, "sampleJDF.xml")));
-        //    //Add attachment part
-        //    parts.Add(TransmissionPart.CreatePart("image1", Path.Combine(Config.JdpTestDataFolder, "signs.jpg")));
-
-        //    MimeEncoding encoding = new MimeEncoding();
-        //    string contentType;
-        //    byte [] bytes = encoding.Encode(parts, out contentType);
-        //    string fileName = Path.Combine(Path.GetTempPath(), "TestContentDispositionAttachmentFilenameOutput.txt");
-        //    if (File.Exists(fileName))
-        //        File.Delete(fileName);
-        //    Stream stream = File.Open(fileName, FileMode.Create, FileAccess.Write);
-        //    try
-        //    {
-        //        stream.Write(bytes, 0, bytes.Length);
-        //    } 
-        //    finally 
-        //    {
-        //        stream.Close();
-        //    }
-
-        //    //Read back the entire mime document and write out the graphic
-        //    Core.Mime mime = new Core.Mime(fileName);
-        //    AssertionHelper.IsTrue("There are 3 parameter in the second header field", mime.Headers[1].Parameters.Count == 3);
-        //    AssertionHelper.IsTrue("The content type is multipart/related", mime.Headers.Contains("content-type") && mime.GetHeaderField("content-type").CompareTo("multipart/related") == 0);
-        //    AssertionHelper.IsTrue("There are 3 parts", mime.NumParts == 3);
-        //    AssertionHelper.IsTrue("The type is the same as the content type of the first body", 
-        //        mime.Headers.Contains("content-type") 
-        //        && mime.Headers["content-type"].Parameters.Count == 3
-        //        && mime.Headers["content-type"].Parameters[0].Name.Equals("type")
-        //        && mime.Headers["content-type"].Parameters[1].Name.Equals("charset")
-        //        && mime.Headers["content-type"].Parameters[2].Name.Equals("boundary"));
-
-        //    //Read the jmf part
-        //    Core.Mime mimepart = mime.GetPartByContentId("jmf1");
-        //    AssertionHelper.IsTrue("The jmf part has filename SimpleCommandAbortQEntry.xml", 
-        //        mimepart != null
-        //        && mimepart.Headers.Contains("content-disposition") 
-        //        && mimepart.Headers["content-disposition"].Value.ToLower().Equals("attachment")
-        //        && mimepart.Headers["content-disposition"].Parameters.Contains("filename")
-        //        && mimepart.Headers["content-disposition"].Parameters["filename"].Value.Equals("SimpleCommandAbortQEntry.xml"));
-
-        //    AssertionHelper.IsTrue("The type is the same as the content type of the first body", 
-        //        mimepart.Headers.Contains("content-type")
-        //        && mime.Headers["content-type"].Parameters[0].Value.Equals(mimepart.Headers["content-type"].Value));
-
-        //    //Read the jdf part
-        //    mimepart = mime.GetPartByContentId("jdf1");
-        //    AssertionHelper.IsTrue("The jdf part has filename sampleJDF.xml", 
-        //        mimepart != null
-        //        && mimepart.Headers.Contains("content-disposition") 
-        //        && mimepart.Headers["content-disposition"].Value.ToLower().Equals("attachment")
-        //        && mimepart.Headers["content-disposition"].Parameters.Contains("filename")
-        //        && mimepart.Headers["content-disposition"].Parameters["filename"].Value.Equals("sampleJDF.xml"));
-
-        //    //Read the image part
-        //    mimepart = mime.GetPartByContentId("image1");
-        //    AssertionHelper.IsTrue("The image part has filename signs.jpg", 
-        //        mimepart != null
-        //        && mimepart.Headers.Contains("content-disposition") 
-        //        && mimepart.Headers["content-disposition"].Value.ToLower().Equals("attachment")
-        //        && mimepart.Headers["content-disposition"].Parameters.Contains("filename")
-        //        && mimepart.Headers["content-disposition"].Parameters["filename"].Value.Equals("signs.jpg"));
-
-        //    VerifyImage(mimepart.Buffer);
-
-        //    //Save mime as binary and try to open image again
-        //    mime.GetPartByContentId("image1").EncodingType = Core.Mime.MimeEncoding.Binary;
-
-        //    string fileName2 = Path.Combine(Path.GetTempPath(), "TestContentDispositionAttachmentFilenameOutput2.mim");
-        //    if (File.Exists(fileName2))
-        //        File.Delete(fileName2);
-        //    mime.Write(File.Open(fileName2, FileMode.Create, FileAccess.Write, FileShare.None));
-        //    Core.Mime outputMime = new Core.Mime(fileName2);
-
-        //    VerifyImage(outputMime.GetPartByContentId("image1").Buffer);
-        //}
-	
-        //private void VerifyImage(byte [] buffer)
-        //{
-        //    string imageOutputFile = Path.Combine(Path.GetTempPath(), "TestContentDispositionAttachmentFilenameSignOutput.jpg");
-        //    if (File.Exists(imageOutputFile))
-        //        File.Delete(imageOutputFile);
-        //    Stream stream = File.Open(imageOutputFile, FileMode.Create, FileAccess.ReadWrite);
-        //    try
-        //    {
-        //        stream.Write(buffer, 0, buffer.Length);
-        //    }
-        //    finally 
-        //    {
-        //        stream.Close();
-        //    }
-        //    //Open the graphic
-        //    Image i = Image.FromFile(imageOutputFile);
-        //    try
-        //    {
-        //        AssertionHelper.IsTrue("Image is 242 pixels wide", i.Width == 242);
-        //        AssertionHelper.IsTrue("Image is 360 pixels high", i.Height == 360);
-        //        AssertionHelper.IsTrue("Horizontal resolution is 72dpi",i.HorizontalResolution == 72);
-        //    } 
-        //    finally 
-        //    {
-        //        i.Dispose();
-        //    }
-        //}
 	}
 }

@@ -15,7 +15,7 @@ namespace FluentJdf.Transmission {
         /// <returns></returns>
         public HttpWebRequest Create(Uri uri, string contentType) {
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(uri);
-            var settings = Library.Settings.HttpTransmissionSettings;
+            var settings = Configuration.FluentJdfLibrary.Settings.HttpTransmissionSettings;
             if (settings.HasProxySettings)
             {
                 NetworkCredential credentials = null;

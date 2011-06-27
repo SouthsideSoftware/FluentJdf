@@ -1,11 +1,11 @@
 <Query Kind="Program">
-  <Reference Relative="..\src\FluentJdf\bin\Debug\Infrastructure.Core.dll">C:\development\Jwf\src\FluentJdf\bin\Debug\Infrastructure.Core.dll</Reference>
-  <Reference Relative="..\src\FluentJdf\bin\Debug\FluentJdf.dll">C:\development\Jwf\src\FluentJdf\bin\Debug\FluentJdf.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll">C:\development\Jwf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll">C:\development\Jwf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll">C:\development\Jwf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll">C:\development\Jwf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll">C:\development\Jwf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll</Reference>
+  <Reference Relative="..\src\FluentJdf\bin\Debug\Infrastructure.Core.dll">C:\development\FluentJdf\src\FluentJdf\bin\Debug\Infrastructure.Core.dll</Reference>
+  <Reference Relative="..\src\FluentJdf\bin\Debug\FluentJdf.dll">C:\development\FluentJdf\src\FluentJdf\bin\Debug\FluentJdf.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll</Reference>
   <Namespace>FluentJdf.LinqToJdf</Namespace>
   <Namespace>Infrastructure.Container.CastleWindsor</Namespace>
   <Namespace>Infrastructure.Logging.NLog</Namespace>
@@ -43,7 +43,7 @@ void InitializeFluentJdf() {
 		config.LogWithNLog(GetNLogConfiguration());
 	}
 	config.Configure();
-	Library.Settings.ResetToDefaults();
+	FluentJdfLibrary.Settings.ResetToDefaults();
 }
 
 LoggingConfiguration GetNLogConfiguration(){

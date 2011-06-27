@@ -14,9 +14,9 @@ namespace FluentJdf.Tests.Unit.Transmission {
         static FluentJdf.Transmission.TransmitterFactory factory;
 
         Establish context = () => {
-                                Library.Settings.ResetToDefaults();
-                                Library.Settings.WithTransmitterSettings().TransmitterForScheme("http", typeof (MockHttpTransmitter));
-                                Library.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(MockFileTransmitter));
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("http", typeof (MockHttpTransmitter));
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(MockFileTransmitter));
                                 factory = new FluentJdf.Transmission.TransmitterFactory();
                             };
 

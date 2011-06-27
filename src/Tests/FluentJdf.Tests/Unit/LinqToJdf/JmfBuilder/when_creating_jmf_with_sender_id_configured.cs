@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
     public class when_creating_jmf_with_sender_id_configured {
         static Message message;
 
-        Establish context = () => Library.Settings.WithJdfAuthoringSettings().SenderId("test");
+        Establish context = () => FluentJdf.Configuration.FluentJdfLibrary.Settings.WithJdfAuthoringSettings().SenderId("test");
 
         Because of = () => message = Message.Create().AddCommand().SubmitQueueEntry().Message;
 

@@ -27,12 +27,12 @@ namespace FluentJdf.Encoding
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
             ITransmissionPart transmissionPart;
-            if (Library.Settings.TransmissionPartSettings.TransmissionPartsByMimeType.ContainsKey(mimeType))
+            if (Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType.ContainsKey(mimeType))
             {
-                transmissionPart = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPart>(Library.Settings.TransmissionPartSettings.TransmissionPartsByMimeType[mimeType]);
+                transmissionPart = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPart>(Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType[mimeType]);
             }
             else {
-                transmissionPart = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPart>(Library.Settings.TransmissionPartSettings.DefaultTransmissionPart.FullName);
+                transmissionPart = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPart>(Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.DefaultTransmissionPart.FullName);
             }
 
             transmissionPart.Initialize(name, data, mimeType, id);

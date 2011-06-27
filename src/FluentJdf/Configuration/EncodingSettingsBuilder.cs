@@ -9,20 +9,20 @@ namespace FluentJdf.Configuration {
     /// </summary>
     public class EncodingSettingsBuilder {
         EncodingSettings encodingSettings;
-        Library library;
+        FluentJdfLibrary fluentJdfLibrary;
 
-        internal EncodingSettingsBuilder(Library library, EncodingSettings encodingSettings) {
-            ParameterCheck.ParameterRequired(library, "library");
+        internal EncodingSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, EncodingSettings encodingSettings) {
+            ParameterCheck.ParameterRequired(fluentJdfLibrary, "FluentJdfLibrary");
             ParameterCheck.ParameterRequired(encodingSettings, "encodingSettings");
 
-            this.library = library;
+            this.fluentJdfLibrary = fluentJdfLibrary;
             this.encodingSettings = encodingSettings;
         }
 
         /// <summary>
-        /// Gets the owning library settings.
+        /// Gets the owning FluentJdfLibrary settings.
         /// </summary>
-        public Library Settings {get { return library; }}
+        public FluentJdfLibrary Settings {get { return fluentJdfLibrary; }}
 
         /// <summary>
         /// Register an encoding for a specific mime type.

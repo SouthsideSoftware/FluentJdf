@@ -20,11 +20,11 @@ namespace FluentJdf.Encoding
         public IEncoding GetEncodingForMimeType(string mimeType) {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
-            if (Library.Settings.EncodingSettings.EncodingsByMimeType.ContainsKey(mimeType)) {
-                return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Library.Settings.EncodingSettings.EncodingsByMimeType[mimeType]);
+            if (Configuration.FluentJdfLibrary.Settings.EncodingSettings.EncodingsByMimeType.ContainsKey(mimeType)) {
+                return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Configuration.FluentJdfLibrary.Settings.EncodingSettings.EncodingsByMimeType[mimeType]);
             }
 
-            return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Library.Settings.EncodingSettings.DefaultEncoding.FullName);
+            return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Configuration.FluentJdfLibrary.Settings.EncodingSettings.DefaultEncoding.FullName);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace FluentJdf.Encoding
         /// </summary>
         /// <returns></returns>
         public IEncoding GetDefaultEncodingForSinglePart() {
-            return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Library.Settings.EncodingSettings.DefaultSinglePartEncoding.FullName);
+            return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Configuration.FluentJdfLibrary.Settings.EncodingSettings.DefaultSinglePartEncoding.FullName);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace FluentJdf.Encoding
         /// </summary>
         /// <returns></returns>
         public IEncoding GetDefaultEncodingForMultiPart() {
-            return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Library.Settings.EncodingSettings.DefaultMultiPartEncoding.FullName);
+            return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Configuration.FluentJdfLibrary.Settings.EncodingSettings.DefaultMultiPartEncoding.FullName);
         }
 
         /// <summary>

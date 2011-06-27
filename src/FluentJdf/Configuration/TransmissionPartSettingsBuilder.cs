@@ -7,21 +7,21 @@ namespace FluentJdf.Configuration {
     /// </summary>
     public class TransmissionPartSettingsBuilder {
         TransmissionPartSettings transmissionPartSettings;
-        Library library;
+        FluentJdfLibrary fluentJdfLibrary;
 
-        internal TransmissionPartSettingsBuilder(Library library, TransmissionPartSettings transmissionPartSettings)
+        internal TransmissionPartSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, TransmissionPartSettings transmissionPartSettings)
         {
-            ParameterCheck.ParameterRequired(library, "library");
+            ParameterCheck.ParameterRequired(fluentJdfLibrary, "FluentJdfLibrary");
             ParameterCheck.ParameterRequired(transmissionPartSettings, "transmissionPartSettings");
 
-            this.library = library;
+            this.fluentJdfLibrary = fluentJdfLibrary;
             this.transmissionPartSettings = transmissionPartSettings;
         }
 
         /// <summary>
-        /// Gets the owning library settings.
+        /// Gets the owning FluentJdfLibrary settings.
         /// </summary>
-        public Library Settings {get { return library; }}
+        public FluentJdfLibrary Settings {get { return fluentJdfLibrary; }}
 
         /// <summary>
         /// Register an encoding for a specific transmission part.

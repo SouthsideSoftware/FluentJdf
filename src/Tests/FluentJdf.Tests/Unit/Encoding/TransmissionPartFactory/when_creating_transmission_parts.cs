@@ -17,7 +17,7 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory
 
         Establish context = () => {
                                 Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
-                                Library.Settings.ResetToDefaults();
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
                                 factory = new FluentJdf.Encoding.TransmissionPartFactory();
                             };
 

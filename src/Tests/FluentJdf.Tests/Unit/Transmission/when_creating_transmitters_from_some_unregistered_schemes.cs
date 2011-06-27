@@ -8,8 +8,8 @@ namespace FluentJdf.Tests.Unit.Transmission {
         static FluentJdf.Transmission.TransmitterFactory factory;
 
         Establish context = () => {
-                                Library.Settings.ResetToDefaults();
-                                Library.Settings.TransmitterSettings.TransmittersByScheme.Clear();
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.TransmitterSettings.TransmittersByScheme.Clear();
                                 factory = new FluentJdf.Transmission.TransmitterFactory();
                             };
 

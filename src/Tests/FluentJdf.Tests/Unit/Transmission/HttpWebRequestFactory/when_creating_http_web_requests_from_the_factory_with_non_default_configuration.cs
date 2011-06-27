@@ -11,8 +11,8 @@ namespace FluentJdf.Tests.Unit.Transmission.HttpWebRequestFactory {
 
         Establish context = () => {
             factory = new FluentJdf.Transmission.HttpWebRequestFactory();
-            Library.Settings.ResetToDefaults();
-            Library.Settings.WithHttpTransmissionSettings().TimeoutInSeconds(5).Proxy("http://proxy", true, "user", "password", "domain");
+            FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+            FluentJdf.Configuration.FluentJdfLibrary.Settings.WithHttpTransmissionSettings().TimeoutInSeconds(5).Proxy("http://proxy", true, "user", "password", "domain");
         };
 
         Because of = () => httpWebRequest = factory.Create(new Uri("http://foo"), "text/xml"); 

@@ -8,7 +8,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
     {
         static Ticket ticket;
 
-        Establish context = () => Library.Settings.WithJdfAuthoringSettings().GenerateJobId(false);
+        Establish context = () => FluentJdf.Configuration.FluentJdfLibrary.Settings.WithJdfAuthoringSettings().GenerateJobId(false);
 
         Because of = () => ticket = Ticket.CreateIntent().AddIntent().Ticket;
 

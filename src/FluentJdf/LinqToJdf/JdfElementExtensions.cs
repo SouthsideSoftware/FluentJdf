@@ -76,19 +76,19 @@ namespace FluentJdf.LinqToJdf {
             jdfNode.MakeJdfElementAProcess(types);
 
             if (jdfNode.IsJdfRoot()) {
-                if (Library.Settings.JdfAuthoringSettings.GenerateJobId) {
+                if (Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.GenerateJobId) {
                     jdfNode.SetJobId();
                 }
                 jdfNode.SetAttributeValue(XNamespace.Xmlns.GetName("xsi"), Globals.XsiNamespace.NamespaceName);
                 jdfNode.SetVersion();
             }
             else {
-                if (Library.Settings.JdfAuthoringSettings.GenerateJobPartId) {
+                if (Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.GenerateJobPartId) {
                     jdfNode.SetJobPartId();
                 }
             }
 
-            if (jdfNode.IsJdfRoot() && Library.Settings.JdfAuthoringSettings.CreateAuditOnNewRootJdf) {
+            if (jdfNode.IsJdfRoot() && Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.CreateAuditOnNewRootJdf) {
                 jdfNode.AddAudit(Audit.Created);
             }
 
@@ -107,13 +107,13 @@ namespace FluentJdf.LinqToJdf {
             jdfNode.ThrowExceptionIfNotJdfElement();
 
             if (agentName == null) {
-                agentName = Library.Settings.JdfAuthoringSettings.AgentName;
+                agentName = Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.AgentName;
             }
             if (agentVersion == null) {
-                agentVersion = Library.Settings.JdfAuthoringSettings.AgentVersion;
+                agentVersion = Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.AgentVersion;
             }
             if (author == null) {
-                author = Library.Settings.JdfAuthoringSettings.Author;
+                author = Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.Author;
             }
             if (eventDateTime == null) {
                 eventDateTime = DateTime.UtcNow;

@@ -203,7 +203,7 @@ namespace FluentJdf.LinqToJdf {
             jdfNode.ThrowExceptionIfNotJdfOrJmfElement();
 
             if (version == null) {
-                version = Library.Settings.JdfAuthoringSettings.JdfVersion;
+                version = Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.JdfVersion;
             }
             jdfNode.SetAttributeValue("Version", version);
             return jdfNode;

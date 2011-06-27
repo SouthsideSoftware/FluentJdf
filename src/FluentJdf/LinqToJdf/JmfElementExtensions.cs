@@ -85,7 +85,7 @@ namespace FluentJdf.LinqToJdf
             jmfNode.ThrowExceptionIfNotJmfElement();
 
             if (string.IsNullOrWhiteSpace(senderId)) {
-                senderId = Library.Settings.JdfAuthoringSettings.SenderId;
+                senderId = Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.SenderId;
             }
             
 

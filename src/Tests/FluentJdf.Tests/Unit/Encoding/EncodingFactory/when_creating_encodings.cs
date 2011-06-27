@@ -16,7 +16,7 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory
         static IEncoding defaultMultiPartEncoding;
 
         Establish context = () => {
-                                Library.Settings.ResetToDefaults();
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
                                 factory = new FluentJdf.Encoding.EncodingFactory();
                             };
 

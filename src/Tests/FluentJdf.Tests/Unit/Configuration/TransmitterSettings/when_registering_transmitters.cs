@@ -16,10 +16,10 @@ namespace FluentJdf.Tests.Unit.Configuration.TransmitterSettings {
 
         It should_be_able_to_register_a_scheme_transmitter = () => {
                                                                  Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
-                                                                 Library.Settings.ResetToDefaults();
-                                                                 Library.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType(
+                                                                 FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+                                                                 FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType(
                                                                      "boohoo", typeof (MockTransmissionPart));
-                                                                 Library.Settings.TransmissionPartSettings.TransmissionPartsByMimeType["boohoo"].
+                                                                 FluentJdf.Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType["boohoo"].
                                                                      ShouldEqual(typeof (MockTransmissionPart).FullName);
                                                              };
     }
