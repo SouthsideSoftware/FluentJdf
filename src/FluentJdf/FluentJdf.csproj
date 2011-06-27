@@ -104,6 +104,7 @@
     <Compile Include="Configuration\HttpTransmissionSettingsBuilder.cs" />
     <Compile Include="Configuration\JdfAuthoringSettings.cs" />
     <Compile Include="Configuration\JdfAuthoringSettingsBuilder.cs" />
+    <Compile Include="Configuration\SettingsBuilderBase.cs" />
     <Compile Include="Configuration\TransmissionPartSettings.cs" />
     <Compile Include="Configuration\TransmissionPartSettingsBuilder.cs" />
     <Compile Include="Configuration\TransmitterSettings.cs" />

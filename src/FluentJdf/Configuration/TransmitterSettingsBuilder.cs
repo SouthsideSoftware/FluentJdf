@@ -5,23 +5,15 @@ namespace FluentJdf.Configuration {
     /// <summary>
     /// Settings for transmitters.
     /// </summary>
-    public class TransmitterSettingsBuilder {
+    public class TransmitterSettingsBuilder : SettingsBuilderBase {
         TransmitterSettings transmitterSettings;
-        FluentJdfLibrary fluentJdfLibrary;
 
-        internal TransmitterSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, TransmitterSettings transmitterSettings)
+        internal TransmitterSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, TransmitterSettings transmitterSettings) : base(fluentJdfLibrary)
         {
-            ParameterCheck.ParameterRequired(fluentJdfLibrary, "FluentJdfLibrary");
             ParameterCheck.ParameterRequired(transmitterSettings, "transmitterSettings");
 
-            this.fluentJdfLibrary = fluentJdfLibrary;
             this.transmitterSettings = transmitterSettings;
         }
-
-        /// <summary>
-        /// Gets the owning FluentJdfLibrary settings.
-        /// </summary>
-        public FluentJdfLibrary Settings {get { return fluentJdfLibrary; }}
 
         /// <summary>
         /// Register a transmitter for a scheme.
