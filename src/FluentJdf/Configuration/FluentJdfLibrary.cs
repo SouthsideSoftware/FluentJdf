@@ -2,7 +2,7 @@
     /// <summary>
     /// Holds JDP settings.
     /// </summary>
-    public class FluentJdfLibrary {
+    public sealed class FluentJdfLibrary {
         static readonly FluentJdfLibrary settings = new FluentJdfLibrary();
         readonly EncodingSettings encodingSettings;
         readonly HttpTransmissionSettings httpTransmissionSettings;
@@ -10,7 +10,12 @@
         readonly TransmissionPartSettings transmissionPartSettings;
         readonly TransmitterSettings transmitterSettings;
 
-        FluentJdfLibrary() {
+        /// <summary>Constructor.</summary>
+        ///<remarks>
+        /// Do not use this constructor to access global settings.
+        /// The global settings are contained in FluentJdfLibrary.Settings.
+        /// </remarks>
+        public FluentJdfLibrary() {
             jdfAuthoringSettings = new JdfAuthoringSettings();
             encodingSettings = new EncodingSettings();
             transmissionPartSettings = new TransmissionPartSettings();
