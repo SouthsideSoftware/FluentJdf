@@ -1,8 +1,9 @@
+
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
-    /// Used to build queue status query
+    /// Used to build QueueStatus
     /// </summary>
     public class QueueStatusQueryBuilder : QueryBuilder {
         internal const string IdPrefix = "QS_";

@@ -1,8 +1,9 @@
+
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
-    /// Used to build submit queue entry
+    /// Used to build SubmitQueueEntry
     /// </summary>
     public class SubmitQueueEntryCommandBuilder : CommandBuilder {
         internal const string IdPrefix = "SQE_";

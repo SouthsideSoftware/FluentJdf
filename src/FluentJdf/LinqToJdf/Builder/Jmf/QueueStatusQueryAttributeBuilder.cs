@@ -1,3 +1,4 @@
+
 using System;
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
@@ -48,3 +49,4 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         }
     }
 }
+

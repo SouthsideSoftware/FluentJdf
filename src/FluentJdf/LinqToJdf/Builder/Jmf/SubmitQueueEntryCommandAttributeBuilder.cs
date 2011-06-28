@@ -1,10 +1,11 @@
-﻿using System;
+﻿
+using System;
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
-    /// Build attributes for the submit queue entry command.
+    /// Build attributes for SubmitQueueEntryCommandBuilder.
     /// </summary>
     public class SubmitQueueEntryCommandAttributeBuilder : JmfAttributeBuilderBase {
         /// <summary>
@@ -60,3 +61,4 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         }
     }
 }
+
