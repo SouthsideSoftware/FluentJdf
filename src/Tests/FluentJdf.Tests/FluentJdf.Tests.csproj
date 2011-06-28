@@ -144,6 +144,9 @@
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_file.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_message.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_fluently_modifying_existing_jmf_from_root.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_attribute_on_submit_queue_entry.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_id_on_queue_status.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_id_on_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_no_usage_type.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_no_usage_type_no_xpath.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_validates_no_xpath_has_usage.cs" />

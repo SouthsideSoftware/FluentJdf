@@ -36,7 +36,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// <returns></returns>
         public QueueStatusQueryAttributeBuilder Id(string id) {
 
-            ParentJmfNode.Element.SetAttributeValue("ID", id);
+            Element.SetAttributeValue("ID", id);
             return this;
         }
 
