@@ -15,7 +15,7 @@ void Main() {
 		if (element.Name == "xs:complexType") {
 			var attr = ((XmlElement)element).GetAttribute("name");
 			
-			var startString = "Command";
+			var startString = "Query";
 			
 			if (attr.StartsWith(startString)) {
 				attr = attr.Substring(startString.Length);
