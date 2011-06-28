@@ -11,7 +11,8 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// Constructor.
         /// </summary>
         /// <param name="builder"></param>
-        internal QueueStatusQueryAttributeBuilder(QueueStatusQueryBuilder builder) : base(builder) {
+        internal QueueStatusQueryAttributeBuilder(QueueStatusQueryBuilder builder)
+            : base(builder) {
         }
 
         /// <summary>
@@ -20,8 +21,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// <param name="name"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public QueueStatusQueryAttributeBuilder Attribute(XName name, string value)
-        {
+        public QueueStatusQueryAttributeBuilder Attribute(XName name, string value) {
             ParameterCheck.ParameterRequired(name, "name");
 
             Element.SetAttributeValue(name, value);
@@ -33,8 +33,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public QueueStatusQueryAttributeBuilder Id(string id)
-        {
+        public QueueStatusQueryAttributeBuilder Id(string id) {
 
             ParentJmfNode.Element.SetAttributeValue("ID", id);
             return this;
@@ -44,8 +43,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// Sets a unique id
         /// </summary>
         /// <returns></returns>
-        public QueueStatusQueryAttributeBuilder UniqueId()
-        {
+        public QueueStatusQueryAttributeBuilder UniqueId() {
             return Id(Globals.CreateUniqueId(QueueStatusQueryBuilder.IdPrefix));
         }
     }

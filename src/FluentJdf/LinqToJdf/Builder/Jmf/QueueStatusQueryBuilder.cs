@@ -7,7 +7,8 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
     public class QueueStatusQueryBuilder : QueryBuilder {
         internal const string IdPrefix = "QS_";
 
-        internal  QueueStatusQueryBuilder(JmfNodeBuilder parent) : base(parent, Query.QueueStatus, IdPrefix) {
+        internal QueueStatusQueryBuilder(JmfNodeBuilder parent)
+            : base(parent, Query.QueueStatus, IdPrefix) {
             ParameterCheck.ParameterRequired(parent, "parent");
         }
 

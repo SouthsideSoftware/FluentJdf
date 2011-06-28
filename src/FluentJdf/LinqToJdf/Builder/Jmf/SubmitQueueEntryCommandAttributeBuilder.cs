@@ -2,8 +2,7 @@
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf.Builder.Jmf
-{
+namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Build attributes for the submit queue entry command.
     /// </summary>
@@ -12,7 +11,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
         /// Constructor.
         /// </summary>
         /// <param name="builder"></param>
-        internal SubmitQueueEntryCommandAttributeBuilder(SubmitQueueEntryCommandBuilder builder) : base(builder) {}
+        internal SubmitQueueEntryCommandAttributeBuilder(SubmitQueueEntryCommandBuilder builder)
+            : base(builder) {
+        }
 
         /// <summary>
         /// Sets any attribute.
@@ -32,8 +33,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public SubmitQueueEntryCommandAttributeBuilder Id(string id)
-        {
+        public SubmitQueueEntryCommandAttributeBuilder Id(string id) {
 
             Element.SetAttributeValue("ID", id);
             return this;
@@ -43,8 +43,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
         /// Sets a unique id
         /// </summary>
         /// <returns></returns>
-        public SubmitQueueEntryCommandAttributeBuilder UniqueId()
-        {
+        public SubmitQueueEntryCommandAttributeBuilder UniqueId() {
             return Id(Globals.CreateUniqueId(SubmitQueueEntryCommandBuilder.IdPrefix));
         }
 
@@ -53,8 +52,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
         /// </summary>
         /// <param name="ticket"></param>
         /// <returns></returns>
-        public SubmitQueueEntryCommandAttributeBuilder Ticket(Ticket ticket)
-        {
+        public SubmitQueueEntryCommandAttributeBuilder Ticket(Ticket ticket) {
             ParameterCheck.ParameterRequired(ticket, "ticket");
 
             ParentJmfNode.Message.AssociatedTicket = ticket;

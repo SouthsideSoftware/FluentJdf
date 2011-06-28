@@ -7,7 +7,8 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
     public class SubmitQueueEntryCommandBuilder : CommandBuilder {
         internal const string IdPrefix = "SQE_";
 
-        internal  SubmitQueueEntryCommandBuilder(JmfNodeBuilder parent) : base(parent, Command.SubmitQueueEntry, IdPrefix) {
+        internal SubmitQueueEntryCommandBuilder(JmfNodeBuilder parent)
+            : base(parent, Command.SubmitQueueEntry, IdPrefix) {
             ParameterCheck.ParameterRequired(parent, "parent");
         }
 
