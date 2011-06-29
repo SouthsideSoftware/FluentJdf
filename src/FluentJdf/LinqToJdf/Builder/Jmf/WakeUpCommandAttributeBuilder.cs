@@ -7,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Build attributes for WakeUpCommandBuilder.
 	/// </summary>
-	public class WakeUpCommandAttributeBuilder : JmfAttributeBuilderBase {
+	public partial class WakeUpCommandAttributeBuilder : JmfAttributeBuilderBase {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -46,18 +46,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		/// <returns></returns>
 		public WakeUpCommandAttributeBuilder UniqueId() {
 			return Id(Globals.CreateUniqueId(WakeUpCommandBuilder.IdPrefix));
-		}
-		
-		/// <summary>
-		/// Add a JDF that will be sent with this submit queue entry.
-		/// </summary>
-		/// <param name="ticket"></param>
-		/// <returns></returns>
-		public WakeUpCommandAttributeBuilder Ticket(Ticket ticket) {
-			ParameterCheck.ParameterRequired(ticket, "ticket");
-		
-			ParentJmfNode.Message.AssociatedTicket = ticket;
-			return this;
 		}
 	}
 }

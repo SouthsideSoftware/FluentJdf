@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build RequestForAuthentication
 	/// </summary>
-	public class RequestForAuthenticationQueryBuilder : QueryBuilder {
+	public partial class RequestForAuthenticationQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "RFA_";
 
 		internal RequestForAuthenticationQueryBuilder(JmfNodeBuilder parent)

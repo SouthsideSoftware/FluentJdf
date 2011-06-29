@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build RequestQueueEntry
 	/// </summary>
-	public class RequestQueueEntryCommandBuilder : CommandBuilder {
+	public partial class RequestQueueEntryCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "RQE_";
 
 		internal RequestQueueEntryCommandBuilder(JmfNodeBuilder parent)

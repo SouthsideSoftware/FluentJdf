@@ -7,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Build attributes for QueueEntryStatusQueryBuilder.
 	/// </summary>
-	public class QueueEntryStatusQueryAttributeBuilder : JmfAttributeBuilderBase {
+	public partial class QueueEntryStatusQueryAttributeBuilder : JmfAttributeBuilderBase {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -36,7 +36,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		/// <returns></returns>
 		public QueueEntryStatusQueryAttributeBuilder Id(string id) {
 
-			ParentJmfNode.Element.SetAttributeValue("ID", id);
+			Element.SetAttributeValue("ID", id);
 			return this;
 		}
 

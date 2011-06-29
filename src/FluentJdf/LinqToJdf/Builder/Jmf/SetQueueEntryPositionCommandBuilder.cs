@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build SetQueueEntryPosition
 	/// </summary>
-	public class SetQueueEntryPositionCommandBuilder : CommandBuilder {
+	public partial class SetQueueEntryPositionCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "SQEP_";
 
 		internal SetQueueEntryPositionCommandBuilder(JmfNodeBuilder parent)

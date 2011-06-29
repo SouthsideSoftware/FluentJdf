@@ -7,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Build attributes for HoldQueueEntryCommandBuilder.
 	/// </summary>
-	public class HoldQueueEntryCommandAttributeBuilder : JmfAttributeBuilderBase {
+	public partial class HoldQueueEntryCommandAttributeBuilder : JmfAttributeBuilderBase {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -46,18 +46,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		/// <returns></returns>
 		public HoldQueueEntryCommandAttributeBuilder UniqueId() {
 			return Id(Globals.CreateUniqueId(HoldQueueEntryCommandBuilder.IdPrefix));
-		}
-		
-		/// <summary>
-		/// Add a JDF that will be sent with this submit queue entry.
-		/// </summary>
-		/// <param name="ticket"></param>
-		/// <returns></returns>
-		public HoldQueueEntryCommandAttributeBuilder Ticket(Ticket ticket) {
-			ParameterCheck.ParameterRequired(ticket, "ticket");
-		
-			ParentJmfNode.Message.AssociatedTicket = ticket;
-			return this;
 		}
 	}
 }

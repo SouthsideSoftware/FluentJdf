@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build RepeatMessages
 	/// </summary>
-	public class RepeatMessagesQueryBuilder : QueryBuilder {
+	public partial class RepeatMessagesQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "RM_";
 
 		internal RepeatMessagesQueryBuilder(JmfNodeBuilder parent)

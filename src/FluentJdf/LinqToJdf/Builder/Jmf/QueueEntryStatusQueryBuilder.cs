@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build QueueEntryStatus
 	/// </summary>
-	public class QueueEntryStatusQueryBuilder : QueryBuilder {
+	public partial class QueueEntryStatusQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "QES_";
 
 		internal QueueEntryStatusQueryBuilder(JmfNodeBuilder parent)

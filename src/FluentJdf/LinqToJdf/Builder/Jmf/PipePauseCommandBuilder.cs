@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build PipePause
 	/// </summary>
-	public class PipePauseCommandBuilder : CommandBuilder {
+	public partial class PipePauseCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "PP_";
 
 		internal PipePauseCommandBuilder(JmfNodeBuilder parent)

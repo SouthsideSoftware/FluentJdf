@@ -7,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Build attributes for RepeatMessagesQueryBuilder.
 	/// </summary>
-	public class RepeatMessagesQueryAttributeBuilder : JmfAttributeBuilderBase {
+	public partial class RepeatMessagesQueryAttributeBuilder : JmfAttributeBuilderBase {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -36,7 +36,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		/// <returns></returns>
 		public RepeatMessagesQueryAttributeBuilder Id(string id) {
 
-			ParentJmfNode.Element.SetAttributeValue("ID", id);
+			Element.SetAttributeValue("ID", id);
 			return this;
 		}
 

@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build ModifyNode
 	/// </summary>
-	public class ModifyNodeCommandBuilder : CommandBuilder {
+	public partial class ModifyNodeCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "MN_";
 
 		internal ModifyNodeCommandBuilder(JmfNodeBuilder parent)

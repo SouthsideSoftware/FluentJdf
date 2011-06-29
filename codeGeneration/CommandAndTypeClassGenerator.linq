@@ -40,7 +40,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {{
 	/// <summary>
 	/// Used to build {0}
 	/// </summary>
-	public class {0}{1}Builder : {1}Builder {{
+	public partial class {0}{1}Builder : {1}Builder {{
 		internal const string IdPrefix = ""{2}_"";
 
 		internal {0}{1}Builder(JmfNodeBuilder parent)
@@ -62,7 +62,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {{
 	//{0} = Name == SubmitQueueEntry
 	//{1} = Type == Command or Query
 
-	var formatCommandAttributeBuilder = @"
+	var formatAttributeBuilder = @"
 using System;
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
@@ -71,7 +71,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {{
 	/// <summary>
 	/// Build attributes for {0}{1}Builder.
 	/// </summary>
-	public class {0}{1}AttributeBuilder : JmfAttributeBuilderBase {{
+	public partial class {0}{1}AttributeBuilder : JmfAttributeBuilderBase {{
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -101,77 +101,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {{
 		public {0}{1}AttributeBuilder Id(string id) {{
 
 			Element.SetAttributeValue(""ID"", id);
-			return this;
-		}}
-
-		/// <summary>
-		/// Sets a unique id
-		/// </summary>
-		/// <returns></returns>
-		public {0}{1}AttributeBuilder UniqueId() {{
-			return Id(Globals.CreateUniqueId({0}{1}Builder.IdPrefix));
-		}}
-		
-		/// <summary>
-		/// Add a JDF that will be sent with this submit queue entry.
-		/// </summary>
-		/// <param name=""ticket""></param>
-		/// <returns></returns>
-		public {0}{1}AttributeBuilder Ticket(Ticket ticket) {{
-			ParameterCheck.ParameterRequired(ticket, ""ticket"");
-		
-			ParentJmfNode.Message.AssociatedTicket = ticket;
-			return this;
-		}}
-	}}
-}}
-
-";	
-
-
-
-	//{0} = Name == SubmitQueueEntry
-	//{1} = Type == Command or Query
-
-	var formatQueryAttributeBuilder = @"
-using System;
-using System.Xml.Linq;
-using Infrastructure.Core.CodeContracts;
-
-namespace FluentJdf.LinqToJdf.Builder.Jmf {{
-	/// <summary>
-	/// Build attributes for {0}{1}Builder.
-	/// </summary>
-	public class {0}{1}AttributeBuilder : JmfAttributeBuilderBase {{
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		/// <param name=""builder""></param>
-		internal {0}{1}AttributeBuilder({0}{1}Builder builder)
-			: base(builder) {{
-		}}
-
-		/// <summary>
-		/// Sets any attribute.
-		/// </summary>
-		/// <param name=""name""></param>
-		/// <param name=""value""></param>
-		/// <returns></returns>
-		public {0}{1}AttributeBuilder Attribute(XName name, string value) {{
-			ParameterCheck.ParameterRequired(name, ""name"");
-
-			Element.SetAttributeValue(name, value);
-			return this;
-		}}
-
-		/// <summary>
-		/// Set the id.
-		/// </summary>
-		/// <param name=""id""></param>
-		/// <returns></returns>
-		public {0}{1}AttributeBuilder Id(string id) {{
-
-			ParentJmfNode.Element.SetAttributeValue(""ID"", id);
 			return this;
 		}}
 
@@ -217,7 +146,7 @@ public {0}{1}Builder {0}() {{
 		//Console.WriteLine(formatCommandBuilder, item, type, GetUpperCaseCharacters(item));
 		File.WriteAllText(mainPath, string.Format(formatCommandBuilder, item, type, GetUpperCaseCharacters(item)));
 		//Console.WriteLine(formatAttributeBuilder, item, type, GetUpperCaseCharacters(item));
-		File.WriteAllText(attributePath, string.Format(formatCommandAttributeBuilder, item, type, GetUpperCaseCharacters(item)));
+		File.WriteAllText(attributePath, string.Format(formatAttributeBuilder, item, type, GetUpperCaseCharacters(item)));
 	}
 	
 	foreach (var item in query.OrderBy (item => item)) {
@@ -228,7 +157,7 @@ public {0}{1}Builder {0}() {{
 		//Console.WriteLine(formatCommandBuilder, item, type, GetUpperCaseCharacters(item));
 		File.WriteAllText(mainPath, string.Format(formatCommandBuilder, item, type, GetUpperCaseCharacters(item)));
 		//Console.WriteLine(formatAttributeBuilder, item, type, GetUpperCaseCharacters(item));
-		File.WriteAllText(attributePath, string.Format(formatQueryAttributeBuilder, item, type, GetUpperCaseCharacters(item)));
+		File.WriteAllText(attributePath, string.Format(formatAttributeBuilder, item, type, GetUpperCaseCharacters(item)));
 	}
 }
 

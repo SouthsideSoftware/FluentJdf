@@ -7,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Build attributes for ResourcePullCommandBuilder.
 	/// </summary>
-	public class ResourcePullCommandAttributeBuilder : JmfAttributeBuilderBase {
+	public partial class ResourcePullCommandAttributeBuilder : JmfAttributeBuilderBase {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -46,18 +46,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		/// <returns></returns>
 		public ResourcePullCommandAttributeBuilder UniqueId() {
 			return Id(Globals.CreateUniqueId(ResourcePullCommandBuilder.IdPrefix));
-		}
-		
-		/// <summary>
-		/// Add a JDF that will be sent with this submit queue entry.
-		/// </summary>
-		/// <param name="ticket"></param>
-		/// <returns></returns>
-		public ResourcePullCommandAttributeBuilder Ticket(Ticket ticket) {
-			ParameterCheck.ParameterRequired(ticket, "ticket");
-		
-			ParentJmfNode.Message.AssociatedTicket = ticket;
-			return this;
 		}
 	}
 }

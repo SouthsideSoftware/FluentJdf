@@ -7,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Build attributes for NodeInfoQueryBuilder.
 	/// </summary>
-	public class NodeInfoQueryAttributeBuilder : JmfAttributeBuilderBase {
+	public partial class NodeInfoQueryAttributeBuilder : JmfAttributeBuilderBase {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -36,7 +36,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		/// <returns></returns>
 		public NodeInfoQueryAttributeBuilder Id(string id) {
 
-			ParentJmfNode.Element.SetAttributeValue("ID", id);
+			Element.SetAttributeValue("ID", id);
 			return this;
 		}
 

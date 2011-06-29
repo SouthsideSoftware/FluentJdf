@@ -7,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Build attributes for SubmissionMethodsQueryBuilder.
 	/// </summary>
-	public class SubmissionMethodsQueryAttributeBuilder : JmfAttributeBuilderBase {
+	public partial class SubmissionMethodsQueryAttributeBuilder : JmfAttributeBuilderBase {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -36,7 +36,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		/// <returns></returns>
 		public SubmissionMethodsQueryAttributeBuilder Id(string id) {
 
-			ParentJmfNode.Element.SetAttributeValue("ID", id);
+			Element.SetAttributeValue("ID", id);
 			return this;
 		}
 

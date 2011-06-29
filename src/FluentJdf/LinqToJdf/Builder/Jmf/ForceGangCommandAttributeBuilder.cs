@@ -7,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Build attributes for ForceGangCommandBuilder.
 	/// </summary>
-	public class ForceGangCommandAttributeBuilder : JmfAttributeBuilderBase {
+	public partial class ForceGangCommandAttributeBuilder : JmfAttributeBuilderBase {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -46,18 +46,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		/// <returns></returns>
 		public ForceGangCommandAttributeBuilder UniqueId() {
 			return Id(Globals.CreateUniqueId(ForceGangCommandBuilder.IdPrefix));
-		}
-		
-		/// <summary>
-		/// Add a JDF that will be sent with this submit queue entry.
-		/// </summary>
-		/// <param name="ticket"></param>
-		/// <returns></returns>
-		public ForceGangCommandAttributeBuilder Ticket(Ticket ticket) {
-			ParameterCheck.ParameterRequired(ticket, "ticket");
-		
-			ParentJmfNode.Message.AssociatedTicket = ticket;
-			return this;
 		}
 	}
 }

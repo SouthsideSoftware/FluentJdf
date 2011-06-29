@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build NewJDF
 	/// </summary>
-	public class NewJDFCommandBuilder : CommandBuilder {
+	public partial class NewJDFCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "NJDF_";
 
 		internal NewJDFCommandBuilder(JmfNodeBuilder parent)

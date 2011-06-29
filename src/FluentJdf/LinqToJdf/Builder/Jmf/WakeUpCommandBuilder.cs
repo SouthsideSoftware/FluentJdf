@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build WakeUp
 	/// </summary>
-	public class WakeUpCommandBuilder : CommandBuilder {
+	public partial class WakeUpCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "WU_";
 
 		internal WakeUpCommandBuilder(JmfNodeBuilder parent)

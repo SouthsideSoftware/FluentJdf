@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build KnownMessages
 	/// </summary>
-	public class KnownMessagesQueryBuilder : QueryBuilder {
+	public partial class KnownMessagesQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "KM_";
 
 		internal KnownMessagesQueryBuilder(JmfNodeBuilder parent)

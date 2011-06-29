@@ -7,7 +7,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Build attributes for SuspendQueueEntryCommandBuilder.
 	/// </summary>
-	public class SuspendQueueEntryCommandAttributeBuilder : JmfAttributeBuilderBase {
+	public partial class SuspendQueueEntryCommandAttributeBuilder : JmfAttributeBuilderBase {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -46,18 +46,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		/// <returns></returns>
 		public SuspendQueueEntryCommandAttributeBuilder UniqueId() {
 			return Id(Globals.CreateUniqueId(SuspendQueueEntryCommandBuilder.IdPrefix));
-		}
-		
-		/// <summary>
-		/// Add a JDF that will be sent with this submit queue entry.
-		/// </summary>
-		/// <param name="ticket"></param>
-		/// <returns></returns>
-		public SuspendQueueEntryCommandAttributeBuilder Ticket(Ticket ticket) {
-			ParameterCheck.ParameterRequired(ticket, "ticket");
-		
-			ParentJmfNode.Message.AssociatedTicket = ticket;
-			return this;
 		}
 	}
 }

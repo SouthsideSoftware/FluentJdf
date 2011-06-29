@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build Track
 	/// </summary>
-	public class TrackQueryBuilder : QueryBuilder {
+	public partial class TrackQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "T_";
 
 		internal TrackQueryBuilder(JmfNodeBuilder parent)

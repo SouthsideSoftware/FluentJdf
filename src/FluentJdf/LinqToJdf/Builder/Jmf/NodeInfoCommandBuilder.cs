@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build NodeInfo
 	/// </summary>
-	public class NodeInfoCommandBuilder : CommandBuilder {
+	public partial class NodeInfoCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "NI_";
 
 		internal NodeInfoCommandBuilder(JmfNodeBuilder parent)

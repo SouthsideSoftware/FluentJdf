@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build Occupation
 	/// </summary>
-	public class OccupationQueryBuilder : QueryBuilder {
+	public partial class OccupationQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "O_";
 
 		internal OccupationQueryBuilder(JmfNodeBuilder parent)

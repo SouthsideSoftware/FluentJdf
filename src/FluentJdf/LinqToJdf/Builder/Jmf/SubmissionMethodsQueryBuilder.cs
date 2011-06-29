@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build SubmissionMethods
 	/// </summary>
-	public class SubmissionMethodsQueryBuilder : QueryBuilder {
+	public partial class SubmissionMethodsQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "SM_";
 
 		internal SubmissionMethodsQueryBuilder(JmfNodeBuilder parent)

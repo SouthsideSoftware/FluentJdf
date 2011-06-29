@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build HoldQueue
 	/// </summary>
-	public class HoldQueueCommandBuilder : CommandBuilder {
+	public partial class HoldQueueCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "HQ_";
 
 		internal HoldQueueCommandBuilder(JmfNodeBuilder parent)

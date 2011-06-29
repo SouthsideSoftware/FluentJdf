@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build StopPersistentChannel
 	/// </summary>
-	public class StopPersistentChannelCommandBuilder : CommandBuilder {
+	public partial class StopPersistentChannelCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "SPC_";
 
 		internal StopPersistentChannelCommandBuilder(JmfNodeBuilder parent)

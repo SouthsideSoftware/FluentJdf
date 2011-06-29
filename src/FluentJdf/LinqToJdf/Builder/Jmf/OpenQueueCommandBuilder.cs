@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build OpenQueue
 	/// </summary>
-	public class OpenQueueCommandBuilder : CommandBuilder {
+	public partial class OpenQueueCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "OQ_";
 
 		internal OpenQueueCommandBuilder(JmfNodeBuilder parent)

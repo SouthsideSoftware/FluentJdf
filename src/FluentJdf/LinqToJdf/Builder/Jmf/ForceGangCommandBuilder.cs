@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build ForceGang
 	/// </summary>
-	public class ForceGangCommandBuilder : CommandBuilder {
+	public partial class ForceGangCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "FG_";
 
 		internal ForceGangCommandBuilder(JmfNodeBuilder parent)

@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build ShutDown
 	/// </summary>
-	public class ShutDownCommandBuilder : CommandBuilder {
+	public partial class ShutDownCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "SD_";
 
 		internal ShutDownCommandBuilder(JmfNodeBuilder parent)

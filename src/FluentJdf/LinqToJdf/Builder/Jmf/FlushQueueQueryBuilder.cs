@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build FlushQueue
 	/// </summary>
-	public class FlushQueueQueryBuilder : QueryBuilder {
+	public partial class FlushQueueQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "FQ_";
 
 		internal FlushQueueQueryBuilder(JmfNodeBuilder parent)

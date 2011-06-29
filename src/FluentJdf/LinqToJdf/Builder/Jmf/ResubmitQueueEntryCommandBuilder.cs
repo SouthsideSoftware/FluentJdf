@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build ResubmitQueueEntry
 	/// </summary>
-	public class ResubmitQueueEntryCommandBuilder : CommandBuilder {
+	public partial class ResubmitQueueEntryCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "RQE_";
 
 		internal ResubmitQueueEntryCommandBuilder(JmfNodeBuilder parent)

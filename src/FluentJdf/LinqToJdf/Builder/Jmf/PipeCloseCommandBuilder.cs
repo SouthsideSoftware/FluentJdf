@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build PipeClose
 	/// </summary>
-	public class PipeCloseCommandBuilder : CommandBuilder {
+	public partial class PipeCloseCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "PC_";
 
 		internal PipeCloseCommandBuilder(JmfNodeBuilder parent)

@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build AbortQueueEntry
 	/// </summary>
-	public class AbortQueueEntryCommandBuilder : CommandBuilder {
+	public partial class AbortQueueEntryCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "AQE_";
 
 		internal AbortQueueEntryCommandBuilder(JmfNodeBuilder parent)

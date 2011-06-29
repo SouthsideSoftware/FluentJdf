@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build PipePush
 	/// </summary>
-	public class PipePushCommandBuilder : CommandBuilder {
+	public partial class PipePushCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "PP_";
 
 		internal PipePushCommandBuilder(JmfNodeBuilder parent)

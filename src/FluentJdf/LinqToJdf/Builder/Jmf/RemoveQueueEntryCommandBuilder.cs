@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build RemoveQueueEntry
 	/// </summary>
-	public class RemoveQueueEntryCommandBuilder : CommandBuilder {
+	public partial class RemoveQueueEntryCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "RQE_";
 
 		internal RemoveQueueEntryCommandBuilder(JmfNodeBuilder parent)

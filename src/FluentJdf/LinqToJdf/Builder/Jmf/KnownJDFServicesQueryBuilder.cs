@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build KnownJDFServices
 	/// </summary>
-	public class KnownJDFServicesQueryBuilder : QueryBuilder {
+	public partial class KnownJDFServicesQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "KJDFS_";
 
 		internal KnownJDFServicesQueryBuilder(JmfNodeBuilder parent)

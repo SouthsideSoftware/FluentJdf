@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build SuspendQueueEntry
 	/// </summary>
-	public class SuspendQueueEntryCommandBuilder : CommandBuilder {
+	public partial class SuspendQueueEntryCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "SQE_";
 
 		internal SuspendQueueEntryCommandBuilder(JmfNodeBuilder parent)

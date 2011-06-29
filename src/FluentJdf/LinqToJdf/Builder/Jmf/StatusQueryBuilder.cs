@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build Status
 	/// </summary>
-	public class StatusQueryBuilder : QueryBuilder {
+	public partial class StatusQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "S_";
 
 		internal StatusQueryBuilder(JmfNodeBuilder parent)

@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build NewJDF
 	/// </summary>
-	public class NewJDFQueryBuilder : QueryBuilder {
+	public partial class NewJDFQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "NJDF_";
 
 		internal NewJDFQueryBuilder(JmfNodeBuilder parent)

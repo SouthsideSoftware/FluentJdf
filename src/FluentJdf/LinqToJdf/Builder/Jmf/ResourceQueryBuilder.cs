@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build Resource
 	/// </summary>
-	public class ResourceQueryBuilder : QueryBuilder {
+	public partial class ResourceQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "R_";
 
 		internal ResourceQueryBuilder(JmfNodeBuilder parent)

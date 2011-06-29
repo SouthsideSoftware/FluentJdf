@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build CloseQueue
 	/// </summary>
-	public class CloseQueueCommandBuilder : CommandBuilder {
+	public partial class CloseQueueCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "CQ_";
 
 		internal CloseQueueCommandBuilder(JmfNodeBuilder parent)

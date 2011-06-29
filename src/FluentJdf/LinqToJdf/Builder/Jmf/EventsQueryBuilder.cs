@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build Events
 	/// </summary>
-	public class EventsQueryBuilder : QueryBuilder {
+	public partial class EventsQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "E_";
 
 		internal EventsQueryBuilder(JmfNodeBuilder parent)

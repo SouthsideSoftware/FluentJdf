@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build KnownDevices
 	/// </summary>
-	public class KnownDevicesQueryBuilder : QueryBuilder {
+	public partial class KnownDevicesQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "KD_";
 
 		internal KnownDevicesQueryBuilder(JmfNodeBuilder parent)

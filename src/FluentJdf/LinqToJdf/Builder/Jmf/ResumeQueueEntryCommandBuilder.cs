@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build ResumeQueueEntry
 	/// </summary>
-	public class ResumeQueueEntryCommandBuilder : CommandBuilder {
+	public partial class ResumeQueueEntryCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "RQE_";
 
 		internal ResumeQueueEntryCommandBuilder(JmfNodeBuilder parent)

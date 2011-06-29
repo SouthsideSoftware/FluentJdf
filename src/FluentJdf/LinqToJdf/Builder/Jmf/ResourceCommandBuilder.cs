@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build Resource
 	/// </summary>
-	public class ResourceCommandBuilder : CommandBuilder {
+	public partial class ResourceCommandBuilder : CommandBuilder {
 		internal const string IdPrefix = "R_";
 
 		internal ResourceCommandBuilder(JmfNodeBuilder parent)

@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 	/// <summary>
 	/// Used to build KnownControllers
 	/// </summary>
-	public class KnownControllersQueryBuilder : QueryBuilder {
+	public partial class KnownControllersQueryBuilder : QueryBuilder {
 		internal const string IdPrefix = "KC_";
 
 		internal KnownControllersQueryBuilder(JmfNodeBuilder parent)
