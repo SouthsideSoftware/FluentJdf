@@ -101,6 +101,16 @@ namespace Infrastructure.Core.Helpers
         /// </summary>
         public const string PdfExtension = ".pdf";
 
+        /// <summary>
+        /// Gets the HTML mime type.
+        /// </summary>
+        public const string HtmlMimeType = "text/html";
+
+
+        /// <summary>
+        /// Gets the standard extension for html files.
+        /// </summary>
+        public const string HtmlMimeTypeExtension = ".htm";
 
         /// <summary>
         /// Gets the mime type of the given extension or file name.
