@@ -222,6 +222,7 @@
     <Compile Include="LinqToJdf\Builder\Jmf\StopPersistentChannelCommandBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\SubmissionMethodsQueryAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\SubmissionMethodsQueryBuilder.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\SubmitQueueEntryCommandAttributeBuilderManual.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\SuspendQueueEntryCommandAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\SuspendQueueEntryCommandBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\TrackQueryAttributeBuilder.cs" />
