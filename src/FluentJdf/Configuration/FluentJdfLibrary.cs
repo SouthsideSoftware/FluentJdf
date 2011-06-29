@@ -77,7 +77,6 @@
             transmitterSettings.ResetToDefault();
             httpTransmissionSettings.ResetToDefaults();
             Infrastructure.Core.Configuration.Settings.ServiceLocator.RegisterRemainingInterfaceImplementations(GetType().Assembly);
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
             return this;
         }
 

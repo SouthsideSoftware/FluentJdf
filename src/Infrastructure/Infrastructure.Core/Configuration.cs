@@ -92,8 +92,7 @@ namespace Infrastructure.Core {
                 //        }
                 //    }
                 //}
-                serviceLocator.NativelyRegisterComponentsAndPlugins();
-                serviceLocator.LogRegisteredComponents();
+                //serviceLocator.NativelyRegisterComponentsAndPlugins();
             }
             catch (Exception err) {
                 Logger.ErrorFormat("Unexpected error occured when applying configuration.  The error is {0}.", err);
