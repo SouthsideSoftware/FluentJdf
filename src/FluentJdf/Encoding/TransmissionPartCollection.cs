@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using FluentJdf.LinqToJdf;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 
@@ -181,6 +183,35 @@ namespace FluentJdf.Encoding {
         /// <returns></returns>
         public bool ContainsId(string id) {
             return transmissionParts.ContainsKey(id);
+        }
+
+        /// <summary>
+        /// Gets the first message in the transmission part collection
+        /// </summary>
+        /// <remarks>There should not be more than one, but if there is, this will just get the 
+        /// first. Will be <see langword="null"/> if there is no message.</remarks>
+        public Message Message {
+            get {
+                XmlTransmissionPart messagePart = GetMessagePart();
+                if (messagePart != null) {
+                    return new Message(messagePart.Document);
+                }
+
+                return null;
+            }
+        }
+
+        XmlTransmissionPart GetMessagePart() {
+            return (from part in transmissionParts.Values
+                    where part is XmlTransmissionPart && (part as XmlTransmissionPart).XmlType == XmlType.Jmf
+                    select (part as XmlTransmissionPart)).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns <see langword="true"/> if there is a message in the collection.
+        /// </summary>
+        public bool HasMessage {
+            get { return GetMessagePart() != null; }
         }
     }
 }
