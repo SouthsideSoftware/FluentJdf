@@ -35,7 +35,7 @@ namespace FluentJdf.Encoding {
             }
 
             InitalizeProperties(fileName, fileName.MimeType(), id);
-            CopyToPartStream(File.OpenRead(fileName));
+            InitializePartStream(File.OpenRead(fileName));
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace FluentJdf.Encoding {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
             InitalizeProperties(name, mimeType, id);
-            CopyToPartStream(sourceStream);
+            InitializePartStream(sourceStream);
         }
 
         void InitalizeProperties(string name, string mimeType, string id) {
@@ -62,15 +62,18 @@ namespace FluentJdf.Encoding {
             Id = id;
         }
 
-        void CopyToPartStream(Stream sourceStream) {
-            using (sourceStream) {
-                if (sourceStream.CanSeek) {
-                    sourceStream.Seek(0, SeekOrigin.Begin);
-                    stream = new TempFileStream();
+        void InitializePartStream(Stream sourceStream) {
+            if (sourceStream.CanSeek)
+            {
+                stream = sourceStream;
+            }
+            else {
+                stream = new TempFileStream();
+                using (sourceStream) {
                     sourceStream.CopyTo(stream);
-                    stream.Seek(0, SeekOrigin.Begin);
                 }
             }
+            stream.Seek(0, SeekOrigin.Begin);
         }
 
         /// <summary>
@@ -132,7 +135,7 @@ namespace FluentJdf.Encoding {
             ParameterCheck.ParameterRequired(stream, "stream");
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
-            CopyToPartStream(stream);
+            InitializePartStream(stream);
             InitalizeProperties(name, mimeType, id);
         }
     }

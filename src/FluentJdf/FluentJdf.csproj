@@ -98,6 +98,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\LibraryConfigurationException.cs" />
     <Compile Include="Configuration\EncodingSettings.cs" />
     <Compile Include="Configuration\EncodingSettingsBuilder.cs" />
     <Compile Include="Configuration\HttpTransmissionSettings.cs" />

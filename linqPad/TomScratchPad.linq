@@ -35,6 +35,8 @@ void Main()
 	var message = GetJmf().Dump();
 	message.ValidationMessages.Dump();
 	"*****************".Dump();
+	
+	message.Transmit("http://localhost/jdf").Dump();
 }
 
 void InitializeFluentJdf() {
