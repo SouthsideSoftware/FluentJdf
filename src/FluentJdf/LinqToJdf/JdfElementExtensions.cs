@@ -478,7 +478,21 @@ namespace FluentJdf.LinqToJdf {
         public static string GetJdfType(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            return element.GetAttributeFromJdfElement("Type");
+            return element.GetAttributeValueOrNull("Type");
+        }
+
+        /// <summary>
+        /// Sets the type of the node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static XElement SetJdfType(this XElement element, string value)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            element.SetAttributeValue("Type", value);
+            return element;
         }
 
         /// <summary>

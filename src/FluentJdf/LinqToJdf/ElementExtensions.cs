@@ -346,5 +346,29 @@ namespace FluentJdf.LinqToJdf {
 
             return DateTime.Parse(sTimeStamp, null, DateTimeStyles.RoundtripKind);
         }
+
+        /// <summary>
+        /// Gets the class of an element.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static string GetClass(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            return element.GetAttributeValueOrNull("Class");
+        }
+
+        /// <summary>
+        /// Sets the class of an element.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static XElement SetClass(this XElement element, string value) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            element.SetAttributeValue("Class", value);
+            return element;
+        }
     }
 }

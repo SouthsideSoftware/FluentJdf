@@ -136,7 +136,6 @@ namespace FluentJdf.LinqToJdf {
         /// to maintain all links.</remarks>
         public static XElement SetRefId(this XElement element, string refId) {
             ParameterCheck.ParameterRequired(element, "element");
-            ParameterCheck.StringRequiredAndNotWhitespace(refId, "refId");
 
             element.SetAttributeValue("rRef", refId);
 
