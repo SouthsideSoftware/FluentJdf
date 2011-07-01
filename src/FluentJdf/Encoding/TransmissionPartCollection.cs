@@ -194,7 +194,7 @@ namespace FluentJdf.Encoding {
             get {
                 XmlTransmissionPart messagePart = GetMessagePart();
                 if (messagePart != null) {
-                    return new Message(messagePart.Document);
+                    return messagePart.Document.ToMessage();
                 }
 
                 return null;

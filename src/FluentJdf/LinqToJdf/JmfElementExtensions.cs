@@ -92,5 +92,26 @@ namespace FluentJdf.LinqToJdf
             jmfNode.SetAttributeValue("SenderID", senderId);
             return jmfNode;
         }
+
+        /// <summary>
+        /// Create a message from a document.
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If the document has
+        /// a root element that is not a JMF element.</exception>
+        public static Message ToMessage(this XDocument document) {
+            ParameterCheck.ParameterRequired(document, "document");
+            if (document.Root != null) {
+                document.Root.ThrowExceptionIfNotJmfElement();
+            }
+
+            var message = new Message();
+            if (document.Root != null) {
+                message.Add(document.Root);
+            }
+
+            return message;
+        }
     }
 }

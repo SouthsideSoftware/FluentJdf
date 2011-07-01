@@ -698,5 +698,29 @@ namespace FluentJdf.LinqToJdf {
                              select resource);
             return resources;
         }
+
+        /// <summary>
+        /// Create a ticket from a document.
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">If the document has
+        /// a root element that is not a JDF element.</exception>
+        public static Ticket ToTicket(this XDocument document)
+        {
+            ParameterCheck.ParameterRequired(document, "document");
+            if (document.Root != null)
+            {
+                document.Root.ThrowExceptionIfNotJdfElement();
+            }
+
+            var ticket = new Ticket();
+            if (document.Root != null)
+            {
+                ticket.Add(document.Root);
+            }
+
+            return ticket;
+        }
     }
 }

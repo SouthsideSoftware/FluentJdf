@@ -17,7 +17,7 @@ namespace FluentJdf.LinqToJdf
         /// <summary>
         /// Constructor.
         /// </summary>
-        private Ticket() {
+        internal Ticket() {
         }
 
 

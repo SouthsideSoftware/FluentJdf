@@ -31,17 +31,17 @@ namespace FluentJdf.LinqToJdf {
             var message = new Message();
             return new JmfNodeBuilder(message);
         }
-        //todo: implement remainder of load and parse here and in Ticket class
+        //todo: implement remainder of load and parse here and in Ticket class (issue #33)
         /// <summary>
         /// Loads the message from a stream.
         /// </summary>
         /// <param name="stream"></param>
         /// <returns></returns>
         public new static Message Load(Stream stream) {
-            return new Message(XDocument.Load(stream));
+            return XDocument.Load(stream).ToMessage();
         }
 
-        private Message(){}
+        internal Message(){}
 
         /// <summary>
         /// Copy constructor
