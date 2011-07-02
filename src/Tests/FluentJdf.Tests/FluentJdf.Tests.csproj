@@ -140,6 +140,7 @@
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_list_of_jdf_elements_containing_a_process_type.cs" />
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_get_message_elements.cs" />
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_get_message_names.cs" />
+    <Compile Include="Unit\LinqToJdf\Message\when_using_copy_constructor.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_message_names_getter.cs" />
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_to_message_method.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_using_to_ticket_method.cs" />
@@ -155,12 +156,15 @@
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_attribute_on_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_id_on_queue_status.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_id_on_submit_queue_entry.cs" />
+    <Compile Include="Unit\LinqToJdf\Message\when_using_parse.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_no_usage_type.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_no_usage_type_no_xpath.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_validates_no_xpath_has_usage.cs" />
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_validates_process_and_resource.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_GetResourceLinkPoolResolvedItem_for_DigitalPrintingParams.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_message_elements_getter.cs" />
+    <Compile Include="Unit\LinqToJdf\Ticket\when_using_copy_constructor.cs" />
+    <Compile Include="Unit\LinqToJdf\Ticket\when_using_parse.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_jdfXPathSelectElement_using_multilevel_document.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_jdfXPathSelectElement_with_rRef.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_ProcessXPathSelectElements_return_DigitalPrintingParams.cs" />

@@ -32,6 +32,27 @@ namespace FluentJdf.LinqToJdf
         }
 
         /// <summary>
+        /// Parses xml into a message.
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns></returns>
+        public new static Ticket Parse(string xml) {
+            return XDocument.Parse(xml).ToTicket();
+        }
+
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="source"></param>
+        public Ticket(Ticket source) {
+            ParameterCheck.ParameterRequired(source, "source");
+
+            if (source.Root != null) {
+                Add(new XElement(source.Root));
+            }
+        }
+
+        /// <summary>
         /// Copy constructor
         /// </summary>
         /// <param name="document"></param>

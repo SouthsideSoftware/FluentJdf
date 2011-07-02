@@ -42,6 +42,27 @@ namespace FluentJdf.LinqToJdf {
             return XDocument.Load(stream).ToMessage();
         }
 
+        /// <summary>
+        /// Parses xml into a message.
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns></returns>
+        public new static Message Parse(string xml) {
+            return XDocument.Parse(xml).ToMessage();
+        }
+
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="source"></param>
+        public Message(Message source) {
+            ParameterCheck.ParameterRequired(source, "source");
+
+            if (source.Root != null) {
+                Add(new XElement(source.Root));
+            }
+        }
+
         internal Message(){}
 
         /// <summary>
