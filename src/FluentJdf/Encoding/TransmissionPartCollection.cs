@@ -192,26 +192,31 @@ namespace FluentJdf.Encoding {
         /// first. Will be <see langword="null"/> if there is no message.</remarks>
         public Message Message {
             get {
-                XmlTransmissionPart messagePart = GetMessagePart();
-                if (messagePart != null) {
-                    return messagePart.Document.ToMessage();
+                if (MessagePart != null) {
+                    return MessagePart.Document.ToMessage();
                 }
 
                 return null;
             }
         }
 
-        XmlTransmissionPart GetMessagePart() {
-            return (from part in transmissionParts.Values
-                    where part is XmlTransmissionPart && (part as XmlTransmissionPart).XmlType == XmlType.Jmf
-                    select (part as XmlTransmissionPart)).FirstOrDefault();
+        /// <summary>
+        /// Gets the message part if any.  
+        /// </summary>
+        /// <remarks>Returns <see langword="null"/> if there is no message part.</remarks>
+        public XmlTransmissionPart MessagePart {
+            get {
+                return (from part in transmissionParts.Values
+                        where part is XmlTransmissionPart && (part as XmlTransmissionPart).XmlType == XmlType.Jmf
+                        select (part as XmlTransmissionPart)).FirstOrDefault();
+            }
         }
 
         /// <summary>
         /// Returns <see langword="true"/> if there is a message in the collection.
         /// </summary>
         public bool HasMessage {
-            get { return GetMessagePart() != null; }
+            get { return MessagePart != null; }
         }
     }
 }

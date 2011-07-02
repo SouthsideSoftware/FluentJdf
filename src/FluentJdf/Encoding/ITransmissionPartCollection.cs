@@ -22,5 +22,11 @@ namespace FluentJdf.Encoding
         /// Returns <see langword="true"/> if there is a message in the collection.
         /// </summary>
         bool HasMessage { get; }
+
+        /// <summary>
+        /// Gets the message part if any.  
+        /// </summary>
+        /// <remarks>Returns <see langword="null"/> if there is no message part.</remarks>
+        XmlTransmissionPart MessagePart { get; }
     }
 }

@@ -14,5 +14,7 @@ namespace FluentJdf.Tests.Unit.Encoding.TransmissionPartCollection
         It should_not_have_a_message = () => transmissionPartCollection.Message.ShouldBeNull();
 
         It should_return_has_message_false = () => transmissionPartCollection.HasMessage.ShouldBeFalse();
+
+        It should_not_have_a_message_part = () => transmissionPartCollection.MessagePart.ShouldBeNull();
     }
 }
