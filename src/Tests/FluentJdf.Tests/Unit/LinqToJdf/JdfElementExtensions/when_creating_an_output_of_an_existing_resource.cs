@@ -9,7 +9,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
         static XElement jdf;
 
         Establish context =
-            () => jdf = Ticket.CreateIntent().Element;
+            () => jdf = FluentJdf.LinqToJdf.Ticket.CreateIntent().Element;
 
         Because of = () => jdf.AddOutput(Resource.BindingIntent, "t").AddInput("t");
 

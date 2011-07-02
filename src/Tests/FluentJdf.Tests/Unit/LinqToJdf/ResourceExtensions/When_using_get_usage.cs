@@ -9,7 +9,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ResourceExtensions {
 
         Establish content =
             () => {
-                jdf = Ticket.CreateIntent().Element
+                jdf = FluentJdf.LinqToJdf.Ticket.CreateIntent().Element
                     .AddInput(Resource.BindingIntent)
                     .AddOutput(Resource.FoldingIntent)
                     .NearestJdf();

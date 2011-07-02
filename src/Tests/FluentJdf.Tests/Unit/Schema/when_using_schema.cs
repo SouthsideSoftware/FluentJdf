@@ -23,7 +23,7 @@ namespace FluentJdf.Tests.Unit.Schema {
         Establish context = () => {
                                 logger = LogManager.GetLogger(typeof (when_using_schema));
                                 intent =
-                                    Ticket.CreateIntent().With().JobId("FOO").WithInput().BindingIntent().WithOutput().BindingIntent().
+                                    FluentJdf.LinqToJdf.Ticket.CreateIntent().With().JobId("FOO").WithInput().BindingIntent().WithOutput().BindingIntent().
                                         Element.JdfParent();
                             };
 

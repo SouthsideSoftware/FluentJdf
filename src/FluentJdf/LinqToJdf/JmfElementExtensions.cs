@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using FluentJdf.Configuration;
 using FluentJdf.LinqToJdf.Builder.Jmf;
@@ -112,6 +114,31 @@ namespace FluentJdf.LinqToJdf
             }
 
             return message;
+        }
+
+        /// <summary>
+        /// Gets the names (i.e. command, query etc.) of all messages in a JMF
+        /// </summary>
+        /// <param name="jmfElement"></param>
+        /// <returns></returns>
+        public static IEnumerable<XName> GetMessageNames(this XElement jmfElement) {
+            ParameterCheck.ParameterRequired(jmfElement, "jmfElement");
+            jmfElement.ThrowExceptionIfNotJmfElement();
+
+            return (from message in jmfElement.Elements() select message.Name);
+
+        }
+
+        /// <summary>
+        /// Gets all the message elements (i.e. command, query etc.) in the JMF.
+        /// </summary>
+        /// <param name="jmfElement"></param>
+        /// <returns></returns>
+        public static IEnumerable<XElement> GetMessageElements(this XElement jmfElement) {
+            ParameterCheck.ParameterRequired(jmfElement, "jmfElement");
+            jmfElement.ThrowExceptionIfNotJmfElement();
+
+            return jmfElement.Elements();
         }
     }
 }

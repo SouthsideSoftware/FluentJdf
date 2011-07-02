@@ -13,7 +13,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ElementExtensions {
 
         Establish context = () =>
                             {
-                                ticket = Ticket.CreateIntent().Element.AddIntentElement().ResourceLinkPoolElement().Document;
+                                ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Element.AddIntentElement().ResourceLinkPoolElement().Document;
                                 secondLevelJdf = ticket.Root.Element(Element.JDF);
                                 secondLevelResourceLinkPool = secondLevelJdf.Element(Element.ResourceLinkPool);
                             };

@@ -5,9 +5,9 @@ using Machine.Specifications;
 namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder {
     [Subject("Highly fluent JDF interface")]
     public class when_creating_combined_jdf_process {
-        static Ticket ticket;
+        static FluentJdf.LinqToJdf.Ticket ticket;
 
-        Because of = () => ticket = Ticket.CreateProcess(ProcessType.Cutting, ProcessType.Creasing, ProcessType.AssetListCreation).Ticket;
+        Because of = () => ticket = FluentJdf.LinqToJdf.Ticket.CreateProcess(ProcessType.Cutting, ProcessType.Creasing, ProcessType.AssetListCreation).Ticket;
 
         It should_have_root_with_type_combined = () => ticket.Root.GetMessageType().ShouldEqual("Combined");
 

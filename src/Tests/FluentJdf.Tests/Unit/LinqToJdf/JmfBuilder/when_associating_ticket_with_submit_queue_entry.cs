@@ -5,12 +5,12 @@ using Machine.Specifications;
 namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
     [Subject("Highly fluent JMF interface")]
     public class when_associating_ticket_with_submit_queue_entry {
-        static Message message;
-        static Ticket ticket;
+        static FluentJdf.LinqToJdf.Message message;
+        static FluentJdf.LinqToJdf.Ticket ticket;
 
-        Establish context = () => ticket = Ticket.CreateIntent().Ticket;
+        Establish context = () => ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
 
-        Because of = () => message = Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
+        Because of = () => message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
 
         It should_have_associated_ticket = () => message.AssociatedTicket.ShouldNotBeNull();
 

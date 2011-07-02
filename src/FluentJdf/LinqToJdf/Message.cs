@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using FluentJdf.Encoding;
@@ -121,5 +122,28 @@ namespace FluentJdf.LinqToJdf {
                 throw;
             }
         }
+
+        /// <summary>
+        /// Gets a list of the message names (i.e. command, query etc.) contained in this message tree.
+        /// </summary>
+        public IEnumerable<XName> MessageNames { get {
+            if (Root == null) {
+                return new List<XName>();
+            }
+
+            return Root.GetMessageNames();
+        }}
+
+        /// <summary>
+        /// Gets a list of the message elements (i.e. command, query etc.) contained
+        /// in this message tree.
+        /// </summary>
+        public IEnumerable<XElement> MessageElements {get {
+            if (Root == null) {
+                return new List<XElement>();
+            }
+
+            return Root.GetMessageElements();
+        }}
     }
 }

@@ -12,7 +12,7 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ElementExtensions
         static XElement resourceLinkPoolJdfParent;
         static XElement commentJdfParent;
 
-        Establish content = () => ticket = Ticket.CreateIntent().Element.ResourcePoolElement().Parent.AddIntentElement().ResourceLinkPoolElement().Document;
+        Establish content = () => ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Element.ResourcePoolElement().Parent.AddIntentElement().ResourceLinkPoolElement().Document;
 
         Because of = () => {
                          resourcePoolJdfParent = ticket.Root.ResourcePoolElement(rp => rp.Add(new XElement(Element.Comment))).GetJdfParentOrNull();

@@ -6,11 +6,11 @@ using Machine.Specifications;
 namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
     [Subject("Highly fluent JMF interface")]
     public class when_creating_jmf_with_sender_id_configured {
-        static Message message;
+        static FluentJdf.LinqToJdf.Message message;
 
         Establish context = () => FluentJdf.Configuration.FluentJdfLibrary.Settings.WithJdfAuthoringSettings().SenderId("test");
 
-        Because of = () => message = Message.Create().AddCommand().SubmitQueueEntry().Message;
+        Because of = () => message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().Message;
 
         It should_have_sender_id_as_set_at_root = () => message.Root.GetSenderId().ShouldEqual("test");
     }

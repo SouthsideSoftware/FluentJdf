@@ -5,9 +5,9 @@ using Machine.Specifications;
 namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
     [Subject("Highly fluent JMF interface")]
     public class when_creating_queue_status_fluently {
-        static Message message;
+        static FluentJdf.LinqToJdf.Message message;
 
-        Because of = () => message = Message.Create().AddQuery().QueueStatus().Message;
+        Because of = () => message = FluentJdf.LinqToJdf.Message.Create().AddQuery().QueueStatus().Message;
 
         It should_have_jmf_at_root = () => message.Root.Name.ShouldEqual(Element.JMF);
 

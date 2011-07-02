@@ -5,9 +5,9 @@ using Machine.Specifications;
 namespace FluentJdf.Tests.Unit.LinqToJdf.JdfElementExtensions {
     [Subject(typeof(FluentJdf.LinqToJdf.JdfElementExtensions))]
     public class when_adding_resource_links_into_sibling_when_resource_is_in_sibling {
-        static Ticket ticket;
+        static FluentJdf.LinqToJdf.Ticket ticket;
 
-        Establish context = () => ticket = Ticket.CreateIntent()
+        Establish context = () => ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent()
                                                .AddIntent().WithInput().BindingIntent("testRef").Ticket;
 
         Because of = () => ticket.Root.ModifyJdfNode()

@@ -8,17 +8,17 @@ using Machine.Specifications;
 namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
     [Subject("Highly fluent JMF interface")]
     public class when_fluently_modifying_existing_jmf_from_file {
-        static Message message;
+        static FluentJdf.LinqToJdf.Message message;
         static TempFileStream tempFileStream;
 
         Establish context = () => {
             tempFileStream = new TempFileStream();
-            Message.Create().AddCommand().SubmitQueueEntry().Message.Save(tempFileStream);
+            FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().Message.Save(tempFileStream);
             tempFileStream.Seek(0, SeekOrigin.Begin);
         };
 
         Because of = () => {
-            message = Message.Load(tempFileStream);
+            message = FluentJdf.LinqToJdf.Message.Load(tempFileStream);
             message.ModifyJmfNode().AddCommand().SubmitQueueEntry();
             tempFileStream.Close();
         };

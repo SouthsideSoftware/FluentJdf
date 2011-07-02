@@ -11,7 +11,7 @@ namespace FluentJdf.Tests.Unit.Schema.ValidationMessage {
         static XDocument document;
 
         Establish context =
-            () => document = Ticket.CreateProcess(ProcessType.Cutting, ProcessType.Creasing).WithInput().BindingIntent().Element.Document;
+            () => document = FluentJdf.LinqToJdf.Ticket.CreateProcess(ProcessType.Cutting, ProcessType.Creasing).WithInput().BindingIntent().Element.Document;
 
         It should_get_correct_xpath_text_and_type_when_source_is_nested_element = () => {
                                                                                       var message =

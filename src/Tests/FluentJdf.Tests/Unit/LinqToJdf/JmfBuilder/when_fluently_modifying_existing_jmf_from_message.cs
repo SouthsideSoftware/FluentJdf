@@ -6,9 +6,9 @@ using Machine.Specifications;
 namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
     [Subject("Highly fluent JMF interface")]
     public class when_fluently_modifying_existing_jmf_from_message {
-        static Message message;
+        static FluentJdf.LinqToJdf.Message message;
 
-        Establish context = () => message = Message.Create().AddCommand().SubmitQueueEntry().Message;
+        Establish context = () => message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().Message;
 
         Because of = () => message.ModifyJmfNode().AddCommand().SubmitQueueEntry();
 
