@@ -141,6 +141,7 @@
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_get_message_elements.cs" />
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_get_message_names.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_copy_constructor.cs" />
+    <Compile Include="Unit\LinqToJdf\Message\when_using_message_element_getter.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_message_names_getter.cs" />
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_to_message_method.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_using_to_ticket_method.cs" />
