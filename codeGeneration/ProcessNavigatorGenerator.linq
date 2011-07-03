@@ -76,7 +76,7 @@ public static void ProcessSchema() {
 					from ct in ss.SchemaTypes.Values.OfType<XmlSchemaComplexType>()
 					select ct).ToDictionary(item => item.Name);
 
-	var lep = ComplexTypes["LayoutElementProduction"];
+	var lep = ComplexTypes["LayoutPreparation"]; //"LayoutElementProduction"
 				
 	ProcessComplexType(lep, false);
 	return;
@@ -129,7 +129,7 @@ public static void ProcessComplexType(XmlSchemaComplexType complexType, bool rec
 	}
 
 	if (recurse && ProcessedComplexTypes.Contains(complexType)) {
-		sb.Append("::Type Procesed");
+		//sb.Append("::Type Procesed");
 		WriteLine(sb.ToString());
 		return;
 	} else {
@@ -175,7 +175,7 @@ public static void ProcessComplexType(XmlSchemaComplexType complexType, bool rec
 	if (complexBaseType != null) {
 		WriteLine("Process Complex Base For: {0}, {1}", complexType.Name, complexBaseType.Name);
 		level++;
-		WriteLine("Element Type: {0}", complexBaseType.Name);
+		WriteLine("Element Type: {0} {1}", complexBaseType.Name, ProcessedComplexTypes.Contains(complexBaseType) ? "::Type Procesed" : string.Empty);
 		ProcessComplexType(complexBaseType, true);
 		level--;
 	}
@@ -188,7 +188,7 @@ public static void ProcessXmlSchemaObject(object childElement) {
 		if (se.ElementType != null) {
 			var et = se.ElementType as XmlSchemaComplexType;
 			if (et != null) {
-				WriteLine("Element Type: {0}", et.Name);
+				WriteLine("Element Type: {0} {1}", et.Name, ProcessedComplexTypes.Contains(et) ? "::Type Procesed" : string.Empty);
 				level++;
 				ProcessComplexType(et, true);
 				level--;
