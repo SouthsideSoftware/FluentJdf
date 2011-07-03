@@ -86,24 +86,24 @@ public static void ProcessSchema() {
 		foreach (var item in schema.SchemaTypes.Values) {
 			var se = item as XmlSchemaComplexType;
 			if (se != null) {
-				Console.WriteLine("Complex: {0}", se.Name);
+				WriteLine("Complex: {0}", se.Name);
 			}
 			else {
 				var gr = item as XmlSchemaSimpleType;
 				if (gr != null) {
-					Console.WriteLine("Simple : {0}", gr.Name);
+					WriteLine("Simple : {0}", gr.Name);
 				} else { 
-					Console.WriteLine("Unknown : {0}", item.GetType());
+					WriteLine("Unknown : {0}", item.GetType());
 				}
 			}
-			//Console.WriteLine(item.GetType());
+			//WriteLine(item.GetType());
 		}
 
 		// Iterate over each XmlSchemaElement in the Values collection
 		// of the Elements property.
 		foreach (XmlSchemaElement element in schema.Elements.Values) {
 	
-			Console.WriteLine("Element: {0}", element.Name);
+			WriteLine("Element: {0}", element.Name);
 	
 			// Get the complex type of the Customer element.
 			XmlSchemaComplexType complexType = element.ElementSchemaType as XmlSchemaComplexType;
@@ -117,18 +117,23 @@ public static void ProcessComplexType(XmlSchemaComplexType complexType, bool rec
 	
 	XmlSchemaComplexType complexBaseType = null;
 	
+	var sb = new StringBuilder();
+	
 	if (complexType.BaseXmlSchemaType != null && complexType.BaseXmlSchemaType is XmlSchemaComplexType) {
 		complexBaseType = complexType.BaseXmlSchemaType as XmlSchemaComplexType;
-		Console.WriteLine("Complex Base: {0}", complexBaseType.Name);
+		sb.AppendFormat("Complex Base: {0}", complexBaseType.Name);
 	} else if (complexType.BaseSchemaType != null && complexType.BaseSchemaType is XmlSchemaSimpleType) {
-		Console.WriteLine("Simple Base: {0}", (complexType.BaseSchemaType as XmlSchemaSimpleType).Name);
+		sb.AppendFormat("Simple Base: {0}", (complexType.BaseSchemaType as XmlSchemaSimpleType).Name);
 	} else if (complexType.BaseSchemaType != null) {
-		Console.WriteLine(complexType.BaseSchemaType.GetType());
+		sb.Append(complexType.BaseSchemaType.GetType());
 	}
 
 	if (recurse && ProcessedComplexTypes.Contains(complexType)) {
-		Console.WriteLine("::Type Procesed");
+		sb.Append("::Type Procesed");
+		WriteLine(sb.ToString());
 		return;
+	} else {
+		WriteLine(sb.ToString());
 	}
 
 	if (!ProcessedComplexTypes.Contains(complexType)){
@@ -138,6 +143,7 @@ public static void ProcessComplexType(XmlSchemaComplexType complexType, bool rec
 	// If the complex type has any attributes, get an enumerator 
 	// and write each attribute name to the console.
 	if (complexType.AttributeUses.Count > 0) {
+		level++;
 		IDictionaryEnumerator enumerator =
 			complexType.AttributeUses.GetEnumerator();
 
@@ -145,40 +151,47 @@ public static void ProcessComplexType(XmlSchemaComplexType complexType, bool rec
 			XmlSchemaAttribute attribute =
 				(XmlSchemaAttribute)enumerator.Value;
 
-			Console.WriteLine("Attribute: {0} | {1}", attribute.Name, attribute.SchemaTypeName.Name);
+			WriteLine("Attribute: {0} | {1}", attribute.Name, attribute.SchemaTypeName.Name);
 		}
+		level--;
 	}
 
 	// Get the sequence particle of the complex type.
 	XmlSchemaSequence sequence = complexType.ContentTypeParticle as XmlSchemaSequence;
 	
 	if (sequence != null) {
-		Console.WriteLine("{0} Begin Sequence: {1}", complexType.Name, sequence.Items.Count);
+		WriteLine("{0} Begin Sequence: {1}", complexType.Name, sequence.Items.Count);
 		// Iterate over each XmlSchemaElement in the Items collection.
 		foreach (var childElement in sequence.Items) {
+			level++;
 			ProcessXmlSchemaObject(childElement);
+			level--;
 		}
-		Console.WriteLine("{0} End Sequence: {1}", complexType.Name, sequence.Items.Count);
+		WriteLine("{0} End Sequence: {1}", complexType.Name, sequence.Items.Count);
 	} else {
-		Console.WriteLine("No Sequence: {0}", complexType.ContentTypeParticle);
+		WriteLine("No Sequence: {0}", complexType.ContentTypeParticle);
 	}
 	
 	if (complexBaseType != null) {
-		Console.WriteLine("Process Complex Base For: {0}, {1}", complexType.Name, complexBaseType.Name);
-		Console.WriteLine("Element Type: {0}", complexBaseType.Name);
+		WriteLine("Process Complex Base For: {0}, {1}", complexType.Name, complexBaseType.Name);
+		level++;
+		WriteLine("Element Type: {0}", complexBaseType.Name);
 		ProcessComplexType(complexBaseType, true);
+		level--;
 	}
 }
 
 public static void ProcessXmlSchemaObject(object childElement) {
 	var se = childElement as XmlSchemaElement;
 	if (se != null) {
-		Console.WriteLine("Element: {0}, {1}", se.Name, se.RefName.Name);
+		WriteLine("Element: {0}, {1}", se.Name, se.RefName.Name);
 		if (se.ElementType != null) {
 			var et = se.ElementType as XmlSchemaComplexType;
 			if (et != null) {
-				Console.WriteLine("Element Type: {0}", et.Name);
+				WriteLine("Element Type: {0}", et.Name);
+				level++;
 				ProcessComplexType(et, true);
+				level--;
 			} else { 
 				throw new Exception("What type" + se.ElementType.GetType());
 			}
@@ -186,32 +199,37 @@ public static void ProcessXmlSchemaObject(object childElement) {
 	}
 	var gr = childElement as XmlSchemaGroupRef;
 	if (gr != null) {
-		Console.WriteLine("Group Ref: {0}", gr.RefName);
+		WriteLine("Group Ref: {0}", gr.RefName);
 	}
 	var sc = childElement as XmlSchemaChoice;
 	if (gr != null) {
-		Console.WriteLine("Schema Choice: {0}", sc.Id);
+		WriteLine("Schema Choice: {0}", sc.Id);
 	}
 	var ss = childElement as XmlSchemaSequence;
 	if (ss != null) {
 		foreach (var ssElement in ss.Items) {
-			Console.WriteLine("Schema Sequence: {0}", ssElement.GetType());
+			WriteLine("Schema Sequence: {0}", ssElement.GetType());
 			ProcessXmlSchemaObject(ssElement);
 		}
 	}
 	var sa = childElement as XmlSchemaAny;
 	if (sa != null) {
-		Console.WriteLine("Schema XmlSchemaAny: {0}", sa.Id);
+		WriteLine("Schema XmlSchemaAny: {0}", sa.Id);
 	}
 }
 
+static void WriteLine(object value) {
+	Console.Write("".PadLeft(level * 4));
+	Console.WriteLine(value);
+}
+
 static void WriteLine(string value) {
-	Console.Write("".PadLeft(level * 2));
+	Console.Write("".PadLeft(level * 4));
 	Console.WriteLine(value);
 }
 
 static void WriteLine(string format, params object[] items) {
-	Console.Write("".PadLeft(level * 2));
+	Console.Write("".PadLeft(level * 4));
 	Console.WriteLine(format, items);
 }
 
@@ -221,7 +239,7 @@ static void ValidationCallback(object sender, ValidationEventArgs args) {
 	else if (args.Severity == XmlSeverityType.Error)
 		Console.Write("ERROR: ");
 
-	Console.WriteLine(args.Message);
+	WriteLine(args.Message);
 }
 
 // Define other methods and classes here
