@@ -232,6 +232,15 @@ namespace Infrastructure.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parameter {0} must be greater than zero..
+        /// </summary>
+        public static string ParameterCheck_IntParameterGreaterThanZero {
+            get {
+                return ResourceManager.GetString("ParameterCheck_IntParameterGreaterThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The parameter {0} must not have a zero value.
         /// </summary>
         public static string ParameterCheck_IntParameterIsNonZero {

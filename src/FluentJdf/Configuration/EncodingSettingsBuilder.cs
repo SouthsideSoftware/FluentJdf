@@ -20,12 +20,10 @@ namespace FluentJdf.Configuration {
         /// Register an encoding for a specific mime type.
         /// </summary>
         /// <param name="mimeType"></param>
-        /// <param name="encodingType"></param>
-        public EncodingSettingsBuilder EncodingForMimeType(string mimeType, Type encodingType) {
+        public EncodingSettingsBuilder EncodingForMimeType<T>(string mimeType) where T:IEncoding {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
-            ParameterCheck.ParameterRequired(encodingType, "encodingType");
 
-            encodingSettings.RegisterEncodingForMimeType(mimeType, encodingType);
+            encodingSettings.RegisterEncodingForMimeType<T>(mimeType);
 
             return this;
         }
@@ -33,13 +31,10 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Register a default encoding.
         /// </summary>
-        /// <param name="encodingType"></param>
         /// <returns></returns>
-        public EncodingSettingsBuilder DefaultEncoding(Type encodingType)
+        public EncodingSettingsBuilder DefaultEncoding<T>() where T:IEncoding
         {
-            ParameterCheck.ParameterRequired(encodingType, "encodingType");
-
-            encodingSettings.DefaultEncoding = encodingType;
+            encodingSettings.SetDefaultEncoding<T>();
 
             return this;
         }
@@ -48,12 +43,9 @@ namespace FluentJdf.Configuration {
         /// Register a default encoding for transmission part
         /// collection that contain a single part.
         /// </summary>
-        /// <param name="encodingType"></param>
         /// <returns></returns>
-        public EncodingSettingsBuilder DefaultSinglePartEncoding(Type encodingType) {
-            ParameterCheck.ParameterRequired(encodingType, "encodingType");
-
-            encodingSettings.DefaultSinglePartEncoding = encodingType;
+        public EncodingSettingsBuilder DefaultSinglePartEncoding<T>() where T:IEncoding {
+            encodingSettings.SetDefaultSinglePartEncoding<T>();
 
             return this;
         }
@@ -62,14 +54,9 @@ namespace FluentJdf.Configuration {
         /// Register a default encoding for transmission part
         /// collection that contain multiple parts.
         /// </summary>
-        /// <param name="encodingType"></param>
         /// <returns></returns>
-        public EncodingSettingsBuilder DefaultMultiPartEncoding(Type encodingType)
-        {
-            ParameterCheck.ParameterRequired(encodingType, "encodingType");
-
-            encodingSettings.DefaultMultiPartEncoding = encodingType;
-
+        public EncodingSettingsBuilder DefaultMultiPartEncoding<T>() where T:IEncoding {
+            encodingSettings.SetDefaultMultiPartEncoding<T>();
             return this;
         }
 

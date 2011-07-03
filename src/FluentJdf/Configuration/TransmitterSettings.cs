@@ -21,13 +21,6 @@ namespace FluentJdf.Configuration {
         /// </summary>
         public Dictionary<string, string> TransmittersByScheme { get; private set; }
 
-        void RegisterTransmitterFactoryIfRequired() {
-            Type t = typeof (TransmitterFactory);
-            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (ITransmitterFactory), t.FullName)) {
-                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (ITransmitterFactory), t);
-            }
-        }
-
         /// <summary>
         /// Register a transmitter for a scheme
         /// </summary>
@@ -52,7 +45,6 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public TransmitterSettings ResetToDefault() {
             TransmittersByScheme.Clear();
-            RegisterTransmitterFactoryIfRequired();
             RegisterTransmitterForScheme("http", typeof(HttpTransmitter));
             return this;
         }

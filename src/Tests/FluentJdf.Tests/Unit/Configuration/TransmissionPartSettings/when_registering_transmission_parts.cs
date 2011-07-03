@@ -10,21 +10,19 @@ namespace FluentJdf.Tests.Unit.Configuration.TransmissionPartSettings {
         Establish context = () => { mockTransmissionPart = new MockTransmissionPart(); };
 
         It should_be_able_to_register_a_default_transmission_part = () => {
-                                                                        Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
-                                                                        FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
-                                                                        FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmissionPartSettings().DefaultTransmissionPart(
-                                                                            typeof (MockTransmissionPart));
-                                                                        FluentJdf.Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.DefaultTransmissionPart.ShouldEqual(
-                                                                            typeof (MockTransmissionPart));
-                                                                    };
+            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            FluentJdfLibrary.Settings.ResetToDefaults();
+            FluentJdfLibrary.Settings.WithTransmissionPartSettings().DefaultTransmissionPart<MockTransmissionPart>();
+            FluentJdfLibrary.Settings.TransmissionPartSettings.DefaultTransmissionPart.ShouldEqual(
+                typeof (MockTransmissionPart));
+        };
 
         It should_be_able_to_register_a_mime_type_encoding = () => {
-                                                                 Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
-                                                                 FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
-                                                                 FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType(
-                                                                     "boohoo", typeof (MockTransmissionPart));
-                                                                 FluentJdf.Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType["boohoo"].
-                                                                     ShouldEqual(typeof (MockTransmissionPart).FullName);
-                                                             };
+            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            FluentJdfLibrary.Settings.ResetToDefaults();
+            FluentJdfLibrary.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType<MockTransmissionPart>("boohoo");
+            FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType["boohoo"].
+                ShouldEqual(typeof (MockTransmissionPart));
+        };
     }
 }

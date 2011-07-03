@@ -21,7 +21,7 @@ namespace FluentJdf.Encoding
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
             if (Configuration.FluentJdfLibrary.Settings.EncodingSettings.EncodingsByMimeType.ContainsKey(mimeType)) {
-                return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Configuration.FluentJdfLibrary.Settings.EncodingSettings.EncodingsByMimeType[mimeType]);
+                return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Configuration.FluentJdfLibrary.Settings.EncodingSettings.EncodingsByMimeType[mimeType].FullName);
             }
 
             return Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IEncoding>(Configuration.FluentJdfLibrary.Settings.EncodingSettings.DefaultEncoding.FullName);

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using FluentJdf.Configuration;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.Encoding
-{
+namespace FluentJdf.Encoding {
     /// <summary>
     /// Implementation of transmission part factory.
     /// </summary>
-    public class TransmissionPartFactory : ITransmissionPartFactory
-    {
+    public class TransmissionPartFactory : ITransmissionPartFactory {
+        #region ITransmissionPartFactory Members
+
         /// <summary>
         /// Create a transmission part.
         /// </summary>
@@ -27,16 +23,21 @@ namespace FluentJdf.Encoding
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
             ITransmissionPart transmissionPart;
-            if (Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType.ContainsKey(mimeType))
-            {
-                transmissionPart = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPart>(Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType[mimeType]);
+            if (FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType.ContainsKey(mimeType)) {
+                transmissionPart =
+                    Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPart>(
+                        FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType[mimeType].FullName);
             }
             else {
-                transmissionPart = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPart>(Configuration.FluentJdfLibrary.Settings.TransmissionPartSettings.DefaultTransmissionPart.FullName);
+                transmissionPart =
+                    Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPart>(
+                        FluentJdfLibrary.Settings.TransmissionPartSettings.DefaultTransmissionPart.FullName);
             }
 
             transmissionPart.Initialize(name, data, mimeType, id);
             return transmissionPart;
         }
+
+        #endregion
     }
 }

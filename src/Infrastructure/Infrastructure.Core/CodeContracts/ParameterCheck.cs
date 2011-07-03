@@ -72,6 +72,23 @@ namespace Infrastructure.Core.CodeContracts
         }
 
         /// <summary>
+        /// Throws a Precondition exception if the provided integer is not greater than zero
+        /// </summary>
+        /// <param name="parameter">The integer to test.</param>
+        /// <param name="parameterName">The name of the parameter.</param>
+        /// <exception cref="PreconditionException">
+        /// <para>The integer is not greater than zero.</para>
+        /// <para>- or -</para>
+        /// <para>The parameter name is null, empty or all whitespace</para>
+        /// </exception>
+        public static void IntParameterGreaterThanZero(int parameter, string parameterName)
+        {
+            ParameterNameRequired(parameterName);
+
+            Require(parameter > 0, string.Format(Messages.ParameterCheck_IntParameterGreaterThanZero, parameterName));
+        }
+
+        /// <summary>
         /// Throws a Precondition exception if the provided list is null or does not contain at least one member
         /// </summary>
         /// <typeparam name="T">The type of list</typeparam>

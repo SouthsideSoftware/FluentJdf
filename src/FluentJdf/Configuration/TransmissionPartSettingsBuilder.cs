@@ -1,4 +1,5 @@
 using System;
+using FluentJdf.Encoding;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.Configuration {
@@ -18,11 +19,10 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Register an encoding for a specific transmission part.
         /// </summary>
-        public TransmissionPartSettingsBuilder TransmissionPartForMimeType(string mimeType, Type transmissionPartType) {
+        public TransmissionPartSettingsBuilder TransmissionPartForMimeType<T>(string mimeType) where T:ITransmissionPart {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
-            ParameterCheck.ParameterRequired(transmissionPartType, "transmissionPartType");
 
-            transmissionPartSettings.RegisterTransmissionPartForMimeType(mimeType, transmissionPartType);
+            transmissionPartSettings.RegisterTransmissionPartForMimeType<T>(mimeType);
 
             return this;
         }
@@ -30,12 +30,9 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Register a default transmission part
         /// </summary>
-        /// <param name="transmissionPartType"></param>
         /// <returns></returns>
-        public TransmissionPartSettingsBuilder DefaultTransmissionPart(Type transmissionPartType) {
-            ParameterCheck.ParameterRequired(transmissionPartType, "transmissionPartType");
-
-            transmissionPartSettings.DefaultTransmissionPart = transmissionPartType;
+        public TransmissionPartSettingsBuilder DefaultTransmissionPart<T>() where T:ITransmissionPart {
+            transmissionPartSettings.SetDefaultTransmissionPart<T>();
 
             return this;
         }

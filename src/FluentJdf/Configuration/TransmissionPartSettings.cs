@@ -17,13 +17,13 @@ namespace FluentJdf.Configuration {
         /// Constructor.
         /// </summary>
         public TransmissionPartSettings() {
-            TransmissionPartsByMimeType = new Dictionary<string, string>();
+            TransmissionPartsByMimeType = new Dictionary<string, Type>();
         }
 
         /// <summary>
         /// Gets dictionary of transmission part settings by mime type.
         /// </summary>
-        public Dictionary<string, string> TransmissionPartsByMimeType { get; private set; }
+        public Dictionary<string, Type> TransmissionPartsByMimeType { get; private set; }
 
         /// <summary>
         /// Gets the default transmission part
@@ -31,33 +31,22 @@ namespace FluentJdf.Configuration {
         public Type DefaultTransmissionPart
         {
             get { return defaultTransmissionPart; }
-            internal set
-            {
-                ParameterCheck.ParameterRequired(value, "value");
-                ThrowExceptionIfTypeIsNotITransmissionPart(value);
-                RegisterTransmissionPartIfRequired(value);
-                defaultTransmissionPart = value;
-            }
+        }
+
+        internal void SetDefaultTransmissionPart<T>() where T:ITransmissionPart {
+            RegisterTransmissionPartIfRequired<T>();
+            defaultTransmissionPart = typeof (T);
         }
 
         /// <summary>
         /// Register a transmission part for a mime type.
         /// </summary>
         /// <param name="mimeType"></param>
-        /// <param name="value"></param>
-        public void RegisterTransmissionPartForMimeType(string mimeType, Type value) {
+        public void RegisterTransmissionPartForMimeType<T>(string mimeType) where T:ITransmissionPart {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
-            ParameterCheck.ParameterRequired(value, "value");
-            ThrowExceptionIfTypeIsNotITransmissionPart(value);
 
-            RegisterTransmissionPartIfRequired(value);
-            TransmissionPartsByMimeType[mimeType] = value.FullName;
-        }
-
-        void ThrowExceptionIfTypeIsNotITransmissionPart(Type value) {
-            if (!typeof (ITransmissionPart).IsAssignableFrom(value)) {
-                throw new ArgumentException(Messages.TransmissionPartSettings_ThrowExceptionIfTypeIsNotITransmissionPart);
-            }
+            RegisterTransmissionPartIfRequired<T>();
+            TransmissionPartsByMimeType[mimeType] = typeof(T);
         }
 
         /// <summary>
@@ -66,16 +55,17 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public TransmissionPartSettings ResetToDefault() {
             TransmissionPartsByMimeType.Clear();
-            DefaultTransmissionPart = typeof (TransmissionPart);
-            RegisterTransmissionPartForMimeType(MimeTypeHelper.XmlMimeType, typeof(XmlTransmissionPart));
-            RegisterTransmissionPartForMimeType(MimeTypeHelper.JdfMimeType, typeof(XmlTransmissionPart));
-            RegisterTransmissionPartForMimeType(MimeTypeHelper.JmfMimeType, typeof(XmlTransmissionPart));
+            SetDefaultTransmissionPart<TransmissionPart>();
+            RegisterTransmissionPartForMimeType<XmlTransmissionPart>(MimeTypeHelper.XmlMimeType);
+            RegisterTransmissionPartForMimeType<XmlTransmissionPart>(MimeTypeHelper.JdfMimeType);
+            RegisterTransmissionPartForMimeType<XmlTransmissionPart>(MimeTypeHelper.JmfMimeType);
             return this;
         }
 
-        void RegisterTransmissionPartIfRequired(Type transmissionPart) {
-            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (ITransmissionPart), transmissionPart.FullName)) {
-                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (ITransmissionPart), transmissionPart, ComponentLifestyle.TransientNoTracking);
+        void RegisterTransmissionPartIfRequired<T>() where T:ITransmissionPart {
+            var transmissionPartType = typeof (T);
+            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (ITransmissionPart), transmissionPartType.FullName)) {
+                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (ITransmissionPart), transmissionPartType, ComponentLifestyle.TransientNoTracking);
             }
         }
     }

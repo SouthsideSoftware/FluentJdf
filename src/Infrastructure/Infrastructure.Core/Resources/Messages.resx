@@ -186,4 +186,7 @@
 	<data name="LogInitializer_HookUnhandledExceptionEvents_Unhandled_UnknownException">
 		<value xml:space="preserve">Unhandled exception.  Actual exception is not known.</value>
 	</data>
+	<data name="ParameterCheck_IntParameterGreaterThanZero">
+		<value xml:space="preserve">Parameter {0} must be greater than zero.</value>
+	</data>
 </root>

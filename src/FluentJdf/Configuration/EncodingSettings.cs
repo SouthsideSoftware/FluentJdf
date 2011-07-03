@@ -17,25 +17,24 @@ namespace FluentJdf.Configuration {
         /// Constructor.
         /// </summary>
         public EncodingSettings() {
-            EncodingsByMimeType = new Dictionary<string, string>();
+            EncodingsByMimeType = new Dictionary<string, Type>();
         }
 
         /// <summary>
         /// Gets dictionary of encoding settings by mime type.
         /// </summary>
-        public Dictionary<string, string> EncodingsByMimeType { get; private set; }
+        public Dictionary<string, Type> EncodingsByMimeType { get; private set; }
 
         /// <summary>
         /// Gets the default encoding for transmission part collections containing a single part.
         /// </summary>
         public Type DefaultSinglePartEncoding {
             get { return defaultSinglePartEncoding; }
-            internal set {
-                ParameterCheck.ParameterRequired(value, "value");
-                ThrowExceptionIfTypeIsNotIEncoding(value);
-                RegisterEncodingIfRequired(value);
-                defaultSinglePartEncoding = value;
-            }
+        }
+
+        internal void SetDefaultSinglePartEncoding<T>() where T:IEncoding {
+            RegisterEncodingIfRequired<T>();
+            defaultSinglePartEncoding = typeof (T);
         }
 
         /// <summary>
@@ -43,12 +42,11 @@ namespace FluentJdf.Configuration {
         /// </summary>
         public Type DefaultEncoding {
             get { return defaultEncoding; }
-            internal set {
-                ParameterCheck.ParameterRequired(value, "value");
-                ThrowExceptionIfTypeIsNotIEncoding(value);
-                RegisterEncodingIfRequired(value);
-                defaultEncoding = value;
-            }
+        }
+
+        internal void SetDefaultEncoding<T>() where T: IEncoding {
+            RegisterEncodingIfRequired<T>();
+            defaultEncoding = typeof (T);
         }
 
         /// <summary>
@@ -56,32 +54,22 @@ namespace FluentJdf.Configuration {
         /// </summary>
         public Type DefaultMultiPartEncoding {
             get { return defaultMultiPartEncoding; }
-            internal set {
-                ParameterCheck.ParameterRequired(value, "value");
-                ThrowExceptionIfTypeIsNotIEncoding(value);
-                RegisterEncodingIfRequired(value);
-                defaultMultiPartEncoding = value;
-            }
+        }
+
+        internal void SetDefaultMultiPartEncoding<T>() where T:IEncoding {
+           RegisterEncodingIfRequired<T>();
+            defaultMultiPartEncoding = typeof (T);
         }
 
         /// <summary>
         /// Register an encoding for a mime type.
         /// </summary>
         /// <param name="mimeType"></param>
-        /// <param name="value"></param>
-        public void RegisterEncodingForMimeType(string mimeType, Type value) {
+        public void RegisterEncodingForMimeType<T>(string mimeType) where T:IEncoding {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
-            ParameterCheck.ParameterRequired(value, "value");
-            ThrowExceptionIfTypeIsNotIEncoding(value);
 
-            RegisterEncodingIfRequired(value);
-            EncodingsByMimeType[mimeType] = value.FullName;
-        }
-
-        void ThrowExceptionIfTypeIsNotIEncoding(Type value) {
-            if (!typeof (IEncoding).IsAssignableFrom(value)) {
-                throw new ArgumentException(Messages.EncodingSettings_ThrowExceptionIfTypeIsNotIEncoding);
-            }
+            RegisterEncodingIfRequired<T>();
+            EncodingsByMimeType[mimeType] = typeof(T);
         }
 
         /// <summary>
@@ -90,23 +78,16 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public EncodingSettings ResetToDefault() {
             EncodingsByMimeType.Clear();
-            RegisterEncodingFactoryIfRequired();
-            DefaultEncoding = typeof (PassThroughEncoding);
-            DefaultSinglePartEncoding = typeof (PassThroughEncoding);
-            DefaultMultiPartEncoding = typeof (PassThroughEncoding);
+            SetDefaultEncoding<PassThroughEncoding>();
+            SetDefaultSinglePartEncoding<PassThroughEncoding>();
+            SetDefaultMultiPartEncoding<PassThroughEncoding>();
             return this;
         }
 
-        void RegisterEncodingIfRequired(Type encodingType) {
+        void RegisterEncodingIfRequired<T>() where T: IEncoding {
+            var encodingType = typeof (T);
             if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (IEncoding), encodingType.FullName)) {
                 Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (IEncoding), encodingType);
-            }
-        }
-
-        void RegisterEncodingFactoryIfRequired() {
-            Type t = typeof (EncodingFactory);
-            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (IEncodingFactory), t.FullName)) {
-                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (IEncodingFactory), t);
             }
         }
     }
