@@ -47,6 +47,18 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		public RemoveQueueEntryCommandAttributeBuilder UniqueId() {
 			return Id(Globals.CreateUniqueId(RemoveQueueEntryCommandBuilder.IdPrefix));
 		}
+
+		/// <summary>
+		/// Sets the version of this JMF node.
+		/// </summary>
+		/// <param name="jdfVersion"></param>
+		/// <returns></returns>
+		public RemoveQueueEntryCommandAttributeBuilder JdfVersion(string jdfVersion) {
+			ParameterCheck.StringRequiredAndNotWhitespace(jdfVersion, "jdfVersion");
+
+			Element.SetVersion(jdfVersion);
+			return this;
+		}		
 	}
 }
 

@@ -138,6 +138,7 @@
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_process_group.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_simple_jdf_process.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_list_of_jdf_elements_containing_a_process_type.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_version_on_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_get_message_elements.cs" />
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_get_message_names.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_copy_constructor.cs" />

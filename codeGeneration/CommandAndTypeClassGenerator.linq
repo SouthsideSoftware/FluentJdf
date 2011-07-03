@@ -111,6 +111,18 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {{
 		public {0}{1}AttributeBuilder UniqueId() {{
 			return Id(Globals.CreateUniqueId({0}{1}Builder.IdPrefix));
 		}}
+
+		/// <summary>
+		/// Sets the version of this JMF node.
+		/// </summary>
+		/// <param name=""jdfVersion""></param>
+		/// <returns></returns>
+		public {0}{1}AttributeBuilder JdfVersion(string jdfVersion) {{
+			ParameterCheck.StringRequiredAndNotWhitespace(jdfVersion, ""jdfVersion"");
+
+			Element.SetVersion(jdfVersion);
+			return this;
+		}}		
 	}}
 }}
 

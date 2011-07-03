@@ -47,6 +47,18 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		public ResourceQueryAttributeBuilder UniqueId() {
 			return Id(Globals.CreateUniqueId(ResourceQueryBuilder.IdPrefix));
 		}
+
+		/// <summary>
+		/// Sets the version of this JMF node.
+		/// </summary>
+		/// <param name="jdfVersion"></param>
+		/// <returns></returns>
+		public ResourceQueryAttributeBuilder JdfVersion(string jdfVersion) {
+			ParameterCheck.StringRequiredAndNotWhitespace(jdfVersion, "jdfVersion");
+
+			Element.SetVersion(jdfVersion);
+			return this;
+		}		
 	}
 }
 

@@ -47,6 +47,18 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		public FlushQueueCommandAttributeBuilder UniqueId() {
 			return Id(Globals.CreateUniqueId(FlushQueueCommandBuilder.IdPrefix));
 		}
+
+		/// <summary>
+		/// Sets the version of this JMF node.
+		/// </summary>
+		/// <param name="jdfVersion"></param>
+		/// <returns></returns>
+		public FlushQueueCommandAttributeBuilder JdfVersion(string jdfVersion) {
+			ParameterCheck.StringRequiredAndNotWhitespace(jdfVersion, "jdfVersion");
+
+			Element.SetVersion(jdfVersion);
+			return this;
+		}		
 	}
 }
 

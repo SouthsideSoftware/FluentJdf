@@ -73,5 +73,17 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
             Element.SetSenderId(senderId);
             return this;
         }
+
+        /// <summary>
+        /// Sets the version of this JMF node.
+        /// </summary>
+        /// <param name="jdfVersion"></param>
+        /// <returns></returns>
+        public JmfNodeAttributeBuilder JdfVersion(string jdfVersion) {
+            ParameterCheck.StringRequiredAndNotWhitespace(jdfVersion, "jdfVersion");
+
+            Element.SetVersion(jdfVersion);
+            return this;
+        }
     }
 }
