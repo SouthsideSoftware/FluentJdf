@@ -114,11 +114,15 @@
     <Compile Include="Encoding\EncodingFactory.cs" />
     <Compile Include="Encoding\EncodingResult.cs" />
     <Compile Include="Encoding\IEncoding.cs" />
+    <Compile Include="Encoding\IMessageTransmissionPart.cs" />
+    <Compile Include="Encoding\ITicketTransmissionPart.cs" />
     <Compile Include="Encoding\ITransmissionPart.cs" />
     <Compile Include="Encoding\ITransmissionPartCollection.cs" />
     <Compile Include="Encoding\ITransmissionPartFactory.cs" />
     <Compile Include="Encoding\IXmlTransmissionPart.cs" />
+    <Compile Include="Encoding\MessageTransmissionPart.cs" />
     <Compile Include="Encoding\PassThroughEncoding.cs" />
+    <Compile Include="Encoding\TicketTransmissionPart.cs" />
     <Compile Include="Encoding\TransmissionPart.cs" />
     <Compile Include="Encoding\TransmissionPartCollection.cs" />
     <Compile Include="Encoding\TransmissionPartFactory.cs" />

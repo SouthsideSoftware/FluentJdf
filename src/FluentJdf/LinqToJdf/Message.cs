@@ -101,6 +101,14 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Loads the message from a file.
+        /// </summary>
+        /// <returns></returns>
+        public new static Message Load(string fileName) {
+            return new Message(XDocument.Load(fileName));
+        }
+
+        /// <summary>
         /// Parses xml into a message.
         /// </summary>
         /// <param name="xml"></param>

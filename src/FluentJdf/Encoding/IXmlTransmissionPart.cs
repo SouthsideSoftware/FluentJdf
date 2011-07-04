@@ -15,5 +15,10 @@ namespace FluentJdf.Encoding
         /// Gets the document for the transmission part.
         /// </summary>
         XDocument Document { get; }
+
+        /// <summary>
+        /// Gets the xml type of this part -- jdf, jmf or other.
+        /// </summary>
+        XmlType XmlType { get; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Xml.Linq;
 using FluentJdf.Configuration;
 using Infrastructure.Core.CodeContracts;
 
@@ -22,6 +24,8 @@ namespace FluentJdf.Encoding {
             ParameterCheck.ParameterRequired(data, "data");
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
+            //todo: detect actual mime type if document is xml
+
             ITransmissionPart transmissionPart;
             if (FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType.ContainsKey(mimeType)) {
                 transmissionPart =
@@ -36,6 +40,21 @@ namespace FluentJdf.Encoding {
 
             transmissionPart.Initialize(name, data, mimeType, id);
             return transmissionPart;
+        }
+
+        /// <summary>
+        /// Creates a transmission part based on an <see cref="XDocument"/>.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="doc"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <remarks>If the root is JDF, the part type registered for the JDF mime type is used.
+        /// If the root is JMF, the part type registered for the JMF mime type is used.
+        /// Otherwise, the part type registered for the generic xml mime type is used.</remarks>
+        public ITransmissionPart CreateTransmissionPart(string name, XDocument doc, string id) {
+            //todo: implement and use
+            throw new NotImplementedException();
         }
 
         #endregion

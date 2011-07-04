@@ -32,6 +32,14 @@ namespace FluentJdf.LinqToJdf
         }
 
         /// <summary>
+        /// Loads the ticket from a file.
+        /// </summary>
+        /// <returns></returns>
+        public new static Ticket Load(string fileName) {
+            return new Ticket(XDocument.Load(fileName));
+        }
+
+        /// <summary>
         /// Parses xml into a message.
         /// </summary>
         /// <param name="xml"></param>

@@ -10,29 +10,40 @@ using Infrastructure.Core.Logging;
 
 namespace FluentJdf.Encoding {
     /// <summary>
-    /// A transmission part for generic xml.
+    /// A transmission part that holds a JDF ticket.
     /// </summary>
-    public class XmlTransmissionPart : IXmlTransmissionPart {
-        static readonly ILog logger = LogManager.GetLogger(typeof (XmlTransmissionPart));
+    public class TicketTransmissionPart : ITicketTransmissionPart {
+        static readonly ILog logger = LogManager.GetLogger(typeof (TicketTransmissionPart));
 
         /// <summary>
         /// This constructor for use by factories.  Should not
         /// be called from user code.
         /// </summary>
-        public XmlTransmissionPart() {
+        public TicketTransmissionPart() {
             
         }
+
         /// <summary>
-        /// Construct a part from a document
+        /// Construct a part from a ticket
         /// </summary>
         /// <param name="doc"></param>
         /// <param name="name"></param>
         /// <param name="id"></param>
-        public XmlTransmissionPart(XDocument doc, string name, string id = null) {
-            ParameterCheck.ParameterRequired(doc, "doc");
+        public TicketTransmissionPart(XDocument doc, string name, string id = null) : this(doc.ToTicket(), name, id)
+        {
+        }
+
+        /// <summary>
+        /// Construct a part from a ticket
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        public TicketTransmissionPart(Ticket ticket, string name, string id = null) {
+            ParameterCheck.ParameterRequired(ticket, "ticket");
             ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
 
-            InitalizeProperties(doc, name, id);
+            InitalizeProperties(ticket, name, id);
         }
 
         /// <summary>
@@ -41,23 +52,23 @@ namespace FluentJdf.Encoding {
         /// <param name="fileName"></param>
         /// <param name="id"></param>
         /// <exception cref="ArgumentException">If the named file does not exist.</exception>
-        public XmlTransmissionPart(string fileName, string id = null) {
+        public TicketTransmissionPart(string fileName, string id = null) {
             ParameterCheck.StringRequiredAndNotWhitespace(fileName, "fileName");
 
             if (!File.Exists(fileName)) {
                 throw new ArgumentException(string.Format(Messages.TransmissionPart_CannotCreatePartAsFileDoesNotExist, fileName));
             }
 
-            XDocument document = null;
+            Ticket ticket = null;
             try {
-                document = XDocument.Load(fileName);
+                ticket = Ticket.Load(fileName);
             }
             catch (Exception err) {
                 string mess = string.Format(Messages.XmlTransmissionPart_FailedToLoadXDocumentFromFile, fileName);
                 logger.Error(mess, err);
                 throw;
             }
-            InitalizeProperties(document, document.MimeType(), id);
+            InitalizeProperties(ticket, ticket.MimeType(), id);
         }
 
         /// <summary>
@@ -65,30 +76,23 @@ namespace FluentJdf.Encoding {
         /// stream is disposed by the constructor.
         /// </summary>
         /// <remarks>mimeType is ignored.  It is taken from the parsed xml root node.</remarks>
-        public XmlTransmissionPart(Stream sourceStream, string name, string mimeType = null, string id = null) {
+        public TicketTransmissionPart(Stream sourceStream, string name, string mimeType = null, string id = null) {
             ParameterCheck.ParameterRequired(sourceStream, "sourceStream");
             ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
 
             if (sourceStream.CanSeek) {
                 sourceStream.Seek(0, SeekOrigin.Begin);
             }
-            XDocument document = null;
+            Ticket ticket = null;
             try {
-                document = XDocument.Load(sourceStream);
+                ticket = Ticket.Load(sourceStream);
             }
             catch (Exception err) {
                 string mess = string.Format(Messages.XmlTransmissionPart_FailedToLoadXDocumentFromStream);
                 logger.Error(mess, err);
                 throw;
             }
-            InitalizeProperties(document, document.MimeType(), id);
-        }
-
-        /// <summary>
-        /// Gets the xml type of this part -- jdf, jmf or other.
-        /// </summary>
-        public XmlType XmlType {
-            get { return Document.XmlType(); }
+            InitalizeProperties(ticket, ticket.MimeType(), id);
         }
 
         #region IXmlTransmissionPart Members
@@ -107,7 +111,7 @@ namespace FluentJdf.Encoding {
         /// </summary>
         public Stream CopyOfStream() {
             var tempStream = new TempFileStream();
-            Document.Save(tempStream);
+            Ticket.Save(tempStream);
             tempStream.Seek(0, SeekOrigin.Begin);
 
             return tempStream;
@@ -139,25 +143,25 @@ namespace FluentJdf.Encoding {
             ParameterCheck.ParameterRequired(stream, "stream");
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
-            InitalizeProperties(XDocument.Load(stream), name, id);
+            InitalizeProperties(Ticket.Load(stream), name, id);
         }
 
         /// <summary>
-        /// Gets the document for the transmission part.
+        /// Gets the ticket for the transmission part.
         /// </summary>
-        public XDocument Document { get; private set; }
+        public Ticket Ticket { get; private set; }
 
         #endregion
 
-        void InitalizeProperties(XDocument document, string name, string id) {
+        void InitalizeProperties(Ticket ticket, string name, string id) {
             if (string.IsNullOrWhiteSpace(id)) {
                 id = string.Format("P_{0}", UniqueGenerator.MakeUnique());
             }
 
             Name = name;
-            MimeType = document.MimeType();
+            MimeType = ticket.MimeType();
             Id = id;
-            Document = document;
+            Ticket = ticket;
         }
 
         /// <summary>
