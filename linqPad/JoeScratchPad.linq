@@ -5,6 +5,11 @@
 
 void Main() {
 
+
+}
+
+
+/*
 	var basePath = new FileInfo(Util.CurrentQueryPath).DirectoryName;
 	var ticket = FluentJdf.LinqToJdf.Ticket.Load(Path.Combine(basePath, @"..\src\Tests\FluentJdf.Tests\TestData\ProcessTwoMediaFiery.jdf"));
 
@@ -44,7 +49,7 @@ void Main() {
 	
 	results.Dump();
 
-}
+*/
 
 // Define other methods and classes here
 /*
