@@ -1,4 +1,5 @@
-﻿using FluentJdf.Encoding;
+﻿using System.Collections.Generic;
+using FluentJdf.Encoding;
 
 namespace FluentJdf.Messaging
 {
@@ -12,14 +13,12 @@ namespace FluentJdf.Messaging
         /// The first member of the collection is the JMF response.
         /// </summary>
         ITransmissionPartCollection TransmissionPartCollection { get; }
+
         /// <summary>
-        /// Gets the integer return code from the response.
+        /// Gets the details for this result.
         /// </summary>
-        int RawReturnCode { get; }
-        /// <summary>
-        /// Gets the parsed return code.
-        /// </summary>
-        ReturnCode ReturnCode { get; }
+        IList<IJmfResultDetail> Details { get; }
+
         /// <summary>
         /// Gets true if the JMF response
         /// indicates success.

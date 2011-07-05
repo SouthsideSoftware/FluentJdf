@@ -281,7 +281,9 @@
     <Compile Include="LinqToJdf\XNameExtension.cs" />
     <Compile Include="LinqToJdf\XPathDecorator.cs" />
     <Compile Include="LinqToJdf\XPathExtensions.cs" />
+    <Compile Include="Messaging\IJmfResultDetail.cs" />
     <Compile Include="Messaging\JmfResult.cs" />
+    <Compile Include="Messaging\JmfResultDetail.cs" />
     <Compile Include="Messaging\Notification.cs" />
     <Compile Include="Messaging\NotificationClass.cs" />
     <Compile Include="Messaging\ReturnCode.cs" />

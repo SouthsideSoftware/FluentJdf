@@ -18,7 +18,7 @@ namespace FluentJdf.Messaging
         /// <summary>
         /// Informational message.
         /// </summary>
-        INformation,
+        Information,
         /// <summary>
         /// A warning.  Usually a minor
         /// error that was automatically resolved.
@@ -31,6 +31,10 @@ namespace FluentJdf.Messaging
         /// <summary>
         /// An absolutely fatal error.
         /// </summary>
-        Fatal
+        Fatal,
+        /// <summary>
+        /// Unknown class.
+        /// </summary>
+        Unknown
     }
 }

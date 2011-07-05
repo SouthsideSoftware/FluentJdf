@@ -16,17 +16,17 @@ namespace FluentJdf.Tests.Unit.Messaging.JmfResult
         static FluentJdf.Encoding.TransmissionPartCollection transmissionPartCollection = new TransmissionPartCollection();
 
         Establish context =
-            () => transmissionPartCollection.Add(new XmlTransmissionPart(TestDataHelper.Instance.PathToTestFile("QueueStatusResponseSuccess.jmf")));
+            () => transmissionPartCollection.Add(new MessageTransmissionPart(TestDataHelper.Instance.PathToTestFile("QueueStatusResponseSuccess.jmf")));
 
         Because of = () => result = new FluentJdf.Messaging.JmfResult(transmissionPartCollection);
 
         It should_have_is_success_true = () => result.IsSuccess.ShouldBeTrue();
 
-        It should_have_return_code_success = () => result.ReturnCode.ShouldEqual(ReturnCode.Success);
+        It should_have_return_code_success = () => result.Details[0].ReturnCode.ShouldEqual(ReturnCode.Success);
 
-        It should_have_raw_return_code_zero = () => result.RawReturnCode.ShouldEqual(0);
+        It should_have_raw_return_code_zero = () => result.Details[0].RawReturnCode.ShouldEqual(0);
 
-        It should_not_have_any_notifications = () => result.Notifications.Count.ShouldEqual(0);
+        It should_not_have_any_notifications = () => result.Details[0].Notifications.Count.ShouldEqual(0);
 
 
     }
