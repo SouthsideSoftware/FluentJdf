@@ -107,7 +107,7 @@ namespace FluentJdf.Encoding {
         /// </summary>
         public Stream CopyOfStream() {
             var tempStream = new TempFileStream();
-            Document.Save(tempStream);
+            Document.SaveHttpReady(tempStream);
             tempStream.Seek(0, SeekOrigin.Begin);
 
             return tempStream;

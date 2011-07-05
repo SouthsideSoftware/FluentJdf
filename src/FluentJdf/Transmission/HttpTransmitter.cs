@@ -59,7 +59,7 @@ namespace FluentJdf.Transmission
 
             try {
                 var encodingResult = encodingfactory.GetEncodingForTransmissionParts(partsToSend).Encode(partsToSend);
-                transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Transmission"));
+                transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Request"));
 
                 var request = httpWebRequestFactory.Create(uri, encodingResult.ContentType);
                 using (var outStream = request.GetRequestStream()) {

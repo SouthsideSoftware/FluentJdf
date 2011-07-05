@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 using FluentJdf.LinqToJdf;
 using FluentJdf.Resources;
@@ -111,7 +113,7 @@ namespace FluentJdf.Encoding {
         /// </summary>
         public Stream CopyOfStream() {
             var tempStream = new TempFileStream();
-            Ticket.Save(tempStream);
+            Ticket.SaveHttpReady(tempStream);
             tempStream.Seek(0, SeekOrigin.Begin);
 
             return tempStream;

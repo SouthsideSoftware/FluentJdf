@@ -42,9 +42,8 @@ namespace FluentJdf.Transmission.Logging
                 sb.AppendFormat("Data:\n");
                 byte [] bytes = new byte[transmissionData.Stream.Length];
                 transmissionData.Stream.Read(bytes, 0, bytes.Length);
-                try
-                {
-                    sb.AppendLine(System.Text.Encoding.UTF8.GetString(bytes));
+                try {
+                    sb.AppendLine(new UTF8Encoding(true).GetString(bytes));
                 }
                 finally {
                     transmissionData.Stream.Seek(0, SeekOrigin.Begin);

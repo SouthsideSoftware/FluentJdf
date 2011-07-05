@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 using FluentJdf.Resources;
 using FluentJdf.Schema;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf {
     //todo: provide option to pass override JdfAuthoringSettings configuration to constructor and use throughout
@@ -65,5 +69,28 @@ namespace FluentJdf.LinqToJdf {
         /// validuated at some point.  It does not mean it was
         /// validated in its current state.</remarks>
         public bool HasBeenValidatedAtLeastOnce { get { return validator.HasValidatedAtLeastOnce; } }
+
+        /// <summary>
+        /// This saves the document to a stream
+        /// using UTF8 encoding, no byte markers 
+        /// formatted with indentation and each element
+        /// on a newline.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <remarks></remarks>
+        public void SaveHttpReady(Stream stream) {
+            ParameterCheck.ParameterRequired(stream, "stream");
+
+            if (stream.CanSeek) {
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            var xmlWriterSettings = new XmlWriterSettings();
+            xmlWriterSettings.Encoding = new UTF8Encoding(false);
+            xmlWriterSettings.Indent = true;
+            using (var writer = XmlWriter.Create(stream, xmlWriterSettings)) {
+                Save(writer);
+            }
+        }
     }
 }
