@@ -193,7 +193,7 @@ namespace FluentJdf.Encoding {
         public Message Message {
             get {
                 if (MessagePart != null) {
-                    return MessagePart.Document.ToMessage();
+                    return MessagePart.Message;
                 }
 
                 return null;
@@ -204,11 +204,11 @@ namespace FluentJdf.Encoding {
         /// Gets the message part if any.  
         /// </summary>
         /// <remarks>Returns <see langword="null"/> if there is no message part.</remarks>
-        public XmlTransmissionPart MessagePart {
+        public MessageTransmissionPart MessagePart {
             get {
                 return (from part in transmissionParts.Values
-                        where part is XmlTransmissionPart && (part as XmlTransmissionPart).XmlType == XmlType.Jmf
-                        select (part as XmlTransmissionPart)).FirstOrDefault();
+                        where part is MessageTransmissionPart 
+                        select (part as MessageTransmissionPart)).FirstOrDefault();
             }
         }
 

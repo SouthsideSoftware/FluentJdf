@@ -131,6 +131,7 @@
     <Compile Include="Unit\Encoding\TransmissionPartCollection\when_transmission_part_collection_contains_no_jmf_parts.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartCollection\when_transmission_part_collection_has_one_jmf_part.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartCollection\when_transmission_part_collection_is_empty.cs" />
+    <Compile Include="Unit\Encoding\TransmissionPartFactory\when_creating_jdf_and_jmf_transmission_parts.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_setting_and_getting_timestamp.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_combined_jdf_process.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_intent.cs" />

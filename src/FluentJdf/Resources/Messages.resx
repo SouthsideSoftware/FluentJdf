@@ -159,7 +159,7 @@
 	<data name="XmlTransmissionPart_FailedToLoadXDocumentFromFile">
 		<value xml:space="preserve">Failed to load XDocument from {0}</value>
 	</data>
-	<data name="XmlTransmissionPart_FailedToLoadXDocumentFromStream">
+	<data name="FailedToLoadXDocumentFromStream">
 		<value xml:space="preserve">Failed to load XDocument from stream</value>
 	</data>
 	<data name="JmfElementExtensions_ThrowExceptionIfNotJmfElement_CanOnlyOperateOnJmfNodes">

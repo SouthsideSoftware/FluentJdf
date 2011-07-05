@@ -28,8 +28,8 @@ namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding {
         It should_have_a_stream_with_length_of_original_in_transmission_part =
             () => transmissionPartCollection.FirstOrDefault().CopyOfStream().Length.ShouldEqual(originalStreamLength);
 
-        It should_have_a_xml_transmission_part_in_collection =
-            () => transmissionPartCollection.First().ShouldBe(typeof (FluentJdf.Encoding.XmlTransmissionPart));
+        It should_have_a_ticket_transmission_part_in_collection =
+            () => transmissionPartCollection.First().ShouldBe(typeof (FluentJdf.Encoding.TicketTransmissionPart));
 
         It should_have_jdf_mime_type_in_transmission_part =
             () => transmissionPartCollection.First().MimeType.ShouldEqual(MimeTypeHelper.JdfMimeType);

@@ -160,6 +160,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load XDocument from stream.
+        /// </summary>
+        internal static string FailedToLoadXDocumentFromStream {
+            get {
+                return ResourceManager.GetString("FailedToLoadXDocumentFromStream", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FluentJDF requires a root node when copying a document..
         /// </summary>
         internal static string FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired {
@@ -365,15 +374,6 @@ namespace FluentJdf.Resources {
         internal static string XmlTransmissionPart_FailedToLoadXDocumentFromFile {
             get {
                 return ResourceManager.GetString("XmlTransmissionPart_FailedToLoadXDocumentFromFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed to load XDocument from stream.
-        /// </summary>
-        internal static string XmlTransmissionPart_FailedToLoadXDocumentFromStream {
-            get {
-                return ResourceManager.GetString("XmlTransmissionPart_FailedToLoadXDocumentFromStream", resourceCulture);
             }
         }
     }

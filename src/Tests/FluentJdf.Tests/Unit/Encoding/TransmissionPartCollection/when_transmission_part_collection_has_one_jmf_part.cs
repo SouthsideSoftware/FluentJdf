@@ -13,7 +13,7 @@ namespace FluentJdf.Tests.Unit.Encoding.TransmissionPartCollection {
             transmissionPartCollection = new FluentJdf.Encoding.TransmissionPartCollection();
             transmissionPartCollection.Add(new FluentJdf.Encoding.XmlTransmissionPart(new XDocument(), "test"));
             transmissionPartCollection.Add(new FluentJdf.Encoding.TransmissionPart(TestDataHelper.Instance.PathToTestFile("signs.jpg")));
-            transmissionPartCollection.Add(new FluentJdf.Encoding.XmlTransmissionPart(new XDocument(new XElement(Element.JMF)), "test2"));
+            transmissionPartCollection.Add(new FluentJdf.Encoding.MessageTransmissionPart(new XDocument(new XElement(Element.JMF)), "test2"));
         };
 
         It should_have_a_message = () => transmissionPartCollection.Message.ShouldNotBeNull();

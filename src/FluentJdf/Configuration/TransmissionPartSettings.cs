@@ -57,8 +57,8 @@ namespace FluentJdf.Configuration {
             TransmissionPartsByMimeType.Clear();
             SetDefaultTransmissionPart<TransmissionPart>();
             RegisterTransmissionPartForMimeType<XmlTransmissionPart>(MimeTypeHelper.XmlMimeType);
-            RegisterTransmissionPartForMimeType<XmlTransmissionPart>(MimeTypeHelper.JdfMimeType);
-            RegisterTransmissionPartForMimeType<XmlTransmissionPart>(MimeTypeHelper.JmfMimeType);
+            RegisterTransmissionPartForMimeType<TicketTransmissionPart>(MimeTypeHelper.JdfMimeType);
+            RegisterTransmissionPartForMimeType<MessageTransmissionPart>(MimeTypeHelper.JmfMimeType);
             return this;
         }
 

@@ -27,6 +27,6 @@ namespace FluentJdf.Encoding
         /// Gets the message part if any.  
         /// </summary>
         /// <remarks>Returns <see langword="null"/> if there is no message part.</remarks>
-        XmlTransmissionPart MessagePart { get; }
+        MessageTransmissionPart MessagePart { get; }
     }
 }

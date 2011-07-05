@@ -77,7 +77,7 @@ namespace FluentJdf.Encoding {
                 document = XDocument.Load(sourceStream);
             }
             catch (Exception err) {
-                string mess = string.Format(Messages.XmlTransmissionPart_FailedToLoadXDocumentFromStream);
+                string mess = string.Format(Messages.FailedToLoadXDocumentFromStream);
                 logger.Error(mess, err);
                 throw;
             }
@@ -139,6 +139,11 @@ namespace FluentJdf.Encoding {
             ParameterCheck.ParameterRequired(stream, "stream");
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
+            if (stream.CanSeek)
+            {
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
             InitalizeProperties(XDocument.Load(stream), name, id);
         }
 
@@ -149,7 +154,13 @@ namespace FluentJdf.Encoding {
 
         #endregion
 
-        void InitalizeProperties(XDocument document, string name, string id) {
+        /// <summary>
+        /// Initialize the properties.
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        public void InitalizeProperties(XDocument document, string name, string id) {
             if (string.IsNullOrWhiteSpace(id)) {
                 id = string.Format("P_{0}", UniqueGenerator.MakeUnique());
             }

@@ -20,5 +20,13 @@ namespace FluentJdf.Encoding
         /// Gets the xml type of this part -- jdf, jmf or other.
         /// </summary>
         XmlType XmlType { get; }
+
+        /// <summary>
+        /// Initialize the properties.
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        void InitalizeProperties(XDocument document, string name, string id);
     }
 }
