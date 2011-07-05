@@ -303,6 +303,9 @@
     <Compile Include="Transmission\IHttpWebRequestFactory.cs" />
     <Compile Include="Transmission\ITransmitter.cs" />
     <Compile Include="Transmission\ITransmitterFactory.cs" />
+    <Compile Include="Transmission\Logging\ITransmissionLogger.cs" />
+    <Compile Include="Transmission\Logging\TransmissionData.cs" />
+    <Compile Include="Transmission\Logging\TransmissionLogger.cs" />
     <Compile Include="Transmission\TransmitterFactory.cs" />
     <Compile Include="Messaging\IJmfResult.cs" />
     <Compile Include="Utility\StringHelper.cs" />

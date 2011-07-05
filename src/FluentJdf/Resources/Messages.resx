@@ -222,4 +222,7 @@
 	<data name="JmfElementExtensions_SetSenderId_SenderIdMustBeProvided">
 		<value xml:space="preserve">The provided sender id is null or whitespace and no default sender id is configured</value>
 	</data>
+  <data name="TransmissionLogger_Log_FailedToLog">
+    <value xml:space="preserve">Unexpected error attempting to log transmission.</value>
+  </data>
 </root>

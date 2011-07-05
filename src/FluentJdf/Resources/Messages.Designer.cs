@@ -324,6 +324,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unexpected error attempting to log transmission..
+        /// </summary>
+        internal static string TransmissionLogger_Log_FailedToLog {
+            get {
+                return ResourceManager.GetString("TransmissionLogger_Log_FailedToLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create transmission part from file {0} because it does not exist.
         /// </summary>
         internal static string TransmissionPart_CannotCreatePartAsFileDoesNotExist {

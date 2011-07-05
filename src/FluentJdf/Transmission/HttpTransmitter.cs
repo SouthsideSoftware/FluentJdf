@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -7,6 +8,8 @@ using FluentJdf.Configuration;
 using FluentJdf.Encoding;
 using FluentJdf.Messaging;
 using FluentJdf.Resources;
+using FluentJdf.Transmission.Logging;
+using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
 
@@ -18,6 +21,7 @@ namespace FluentJdf.Transmission
     public class HttpTransmitter : ITransmitter {
         static ILog logger = LogManager.GetLogger(typeof (HttpTransmitter));
         IHttpWebRequestFactory httpWebRequestFactory;
+        readonly ITransmissionLogger transmissionLogger;
 
         readonly IEncodingFactory encodingfactory;
 
@@ -26,12 +30,15 @@ namespace FluentJdf.Transmission
         /// </summary>
         /// <param name="encodingfactory"></param>
         /// <param name="httpWebRequestFactory"></param>
-        public HttpTransmitter(IEncodingFactory encodingfactory, IHttpWebRequestFactory httpWebRequestFactory) {
+        /// <param name="transmissionLogger"></param>
+        public HttpTransmitter(IEncodingFactory encodingfactory, IHttpWebRequestFactory httpWebRequestFactory, ITransmissionLogger transmissionLogger) {
             ParameterCheck.ParameterRequired(encodingfactory, "encodingfactory");
             ParameterCheck.ParameterRequired(httpWebRequestFactory, "httpWebRequestFactory");
+            ParameterCheck.ParameterRequired(transmissionLogger, "transmissionLogger");
 
             this.encodingfactory = encodingfactory;
             this.httpWebRequestFactory = httpWebRequestFactory;
+            this.transmissionLogger = transmissionLogger;
         }
 
         /// <summary>
@@ -52,14 +59,22 @@ namespace FluentJdf.Transmission
 
             try {
                 var encodingResult = encodingfactory.GetEncodingForTransmissionParts(partsToSend).Encode(partsToSend);
+                transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Transmission"));
+
                 var request = httpWebRequestFactory.Create(uri, encodingResult.ContentType);
                 using (var outStream = request.GetRequestStream()) {
                     encodingResult.Stream.CopyTo(outStream);
                 }
+
                 var response = (HttpWebResponse) request.GetResponse();
                 try {
                     var contentType = GetContentTypeOfResponse(response);
-                    var responseParts = encodingfactory.GetEncodingForMimeType(contentType).Decode("httpContent", response.GetResponseStream(),
+
+                    var responseStream = new TempFileStream();
+                    response.GetResponseStream().CopyTo(responseStream);
+                    transmissionLogger.Log(new TransmissionData(responseStream, contentType, "Response"));
+
+                    var responseParts = encodingfactory.GetEncodingForMimeType(contentType).Decode("httpContent", responseStream,
                                                                                                    contentType);
                     return new JmfResult(responseParts);
                 } finally {
