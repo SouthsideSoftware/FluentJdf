@@ -11,6 +11,7 @@ using FluentJdf.Transmission;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Logging;
+using System.Xml;
 
 namespace FluentJdf.LinqToJdf {
     /// <summary>
@@ -97,7 +98,6 @@ namespace FluentJdf.LinqToJdf {
             return new JmfNodeBuilder(message);
         }
 
-        //todo: implement remainder of load and parse here and in Ticket class (issue #33)
         /// <summary>
         /// Loads the message from a stream.
         /// </summary>
@@ -108,20 +108,88 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Loads the message from a stream.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public new static Message Load(Stream stream, LoadOptions options) {
+            return XDocument.Load(stream, options).ToMessage();
+        }
+
+        /// <summary>
+        /// Load a message from a TextReader
+        /// </summary>
+        /// <param name="textReader"></param>
+        /// <returns></returns>
+        public static new Message Load(TextReader textReader) {
+            return XDocument.Load(textReader).ToMessage();
+        }
+
+        /// <summary>
+        /// Load a message from a TextReader
+        /// </summary>
+        /// <param name="textReader"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static new Message Load(TextReader textReader, LoadOptions options) {
+            return XDocument.Load(textReader, options).ToMessage();
+        }
+
+        /// <summary>
+        /// Load a message from a XmlReader
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        public static new Message Load(XmlReader reader) {
+            return XDocument.Load(reader).ToMessage();
+        }
+
+        /// <summary>
+        /// Load a message from a XmlReader
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static new Message Load(XmlReader reader, LoadOptions options) {
+            return XDocument.Load(reader, options).ToMessage();
+        }
+
+        /// <summary>
         /// Loads the message from a file.
         /// </summary>
         /// <returns></returns>
-        public new static Message Load(string fileName) {
-            return new Message(XDocument.Load(fileName));
+        public new static Message Load(string uri) {
+            return new Message(XDocument.Load(uri));
+        }
+
+        /// <summary>
+        /// Loads the message from a file.
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static new Message Load(string uri, LoadOptions options) {
+            return new Message(XDocument.Load(uri, options));
         }
 
         /// <summary>
         /// Parses xml into a message.
         /// </summary>
-        /// <param name="xml"></param>
+        /// <param name="text"></param>
         /// <returns></returns>
-        public new static Message Parse(string xml) {
-            return XDocument.Parse(xml).ToMessage();
+        public new static Message Parse(string text) {
+            return XDocument.Parse(text).ToMessage();
+        }
+
+        /// <summary>
+        /// Parses xml into a message.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static new Message Parse(string text, LoadOptions options) {
+            return XDocument.Parse(text, options).ToMessage();
         }
 
         /// <summary>
