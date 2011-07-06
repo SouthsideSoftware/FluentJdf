@@ -17,7 +17,7 @@ namespace FluentJdf.LinqToJdf {
     /// A JMF message.
     /// </summary>
     public class Message : FluentJdfDocumentBase {
-        static readonly ILog logger = LogManager.GetLogger(typeof (Message));
+        static readonly ILog logger = LogManager.GetLogger(typeof(Message));
         readonly ITransmitterFactory transmitterFactory = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmitterFactory>();
 
         /// <summary>
@@ -32,20 +32,25 @@ namespace FluentJdf.LinqToJdf {
             }
         }
 
-        internal Message() {}
+        internal Message() {
+        }
 
         /// <summary>
         /// Copy constructor
         /// </summary>
         /// <param name="document"></param>
-        public Message(XDocument document) : base(document) {
+        public Message(XDocument document)
+            : base(document) {
             document.Root.ThrowExceptionIfNotJmfElement();
         }
 
         /// <summary>
         /// Gets the JDF ticket (if any) associated with this message.
         /// </summary>
-        public Ticket AssociatedTicket { get; internal set; }
+        public Ticket AssociatedTicket {
+            get;
+            internal set;
+        }
 
         /// <summary>
         /// Gets a list of the message names (i.e. command, query etc.) contained in this message tree.
@@ -78,7 +83,9 @@ namespace FluentJdf.LinqToJdf {
         /// Gets the first message element (or <see langword="null"/> if there are none).
         /// </summary>
         public XElement MessageElement {
-            get { return MessageElements.FirstOrDefault(); }
+            get {
+                return MessageElements.FirstOrDefault();
+            }
         }
 
         /// <summary>

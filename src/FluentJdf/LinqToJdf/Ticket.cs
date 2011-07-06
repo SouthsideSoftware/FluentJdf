@@ -6,13 +6,12 @@ using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
 
-namespace FluentJdf.LinqToJdf
-{
+namespace FluentJdf.LinqToJdf {
     /// <summary>
     /// Starting point for creating JDF tickets.
     /// </summary>
     public class Ticket : FluentJdfDocumentBase {
-        static ILog logger = LogManager.GetLogger(typeof (FluentJdfDocumentBase));
+        static ILog logger = LogManager.GetLogger(typeof(FluentJdfDocumentBase));
 
         /// <summary>
         /// Constructor.
@@ -20,14 +19,12 @@ namespace FluentJdf.LinqToJdf
         internal Ticket() {
         }
 
-
         /// <summary>
         /// Loads the ticket from a stream.
         /// </summary>
         /// <param name="stream"></param>
         /// <returns></returns>
-        public new static Ticket Load(Stream stream)
-        {
+        public new static Ticket Load(Stream stream) {
             return new Ticket(XDocument.Load(stream));
         }
 
@@ -64,18 +61,17 @@ namespace FluentJdf.LinqToJdf
         /// Copy constructor
         /// </summary>
         /// <param name="document"></param>
-        public Ticket(XDocument document) : base(document) {
-            document.Root.ThrowExceptionIfNotJdfElement();            
+        public Ticket(XDocument document)
+            : base(document) {
+            document.Root.ThrowExceptionIfNotJdfElement();
         }
 
         /// <summary>
         /// Gets the builder for the root.
         /// </summary>
         /// <returns></returns>
-        public JdfNodeBuilder ModifyJdfNode()
-        {
-            if (Root == null || !Root.IsJdfElement())
-            {
+        public JdfNodeBuilder ModifyJdfNode() {
+            if (Root == null || !Root.IsJdfElement()) {
                 throw new Exception(Resources.Messages.Ticket_ModifyJdfNode_RootMustExistAndBeJdf);
             }
 
@@ -94,8 +90,7 @@ namespace FluentJdf.LinqToJdf
         /// Create a new JDF ticket with a process node at the root.
         /// </summary>
         /// <returns></returns>
-        public static JdfNodeBuilder CreateProcess(params string [] types)
-        {
+        public static JdfNodeBuilder CreateProcess(params string[] types) {
             if (types == null || types.Length == 0) {
                 throw new ArgumentException(Resources.Messages.AtLeastOneProcessMustBeSpecified);
             }
@@ -106,8 +101,7 @@ namespace FluentJdf.LinqToJdf
         /// Create a new JDF ticket with a process group node at the root.
         /// </summary>
         /// <returns></returns>
-        public static JdfNodeBuilder CreateProcessGroup()
-        {
+        public static JdfNodeBuilder CreateProcessGroup() {
             return new JdfNodeBuilder(new Ticket(), ProcessType.ProcessGroup);
         }
 
@@ -115,8 +109,7 @@ namespace FluentJdf.LinqToJdf
         /// Validate the document.
         /// </summary>
         /// <param name="addSchemaInfo"></param>
-        public Ticket ValidateJdf(bool addSchemaInfo = true)
-        {
+        public Ticket ValidateJdf(bool addSchemaInfo = true) {
             validator.Validate(addSchemaInfo);
             return this;
         }
