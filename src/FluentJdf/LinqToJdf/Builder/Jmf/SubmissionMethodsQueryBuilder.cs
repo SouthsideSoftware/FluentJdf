@@ -1,4 +1,5 @@
 
+using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf {
@@ -11,6 +12,17 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		internal SubmissionMethodsQueryBuilder(JmfNodeBuilder parent)
 			: base(parent, Query.SubmissionMethods, IdPrefix) {
 			ParameterCheck.ParameterRequired(parent, "parent");
+		}
+
+		/// <summary>
+		/// Add a non JDF Element to the Command.
+		/// </summary>
+		/// <param name="element">The element to add.</param>
+		/// <returns></returns>
+		public SubmissionMethodsQueryBuilder AddNode(XElement element) {
+			ParameterCheck.ParameterRequired(element, "element");
+			ParentJmfNode.Element.Add(element);
+			return this;
 		}
 
 		/// <summary>

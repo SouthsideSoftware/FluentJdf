@@ -34,6 +34,7 @@ void Main() {
 	//{1} = Type == Command or Query
 	//{2} = Prefix == SQE_
 	var formatCommandBuilder = @"
+using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf {{
@@ -46,6 +47,17 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {{
 		internal {0}{1}Builder(JmfNodeBuilder parent)
 			: base(parent, {1}.{0}, IdPrefix) {{
 			ParameterCheck.ParameterRequired(parent, ""parent"");
+		}}
+
+		/// <summary>
+		/// Add a non JDF Element to the Command.
+		/// </summary>
+		/// <param name=""element"">The element to add.</param>
+		/// <returns></returns>
+		public {0}{1}Builder AddNode(XElement element) {{
+			ParameterCheck.ParameterRequired(element, ""element"");
+			ParentJmfNode.Element.Add(element);
+			return this;
 		}}
 
 		/// <summary>
@@ -88,6 +100,20 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {{
 		/// <returns></returns>
 		public {0}{1}AttributeBuilder Attribute(XName name, string value) {{
 			ParameterCheck.ParameterRequired(name, ""name"");
+
+			Element.SetAttributeValue(name, value);
+			return this;
+		}}
+		
+		/// <summary>
+		/// Add a non JDF Attribute to the Command.
+		/// </summary>
+		/// <param name=""name"">The attribute to add.</param>
+		/// <param name=""value"">The value of the attribute</param>
+		/// <returns></returns>
+		public {0}{1}AttributeBuilder AddAttribute(string name, string value) {{
+			ParameterCheck.ParameterRequired(name, ""name"");
+			ParameterCheck.ParameterRequired(value, ""value"");
 
 			Element.SetAttributeValue(name, value);
 			return this;

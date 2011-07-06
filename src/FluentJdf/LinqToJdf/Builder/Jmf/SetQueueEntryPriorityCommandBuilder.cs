@@ -1,4 +1,5 @@
 
+using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf {
@@ -11,6 +12,17 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		internal SetQueueEntryPriorityCommandBuilder(JmfNodeBuilder parent)
 			: base(parent, Command.SetQueueEntryPriority, IdPrefix) {
 			ParameterCheck.ParameterRequired(parent, "parent");
+		}
+
+		/// <summary>
+		/// Add a non JDF Element to the Command.
+		/// </summary>
+		/// <param name="element">The element to add.</param>
+		/// <returns></returns>
+		public SetQueueEntryPriorityCommandBuilder AddNode(XElement element) {
+			ParameterCheck.ParameterRequired(element, "element");
+			ParentJmfNode.Element.Add(element);
+			return this;
 		}
 
 		/// <summary>
