@@ -249,7 +249,9 @@ namespace FluentJdf.LinqToJdf {
                 xPath = string.Format(@".//jdf:{0}", name.LocalName);
             }
 
-            foreach (var item in element.XPathSelectElements(xPath, MakeNamespaceResolver(null))) {
+            var resolver = MakeNamespaceResolver(null);
+
+            foreach (var item in element.XPathSelectElements(xPath, resolver)) {
                 if (item.Name.LocalName.EndsWith("Ref")) {
                     var rRef = item.GetAttributeValueOrEmpty("rRef");
 
