@@ -16,7 +16,9 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.XPathExtensions {
 
         static XDocument ticket;
 
-        Because of = () => ticket = l.Ticket.Load(TestDataHelper.Instance.PathToTestFile("sampleJDF.xml"));
+        Establish context = () => {
+            ticket = l.Ticket.Load(TestDataHelper.Instance.PathToTestFile("sampleJDF.xml"));
+        };
 
         It should_resolve_rRef_from_parent_jdf =
             () => x.JdfXPathSelectElement(ticket, @"/JDF/JDF[@ID= 'Link0002']/ResourcePool/Component[@ID='Link0009']").ShouldNotBeNull();
