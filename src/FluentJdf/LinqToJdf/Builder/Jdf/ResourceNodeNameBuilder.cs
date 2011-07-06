@@ -5,8 +5,8 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
     /// <summary>
     /// Factory to create resources.
     /// </summary>
-    public class ResourceNodeNameBuilder
-    {
+    public class ResourceNodeNameBuilder {
+
         internal JdfNodeBuilder ParentJdf;
         readonly ResourceUsage usage;
 
@@ -21,14 +21,13 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// Create a folding intent and return a builder to operate on it.
         /// </summary>
         public ResourceNodeBuilder BindingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BindingIntent, usage, id); 
+            return new ResourceNodeBuilder(ParentJdf, Resource.BindingIntent, usage, id);
         }
 
         /// <summary>
         /// Create a component and return a builder to operate on it.
         /// </summary>
-        public ResourceNodeBuilder Component()
-        {
+        public ResourceNodeBuilder Component() {
             return new ResourceNodeBuilder(ParentJdf, Resource.Component, usage);
         }
 
@@ -42,8 +41,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// <summary>
         /// Create a media intent and return a builder to operate on it.
         /// </summary>
-        public ResourceNodeBuilder MediaIntent()
-        {
+        public ResourceNodeBuilder MediaIntent() {
             return new ResourceNodeBuilder(ParentJdf, Resource.MediaIntent, usage);
         }
 
