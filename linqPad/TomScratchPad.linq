@@ -14,7 +14,7 @@
   <Namespace>NLog.Targets</Namespace>
 </Query>
 
-bool loggingOn = false;
+bool loggingOn = true;
 
 Ticket GetJdf() {
 	return Ticket.CreateProcessGroup().AddIntent().WithInput().BindingIntent().ValidateJdf().Ticket;

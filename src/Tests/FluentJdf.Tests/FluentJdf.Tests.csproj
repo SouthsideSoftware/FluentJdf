@@ -141,6 +141,9 @@
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_node_with_older_version_as_configured_default.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_process_group.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_simple_jdf_process.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfDateTime\when_converting_to_jdf_date_time_string.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfDateTime\when_jdf_date_time_try_parse.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfDateTime\when_parsing_jdf_date_time_strings.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_list_of_jdf_elements_containing_a_process_type.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_adding_arbitrary_element_by_xname_on_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_adding_arbitrary_element_on_submit_queue_entry.cs" />

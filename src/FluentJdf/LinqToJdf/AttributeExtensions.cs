@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
@@ -172,6 +173,43 @@ namespace FluentJdf.LinqToJdf
             return source == null
                        ? null
                        : source.GetAttributeValueOrNull("Actual") ?? source.GetAttributeValueOrNull("Preferred");
+        }
+
+        /// <summary>
+        /// Gets the named attribute's value as a date time.  If the value
+        /// is null (attribute does not exist) or it is not a valid date time,
+        /// returns null.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="attributeName"></param>
+        /// <returns></returns>
+        public static DateTime? GetAttributeValueAsDateTimeOrNull(this XElement element, XName attributeName) {
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(attributeName, "attributeName");
+
+            var dtString = element.GetAttributeValueOrNull(attributeName);
+            
+            DateTime dt;
+            if (JdfDateTime.TryParse(dtString, out dt)) {
+                return dt;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Sets an attribute value from a date time.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="attributeName"></param>
+        /// <param name="value"></param>
+        public static void SetAttributeValueFromDateTime(this XElement element, XName attributeName, DateTime? value) {
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(attributeName, "attributeName");
+
+            if (value == null) element.SetAttributeValue(attributeName, null);
+
+            element.SetAttributeValue(attributeName, value.Value.ToJdfDateTimeString());
         }
     }
 

@@ -88,6 +88,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not open {0}.
+        /// </summary>
+        internal static string CouldNotOpen {
+            get {
+                return ResourceManager.GetString("CouldNotOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AddContent requires content to add.
         /// </summary>
         internal static string ElementExtensions_AddContent_RequiresContentToAdd {
@@ -160,6 +169,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} at line {1} column {2}.
+        /// </summary>
+        internal static string ErrorAtLineAndColumn {
+            get {
+                return ResourceManager.GetString("ErrorAtLineAndColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to load XDocument from stream.
         /// </summary>
         internal static string FailedToLoadXDocumentFromStream {
@@ -174,6 +192,15 @@ namespace FluentJdf.Resources {
         internal static string FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired {
             get {
                 return ResourceManager.GetString("FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid function name {0} .
+        /// </summary>
+        internal static string FormulaTemplateItemFactory_CreateFormulaItem_InvalidFunctionNameMessage {
+            get {
+                return ResourceManager.GetString("FormulaTemplateItemFactory_CreateFormulaItem_InvalidFunctionNameMessage", resourceCulture);
             }
         }
         
@@ -302,6 +329,42 @@ namespace FluentJdf.Resources {
         internal static string ResourceExtensions_Resource_ResourceWithIdCannotBeFound {
             get {
                 return ResourceManager.GetString("ResourceExtensions_Resource_ResourceWithIdCannotBeFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplied data set does not contain table .
+        /// </summary>
+        internal static string TableTemplateItem_Generate_DataSetHasNoTable {
+            get {
+                return ResourceManager.GetString("TableTemplateItem_Generate_DataSetHasNoTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  position: .
+        /// </summary>
+        internal static string TemplateExpansionException_MessagePositionText {
+            get {
+                return ResourceManager.GetString("TemplateExpansionException_MessagePositionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error occurred at line: .
+        /// </summary>
+        internal static string TemplateExpansionException_MessageText {
+            get {
+                return ResourceManager.GetString("TemplateExpansionException_MessageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to variable name {0} is not legal.  Variable names can be of the form varName or tableName.varName.  Additional dots are not legal.
+        /// </summary>
+        internal static string TemplateItem_TemplateItem_VariableNameIsNotLegal {
+            get {
+                return ResourceManager.GetString("TemplateItem_TemplateItem_VariableNameIsNotLegal", resourceCulture);
             }
         }
         

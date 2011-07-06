@@ -225,4 +225,25 @@
   <data name="TransmissionLogger_Log_FailedToLog">
     <value xml:space="preserve">Unexpected error attempting to log transmission.</value>
   </data>
+	<data name="TemplateExpansionException_MessageText">
+		<value><![CDATA[Error occurred at line: ]]></value>
+	</data>
+	<data name="TemplateExpansionException_MessagePositionText">
+		<value><![CDATA[ position: ]]></value>
+	</data>
+	<data name="FormulaTemplateItemFactory_CreateFormulaItem_InvalidFunctionNameMessage">
+		<value><![CDATA[Invalid function name {0} ]]></value>
+	</data>
+	<data name="ErrorAtLineAndColumn">
+		<value xml:space="preserve">{0} at line {1} column {2}</value>
+	</data>
+	<data name="TableTemplateItem_Generate_DataSetHasNoTable">
+		<value><![CDATA[Supplied data set does not contain table ]]></value>
+	</data>
+	<data name="CouldNotOpen">
+		<value xml:space="preserve">Could not open {0}</value>
+	</data>
+	<data name="TemplateItem_TemplateItem_VariableNameIsNotLegal">
+		<value xml:space="preserve">variable name {0} is not legal.  Variable names can be of the form varName or tableName.varName.  Additional dots are not legal</value>
+	</data>
 </root>

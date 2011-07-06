@@ -323,7 +323,7 @@ namespace FluentJdf.LinqToJdf {
         public static XElement SetTimeStamp(this XElement element, DateTime timeStamp) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            element.SetAttributeValue("TimeStamp", timeStamp.ToString("O"));
+            element.SetAttributeValueFromDateTime("TimeStamp", timeStamp);
             return element;
         }
 
@@ -336,12 +336,7 @@ namespace FluentJdf.LinqToJdf {
         public static DateTime? GetTimeStamp(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
-            var sTimeStamp = element.GetAttributeValueOrNull("TimeStamp");
-            if (sTimeStamp == null) {
-                return null;
-            }
-
-            return DateTime.Parse(sTimeStamp, null, DateTimeStyles.RoundtripKind);
+            return element.GetAttributeValueAsDateTimeOrNull("TimeStamp");
         }
 
         /// <summary>
