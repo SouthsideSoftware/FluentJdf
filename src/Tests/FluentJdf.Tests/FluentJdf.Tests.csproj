@@ -174,6 +174,7 @@
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_jdfXPathSelectElement_using_multilevel_document.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_jdfXPathSelectElement_with_rRef.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_ProcessXPathSelectElements_return_DigitalPrintingParams.cs" />
+    <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_SelectJDFDescendants_ArtDeliveryIntent_resolves.cs" />
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_mixed_result_with_notifications.cs" />
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_success_result_with_no_notifications.cs" />
     <Compile Include="Unit\Schema\FluentValidation\when_validating_jmf_using_the_fluent_interface.cs" />
@@ -287,6 +288,7 @@
     <EmbeddedResource Include="TestData\ProcessTwoMediaFieryNoxRef.jdf" />
     <EmbeddedResource Include="TestData\QueueStatusResponseSuccess.jmf" />
     <EmbeddedResource Include="TestData\TwoResponseOneSuccessOneError.jmf" />
+    <EmbeddedResource Include="TestData\ArtDeliveryIntentTest.jdf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestData\Signs.jpg" />

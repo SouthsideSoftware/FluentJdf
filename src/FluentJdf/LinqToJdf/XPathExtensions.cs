@@ -172,5 +172,96 @@ namespace FluentJdf.LinqToJdf {
                 }
             }
         }
+
+        /// <summary>
+        /// Traverse the JDF structure and auto resolve the Ref elements if needed to return the expected node.
+        /// </summary>
+        /// <remarks>
+        /// To allow for fluent walking, we allow the element to be null, we will just return right away.
+        /// </remarks>
+        /// <param name="elements">The elements to begin walking</param>
+        /// <param name="name">The name of the resource to find</param>
+        /// <param name="traverseRefs">if we should look for ref elements or just walk the name explicitly.</param>
+        /// <returns></returns>
+        public static XElement SelectJDFDescendant(this IEnumerable<XContainer> elements, XName name, bool traverseRefs = true) {
+            ParameterCheck.ParameterRequired(elements, "elements");
+            return SelectJDFDescendants(elements, name, traverseRefs).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Traverse the JDF structure and auto resolve the Ref elements if needed to return the expected node.
+        /// </summary>
+        /// <remarks>
+        /// To allow for fluent walking, we allow the element to be null, we will just return right away.
+        /// </remarks>
+        /// <param name="element">The element to begin walking</param>
+        /// <param name="name">The name of the resource to find</param>
+        /// <param name="traverseRefs">if we should look for ref elements or just walk the name explicitly.</param>
+        /// <returns></returns>
+        public static XElement SelectJDFDescendant(this XContainer element, XName name, bool traverseRefs = true) {
+            if (element == null) {
+                return null;
+            }
+            return SelectJDFDescendants(element, name, traverseRefs).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Traverse the JDF structure and auto resolve the Ref elements if needed to return the expected node.
+        /// </summary>
+        /// <remarks>
+        /// To allow for fluent walking, we allow the element to be null, we will just return right away.
+        /// </remarks>
+        /// <param name="elements">The elements to begin walking</param>
+        /// <param name="name">The name of the resource to find</param>
+        /// <param name="traverseRefs">if we should look for ref elements or just walk the name explicitly.</param>
+        /// <returns></returns>
+        public static IEnumerable<XElement> SelectJDFDescendants(this IEnumerable<XContainer> elements, XName name, bool traverseRefs = true) {
+            ParameterCheck.ParameterRequired(elements, "elements");
+            foreach (var element in elements) {
+                foreach (var result in SelectJDFDescendants(element, name, traverseRefs)) {
+                    yield return result;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Traverse the JDF structure and auto resolve the Ref elements if needed to return the expected node.
+        /// </summary>
+        /// <remarks>
+        /// To allow for fluent walking, we allow the element to be null, we will just return right away.
+        /// </remarks>
+        /// <param name="element">The element to begin walking</param>
+        /// <param name="name">The name of the resource to find</param>
+        /// <param name="traverseRefs">if we should look for ref elements or just walk the name explicitly.</param>
+        /// <returns></returns>
+        public static IEnumerable<XElement> SelectJDFDescendants(this XContainer element, XName name, bool traverseRefs = true) {
+            ParameterCheck.ParameterRequired(name, "name");
+
+            if (element == null) {
+                yield break;
+            }
+
+            string xPath;
+            if (traverseRefs) {
+                xPath = string.Format(@".//jdf:{0} | .//jdf:{0}Ref", name.LocalName);
+            }
+            else {
+                xPath = string.Format(@".//jdf:{0}", name.LocalName);
+            }
+
+            foreach (var item in element.XPathSelectElements(xPath, MakeNamespaceResolver(null))) {
+                if (item.Name.LocalName.EndsWith("Ref")) {
+                    var rRef = item.GetAttributeValueOrEmpty("rRef");
+
+                    var retVal = item.GetResourceOrNull(rRef);
+                    if (retVal != null) {
+                        yield return retVal;
+                    }
+                }
+                else {
+                    yield return item;
+                }
+            }
+        }
     }
 }
