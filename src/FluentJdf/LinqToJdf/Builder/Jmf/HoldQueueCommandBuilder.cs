@@ -15,17 +15,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 		}
 
 		/// <summary>
-		/// Add a non JDF Element to the Command.
-		/// </summary>
-		/// <param name="element">The element to add.</param>
-		/// <returns></returns>
-		public HoldQueueCommandBuilder AddNode(XElement element) {
-			ParameterCheck.ParameterRequired(element, "element");
-			ParentJmfNode.Element.Add(element);
-			return this;
-		}
-
-		/// <summary>
 		/// Gets the attribute builder.
 		/// </summary>
 		/// <returns></returns>

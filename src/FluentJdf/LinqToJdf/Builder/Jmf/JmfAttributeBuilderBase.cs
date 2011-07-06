@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Base class for JMF attribute builder
     /// </summary>
-    public class JmfAttributeBuilderBase : IJmfCommandBuilder {
+    public class JmfAttributeBuilderBase : IJmfBuilderBase {
         private JmfBuilderBase builder;
 
         /// <summary>
@@ -62,6 +62,29 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// <returns></returns>
         public QueryTypeBuilder AddQuery() {
             return ParentJmfNode.AddQuery();
+        }
+
+        /// <summary>
+        /// Add any <see cref="XElement"/> to the Command.
+        /// </summary>
+        /// <param name="element">The element to add.</param>
+        /// <returns></returns>
+        public GenericJmfBuilder AddNode(XElement element)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+            Element.Add(element);
+            return new GenericJmfBuilder(element);
+        }
+
+        /// <summary>
+        /// Add any named element to the Command.
+        /// </summary>
+        /// <param name="name">The <see cref="XName"/> of the element to add.</param>
+        /// <returns></returns>
+        public GenericJmfBuilder AddNode(XName name)
+        {
+            ParameterCheck.ParameterRequired(name, "name");
+            return AddNode(new XElement(name));
         }
     }
 }

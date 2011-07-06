@@ -147,6 +147,8 @@
     <Compile Include="LinqToJdf\Builder\Jmf\ForceGangCommandBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\ForceGangQueryAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\ForceGangQueryBuilder.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\GenericJmfAttributeBuilder.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\GenericJmfBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\HoldQueueCommandAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\HoldQueueCommandBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\HoldQueueEntryCommandAttributeBuilder.cs" />

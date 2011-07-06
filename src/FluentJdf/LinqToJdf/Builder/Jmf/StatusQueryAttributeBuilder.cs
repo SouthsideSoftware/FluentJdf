@@ -28,20 +28,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
 			Element.SetAttributeValue(name, value);
 			return this;
 		}
-		
-		/// <summary>
-		/// Add a non JDF Attribute to the Command.
-		/// </summary>
-		/// <param name="name">The attribute to add.</param>
-		/// <param name="value">The value of the attribute</param>
-		/// <returns></returns>
-		public StatusQueryAttributeBuilder AddAttribute(string name, string value) {
-			ParameterCheck.ParameterRequired(name, "name");
-			ParameterCheck.ParameterRequired(value, "value");
-
-			Element.SetAttributeValue(name, value);
-			return this;
-		}
 
 		/// <summary>
 		/// Set the id.

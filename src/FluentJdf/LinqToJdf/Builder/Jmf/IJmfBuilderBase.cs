@@ -38,5 +38,19 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// </summary>
         /// <returns></returns>
         QueryTypeBuilder AddQuery();
+
+        /// <summary>
+        /// Add any <see cref="XElement"/> to the Command.
+        /// </summary>
+        /// <param name="element">The element to add.</param>
+        /// <returns></returns>
+        GenericJmfBuilder AddNode(XElement element);
+
+        /// <summary>
+        /// Add any named element to the Command.
+        /// </summary>
+        /// <param name="name">The <see cref="XName"/> of the element to add.</param>
+        /// <returns></returns>
+        GenericJmfBuilder AddNode(XName name);
     }
 }

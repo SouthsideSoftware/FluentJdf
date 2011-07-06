@@ -85,5 +85,28 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
             Element.SetVersion(jdfVersion);
             return this;
         }
+
+        /// <summary>
+        /// Add any <see cref="XElement"/> to the Command.
+        /// </summary>
+        /// <param name="element">The element to add.</param>
+        /// <returns></returns>
+        public GenericJmfBuilder AddNode(XElement element)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+            Element.Add(element);
+            return new GenericJmfBuilder(element);
+        }
+
+        /// <summary>
+        /// Add any named element to the Command.
+        /// </summary>
+        /// <param name="name">The XName of the element to add.</param>
+        /// <returns></returns>
+        public GenericJmfBuilder AddNode(XName name)
+        {
+            ParameterCheck.ParameterRequired(name, "name");
+            return AddNode(new XElement(name));
+        }
     }
 }
