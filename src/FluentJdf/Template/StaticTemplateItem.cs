@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Data;
@@ -44,7 +45,7 @@ namespace FluentJdf.Template
 		/// <param name="vars">Name/value pairs for replacement.  Ignored.</param>
 		/// <param name="dataSet">Data for table replacements.  Ignored.</param>
 		/// <returns>True if the replacement took place.</returns>
-		protected internal override bool Generate(TextWriter writer, StringDictionary vars, DataSet dataSet)
+		protected internal override bool Generate(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet)
 		{
 			writer.Write(_text);
 

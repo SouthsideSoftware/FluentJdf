@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Diagnostics;
@@ -160,7 +161,7 @@ namespace FluentJdf.Template
 		/// <param name="vars">A StringDictionary of name/value pairs for simple replacement fields.</param>
 		/// <param name="dataSet">Tables used by table fields.</param>
 		/// <returns>True if the replacement took place.</returns>
-		protected internal abstract bool Generate(TextWriter writer, StringDictionary vars, DataSet dataSet);
+		protected internal abstract bool Generate(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet);
 
 		/// <summary>
 		/// Dump diagnostics about the current item and all its children to the trace listeners.

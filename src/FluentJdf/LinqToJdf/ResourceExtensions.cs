@@ -44,6 +44,27 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Sets a unique id on this element if it has an id and any of its
+        /// descendants that have an id.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="idPrefix"></param>
+        /// <param name="updateReferences"></param>
+        /// <returns></returns>
+        public static XElement RecursiveSetUniqueId(this XElement element, string idPrefix="R_", bool updateReferences = true) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            if (element.GetId() != null) {
+                element.SetUniqueId(idPrefix, updateReferences);
+            }
+            foreach (var child in element.Elements()) {
+                child.RecursiveSetUniqueId(idPrefix, updateReferences);
+            }
+
+            return element;
+        }
+
+        /// <summary>
         /// Sets the id of a resource and optionally updates the references.
         /// </summary>
         /// <param name="element"></param>

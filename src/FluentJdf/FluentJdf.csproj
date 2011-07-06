@@ -305,7 +305,6 @@
     <Compile Include="Template\FormulaTemplateItem.cs" />
     <Compile Include="Template\FormulaTemplateItemFactory.cs" />
     <Compile Include="Template\GenerateFormulaTemplateItem.cs" />
-    <Compile Include="Template\JdfCreator.cs" />
     <Compile Include="Template\JdfDefaultFormulaTemplateItem.cs" />
     <Compile Include="Template\NowFormulaTemplateItem.cs" />
     <Compile Include="Template\TemplateApiException.cs" />

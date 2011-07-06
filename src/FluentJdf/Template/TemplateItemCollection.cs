@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Collections;
 using System.IO;
@@ -70,7 +71,7 @@ namespace FluentJdf.Template
 		/// <param name="writer">The writer that will receive the data.</param>
 		/// <param name="vars">Simple replacement variables.</param>
 		/// <param name="dataSet">Table replacement variables.</param>
-		protected internal void Generate(StreamWriter writer, StringDictionary vars, DataSet dataSet)
+		protected internal void Generate(StreamWriter writer, Dictionary<string, string> vars, DataSet dataSet)
 		{
 			foreach (TemplateItem item in this)
 			{

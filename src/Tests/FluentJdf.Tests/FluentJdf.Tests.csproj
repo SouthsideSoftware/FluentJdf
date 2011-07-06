@@ -174,6 +174,7 @@
     <Compile Include="Unit\LinqToJdf\ProcessXPathParser\when_using_processxpathparser_validates_process_and_resource.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_GetResourceLinkPoolResolvedItem_for_DigitalPrintingParams.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_message_elements_getter.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_unique_id_recursive.cs" />
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_copy_constructor.cs" />
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_parse.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_jdfXPathSelectElement_using_multilevel_document.cs" />

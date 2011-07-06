@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Collections.Specialized;
 using System.Data;
@@ -72,7 +73,7 @@ namespace FluentJdf.Template
 		/// <param name="vars">The name/value pairs used for simple replacement fields.</param>
 		/// <param name="dataSet">The dataset that contains the replacement data for table items.</param>
 		/// <returns>True if the replacement took place.</returns>
-		protected internal override bool Generate(TextWriter writer, StringDictionary vars, DataSet dataSet)
+		protected internal override bool Generate(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet)
 		{
 			Thread.SetData(_tableSlot, null);
 			Thread.SetData(_currentRowSlot, null);
@@ -108,7 +109,7 @@ namespace FluentJdf.Template
 			return true;
 		}
 
-		private void GenerateChildren(TextWriter writer, StringDictionary vars, DataSet dataSet)
+		private void GenerateChildren(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet)
 		{
 			foreach (TemplateItem item in _children)
 			{
