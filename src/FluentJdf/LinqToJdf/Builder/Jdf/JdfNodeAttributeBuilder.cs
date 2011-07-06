@@ -27,8 +27,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="jobId"></param>
         /// <returns></returns>
-        public JdfNodeAttributeBuilder JobId(string jobId = null)
-        {
+        public JdfNodeAttributeBuilder JobId(string jobId = null) {
             ParameterCheck.ParameterRequired(jobId, "jobId");
 
             Element.SetJobId(jobId);
@@ -50,12 +49,16 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// <summary>
         /// Create an input
         /// </summary>>
-        public ResourceNodeNameBuilder WithInput() { return new ResourceNodeNameBuilder(jdfNodeBuilder, ResourceUsage.Input); }
+        public ResourceNodeNameBuilder WithInput() {
+            return new ResourceNodeNameBuilder(jdfNodeBuilder, ResourceUsage.Input);
+        }
 
         /// <summary>
         /// Creates an output.
         /// </summary>
-        public ResourceNodeNameBuilder WithOutput() { return new ResourceNodeNameBuilder(jdfNodeBuilder, ResourceUsage.Output); }
+        public ResourceNodeNameBuilder WithOutput() {
+            return new ResourceNodeNameBuilder(jdfNodeBuilder, ResourceUsage.Output);
+        }
 
         /// <summary>
         /// Adds a new intent JDF.
@@ -86,7 +89,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// Gets the ticket associated with this builder
         /// </summary>
         public Ticket Ticket {
-            get { return jdfNodeBuilder.Ticket; }
+            get {
+                return jdfNodeBuilder.Ticket;
+            }
         }
 
         /// <summary>
@@ -102,14 +107,18 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// Gets the Element and allows set for inheritors
         /// </summary>
         public XElement Element {
-            get { return jdfNodeBuilder.Element; }
+            get {
+                return jdfNodeBuilder.Element;
+            }
         }
 
         /// <summary>
         /// Gets the container JDF builder.
         /// </summary>
         public JdfNodeBuilder ParentJdfNode {
-            get { return jdfNodeBuilder.ParentJdfNode; }
+            get {
+                return jdfNodeBuilder.ParentJdfNode;
+            }
         }
     }
 }
