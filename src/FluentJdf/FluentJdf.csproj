@@ -131,6 +131,12 @@
     <Compile Include="LinqToJdf\AttributeExtensions.cs" />
     <Compile Include="LinqToJdf\Audit.cs" />
     <Compile Include="Configuration\FluentJdfLibrary.cs" />
+    <Compile Include="LinqToJdf\Builder\GeneratedDocumentTemplateSelectionBuilderBase.cs" />
+    <Compile Include="LinqToJdf\Builder\GeneratedDocumentBuilderHelper.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\GeneratedMessageBuilder.cs" />
+    <Compile Include="LinqToJdf\Builder\Jmf\GeneratedMessageTemplateSelectionBuilder.cs" />
+    <Compile Include="LinqToJdf\Builder\Jdf\GeneratedTicketBuilder.cs" />
+    <Compile Include="LinqToJdf\Builder\Jdf\GeneratedTicketTemplateSelectionBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\AbortQueueEntryCommandAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\AbortQueueEntryCommandBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\CloseQueueCommandAttributeBuilder.cs" />

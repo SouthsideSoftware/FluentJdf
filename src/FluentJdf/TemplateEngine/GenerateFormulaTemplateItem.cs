@@ -26,12 +26,11 @@ namespace FluentJdf.TemplateEngine
 		/// Generate a GUID string.
 		/// </summary>
 		/// <param name="writer">Write to which to write the string.</param>
-		/// <param name="vars">A string dictionary of name/value replacement values.  Ignored.</param>
-		/// <param name="dataSet">A data set containing tables for processing by TableTemplateItems.  Ignored.</param>
+		/// <param name="vars">A Dictionary{string,object} of name/value replacement values.  Ignored.</param>
 		/// <returns>True if the replacement occured.</returns>
-		protected internal override bool Generate(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet)
+		protected internal override bool Generate(TextWriter writer, Dictionary<string, object> vars)
 		{
-			if (!base.Generate(writer, vars, dataSet))
+			if (!base.Generate(writer, vars))
 			{
 				writer.Write("I" + Guid.NewGuid().ToString());
 			}

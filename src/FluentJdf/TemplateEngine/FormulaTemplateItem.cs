@@ -31,11 +31,10 @@ namespace FluentJdf.TemplateEngine
 		/// Generates the properly-formatted XML for this formula item.
 		/// </summary>
 		/// <param name="writer">The text writer that will receive the XML</param>
-		/// <param name="vars">A string dictionary containing name/value pairs used
+		/// <param name="vars">A Dictionary{string,object} containing name/value pairs used
 		/// for variable replacement.</param>
-		/// <param name="dataSet">A DataSet containing one or more tables for use inside table replacements.</param>
 		/// <returns>True if the replacement was made successfully.</returns>
-		protected internal override bool Generate(TextWriter writer, Dictionary<string, string> vars,  DataSet dataSet)
+		protected internal override bool Generate(TextWriter writer, Dictionary<string, object> vars)
 		{
 			string val = null;
 
@@ -45,8 +44,9 @@ namespace FluentJdf.TemplateEngine
 			} 
 			else 
 			{
+                //todo: what if it is not a string.  Can we use dots to go get properties?
                 if (vars.ContainsKey(name)) {
-                    val = vars[name];
+                    val = vars[name].ToString();
                 }
 			}
 			if (val != null)

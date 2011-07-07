@@ -187,6 +187,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Template file {0} does not exist.
+        /// </summary>
+        internal static string FileDoesNotExist {
+            get {
+                return ResourceManager.GetString("FileDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FluentJDF requires a root node when copying a document..
         /// </summary>
         internal static string FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired {
@@ -201,6 +210,24 @@ namespace FluentJdf.Resources {
         internal static string FormulaTemplateItemFactory_CreateFormulaItem_InvalidFunctionNameMessage {
             get {
                 return ResourceManager.GetString("FormulaTemplateItemFactory_CreateFormulaItem_InvalidFunctionNameMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table with name {0} is already configured.
+        /// </summary>
+        internal static string GeneratedDocumentConfigurationBuilder_DataTable_TableWithNameAlreadyExists {
+            get {
+                return ResourceManager.GetString("GeneratedDocumentConfigurationBuilder_DataTable_TableWithNameAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name {0} is already contained in name values..
+        /// </summary>
+        internal static string GeneratedDocumentConfigurationBuilder_NameValue_NameAlreadyInNameValues {
+            get {
+                return ResourceManager.GetString("GeneratedDocumentConfigurationBuilder_NameValue_NameAlreadyInNameValues", resourceCulture);
             }
         }
         

@@ -30,13 +30,11 @@ namespace FluentJdf.TemplateEngine
 		/// </summary>
 		/// <param name="writer">The writer that receives the data.</param>
 		/// <param name="vars">Replacement name/value pairs.  Ignored.</param>
-		/// <param name="dataSet">Replacement data for tables.  Ignored.</param>
 		/// <returns>True if the replacement took place.</returns>
-		protected internal override bool Generate(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet)
+		protected internal override bool Generate(TextWriter writer, Dictionary<string, object> vars)
 		{
-            if (!base.Generate(writer, vars, dataSet)) {
+            if (!base.Generate(writer, vars)) {
                 writer.Write(NullValuePlaceholder);
-                //throw new NotImplementedException("jdfDefault() is not yet implemented.");
             }
 
             return true;

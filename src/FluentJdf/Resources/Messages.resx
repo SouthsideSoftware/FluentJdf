@@ -246,4 +246,13 @@
 	<data name="TemplateItem_TemplateItem_VariableNameIsNotLegal">
 		<value xml:space="preserve">variable name {0} is not legal.  Variable names can be of the form varName or tableName.varName.  Additional dots are not legal</value>
 	</data>
+	<data name="FileDoesNotExist">
+		<value xml:space="preserve">Template file {0} does not exist</value>
+	</data>
+	<data name="GeneratedDocumentConfigurationBuilder_NameValue_NameAlreadyInNameValues">
+		<value xml:space="preserve">Name {0} is already contained in name values.</value>
+	</data>
+	<data name="GeneratedDocumentConfigurationBuilder_DataTable_TableWithNameAlreadyExists">
+		<value xml:space="preserve">Table with name {0} is already configured</value>
+	</data>
 </root>

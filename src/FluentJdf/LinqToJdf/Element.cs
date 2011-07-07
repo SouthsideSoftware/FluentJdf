@@ -40,6 +40,8 @@ namespace FluentJdf.LinqToJdf
         public static XName Method = Globals.JdfName("Method");
         public static XName Notification = Globals.JdfName("Notification");
         public static XName Query = Globals.JdfName("Query");
+        public static XName Queue = Globals.JdfName("Queue");
+        public static XName QueueEntry = Globals.JdfName("QueueEntry");
         public static XName Required = Globals.JdfName("Required");
         public static XName ResourceInfo = Globals.JdfName("ResourceInfo");
         public static XName ResourceLinkPool = Globals.JdfName("ResourceLinkPool");

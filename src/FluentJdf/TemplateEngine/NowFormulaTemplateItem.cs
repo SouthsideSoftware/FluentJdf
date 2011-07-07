@@ -27,12 +27,11 @@ namespace FluentJdf.TemplateEngine
 		/// Write out the current time in standard JDF format.
 		/// </summary>
 		/// <param name="writer">The writer which will receive the string.</param>
-		/// <param name="vars">A StringDictionary of name/value replacement values.  Ignored.</param>
-		/// <param name="dataSet">Data for use in table replacements.  Ignored.</param>
+		/// <param name="vars">A Dictionary{string, object} of name/value replacement values.  Ignored.</param>
 		/// <returns>True if the replacement was made.</returns>
-		protected internal override bool Generate(TextWriter writer, Dictionary<string,string> vars, DataSet dataSet)
+		protected internal override bool Generate(TextWriter writer, Dictionary<string, object> vars)
 		{
-			if (!base.Generate(writer, vars, dataSet))
+			if (!base.Generate(writer, vars))
 			{
 				writer.Write(DateTime.Now.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", _usEnglishCultureInfo));
 			}

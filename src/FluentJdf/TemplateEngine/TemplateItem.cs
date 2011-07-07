@@ -156,18 +156,9 @@ namespace FluentJdf.TemplateEngine
 		/// Writes text to the output instance document based on this item.
 		/// </summary>
 		/// <param name="writer">The writer that will receive the data.</param>
-		/// <param name="vars">A StringDictionary of name/value pairs for simple replacement fields.</param>
-		/// <param name="dataSet">Tables used by table fields.</param>
+		/// <param name="vars">A Dictionary{string,object} of name/value pairs for simple replacement fields.</param>
 		/// <returns>True if the replacement took place.</returns>
-		protected internal abstract bool Generate(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet);
+		protected internal abstract bool Generate(TextWriter writer, Dictionary<string, object> vars);
 
-		/// <summary>
-		/// Dump diagnostics about the current item and all its children to the trace listeners.
-		/// </summary>
-		public void Dump()
-		{
-			Trace.WriteLine(ToString());
-			children.Dump();
-		}
 	}
 }

@@ -42,9 +42,8 @@ namespace FluentJdf.TemplateEngine
 		/// </summary>
 		/// <param name="writer">The writer to which to write.</param>
 		/// <param name="vars">Name/value pairs for replacement.  Ignored.</param>
-		/// <param name="dataSet">Data for table replacements.  Ignored.</param>
 		/// <returns>True if the replacement took place.</returns>
-		protected internal override bool Generate(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet)
+		protected internal override bool Generate(TextWriter writer, Dictionary<string, object> vars)
 		{
 			writer.Write(_text);
 

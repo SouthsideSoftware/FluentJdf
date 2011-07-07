@@ -147,6 +147,7 @@
     <Compile Include="Unit\Encoding\TransmissionPartCollection\when_transmission_part_collection_is_empty.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartFactory\when_creating_jdf_and_jmf_transmission_parts.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_setting_and_getting_timestamp.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfBuilder\TemplateEngine\when_generating_from_a_basic_ticket_template.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_combined_jdf_process.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_intent.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_node_with_older_version_as_configured_default.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Unit\LinqToJdf\JdfDateTime\when_jdf_date_time_try_parse.cs" />
     <Compile Include="Unit\LinqToJdf\JdfDateTime\when_parsing_jdf_date_time_strings.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_list_of_jdf_elements_containing_a_process_type.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\TemplateEngine\when_generating_from_a_basic_message_template.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_adding_arbitrary_element_by_xname_on_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_adding_arbitrary_element_on_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_version_on_submit_queue_entry.cs" />
@@ -195,6 +197,10 @@
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_mixed_result_with_notifications.cs" />
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_success_result_with_no_notifications.cs" />
     <Compile Include="Unit\Schema\FluentValidation\when_validating_jmf_using_the_fluent_interface.cs" />
+    <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_and_table_is_supplied_with_bad_structure.cs" />
+    <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_empty_table_is_supplied.cs" />
+    <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_table_is_not_supplied.cs" />
+    <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_contains_proper_data.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_default_configuration.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_non_default_configuration.cs" />
     <Compile Include="Unit\Transmission\Logging\TransmissionData\when_creating_with_content_type_including_char_encoding.cs" />
@@ -306,6 +312,7 @@
     <EmbeddedResource Include="TestData\QueueStatusResponseSuccess.jmf" />
     <EmbeddedResource Include="TestData\TwoResponseOneSuccessOneError.jmf" />
     <EmbeddedResource Include="TestData\ArtDeliveryIntentTest.jdf" />
+    <EmbeddedResource Include="TestData\BasicJmfTemplate.jmf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestData\Signs.jpg" />
@@ -317,6 +324,13 @@
     <EmbeddedResource Include="TestData\forTestJdfCreator.xml" />
     <EmbeddedResource Include="TestData\sampleJDFTemplate.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\TestTableTemplate2.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\TestTableTemplate.xml" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

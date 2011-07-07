@@ -9,6 +9,7 @@ using FluentJdf.LinqToJdf;
 using FluentJdf.Resources;
 using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
+using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Logging;
 
 namespace FluentJdf.TemplateEngine
@@ -35,6 +36,9 @@ namespace FluentJdf.TemplateEngine
             ParameterCheck.StringRequiredAndNotWhitespace(fileName, "fileName");
             if (!File.Exists(fileName)) {
                 throw new ArgumentException("File does not exist");
+            }
+            if (!Path.IsPathRooted(fileName)) {
+                fileName = Path.Combine(ApplicationInformation.Directory, fileName);
             }
             name = fileName;
             Load(File.OpenRead(fileName));
@@ -437,24 +441,11 @@ namespace FluentJdf.TemplateEngine
         /// <summary>
         /// Generate a tree for this template.
         /// </summary>
-        /// <param name="vars">Name/value pairs for replacement.</param>
-        /// <param name="fixupIds">True to make all ids unique.  Default is true.</param>
-        /// <param name="jobId">If non-null, the job id to use.  If null, a unique job id will be generated.  
-        /// Only applies to JDF root nodes.</param>
-        /// <returns></returns>
-        public XDocument Generate(Dictionary<string, string> vars, string jobId = null, bool fixupIds = true) {
-            return Generate(vars, null, jobId, fixupIds);
-        }
-
-        /// <summary>
-        /// Generate a tree for this template.
-        /// </summary>
-        /// <param name="vars">Name/value pairs for simple fields.</param>
-        /// <param name="dataSet">A DataSet containing one table for each table replacement field in the template.</param>
-        /// <param name="fixupIds">True to fixup ids in the file automatically.  If false, IDs will be left as is.</param>
+        /// <param name="vars">Name/value pairs.</param>
+        /// <param name="makeIdsUnique">True to make ids in the file globally unique.  If false, IDs will be taken from the template.</param>
         /// <param name="jobId">The new JobID value.</param>
         /// <returns>The tree containing the generated JDF.</returns>
-        public XDocument Generate(Dictionary<string, string> vars, DataSet dataSet, string jobId = null, bool fixupIds = true) {
+        public XDocument Generate(Dictionary<string, object> vars, string jobId = null, bool makeIdsUnique = true) {
             ParameterCheck.ParameterRequired(vars, "vars");
 
             XDocument tree = null;
@@ -463,13 +454,13 @@ namespace FluentJdf.TemplateEngine
             StreamWriter writer = new StreamWriter(buffStream);
             try
             {
-                items.Generate(writer, vars, dataSet);
+                items.Generate(writer, vars);
 
                 writer.Flush();
 
                 buffStream.Seek(0, SeekOrigin.Begin);
 
-                if (fixupIds)
+                if (makeIdsUnique)
                 {
                     tree = GenerateNewIds(buffStream, jobId);
                 }

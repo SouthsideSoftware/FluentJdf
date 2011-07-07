@@ -52,22 +52,20 @@ namespace FluentJdf.TemplateEngine
 		/// </summary>
 		/// <param name="writer">The writer that will receive the text.</param>
 		/// <param name="vars">Simple replacement variables.</param>
-		/// <param name="dataSet">Table replacement variables.</param>
 		/// <returns>True if the replacement took place.</returns>
-		protected internal override bool Generate(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet)
+		protected internal override bool Generate(TextWriter writer, Dictionary<string, object> vars)
 		{
 			string val = null;
 
-			//if this is a table item (contains at least one dot)
 			if (parentTableItem != null)
 			{
 				val = parentTableItem.GetVariableValue(name);
 			} 
-			//Otherwise, it is just a simple variable
 			else 
 			{
+                //todo: what if it is not a string.  Can we use dots to go get properties?
                 if (vars.ContainsKey(name)) {
-                    val = vars[name];
+                    val = vars[name].ToString();
                 }
 			}
 			if (val != null)

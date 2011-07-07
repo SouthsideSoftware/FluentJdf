@@ -1,0 +1,13 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<JMF SenderID="[:senderId:]" TimeStamp="[:timestamp=now():]"
+xmlns="http://www.CIP4.org/JDFSchema_1_1" Version="1.1">
+	<Response ID="[:id=generate():]" Type="SubmitQueueEntry" refID="[:commandId:]">
+		<QueueEntry QueueEntryID="[:queueEntryId:]" Status="[:queueEntryStatus:]"/>
+		<Queue Status="[:queueStatus:]" DeviceID="[:deviceId:]">
+			[%table(queueEntries)%]
+				<QueueEntry QueueEntryID="[:queueEntries.queueEntryId:]" Priority="[:queueEntries.queueEntryPriority:]" Status="[:queueEntries.queueEntryStatus:]" 
+					JobID="[:queueEntries.queueEntryJobId:]" JobPartID="[:queueEntries.jobPartId=Default:]"/>
+			[%end table%]
+		</Queue>
+	</Response>
+</JMF>

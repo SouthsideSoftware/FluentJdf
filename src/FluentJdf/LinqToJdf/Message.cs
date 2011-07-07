@@ -37,6 +37,26 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Create a message from a template in a file.
+        /// </summary>
+        /// <param name="templateFileName"></param>
+        /// <returns></returns>
+        public static GeneratedMessageTemplateSelectionBuilder CreateFromTemplate(string templateFileName)
+        {
+            return new GeneratedMessageTemplateSelectionBuilder(templateFileName);
+        }
+
+        /// <summary>
+        /// Create a message from a template in a stream.
+        /// </summary>
+        /// <param name="templateStream"></param>
+        /// <returns></returns>
+        public static GeneratedMessageTemplateSelectionBuilder CreateFromTemplate(Stream templateStream)
+        {
+            return new GeneratedMessageTemplateSelectionBuilder(templateStream);
+        }
+
+        /// <summary>
         /// Copy constructor
         /// </summary>
         /// <param name="document"></param>

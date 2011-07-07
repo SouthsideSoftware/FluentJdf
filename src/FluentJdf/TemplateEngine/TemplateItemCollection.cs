@@ -69,28 +69,12 @@ namespace FluentJdf.TemplateEngine
 		/// </summary>
 		/// <param name="writer">The writer that will receive the data.</param>
 		/// <param name="vars">Simple replacement variables.</param>
-		/// <param name="dataSet">Table replacement variables.</param>
-		protected internal void Generate(StreamWriter writer, Dictionary<string, string> vars, DataSet dataSet)
+		protected internal void Generate(StreamWriter writer, Dictionary<string, object> vars)
 		{
 			foreach (TemplateItem item in this)
 			{
-				item.Generate(writer, vars, dataSet);
+				item.Generate(writer, vars);
 			}
-		}
-
-		/// <summary>
-		/// Send a diagnostic display of all the items in this collection 
-		/// to the trace listeners.
-		/// </summary>
-		public void Dump()
-		{
-			Trace.Indent();
-			foreach (TemplateItem item in this)
-			{
-				item.Dump();
-				Trace.WriteLine("********************************************************");
-			}
-			Trace.Unindent();
 		}
 	}
 }
