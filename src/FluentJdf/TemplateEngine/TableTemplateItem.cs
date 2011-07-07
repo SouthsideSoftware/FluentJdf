@@ -110,7 +110,7 @@ namespace FluentJdf.TemplateEngine
 
 		private void GenerateChildren(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet)
 		{
-			foreach (TemplateItem item in _children)
+			foreach (TemplateItem item in children)
 			{
 				item.Generate(writer, vars, dataSet);
 			}

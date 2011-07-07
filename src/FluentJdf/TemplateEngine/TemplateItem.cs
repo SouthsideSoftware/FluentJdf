@@ -15,32 +15,32 @@ namespace FluentJdf.TemplateEngine
 		/// <summary>
 		/// The name of the item.
 		/// </summary>
-		protected string _name;
+		protected string name;
 
 		/// <summary>
 		/// This item's line number within the xml template file.
 		/// </summary>
-		protected int _lineNumber;
+		protected int lineNumber;
 
 		/// <summary>
 		/// This item's column position within the xml template file.
 		/// </summary>
-		protected int _positionInLine;
+		protected int positionInLine;
 
 		/// <summary>
 		/// The template item that contains this item.  May be null.
 		/// </summary>
-		protected TemplateItem _parent;
+		protected TemplateItem parent;
 
 		/// <summary>
 		/// A collection of all template items contained by this item.  May be empty.
 		/// </summary>
-		protected TemplateItemCollection _children = new TemplateItemCollection();
+		protected TemplateItemCollection children = new TemplateItemCollection();
 
 		/// <summary>
 		/// If this template item replaces based on a table, this is the table.
 		/// </summary>
-		protected TableTemplateItem _parentTableItem;
+		protected TableTemplateItem parentTableItem;
 
 		/// <summary>
 		/// Construct an instance.
@@ -51,13 +51,13 @@ namespace FluentJdf.TemplateEngine
 		/// <param name="positionInLine">This item's column position within the xml template file.</param>
 		protected internal TemplateItem(TemplateItem parent, string name, int lineNumber, int positionInLine)
 		{
-			_name = name;
-			_lineNumber = lineNumber;
-			_positionInLine = positionInLine;
-			_parent = parent;
-			if (_parent != null)
+			this.name = name;
+			this.lineNumber = lineNumber;
+			this.positionInLine = positionInLine;
+			this.parent = parent;
+			if (this.parent != null)
 			{
-				_parent._children.Add(this);
+				this.parent.children.Add(this);
 			}
 
 			if (name.IndexOf(".") != -1)
@@ -68,26 +68,26 @@ namespace FluentJdf.TemplateEngine
 				        string.Format(
 				            Messages.TemplateItem_TemplateItem_VariableNameIsNotLegal,
 				            name);
-                    logger.Error(string.Format(Messages.ErrorAtLineAndColumn, mess, _lineNumber, _positionInLine));
-                    throw new TemplateExpansionException(_lineNumber, _positionInLine, mess);
+                    logger.Error(string.Format(Messages.ErrorAtLineAndColumn, mess, this.lineNumber, this.positionInLine));
+                    throw new TemplateExpansionException(this.lineNumber, this.positionInLine, mess);
 				}
 
 				if (parts.Length == 2)
 				{
 					TemplateItem currentParent = this;
-					while (_parentTableItem == null && currentParent.Parent != null)
+					while (parentTableItem == null && currentParent.Parent != null)
 					{
 						currentParent = currentParent.Parent;
 						if (currentParent is TableTemplateItem)
 						{
 							if (((TableTemplateItem)currentParent).IsTableOwner(parts[0]))
 							{
-								_parentTableItem = (TableTemplateItem)currentParent;
+								parentTableItem = (TableTemplateItem)currentParent;
 							}
 						}
 					}
 
-					_name = parts[1];
+					this.name = parts[1];
 				}
 			}
 		}
@@ -100,7 +100,7 @@ namespace FluentJdf.TemplateEngine
 		{
 			get
 			{
-				return _children;
+				return children;
 			}
 		}
 
@@ -112,7 +112,7 @@ namespace FluentJdf.TemplateEngine
 		{
 			get
 			{
-				return _parent;
+				return parent;
 			}
 		}
 
@@ -124,7 +124,7 @@ namespace FluentJdf.TemplateEngine
 		{
 			get
 			{
-				return _name;
+				return name;
 			}
 		}
 
@@ -136,7 +136,7 @@ namespace FluentJdf.TemplateEngine
 		{
 			get
 			{
-				return _lineNumber;
+				return lineNumber;
 			}
 		}
 
@@ -148,7 +148,7 @@ namespace FluentJdf.TemplateEngine
 		{
 			get
 			{
-				return _positionInLine;
+				return positionInLine;
 			}
 		}
 
@@ -167,7 +167,7 @@ namespace FluentJdf.TemplateEngine
 		public void Dump()
 		{
 			Trace.WriteLine(ToString());
-			_children.Dump();
+			children.Dump();
 		}
 	}
 }

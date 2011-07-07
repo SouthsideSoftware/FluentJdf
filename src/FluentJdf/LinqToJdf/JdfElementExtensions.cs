@@ -496,6 +496,21 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Gets true if the JDF node has Template=<see langword="true"/> or
+        /// <see langword="false"/> if Template=<see langword="false"/>, Template attribute is
+        /// invalid or the value is <see langword="null"/>.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <returns></returns>
+        public static bool IsTemplate(this XElement jdfNode) {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfElement();
+
+            var isTemplate = jdfNode.GetAttributeValueAsBoolOrNull("Template");
+            return isTemplate != null ? isTemplate.Value : false;
+        }
+
+        /// <summary>
         /// Gets the types of the node.
         /// </summary>
         /// <param name="element"></param>

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Data;
@@ -7,8 +8,11 @@ namespace FluentJdf.TemplateEngine
 	/// <summary>
 	/// Processes the default() formula.
 	/// </summary>
-	public class JdfDefaultFormulaTemplateItem : FormulaTemplateItem
-	{
+	public class JdfDefaultFormulaTemplateItem : FormulaTemplateItem {
+        /// <summary>
+        /// The null value placeholder value.
+        /// </summary>
+	    public static string NullValuePlaceholder = "[NULL]";
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -30,12 +34,12 @@ namespace FluentJdf.TemplateEngine
 		/// <returns>True if the replacement took place.</returns>
 		protected internal override bool Generate(TextWriter writer, Dictionary<string, string> vars, DataSet dataSet)
 		{
-			if (!base.Generate(writer, vars, dataSet))
-			{
-				writer.Write("[NULL]");
-			}
+            if (!base.Generate(writer, vars, dataSet)) {
+                writer.Write(NullValuePlaceholder);
+                //throw new NotImplementedException("jdfDefault() is not yet implemented.");
+            }
 
-			return true;
+            return true;
 		}
 
 		/// <summary>

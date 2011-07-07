@@ -490,7 +490,24 @@ namespace FluentJdf.TemplateEngine
                 tree.Root.SetAttributeValue("Template", "false");
             }
 
+            RemoveNullValueAttributes(tree);
+
             return tree;
+        }
+
+        void RemoveNullValueAttributes(XDocument tree) {
+            var attributesToNull = new List<XName>();
+            foreach (var element in tree.Descendants()) {
+                attributesToNull.Clear();
+                foreach (var attribute in element.Attributes()) {
+                    if (attribute.Value == JdfDefaultFormulaTemplateItem.NullValuePlaceholder) {
+                        attributesToNull.Add(attribute.Name);
+                    }
+                }
+                foreach (var attributeName in attributesToNull) {
+                    element.SetAttributeValue(attributeName, null);
+                }
+            }
         }
 
         private bool ReadNext(StreamReader reader, StringBuilder staticText, ref int lineNumber, ref int positionInLine, ref char charRead)

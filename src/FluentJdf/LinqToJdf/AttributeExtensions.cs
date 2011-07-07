@@ -74,6 +74,24 @@ namespace FluentJdf.LinqToJdf
         }
 
         /// <summary>
+        /// Gets the value of the given attribute as a boolean
+        /// </summary>
+        /// <param name="element">The element containing the attribute</param>
+        /// <param name="attributeName">The name of the attribute</param>
+        /// <returns>The boolean value of the attribute or null if it does not exist or cannot be parsed to a boolean.</returns>
+        public static bool? GetAttributeValueAsBoolOrNull(this XElement element, XName attributeName)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+            ParameterCheck.ParameterRequired(attributeName, "attributeName");
+
+            var boolString = element.GetAttributeValueOrNull(attributeName);
+            if (boolString == null) return null;
+
+            bool boolVal;
+            return bool.TryParse(boolString, out boolVal) ? (bool?)boolVal : null;
+        }
+
+        /// <summary>
         /// Gets the value of the given attribute as an int
         /// </summary>
         /// <param name="element">The element containing the attribute</param>

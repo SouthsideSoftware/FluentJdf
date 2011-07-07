@@ -12,7 +12,7 @@ namespace FluentJdf.TemplateEngine
 	/// </summary>
 	public class VariableTemplateItem : TemplateItem {
 	    static readonly ILog logger = LogManager.GetLogger(typeof (VariableTemplateItem));
-		private string _defaultValue;
+		private readonly string defaultValue;
 
 		/// <summary>
 		/// Constructor.
@@ -32,7 +32,7 @@ namespace FluentJdf.TemplateEngine
 		protected internal VariableTemplateItem(TemplateItem parent, string name, int lineNumber, int positionInLine, string defaultValue) :
 			base(parent, name, lineNumber, positionInLine)
 		{
-			_defaultValue = defaultValue;
+			this.defaultValue = defaultValue;
 		}
 
 		/// <summary>
@@ -43,7 +43,7 @@ namespace FluentJdf.TemplateEngine
 		{
 			get
 			{
-				return _defaultValue;
+				return defaultValue;
 			}
 		}
 
@@ -59,15 +59,15 @@ namespace FluentJdf.TemplateEngine
 			string val = null;
 
 			//if this is a table item (contains at least one dot)
-			if (_parentTableItem != null)
+			if (parentTableItem != null)
 			{
-				val = _parentTableItem.GetVariableValue(_name);
+				val = parentTableItem.GetVariableValue(name);
 			} 
 			//Otherwise, it is just a simple variable
 			else 
 			{
-                if (vars.ContainsKey(_name)) {
-                    val = vars[_name];
+                if (vars.ContainsKey(name)) {
+                    val = vars[name];
                 }
 			}
 			if (val != null)
@@ -77,20 +77,20 @@ namespace FluentJdf.TemplateEngine
 			} 
 			else 
 			{
-                if (_defaultValue != null)
+                if (defaultValue != null)
                 {
-                    writer.Write(_defaultValue);
+                    writer.Write(defaultValue);
                 }
                 else {
-                    if (_parentTableItem != null) {
+                    if (parentTableItem != null) {
                         var mess = string.Format("Required table replacement variable {0}.{1} does not exist in the supplied data set.",
-                                                 _parentTableItem.TableName, _name);
-                        logger.Error(string.Format(Messages.ErrorAtLineAndColumn, mess, _lineNumber, _positionInLine));
-                        throw new TemplateExpansionException(_lineNumber, _positionInLine, mess);
+                                                 parentTableItem.TableName, name);
+                        logger.Error(string.Format(Messages.ErrorAtLineAndColumn, mess, lineNumber, positionInLine));
+                        throw new TemplateExpansionException(lineNumber, positionInLine, mess);
                     }
-                    var message = string.Format("Required replacement variable {0} does not exist in the supplied data set.", _name);
-                    logger.Error(string.Format(Messages.ErrorAtLineAndColumn, message, _lineNumber, _positionInLine));
-                    throw new TemplateExpansionException(_lineNumber, _positionInLine, message);
+                    var message = string.Format("Required replacement variable {0} does not exist in the supplied data set.", name);
+                    logger.Error(string.Format(Messages.ErrorAtLineAndColumn, message, lineNumber, positionInLine));
+                    throw new TemplateExpansionException(lineNumber, positionInLine, message);
 
                 }
 			}
@@ -116,19 +116,19 @@ namespace FluentJdf.TemplateEngine
 			StringBuilder sb = new StringBuilder();
 			sb.Append(Name);
 			sb.Append(" = ");
-			if (_defaultValue != null)
+			if (defaultValue != null)
 			{
-				sb.Append(_defaultValue);
+				sb.Append(defaultValue);
 			} 
 			else 
 			{
 				sb.Append("NO DEFAULT");
 			}
 
-			if (_parentTableItem != null)
+			if (parentTableItem != null)
 			{
 				sb.Append(" Table: ");
-				sb.Append(_parentTableItem.TableName);
+				sb.Append(parentTableItem.TableName);
 			}
 			return sb.ToString();
 		}

@@ -39,14 +39,14 @@ namespace FluentJdf.TemplateEngine
 		{
 			string val = null;
 
-			if (_parentTableItem != null)
+			if (parentTableItem != null)
 			{
-				val = _parentTableItem.GetVariableValue(_name);
+				val = parentTableItem.GetVariableValue(name);
 			} 
 			else 
 			{
-                if (vars.ContainsKey(_name)) {
-                    val = vars[_name];
+                if (vars.ContainsKey(name)) {
+                    val = vars[name];
                 }
 			}
 			if (val != null)

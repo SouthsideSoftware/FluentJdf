@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Globalization;
+using System.Linq;
 using System.Xml.Linq;
 using FluentJdf.Configuration;
 using FluentJdf.LinqToJdf.Builder.Jmf;
@@ -361,6 +362,29 @@ namespace FluentJdf.LinqToJdf {
 
             element.SetAttributeValue("Class", value);
             return element;
+        }
+
+        /// <summary>
+        /// Gets the first child element or null if there is none.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static XElement FirstChild(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            return element.Elements().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the next sibling element or null if there is none.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static XElement NextSibling(this XElement element)
+        {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            return element.ElementsAfterSelf().FirstOrDefault();
         }
     }
 }
