@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
 using System.Data;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
 	/// <summary>
 	/// Handles the generate() formula by generating a GUID string.

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
 using System.Data;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
 	/// <summary>
 	/// Abstract base class that all formula replacements inherit from.
@@ -46,7 +45,9 @@ namespace FluentJdf.Template
 			} 
 			else 
 			{
-				val = vars[_name];
+                if (vars.ContainsKey(_name)) {
+                    val = vars[_name];
+                }
 			}
 			if (val != null)
 			{

@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Collections.Specialized;
 using System.Data;
 using System.Threading;
 using FluentJdf.LinqToJdf;
 using FluentJdf.Resources;
 using Infrastructure.Core.Logging;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
 	/// <summary>
 	/// Contains a set of fields that may be replaced based on data from a DataTable.

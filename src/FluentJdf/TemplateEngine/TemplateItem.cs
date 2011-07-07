@@ -1,13 +1,11 @@
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
 using System.Diagnostics;
 using System.Data;
-using FluentJdf.LinqToJdf;
 using FluentJdf.Resources;
 using Infrastructure.Core.Logging;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
 	/// <summary>
 	/// An item within a template.

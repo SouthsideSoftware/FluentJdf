@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
 using System.Text;
 using System.Data;
 using FluentJdf.Resources;
 using Infrastructure.Core.Logging;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
 	/// <summary>
 	/// A template item that replaces text based on a name/value pair or the data from a table.
@@ -67,7 +66,9 @@ namespace FluentJdf.Template
 			//Otherwise, it is just a simple variable
 			else 
 			{
-				val = vars[_name];
+                if (vars.ContainsKey(_name)) {
+                    val = vars[_name];
+                }
 			}
 			if (val != null)
 			{

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
 using System.Data;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
 	/// <summary>
 	/// Processes the default() formula.

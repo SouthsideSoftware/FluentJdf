@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Collections.Specialized;
 using System.Text;
 using System.Data;
-using System.Diagnostics;
 using System.Xml.Linq;
 using FluentJdf.Encoding;
 using FluentJdf.LinqToJdf;
@@ -13,7 +11,7 @@ using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
     /// <summary>
     /// This class represents a JDF file containing replacement variables that

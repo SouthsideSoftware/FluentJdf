@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Collections;
 using System.IO;
 using System.Diagnostics;
 using System.Data;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
 	/// <summary>
 	/// A colleciton of template items.

@@ -4,7 +4,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
 	/// <summary>
 	/// Generic exception for the template namespace.

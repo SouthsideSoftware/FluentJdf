@@ -178,7 +178,7 @@
       <TestDir>%(TestProjectDir)\bin\$(Configuration)</TestDir>
       <TestReportName>FluentJdf.Tests.Results.htm</TestReportName>
       <CoverageXmlName>FluentJdf.Tests.Coverage.xml</CoverageXmlName>
-      <NunitTestReportName></NunitTestReportName>
+      <NunitTestReportName>FluentJdf.NUnit.Tests.Results.xml</NunitTestReportName>
     </TestItem>
     <TestItem Include="Infrastructure.Core.Tests.dll">
       <TestProjectDir>$(MSBuildProjectDirectory)\src\Infrastructure\Tests\Infrastructure.Core.Tests</TestProjectDir>

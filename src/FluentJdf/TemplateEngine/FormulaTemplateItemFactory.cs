@@ -2,7 +2,7 @@ using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
 
-namespace FluentJdf.Template
+namespace FluentJdf.TemplateEngine
 {
 	/// <summary>
 	/// Constructs specific desendants of FormulaTemplateItem
@@ -20,7 +20,6 @@ namespace FluentJdf.Template
 		/// <returns>A FormulaTemplateItem descendant.</returns>
 		protected internal static FormulaTemplateItem CreateFormulaItem(TemplateItem parent, string name, int lineNumber, int positionInLine, string funcName)
 		{
-		    ParameterCheck.ParameterRequired(parent, "parent");
 		    ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
 		    ParameterCheck.StringRequiredAndNotWhitespace(funcName, "funcName");
 
