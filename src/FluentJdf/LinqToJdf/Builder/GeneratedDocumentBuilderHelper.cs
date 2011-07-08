@@ -75,20 +75,21 @@ namespace FluentJdf.LinqToJdf.Builder
         }
 
         /// <summary>
-        /// Use ID values found in the template.
+        /// Do not generate new id values for the document.
         /// </summary>
         /// <returns></returns>
-        public GeneratedDocumentBuilderHelper IdValuesFromTemplate() {
+        public GeneratedDocumentBuilderHelper DoNotGenerateNewUniqueIds() {
             makeIdsUnique = false;
             return this;
         }
 
         /// <summary>
-        /// Make all ids in the document unique.
+        /// Generate new unique ids for all ID attributes in the document.
+        /// Also fixes up references.
         /// </summary>
         /// <returns></returns>
         /// <remarks>This is the default.</remarks>
-        public GeneratedDocumentBuilderHelper UniqueIds() {
+        public GeneratedDocumentBuilderHelper GenerateNewUniqueIds() {
             makeIdsUnique = true;
             return this;
         }
