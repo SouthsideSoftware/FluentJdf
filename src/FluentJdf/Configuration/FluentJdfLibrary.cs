@@ -2,7 +2,7 @@
     /// <summary>
     /// Holds JDP settings.
     /// </summary>
-    public sealed class FluentJdfLibrary {
+    public sealed class FluentJdfLibrary : IFluentJdfLibrary {
         static readonly FluentJdfLibrary settings = new FluentJdfLibrary();
         readonly EncodingSettings encodingSettings;
         readonly HttpTransmissionSettings httpTransmissionSettings;

@@ -7,3 +7,5 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("FluentJdf")]
 [assembly: AssemblyDescription("FluentJdf")]
+
+[assembly:InternalsVisibleTo("FluentJdf.Tests")]

@@ -57,7 +57,7 @@ namespace Infrastructure.Core.Testing {
             string testFilePath = Path.Combine(testDir, testFileName);
 
             if (!File.Exists(testFilePath)) {
-                throw new ArgumentException("File {0} was not extracted from TestData resources", testFilePath);
+                throw new ArgumentException(string.Format("File {0} was not extracted from TestData resources", testFilePath));
             }
 
             return testFilePath;

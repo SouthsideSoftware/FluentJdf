@@ -1,29 +1,32 @@
 using System;
 using System.Collections.Generic;
-using FluentJdf.TemplateEngine;
+using System.IO;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// <summary>
     /// Builder to configure and generate a ticket from a template.
     /// </summary>
-    public class GeneratedMessageBuilder
-    {
-        GeneratedDocumentBuilderHelper generatedDocumentBuilderHelper;
+    public class GeneratedMessageBuilder {
+        readonly GeneratedDocumentBuilderHelper generatedDocumentBuilderHelper;
 
-        internal GeneratedMessageBuilder(Template template)
-        {
-            ParameterCheck.ParameterRequired(template, "template");
+        internal GeneratedMessageBuilder(String templateFileName) {
+            ParameterCheck.StringRequiredAndNotWhitespace(templateFileName, "templateFileName");
+            
+            generatedDocumentBuilderHelper = new GeneratedDocumentBuilderHelper(templateFileName);
+        }
 
-            generatedDocumentBuilderHelper = new GeneratedDocumentBuilderHelper(template);
+        internal GeneratedMessageBuilder(Stream templateStream) {
+            ParameterCheck.ParameterRequired(templateStream, "templateStream");
+
+            generatedDocumentBuilderHelper = new GeneratedDocumentBuilderHelper(templateStream);
         }
 
         /// <summary>
         /// Generates the message.
         /// </summary>
         /// <returns></returns>
-        public Message Generate()
-        {
+        public Message Generate() {
             return generatedDocumentBuilderHelper.Generate().ToMessage();
         }
 
@@ -33,8 +36,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// <param name="name">The name.  Must be unique.</param>
         /// <param name="value">The value.</param>
         /// <exception cref="ArgumentException">If name already exists in the collection.</exception>
-        public GeneratedMessageBuilder NameValue(string name, object value)
-        {
+        public GeneratedMessageBuilder NameValue(string name, object value) {
             generatedDocumentBuilderHelper.NameValue(name, value);
             return this;
         }
@@ -86,6 +88,19 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// <remarks>This is the default.</remarks>
         public GeneratedMessageBuilder UniqueJobId() {
             generatedDocumentBuilderHelper.UniqueJobId();
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a custom formula for use in this template.
+        /// </summary>
+        /// <param name="name">The name of the custom formula.  Is case sensitive.</param>
+        /// <param name="customFunction">The custom function that returns a string.</param>
+        /// <returns></returns>
+        /// <remarks>The result of the custom function will be used for replacement if
+        /// there is no replacement defined in the name values for the variable.</remarks>
+        public GeneratedMessageBuilder CustomFormula(string name, Func<string> customFunction) {
+            generatedDocumentBuilderHelper.CustomFormula(name, customFunction);
             return this;
         }
     }

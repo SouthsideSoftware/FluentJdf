@@ -5,13 +5,13 @@ namespace FluentJdf.Configuration {
     /// Base class for settings builders.
     /// </summary>
     public class SettingsBuilderBase {
-        private FluentJdfLibrary fluentJdfLibrary;
+        private IFluentJdfLibrary fluentJdfLibrary;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="fluentJdfLibrary"></param>
-        protected SettingsBuilderBase(FluentJdfLibrary fluentJdfLibrary) {
+        protected SettingsBuilderBase(IFluentJdfLibrary fluentJdfLibrary) {
             ParameterCheck.ParameterRequired(fluentJdfLibrary, "fluentJdfLibrary");
 
             this.fluentJdfLibrary = fluentJdfLibrary;
@@ -20,6 +20,6 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets the owning FluentJdfLibrary settings.
         /// </summary>
-        public FluentJdfLibrary Settings {get { return fluentJdfLibrary; }}
+        public IFluentJdfLibrary Settings {get { return fluentJdfLibrary; }}
     }
 }

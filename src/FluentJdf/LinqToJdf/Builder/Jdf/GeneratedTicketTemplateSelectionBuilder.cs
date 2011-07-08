@@ -21,7 +21,10 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf
         /// <returns></returns>
         public GeneratedTicketBuilder With()
         {
-            return new GeneratedTicketBuilder(Template);
+            if (TemplateStream != null) {
+                return new GeneratedTicketBuilder(TemplateStream);
+            }
+            return new GeneratedTicketBuilder(TemplateFileName);
         }
 
         /// <summary>
@@ -31,7 +34,11 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf
         /// <remarks>You must use With() to add replacement
         /// variable if the template requires replacements.</remarks>
         public Ticket Generate() {
-            return new GeneratedTicketBuilder(Template).Generate();
+            if (TemplateStream != null)
+            {
+                return new GeneratedTicketBuilder(TemplateStream).Generate();
+            }
+            return new GeneratedTicketBuilder(TemplateFileName).Generate();
         }
     }
 }

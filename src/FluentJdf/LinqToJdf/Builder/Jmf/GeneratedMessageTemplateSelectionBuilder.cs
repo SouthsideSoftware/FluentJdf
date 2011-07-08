@@ -17,7 +17,10 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// <returns></returns>
         public GeneratedMessageBuilder With()
         {
-            return new GeneratedMessageBuilder(Template);
+            if (TemplateFileName != null) {
+                return new GeneratedMessageBuilder(TemplateFileName);
+            }
+            return new GeneratedMessageBuilder(TemplateStream);
         }
 
         /// <summary>
@@ -27,7 +30,11 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// <remarks>You must use With() to add replacement
         /// variable if the template requires replacements.</remarks>
         public Message Generate() {
-            return new GeneratedMessageBuilder(Template).Generate();
+            if (TemplateFileName != null)
+            {
+                return new GeneratedMessageBuilder(TemplateFileName).Generate();
+            }
+            return new GeneratedMessageBuilder(TemplateStream).Generate();
         }
     }
 }

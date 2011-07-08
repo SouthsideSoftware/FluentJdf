@@ -9,7 +9,7 @@ namespace FluentJdf.Configuration {
     public class TemplateEngineSettingsBuilder : SettingsBuilderBase {
         ITemplateEngineSettings templateEngineSettings;
 
-        internal TemplateEngineSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, ITemplateEngineSettings templateEngineSettings) : base(fluentJdfLibrary) {
+        internal TemplateEngineSettingsBuilder(IFluentJdfLibrary fluentJdfLibrary, ITemplateEngineSettings templateEngineSettings) : base(fluentJdfLibrary) {
             ParameterCheck.ParameterRequired(templateEngineSettings, "templateEngineSettings");
 
             this.templateEngineSettings = templateEngineSettings;

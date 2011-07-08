@@ -1,33 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
+using System.IO;
 using FluentJdf.TemplateEngine;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf.Builder.Jdf
-{
+namespace FluentJdf.LinqToJdf.Builder.Jdf {
     /// <summary>
     /// Builder to configure and generate a ticket from a template.
     /// </summary>
-    public class GeneratedTicketBuilder
-    {
-        GeneratedDocumentBuilderHelper generatedDocumentBuilderHelper;
+    public class GeneratedTicketBuilder {
+        readonly GeneratedDocumentBuilderHelper generatedDocumentBuilderHelper;
 
-        internal GeneratedTicketBuilder(Template template)
+        internal GeneratedTicketBuilder(string templateFileName) {
+            ParameterCheck.StringRequiredAndNotWhitespace(templateFileName, "templateFileName");
+
+            generatedDocumentBuilderHelper = new GeneratedDocumentBuilderHelper(templateFileName);
+        }
+
+        internal GeneratedTicketBuilder(Stream templateStream)
         {
-            ParameterCheck.ParameterRequired(template, "template");
+            ParameterCheck.ParameterRequired(templateStream, "templateStream");
 
-            generatedDocumentBuilderHelper = new GeneratedDocumentBuilderHelper(template);
+            generatedDocumentBuilderHelper = new GeneratedDocumentBuilderHelper(templateStream);
         }
 
         /// <summary>
         /// Generates the ticket.
         /// </summary>
         /// <returns></returns>
-        public Ticket Generate()
-        {
+        public Ticket Generate() {
             return generatedDocumentBuilderHelper.Generate().ToTicket();
         }
 
@@ -37,8 +38,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf
         /// <param name="name">The name.  Must be unique.</param>
         /// <param name="value">The value.</param>
         /// <exception cref="ArgumentException">If name already exists in the collection.</exception>
-        public GeneratedTicketBuilder NameValue(string name, object value)
-        {
+        public GeneratedTicketBuilder NameValue(string name, object value) {
             generatedDocumentBuilderHelper.NameValue(name, value);
             return this;
         }
@@ -90,6 +90,19 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf
         /// <remarks>This is the default.</remarks>
         public GeneratedTicketBuilder UniqueJobId() {
             generatedDocumentBuilderHelper.UniqueJobId();
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a custom formula for use in this template.
+        /// </summary>
+        /// <param name="name">The name of the custom formula.  Is case sensitive.</param>
+        /// <param name="customFunction">The custom function that returns a string.</param>
+        /// <returns></returns>
+        /// <remarks>The result of the custom function will be used for replacement if
+        /// there is no replacement defined in the name values for the variable.</remarks>
+        public GeneratedTicketBuilder CustomFormula(string name, Func<string> customFunction) {
+            generatedDocumentBuilderHelper.CustomFormula(name, customFunction);
             return this;
         }
     }

@@ -134,6 +134,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_encodings.cs" />
     <Compile Include="Unit\Configuration\HttpTransmissionSettings\when_setting_http_transmission_settings.cs" />
+    <Compile Include="Unit\Configuration\TemplateEngineSettingsBuilder\when_registering_custom_formulas.cs" />
     <Compile Include="Unit\Configuration\TemplateEngineSettings\when_registering_custom_formulas.cs" />
     <Compile Include="Unit\Configuration\TransmissionPartSettings\MockTransmissionPart.cs" />
     <Compile Include="Unit\Configuration\TransmissionPartSettings\when_registering_transmission_parts.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Unit\Encoding\TransmissionPartFactory\when_creating_jdf_and_jmf_transmission_parts.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_setting_and_getting_timestamp.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\TemplateEngine\when_generating_from_a_basic_ticket_template.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfBuilder\TemplateEngine\when_generating_from_a_ticket_template_that_uses_configured_default_version.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_combined_jdf_process.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_intent.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_node_with_older_version_as_configured_default.cs" />
@@ -160,6 +162,7 @@
     <Compile Include="Unit\LinqToJdf\JdfDateTime\when_parsing_jdf_date_time_strings.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_list_of_jdf_elements_containing_a_process_type.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\TemplateEngine\when_generating_from_a_basic_message_template.cs" />
+    <Compile Include="Unit\LinqToJdf\JmfBuilder\TemplateEngine\when_generating_from_a_template_using_custom_formula.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_adding_arbitrary_element_by_xname_on_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_adding_arbitrary_element_on_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_version_on_submit_queue_entry.cs" />
@@ -205,6 +208,9 @@
     <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_empty_table_is_supplied.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_table_is_not_supplied.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_contains_proper_data.cs" />
+    <Compile Include="Unit\TemplateEngine\Template\when_generating_with_additional_custom_formula.cs" />
+    <Compile Include="Unit\TemplateEngine\Template\when_generating_with_globally_configured_custom_formula.cs" />
+    <Compile Include="Unit\TemplateEngine\Template\when_generating_with_custom_formula.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_default_configuration.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_non_default_configuration.cs" />
     <Compile Include="Unit\Transmission\Logging\TransmissionData\when_creating_with_content_type_including_char_encoding.cs" />
@@ -317,6 +323,7 @@
     <EmbeddedResource Include="TestData\TwoResponseOneSuccessOneError.jmf" />
     <EmbeddedResource Include="TestData\ArtDeliveryIntentTest.jdf" />
     <EmbeddedResource Include="TestData\BasicJmfTemplate.jmf" />
+    <EmbeddedResource Include="TestData\BasicJmfTemplateCustomFormula.jmf" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestData\Signs.jpg" />
@@ -334,7 +341,9 @@
   <ItemGroup>
     <EmbeddedResource Include="TestData\TestTableTemplate.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\JdfTemplateUsesConfiguredDefaultVersion.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -14,16 +15,30 @@ namespace FluentJdf.LinqToJdf.Builder
     /// Builder for generating documents from the template engine.
     /// </summary>
     public class GeneratedDocumentBuilderHelper {
-        Template template;
+        string templateFileName;
+        Stream templateStream;
         Dictionary<string, object> nameValues;
         string jobId;
         bool makeIdsUnique = true;
+        Dictionary<string, Func<string>> customFormulas;
 
-        internal GeneratedDocumentBuilderHelper(Template template) {
-            ParameterCheck.ParameterRequired(template, "template");
+        internal GeneratedDocumentBuilderHelper(string templateFileName) {
+            ParameterCheck.StringRequiredAndNotWhitespace(templateFileName, "templateFileName");
 
-            this.template = template;
+            Initialize();
+            this.templateFileName = templateFileName;
+        }
+
+        void Initialize() {
             nameValues = new Dictionary<string, object>();
+            customFormulas = new Dictionary<string, Func<string>>();
+        }
+
+        internal GeneratedDocumentBuilderHelper(Stream templateStream) {
+            ParameterCheck.ParameterRequired(templateStream, "templateStream");
+
+            Initialize();
+            this.templateStream = templateStream;
         }
 
         /// <summary>
@@ -101,10 +116,32 @@ namespace FluentJdf.LinqToJdf.Builder
         }
 
         /// <summary>
+        /// Adds a custom formula for use in this template.
+        /// </summary>
+        /// <param name="name">The name of the custom formula.  Is case sensitive.</param>
+        /// <param name="customFunction">The custom function that returns a string.</param>
+        /// <returns></returns>
+        /// <remarks>The result of the custom function will be used for replacement if
+        /// there is no replacement defined in the name values for the variable.</remarks>
+        public GeneratedDocumentBuilderHelper CustomFormula(string name, Func<string> customFunction) {
+            ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
+            ParameterCheck.ParameterRequired(customFunction, "customFunction");
+
+            customFormulas[name] = customFunction;
+            return this;
+        }
+
+        /// <summary>
         /// Generate the document.
         /// </summary>
         /// <returns></returns>
         internal XDocument Generate() {
+            Template template;
+            if (templateStream != null) {
+                template = new Template(templateStream, Globals.CreateUniqueId("Template_"), customFormulas);
+            } else {
+                template = new Template(templateFileName, customFormulas);
+            }
             return template.Generate(nameValues, jobId, makeIdsUnique);
         }
     }

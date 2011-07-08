@@ -10,12 +10,14 @@ namespace FluentJdf.Tests.Unit.TemplateEngine.FormulaTemplateItemFactory
     [Subject(typeof(FluentJdf.TemplateEngine.FormulaTemplateItemFactory))]
     public class when_creating_formula_template_item_for_unregistered_formula {
         static Exception exception;
+        static FluentJdf.TemplateEngine.FormulaTemplateItemFactory factory;
+
+        Establish context = () => factory = new FluentJdf.TemplateEngine.FormulaTemplateItemFactory();
 
         Because of =
             () =>
             exception =
-            Catch.Exception(
-                () => FluentJdf.TemplateEngine.FormulaTemplateItemFactory.CreateFormulaItem(null, "var", 1, 2, "foo()", new TemplateEngineSettings()));
+            Catch.Exception(() => factory.CreateFormulaItem(null, "var", 1, 2, "foo()", new TemplateEngineSettings()));
 
         It should_throw_a_template_expansion_exception = () => exception.ShouldBeOfType(typeof(FluentJdf.TemplateEngine.TemplateExpansionException));
 

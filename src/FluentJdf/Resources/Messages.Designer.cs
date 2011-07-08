@@ -187,7 +187,7 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Template file {0} does not exist.
+        ///   Looks up a localized string similar to File {0} does not exist.
         /// </summary>
         internal static string FileDoesNotExist {
             get {

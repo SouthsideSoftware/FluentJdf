@@ -32,7 +32,8 @@ namespace FluentJdf.TemplateEngine
         /// Construct an XML template from a file.
         /// </summary>
         /// <param name="fileName">The file to use.</param>
-        public Template(string fileName)
+        /// <param name="additionalCustomFormulas">Optional additional custom formulas.</param>
+        public Template(string fileName, Dictionary<string, Func<string>> additionalCustomFormulas = null)
         {
             ParameterCheck.StringRequiredAndNotWhitespace(fileName, "fileName");
             if (!File.Exists(fileName)) {
@@ -42,20 +43,22 @@ namespace FluentJdf.TemplateEngine
                 fileName = Path.Combine(ApplicationInformation.Directory, fileName);
             }
             name = fileName;
-            Load(File.OpenRead(fileName));
+            Load(File.OpenRead(fileName), additionalCustomFormulas);
         }
 
         /// <summary>
         /// Construct a JDF template from a stream.
         /// </summary>
         /// <param name="stream"></param>
+        /// <param name="additionalCustomFormulas">Optional additional custom formulas.</param>
         /// <param name="name"></param>
-        public Template(Stream stream, string name) {
+        public Template(Stream stream, string name, Dictionary<string, Func<string>> additionalCustomFormulas = null)
+        {
             ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
             ParameterCheck.ParameterRequired(stream, "stream");
 
             this.name = name;
-            Load(stream);
+            Load(stream, additionalCustomFormulas);
         }
 
         /// <summary>
@@ -80,9 +83,12 @@ namespace FluentJdf.TemplateEngine
             }
         }
 
-        private void Load(Stream stream) {
+        private void Load(Stream stream, Dictionary<string, Func<string>> additionalCustomFormulas = null)
+        {
             var templateEngineSettings = FluentJdfLibrary.Settings.TemplateEngineSettings;
             TemplateItem parent = null;
+
+            var formulaTemplateItemFactory = new FormulaTemplateItemFactory(additionalCustomFormulas);
 
             items = new TemplateItemCollection();
             StreamReader reader = null;
@@ -396,7 +402,7 @@ namespace FluentJdf.TemplateEngine
                                     string def = defaultValue.ToString().Trim();
                                     if (def.EndsWith("()"))
                                     {
-                                        FormulaTemplateItem item = FormulaTemplateItemFactory.CreateFormulaItem(parent, varName.ToString(), lineNumber, positionInLine, def, templateEngineSettings);
+                                        FormulaTemplateItem item = formulaTemplateItemFactory.CreateFormulaItem(parent, varName.ToString(), lineNumber, positionInLine, def, templateEngineSettings);
                                         if (parent == null)
                                         {
                                             items.Add(item);

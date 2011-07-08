@@ -15,16 +15,25 @@ namespace FluentJdf.LinqToJdf.Builder
     /// </summary>
     public class GeneratedDocumentTemplateSelectionBuilderBase {
         /// <summary>
-        /// Gets the template.
+        /// Gets the template stream.  Will be <see langword="null"/>
+        /// if filename is set.
         /// </summary>
-        protected Template Template { get; private set; }
+        protected Stream TemplateStream { get; private set; }
+
+        /// <summary>
+        /// Gets the file name.  Will be <see langword="null"/> if stream is set.
+        /// </summary>
+        protected string TemplateFileName { get; private set; }
 
         internal GeneratedDocumentTemplateSelectionBuilderBase(string templateFileName) {
-            Template = new Template(templateFileName);
+            ParameterCheck.StringRequiredAndNotWhitespace(templateFileName, "templateFileName");
+            TemplateFileName = templateFileName;
         }
 
         internal GeneratedDocumentTemplateSelectionBuilderBase(Stream templateStream) {
-            Template = new Template(templateStream, Guid.NewGuid().ToString());           
+            ParameterCheck.ParameterRequired(templateStream, "templateStream");
+
+            TemplateStream = templateStream;
         }
     }
 }

@@ -11,7 +11,16 @@ namespace FluentJdf.TemplateEngine {
     /// </summary>
     public class FormulaTemplateItemFactory {
         static readonly ILog logger = LogManager.GetLogger(typeof (FormulaTemplateItemFactory));
+        Dictionary<string, Func<string>> additionalCustomFormulas;
 
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="additionalCustomFormulas"></param>
+        public FormulaTemplateItemFactory(Dictionary<string, Func<string>> additionalCustomFormulas = null) {
+            this.additionalCustomFormulas = additionalCustomFormulas;
+        }
         /// <summary>
         /// Construct a descendant of FormulaTemplateItem
         /// </summary>
@@ -22,7 +31,7 @@ namespace FluentJdf.TemplateEngine {
         /// <param name="functionName">The name of the function.</param>
         /// <param name="templateEngineSettings">The template engine settings.</param>
         /// <returns>A FormulaTemplateItem descendant.</returns>
-        public static FormulaTemplateItem CreateFormulaItem(TemplateItem parent, string name, int lineNumber, int positionInLine,
+        public FormulaTemplateItem CreateFormulaItem(TemplateItem parent, string name, int lineNumber, int positionInLine,
                                                                         string functionName, ITemplateEngineSettings templateEngineSettings) {
             ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
             ParameterCheck.StringRequiredAndNotWhitespace(functionName, "functionName");
@@ -45,6 +54,9 @@ namespace FluentJdf.TemplateEngine {
                 }
                 if (customFormulas.ContainsKey(funcNameWithoutParameters)) {
                     return new CustomFormulaTemplateItem(parent, name, lineNumber, positionInLine, functionName, customFormulas[funcNameWithoutParameters]);
+                }
+                if (additionalCustomFormulas != null && additionalCustomFormulas.ContainsKey(funcNameWithoutParameters)) {
+                    return new CustomFormulaTemplateItem(parent, name, lineNumber, positionInLine, functionName, additionalCustomFormulas[funcNameWithoutParameters]);
                 }
             }
 
