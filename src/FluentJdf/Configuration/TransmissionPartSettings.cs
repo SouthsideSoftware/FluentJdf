@@ -53,7 +53,7 @@ namespace FluentJdf.Configuration {
         /// Reset to defaults.
         /// </summary>
         /// <returns></returns>
-        public TransmissionPartSettings ResetToDefault() {
+        public TransmissionPartSettings ResetToDefaults() {
             TransmissionPartsByMimeType.Clear();
             SetDefaultTransmissionPart<TransmissionPart>();
             RegisterTransmissionPartForMimeType<XmlTransmissionPart>(MimeTypeHelper.XmlMimeType);

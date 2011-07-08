@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Data;
+using FluentJdf.LinqToJdf;
 
 namespace FluentJdf.TemplateEngine
 {
@@ -32,7 +33,7 @@ namespace FluentJdf.TemplateEngine
 		{
 			if (!base.Generate(writer, vars))
 			{
-				writer.Write("I" + Guid.NewGuid().ToString());
+				writer.Write(Globals.CreateUniqueId("I_"));
 			}
 
 			return true;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Reflection;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Container;
@@ -11,17 +10,19 @@ namespace Infrastructure.Core {
     /// </summary>
     public class Configuration {
         static ILog logger;
-        static Configuration settings = new Configuration();
-
-        /// <summary>
-        /// Gets the settings instance.
-        /// </summary>
-        public static Configuration Settings {get { return settings; }}
+        static readonly Configuration settings = new Configuration();
 
         IServiceLocator serviceLocator;
 
         Configuration() {
             LogProvider = new NullLogProvider();
+        }
+
+        /// <summary>
+        /// Gets the settings instance.
+        /// </summary>
+        public static Configuration Settings {
+            get { return settings; }
         }
 
         /// <summary>
@@ -41,7 +42,9 @@ namespace Infrastructure.Core {
         /// <summary>
         /// Gets the service locator configured.
         /// </summary>
-        public IServiceLocator ServiceLocator {get { return serviceLocator; }}
+        public IServiceLocator ServiceLocator {
+            get { return serviceLocator; }
+        }
 
         /// <summary>
         /// Gets the configured log provider.
@@ -72,31 +75,6 @@ namespace Infrastructure.Core {
         /// </summary>
         public void Configure() {
             LogInitializer.Initialize();
-            try {
-                //todo:  good idea to load assemblies but not really complete yet
-                //foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
-                //    try {
-                //        foreach (Type t in assembly.GetTypes()) {
-                //            if (typeof (IComponentInstaller).IsAssignableFrom(t) && t.IsClass && !t.IsAbstract &&
-                //                t.IsPublic) {
-                //                (Activator.CreateInstance(t) as IComponentInstaller).Install(serviceLocator);
-                //            }
-                //        }
-                //    }
-                //    catch (ReflectionTypeLoadException tle) {
-                //        Logger.ErrorFormat(
-                //            "Failed to load types from assembly {0}.  Details will follow this message.  The exception is {1}",
-                //            assembly.FullName, tle);
-                //        foreach (Exception e in tle.LoaderExceptions) {
-                //            Logger.ErrorFormat("\tLoader Error: {0}", e.Message);
-                //        }
-                //    }
-                //}
-                //serviceLocator.NativelyRegisterComponentsAndPlugins();
-            }
-            catch (Exception err) {
-                Logger.ErrorFormat("Unexpected error occured when applying configuration.  The error is {0}.", err);
-            }
         }
     }
 }

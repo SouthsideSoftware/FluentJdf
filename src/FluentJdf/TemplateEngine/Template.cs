@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Data;
 using System.Xml.Linq;
+using FluentJdf.Configuration;
 using FluentJdf.Encoding;
 using FluentJdf.LinqToJdf;
 using FluentJdf.Resources;
@@ -79,8 +80,8 @@ namespace FluentJdf.TemplateEngine
             }
         }
 
-        private void Load(Stream stream)
-        {
+        private void Load(Stream stream) {
+            var templateEngineSettings = FluentJdfLibrary.Settings.TemplateEngineSettings;
             TemplateItem parent = null;
 
             items = new TemplateItemCollection();
@@ -395,7 +396,7 @@ namespace FluentJdf.TemplateEngine
                                     string def = defaultValue.ToString().Trim();
                                     if (def.EndsWith("()"))
                                     {
-                                        FormulaTemplateItem item = FormulaTemplateItemFactory.CreateFormulaItem(parent, varName.ToString(), lineNumber, positionInLine, def);
+                                        FormulaTemplateItem item = FormulaTemplateItemFactory.CreateFormulaItem(parent, varName.ToString(), lineNumber, positionInLine, def, templateEngineSettings);
                                         if (parent == null)
                                         {
                                             items.Add(item);

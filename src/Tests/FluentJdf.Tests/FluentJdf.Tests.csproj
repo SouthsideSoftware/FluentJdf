@@ -129,10 +129,12 @@
     </Compile>
     <Compile Include="AssemblyContext.cs" />
     <Compile Include="Legacy\AssertionHelper.cs" />
+    <Compile Include="Legacy\SetUpFixture.cs" />
     <Compile Include="Legacy\TemplateEngine\TemplateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_encodings.cs" />
     <Compile Include="Unit\Configuration\HttpTransmissionSettings\when_setting_http_transmission_settings.cs" />
+    <Compile Include="Unit\Configuration\TemplateEngineSettings\when_registering_custom_formulas.cs" />
     <Compile Include="Unit\Configuration\TransmissionPartSettings\MockTransmissionPart.cs" />
     <Compile Include="Unit\Configuration\TransmissionPartSettings\when_registering_transmission_parts.cs" />
     <Compile Include="Unit\Configuration\TransmitterSettings\when_registering_transmitters.cs" />
@@ -197,6 +199,8 @@
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_mixed_result_with_notifications.cs" />
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_success_result_with_no_notifications.cs" />
     <Compile Include="Unit\Schema\FluentValidation\when_validating_jmf_using_the_fluent_interface.cs" />
+    <Compile Include="Unit\TemplateEngine\FormulaTemplateItemFactory\when_creating_formula_template_item_for_registered_formula.cs" />
+    <Compile Include="Unit\TemplateEngine\FormulaTemplateItemFactory\when_creating_formula_template_item_for_unregistered_formula.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_and_table_is_supplied_with_bad_structure.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_empty_table_is_supplied.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_table_is_not_supplied.cs" />

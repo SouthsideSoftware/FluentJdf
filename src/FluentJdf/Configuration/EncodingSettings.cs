@@ -76,7 +76,7 @@ namespace FluentJdf.Configuration {
         /// Reset to defaults.
         /// </summary>
         /// <returns></returns>
-        public EncodingSettings ResetToDefault() {
+        public EncodingSettings ResetToDefaults() {
             EncodingsByMimeType.Clear();
             SetDefaultEncoding<PassThroughEncoding>();
             SetDefaultSinglePartEncoding<PassThroughEncoding>();

@@ -98,6 +98,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ITemplateEngineSettings.cs" />
     <Compile Include="Configuration\LibraryConfigurationException.cs" />
     <Compile Include="Configuration\EncodingSettings.cs" />
     <Compile Include="Configuration\EncodingSettingsBuilder.cs" />
@@ -106,6 +107,8 @@
     <Compile Include="Configuration\JdfAuthoringSettings.cs" />
     <Compile Include="Configuration\JdfAuthoringSettingsBuilder.cs" />
     <Compile Include="Configuration\SettingsBuilderBase.cs" />
+    <Compile Include="Configuration\TemplateEngineSettings.cs" />
+    <Compile Include="Configuration\TemplateEngineSettingsBuilder.cs" />
     <Compile Include="Configuration\TransmissionPartSettings.cs" />
     <Compile Include="Configuration\TransmissionPartSettingsBuilder.cs" />
     <Compile Include="Configuration\TransmitterSettings.cs" />
@@ -308,6 +311,7 @@
     <Compile Include="Schema\ValidationMessage.cs" />
     <Compile Include="Schema\ValidationMessageType.cs" />
     <Compile Include="Schema\Validator.cs" />
+    <Compile Include="TemplateEngine\CustomFormulaTemplateItem.cs" />
     <Compile Include="TemplateEngine\FormulaTemplateItem.cs" />
     <Compile Include="TemplateEngine\FormulaTemplateItemFactory.cs" />
     <Compile Include="TemplateEngine\GenerateFormulaTemplateItem.cs" />

@@ -27,8 +27,21 @@ Message GetJmf() {
 void Main()
 {
 	InitializeFluentJdf();
+
+	var xDoc = XDocument.Load(@"C:\development\fluentjdf\src\Tests\FluentJdf.Tests\TestData\ArtDeliveryIntentTest.jdf");
+	var nm = new XmlNamespaceManager(new NameTable());
+	nm.AddNamespace("jdf", "http://www.CIP4.org/JDFSchema_1_1");
+	nm.AddNamespace("xs", "http://www.w3.org/2001/XMLSchema");
+
+	var intent = xDoc.XPathSelectElement(@".//jdf:ArtDeliveryIntent", nm);//.Dump();
 	
-	var ticket = GetJdf().Dump();
+	//now lets see what we can find.
+	
+	xDoc.SelectJDFDescendants(Resource.ArtDeliveryIntent).Dump().SelectJDFDescendant(Resource.RunList).Dump();
+	
+	xDoc.SelectJDFDescendant(Resource.ArtDeliveryIntent).Attribute("ID").Value.Dump();
+	
+	/*var ticket = GetJdf().Dump();
 	ticket.ValidationMessages.Dump();
 	"*****************".Dump();
 	
@@ -36,7 +49,7 @@ void Main()
 	message.ValidationMessages.Dump();
 	"*****************".Dump();
 	
-	message.Transmit("http://localhost/jdf").Dump();
+	message.Transmit("http://localhost/jdf").Dump();*/
 }
 
 void InitializeFluentJdf() {

@@ -7,6 +7,7 @@
         readonly EncodingSettings encodingSettings;
         readonly HttpTransmissionSettings httpTransmissionSettings;
         readonly JdfAuthoringSettings jdfAuthoringSettings;
+        readonly ITemplateEngineSettings templateEngineSettings;
         readonly TransmissionPartSettings transmissionPartSettings;
         readonly TransmitterSettings transmitterSettings;
 
@@ -21,6 +22,7 @@
             transmissionPartSettings = new TransmissionPartSettings();
             transmitterSettings = new TransmitterSettings();
             httpTransmissionSettings = new HttpTransmissionSettings();
+            templateEngineSettings = new TemplateEngineSettings();
             ResetToDefaults();
         }
 
@@ -67,15 +69,23 @@
         }
 
         /// <summary>
+        /// Gets the template engine settings.
+        /// </summary>
+        public ITemplateEngineSettings TemplateEngineSettings {
+            get { return templateEngineSettings; }
+        }
+
+        /// <summary>
         /// Make all settings default.
         /// </summary>
         /// <returns></returns>
         public FluentJdfLibrary ResetToDefaults() {
             jdfAuthoringSettings.ResetToDefaults();
-            encodingSettings.ResetToDefault();
-            transmissionPartSettings.ResetToDefault();
-            transmitterSettings.ResetToDefault();
+            encodingSettings.ResetToDefaults();
+            transmissionPartSettings.ResetToDefaults();
+            transmitterSettings.ResetToDefaults();
             httpTransmissionSettings.ResetToDefaults();
+            templateEngineSettings.ResetToDefaults();
             Infrastructure.Core.Configuration.Settings.ServiceLocator.RegisterRemainingInterfaceImplementations(GetType().Assembly);
             return this;
         }
@@ -118,6 +128,14 @@
         /// <returns></returns>
         public HttpTransmissionSettingsBuilder WithHttpTransmissionSettings() {
             return new HttpTransmissionSettingsBuilder(this, httpTransmissionSettings);
+        }
+
+        /// <summary>
+        /// Gets the template engine settings builder.
+        /// </summary>
+        /// <returns></returns>
+        public TemplateEngineSettingsBuilder WithTemplateEngineSettings() {
+            return new TemplateEngineSettingsBuilder(this, templateEngineSettings);
         }
     }
 }

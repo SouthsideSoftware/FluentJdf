@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Data;
+using FluentJdf.LinqToJdf;
 
 namespace FluentJdf.TemplateEngine
 {
@@ -10,7 +11,6 @@ namespace FluentJdf.TemplateEngine
 	/// </summary>
 	public class NowFormulaTemplateItem : FormulaTemplateItem
 	{
-		private static System.Globalization.CultureInfo _usEnglishCultureInfo = new System.Globalization.CultureInfo("en-US");
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -33,7 +33,7 @@ namespace FluentJdf.TemplateEngine
 		{
 			if (!base.Generate(writer, vars))
 			{
-				writer.Write(DateTime.Now.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ", _usEnglishCultureInfo));
+				writer.Write(DateTime.UtcNow.ToJdfDateTimeString());
 			}
 
 			return true;

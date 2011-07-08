@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using Castle.Windsor;
 using Infrastructure.Core;
+using Infrastructure.Core.CodeContracts;
 
 namespace Infrastructure.Container.CastleWindsor
 {
@@ -16,7 +17,7 @@ namespace Infrastructure.Container.CastleWindsor
         /// <returns></returns>
         public static Configuration UseCastleWindsor(this Configuration configuration)
         {
-            Contract.Requires(configuration != null);
+            ParameterCheck.ParameterRequired(configuration, "configuration");
 
             var container = new WindsorContainer();
             return UseCastleWindsor(configuration, container);
@@ -30,8 +31,8 @@ namespace Infrastructure.Container.CastleWindsor
         /// <returns></returns>
         public static Configuration UseCastleWindsor(this Configuration configuration, IWindsorContainer container)
         {
-            Contract.Requires(configuration != null);
-            Contract.Requires(container != null);
+            ParameterCheck.ParameterRequired(container, "container");
+            ParameterCheck.ParameterRequired(configuration, "configuration");
 
             configuration.BuildWith(new WindsorServiceLocator(container));
             return configuration;

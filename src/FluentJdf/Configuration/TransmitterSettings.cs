@@ -43,7 +43,7 @@ namespace FluentJdf.Configuration {
         /// Reset to defaults.
         /// </summary>
         /// <returns></returns>
-        public TransmitterSettings ResetToDefault() {
+        public TransmitterSettings ResetToDefaults() {
             TransmittersByScheme.Clear();
             RegisterTransmitterForScheme("http", typeof(HttpTransmitter));
             return this;
