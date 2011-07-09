@@ -8,16 +8,22 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// <summary>
         /// Gets the Element and allows set for inheritors
         /// </summary>
-        XElement Element { get; }
+        XElement Element {
+            get;
+        }
 
         /// <summary>
         /// Gets the container JDF builder.
         /// </summary>
-        JdfNodeBuilder ParentJdfNode { get; }
+        JdfNodeBuilder ParentJdfNode {
+            get;
+        }
 
         /// <summary>
         /// Gets the ticket associated with this builder
         /// </summary>
-        Ticket Ticket { get; }
+        Ticket Ticket {
+            get;
+        }
     }
 }

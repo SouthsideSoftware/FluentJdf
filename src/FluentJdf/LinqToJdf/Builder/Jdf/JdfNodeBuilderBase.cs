@@ -1,14 +1,12 @@
 ﻿using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf.Builder.Jdf
-{
+namespace FluentJdf.LinqToJdf.Builder.Jdf {
     /// <summary>
     /// Base class for element builders.
     /// </summary>
     public abstract class JdfNodeBuilderBase : IJdfNodeBuilderBase {
-        internal JdfNodeBuilderBase(JdfNodeBuilder parentJdfBuilder)
-        {
+        internal JdfNodeBuilderBase(JdfNodeBuilder parentJdfBuilder) {
             ParentJdfNode = parentJdfBuilder;
         }
 
@@ -25,27 +23,37 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf
         protected void InitializeFromElement(XElement element) {
             Element = element;
 
-            if (element.GetJdfParentOrNull() != null)
-            {
+            if (element.GetJdfParentOrNull() != null) {
                 ParentJdfNode = new JdfNodeBuilder(element.JdfParent());
             }
         }
 
-        internal JdfNodeBuilderBase(){}
+        internal JdfNodeBuilderBase() {
+        }
 
         /// <summary>
         /// Gets the Element and allows set for inheritors
         /// </summary>
-        public XElement Element { get; protected set; }
+        public XElement Element {
+            get;
+            protected set;
+        }
 
         /// <summary>
         /// Gets the container JDF builder.
         /// </summary>
-        public JdfNodeBuilder ParentJdfNode { get; protected set; }
+        public JdfNodeBuilder ParentJdfNode {
+            get;
+            protected set;
+        }
 
         /// <summary>
         /// Gets the ticket associated with this builder
         /// </summary>
-        public Ticket Ticket { get { return Element.Document as Ticket; } }
+        public Ticket Ticket {
+            get {
+                return Element.Document as Ticket;
+            }
+        }
     }
 }

@@ -3,13 +3,12 @@ using System.Xml.Linq;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.LinqToJdf.Builder.Jdf
-{
+namespace FluentJdf.LinqToJdf.Builder.Jdf {
     /// <summary>
     /// Factory for creating intent nodes.
     /// </summary>
     public class JdfNodeBuilder : JdfNodeBuilderBase, IJdfNodeBuilder {
-        internal JdfNodeBuilder(Ticket ticket, params string [] types) {
+        internal JdfNodeBuilder(Ticket ticket, params string[] types) {
             ParameterCheck.ParameterRequired(ticket, "ticket");
             Initalize(ticket, types);
         }
@@ -21,17 +20,17 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf
 
             if (ticket.Root == null) {
                 Element = ticket.AddProcessJdfElement(types);
-            } else {
+            }
+            else {
                 Element = ticket.Root;
             }
 
-            if (Element.GetJdfParentOrNull() != null)
-            {
+            if (Element.GetJdfParentOrNull() != null) {
                 ParentJdfNode = new JdfNodeBuilder(Element.JdfParent());
             }
         }
 
-        internal JdfNodeBuilder(XElement node, params string [] types) {
+        internal JdfNodeBuilder(XElement node, params string[] types) {
             ParameterCheck.ParameterRequired(node, "node");
             node.ThrowExceptionIfNotJdfElement();
 
@@ -46,17 +45,23 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf
         /// <summary>
         /// Gets the attribute setter for this node.
         /// </summary>
-        public JdfNodeAttributeBuilder With() { return new JdfNodeAttributeBuilder(this);}
+        public JdfNodeAttributeBuilder With() {
+            return new JdfNodeAttributeBuilder(this);
+        }
 
         /// <summary>
         /// Create an input
         /// </summary>
-        public ResourceNodeNameBuilder WithInput() { return new ResourceNodeNameBuilder(this, ResourceUsage.Input); }
+        public ResourceNodeNameBuilder WithInput() {
+            return new ResourceNodeNameBuilder(this, ResourceUsage.Input);
+        }
 
         /// <summary>
         /// Creates an output.
         /// </summary>
-        public ResourceNodeNameBuilder WithOutput() { return new ResourceNodeNameBuilder(this, ResourceUsage.Output); }
+        public ResourceNodeNameBuilder WithOutput() {
+            return new ResourceNodeNameBuilder(this, ResourceUsage.Output);
+        }
 
         /// <summary>
         /// Adds a new intent JDF.
@@ -70,8 +75,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf
         /// Adds a new intent JDF.
         /// </summary>
         /// <returns></returns>
-        public JdfNodeBuilder AddProcessGroup()
-        {
+        public JdfNodeBuilder AddProcessGroup() {
             return new JdfNodeBuilder(Element, ProcessType.ProcessGroup);
         }
 
@@ -80,9 +84,8 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf
         /// </summary>
         /// <param name="types"></param>
         /// <returns></returns>
-        public JdfNodeBuilder AddProcess(params string [] types) {
-            if (types == null || types.Length == 0)
-            {
+        public JdfNodeBuilder AddProcess(params string[] types) {
+            if (types == null || types.Length == 0) {
                 throw new ArgumentException(Messages.AtLeastOneProcessMustBeSpecified);
             }
             return new JdfNodeBuilder(Element, types);

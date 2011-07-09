@@ -30,7 +30,7 @@
         /// </summary>
         /// <param name="types"></param>
         /// <returns></returns>
-        JdfNodeBuilder AddProcess(params string [] types);
+        JdfNodeBuilder AddProcess(params string[] types);
 
         /// <summary>
         /// Validate the JDF
