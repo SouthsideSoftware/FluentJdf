@@ -12,14 +12,91 @@
   <Namespace>FluentJdf.Configuration</Namespace>
   <Namespace>NLog.Config</Namespace>
   <Namespace>NLog.Targets</Namespace>
+  <Namespace>FluentJdf.Encoding</Namespace>
+  <Namespace>Infrastructure.Core.Testing</Namespace>
+  <Namespace>Infrastructure.Core.Helpers</Namespace>
+  <Namespace>Infrastructure.Core.Mime</Namespace>
+  <Namespace>System.Drawing</Namespace>
 </Query>
 
 bool loggingOn = false;
 
+static FluentJdf.Encoding.EncodingFactory factory;
+//static IEncoding defaultEncoding;
+//static IEncoding defaultSinglePartEncoding;
+//static IEncoding defaultMultiPartEncoding;
+
 void Main() {
 	InitializeFluentJdf();
+	//ProcessTicketsForTests();
+
+	FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+	factory = new FluentJdf.Encoding.EncodingFactory();
+
+	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
+	.DefaultSinglePartEncoding<MimeEncoding>()
+	.DefaultMultiPartEncoding<MimeEncoding>()
+	.EncodingForMimeType<MimeEncoding>("multipart/related");
+	//
+
+	//defaultEncoding = factory.GetEncodingForMimeType("xxx");
+	//defaultSinglePartEncoding = factory.GetDefaultEncodingForSinglePart();
+	//defaultMultiPartEncoding = new MimeEncoding();
+
+	factory.GetDefaultEncodingForMultiPart().Dump();
 	
-	var ticket = FluentJdf.LinqToJdf.Ticket
+	//var stream = new FluentJdf.Encoding.MessageTransmissionPart(Message.Create().Element.Document, "test").CopyOfStream();
+	
+	//var originalStreamLength = stream.Length;
+	
+	//TODO fix hard coded path.
+	var path = @"C:\development\fluentjdf\src\Infrastructure\Tests\Infrastructure.Core.Tests\TestData\mimeMultipart.txt";
+	 
+	ITransmissionPartFactory transmissionPartFactory = new TransmissionPartFactory();
+	
+	using (var stream = File.OpenRead(path)) {
+	
+		var parts = new FluentJdf.Encoding.MimeEncoding().Decode("test", stream, MimeTypeHelper.MimeMultipartMimeType);
+		parts.Dump();
+		
+		using (var bmp = new Bitmap(parts.Last().CopyOfStream())) {
+			bmp.Dump();
+		}
+		
+		//now lets reverse the process.
+		
+		var encoded = new FluentJdf.Encoding.MimeEncoding().Encode(parts).Dump();
+		
+		parts = new FluentJdf.Encoding.MimeEncoding().Decode("test", encoded, MimeTypeHelper.MimeMultipartMimeType);
+		parts.Dump();
+	}
+}
+
+
+void InitializeFluentJdf() {
+	var config = Infrastructure.Core.Configuration.Settings.UseCastleWindsor();
+	if (loggingOn){
+		config.LogWithNLog(GetNLogConfiguration());
+	}
+	config.Configure();
+	FluentJdfLibrary.Settings.ResetToDefaults();
+	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
+}
+
+LoggingConfiguration GetNLogConfiguration(){
+	LoggingConfiguration config = new LoggingConfiguration();
+	
+	ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
+	config.AddTarget("console", consoleTarget);
+	consoleTarget.Layout = "${longdate} ${level:uppercase=true} ${logger} ${newline}${message}${newline}";
+	LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget);
+	config.LoggingRules.Add(rule);
+	
+	return config;
+}
+
+static void ProcessTicketsForTests() {
+var ticket = FluentJdf.LinqToJdf.Ticket
 			.CreateIntent()
 			.Ticket
 	
@@ -66,30 +143,7 @@ void Main() {
 	//ticket.Dump();
 
 
-	ticket.Root.Dump().Element("JDF").Dump().Element("Test").Dump();//.Attribute("me").Value.Equals("6").Dump();
-}
-
-
-void InitializeFluentJdf() {
-	var config = Infrastructure.Core.Configuration.Settings.UseCastleWindsor();
-	if (loggingOn){
-		config.LogWithNLog(GetNLogConfiguration());
-	}
-	config.Configure();
-	FluentJdfLibrary.Settings.ResetToDefaults();
-	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
-}
-
-LoggingConfiguration GetNLogConfiguration(){
-	LoggingConfiguration config = new LoggingConfiguration();
-	
-	ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
-	config.AddTarget("console", consoleTarget);
-	consoleTarget.Layout = "${longdate} ${level:uppercase=true} ${logger} ${newline}${message}${newline}";
-	LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget);
-	config.LoggingRules.Add(rule);
-	
-	return config;
+	ticket.Root.Dump().SelectJDFDescendant("JDF").Dump().Element("Test").Dump();//.Attribute("me").Value.Equals("6").Dump();
 }
 
 /*

@@ -7,8 +7,7 @@ using FluentJdf.Resources;
 using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.Encoding
-{
+namespace FluentJdf.Encoding {
     /// <summary>
     /// Encoder that assumes the data passes through without
     /// any parsing.  That is, the raw data is in the format
@@ -46,8 +45,7 @@ namespace FluentJdf.Encoding
         /// Decode the given stream into a collection of parts.
         /// </summary>
         /// <returns></returns>
-        public ITransmissionPartCollection Decode(string name, Stream stream, string mimeType, string id = null)
-        {
+        public ITransmissionPartCollection Decode(string name, Stream stream, string mimeType, string id = null) {
             ParameterCheck.ParameterRequired(stream, "stream");
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 

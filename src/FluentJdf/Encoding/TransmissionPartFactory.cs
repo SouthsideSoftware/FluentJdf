@@ -14,7 +14,7 @@ namespace FluentJdf.Encoding {
     /// Implementation of transmission part factory.
     /// </summary>
     public class TransmissionPartFactory : ITransmissionPartFactory {
-        static ILog logger = LogManager.GetLogger(typeof (TransmissionPartFactory));
+        static ILog logger = LogManager.GetLogger(typeof(TransmissionPartFactory));
         #region ITransmissionPartFactory Members
 
         /// <summary>
@@ -57,6 +57,8 @@ namespace FluentJdf.Encoding {
             var transmissionPart = ConstructConfiguredTransmissionPart(mimeType);
             transmissionPart.Initialize(name, data, mimeType, id);
 
+            //logger.DebugFormat("CreateTransmissionPart {0} {1} {2}", name, mimeType, transmissionPart);
+
             return transmissionPart;
         }
 
@@ -88,8 +90,7 @@ namespace FluentJdf.Encoding {
         public ITransmissionPart CreateTransmissionPart(string name, XDocument doc, string id = null) {
             string mimeType = MimeTypeHelper.XmlMimeType;
             var xmlType = doc.XmlType();
-            switch (xmlType)
-            {
+            switch (xmlType) {
                 case XmlType.Jdf:
                     mimeType = MimeTypeHelper.JdfMimeType;
                     break;
@@ -100,7 +101,8 @@ namespace FluentJdf.Encoding {
             var transmissionPart = ConstructConfiguredTransmissionPart(mimeType);
             if (transmissionPart is IXmlTransmissionPart) {
                 ((IXmlTransmissionPart)transmissionPart).InitalizeProperties(doc, name, id);
-            } else {
+            }
+            else {
                 var tempStream = new TempFileStream();
                 doc.Save(tempStream);
                 transmissionPart.Initialize(name, tempStream, MimeTypeHelper.XmlMimeType, id);
@@ -116,15 +118,12 @@ namespace FluentJdf.Encoding {
         /// <param name="ticket"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ITransmissionPart CreateTransmissionPart(string name, Ticket ticket, string id = null)
-        {
+        public ITransmissionPart CreateTransmissionPart(string name, Ticket ticket, string id = null) {
             var transmissionPart = ConstructConfiguredTransmissionPart(MimeTypeHelper.JdfMimeType);
-            if (transmissionPart is ITicketTransmissionPart)
-            {
+            if (transmissionPart is ITicketTransmissionPart) {
                 ((ITicketTransmissionPart)transmissionPart).InitalizeProperties(ticket, name, id);
             }
-            else
-            {
+            else {
                 var tempStream = new TempFileStream();
                 ticket.Save(tempStream);
                 transmissionPart.Initialize(name, tempStream, MimeTypeHelper.JdfMimeType, id);
@@ -140,15 +139,12 @@ namespace FluentJdf.Encoding {
         /// <param name="message"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ITransmissionPart CreateTransmissionPart(string name, Message message, string id = null)
-        {
+        public ITransmissionPart CreateTransmissionPart(string name, Message message, string id = null) {
             var transmissionPart = ConstructConfiguredTransmissionPart(MimeTypeHelper.JmfMimeType);
-            if (transmissionPart is IMessageTransmissionPart)
-            {
+            if (transmissionPart is IMessageTransmissionPart) {
                 ((IMessageTransmissionPart)transmissionPart).InitalizeProperties(message, name, id);
             }
-            else
-            {
+            else {
                 var tempStream = new TempFileStream();
                 message.Save(tempStream);
                 transmissionPart.Initialize(name, tempStream, MimeTypeHelper.JmfMimeType, id);

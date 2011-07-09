@@ -5,13 +5,12 @@ using System.Text;
 using FluentJdf.Configuration;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.Encoding
-{
+namespace FluentJdf.Encoding {
     /// <summary>
     /// Factory to get encodings.
     /// </summary>
-    public class EncodingFactory : IEncodingFactory
-    {
+    public class EncodingFactory : IEncodingFactory {
+
         /// <summary>
         /// Gets the encoding for the given mime type.
         /// </summary>
@@ -52,7 +51,7 @@ namespace FluentJdf.Encoding
         /// <returns></returns>
         public IEncoding GetEncodingForTransmissionParts(ITransmissionPartCollection transmissionPartCollection) {
             ParameterCheck.ParameterRequired(transmissionPartCollection, "transmissionPartCollection");
-            
+
             if (transmissionPartCollection.Count > 1) {
                 return GetDefaultEncodingForMultiPart();
             }

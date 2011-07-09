@@ -140,6 +140,7 @@
     <Compile Include="Unit\Configuration\TransmissionPartSettings\when_registering_transmission_parts.cs" />
     <Compile Include="Unit\Configuration\TransmitterSettings\when_registering_transmitters.cs" />
     <Compile Include="Unit\Encoding\EncodingFactory\when_creating_encodings_for_transmission_part_collections.cs" />
+    <Compile Include="Unit\Encoding\MimeEncoding\when_decoding_mimeMulti_part.cs" />
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_a_graphic.cs" />
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_generic_xml.cs" />
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_jdf_xml.cs" />
@@ -347,6 +348,10 @@
   <ItemGroup>
     <EmbeddedResource Include="TestData\JdfTemplateUsesConfiguredDefaultVersion.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\mimeMultipart.txt" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
