@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Infrastructure.Core.CodeContracts;
+using Infrastructure.Core.Helpers;
 
 namespace Infrastructure.Core.Testing {
     /// <summary>
@@ -14,6 +15,9 @@ namespace Infrastructure.Core.Testing {
         bool filesExtracted = false;
 
         TestDataHelper() {
+            if (!Path.IsPathRooted(testDir)) {
+                testDir = Path.Combine(ApplicationInformation.Directory, testDir);
+            }
             if (Directory.Exists(testDir)) {
                 Directory.Delete(testDir, true);
             }
@@ -40,6 +44,11 @@ namespace Infrastructure.Core.Testing {
         public static TestDataHelper Instance {
             get { return instance; }
         }
+
+        /// <summary>
+        /// Gets the test data directory.
+        /// </summary>
+        public string TestDataDirectory { get { return testDir; } }
 
         /// <summary>
         /// Gets the full path of the desired test file.
