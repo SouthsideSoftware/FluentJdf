@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.Encoding
-{
+namespace FluentJdf.Encoding {
+
     /// <summary>
     /// Result of encoding.
     /// </summary>
-    public class EncodingResult
-    {
+    public class EncodingResult {
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -28,11 +27,17 @@ namespace FluentJdf.Encoding
         /// <summary>
         /// Gets the stream.
         /// </summary>
-        public Stream Stream { get; private set; }
+        public Stream Stream {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the content type.
         /// </summary>
-        public string ContentType { get; private set; }
+        public string ContentType {
+            get;
+            private set;
+        }
     }
 }
