@@ -15,6 +15,27 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         }
 
         /// <summary>
+        /// Add any <see cref="XElement"/> to the JDFNode.
+        /// </summary>
+        /// <param name="element">The element to add.</param>
+        /// <returns></returns>
+        public GenericJdfBuilder AddNode(XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+            Element.Add(element);
+            return new GenericJdfBuilder(this.ParentJdfNode, element);
+        }
+
+        /// <summary>
+        /// Add any named element to the JDFNode.
+        /// </summary>
+        /// <param name="name">The <see cref="XName"/> of the element to add.</param>
+        /// <returns></returns>
+        public GenericJdfBuilder AddNode(XName name) {
+            ParameterCheck.ParameterRequired(name, "name");
+            return AddNode(new XElement(name));
+        }
+
+        /// <summary>
         /// Gets the resource node builder for this attribute builder.
         /// </summary>
         /// <returns></returns>

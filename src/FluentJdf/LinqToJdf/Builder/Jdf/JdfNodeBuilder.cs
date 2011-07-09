@@ -4,6 +4,7 @@ using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jdf {
+
     /// <summary>
     /// Factory for creating intent nodes.
     /// </summary>
@@ -40,6 +41,27 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
             else {
                 InitializeFromElement(node.AddProcessJdfElement(types));
             }
+        }
+
+        /// <summary>
+        /// Add any <see cref="XElement"/> to the JDFNode.
+        /// </summary>
+        /// <param name="element">The element to add.</param>
+        /// <returns></returns>
+        public GenericJdfBuilder AddNode(XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+            Element.Add(element);
+            return new GenericJdfBuilder(this, element);
+        }
+
+        /// <summary>
+        /// Add any named element to the JDFNode.
+        /// </summary>
+        /// <param name="name">The <see cref="XName"/> of the element to add.</param>
+        /// <returns></returns>
+        public GenericJdfBuilder AddNode(XName name) {
+            ParameterCheck.ParameterRequired(name, "name");
+            return AddNode(new XElement(name));
         }
 
         /// <summary>

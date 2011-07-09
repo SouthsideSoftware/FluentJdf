@@ -137,6 +137,8 @@
     <Compile Include="Configuration\FluentJdfLibrary.cs" />
     <Compile Include="LinqToJdf\Builder\GeneratedDocumentTemplateSelectionBuilderBase.cs" />
     <Compile Include="LinqToJdf\Builder\GeneratedDocumentBuilderHelper.cs" />
+    <Compile Include="LinqToJdf\Builder\Jdf\GenericJdfAttributeBuilder.cs" />
+    <Compile Include="LinqToJdf\Builder\Jdf\GenericJdfBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\GeneratedMessageBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\GeneratedMessageTemplateSelectionBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jdf\GeneratedTicketBuilder.cs" />

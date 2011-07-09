@@ -1,13 +1,96 @@
 <Query Kind="Program">
-  <Reference Relative="..\src\FluentJdf\bin\Debug\FluentJdf.dll">C:\development\jwf\src\FluentJdf\bin\Debug\FluentJdf.dll</Reference>
+  <Reference Relative="..\src\FluentJdf\bin\Debug\Infrastructure.Core.dll">C:\development\fluentjdf\src\FluentJdf\bin\Debug\Infrastructure.Core.dll</Reference>
+  <Reference Relative="..\src\FluentJdf\bin\Debug\FluentJdf.dll">C:\development\fluentjdf\src\FluentJdf\bin\Debug\FluentJdf.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll</Reference>
   <Namespace>FluentJdf.LinqToJdf</Namespace>
+  <Namespace>Infrastructure.Container.CastleWindsor</Namespace>
+  <Namespace>Infrastructure.Logging.NLog</Namespace>
+  <Namespace>FluentJdf.Configuration</Namespace>
+  <Namespace>NLog.Config</Namespace>
+  <Namespace>NLog.Targets</Namespace>
 </Query>
 
+bool loggingOn = false;
+
 void Main() {
+	InitializeFluentJdf();
+	
+	var ticket = FluentJdf.LinqToJdf.Ticket
+			.CreateIntent()
+			.Ticket
+	
+	
+	
+			.ModifyJdfNode()
+			.WithInput()
+			.Address()
+			.AddNode(new XElement("AddressChild"))
+			.With()
+			.Attribute("addressid", "1234").Ticket;
+			
+	/*
+			.AddNode("Test")
+			.With()
+			.Attribute("me", "4")	
+	*/		
+			
+	//ticket.Dump();
+
+	//ticket.SelectJDFDescendant("Address").Element("AddressChild").Dump();
+
+	ticket = FluentJdf.LinqToJdf.Ticket
+		.CreateIntent()
+		.Ticket
+		.ModifyJdfNode()
+		//.AddNode(new XElement("Test"))
+		//.With()
+		//.Attribute("me", "4")
+		.AddIntent()
+		.AddNode("Test")
+		.With()
+		.Attribute("me", "6")
+		.WithInput()
+		.Address()
+		.AddNode("AddressChild")
+		.With()
+		.Attribute("addressid", "1234")
+		.AddIntent()
+		.AddNode("Test")
+		.With()
+		.Attribute("me", "8").Ticket;
+	
+	//ticket.Dump();
 
 
+	ticket.Root.Dump().Element("JDF").Dump().Element("Test").Dump();//.Attribute("me").Value.Equals("6").Dump();
 }
 
+
+void InitializeFluentJdf() {
+	var config = Infrastructure.Core.Configuration.Settings.UseCastleWindsor();
+	if (loggingOn){
+		config.LogWithNLog(GetNLogConfiguration());
+	}
+	config.Configure();
+	FluentJdfLibrary.Settings.ResetToDefaults();
+	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
+}
+
+LoggingConfiguration GetNLogConfiguration(){
+	LoggingConfiguration config = new LoggingConfiguration();
+	
+	ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
+	config.AddTarget("console", consoleTarget);
+	consoleTarget.Layout = "${longdate} ${level:uppercase=true} ${logger} ${newline}${message}${newline}";
+	LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget);
+	config.LoggingRules.Add(rule);
+	
+	return config;
+}
 
 /*
 	var basePath = new FileInfo(Util.CurrentQueryPath).DirectoryName;

@@ -6,8 +6,8 @@ using FluentJdf.LinqToJdf;
 using FluentJdf.LinqToJdf.Builder.Jmf;
 using Machine.Specifications;
 
-namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder
-{
+namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder {
+
     [Subject("Highly fluent JDF interface")]
     public class when_creating_jdf_intent {
         static FluentJdf.LinqToJdf.Ticket ticket;
