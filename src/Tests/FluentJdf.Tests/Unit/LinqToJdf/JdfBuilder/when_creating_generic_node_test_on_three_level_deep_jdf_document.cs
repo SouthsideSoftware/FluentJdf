@@ -32,10 +32,19 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JdfBuilder {
 		                            .Attribute("me", "8").Ticket;
 
         It should_have_child_jdf_with_test_attribute_with_attribute_of_test_and_value_of_6 = () =>
-                                    ticket.Root.SelectJDFDescendant("JDF").Element("Test").Attribute("me").Value.ShouldEqual("6");
+                                    ticket.Root
+                                    .SelectJDFDescendant("JDF")
+                                    .Element("Test")
+                                    .Attribute("me")
+                                    .Value.ShouldEqual("6");
 
         It should_have_child_child_jdf_with_test_attribute_with_attribute_of_test_and_value_of_8 = () =>
-                             ticket.Root.SelectJDFDescendant("JDF").SelectJDFDescendant("JDF").Element("Test").Attribute("me").Value.ShouldEqual("8");
+                                    ticket.Root
+                                    .SelectJDFDescendant("JDF")
+                                    .SelectJDFDescendant("JDF")
+                                    .Element("Test")
+                                    .Attribute("me")
+                                    .Value.ShouldEqual("8");
 
     }
 }
