@@ -125,6 +125,7 @@
     <Compile Include="Encoding\ITransmissionPartFactory.cs" />
     <Compile Include="Encoding\IXmlTransmissionPart.cs" />
     <Compile Include="Encoding\MessageTransmissionPart.cs" />
+    <Compile Include="Encoding\MimeEncoding.cs" />
     <Compile Include="Encoding\PassThroughEncoding.cs" />
     <Compile Include="Encoding\TicketTransmissionPart.cs" />
     <Compile Include="Encoding\TransmissionPart.cs" />
