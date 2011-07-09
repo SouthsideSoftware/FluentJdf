@@ -10,7 +10,8 @@ namespace FluentJdf.Configuration {
     public class EncodingSettingsBuilder : SettingsBuilderBase {
         EncodingSettings encodingSettings;
 
-        internal EncodingSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, EncodingSettings encodingSettings) : base(fluentJdfLibrary) {
+        internal EncodingSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, EncodingSettings encodingSettings)
+            : base(fluentJdfLibrary) {
             ParameterCheck.ParameterRequired(encodingSettings, "encodingSettings");
 
             this.encodingSettings = encodingSettings;
@@ -20,7 +21,7 @@ namespace FluentJdf.Configuration {
         /// Register an encoding for a specific mime type.
         /// </summary>
         /// <param name="mimeType"></param>
-        public EncodingSettingsBuilder EncodingForMimeType<T>(string mimeType) where T:IEncoding {
+        public EncodingSettingsBuilder EncodingForMimeType<T>(string mimeType) where T : IEncoding {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
             encodingSettings.RegisterEncodingForMimeType<T>(mimeType);
@@ -32,8 +33,7 @@ namespace FluentJdf.Configuration {
         /// Register a default encoding.
         /// </summary>
         /// <returns></returns>
-        public EncodingSettingsBuilder DefaultEncoding<T>() where T:IEncoding
-        {
+        public EncodingSettingsBuilder DefaultEncoding<T>() where T : IEncoding {
             encodingSettings.SetDefaultEncoding<T>();
 
             return this;
@@ -44,7 +44,7 @@ namespace FluentJdf.Configuration {
         /// collection that contain a single part.
         /// </summary>
         /// <returns></returns>
-        public EncodingSettingsBuilder DefaultSinglePartEncoding<T>() where T:IEncoding {
+        public EncodingSettingsBuilder DefaultSinglePartEncoding<T>() where T : IEncoding {
             encodingSettings.SetDefaultSinglePartEncoding<T>();
 
             return this;
@@ -55,7 +55,7 @@ namespace FluentJdf.Configuration {
         /// collection that contain multiple parts.
         /// </summary>
         /// <returns></returns>
-        public EncodingSettingsBuilder DefaultMultiPartEncoding<T>() where T:IEncoding {
+        public EncodingSettingsBuilder DefaultMultiPartEncoding<T>() where T : IEncoding {
             encodingSettings.SetDefaultMultiPartEncoding<T>();
             return this;
         }

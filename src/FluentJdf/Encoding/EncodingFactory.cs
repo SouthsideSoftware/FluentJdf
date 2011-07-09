@@ -10,7 +10,7 @@ namespace FluentJdf.Encoding {
     /// Factory to get encodings.
     /// </summary>
     public class EncodingFactory : IEncodingFactory {
-        
+
         /// <summary>
         /// Gets the encoding for the given mime type.
         /// </summary>
