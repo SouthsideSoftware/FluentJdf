@@ -7,16 +7,14 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// </summary>
     public abstract class JmfBuilderBase : IJmfBuilderBase {
         internal JmfBuilderBase() {
-            
+
         }
 
-        internal JmfBuilderBase(JmfNodeBuilder parentJmfBuilder)
-        {
+        internal JmfBuilderBase(JmfNodeBuilder parentJmfBuilder) {
             ParentJmfNode = parentJmfBuilder;
         }
 
-        internal JmfBuilderBase(XElement element)
-        {
+        internal JmfBuilderBase(XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
             element.ThrowExceptionIfNotInMessage();
 
@@ -27,12 +25,18 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// <summary>
         /// Gets the Element and allows set for inheritors
         /// </summary>
-        public XElement Element { get; protected set; }
+        public XElement Element {
+            get;
+            protected set;
+        }
 
         /// <summary>
         /// Gets the container JMF builder.
         /// </summary>
-        public JmfNodeBuilder ParentJmfNode { get; protected set; }
+        public JmfNodeBuilder ParentJmfNode {
+            get;
+            protected set;
+        }
 
 
         /// <summary>
@@ -40,8 +44,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// </summary>
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
-        public JmfBuilderBase ValidateJmf(bool addSchemaInfo = true)
-        {
+        public JmfBuilderBase ValidateJmf(bool addSchemaInfo = true) {
             Element.ValidateJmf(addSchemaInfo);
             return this;
         }
@@ -49,14 +52,17 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// <summary>
         /// Gets the messsage associated with this builder
         /// </summary>
-        public Message Message { get { return Element.Document as Message; } }
+        public Message Message {
+            get {
+                return Element.Document as Message;
+            }
+        }
 
         /// <summary>
         /// Add a command.
         /// </summary>
         /// <returns></returns>
-        public CommandTypeBuilder AddCommand()
-        {
+        public CommandTypeBuilder AddCommand() {
             return new CommandTypeBuilder(ParentJmfNode);
         }
 
@@ -64,8 +70,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// Add a query.
         /// </summary>
         /// <returns></returns>
-        public QueryTypeBuilder AddQuery()
-        {
+        public QueryTypeBuilder AddQuery() {
             return new QueryTypeBuilder(ParentJmfNode);
         }
 
@@ -74,8 +79,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// </summary>
         /// <param name="element">The element to add.</param>
         /// <returns></returns>
-        public GenericJmfBuilder AddNode(XElement element)
-        {
+        public GenericJmfBuilder AddNode(XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
             Element.Add(element);
             return new GenericJmfBuilder(element);
@@ -86,8 +90,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// </summary>
         /// <param name="name">The <see cref="XName"/> of the element to add.</param>
         /// <returns></returns>
-        public GenericJmfBuilder AddNode(XName name)
-        {
+        public GenericJmfBuilder AddNode(XName name) {
             ParameterCheck.ParameterRequired(name, "name");
             return AddNode(new XElement(name));
         }

@@ -44,11 +44,10 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         /// Gets the attribute builder for this JMF node.
         /// </summary>
         /// <returns></returns>
-        public JmfNodeAttributeBuilder With()
-        {
+        public JmfNodeAttributeBuilder With() {
             return new JmfNodeAttributeBuilder(this);
         }
 
-        
+
     }
 }
