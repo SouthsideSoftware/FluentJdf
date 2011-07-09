@@ -9,10 +9,13 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
     /// Builder for generic JMF elements.
     /// </summary>
     public class GenericJmfBuilder : JmfBuilderBase {
+
         internal GenericJmfBuilder() {
         }
+        
         internal GenericJmfBuilder(JmfNodeBuilder parentJmfBuilder) : base(parentJmfBuilder) {
         }
+        
         internal GenericJmfBuilder(XElement element) : base(element) {
         }
 
