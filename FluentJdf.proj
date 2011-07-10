@@ -36,7 +36,7 @@
 
 	<!-- Version Information -->
 	<PropertyGroup>
-		<AppVersion>0.1.0</AppVersion>
+		<AppVersion>0.1.1</AppVersion>
 		<SchemaVersion>0</SchemaVersion>
     <PrintableSupportSchemaVersion>0</PrintableSupportSchemaVersion>
     <InTeamCity Condition="'$(build_number)' == ''">false</InTeamCity>
