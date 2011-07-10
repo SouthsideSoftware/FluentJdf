@@ -141,6 +141,7 @@
     <Compile Include="Unit\Configuration\TransmitterSettings\when_registering_transmitters.cs" />
     <Compile Include="Unit\Encoding\EncodingFactory\when_creating_encodings_for_transmission_part_collections.cs" />
     <Compile Include="Unit\Encoding\MimeEncoding\when_decoding_mimeMulti_part.cs" />
+    <Compile Include="Unit\Encoding\MimeEncoding\when_performing_round_trip_of_message_from_mimiMultipart.cs" />
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_a_graphic.cs" />
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_generic_xml.cs" />
     <Compile Include="Unit\Encoding\PassThroughEncoding\when_decoding_jdf_xml.cs" />

@@ -46,7 +46,7 @@ namespace FluentJdf.Encoding {
         /// Decode the given stream into a collection of parts.
         /// </summary>
         /// <returns></returns>
-        public ITransmissionPartCollection Decode(string name, System.IO.Stream stream, string mimeType, string id = null) {
+        public ITransmissionPartCollection Decode(string name, Stream stream, string mimeType, string id = null) {
             ParameterCheck.ParameterRequired(stream, "stream");
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
@@ -72,13 +72,12 @@ namespace FluentJdf.Encoding {
 
 				mime.LoadMime(mimeMessage);
 #endif
-                Console.WriteLine("Parts " + mime.NumParts);
                 logger.DebugFormat("Parts {0}", mime.NumParts);
 
                 for (int partIndex = 0; partIndex < mime.NumParts; partIndex++) {
                     Mime mimePart = mime.GetPart(partIndex);
-                    string contentId = mimePart.GetHeaderField("Content-id");
-                    if (contentId.Trim().Length == 0) {
+                    string contentId = (mimePart.GetHeaderField("Content-id") ?? string.Empty).Trim();
+                    if (string.IsNullOrWhiteSpace(contentId)) {
                         StringBuilder sb = new StringBuilder();
                         sb.Append("OAIPART_"); //TODO determine better name for mime part than OAIPART_
                         sb.Append(DateTime.Now.Ticks.ToString());
@@ -92,16 +91,15 @@ namespace FluentJdf.Encoding {
 
                     //content type may contain ;char-encoding.  Strip it off if found.
                     if (contentType != null) {
-                        contentType = contentType.ToLower();
+                        contentType = contentType.ToLower().Trim();
                         string[] parts = contentType.Split(';');
                         if (parts.Length > 1) {
                             contentType = parts[0];
                         }
                     }
-
                     //TODO We need better way to get a BodyStream from a MimePart.
                     transmissionPartCollection.Add(transmissionPartFactory.CreateTransmissionPart(name,
-                        new MemoryStream(mimePart.GetBodyBinary()), contentType, id));
+                        new MemoryStream(mimePart.GetBodyBinary()), contentType, contentId));
                 }
             }
             catch (Exception err) {
@@ -140,49 +138,71 @@ namespace FluentJdf.Encoding {
             using (Mime mime = new Mime()) {
 
                 mime.NewMultipartRelated();
+                mime.ContentType = MimeTypeHelper.MimeMultipartMimeType;
+                contentType = mime.ContentType;
 
                 foreach (var part in parts) {
                     Mime mimePart = new Mime();
 
-                    //var encoder = factory.GetEncodingForMimeType(part.MimeType);
-                    //encoder.Encode(part);
+                    bool useEncoder = true; //TODO temp until talking to Tom to see if this is how it should always be set.
 
                     mimePart.SetHeaderField("Content-ID", part.Id);
 
-                    //if this is not an attachment part or the mime type is text/ something then treat as text
-                    if (part.MimeType.StartsWith("text/")) {
-                        string data = null;
-                        using (var sr = new StreamReader(part.CopyOfStream())) {
-                            data = sr.ReadToEnd();
-                        }
-                        if (part.MimeType.IndexOf("xml") > -1) {
-                            mimePart.SetBodyFromXml(data);
-                        }
-                        else {
-                            mimePart.SetBodyFromPlainText(data);
-                        }
-                    }
-                    else {
+                    if (useEncoder) {
+                        var encoder = factory.GetEncodingForMimeType(part.MimeType);
+                        var encoderResult = encoder.Encode(part);
+
                         //TODO optimize call to get the bytes from the stream
                         byte[] data = null;
                         using (var sr = new BinaryReader(part.CopyOfStream())) {
                             data = sr.ReadBytes((int)part.CopyOfStream().Length);
                         }
-                        mimePart.SetBodyFromBinary(data);
-
-                        if (withBinaryEncodingAttachment) {
-                            mimePart.EncodingType = Mime.MimeEncoding.Binary;
-                        }
-                        else {
+                        //TODO determine if this is how we should handle it.
+                        if (!part.MimeType.Equals(MimeTypeHelper.JdfMimeType) 
+                                && !part.MimeType.Equals(MimeTypeHelper.JmfMimeType) 
+                                && !part.MimeType.StartsWith("text/")) {
+                            //for text and jdf/jmf documents, do not base64 encode them.
                             mimePart.EncodingType = Mime.MimeEncoding.Base64;
                         }
+                        mimePart.SetBodyFromBinary(data);
+                    }
+                    else {
+                        #region works but should be wrong
+                        
+                        //if this is not an attachment part or the mime type is text/ something then treat as text
+                        if (part.MimeType.StartsWith("text/")) {
+                            string data = null;
+                            using (var sr = new StreamReader(part.CopyOfStream())) {
+                                data = sr.ReadToEnd();
+                            }
+                            if (part.MimeType.IndexOf("xml") > -1) {
+                                mimePart.SetBodyFromXml(data);
+                            }
+                            else {
+                                mimePart.SetBodyFromPlainText(data);
+                            }
+                        }
+                        else {
+                            //TODO optimize call to get the bytes from the stream
+                            byte[] data = null;
+                            using (var sr = new BinaryReader(part.CopyOfStream())) {
+                                data = sr.ReadBytes((int)part.CopyOfStream().Length);
+                            }
+                            mimePart.SetBodyFromBinary(data);
+
+                            if (withBinaryEncodingAttachment) {
+                                mimePart.EncodingType = Mime.MimeEncoding.Binary;
+                            }
+                            else {
+                                mimePart.EncodingType = Mime.MimeEncoding.Base64;
+                            }
+                        }
+                        #endregion works but should be wrong
                     }
 
                     mimePart.ContentType = part.MimeType;
                     mime.AppendPart(mimePart);
                 }
-
-                contentType = mime.ContentType;
 
                 mime.CreateDefaultType();
 
