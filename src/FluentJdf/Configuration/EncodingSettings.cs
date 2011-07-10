@@ -80,7 +80,7 @@ namespace FluentJdf.Configuration {
             EncodingsByMimeType.Clear();
             SetDefaultEncoding<PassThroughEncoding>();
             SetDefaultSinglePartEncoding<PassThroughEncoding>();
-            SetDefaultMultiPartEncoding<PassThroughEncoding>();
+            SetDefaultMultiPartEncoding<MimeEncoding>();
             return this;
         }
 
