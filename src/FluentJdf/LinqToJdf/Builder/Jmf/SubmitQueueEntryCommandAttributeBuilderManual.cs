@@ -1,4 +1,5 @@
-﻿using Infrastructure.Core.CodeContracts;
+﻿using FluentJdf.Encoding;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf {
     public partial class SubmitQueueEntryCommandAttributeBuilder {
@@ -10,7 +11,10 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         public SubmitQueueEntryCommandAttributeBuilder Ticket(Ticket ticket) {
             ParameterCheck.ParameterRequired(ticket, "ticket");
 
-            ParentJmfNode.Message.AssociatedTicket = ticket;
+            //todo: use the ITransmissionPartFactory
+            var part = new TicketTransmissionPart(ticket, "Ticket");
+            ParentJmfNode.Message.AddRelatedPart(part);
+            //todo: the id of the part needs to go into the url of a new QueueSubmissionParams element
             return this;
         }
     }

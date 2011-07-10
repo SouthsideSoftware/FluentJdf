@@ -13,10 +13,11 @@ Content-Type: text/xml;
 <JMF SenderID="JMFClient" TimeStamp="2000-11-07T13:15:56+01:00"
 xmlns="http://www.CIP4.org/JDFSchema_1_1" Version="1.1">
 <Command ID="C0001" Type="SubmitQueueEntry">
-	<QueueSubmissionParams Hold="true" URL="File:///c:/DummyDirectory/job1.jdf" WatchURL="http://www.somewhere.com" />
+	<QueueSubmissionParams Hold="true" URL="cid:ticket1" WatchURL="http://www.somewhere.com" />
 </Command>
 </JMF>
 ------_OAI_NextPart_2563710857820783
+Content-ID: ticket1
 Content-Type: text/xml;
 	charset=us-ascii
 

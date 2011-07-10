@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Xml.Linq;
+using FluentJdf.Encoding;
 using FluentJdf.LinqToJdf;
 using Machine.Specifications;
 
@@ -12,8 +14,8 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
 
         Because of = () => message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
 
-        It should_have_associated_ticket = () => message.AssociatedTicket.ShouldNotBeNull();
+        It should_have_associated_ticket = () => message.AdditionalParts.Count.ShouldEqual(1);
 
-        It should_have_the_correct_associated_ticket = () => XNode.DeepEquals(message.AssociatedTicket, ticket);
+        It should_have_the_correct_associated_ticket = () => XNode.DeepEquals((message.AdditionalParts.First() as TicketTransmissionPart).Ticket, ticket);
     }
 }

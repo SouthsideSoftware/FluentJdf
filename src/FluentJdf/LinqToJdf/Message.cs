@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Linq;
 using FluentJdf.Encoding;
 using FluentJdf.LinqToJdf.Builder.Jmf;
@@ -11,14 +12,14 @@ using FluentJdf.Transmission;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Logging;
-using System.Xml;
 
 namespace FluentJdf.LinqToJdf {
     /// <summary>
     /// A JMF message.
     /// </summary>
     public class Message : FluentJdfDocumentBase {
-        static readonly ILog logger = LogManager.GetLogger(typeof(Message));
+        static readonly ILog logger = LogManager.GetLogger(typeof (Message));
+        readonly ITransmissionPartCollection additionalParts = new TransmissionPartCollection();
         readonly ITransmitterFactory transmitterFactory = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmitterFactory>();
 
         /// <summary>
@@ -33,28 +34,7 @@ namespace FluentJdf.LinqToJdf {
             }
         }
 
-        internal Message() {
-        }
-
-        /// <summary>
-        /// Create a message from a template in a file.
-        /// </summary>
-        /// <param name="templateFileName"></param>
-        /// <returns></returns>
-        public static GeneratedMessageTemplateSelectionBuilder CreateFromTemplate(string templateFileName)
-        {
-            return new GeneratedMessageTemplateSelectionBuilder(templateFileName);
-        }
-
-        /// <summary>
-        /// Create a message from a template in a stream.
-        /// </summary>
-        /// <param name="templateStream"></param>
-        /// <returns></returns>
-        public static GeneratedMessageTemplateSelectionBuilder CreateFromTemplate(Stream templateStream)
-        {
-            return new GeneratedMessageTemplateSelectionBuilder(templateStream);
-        }
+        internal Message() {}
 
         /// <summary>
         /// Copy constructor
@@ -65,12 +45,8 @@ namespace FluentJdf.LinqToJdf {
             document.Root.ThrowExceptionIfNotJmfElement();
         }
 
-        /// <summary>
-        /// Gets the JDF ticket (if any) associated with this message.
-        /// </summary>
-        public Ticket AssociatedTicket {
-            get;
-            internal set;
+        internal ITransmissionPartCollection AdditionalParts {
+            get { return additionalParts; }
         }
 
         /// <summary>
@@ -104,9 +80,35 @@ namespace FluentJdf.LinqToJdf {
         /// Gets the first message element (or <see langword="null"/> if there are none).
         /// </summary>
         public XElement MessageElement {
-            get {
-                return MessageElements.FirstOrDefault();
-            }
+            get { return MessageElements.FirstOrDefault(); }
+        }
+
+        /// <summary>
+        /// Create a message from a template in a file.
+        /// </summary>
+        /// <param name="templateFileName"></param>
+        /// <returns></returns>
+        public static GeneratedMessageTemplateSelectionBuilder CreateFromTemplate(string templateFileName) {
+            return new GeneratedMessageTemplateSelectionBuilder(templateFileName);
+        }
+
+        /// <summary>
+        /// Create a message from a template in a stream.
+        /// </summary>
+        /// <param name="templateStream"></param>
+        /// <returns></returns>
+        public static GeneratedMessageTemplateSelectionBuilder CreateFromTemplate(Stream templateStream) {
+            return new GeneratedMessageTemplateSelectionBuilder(templateStream);
+        }
+
+        /// <summary>
+        /// Add a related transmission part.
+        /// </summary>
+        /// <param name="transmissionPart"></param>
+        public void AddRelatedPart(ITransmissionPart transmissionPart) {
+            ParameterCheck.ParameterRequired(transmissionPart, "transmissionPart");
+
+            additionalParts.Add(transmissionPart);
         }
 
         /// <summary>
@@ -142,7 +144,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="textReader"></param>
         /// <returns></returns>
-        public static new Message Load(TextReader textReader) {
+        public new static Message Load(TextReader textReader) {
             return XDocument.Load(textReader).ToMessage();
         }
 
@@ -152,7 +154,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="textReader"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static new Message Load(TextReader textReader, LoadOptions options) {
+        public new static Message Load(TextReader textReader, LoadOptions options) {
             return XDocument.Load(textReader, options).ToMessage();
         }
 
@@ -161,7 +163,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        public static new Message Load(XmlReader reader) {
+        public new static Message Load(XmlReader reader) {
             return XDocument.Load(reader).ToMessage();
         }
 
@@ -171,7 +173,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="reader"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static new Message Load(XmlReader reader, LoadOptions options) {
+        public new static Message Load(XmlReader reader, LoadOptions options) {
             return XDocument.Load(reader, options).ToMessage();
         }
 
@@ -189,7 +191,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="uri"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static new Message Load(string uri, LoadOptions options) {
+        public new static Message Load(string uri, LoadOptions options) {
             return new Message(XDocument.Load(uri, options));
         }
 
@@ -208,7 +210,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="text"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static new Message Parse(string text, LoadOptions options) {
+        public new static Message Parse(string text, LoadOptions options) {
             return XDocument.Parse(text, options).ToMessage();
         }
 
@@ -253,17 +255,8 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public IJmfResult Transmit(Uri url) {
             try {
-                string name = null;
-                if (Root.IsJmfElement()) {
-                    name = string.Format("JMF{0}", MimeTypeHelper.JmfExtension);
-                }
-                else if (Root.IsJdfElement()) {
-                    name = string.Format("{0}{1}", Root.GetJobId() ?? "JDF", MimeTypeHelper.JdfExtension);
-                }
-                else {
-                    name = "XML.xml";
-                }
-                using (var transmissionPartColllection = new TransmissionPartCollection()) {
+                string name = string.Format("JMF{0}", MimeTypeHelper.JmfExtension);
+                using (var transmissionPartColllection = new TransmissionPartCollection(additionalParts)) {
                     transmissionPartColllection.Add(new MessageTransmissionPart(this, name));
                     return transmitterFactory.GetTransmitterForUrl(url).Transmit(url, transmissionPartColllection);
                 }
