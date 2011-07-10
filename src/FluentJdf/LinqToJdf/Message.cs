@@ -264,7 +264,7 @@ namespace FluentJdf.LinqToJdf {
                     name = "XML.xml";
                 }
                 using (var transmissionPartColllection = new TransmissionPartCollection()) {
-                    transmissionPartColllection.Add(new XmlTransmissionPart(this, name));
+                    transmissionPartColllection.Add(new MessageTransmissionPart(this, name));
                     return transmitterFactory.GetTransmitterForUrl(url).Transmit(url, transmissionPartColllection);
                 }
             }
