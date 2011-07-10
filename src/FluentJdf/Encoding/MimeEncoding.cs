@@ -95,7 +95,7 @@ namespace FluentJdf.Encoding {
 
                     //TODO We need better way to get a BodyStream from a MimePart.
                     transmissionPartCollection.Add(transmissionPartFactory.CreateTransmissionPart(name,
-                        new MemoryStream(mimePart.GetBodyBinary()), contentType, id));
+                        new MemoryStream(mimePart.GetBodyBinary()), contentType, contentId));
                 }
             }
             catch (Exception err) {
