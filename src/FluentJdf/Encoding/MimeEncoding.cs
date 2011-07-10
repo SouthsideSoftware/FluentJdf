@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Infrastructure.Core;
-using Infrastructure.Core.CodeContracts;
 using System.IO;
-using Infrastructure.Core.Mime;
-using Infrastructure.Core.Helpers;
+using System.Text;
 using FluentJdf.LinqToJdf;
+using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
+using Infrastructure.Core.Mime;
 
 namespace FluentJdf.Encoding {
-
     /// <summary>
     /// Mime Encoder class used for multi part encoding.
     /// </summary>
     public class MimeEncoding : IEncoding {
-
-        static ILog logger = LogManager.GetLogger(typeof(MimeEncoding));
-        ITransmissionPartFactory transmissionPartFactory;
+        static readonly ILog logger = LogManager.GetLogger(typeof (MimeEncoding));
+        readonly ITransmissionPartFactory transmissionPartFactory;
 
         /// <summary>
         /// Constructor.
@@ -29,6 +23,8 @@ namespace FluentJdf.Encoding {
 
             this.transmissionPartFactory = transmissionPartFactory;
         }
+
+        #region IEncoding Members
 
         /// <summary>
         /// Encode a collection of parts.
@@ -48,14 +44,14 @@ namespace FluentJdf.Encoding {
         /// <returns></returns>
         public EncodingResult Encode(ITransmissionPart transmissionPart) {
             ParameterCheck.ParameterRequired(transmissionPart, "transmissionPart");
-            return Encode(new TransmissionPartCollection() { transmissionPart });
+            return Encode(new TransmissionPartCollection {transmissionPart});
         }
 
         /// <summary>
         /// Decode the given stream into a collection of parts.
         /// </summary>
         /// <returns></returns>
-        public ITransmissionPartCollection Decode(string name, System.IO.Stream stream, string mimeType, string id = null) {
+        public ITransmissionPartCollection Decode(string name, Stream stream, string mimeType, string id = null) {
             ParameterCheck.ParameterRequired(stream, "stream");
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
@@ -65,7 +61,7 @@ namespace FluentJdf.Encoding {
                 int nextContentId = 1;
 
 
-                Mime mime = new Mime(stream);
+                var mime = new Mime(stream);
                 Console.WriteLine("Parts " + mime.NumParts);
                 logger.DebugFormat("Parts {0}", mime.NumParts);
 
@@ -73,7 +69,7 @@ namespace FluentJdf.Encoding {
                     Mime mimePart = mime.GetPart(partIndex);
                     string contentId = mimePart.GetHeaderField("Content-id");
                     if (contentId.Trim().Length == 0) {
-                        StringBuilder sb = new StringBuilder();
+                        var sb = new StringBuilder();
                         sb.Append("OAIPART_"); //TODO determine better name for mime part than OAIPART_
                         sb.Append(DateTime.Now.Ticks.ToString());
                         sb.Append("_");
@@ -82,7 +78,7 @@ namespace FluentJdf.Encoding {
                         nextContentId++;
                     }
 
-                    var contentType = mimePart.ContentType;
+                    string contentType = mimePart.ContentType;
 
                     //content type may contain ;char-encoding.  Strip it off if found.
                     if (contentType != null) {
@@ -95,7 +91,8 @@ namespace FluentJdf.Encoding {
 
                     //TODO We need better way to get a BodyStream from a MimePart.
                     transmissionPartCollection.Add(transmissionPartFactory.CreateTransmissionPart(name,
-                        new MemoryStream(mimePart.GetBodyBinary()), contentType, contentId));
+                                                                                                  new MemoryStream(mimePart.GetBodyBinary()),
+                                                                                                  contentType, contentId));
                 }
             }
             catch (Exception err) {
@@ -107,8 +104,9 @@ namespace FluentJdf.Encoding {
             }
 
             return transmissionPartCollection;
-
         }
+
+        #endregion
 
         /// <summary>
         /// Encode a set of transmission parts into a stream suitable for 
@@ -117,8 +115,7 @@ namespace FluentJdf.Encoding {
         /// <param name="parts">The parts to encode.</param>
         /// <param name="contentType">The MIME Type of the TransmissionPartCollection contents.</param>
         /// <returns>The stream.</returns>
-        EncodingResult OptimalEncode(ITransmissionPartCollection parts, out string contentType)
-        {
+        EncodingResult OptimalEncode(ITransmissionPartCollection parts, out string contentType) {
             return OptimalEncode(parts, out contentType, false);
         }
 
@@ -130,17 +127,12 @@ namespace FluentJdf.Encoding {
         /// <param name="contentType">The MIME Type of the TransmissionPartCollection contents.</param>
         /// <param name="withBinaryEncodingAttachment">if true, save all Attachments with binary-encoding type. </param>
         /// <returns>An OptimalEncodingResult with the stream and the name of the backing file store if there is one.</returns>
-        EncodingResult OptimalEncode(ITransmissionPartCollection parts, out string contentType, bool withBinaryEncodingAttachment)
-        {
-
-            using (Mime mime = new Mime())
-            {
-
+        EncodingResult OptimalEncode(ITransmissionPartCollection parts, out string contentType, bool withBinaryEncodingAttachment) {
+            using (var mime = new Mime()) {
                 mime.NewMultipartRelated();
 
-                foreach (var part in parts)
-                {
-                    Mime mimePart = new Mime();
+                foreach (ITransmissionPart part in parts) {
+                    var mimePart = new Mime();
 
                     //var encoder = factory.GetEncodingForMimeType(part.MimeType);
                     //encoder.Encode(part);
@@ -148,39 +140,32 @@ namespace FluentJdf.Encoding {
                     mimePart.SetHeaderField("Content-ID", part.Id);
 
                     //if this is not an attachment part or the mime type is text/ something then treat as text
-                    if (part.MimeType.StartsWith("text/"))
-                    {
+                    if (part.MimeType.StartsWith("text/")) {
                         string data = null;
-                        using (var sr = new StreamReader(part.CopyOfStream()))
-                        {
+                        using (var sr = new StreamReader(part.CopyOfStream())) {
                             data = sr.ReadToEnd();
                         }
-                        if (part.MimeType.IndexOf("xml") > -1)
-                        {
+                        if (part.MimeType.IndexOf("xml") > -1) {
                             mimePart.SetBodyFromXml(data);
                         }
-                        else
-                        {
+                        else {
                             mimePart.SetBodyFromPlainText(data);
                         }
                     }
-                    else
-                    {
+                    else {
                         //TODO optimize call to get the bytes from the stream
                         byte[] data = null;
-                        using (var partStream = part.CopyOfStream()) {
+                        using (Stream partStream = part.CopyOfStream()) {
                             using (var sr = new BinaryReader(partStream)) {
                                 data = sr.ReadBytes((int) partStream.Length);
                             }
                         }
                         mimePart.SetBodyFromBinary(data);
 
-                        if (withBinaryEncodingAttachment)
-                        {
+                        if (withBinaryEncodingAttachment) {
                             mimePart.EncodingType = Mime.MimeEncoding.Binary;
                         }
-                        else
-                        {
+                        else {
                             mimePart.EncodingType = Mime.MimeEncoding.Base64;
                         }
                     }
@@ -197,6 +182,5 @@ namespace FluentJdf.Encoding {
                 return new EncodingResult(mime.GetMimeStream(), contentType);
             }
         }
-
     }
 }
