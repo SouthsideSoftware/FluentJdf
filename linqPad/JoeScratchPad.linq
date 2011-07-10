@@ -21,7 +21,7 @@
 
 bool loggingOn = false;
 
-static FluentJdf.Encoding.EncodingFactory factory;
+
 //static IEncoding defaultEncoding;
 //static IEncoding defaultSinglePartEncoding;
 //static IEncoding defaultMultiPartEncoding;
@@ -29,9 +29,51 @@ static FluentJdf.Encoding.EncodingFactory factory;
 void Main() {
 	InitializeFluentJdf();
 	//ProcessTicketsForTests();
+	//FactoryTests();
+	
+	//var xn = XName.Get(ProcessType.Bending);
+	//xn.LocalName.Dump();
+	//xn.Dump();
+	
+	var ticket = FluentJdf.LinqToJdf.Ticket
+			.CreateProcess(ProcessType.Bending)
+			//.AddProcess(ProcessType.Buffer)
+			//.AddIntent()
+			.Ticket
+	
+	
+			.ModifyJdfNode()
+			.WithInput()
+			.RunList()
+			.WithInput()
+			.RunList()
+			.WithInput()
+			.LayoutElement()
+			.WithInput()
+			.FileSpec()
+			.WithOutput()
+			.InkZoneProfile()
+			.AddProcessGroup()
+			//.BindingIntent()
+			.AddNode(new XElement("AddressChild"))
+			.With()
+			.Attribute("addressid", "1234").Ticket;
+			
+	//ticket.Dump();
+	
+	ticket.GetProcess()
+	.Bending().Dump()
+	//.WithInput("LayoutElement").Dump()
+	.WithOutput("InkZoneProfile").Dump()
+	;
+	//.WithInput()
+	//.Dump();
+	
+}
 
+void FactoryTests() {
 	FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
-	factory = new FluentJdf.Encoding.EncodingFactory();
+	var factory = new FluentJdf.Encoding.EncodingFactory();
 
 	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
 	.DefaultSinglePartEncoding<MimeEncoding>()

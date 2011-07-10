@@ -487,8 +487,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="element"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static XElement SetJdfType(this XElement element, string value)
-        {
+        public static XElement SetJdfType(this XElement element, string value) {
             ParameterCheck.ParameterRequired(element, "element");
 
             element.SetAttributeValue("Type", value);
@@ -521,6 +520,10 @@ namespace FluentJdf.LinqToJdf {
             var typesString = element.GetAttributeFromJdfElement("Types");
 
             if (string.IsNullOrWhiteSpace(typesString)) {
+                var oneType = GetJdfType(element);
+                if (oneType != null) {
+                    return new string[] { oneType.LocalName };
+                }
                 return null;
             }
 
@@ -721,17 +724,14 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         /// <exception cref="ArgumentException">If the document has
         /// a root element that is not a JDF element.</exception>
-        public static Ticket ToTicket(this XDocument document)
-        {
+        public static Ticket ToTicket(this XDocument document) {
             ParameterCheck.ParameterRequired(document, "document");
-            if (document.Root != null)
-            {
+            if (document.Root != null) {
                 document.Root.ThrowExceptionIfNotJdfElement();
             }
 
             var ticket = new Ticket();
-            if (document.Root != null)
-            {
+            if (document.Root != null) {
                 ticket.Add(document.Root);
             }
 

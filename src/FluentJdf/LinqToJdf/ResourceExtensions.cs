@@ -51,7 +51,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="idPrefix"></param>
         /// <param name="updateReferences"></param>
         /// <returns></returns>
-        public static XElement RecursiveSetUniqueId(this XElement element, string idPrefix="R_", bool updateReferences = true) {
+        public static XElement RecursiveSetUniqueId(this XElement element, string idPrefix = "R_", bool updateReferences = true) {
             ParameterCheck.ParameterRequired(element, "element");
 
             if (element.GetId() != null) {
@@ -110,6 +110,28 @@ namespace FluentJdf.LinqToJdf {
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Given a resource name and the input type, return the resolved resource that belongs to all resource links.
+        /// </summary>
+        /// <remarks>
+        /// It is assumed that the element should stay untouched and not be normalized.
+        /// </remarks>
+        /// <param name="element">The element to process</param>
+        /// <param name="usage">The <see cref="ResourceUsage"/></param>
+        /// <returns></returns>
+        public static IEnumerable<XElement> GetResourceLinkPoolResolvedItemForUsage(this XContainer element, ResourceUsage usage) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            var xpath = string.Format("//ResourceLinkPool/*[@Usage = '{0}']", usage.ToString());
+            var resourceLinkNodes = element.JdfXPathSelectElements(xpath);
+            foreach (var resourceLinkNode in resourceLinkNodes) {
+                var resourceLink = element.JdfXPathSelectElement(string.Format("//ResourcePool/*[@ID = '{0}']", resourceLinkNode.Attribute("rRef").Value));
+                if (resourceLink != null) {
+                    yield return resourceLink;
+                }
+            }
         }
 
         /// <summary>

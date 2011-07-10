@@ -293,6 +293,7 @@
     <Compile Include="LinqToJdf\JdfElementExtensions.cs" />
     <Compile Include="LinqToJdf\ResourceExtensions.cs" />
     <Compile Include="LinqToJdf\ResourceUsage.cs" />
+    <Compile Include="LinqToJdf\TicketGetProcessExtensions.cs" />
     <Compile Include="LinqToJdf\XDocumentExtensions.cs" />
     <Compile Include="LinqToJdf\XElementExtensions.cs" />
     <Compile Include="LinqToJdf\XNameExtension.cs" />
