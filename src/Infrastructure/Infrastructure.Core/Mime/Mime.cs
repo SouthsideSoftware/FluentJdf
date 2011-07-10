@@ -647,6 +647,7 @@ namespace Infrastructure.Core.Mime
                     {
                         using (var sourceStream = File.OpenRead(bodyFileName)) {
                             sourceStream.CopyTo(mimeStream);
+                            mimeStream.Flush();
                         }
                     }
                     finally
@@ -672,6 +673,7 @@ namespace Infrastructure.Core.Mime
                         using (var sourceStream = File.OpenRead(nestedFileName))
                         {
                             sourceStream.CopyTo(mimeStream);
+                            mimeStream.Flush();
                         }
                     }
                     finally
@@ -695,7 +697,9 @@ namespace Infrastructure.Core.Mime
             }
             finally
             {
-                mimeStream.Close();
+                if (mimeStream.GetType() == typeof(FileStream)) {
+                    mimeStream.Close();
+                }
             }
 
             if (tempFileName != null)
@@ -703,7 +707,7 @@ namespace Infrastructure.Core.Mime
                 return File.OpenRead(tempFileName);
             }
 
-            return new MemoryStream(((MemoryStream)mimeStream).ToArray());
+            return mimeStream as MemoryStream;
         }
 
         private string GetMimeBodyFile(string tempFileName)
@@ -734,6 +738,7 @@ namespace Infrastructure.Core.Mime
                             using (var sourceStream = File.Open(_bufferFileName, FileMode.Create, FileAccess.Read, FileShare.Read)) {
                                 using (var destStream = File.Open(bodyFileName, FileMode.Create, FileAccess.Write)) {
                                     sourceStream.CopyTo(destStream);
+                                    destStream.Flush();
                                 }
                             }
                             break;
@@ -744,6 +749,7 @@ namespace Infrastructure.Core.Mime
                     using (var sourceStream = new MemoryStream(GetMimeBodyBinary())) {
                         using (var destStream = File.Open(bodyFileName, FileMode.Create, FileAccess.Write)) {
                             sourceStream.CopyTo(destStream);
+                            destStream.Flush();
                         }
                     }
                 }
@@ -936,9 +942,7 @@ namespace Infrastructure.Core.Mime
 
                 byte[] bytes = null;
                 collectionFileName = Path.Combine(workingDir, collectionFileName);
-                Stream outStream = File.Open(collectionFileName, FileMode.Create, FileAccess.Write);
-                try
-                {
+                using (Stream outStream = File.Open(collectionFileName, FileMode.Create, FileAccess.Write)) {
                     foreach (Mime mime in _mimes)
                     {
                         bytes = System.Text.Encoding.ASCII.GetBytes("\r\n" + outputBoundary + "\r\n");
@@ -975,10 +979,7 @@ namespace Infrastructure.Core.Mime
                     {
                         outStream.Write(bytes, 0, bytes.Length);
                     }
-                }
-                finally
-                {
-                    outStream.Close();
+                    outStream.Flush();
                 }
             }
             catch (Exception err)

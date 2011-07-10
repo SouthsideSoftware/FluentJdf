@@ -65,10 +65,23 @@ void Main() {
 		
 		//now lets reverse the process.
 		
-		var encoded = new FluentJdf.Encoding.MimeEncoding().Encode(parts).Dump();
+		var encoded = new FluentJdf.Encoding.MimeEncoding().Encode(parts);
 		
-		parts = new FluentJdf.Encoding.MimeEncoding().Decode("test", encoded, MimeTypeHelper.MimeMultipartMimeType);
+		parts = new FluentJdf.Encoding.MimeEncoding().Decode("test", encoded.Stream, MimeTypeHelper.MimeMultipartMimeType);
 		parts.Dump();
+		
+		parts.Last().CopyOfStream().Length.Dump();
+		
+		using (var bmp = new Bitmap(parts.Last().CopyOfStream())) {
+			bmp.Dump();
+		}
+		
+		encoded.Stream.Position = 0;
+		
+		using (var sr = new StreamReader(encoded.Stream)) {
+			sr.ReadToEnd().Dump();
+		}
+		
 	}
 }
 

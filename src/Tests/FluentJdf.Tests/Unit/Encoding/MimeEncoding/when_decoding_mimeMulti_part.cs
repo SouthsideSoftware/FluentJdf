@@ -32,16 +32,30 @@ namespace FluentJdf.Tests.Unit.Encoding.MimeEncoding {
 
         It should_have_a_first_part_of_jmf = () => transmissionPartCollection.First().MimeType.ShouldEqual("application/vnd.cip4-jmf+xml");
 
-        //Not sure how to get to the message or ticket that I see in Dump()
-        //It should_have_a_first_part_of_jmf_that_is_valid_message = () => transmissionPartCollection.First().;
+        It should_have_a_first_part_of_jmf_that_is_valid_message = () => 
+                                FluentJdf.LinqToJdf.Message.Load(transmissionPartCollection.First().CopyOfStream()).ShouldNotBeNull();
 
         It should_have_a_second_part_of_jdf = () => transmissionPartCollection.Skip(1).First().MimeType.ShouldEqual("application/vnd.cip4-jdf+xml");
 
-        //It should_have_a_second_part_of_jdf_that_is_valid_ticket = () => transmissionPartCollection;
+        It should_have_a_second_part_of_jdf_that_is_valid_ticket = () => 
+                                FluentJdf.LinqToJdf.Ticket.Load(transmissionPartCollection.Skip(1).First().CopyOfStream()).ShouldNotBeNull();
 
         It should_have_a_third_part_of_jpg = () => transmissionPartCollection.Skip(2).First().MimeType.ShouldEqual("image/jpg");
 
         It should_have_a_jpg_length_of_17913 = () => transmissionPartCollection.Skip(2).First().CopyOfStream().Length.ShouldEqual(17913);
+
+        //TODO DO NOT DELETE until we discuss the round trip issue with binary and with Xml Types.
+        //It round_trip_test = () => {
+        //    var encoded = new FluentJdf.Encoding.MimeEncoding().Encode(transmissionPartCollection);
+
+        //    var newParts = new FluentJdf.Encoding.MimeEncoding().Decode("test", encoded.Stream, MimeTypeHelper.MimeMultipartMimeType);
+
+        //    encoded.Stream.Position = 0;
+
+        //    using (var sr = new StreamReader(encoded.Stream)) {
+        //        var data = sr.ReadToEnd();
+        //    }
+        //}; 
 
     }
 }
