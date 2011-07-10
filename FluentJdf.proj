@@ -45,13 +45,14 @@
     <BuildNumber Condition="$(InTeamCity)">$(build_number)</BuildNumber>
 		<CompanyName>Onpoint On Demand</CompanyName>
     <FluentJdfHelpTitle>Fluent JDF</FluentJdfHelpTitle>
-    <FluentJdfPackageSummary>
+    <FluentJdfPackageSummary>JDF Client Library for .NET</FluentJdfPackageSummary>
+    <FluentJdfPackageDescription>
       Fluent JDF contains everything you need to quickly
       add JDF capabilities to any client application.  It includes powerful tools
       that allow you to easily author, parse and send JDF from your client applications.
-      By default, uses Castle Windsor and NLog.  See NuGet for related packages
-      to add optional support for other IoC/DI containers and logging frameworks.
-    </FluentJdfPackageSummary>
+      This package uses Castle Windsor and NLog.  See NuGet for related packages
+      to support other IoC/DI containers and logging frameworks.
+    </FluentJdfPackageDescription>
 	</PropertyGroup>
 
   <!-- Misc -->
@@ -132,8 +133,14 @@
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\FluentJdf.nuspec"
                Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
                Prefix="n"
+               XPath="//n:description"
+               Value="$(FluentJdfPackageDescription)"/>
+
+    <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\FluentJdf.nuspec"
+               Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+               Prefix="n"
                XPath="//n:summary"
-               Value="$(FluentJdfPackageSummary) Version: $(AppVersion).$(BuildNumber) ($(Configuration))"/>
+               Value="$(FluentJdfPackageSummary) ($(Configuration))"/>
 
     <XmlUpdate XmlFileName="$(MSBuildProjectDirectory)\FluentJdf.nuspec"
                Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
