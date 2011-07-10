@@ -86,7 +86,7 @@ namespace FluentJdf.LinqToJdf {
         public TicketProcess Named(XName name) {
             ParameterCheck.ParameterRequired(name, "name");
             var processElements = _ticket.GetJdfNodesContainingProcessType(name.LocalName);
-            
+
             return new TicketProcess(_ticket, processElements.First());
         }
 
@@ -143,7 +143,14 @@ namespace FluentJdf.LinqToJdf {
         public TicketResouces WithInput(XName resourceName) {
             var link = Element.GetResourceLinkPoolResolvedItemForUsage(ResourceUsage.Input);
 
-            var first = link.FirstOrDefault(item => item.Name != null && item.Name.LocalName == resourceName);
+            var ns = resourceName.NamespaceName;
+
+            if (string.IsNullOrWhiteSpace(ns)) {
+                ns = Globals.JdfNamespace.NamespaceName;
+            }
+
+            //TODO add namespace support
+            var first = link.FirstOrDefault(item => item.Name != null && item.Name.LocalName == resourceName.LocalName && item.Name.NamespaceName == ns);
             if (first == null) {
                 return null; //todo do we just return am empty item so we don't get a null ref?
             }
@@ -172,7 +179,13 @@ namespace FluentJdf.LinqToJdf {
         public TicketResouces WithOutput(XName resourceName) {
             var link = Element.GetResourceLinkPoolResolvedItemForUsage(ResourceUsage.Output);
 
-            var first = link.FirstOrDefault(item => item.Name != null && item.Name.LocalName == resourceName);
+            var ns = resourceName.NamespaceName;
+
+            if (string.IsNullOrWhiteSpace(ns)) {
+                ns = Globals.JdfNamespace.NamespaceName;
+            }
+
+            var first = link.FirstOrDefault(item => item.Name != null && item.Name.LocalName == resourceName.LocalName && item.Name.NamespaceName == ns);
             if (first == null) {
                 return null; //todo do we just return am empty item so we don't get a null ref?
             }

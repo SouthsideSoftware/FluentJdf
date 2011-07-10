@@ -35,6 +35,9 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.Ticket {
 
         It should_be_able_to_locate_bending = () => sourceTicket.GetProcess()
                                                                 .Bending()
-                                                                .WithInput("LayoutElement");
+                                                                .WithInput(Resource.LayoutElement)
+
+                                                                //.WithInput("LayoutElement");
+                                                                ;
     }
 }
