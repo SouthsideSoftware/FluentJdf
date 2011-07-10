@@ -22,7 +22,7 @@ namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding {
         };
 
         Because of = () => transmissionPartCollection =
-                           new FluentJdf.Encoding.PassThroughEncoding().Decode("test", stream,
+                           new FluentJdf.Encoding.PassThroughEncoding(new TransmissionPartFactory()).Decode("test", stream,
                                                                                MimeTypeHelper.JdfMimeType);
 
         It should_have_a_stream_with_length_of_original_in_transmission_part =

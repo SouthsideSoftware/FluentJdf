@@ -25,7 +25,7 @@ namespace FluentJdf.Tests.Unit.Encoding.MimeEncoding {
         };
 
         Because of = () => transmissionPartCollection =
-                           new FluentJdf.Encoding.MimeEncoding().Decode("test", stream,
+                           new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Decode("test", stream,
                                                                                MimeTypeHelper.MimeMultipartMimeType);
 
         It should_contain_three_parts = () => transmissionPartCollection.Count.ShouldEqual(3);

@@ -17,7 +17,7 @@ namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding
         Establish context = () => transmissionPart = new FluentJdf.Encoding.TransmissionPart(TestDataHelper.Instance.PathToTestFile("signs.jpg"));
 
         Because of = () => {
-                         result = new FluentJdf.Encoding.PassThroughEncoding().Encode(transmissionPart);
+                         result = new FluentJdf.Encoding.PassThroughEncoding(new TransmissionPartFactory()).Encode(transmissionPart);
                      };
 
         It should_have_a_result_stream = () => result.Stream.ShouldNotBeNull();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
 using System.IO;
 using Infrastructure.Core.Mime;
@@ -17,9 +18,17 @@ namespace FluentJdf.Encoding {
     public class MimeEncoding : IEncoding {
 
         static ILog logger = LogManager.GetLogger(typeof(MimeEncoding));
+        ITransmissionPartFactory transmissionPartFactory;
 
-        static ITransmissionPartFactory transmissionPartFactory = new TransmissionPartFactory();
-        static FluentJdf.Encoding.EncodingFactory factory = new EncodingFactory();
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="transmissionPartFactory"></param>
+        public MimeEncoding(ITransmissionPartFactory transmissionPartFactory) {
+            ParameterCheck.ParameterRequired(transmissionPartFactory, "transmissionPartFactory");
+
+            this.transmissionPartFactory = transmissionPartFactory;
+        }
 
         /// <summary>
         /// Encode a collection of parts.
@@ -55,23 +64,8 @@ namespace FluentJdf.Encoding {
             try {
                 int nextContentId = 1;
 
-#if MONO || !CHILKAT
-                Mime mime = new Mime(stream);
-#else
-				string mimeMessage = null;
-				Mime mime = new Mime();
-				StreamReader reader = new StreamReader(stream);
-				try
-				{
-					mimeMessage = reader.ReadToEnd();
-				} 
-				finally 
-				{
-					reader.Close();
-				}
 
-				mime.LoadMime(mimeMessage);
-#endif
+                Mime mime = new Mime(stream);
                 Console.WriteLine("Parts " + mime.NumParts);
                 logger.DebugFormat("Parts {0}", mime.NumParts);
 
@@ -123,7 +117,8 @@ namespace FluentJdf.Encoding {
         /// <param name="parts">The parts to encode.</param>
         /// <param name="contentType">The MIME Type of the TransmissionPartCollection contents.</param>
         /// <returns>The stream.</returns>
-        public EncodingResult OptimalEncode(ITransmissionPartCollection parts, out string contentType) {
+        EncodingResult OptimalEncode(ITransmissionPartCollection parts, out string contentType)
+        {
             return OptimalEncode(parts, out contentType, false);
         }
 
@@ -135,13 +130,16 @@ namespace FluentJdf.Encoding {
         /// <param name="contentType">The MIME Type of the TransmissionPartCollection contents.</param>
         /// <param name="withBinaryEncodingAttachment">if true, save all Attachments with binary-encoding type. </param>
         /// <returns>An OptimalEncodingResult with the stream and the name of the backing file store if there is one.</returns>
-        public EncodingResult OptimalEncode(ITransmissionPartCollection parts, out string contentType, bool withBinaryEncodingAttachment) {
+        EncodingResult OptimalEncode(ITransmissionPartCollection parts, out string contentType, bool withBinaryEncodingAttachment)
+        {
 
-            using (Mime mime = new Mime()) {
+            using (Mime mime = new Mime())
+            {
 
                 mime.NewMultipartRelated();
 
-                foreach (var part in parts) {
+                foreach (var part in parts)
+                {
                     Mime mimePart = new Mime();
 
                     //var encoder = factory.GetEncodingForMimeType(part.MimeType);
@@ -150,30 +148,38 @@ namespace FluentJdf.Encoding {
                     mimePart.SetHeaderField("Content-ID", part.Id);
 
                     //if this is not an attachment part or the mime type is text/ something then treat as text
-                    if (part.MimeType.StartsWith("text/")) {
+                    if (part.MimeType.StartsWith("text/"))
+                    {
                         string data = null;
-                        using (var sr = new StreamReader(part.CopyOfStream())) {
+                        using (var sr = new StreamReader(part.CopyOfStream()))
+                        {
                             data = sr.ReadToEnd();
                         }
-                        if (part.MimeType.IndexOf("xml") > -1) {
+                        if (part.MimeType.IndexOf("xml") > -1)
+                        {
                             mimePart.SetBodyFromXml(data);
                         }
-                        else {
+                        else
+                        {
                             mimePart.SetBodyFromPlainText(data);
                         }
                     }
-                    else {
+                    else
+                    {
                         //TODO optimize call to get the bytes from the stream
                         byte[] data = null;
-                        using (var sr = new BinaryReader(part.CopyOfStream())) {
+                        using (var sr = new BinaryReader(part.CopyOfStream()))
+                        {
                             data = sr.ReadBytes((int)part.CopyOfStream().Length);
                         }
                         mimePart.SetBodyFromBinary(data);
 
-                        if (withBinaryEncodingAttachment) {
+                        if (withBinaryEncodingAttachment)
+                        {
                             mimePart.EncodingType = Mime.MimeEncoding.Binary;
                         }
-                        else {
+                        else
+                        {
                             mimePart.EncodingType = Mime.MimeEncoding.Base64;
                         }
                     }
@@ -190,5 +196,6 @@ namespace FluentJdf.Encoding {
                 return new EncodingResult(mime.GetMimeStream(), contentType);
             }
         }
+
     }
 }

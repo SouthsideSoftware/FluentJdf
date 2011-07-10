@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,20 @@ namespace FluentJdf.Encoding {
     /// any parsing.  That is, the raw data is in the format
     /// expected by the transmission part.
     /// </summary>
-    public class PassThroughEncoding : IEncoding {
-        ITransmissionPartFactory transmissionPartFactory = new TransmissionPartFactory();
+    public class PassThroughEncoding : IEncoding
+    {
+        ITransmissionPartFactory transmissionPartFactory;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="transmissionPartFactory"></param>
+        public PassThroughEncoding(ITransmissionPartFactory transmissionPartFactory)
+        {
+            ParameterCheck.ParameterRequired(transmissionPartFactory, "transmissionPartFactory");
+
+            this.transmissionPartFactory = transmissionPartFactory;
+        }
         /// <summary>
         /// Encode a collection of parts.
         /// </summary>
