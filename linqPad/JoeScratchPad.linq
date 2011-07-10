@@ -56,7 +56,7 @@ void Main() {
 	
 	using (var stream = File.OpenRead(path)) {
 	
-		var parts = new FluentJdf.Encoding.MimeEncoding().Decode("test", stream, MimeTypeHelper.MimeMultipartMimeType);
+		var parts = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Decode("test", stream, MimeTypeHelper.MimeMultipartMimeType);
 		parts.Dump();
 		
 		using (var bmp = new Bitmap(parts.Last().CopyOfStream())) {
@@ -65,9 +65,9 @@ void Main() {
 		
 		//now lets reverse the process.
 		
-		var encoded = new FluentJdf.Encoding.MimeEncoding().Encode(parts);
+		var encoded = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Encode(parts);
 		
-		parts = new FluentJdf.Encoding.MimeEncoding().Decode("test", encoded.Stream, MimeTypeHelper.MimeMultipartMimeType);
+		parts = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Decode("test", encoded.Stream, MimeTypeHelper.MimeMultipartMimeType);
 		parts.Dump();
 		
 		parts.Last().CopyOfStream().Length.Dump();
