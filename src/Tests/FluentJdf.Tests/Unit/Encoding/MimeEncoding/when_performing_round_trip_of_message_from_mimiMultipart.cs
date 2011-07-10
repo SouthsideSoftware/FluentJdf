@@ -24,15 +24,15 @@ namespace FluentJdf.Tests.Unit.Encoding.MimeEncoding {
             var originalStream = TestDataHelper.Instance.GetTestStream("mimeMultipart.txt");
             var originalStreamLength = originalStream.Length;
             originalTransmissionPartCollection =
-                           new FluentJdf.Encoding.MimeEncoding().Decode("test", originalStream,
+                           new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Decode("test", originalStream,
                                                                                MimeTypeHelper.MimeMultipartMimeType);
 
-            endodedData = new FluentJdf.Encoding.MimeEncoding().Encode(originalTransmissionPartCollection);
+            endodedData = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Encode(originalTransmissionPartCollection);
 
         };
 
         Because of = () => roundTripTransmissionPartCollection =
-                           new FluentJdf.Encoding.MimeEncoding().Decode("test", endodedData.Stream,
+                           new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Decode("test", endodedData.Stream,
                                                                                MimeTypeHelper.MimeMultipartMimeType);
 
         It should_have_same_number_of_messages = () => originalTransmissionPartCollection.Count.ShouldEqual(roundTripTransmissionPartCollection.Count);
