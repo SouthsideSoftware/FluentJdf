@@ -467,7 +467,7 @@ namespace FluentJdf.LinqToJdf {
             ParameterCheck.ParameterRequired(element, "element");
             ParameterCheck.StringRequiredAndNotWhitespace(processType, "processType");
 
-            return element.JdfXPathSelectElements("//JDF").Where(item => GetJdfTypes(item).Any(t => t == processType));
+            return element.JdfXPathSelectElements("//JDF").Where(item => GetAllJdfTypes(item).Any(t => t == processType));
         }
 
         /// <summary>
@@ -514,16 +514,39 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
+        private static string[] GetAllJdfTypes(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+
+            var typesString = element.GetAttributeFromJdfElement("Types");
+
+            if (string.IsNullOrWhiteSpace(typesString)) {
+                
+                var oneType = GetJdfType(element);
+                if (oneType != null) {
+                    return new string[] { oneType.LocalName };
+                }
+                return null;
+            }
+
+            return typesString.Split(' ');
+        }
+
+        /// <summary>
+        /// Gets the types of the node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public static string[] GetJdfTypes(this XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
 
             var typesString = element.GetAttributeFromJdfElement("Types");
 
             if (string.IsNullOrWhiteSpace(typesString)) {
-                var oneType = GetJdfType(element);
-                if (oneType != null) {
-                    return new string[] { oneType.LocalName };
-                }
+                //TODO talk about types and why the one set is not a type?
+                //var oneType = GetJdfType(element);
+                //if (oneType != null) {
+                //    return new string[] { oneType.LocalName };
+                //}
                 return null;
             }
 
