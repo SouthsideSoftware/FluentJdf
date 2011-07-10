@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using Infrastructure.Core.CodeContracts;
 
-namespace FluentJdf.Utility
-{
+namespace FluentJdf.Utility {
     /// <summary>
     /// Extensions to the string class.
     /// </summary>
-    public static class StringHelper
-    {
+    public static class StringHelper {
         /// <summary>
         /// Contains implementation that lets you specify a
         /// case-insensitive compare
@@ -17,13 +14,13 @@ namespace FluentJdf.Utility
         /// <param name="stringToCheck">The text looked for in source.</param>
         /// <param name="comparison">Rules for comparison</param>
         /// <returns>True if source contains <paramref name="stringToCheck"/> given the comparison rules.  Otherwise, <see langword="false"/>.</returns>
-        public static bool Contains(this string source, string stringToCheck, StringComparison comparison)
-        {
+        public static bool Contains(this string source, string stringToCheck, StringComparison comparison) {
             ParameterCheck.ParameterRequired(source, "source");
             ParameterCheck.StringRequiredAndNotWhitespace(stringToCheck, "stringToCheck");
 
             return source.IndexOf(stringToCheck, comparison) != -1;
         }
+
         /// <summary>
         /// Truncates the specified source.
         /// </summary>
@@ -31,12 +28,10 @@ namespace FluentJdf.Utility
         /// <param name="length">The length.</param>
         /// <returns></returns>
         /// <remarks></remarks>
-        public static string Truncate(this string source, int length)
-        {
+        public static string Truncate(this string source, int length) {
             ParameterCheck.ParameterRequired(source, "source");
 
-            if (source.Length > length)
-            {
+            if (source.Length > length) {
                 source = source.Substring(0, length);
             }
             return source;
@@ -48,13 +43,11 @@ namespace FluentJdf.Utility
         /// <param name="s"></param>
         /// <param name="c"></param>
         /// <returns></returns>
-        public static int CountChar(this string s, char c)
-        {
+        public static int CountChar(this string s, char c) {
             ParameterCheck.ParameterRequired(s, "s");
             int pos = 0, count = 0;
 
-            while ((pos = s.IndexOf(c, pos)) != -1)
-            {
+            while ((pos = s.IndexOf(c, pos)) != -1) {
                 count++;
                 pos++;
             }
