@@ -168,9 +168,10 @@ namespace FluentJdf.Encoding {
                     {
                         //TODO optimize call to get the bytes from the stream
                         byte[] data = null;
-                        using (var sr = new BinaryReader(part.CopyOfStream()))
-                        {
-                            data = sr.ReadBytes((int)part.CopyOfStream().Length);
+                        using (var partStream = part.CopyOfStream()) {
+                            using (var sr = new BinaryReader(partStream)) {
+                                data = sr.ReadBytes((int) partStream.Length);
+                            }
                         }
                         mimePart.SetBodyFromBinary(data);
 
