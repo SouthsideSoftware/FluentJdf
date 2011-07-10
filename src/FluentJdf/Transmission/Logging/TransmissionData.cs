@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.IO;
 using System.Text;
+using FluentJdf.Utility;
 using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
@@ -48,7 +49,7 @@ namespace FluentJdf.Transmission.Logging {
             Stream.Seek(0, SeekOrigin.Begin);
 
             if (headers["content-type"] != null) {
-                ContentType = NormalizeContentType(headers["content-type"]);
+                ContentType = headers["content-type"].NormalizeContentType();
             }
             else {
                 ContentType = MimeTypeHelper.HtmlMimeType;
@@ -76,15 +77,6 @@ namespace FluentJdf.Transmission.Logging {
         /// </remarks>
         public string ContentType { get; private set; }
 
-        string NormalizeContentType(string contentType) {
-            contentType = contentType.ToLower();
-            string[] parts = contentType.Split(';');
-            if (parts.Length > 1) {
-                contentType = parts[0];
-            }
-
-            return contentType;
-        }
 
         /// <summary>
         /// Gets the diagnostic logging string for this

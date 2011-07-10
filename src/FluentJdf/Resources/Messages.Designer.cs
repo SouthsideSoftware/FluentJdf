@@ -342,6 +342,25 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error occured attempting to decode multipart
+        ///elated transmission.  The error is .
+        /// </summary>
+        internal static string MimeEncoding_Decode_GeneralDecodingError {
+            get {
+                return ResourceManager.GetString("MimeEncoding_Decode_GeneralDecodingError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error occured attempting to parse through message, there are no parts to the transmission!.
+        /// </summary>
+        internal static string MimeEncoding_Decode_NoMessagePartsToDecode {
+            get {
+                return ResourceManager.GetString("MimeEncoding_Decode_NoMessagePartsToDecode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pass through encoder cannot encode a transmission part collection containing more than one part..
         /// </summary>
         internal static string PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart {

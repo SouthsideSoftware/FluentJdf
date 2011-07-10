@@ -2,6 +2,8 @@
 using System.IO;
 using System.Text;
 using FluentJdf.LinqToJdf;
+using FluentJdf.Resources;
+using FluentJdf.Utility;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
 using Infrastructure.Core.Mime;
@@ -82,11 +84,7 @@ namespace FluentJdf.Encoding {
 
                     //content type may contain ;char-encoding.  Strip it off if found.
                     if (contentType != null) {
-                        contentType = contentType.ToLower();
-                        string[] parts = contentType.Split(';');
-                        if (parts.Length > 1) {
-                            contentType = parts[0];
-                        }
+                        contentType = contentType.NormalizeContentType();
                     }
 
                     //TODO We need better way to get a BodyStream from a MimePart.
@@ -96,11 +94,13 @@ namespace FluentJdf.Encoding {
                 }
             }
             catch (Exception err) {
-                throw new JdfException("Error occured attempting to decode multipart\related transmission.  The error is " + err.Message, err);
+                logger.Error(Messages.MimeEncoding_Decode_GeneralDecodingError, err);
+                throw new JdfException(Messages.MimeEncoding_Decode_GeneralDecodingError, err);
             }
 
             if (transmissionPartCollection.Count == 0) {
-                throw new JdfException("Error occured attempting to parse through message, there are no parts to the transmission!");
+                logger.Error(Messages.MimeEncoding_Decode_NoMessagePartsToDecode);
+                throw new JdfException(Messages.MimeEncoding_Decode_NoMessagePartsToDecode);
             }
 
             return transmissionPartCollection;

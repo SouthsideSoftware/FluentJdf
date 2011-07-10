@@ -19,8 +19,8 @@ namespace FluentJdf.Utility
         /// <returns>True if source contains <paramref name="stringToCheck"/> given the comparison rules.  Otherwise, <see langword="false"/>.</returns>
         public static bool Contains(this string source, string stringToCheck, StringComparison comparison)
         {
-            Contract.Requires(source != null);
-            Contract.Requires(!string.IsNullOrEmpty(stringToCheck));
+            ParameterCheck.ParameterRequired(source, "source");
+            ParameterCheck.StringRequiredAndNotWhitespace(stringToCheck, "stringToCheck");
 
             return source.IndexOf(stringToCheck, comparison) != -1;
         }
@@ -33,7 +33,7 @@ namespace FluentJdf.Utility
         /// <remarks></remarks>
         public static string Truncate(this string source, int length)
         {
-            Contract.Requires(source != null);
+            ParameterCheck.ParameterRequired(source, "source");
 
             if (source.Length > length)
             {
@@ -60,6 +60,23 @@ namespace FluentJdf.Utility
             }
 
             return count;
+        }
+
+        /// <summary>
+        /// Given a content type, returns a content type all in 
+        /// lower case with any qualifiers (bits after ";")
+        /// removed.
+        /// </summary>
+        /// <param name="contentType"></param>
+        /// <returns></returns>
+        public static string NormalizeContentType(this string contentType) {
+            contentType = contentType.ToLower();
+            string[] parts = contentType.Split(';');
+            if (parts.Length > 1) {
+                contentType = parts[0];
+            }
+
+            return contentType;
         }
     }
 }

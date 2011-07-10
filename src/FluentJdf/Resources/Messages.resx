@@ -255,4 +255,11 @@
 	<data name="GeneratedDocumentConfigurationBuilder_DataTable_TableWithNameAlreadyExists">
 		<value xml:space="preserve">Table with name {0} is already configured</value>
 	</data>
+	<data name="MimeEncoding_Decode_GeneralDecodingError">
+		<value><![CDATA[Error occured attempting to decode multipart
+elated transmission.  The error is ]]></value>
+	</data>
+	<data name="MimeEncoding_Decode_NoMessagePartsToDecode">
+		<value xml:space="preserve">Error occured attempting to parse through message, there are no parts to the transmission!</value>
+	</data>
 </root>
