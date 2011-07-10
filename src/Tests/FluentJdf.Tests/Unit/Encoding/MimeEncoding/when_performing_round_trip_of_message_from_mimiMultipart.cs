@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using FluentJdf.Configuration;
 using FluentJdf.Encoding;
+using FluentJdf.Utility;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Testing;
 using Machine.Specifications;
@@ -53,6 +54,12 @@ namespace FluentJdf.Tests.Unit.Encoding.MimeEncoding {
         It should_have_same_jdf_stream_data = () => originalTransmissionPartCollection.Skip(1).First().CopyOfStream().SameBytes(roundTripTransmissionPartCollection.Skip(1).First().CopyOfStream());
 
         It should_have_same_jpg_stream_data = () => originalTransmissionPartCollection.Last().CopyOfStream().SameBytes(roundTripTransmissionPartCollection.Last().CopyOfStream());
+
+        It should_have_same_jmf_message = () => FluentJdf.LinqToJdf.Message.Load(originalTransmissionPartCollection.First().CopyOfStream())
+                                        .Root.SameNodeStructure(FluentJdf.LinqToJdf.Message.Load(roundTripTransmissionPartCollection.First().CopyOfStream()).Root);
+
+        It should_have_same_jdf_ticket = () => FluentJdf.LinqToJdf.Ticket.Load(originalTransmissionPartCollection.Skip(1).First().CopyOfStream())
+                                        .Root.SameNodeStructure(FluentJdf.LinqToJdf.Ticket.Load(roundTripTransmissionPartCollection.Skip(1).First().CopyOfStream()).Root);
 
     }
 
