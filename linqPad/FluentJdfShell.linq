@@ -51,7 +51,7 @@ LoggingConfiguration GetNLogConfiguration(){
 	
 	ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
 	config.AddTarget("console", consoleTarget);
-	consoleTarget.Layout = "${longdate} ${level:uppercase=true} ${logger} ${newline}${message}${newline}";
+	consoleTarget.Layout = @"${longdate} ${level:uppercase=true} ${logger} ${newline}${message}${onexception:${newline}EXCEPTION OCCURRED\:${newline}${exception:format=tostring:maxInnerExceptionLevel=5}}${newline}";
 	LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget);
 	config.LoggingRules.Add(rule);
 	
