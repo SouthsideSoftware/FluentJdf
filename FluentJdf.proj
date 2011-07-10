@@ -317,6 +317,13 @@
                              src\Infrastructure\Infrastructure.Logging.NLog\bin\$(Configuration)\*.*;"/>
     </ItemGroup>
     <Copy SourceFiles="@(FluentJdfLibraryFiles)" DestinationFolder="$(BinDir)\FluentJdf"/>
+    
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\LinqPad\FluentJdfShell.linq" DestinationFiles="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq"/>
+    
+    <FileUpdate Files="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq" Regex='"..\\src\\FluentJdf\\bin\\Debug\\' ReplacementText='"'/>
+    <FileUpdate Files="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq" Regex='"..\\src\\Infrastructure\\Infrastructure.Container.CastleWindsor\\bin\\Debug\\' ReplacementText='"'/>
+    <FileUpdate Files="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq" Regex='"..\\src\\Infrastructure\\Infrastructure.Logging.NLog\\bin\\Debug\\' ReplacementText='"'/>
+    
     <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) pack $(MSBuildProjectDirectory)\FluentJdf.nuspec"/>
     <ItemGroup>
       <ZipFluentJdfLibraryFiles Include="$(BinDir)\FluentJdf\**\*.*"/>

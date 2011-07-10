@@ -26,5 +26,13 @@
     <file src="BuildOutput\bin\FluentJdf\Infrastructure.Core.dll" target="lib" />
     <file src="BuildOutput\bin\FluentJdf\Infrastructure.Container.CastleWindsor.dll" target="lib" />
     <file src="BuildOutput\bin\FluentJdf\Infrastructure.Logging.NLog.dll" target="lib" />
+	<file src="BuildOutput\bin\FluentJdf\Castle.Core.dll" target="tools"/>
+	<file src="BuildOutput\bin\FluentJdf\Castle.Windsor.dll" target="tools"/>
+	<file src="BuildOutput\bin\FluentJdf\NLog.dll" target="tools"/>
+	<file src="BuildOutput\bin\FluentJdf\FluentJdf.dll" target="tools" />
+    <file src="BuildOutput\bin\FluentJdf\Infrastructure.Core.dll" target="tools" />
+    <file src="BuildOutput\bin\FluentJdf\Infrastructure.Container.CastleWindsor.dll" target="tools" />
+    <file src="BuildOutput\bin\FluentJdf\Infrastructure.Logging.NLog.dll" target="tools" />
+	<file src="linqPad\FluentJdfSample.linq" target="tools" />
   </files>
 </package>
