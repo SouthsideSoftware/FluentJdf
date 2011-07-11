@@ -356,7 +356,7 @@
     <ItemGroup>
       <FluentJdfHelpFiles Include="$(HelpDir)\FluentJdf\**\*.*"/>
     </ItemGroup>
-    <RemoveDir Directories="$(HelpWebDir)" ContinueOnError="true"/>
+    <RemoveDir Directories="$(HelpWebDir)\FluentJdf" ContinueOnError="true"/>
     <Copy SourceFiles="@(FluentJdfHelpFiles)" DestinationFolder="$(HelpWebDir)\FluentJdf\%(RecursiveDir)"/>
   </Target>
 </Project>
