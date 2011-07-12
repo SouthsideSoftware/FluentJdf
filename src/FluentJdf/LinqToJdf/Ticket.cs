@@ -12,12 +12,13 @@ namespace FluentJdf.LinqToJdf {
     /// Starting point for creating JDF tickets.
     /// </summary>
     public class Ticket : FluentJdfDocumentBase {
-        static ILog logger = LogManager.GetLogger(typeof (FluentJdfDocumentBase));
+        static ILog logger = LogManager.GetLogger(typeof(FluentJdfDocumentBase));
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        internal Ticket() {}
+        internal Ticket() {
+        }
 
         /// <summary>
         /// Copy constructor.
