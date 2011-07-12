@@ -926,7 +926,7 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public TicketProcess Wrapping() {
             return Named(ProcessType.Wrapping);
-        }  
+        }
 
     }
 
@@ -998,7 +998,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <returns></returns>
         public TicketResouces WithInput() {
-            return new TicketResouces(_ticket, Elements.GetCurrentJDFResourceLinkPoolResolvedItemForUsage(ResourceUsage.Input));
+            return new TicketResouces(_ticket, Elements.GetCurrentJDFResourceLinkPoolResolvedItemForUsage(ResourceUsage.Input), false);
         }
 
         /// <summary>
@@ -1007,7 +1007,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="resourceName"></param>
         /// <returns></returns>
         public TicketResouces WithInput(XName resourceName) {
-            return new TicketResouces(_ticket, WithReducer(Elements, resourceName, ResourceUsage.Input));
+            return new TicketResouces(_ticket, WithReducer(Elements, resourceName, ResourceUsage.Input), false);
         }
 
         /// <summary>
@@ -1015,7 +1015,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <returns></returns>
         public TicketResouces WithOutput() {
-            return new TicketResouces(_ticket, Elements.GetCurrentJDFResourceLinkPoolResolvedItemForUsage(ResourceUsage.Output));
+            return new TicketResouces(_ticket, Elements.GetCurrentJDFResourceLinkPoolResolvedItemForUsage(ResourceUsage.Output), false);
         }
 
         /// <summary>
@@ -1024,7 +1024,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="resourceName"></param>
         /// <returns></returns>
         public TicketResouces WithOutput(XName resourceName) {
-            return new TicketResouces(_ticket, WithReducer(Elements, resourceName, ResourceUsage.Output));
+            return new TicketResouces(_ticket, WithReducer(Elements, resourceName, ResourceUsage.Output), false);
         }
 
         private static IEnumerable<XElement> WithReducer(IEnumerable<XElement> elements, XName resourceName, ResourceUsage usage) {
@@ -1077,1673 +1077,1674 @@ namespace FluentJdf.LinqToJdf {
         /// Address
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Address() {
-            return Elements.Where(item => item.Name == Resource.Address);
+        public TicketResouces Address() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Address, _child), true);
         }
 
         /// <summary>
         /// AdhesiveBindingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> AdhesiveBindingParams() {
-            return Elements.Where(item => item.Name == Resource.AdhesiveBindingParams);
+        public TicketResouces AdhesiveBindingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.AdhesiveBindingParams, _child), true);
         }
 
         /// <summary>
         /// ApprovalParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ApprovalParams() {
-            return Elements.Where(item => item.Name == Resource.ApprovalParams);
+        public TicketResouces ApprovalParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ApprovalParams, _child), true);
         }
 
         /// <summary>
         /// ApprovalSuccess
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ApprovalSuccess() {
-            return Elements.Where(item => item.Name == Resource.ApprovalSuccess);
+        public TicketResouces ApprovalSuccess() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ApprovalSuccess, _child), true);
         }
 
         /// <summary>
         /// ArtDeliveryIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ArtDeliveryIntent() {
-            return Elements.Where(item => item.Name == Resource.ArtDeliveryIntent);
+        public TicketResouces ArtDeliveryIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ArtDeliveryIntent, _child), true);
         }
 
         /// <summary>
         /// Assembly
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Assembly() {
-            return Elements.Where(item => item.Name == Resource.Assembly);
+        public TicketResouces Assembly() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Assembly, _child), true);
         }
 
         /// <summary>
         /// AssetListCreationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> AssetListCreationParams() {
-            return Elements.Where(item => item.Name == Resource.AssetListCreationParams);
+        public TicketResouces AssetListCreationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.AssetListCreationParams, _child), true);
         }
 
         /// <summary>
         /// AutomatedOverPrintParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> AutomatedOverPrintParams() {
-            return Elements.Where(item => item.Name == Resource.AutomatedOverPrintParams);
+        public TicketResouces AutomatedOverPrintParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.AutomatedOverPrintParams, _child), true);
         }
 
         /// <summary>
         /// BarcodeCompParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BarcodeCompParams() {
-            return Elements.Where(item => item.Name == Resource.BarcodeCompParams);
+        public TicketResouces BarcodeCompParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BarcodeCompParams, _child), true);
         }
 
         /// <summary>
         /// BarcodeReproParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BarcodeReproParams() {
-            return Elements.Where(item => item.Name == Resource.BarcodeReproParams);
+        public TicketResouces BarcodeReproParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BarcodeReproParams, _child), true);
         }
 
         /// <summary>
         /// BendingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BendingParams() {
-            return Elements.Where(item => item.Name == Resource.BendingParams);
+        public TicketResouces BendingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BendingParams, _child), true);
         }
 
         /// <summary>
         /// BinderySignature
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BinderySignature() {
-            return Elements.Where(item => item.Name == Resource.BinderySignature);
+        public TicketResouces BinderySignature() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BinderySignature, _child), true);
         }
 
         /// <summary>
         /// BindingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BindingIntent() {
-            return Elements.Where(item => item.Name == Resource.BindingIntent);
+        public TicketResouces BindingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BindingIntent, _child), true);
         }
 
         /// <summary>
         /// BlockPreparationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BlockPreparationParams() {
-            return Elements.Where(item => item.Name == Resource.BlockPreparationParams);
+        public TicketResouces BlockPreparationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BlockPreparationParams, _child), true);
         }
 
         /// <summary>
         /// BoxFoldingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BoxFoldingParams() {
-            return Elements.Where(item => item.Name == Resource.BoxFoldingParams);
+        public TicketResouces BoxFoldingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BoxFoldingParams, _child), true);
         }
 
         /// <summary>
         /// BoxPackingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BoxPackingParams() {
-            return Elements.Where(item => item.Name == Resource.BoxPackingParams);
+        public TicketResouces BoxPackingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BoxPackingParams, _child), true);
         }
 
         /// <summary>
         /// BufferParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BufferParams() {
-            return Elements.Where(item => item.Name == Resource.BufferParams);
+        public TicketResouces BufferParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BufferParams, _child), true);
         }
 
         /// <summary>
         /// Bundle
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Bundle() {
-            return Elements.Where(item => item.Name == Resource.Bundle);
+        public TicketResouces Bundle() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Bundle, _child), true);
         }
 
         /// <summary>
         /// BundlingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> BundlingParams() {
-            return Elements.Where(item => item.Name == Resource.BundlingParams);
+        public TicketResouces BundlingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.BundlingParams, _child), true);
         }
 
         /// <summary>
         /// ByteMap
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ByteMap() {
-            return Elements.Where(item => item.Name == Resource.ByteMap);
+        public TicketResouces ByteMap() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ByteMap, _child), true);
         }
 
         /// <summary>
         /// CaseMakingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CaseMakingParams() {
-            return Elements.Where(item => item.Name == Resource.CaseMakingParams);
+        public TicketResouces CaseMakingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CaseMakingParams, _child), true);
         }
 
         /// <summary>
         /// CasingInParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CasingInParams() {
-            return Elements.Where(item => item.Name == Resource.CasingInParams);
+        public TicketResouces CasingInParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CasingInParams, _child), true);
         }
 
         /// <summary>
         /// ChannelBindingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ChannelBindingParams() {
-            return Elements.Where(item => item.Name == Resource.ChannelBindingParams);
+        public TicketResouces ChannelBindingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ChannelBindingParams, _child), true);
         }
 
         /// <summary>
         /// CIELABMeasuringField
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CIELABMeasuringField() {
-            return Elements.Where(item => item.Name == Resource.CIELABMeasuringField);
+        public TicketResouces CIELABMeasuringField() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CIELABMeasuringField, _child), true);
         }
 
         /// <summary>
         /// CoilBindingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CoilBindingParams() {
-            return Elements.Where(item => item.Name == Resource.CoilBindingParams);
+        public TicketResouces CoilBindingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CoilBindingParams, _child), true);
         }
 
         /// <summary>
         /// CollectingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CollectingParams() {
-            return Elements.Where(item => item.Name == Resource.CollectingParams);
+        public TicketResouces CollectingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CollectingParams, _child), true);
         }
 
         /// <summary>
         /// Color
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Color() {
-            return Elements.Where(item => item.Name == Resource.Color);
+        public TicketResouces Color() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Color, _child), true);
         }
 
         /// <summary>
         /// ColorantAlias
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ColorantAlias() {
-            return Elements.Where(item => item.Name == Resource.ColorantAlias);
+        public TicketResouces ColorantAlias() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ColorantAlias, _child), true);
         }
 
         /// <summary>
         /// ColorantControl
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ColorantControl() {
-            return Elements.Where(item => item.Name == Resource.ColorantControl);
+        public TicketResouces ColorantControl() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ColorantControl, _child), true);
         }
 
         /// <summary>
         /// ColorControlStrip
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ColorControlStrip() {
-            return Elements.Where(item => item.Name == Resource.ColorControlStrip);
+        public TicketResouces ColorControlStrip() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ColorControlStrip, _child), true);
         }
 
         /// <summary>
         /// ColorCorrectionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ColorCorrectionParams() {
-            return Elements.Where(item => item.Name == Resource.ColorCorrectionParams);
+        public TicketResouces ColorCorrectionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ColorCorrectionParams, _child), true);
         }
 
         /// <summary>
         /// ColorIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ColorIntent() {
-            return Elements.Where(item => item.Name == Resource.ColorIntent);
+        public TicketResouces ColorIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ColorIntent, _child), true);
         }
 
         /// <summary>
         /// ColorMeasurementConditions
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ColorMeasurementConditions() {
-            return Elements.Where(item => item.Name == Resource.ColorMeasurementConditions);
+        public TicketResouces ColorMeasurementConditions() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ColorMeasurementConditions, _child), true);
         }
 
         /// <summary>
         /// ColorPool
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ColorPool() {
-            return Elements.Where(item => item.Name == Resource.ColorPool);
+        public TicketResouces ColorPool() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ColorPool, _child), true);
         }
 
         /// <summary>
         /// ColorSpaceConversionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ColorSpaceConversionParams() {
-            return Elements.Where(item => item.Name == Resource.ColorSpaceConversionParams);
+        public TicketResouces ColorSpaceConversionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ColorSpaceConversionParams, _child), true);
         }
 
         /// <summary>
         /// ComChannel
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ComChannel() {
-            return Elements.Where(item => item.Name == Resource.ComChannel);
+        public TicketResouces ComChannel() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ComChannel, _child), true);
         }
 
         /// <summary>
         /// Company
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Company() {
-            return Elements.Where(item => item.Name == Resource.Company);
+        public TicketResouces Company() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Company, _child), true);
         }
 
         /// <summary>
         /// Component
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Component() {
-            return Elements.Where(item => item.Name == Resource.Component);
+        public TicketResouces Component() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Component, _child), true);
         }
 
         /// <summary>
         /// Contact
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Contact() {
-            return Elements.Where(item => item.Name == Resource.Contact);
+        public TicketResouces Contact() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Contact, _child), true);
         }
 
         /// <summary>
         /// ContactCopyParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ContactCopyParams() {
-            return Elements.Where(item => item.Name == Resource.ContactCopyParams);
+        public TicketResouces ContactCopyParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ContactCopyParams, _child), true);
         }
 
         /// <summary>
         /// ContentList
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ContentList() {
-            return Elements.Where(item => item.Name == Resource.ContentList);
+        public TicketResouces ContentList() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ContentList, _child), true);
         }
 
         /// <summary>
         /// ConventionalPrintingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ConventionalPrintingParams() {
-            return Elements.Where(item => item.Name == Resource.ConventionalPrintingParams);
+        public TicketResouces ConventionalPrintingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ConventionalPrintingParams, _child), true);
         }
 
         /// <summary>
         /// CoverApplicationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CoverApplicationParams() {
-            return Elements.Where(item => item.Name == Resource.CoverApplicationParams);
+        public TicketResouces CoverApplicationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CoverApplicationParams, _child), true);
         }
 
         /// <summary>
         /// CreasingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CreasingParams() {
-            return Elements.Where(item => item.Name == Resource.CreasingParams);
+        public TicketResouces CreasingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CreasingParams, _child), true);
         }
 
         /// <summary>
         /// CustomerInfo
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CustomerInfo() {
-            return Elements.Where(item => item.Name == Resource.CustomerInfo);
+        public TicketResouces CustomerInfo() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CustomerInfo, _child), true);
         }
 
         /// <summary>
         /// CutBlock
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CutBlock() {
-            return Elements.Where(item => item.Name == Resource.CutBlock);
+        public TicketResouces CutBlock() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CutBlock, _child), true);
         }
 
         /// <summary>
         /// CutMark
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CutMark() {
-            return Elements.Where(item => item.Name == Resource.CutMark);
+        public TicketResouces CutMark() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CutMark, _child), true);
         }
 
         /// <summary>
         /// CuttingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CuttingParams() {
-            return Elements.Where(item => item.Name == Resource.CuttingParams);
+        public TicketResouces CuttingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CuttingParams, _child), true);
         }
 
         /// <summary>
         /// CylinderLayout
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CylinderLayout() {
-            return Elements.Where(item => item.Name == Resource.CylinderLayout);
+        public TicketResouces CylinderLayout() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CylinderLayout, _child), true);
         }
 
         /// <summary>
         /// CylinderLayoutPreparationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> CylinderLayoutPreparationParams() {
-            return Elements.Where(item => item.Name == Resource.CylinderLayoutPreparationParams);
+        public TicketResouces CylinderLayoutPreparationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.CylinderLayoutPreparationParams, _child), true);
         }
 
         /// <summary>
         /// DBMergeParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DBMergeParams() {
-            return Elements.Where(item => item.Name == Resource.DBMergeParams);
+        public TicketResouces DBMergeParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DBMergeParams, _child), true);
         }
 
         /// <summary>
         /// DBRules
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DBRules() {
-            return Elements.Where(item => item.Name == Resource.DBRules);
+        public TicketResouces DBRules() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DBRules, _child), true);
         }
 
         /// <summary>
         /// DBSchema
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DBSchema() {
-            return Elements.Where(item => item.Name == Resource.DBSchema);
+        public TicketResouces DBSchema() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DBSchema, _child), true);
         }
 
         /// <summary>
         /// DBSelection
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DBSelection() {
-            return Elements.Where(item => item.Name == Resource.DBSelection);
+        public TicketResouces DBSelection() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DBSelection, _child), true);
         }
 
         /// <summary>
         /// DeliveryIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DeliveryIntent() {
-            return Elements.Where(item => item.Name == Resource.DeliveryIntent);
+        public TicketResouces DeliveryIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DeliveryIntent, _child), true);
         }
 
         /// <summary>
         /// DeliveryParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DeliveryParams() {
-            return Elements.Where(item => item.Name == Resource.DeliveryParams);
+        public TicketResouces DeliveryParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DeliveryParams, _child), true);
         }
 
         /// <summary>
         /// DensityMeasuringField
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DensityMeasuringField() {
-            return Elements.Where(item => item.Name == Resource.DensityMeasuringField);
+        public TicketResouces DensityMeasuringField() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DensityMeasuringField, _child), true);
         }
 
         /// <summary>
         /// DevelopingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DevelopingParams() {
-            return Elements.Where(item => item.Name == Resource.DevelopingParams);
+        public TicketResouces DevelopingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DevelopingParams, _child), true);
         }
 
         /// <summary>
         /// Device
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Device() {
-            return Elements.Where(item => item.Name == Resource.Device);
+        public TicketResouces Device() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Device, _child), true);
         }
 
         /// <summary>
         /// DeviceMark
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DeviceMark() {
-            return Elements.Where(item => item.Name == Resource.DeviceMark);
+        public TicketResouces DeviceMark() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DeviceMark, _child), true);
         }
 
         /// <summary>
         /// DeviceNSpace
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DeviceNSpace() {
-            return Elements.Where(item => item.Name == Resource.DeviceNSpace);
+        public TicketResouces DeviceNSpace() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DeviceNSpace, _child), true);
         }
 
         /// <summary>
         /// DieLayout
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DieLayout() {
-            return Elements.Where(item => item.Name == Resource.DieLayout);
+        public TicketResouces DieLayout() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DieLayout, _child), true);
         }
 
         /// <summary>
         /// DieLayoutProductionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DieLayoutProductionParams() {
-            return Elements.Where(item => item.Name == Resource.DieLayoutProductionParams);
+        public TicketResouces DieLayoutProductionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DieLayoutProductionParams, _child), true);
         }
 
         /// <summary>
         /// DigitalDeliveryParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DigitalDeliveryParams() {
-            return Elements.Where(item => item.Name == Resource.DigitalDeliveryParams);
+        public TicketResouces DigitalDeliveryParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DigitalDeliveryParams, _child), true);
         }
 
         /// <summary>
         /// DigitalMedia
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DigitalMedia() {
-            return Elements.Where(item => item.Name == Resource.DigitalMedia);
+        public TicketResouces DigitalMedia() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DigitalMedia, _child), true);
         }
 
         /// <summary>
         /// DigitalPrintingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DigitalPrintingParams() {
-            return Elements.Where(item => item.Name == Resource.DigitalPrintingParams);
+        public TicketResouces DigitalPrintingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DigitalPrintingParams, _child), true);
         }
 
         /// <summary>
         /// DividingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> DividingParams() {
-            return Elements.Where(item => item.Name == Resource.DividingParams);
+        public TicketResouces DividingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.DividingParams, _child), true);
         }
 
         /// <summary>
         /// ElementColorParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ElementColorParams() {
-            return Elements.Where(item => item.Name == Resource.ElementColorParams);
+        public TicketResouces ElementColorParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ElementColorParams, _child), true);
         }
 
         /// <summary>
         /// EmbossingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> EmbossingIntent() {
-            return Elements.Where(item => item.Name == Resource.EmbossingIntent);
+        public TicketResouces EmbossingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.EmbossingIntent, _child), true);
         }
 
         /// <summary>
         /// EmbossingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> EmbossingParams() {
-            return Elements.Where(item => item.Name == Resource.EmbossingParams);
+        public TicketResouces EmbossingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.EmbossingParams, _child), true);
         }
 
         /// <summary>
         /// Employee
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Employee() {
-            return Elements.Where(item => item.Name == Resource.Employee);
+        public TicketResouces Employee() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Employee, _child), true);
         }
 
         /// <summary>
         /// EndSheetGluingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> EndSheetGluingParams() {
-            return Elements.Where(item => item.Name == Resource.EndSheetGluingParams);
+        public TicketResouces EndSheetGluingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.EndSheetGluingParams, _child), true);
         }
 
         /// <summary>
         /// ExposedMedia
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ExposedMedia() {
-            return Elements.Where(item => item.Name == Resource.ExposedMedia);
+        public TicketResouces ExposedMedia() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ExposedMedia, _child), true);
         }
 
         /// <summary>
         /// ExternalImpositionTemplate
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ExternalImpositionTemplate() {
-            return Elements.Where(item => item.Name == Resource.ExternalImpositionTemplate);
+        public TicketResouces ExternalImpositionTemplate() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ExternalImpositionTemplate, _child), true);
         }
 
         /// <summary>
         /// FeedingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> FeedingParams() {
-            return Elements.Where(item => item.Name == Resource.FeedingParams);
+        public TicketResouces FeedingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.FeedingParams, _child), true);
         }
 
         /// <summary>
         /// FileSpec
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> FileSpec() {
-            return Elements.Where(item => item.Name == Resource.FileSpec);
+        public TicketResouces FileSpec() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.FileSpec, _child), true);
         }
 
         /// <summary>
         /// FitPolicy
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> FitPolicy() {
-            return Elements.Where(item => item.Name == Resource.FitPolicy);
+        public TicketResouces FitPolicy() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.FitPolicy, _child), true);
         }
 
         /// <summary>
         /// Fold
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Fold() {
-            return Elements.Where(item => item.Name == Resource.Fold);
+        public TicketResouces Fold() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Fold, _child), true);
         }
 
         /// <summary>
         /// FoldingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> FoldingIntent() {
-            return Elements.Where(item => item.Name == Resource.FoldingIntent);
+        public TicketResouces FoldingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.FoldingIntent, _child), true);
         }
 
         /// <summary>
         /// FoldingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> FoldingParams() {
-            return Elements.Where(item => item.Name == Resource.FoldingParams);
+        public TicketResouces FoldingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.FoldingParams, _child), true);
         }
 
         /// <summary>
         /// FontParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> FontParams() {
-            return Elements.Where(item => item.Name == Resource.FontParams);
+        public TicketResouces FontParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.FontParams, _child), true);
         }
 
         /// <summary>
         /// FontPolicy
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> FontPolicy() {
-            return Elements.Where(item => item.Name == Resource.FontPolicy);
+        public TicketResouces FontPolicy() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.FontPolicy, _child), true);
         }
 
         /// <summary>
         /// FormatConversionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> FormatConversionParams() {
-            return Elements.Where(item => item.Name == Resource.FormatConversionParams);
+        public TicketResouces FormatConversionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.FormatConversionParams, _child), true);
         }
 
         /// <summary>
         /// GatheringParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> GatheringParams() {
-            return Elements.Where(item => item.Name == Resource.GatheringParams);
+        public TicketResouces GatheringParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.GatheringParams, _child), true);
         }
 
         /// <summary>
         /// GlueApplication
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> GlueApplication() {
-            return Elements.Where(item => item.Name == Resource.GlueApplication);
+        public TicketResouces GlueApplication() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.GlueApplication, _child), true);
         }
 
         /// <summary>
         /// GlueLine
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> GlueLine() {
-            return Elements.Where(item => item.Name == Resource.GlueLine);
+        public TicketResouces GlueLine() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.GlueLine, _child), true);
         }
 
         /// <summary>
         /// GluingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> GluingParams() {
-            return Elements.Where(item => item.Name == Resource.GluingParams);
+        public TicketResouces GluingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.GluingParams, _child), true);
         }
 
         /// <summary>
         /// HeadBandApplicationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> HeadBandApplicationParams() {
-            return Elements.Where(item => item.Name == Resource.HeadBandApplicationParams);
+        public TicketResouces HeadBandApplicationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.HeadBandApplicationParams, _child), true);
         }
 
         /// <summary>
         /// Hole
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Hole() {
-            return Elements.Where(item => item.Name == Resource.Hole);
+        public TicketResouces Hole() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Hole, _child), true);
         }
 
         /// <summary>
         /// HoleLine
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> HoleLine() {
-            return Elements.Where(item => item.Name == Resource.HoleLine);
+        public TicketResouces HoleLine() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.HoleLine, _child), true);
         }
 
         /// <summary>
         /// HoleMakingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> HoleMakingIntent() {
-            return Elements.Where(item => item.Name == Resource.HoleMakingIntent);
+        public TicketResouces HoleMakingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.HoleMakingIntent, _child), true);
         }
 
         /// <summary>
         /// HoleMakingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> HoleMakingParams() {
-            return Elements.Where(item => item.Name == Resource.HoleMakingParams);
+        public TicketResouces HoleMakingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.HoleMakingParams, _child), true);
         }
 
         /// <summary>
         /// IdentificationField
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> IdentificationField() {
-            return Elements.Where(item => item.Name == Resource.IdentificationField);
+        public TicketResouces IdentificationField() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.IdentificationField, _child), true);
         }
 
         /// <summary>
         /// IDPrintingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> IDPrintingParams() {
-            return Elements.Where(item => item.Name == Resource.IDPrintingParams);
+        public TicketResouces IDPrintingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.IDPrintingParams, _child), true);
         }
 
         /// <summary>
         /// ImageCompressionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ImageCompressionParams() {
-            return Elements.Where(item => item.Name == Resource.ImageCompressionParams);
+        public TicketResouces ImageCompressionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ImageCompressionParams, _child), true);
         }
 
         /// <summary>
         /// ImageReplacementParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ImageReplacementParams() {
-            return Elements.Where(item => item.Name == Resource.ImageReplacementParams);
+        public TicketResouces ImageReplacementParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ImageReplacementParams, _child), true);
         }
 
         /// <summary>
         /// ImageSetterParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ImageSetterParams() {
-            return Elements.Where(item => item.Name == Resource.ImageSetterParams);
+        public TicketResouces ImageSetterParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ImageSetterParams, _child), true);
         }
 
         /// <summary>
         /// Ink
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Ink() {
-            return Elements.Where(item => item.Name == Resource.Ink);
+        public TicketResouces Ink() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Ink, _child), true);
         }
 
         /// <summary>
         /// InkZoneCalculationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> InkZoneCalculationParams() {
-            return Elements.Where(item => item.Name == Resource.InkZoneCalculationParams);
+        public TicketResouces InkZoneCalculationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.InkZoneCalculationParams, _child), true);
         }
 
         /// <summary>
         /// InkZoneProfile
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> InkZoneProfile() {
-            return Elements.Where(item => item.Name == Resource.InkZoneProfile);
+        public TicketResouces InkZoneProfile() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.InkZoneProfile, _child), true);
         }
 
         /// <summary>
         /// InsertingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> InsertingIntent() {
-            return Elements.Where(item => item.Name == Resource.InsertingIntent);
+        public TicketResouces InsertingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.InsertingIntent, _child), true);
         }
 
         /// <summary>
         /// InsertingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> InsertingParams() {
-            return Elements.Where(item => item.Name == Resource.InsertingParams);
+        public TicketResouces InsertingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.InsertingParams, _child), true);
         }
 
         /// <summary>
         /// InsertSheet
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> InsertSheet() {
-            return Elements.Where(item => item.Name == Resource.InsertSheet);
+        public TicketResouces InsertSheet() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.InsertSheet, _child), true);
         }
 
         /// <summary>
         /// InterpretedPDLData
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> InterpretedPDLData() {
-            return Elements.Where(item => item.Name == Resource.InterpretedPDLData);
+        public TicketResouces InterpretedPDLData() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.InterpretedPDLData, _child), true);
         }
 
         /// <summary>
         /// InterpretingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> InterpretingParams() {
-            return Elements.Where(item => item.Name == Resource.InterpretingParams);
+        public TicketResouces InterpretingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.InterpretingParams, _child), true);
         }
 
         /// <summary>
         /// JacketingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> JacketingParams() {
-            return Elements.Where(item => item.Name == Resource.JacketingParams);
+        public TicketResouces JacketingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.JacketingParams, _child), true);
         }
 
         /// <summary>
         /// JobField
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> JobField() {
-            return Elements.Where(item => item.Name == Resource.JobField);
+        public TicketResouces JobField() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.JobField, _child), true);
         }
 
         /// <summary>
         /// LabelingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> LabelingParams() {
-            return Elements.Where(item => item.Name == Resource.LabelingParams);
+        public TicketResouces LabelingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.LabelingParams, _child), true);
         }
 
         /// <summary>
         /// LaminatingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> LaminatingIntent() {
-            return Elements.Where(item => item.Name == Resource.LaminatingIntent);
+        public TicketResouces LaminatingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.LaminatingIntent, _child), true);
         }
 
         /// <summary>
         /// LaminatingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> LaminatingParams() {
-            return Elements.Where(item => item.Name == Resource.LaminatingParams);
+        public TicketResouces LaminatingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.LaminatingParams, _child), true);
         }
 
         /// <summary>
         /// Layout
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Layout() {
-            return Elements.Where(item => item.Name == Resource.Layout);
+        public TicketResouces Layout() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Layout, _child), true);
         }
 
         /// <summary>
         /// LayoutElement
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> LayoutElement() {
-            return Elements.Where(item => item.Name == Resource.LayoutElement);
+        public TicketResouces LayoutElement() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.LayoutElement, _child), true);
         }
 
         /// <summary>
         /// LayoutElementProductionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> LayoutElementProductionParams() {
-            return Elements.Where(item => item.Name == Resource.LayoutElementProductionParams);
+        public TicketResouces LayoutElementProductionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.LayoutElementProductionParams, _child), true);
         }
 
         /// <summary>
         /// LayoutIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> LayoutIntent() {
-            return Elements.Where(item => item.Name == Resource.LayoutIntent);
+        public TicketResouces LayoutIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.LayoutIntent, _child), true);
         }
 
         /// <summary>
         /// LayoutPreparationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> LayoutPreparationParams() {
-            return Elements.Where(item => item.Name == Resource.LayoutPreparationParams);
+        public TicketResouces LayoutPreparationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.LayoutPreparationParams, _child), true);
         }
 
         /// <summary>
         /// LayoutShift
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> LayoutShift() {
-            return Elements.Where(item => item.Name == Resource.LayoutShift);
+        public TicketResouces LayoutShift() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.LayoutShift, _child), true);
         }
 
         /// <summary>
         /// LongitudinalRibbonOperationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> LongitudinalRibbonOperationParams() {
-            return Elements.Where(item => item.Name == Resource.LongitudinalRibbonOperationParams);
+        public TicketResouces LongitudinalRibbonOperationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.LongitudinalRibbonOperationParams, _child), true);
         }
 
         /// <summary>
         /// ManualLaborParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ManualLaborParams() {
-            return Elements.Where(item => item.Name == Resource.ManualLaborParams);
+        public TicketResouces ManualLaborParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ManualLaborParams, _child), true);
         }
 
         /// <summary>
         /// Media
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Media() {
-            return Elements.Where(item => item.Name == Resource.Media);
+        public TicketResouces Media() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Media, _child), true);
         }
 
         /// <summary>
         /// MediaIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> MediaIntent() {
-            return Elements.Where(item => item.Name == Resource.MediaIntent);
+        public TicketResouces MediaIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.MediaIntent, _child), true);
         }
 
         /// <summary>
         /// MediaSource
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> MediaSource() {
-            return Elements.Where(item => item.Name == Resource.MediaSource);
+        public TicketResouces MediaSource() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.MediaSource, _child), true);
         }
 
         /// <summary>
         /// MiscConsumable
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> MiscConsumable() {
-            return Elements.Where(item => item.Name == Resource.MiscConsumable);
+        public TicketResouces MiscConsumable() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.MiscConsumable, _child), true);
         }
 
         /// <summary>
         /// NodeInfo
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> NodeInfo() {
-            return Elements.Where(item => item.Name == Resource.NodeInfo);
+        public TicketResouces NodeInfo() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.NodeInfo, _child), true);
         }
 
         /// <summary>
         /// NumberingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> NumberingIntent() {
-            return Elements.Where(item => item.Name == Resource.NumberingIntent);
+        public TicketResouces NumberingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.NumberingIntent, _child), true);
         }
 
         /// <summary>
         /// NumberingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> NumberingParams() {
-            return Elements.Where(item => item.Name == Resource.NumberingParams);
+        public TicketResouces NumberingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.NumberingParams, _child), true);
         }
 
         /// <summary>
         /// ObjectResolution
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ObjectResolution() {
-            return Elements.Where(item => item.Name == Resource.ObjectResolution);
+        public TicketResouces ObjectResolution() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ObjectResolution, _child), true);
         }
 
         /// <summary>
         /// OrderingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> OrderingParams() {
-            return Elements.Where(item => item.Name == Resource.OrderingParams);
+        public TicketResouces OrderingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.OrderingParams, _child), true);
         }
 
         /// <summary>
         /// PackingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PackingIntent() {
-            return Elements.Where(item => item.Name == Resource.PackingIntent);
+        public TicketResouces PackingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PackingIntent, _child), true);
         }
 
         /// <summary>
         /// PackingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PackingParams() {
-            return Elements.Where(item => item.Name == Resource.PackingParams);
+        public TicketResouces PackingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PackingParams, _child), true);
         }
 
         /// <summary>
         /// PageAssignParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PageAssignParams() {
-            return Elements.Where(item => item.Name == Resource.PageAssignParams);
+        public TicketResouces PageAssignParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PageAssignParams, _child), true);
         }
 
         /// <summary>
         /// PageList
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PageList() {
-            return Elements.Where(item => item.Name == Resource.PageList);
+        public TicketResouces PageList() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PageList, _child), true);
         }
 
         /// <summary>
         /// Pallet
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Pallet() {
-            return Elements.Where(item => item.Name == Resource.Pallet);
+        public TicketResouces Pallet() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Pallet, _child), true);
         }
 
         /// <summary>
         /// PalletizingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PalletizingParams() {
-            return Elements.Where(item => item.Name == Resource.PalletizingParams);
+        public TicketResouces PalletizingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PalletizingParams, _child), true);
         }
 
         /// <summary>
         /// PDFToPSConversionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PDFToPSConversionParams() {
-            return Elements.Where(item => item.Name == Resource.PDFToPSConversionParams);
+        public TicketResouces PDFToPSConversionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PDFToPSConversionParams, _child), true);
         }
 
         /// <summary>
         /// PDLCreationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PDLCreationParams() {
-            return Elements.Where(item => item.Name == Resource.PDLCreationParams);
+        public TicketResouces PDLCreationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PDLCreationParams, _child), true);
         }
 
         /// <summary>
         /// PDLResourceAlias
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PDLResourceAlias() {
-            return Elements.Where(item => item.Name == Resource.PDLResourceAlias);
+        public TicketResouces PDLResourceAlias() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PDLResourceAlias, _child), true);
         }
 
         /// <summary>
         /// PerforatingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PerforatingParams() {
-            return Elements.Where(item => item.Name == Resource.PerforatingParams);
+        public TicketResouces PerforatingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PerforatingParams, _child), true);
         }
 
         /// <summary>
         /// Person
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Person() {
-            return Elements.Where(item => item.Name == Resource.Person);
+        public TicketResouces Person() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Person, _child), true);
         }
 
         /// <summary>
         /// PlaceHolderResource
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PlaceHolderResource() {
-            return Elements.Where(item => item.Name == Resource.PlaceHolderResource);
+        public TicketResouces PlaceHolderResource() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PlaceHolderResource, _child), true);
         }
 
         /// <summary>
         /// PlasticCombBindingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PlasticCombBindingParams() {
-            return Elements.Where(item => item.Name == Resource.PlasticCombBindingParams);
+        public TicketResouces PlasticCombBindingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PlasticCombBindingParams, _child), true);
         }
 
         /// <summary>
         /// PlateCopyParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PlateCopyParams() {
-            return Elements.Where(item => item.Name == Resource.PlateCopyParams);
+        public TicketResouces PlateCopyParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PlateCopyParams, _child), true);
         }
 
         /// <summary>
         /// PreflightAnalysis
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PreflightAnalysis() {
-            return Elements.Where(item => item.Name == Resource.PreflightAnalysis);
+        public TicketResouces PreflightAnalysis() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PreflightAnalysis, _child), true);
         }
 
         /// <summary>
         /// PreflightInventory
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PreflightInventory() {
-            return Elements.Where(item => item.Name == Resource.PreflightInventory);
+        public TicketResouces PreflightInventory() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PreflightInventory, _child), true);
         }
 
         /// <summary>
         /// PreflightParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PreflightParams() {
-            return Elements.Where(item => item.Name == Resource.PreflightParams);
+        public TicketResouces PreflightParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PreflightParams, _child), true);
         }
 
         /// <summary>
         /// PreflightProfile
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PreflightProfile() {
-            return Elements.Where(item => item.Name == Resource.PreflightProfile);
+        public TicketResouces PreflightProfile() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PreflightProfile, _child), true);
         }
 
         /// <summary>
         /// PreflightReport
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PreflightReport() {
-            return Elements.Where(item => item.Name == Resource.PreflightReport);
+        public TicketResouces PreflightReport() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PreflightReport, _child), true);
         }
 
         /// <summary>
         /// PreflightReportRulePool
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PreflightReportRulePool() {
-            return Elements.Where(item => item.Name == Resource.PreflightReportRulePool);
+        public TicketResouces PreflightReportRulePool() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PreflightReportRulePool, _child), true);
         }
 
         /// <summary>
         /// PreviewGenerationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PreviewGenerationParams() {
-            return Elements.Where(item => item.Name == Resource.PreviewGenerationParams);
+        public TicketResouces PreviewGenerationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PreviewGenerationParams, _child), true);
         }
 
         /// <summary>
         /// PrintCondition
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PrintCondition() {
-            return Elements.Where(item => item.Name == Resource.PrintCondition);
+        public TicketResouces PrintCondition() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PrintCondition, _child), true);
         }
 
         /// <summary>
         /// PrintRollingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PrintRollingParams() {
-            return Elements.Where(item => item.Name == Resource.PrintRollingParams);
+        public TicketResouces PrintRollingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PrintRollingParams, _child), true);
         }
 
         /// <summary>
         /// ProductionIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ProductionIntent() {
-            return Elements.Where(item => item.Name == Resource.ProductionIntent);
+        public TicketResouces ProductionIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ProductionIntent, _child), true);
         }
 
         /// <summary>
         /// ProductionPath
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ProductionPath() {
-            return Elements.Where(item => item.Name == Resource.ProductionPath);
+        public TicketResouces ProductionPath() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ProductionPath, _child), true);
         }
 
         /// <summary>
         /// ProofingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ProofingIntent() {
-            return Elements.Where(item => item.Name == Resource.ProofingIntent);
+        public TicketResouces ProofingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ProofingIntent, _child), true);
         }
 
         /// <summary>
         /// ProofingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ProofingParams() {
-            return Elements.Where(item => item.Name == Resource.ProofingParams);
+        public TicketResouces ProofingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ProofingParams, _child), true);
         }
 
         /// <summary>
         /// PSToPDFConversionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PSToPDFConversionParams() {
-            return Elements.Where(item => item.Name == Resource.PSToPDFConversionParams);
+        public TicketResouces PSToPDFConversionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PSToPDFConversionParams, _child), true);
         }
 
         /// <summary>
         /// PublishingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> PublishingIntent() {
-            return Elements.Where(item => item.Name == Resource.PublishingIntent);
+        public TicketResouces PublishingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.PublishingIntent, _child), true);
         }
 
         /// <summary>
         /// QualityControlParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> QualityControlParams() {
-            return Elements.Where(item => item.Name == Resource.QualityControlParams);
+        public TicketResouces QualityControlParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.QualityControlParams, _child), true);
         }
 
         /// <summary>
         /// QualityControlResult
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> QualityControlResult() {
-            return Elements.Where(item => item.Name == Resource.QualityControlResult);
+        public TicketResouces QualityControlResult() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.QualityControlResult, _child), true);
         }
 
         /// <summary>
         /// RasterReadingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> RasterReadingParams() {
-            return Elements.Where(item => item.Name == Resource.RasterReadingParams);
+        public TicketResouces RasterReadingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.RasterReadingParams, _child), true);
         }
 
         /// <summary>
         /// RefAnchor
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> RefAnchor() {
-            return Elements.Where(item => item.Name == Resource.RefAnchor);
+        public TicketResouces RefAnchor() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.RefAnchor, _child), true);
         }
 
         /// <summary>
         /// RegisterMark
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> RegisterMark() {
-            return Elements.Where(item => item.Name == Resource.RegisterMark);
+        public TicketResouces RegisterMark() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.RegisterMark, _child), true);
         }
 
         /// <summary>
         /// RegisterRibbon
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> RegisterRibbon() {
-            return Elements.Where(item => item.Name == Resource.RegisterRibbon);
+        public TicketResouces RegisterRibbon() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.RegisterRibbon, _child), true);
         }
 
         /// <summary>
         /// RenderingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> RenderingParams() {
-            return Elements.Where(item => item.Name == Resource.RenderingParams);
+        public TicketResouces RenderingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.RenderingParams, _child), true);
         }
 
         /// <summary>
         /// ResourceDefinitionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ResourceDefinitionParams() {
-            return Elements.Where(item => item.Name == Resource.ResourceDefinitionParams);
+        public TicketResouces ResourceDefinitionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ResourceDefinitionParams, _child), true);
         }
 
         /// <summary>
         /// RingBindingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> RingBindingParams() {
-            return Elements.Where(item => item.Name == Resource.RingBindingParams);
+        public TicketResouces RingBindingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.RingBindingParams, _child), true);
         }
 
         /// <summary>
         /// RollStand
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> RollStand() {
-            return Elements.Where(item => item.Name == Resource.RollStand);
+        public TicketResouces RollStand() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.RollStand, _child), true);
         }
 
         /// <summary>
         /// RunList
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> RunList() {
-            return Elements.Where(item => item.Name == Resource.RunList);
+        public TicketResouces RunList() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.RunList, _child), true);
         }
 
         /// <summary>
         /// SaddleStitchingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> SaddleStitchingParams() {
-            return Elements.Where(item => item.Name == Resource.SaddleStitchingParams);
+        public TicketResouces SaddleStitchingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.SaddleStitchingParams, _child), true);
         }
 
         /// <summary>
         /// ScanParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ScanParams() {
-            return Elements.Where(item => item.Name == Resource.ScanParams);
+        public TicketResouces ScanParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ScanParams, _child), true);
         }
 
         /// <summary>
         /// ScavengerArea
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ScavengerArea() {
-            return Elements.Where(item => item.Name == Resource.ScavengerArea);
+        public TicketResouces ScavengerArea() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ScavengerArea, _child), true);
         }
 
         /// <summary>
         /// ScreeningIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ScreeningIntent() {
-            return Elements.Where(item => item.Name == Resource.ScreeningIntent);
+        public TicketResouces ScreeningIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ScreeningIntent, _child), true);
         }
 
         /// <summary>
         /// ScreeningParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ScreeningParams() {
-            return Elements.Where(item => item.Name == Resource.ScreeningParams);
+        public TicketResouces ScreeningParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ScreeningParams, _child), true);
         }
 
         /// <summary>
         /// SeparationControlParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> SeparationControlParams() {
-            return Elements.Where(item => item.Name == Resource.SeparationControlParams);
+        public TicketResouces SeparationControlParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.SeparationControlParams, _child), true);
         }
 
         /// <summary>
         /// Shape
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Shape() {
-            return Elements.Where(item => item.Name == Resource.Shape);
+        public TicketResouces Shape() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Shape, _child), true);
         }
 
         /// <summary>
         /// ShapeCuttingIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ShapeCuttingIntent() {
-            return Elements.Where(item => item.Name == Resource.ShapeCuttingIntent);
+        public TicketResouces ShapeCuttingIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ShapeCuttingIntent, _child), true);
         }
 
         /// <summary>
         /// ShapeCuttingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ShapeCuttingParams() {
-            return Elements.Where(item => item.Name == Resource.ShapeCuttingParams);
+        public TicketResouces ShapeCuttingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ShapeCuttingParams, _child), true);
         }
 
         /// <summary>
         /// ShapeDef
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ShapeDef() {
-            return Elements.Where(item => item.Name == Resource.ShapeDef);
+        public TicketResouces ShapeDef() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ShapeDef, _child), true);
         }
 
         /// <summary>
         /// ShapeDefProductionParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ShapeDefProductionParams() {
-            return Elements.Where(item => item.Name == Resource.ShapeDefProductionParams);
+        public TicketResouces ShapeDefProductionParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ShapeDefProductionParams, _child), true);
         }
 
         /// <summary>
         /// Sheet
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Sheet() {
-            return Elements.Where(item => item.Name == Resource.Sheet);
+        public TicketResouces Sheet() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Sheet, _child), true);
         }
 
         /// <summary>
         /// ShrinkingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ShrinkingParams() {
-            return Elements.Where(item => item.Name == Resource.ShrinkingParams);
+        public TicketResouces ShrinkingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ShrinkingParams, _child), true);
         }
 
         /// <summary>
         /// SideSewingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> SideSewingParams() {
-            return Elements.Where(item => item.Name == Resource.SideSewingParams);
+        public TicketResouces SideSewingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.SideSewingParams, _child), true);
         }
 
         /// <summary>
         /// SizeIntent
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> SizeIntent() {
-            return Elements.Where(item => item.Name == Resource.SizeIntent);
+        public TicketResouces SizeIntent() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.SizeIntent, _child), true);
         }
 
         /// <summary>
         /// SpinePreparationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> SpinePreparationParams() {
-            return Elements.Where(item => item.Name == Resource.SpinePreparationParams);
+        public TicketResouces SpinePreparationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.SpinePreparationParams, _child), true);
         }
 
         /// <summary>
         /// SpineTapingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> SpineTapingParams() {
-            return Elements.Where(item => item.Name == Resource.SpineTapingParams);
+        public TicketResouces SpineTapingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.SpineTapingParams, _child), true);
         }
 
         /// <summary>
         /// StackingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> StackingParams() {
-            return Elements.Where(item => item.Name == Resource.StackingParams);
+        public TicketResouces StackingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.StackingParams, _child), true);
         }
 
         /// <summary>
         /// StaticBlockingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> StaticBlockingParams() {
-            return Elements.Where(item => item.Name == Resource.StaticBlockingParams);
+        public TicketResouces StaticBlockingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.StaticBlockingParams, _child), true);
         }
 
         /// <summary>
         /// StitchingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> StitchingParams() {
-            return Elements.Where(item => item.Name == Resource.StitchingParams);
+        public TicketResouces StitchingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.StitchingParams, _child), true);
         }
 
         /// <summary>
         /// Strap
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Strap() {
-            return Elements.Where(item => item.Name == Resource.Strap);
+        public TicketResouces Strap() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Strap, _child), true);
         }
 
         /// <summary>
         /// StrappingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> StrappingParams() {
-            return Elements.Where(item => item.Name == Resource.StrappingParams);
+        public TicketResouces StrappingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.StrappingParams, _child), true);
         }
 
         /// <summary>
         /// StripBindingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> StripBindingParams() {
-            return Elements.Where(item => item.Name == Resource.StripBindingParams);
+        public TicketResouces StripBindingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.StripBindingParams, _child), true);
         }
 
         /// <summary>
         /// StrippingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> StrippingParams() {
-            return Elements.Where(item => item.Name == Resource.StrippingParams);
+        public TicketResouces StrippingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.StrippingParams, _child), true);
         }
 
         /// <summary>
         /// Surface
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Surface() {
-            return Elements.Where(item => item.Name == Resource.Surface);
+        public TicketResouces Surface() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Surface, _child), true);
         }
 
         /// <summary>
         /// ThreadSealingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ThreadSealingParams() {
-            return Elements.Where(item => item.Name == Resource.ThreadSealingParams);
+        public TicketResouces ThreadSealingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ThreadSealingParams, _child), true);
         }
 
         /// <summary>
         /// ThreadSewingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> ThreadSewingParams() {
-            return Elements.Where(item => item.Name == Resource.ThreadSewingParams);
+        public TicketResouces ThreadSewingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.ThreadSewingParams, _child), true);
         }
 
         /// <summary>
         /// Tile
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Tile() {
-            return Elements.Where(item => item.Name == Resource.Tile);
+        public TicketResouces Tile() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Tile, _child), true);
         }
 
         /// <summary>
         /// Tool
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> Tool() {
-            return Elements.Where(item => item.Name == Resource.Tool);
+        public TicketResouces Tool() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.Tool, _child), true);
         }
 
         /// <summary>
         /// TransferCurve
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> TransferCurve() {
-            return Elements.Where(item => item.Name == Resource.TransferCurve);
+        public TicketResouces TransferCurve() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.TransferCurve, _child), true);
         }
 
         /// <summary>
         /// TransferCurvePool
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> TransferCurvePool() {
-            return Elements.Where(item => item.Name == Resource.TransferCurvePool);
+        public TicketResouces TransferCurvePool() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.TransferCurvePool, _child), true);
         }
 
         /// <summary>
         /// TransferFunctionControl
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> TransferFunctionControl() {
-            return Elements.Where(item => item.Name == Resource.TransferFunctionControl);
+        public TicketResouces TransferFunctionControl() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.TransferFunctionControl, _child), true);
         }
 
         /// <summary>
         /// TrappingDetails
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> TrappingDetails() {
-            return Elements.Where(item => item.Name == Resource.TrappingDetails);
+        public TicketResouces TrappingDetails() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.TrappingDetails, _child), true);
         }
 
         /// <summary>
         /// TrappingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> TrappingParams() {
-            return Elements.Where(item => item.Name == Resource.TrappingParams);
+        public TicketResouces TrappingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.TrappingParams, _child), true);
         }
 
         /// <summary>
         /// TrapRegion
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> TrapRegion() {
-            return Elements.Where(item => item.Name == Resource.TrapRegion);
+        public TicketResouces TrapRegion() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.TrapRegion, _child), true);
         }
 
         /// <summary>
         /// TrimmingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> TrimmingParams() {
-            return Elements.Where(item => item.Name == Resource.TrimmingParams);
+        public TicketResouces TrimmingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.TrimmingParams, _child), true);
         }
 
         /// <summary>
         /// UsageCounter
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> UsageCounter() {
-            return Elements.Where(item => item.Name == Resource.UsageCounter);
+        public TicketResouces UsageCounter() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.UsageCounter, _child), true);
         }
 
         /// <summary>
         /// VarnishingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> VarnishingParams() {
-            return Elements.Where(item => item.Name == Resource.VarnishingParams);
+        public TicketResouces VarnishingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.VarnishingParams, _child), true);
         }
 
         /// <summary>
         /// VerificationParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> VerificationParams() {
-            return Elements.Where(item => item.Name == Resource.VerificationParams);
+        public TicketResouces VerificationParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.VerificationParams, _child), true);
         }
 
         /// <summary>
         /// WebInlineFinishingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> WebInlineFinishingParams() {
-            return Elements.Where(item => item.Name == Resource.WebInlineFinishingParams);
+        public TicketResouces WebInlineFinishingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.WebInlineFinishingParams, _child), true);
         }
 
         /// <summary>
         /// WireCombBindingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> WireCombBindingParams() {
-            return Elements.Where(item => item.Name == Resource.WireCombBindingParams);
+        public TicketResouces WireCombBindingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.WireCombBindingParams, _child), true);
         }
 
         /// <summary>
         /// WrappingParams
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<XElement> WrappingParams() {
-            return Elements.Where(item => item.Name == Resource.WrappingParams);
+        public TicketResouces WrappingParams() {
+            return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.WrappingParams, _child), true);
         }
+
 
     }
 
@@ -2754,6 +2755,7 @@ namespace FluentJdf.LinqToJdf {
 
         Ticket _ticket;
         IEnumerable<XElement> _elements;
+        bool _child = false;
 
         /// <summary>
         /// The element
@@ -2769,11 +2771,13 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="ticket"></param>
         /// <param name="elements"></param>
-        public TicketResouces(Ticket ticket, IEnumerable<XElement> elements) {
+        /// <param name="child"></param>
+        public TicketResouces(Ticket ticket, IEnumerable<XElement> elements, bool child) {
             ParameterCheck.ParameterRequired(ticket, "ticket");
             ParameterCheck.ParameterRequired(elements, "elements");
             _ticket = ticket;
             _elements = elements;
+            _child = child;
         }
     }
 

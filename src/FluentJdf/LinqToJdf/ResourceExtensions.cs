@@ -151,6 +151,62 @@ namespace FluentJdf.LinqToJdf {
             }
         }
 
+        //TODO determine a better way to resolve these items. This is only used by the GetProcess code.
+
+        /// <summary>
+        /// Resolve the Curent Ref element if needed.
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <param name="name"></param>
+        /// <param name="children"></param>
+        /// <returns></returns>
+        internal static IEnumerable<XElement> ResolveRefOrReturnResource(this IEnumerable<XElement> elements, XName name, bool children) {
+
+            var items = elements;
+
+            if (children) {
+                foreach (var topElements in elements) {
+                    foreach (var element in topElements.Elements()) {
+
+                        if (element.Name.LocalName == name.LocalName || element.Name.LocalName == name.LocalName + "Ref") {
+
+                            if (element.Name.LocalName.EndsWith("Ref")) {
+                                var rRef = element.GetAttributeValueOrEmpty("rRef");
+
+                                var retVal = element.GetResourceOrNull(rRef);
+                                if (retVal != null) {
+                                    yield return retVal;
+                                }
+                            }
+                            else {
+                                yield return element;
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                foreach (var element in items) {
+                    if (element.Name.LocalName == name.LocalName || element.Name.LocalName == name.LocalName + "Ref") {
+
+                        if (element.Name.LocalName.EndsWith("Ref")) {
+                            var rRef = element.GetAttributeValueOrEmpty("rRef");
+
+                            var retVal = element.GetResourceOrNull(rRef);
+                            if (retVal != null) {
+                                yield return retVal;
+                            }
+                        }
+                        else {
+                            yield return element;
+                        }
+                    }
+                }
+            }
+
+            //yield return null;
+        }
+
         /// <summary>
         /// Gets all elements that reference the current element
         /// </summary>
