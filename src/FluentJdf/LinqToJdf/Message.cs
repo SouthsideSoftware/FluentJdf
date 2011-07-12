@@ -261,8 +261,9 @@ namespace FluentJdf.LinqToJdf {
                 //todo: add packaging options
 
                 string name = string.Format("JMF{0}", MimeTypeHelper.JmfExtension);
-                using (var transmissionPartColllection = new TransmissionPartCollection(additionalParts)) {
+                using (var transmissionPartColllection = new TransmissionPartCollection()) {
                     transmissionPartColllection.Add(new MessageTransmissionPart(this, name));
+                    transmissionPartColllection.AddRange(additionalParts);
                     return transmitterFactory.GetTransmitterForUrl(url).Transmit(url, transmissionPartColllection);
                 }
             }
