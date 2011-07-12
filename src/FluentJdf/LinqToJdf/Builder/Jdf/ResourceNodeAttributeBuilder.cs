@@ -147,5 +147,18 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
                 return resourceNodeBuilder.ParentJdfNode;
             }
         }
+
+        /// <summary>
+        /// Sets an arbitrary attribute.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public ResourceNodeAttributeBuilder Attribute(XName name, string value) {
+            ParameterCheck.ParameterRequired(name, "name");
+
+            Element.SetAttributeValue(name, value);
+            return this;
+        }
     }
 }
