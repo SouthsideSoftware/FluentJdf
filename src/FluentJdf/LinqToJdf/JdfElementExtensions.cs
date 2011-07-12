@@ -61,6 +61,39 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Sets the status attribute of a JDF node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public static XElement SetStatus(this XElement element, JdfStatus status) {
+            ParameterCheck.ParameterRequired(element, "element");
+            element.ThrowExceptionIfNotJdfElement();
+            element.SetAttributeValue("Status", status.ToString());
+            return element;
+        }
+
+        /// <summary>
+        /// Gets the status attribute of a JDF node.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        /// <remarks>Returns JdfStatus.Unknown if the Status attribute is null
+        /// or does not contain a known value.</remarks>
+        public static JdfStatus GetStatus(this XElement element) {
+            ParameterCheck.ParameterRequired(element, "element");
+            element.ThrowExceptionIfNotJdfElement();
+            var sStatus = element.GetAttributeValueOrNull("Status");
+            if (sStatus == null) return JdfStatus.Unknown;
+            JdfStatus status;
+            if (Enum.TryParse(sStatus, true, out status)) {
+                return status;
+            }
+
+            return JdfStatus.Unknown;
+        }
+
+        /// <summary>
         /// Add a JDF node to the current JDF or document
         /// </summary>
         /// <returns>The newly created JDF node.</returns>
@@ -74,6 +107,8 @@ namespace FluentJdf.LinqToJdf {
             var jdfNode = new XElement(Element.JDF);
             parent.Add(jdfNode);
             jdfNode.MakeJdfElementAProcess(types);
+            jdfNode.SetUniqueId();
+            jdfNode.SetStatus(JdfStatus.Waiting);
 
             if (jdfNode.IsJdfRoot()) {
                 if (Configuration.FluentJdfLibrary.Settings.JdfAuthoringSettings.GenerateJobId) {

@@ -263,6 +263,7 @@
     <Compile Include="LinqToJdf\Builder\Jmf\IJmfBuilderBase.cs" />
     <Compile Include="LinqToJdf\IResourceNodeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jdf\JdfNodeAttributeBuilder.cs" />
+    <Compile Include="LinqToJdf\JdfStatus.cs" />
     <Compile Include="LinqToJdf\JdfVersion.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\CommandBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jmf\CommandTypeBuilder.cs" />

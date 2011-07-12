@@ -37,7 +37,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="element"></param>
         /// <param name="idPrefix">The prefix to use in front of the GUID ID.  Default is "R_".</param>
         /// <param name="updateReferences">True to update references.  Default is true.</param>
-        public static XElement SetUniqueId(this XElement element, string idPrefix = "R_", bool updateReferences = true) {
+        public static XElement SetUniqueId(this XElement element, string idPrefix, bool updateReferences = true) {
             ParameterCheck.ParameterRequired(element, "element");
 
             return element.SetId(Globals.CreateUniqueId(idPrefix), updateReferences);

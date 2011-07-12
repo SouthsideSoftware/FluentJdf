@@ -48,6 +48,18 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         }
 
         /// <summary>
+        /// Sets the Status attribute.
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public JdfNodeAttributeBuilder Status(JdfStatus status) {
+            ParameterCheck.ParameterRequired(status, "status");
+
+            Element.SetStatus(status);
+            return this;
+        }
+
+        /// <summary>
         /// Create an input
         /// </summary>>
         public ResourceNodeNameBuilder WithInput() {

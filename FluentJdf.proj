@@ -339,8 +339,8 @@
 	</Target>
 
   <Target Name="PublishNugetPackage">
-    <Message Importance="high" Text="Publish packages FluentJdf.$(AppVersion)"/>
-    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) push -source http://packages.nuget.org/v1/ FluentJdf.$(AppVersion).nupkg 55312497-4441-41df-a355-84f42fa2ca0d"/>
+    <Message Importance="high" Text="Publish packages FluentJdf.$(AppVersion).$(BuildNumber)"/>
+    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) push -source http://packages.nuget.org/v1/ FluentJdf.$(AppVersion).$(BuildNumber).nupkg 55312497-4441-41df-a355-84f42fa2ca0d"/>
   </Target>
 
   <ProjectExtensions>
