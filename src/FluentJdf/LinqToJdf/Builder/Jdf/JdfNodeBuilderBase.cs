@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jdf {
@@ -54,6 +55,13 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
             get {
                 return Element.Document as Ticket;
             }
+        }
+
+        /// <summary>
+        /// Gets the root JDF node.
+        /// </summary>
+        public JdfNodeBuilder RootJdfNode {
+            get { return new JdfNodeBuilder(Element.Document.Root); }
         }
     }
 }

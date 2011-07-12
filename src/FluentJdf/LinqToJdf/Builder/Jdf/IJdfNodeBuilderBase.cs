@@ -25,5 +25,10 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         Ticket Ticket {
             get;
         }
+
+        /// <summary>
+        /// Gets the root JDF node.
+        /// </summary>
+        JdfNodeBuilder RootJdfNode { get; }
     }
 }

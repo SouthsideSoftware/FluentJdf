@@ -11,8 +11,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
     /// Builder for setting attributes on generic JDF element.
     /// </summary>
     public class GenericJdfAttributeBuilder : IJdfNodeBuilder {
-
-        GenericJdfBuilder _nodeBuilder;
+        readonly GenericJdfBuilder nodeBuilder;
 
         /// <summary>
         /// Constructor.
@@ -20,7 +19,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// <param name="nodeBuilder"></param>
         internal GenericJdfAttributeBuilder(GenericJdfBuilder nodeBuilder) {
             ParameterCheck.ParameterRequired(nodeBuilder, "nodeBuilder");
-            _nodeBuilder = nodeBuilder;
+            this.nodeBuilder = nodeBuilder;
         }
 
         /// <summary>
@@ -44,7 +43,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         public GenericJdfBuilder AddNode(XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
             Element.Add(element);
-            return new GenericJdfBuilder(_nodeBuilder.Node(), element);
+            return new GenericJdfBuilder(nodeBuilder.Node(), element);
         }
 
         /// <summary>
@@ -61,14 +60,14 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// Create an input
         /// </summary>
         public ResourceNodeNameBuilder WithInput() {
-            return _nodeBuilder.WithInput();
+            return nodeBuilder.WithInput();
         }
 
         /// <summary>
         /// Creates an output.
         /// </summary>
         public ResourceNodeNameBuilder WithOutput() {
-            return _nodeBuilder.WithOutput();
+            return nodeBuilder.WithOutput();
         }
 
         /// <summary>
@@ -76,7 +75,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <returns></returns>
         public JdfNodeBuilder AddIntent() {
-            return _nodeBuilder.AddIntent();
+            return nodeBuilder.AddIntent();
         }
 
         /// <summary>
@@ -84,7 +83,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <returns></returns>
         public JdfNodeBuilder AddProcessGroup() {
-            return _nodeBuilder.AddProcessGroup();
+            return nodeBuilder.AddProcessGroup();
         }
 
         /// <summary>
@@ -93,7 +92,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// <param name="types"></param>
         /// <returns></returns>
         public JdfNodeBuilder AddProcess(params string[] types) {
-            return _nodeBuilder.AddProcess(types);
+            return nodeBuilder.AddProcess(types);
         }
 
         /// <summary>
@@ -102,7 +101,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// <param name="addSchemaInfo"></param>
         /// <returns></returns>
         public JdfNodeBuilder ValidateJdf(bool addSchemaInfo = true) {
-            return _nodeBuilder.ValidateJdf(addSchemaInfo);
+            return nodeBuilder.ValidateJdf(addSchemaInfo);
         }
 
         /// <summary>
@@ -110,7 +109,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         public XElement Element {
             get {
-                return _nodeBuilder.Element;
+                return nodeBuilder.Element;
             }
         }
 
@@ -119,7 +118,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         public JdfNodeBuilder ParentJdfNode {
             get {
-                return _nodeBuilder.ParentJdfNode;
+                return nodeBuilder.ParentJdfNode;
             }
         }
 
@@ -128,9 +127,15 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         public Ticket Ticket {
             get {
-                return _nodeBuilder.Ticket;
+                return nodeBuilder.Ticket;
             }
         }
 
+        /// <summary>
+        /// Gets the root JDF node.
+        /// </summary>
+        public JdfNodeBuilder RootJdfNode {
+            get { return nodeBuilder.RootJdfNode; }
+        }
     }
 }

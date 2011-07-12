@@ -116,6 +116,13 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         }
 
         /// <summary>
+        /// Gets the root JDF node.
+        /// </summary>
+        public JdfNodeBuilder RootJdfNode {
+            get { return resourceNodeBuilder.RootJdfNode; }
+        }
+
+        /// <summary>
         /// Validate the JDF
         /// </summary>
         /// <param name="addSchemaInfo"></param>
