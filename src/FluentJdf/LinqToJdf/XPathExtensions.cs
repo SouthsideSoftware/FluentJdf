@@ -260,7 +260,7 @@ namespace FluentJdf.LinqToJdf {
 
             foreach (var item in element.XPathSelectElements(xPath, resolver)) {
                 if (item.Name.LocalName.EndsWith("Ref")) {
-                    var rRef = item.GetAttributeValueOrEmpty("rRef");
+                    var rRef = item.GetRefId();
 
                     var retVal = item.GetResourceOrNull(rRef);
                     if (retVal != null) {
