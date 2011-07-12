@@ -18,7 +18,7 @@ namespace FluentJdf.LinqToJdf {
     /// A JMF message.
     /// </summary>
     public class Message : FluentJdfDocumentBase {
-        static readonly ILog logger = LogManager.GetLogger(typeof (Message));
+        static readonly ILog logger = LogManager.GetLogger(typeof(Message));
         readonly ITransmissionPartCollection additionalParts = new TransmissionPartCollection();
         readonly ITransmitterFactory transmitterFactory = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmitterFactory>();
 
@@ -34,7 +34,8 @@ namespace FluentJdf.LinqToJdf {
             }
         }
 
-        internal Message() {}
+        internal Message() {
+        }
 
         /// <summary>
         /// Copy constructor
@@ -46,7 +47,9 @@ namespace FluentJdf.LinqToJdf {
         }
 
         internal ITransmissionPartCollection AdditionalParts {
-            get { return additionalParts; }
+            get {
+                return additionalParts;
+            }
         }
 
         /// <summary>
@@ -80,7 +83,9 @@ namespace FluentJdf.LinqToJdf {
         /// Gets the first message element (or <see langword="null"/> if there are none).
         /// </summary>
         public XElement MessageElement {
-            get { return MessageElements.FirstOrDefault(); }
+            get {
+                return MessageElements.FirstOrDefault();
+            }
         }
 
         /// <summary>
