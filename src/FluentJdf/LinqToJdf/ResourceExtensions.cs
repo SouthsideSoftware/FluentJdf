@@ -166,22 +166,8 @@ namespace FluentJdf.LinqToJdf {
 
             if (children) {
                 foreach (var topElements in elements) {
-                    foreach (var element in topElements.Elements()) {
-
-                        if (element.Name.LocalName == name.LocalName || element.Name.LocalName == name.LocalName + "Ref") {
-
-                            if (element.Name.LocalName.EndsWith("Ref")) {
-                                var rRef = element.GetAttributeValueOrEmpty("rRef");
-
-                                var retVal = element.GetResourceOrNull(rRef);
-                                if (retVal != null) {
-                                    yield return retVal;
-                                }
-                            }
-                            else {
-                                yield return element;
-                            }
-                        }
+                    foreach (var item in topElements.SelectJDFDescendants(name)) {
+                        yield return item;
                     }
                 }
             }
