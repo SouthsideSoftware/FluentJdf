@@ -21,6 +21,6 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.ResourceExtensions {
 
         It should_find_DigitalPrintingParams = () => ticket.GetResourceLinkPoolResolvedItem("DigitalPrintingParams", ResourceUsage.Input).ShouldNotBeNull();
 
-        It should_not_find_BobDylan = () => ticket.GetResourceLinkPoolResolvedItem("BonDylan", ResourceUsage.Input).ShouldBeNull();
+        It should_not_find_BobDylan = () => ticket.GetResourceLinkPoolResolvedItem("BobDylan", ResourceUsage.Input).ShouldBeNull();
     }
 }

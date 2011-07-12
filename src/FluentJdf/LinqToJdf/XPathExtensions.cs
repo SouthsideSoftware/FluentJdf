@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Infrastructure.Core.CodeContracts;
+using System;
 
 namespace FluentJdf.LinqToJdf {
     /// <summary>
@@ -106,6 +107,8 @@ namespace FluentJdf.LinqToJdf {
                 + element.Name.LocalName;
         }
 
+#pragma warning disable 0618
+
         /// <summary>
         /// Evaluate an xpath in an <see cref="XContainer"/> against a selected resource in a selected process by xpath
         /// </summary>
@@ -120,6 +123,7 @@ namespace FluentJdf.LinqToJdf {
         /// <para>The xpath default namespace is the JDF namespace.</para>
         /// <para>The remaining xpath will automatically traverse ref elements.</para></remarks>
         /// <returns>An <see cref="XElement"/>.</returns>
+        [Obsolete("Use new Fluent interface Ticket.GetProcess()")]
         public static XElement ProcessXPathSelectElement(this XContainer document, string processXPath,
                                                          XmlNamespaceManager namespaceManager = null) {
             return ProcessXPathSelectElements(document, processXPath, namespaceManager).FirstOrDefault();
@@ -139,6 +143,7 @@ namespace FluentJdf.LinqToJdf {
         /// <para>The xpath default namespace is the JDF namespace.</para>
         /// <para>The remaining xpath will automatically traverse ref elements.</para></remarks>
         /// <returns>An IEnumerable{<see cref="XElement"/>} containing matching <see cref="XElement"/> objects.</returns>
+        [Obsolete("Use new Fluent interface Ticket.GetProcess()")]
         public static IEnumerable<XElement> ProcessXPathSelectElements(this XContainer document, string processXPath,
                                                                        XmlNamespaceManager namespaceManager = null) {
             //process:DigitalPrinting/DigitalPrintingParams[@usage=input]/rest of the xpath executed against JdfXPathSelectElement(s)
@@ -172,6 +177,8 @@ namespace FluentJdf.LinqToJdf {
                 }
             }
         }
+
+#pragma warning restore 0618
 
         /// <summary>
         /// Traverse the JDF structure and auto resolve the Ref elements if needed to return the expected node.
@@ -253,7 +260,7 @@ namespace FluentJdf.LinqToJdf {
 
             foreach (var item in element.XPathSelectElements(xPath, resolver)) {
                 if (item.Name.LocalName.EndsWith("Ref")) {
-                    var rRef = item.GetAttributeValueOrEmpty("rRef");
+                    var rRef = item.GetRefId();
 
                     var retVal = item.GetResourceOrNull(rRef);
                     if (retVal != null) {

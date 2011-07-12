@@ -104,7 +104,7 @@ namespace FluentJdf.LinqToJdf {
             var xpath = string.Format("//ResourceLinkPool/{0}[@Usage = '{1}']", resourceName, usage.ToString());
             var resourceLinkNode = element.JdfXPathSelectElement(xpath);
             if (resourceLinkNode != null) {
-                var resourceLink = element.JdfXPathSelectElement(string.Format("//ResourcePool/*[@ID = '{0}']", resourceLinkNode.Attribute("rRef").Value));
+                var resourceLink = element.JdfXPathSelectElement(string.Format("//ResourcePool/*[@ID = '{0}']", resourceLinkNode.GetRefId()));
                 if (resourceLink != null) {
                     return resourceLink;
                 }
@@ -144,7 +144,7 @@ namespace FluentJdf.LinqToJdf {
             var xpath = string.Format("./ResourceLinkPool/*[@Usage = '{0}']", usage.ToString());
             var resourceLinkNodes = element.JdfXPathSelectElements(xpath);
             foreach (var resourceLinkNode in resourceLinkNodes) {
-                var resourceLink = element.JdfXPathSelectElement(string.Format("//ResourcePool/*[@ID = '{0}']", resourceLinkNode.Attribute("rRef").Value));
+                var resourceLink = element.JdfXPathSelectElement(string.Format("//ResourcePool/*[@ID = '{0}']", resourceLinkNode.GetRefId()));
                 if (resourceLink != null) {
                     yield return resourceLink;
                 }
@@ -176,7 +176,7 @@ namespace FluentJdf.LinqToJdf {
                     if (element.Name.LocalName == name.LocalName || element.Name.LocalName == name.LocalName + "Ref") {
 
                         if (element.Name.LocalName.EndsWith("Ref")) {
-                            var rRef = element.GetAttributeValueOrEmpty("rRef");
+                            var rRef = element.GetRefId();
 
                             var retVal = element.GetResourceOrNull(rRef);
                             if (retVal != null) {
