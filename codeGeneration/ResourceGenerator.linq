@@ -32,8 +32,8 @@ void Main() {
 		/// {0}
 		/// </summary>
 		/// <returns></returns>
-		public IEnumerable<XElement> {0}() {{
-			return Elements.Where(item => item.Name == Resource.{0});
+		public TicketResouces {0}() {{
+			return new TicketResouces(_ticket, Elements.ResolveRefOrReturnResource(Resource.{0}, _child), true);
 		}}";
 	
 	foreach (var item in items.OrderBy (item => item)) {
