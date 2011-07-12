@@ -121,9 +121,9 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="elements">The elements to process</param>
         /// <param name="usage">The <see cref="ResourceUsage"/></param>
         /// <returns></returns>
-        public static IEnumerable<XElement> GetResourceLinkPoolResolvedItemForUsage(this IEnumerable<XContainer> elements, ResourceUsage usage) {
+        public static IEnumerable<XElement> GetCurrentJDFResourceLinkPoolResolvedItemForUsage(this IEnumerable<XContainer> elements, ResourceUsage usage) {
             foreach (var element in elements) {
-                foreach (var result in element.GetResourceLinkPoolResolvedItemForUsage(usage)) {
+                foreach (var result in element.GetCurrentJDFResourceLinkPoolResolvedItemForUsage(usage)) {
                     yield return result;
                 }
             }
@@ -138,7 +138,7 @@ namespace FluentJdf.LinqToJdf {
         /// <param name="element">The element to process</param>
         /// <param name="usage">The <see cref="ResourceUsage"/></param>
         /// <returns></returns>
-        public static IEnumerable<XElement> GetResourceLinkPoolResolvedItemForUsage(this XContainer element, ResourceUsage usage) {
+        public static IEnumerable<XElement> GetCurrentJDFResourceLinkPoolResolvedItemForUsage(this XContainer element, ResourceUsage usage) {
             ParameterCheck.ParameterRequired(element, "element");
 
             var xpath = string.Format("./ResourceLinkPool/*[@Usage = '{0}']", usage.ToString());

@@ -998,7 +998,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <returns></returns>
         public TicketResouces WithInput() {
-            return new TicketResouces(_ticket, Elements.GetResourceLinkPoolResolvedItemForUsage(ResourceUsage.Input));
+            return new TicketResouces(_ticket, Elements.GetCurrentJDFResourceLinkPoolResolvedItemForUsage(ResourceUsage.Input));
         }
 
         /// <summary>
@@ -1015,7 +1015,7 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <returns></returns>
         public TicketResouces WithOutput() {
-            return new TicketResouces(_ticket, Elements.GetResourceLinkPoolResolvedItemForUsage(ResourceUsage.Output));
+            return new TicketResouces(_ticket, Elements.GetCurrentJDFResourceLinkPoolResolvedItemForUsage(ResourceUsage.Output));
         }
 
         /// <summary>
@@ -1028,7 +1028,7 @@ namespace FluentJdf.LinqToJdf {
         }
 
         private static IEnumerable<XElement> WithReducer(IEnumerable<XElement> elements, XName resourceName, ResourceUsage usage) {
-            return elements.GetResourceLinkPoolResolvedItemForUsage(usage).Where(item => {
+            return elements.GetCurrentJDFResourceLinkPoolResolvedItemForUsage(usage).Where(item => {
                 var ns = resourceName.NamespaceName;
 
                 if (string.IsNullOrWhiteSpace(ns)) {
