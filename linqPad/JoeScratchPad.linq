@@ -64,7 +64,7 @@ void FluentGetProcess() {
 			.AddNode(new XElement("AddressChild"))
 			.With()
 			.Attribute("addressid", "1234").Ticket;
-			
+	
 	//ticket.Dump();
 	
 	ticket.GetProcess()
@@ -86,7 +86,15 @@ void FluentGetProcess() {
 	
 	var intent = Ticket.CreateIntent().WithInput().ArtDeliveryIntent().Ticket;
 	
-	intent.GetIntent().WithInput().ArtDeliveryIntent().Dump();
+	//intent.GetIntent().WithInput().ArtDeliveryIntent().Dump();
+	
+	intent = Ticket.CreateIntent().WithInput()
+	.ArtDeliveryIntent().AddNode("ArtDelivery").AddNode(Resource.RunList).Ticket.Dump();
+	
+	intent.GetIntent().WithInput().ArtDeliveryIntent().RunList().Dump();
+	
+	//intent = Ticket.CreateIntent().WithInput().ArtDeliveryIntent().AddNode(Element.ArtDelivery).AddNode(Resource.RunList).Ticket;
+ 	//intent.GetIntent().WithInput().ArtDeliveryIntent().RunList().Dump();
 }
 
 void FactoryTests() {
