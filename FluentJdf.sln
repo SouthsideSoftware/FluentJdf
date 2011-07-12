@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentJdf", "src\FluentJdf\FluentJdf.csproj", "{B70C889D-3B60-469D-8475-23818353771C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA105616-C5B0-4D3B-BA17-DB686117D4C7}"
-	ProjectSection(SolutionItems) = preProject
-		FluentJdf.proj = FluentJdf.proj
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6CAB9D69-9717-42E1-B7E6-A7EBE2F66D2C}"
 EndProject

@@ -1040,33 +1040,7 @@ namespace FluentJdf.LinqToJdf {
             });
         }
 
-        //private static IEnumerable<XElement> ProcessXPathSelectElements(Ticket document, string processName) {
-        //    //process:DigitalPrinting/DigitalPrintingParams[@usage=input]/rest of the xpath executed against JdfXPathSelectElement(s)
-        //    ParameterCheck.ParameterRequired(document, "document");
-        //    ParameterCheck.StringRequiredAndNotWhitespace(processName, "processXPath");
-
-        //    var processElements = document.GetJdfNodesContainingProcessType(processName);
-        //    foreach (var processElement in processElements) {
-        //        var link = processElement.GetResourceLinkPoolResolvedItem(parser.ResourceName, parser.ResourceUsage);
-        //        if (link != null) {
-        //            if (!string.IsNullOrWhiteSpace(parser.XPathStatement)) {
-        //                //You must wrap the document in the normalizer or you may not obtain the xml correctly.
-        //                using (var resolver = new RefExtensionsNormalizer(processElement)) {
-        //                    var xPath = new XPathDecorator(parser.XPathStatement).PrefixNames("jdf");
-        //                    foreach (var item in link.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager))) {
-        //                        yield return item;
-        //                    }
-        //                }
-        //            }
-        //            else {
-        //                yield return link;
-        //            }
-        //        }
-        //    }
-        //}
     }
-
-    //Ticket.GetProcess().Bending().WithInput().RunList() This gets the first run list resource that is an input of the first bending.
 
     /// <summary>
     /// 
