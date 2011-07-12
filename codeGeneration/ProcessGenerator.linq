@@ -34,6 +34,19 @@ void Main() {
 	foreach (var item in items.OrderBy (item => item)) {
 		Console.WriteLine(formatString, item);
 	}
+	
+	formatString = @"
+	    /// <summary>
+		/// {0}
+		/// </summary>
+		/// <returns></returns>
+		public TicketProcess {0}() {{
+			return Named(ProcessType.{0});
+		}}	";
+	
+	foreach (var item in items.OrderBy (item => item)) {
+		Console.WriteLine(formatString, item);
+	}
 }
 
 // Define other methods and classes here

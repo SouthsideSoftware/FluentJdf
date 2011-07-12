@@ -32,48 +32,8 @@ void Main() {
 	InitializeFluentJdf();
 	//ProcessTicketsForTests();
 	//FactoryTests();
-	//FluentGetProcess();
-	FluentSubmitQueueEntry();
-}
-
-//issue 65
-void FluentSubmitQueueEntry() {
-	FluentJdf.LinqToJdf.Message message;
-	FluentJdf.LinqToJdf.Ticket ticket;
-
-	ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
-	message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
-
-	message.Dump();
-
- 	FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
-	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(MockTransmitter));
-	message.Transmit("file:///Test");
-
-}
-
- public class MockTransmitter : ITransmitter {
-	#region ITransmitter Members
-
-	public IJmfResult Transmit(Uri uri, ITransmissionPartCollection partsToSend) {
-		var result = new JmfResult(partsToSend);
-		result.Dump();
-		
-		var encoded = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Encode(partsToSend);
-		encoded.Stream.Position = 0;
-		
-		using (var sr = new StreamReader(encoded.Stream)) {
-			sr.ReadToEnd().Dump();
-		}
-		
-		return result;
-	}
-
-	public IJmfResult Transmit(string uri, ITransmissionPartCollection partsToSend) {
-		throw new NotImplementedException();
-	}
-
-	#endregion
+	FluentGetProcess();
+	//FluentSubmitQueueEntry();
 }
 
 void FluentGetProcess() {
@@ -107,8 +67,16 @@ void FluentGetProcess() {
 	
 	ticket.GetProcess()
 	.Bending().Dump()
+	.WithInput().Dump()
+	.RunList().Dump();
+	
+	ticket.GetProcess()
+	.Bending()
+	.WithInput()
+	.LayoutElement().Dump()
+	
 	//.WithInput("LayoutElement").Dump()
-	.WithOutput("InkZoneProfile").Dump()
+	//.WithOutput("InkZoneProfile").Dump()
 	;
 	//.WithInput()
 	//.Dump();
@@ -243,6 +211,46 @@ var ticket = FluentJdf.LinqToJdf.Ticket
 
 
 	ticket.Root.Dump().SelectJDFDescendant("JDF").Dump().Element("Test").Dump();//.Attribute("me").Value.Equals("6").Dump();
+}
+
+//issue 65
+void FluentSubmitQueueEntry() {
+	FluentJdf.LinqToJdf.Message message;
+	FluentJdf.LinqToJdf.Ticket ticket;
+
+	ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
+	message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
+
+	message.Dump();
+
+ 	FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(MockTransmitter));
+	message.Transmit("file:///Test");
+
+}
+
+ public class MockTransmitter : ITransmitter {
+	#region ITransmitter Members
+
+	public IJmfResult Transmit(Uri uri, ITransmissionPartCollection partsToSend) {
+		var result = new JmfResult(partsToSend);
+		result.Dump();
+		
+		var encoded = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Encode(partsToSend);
+		encoded.Stream.Position = 0;
+		
+		using (var sr = new StreamReader(encoded.Stream)) {
+			sr.ReadToEnd().Dump();
+		}
+		
+		return result;
+	}
+
+	public IJmfResult Transmit(string uri, ITransmissionPartCollection partsToSend) {
+		throw new NotImplementedException();
+	}
+
+	#endregion
 }
 
 /*

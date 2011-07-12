@@ -27,6 +27,19 @@ void Main() {
 		Console.WriteLine(formatString, item);
 	}
 	
+	formatString = @"		
+		/// <summary>
+		/// {0}
+		/// </summary>
+		/// <returns></returns>
+		public IEnumerable<XElement> {0}() {{
+			return Elements.Where(item => item.Name == Resource.{0});
+		}}";
+	
+	foreach (var item in items.OrderBy (item => item)) {
+		Console.WriteLine(formatString, item);
+	}
+	
 	Console.WriteLine("");
 	Console.WriteLine("Generate ResourceNodeNameBuilder.cs");
 	Console.WriteLine("");

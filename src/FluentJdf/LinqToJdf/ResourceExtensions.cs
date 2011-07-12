@@ -112,6 +112,23 @@ namespace FluentJdf.LinqToJdf {
             return null;
         }
 
+         /// <summary>
+        /// Given a resource name and the input type, return the resolved resource that belongs to all resource links.
+        /// </summary>
+        /// <remarks>
+        /// It is assumed that the element should stay untouched and not be normalized.
+        /// </remarks>
+        /// <param name="elements">The elements to process</param>
+        /// <param name="usage">The <see cref="ResourceUsage"/></param>
+        /// <returns></returns>
+        public static IEnumerable<XElement> GetResourceLinkPoolResolvedItemForUsage(this IEnumerable<XContainer> elements, ResourceUsage usage) {
+            foreach (var element in elements) {
+                foreach (var result in element.GetResourceLinkPoolResolvedItemForUsage(usage)) {
+                    yield return result;
+                }
+            }
+        }
+
         /// <summary>
         /// Given a resource name and the input type, return the resolved resource that belongs to all resource links.
         /// </summary>
