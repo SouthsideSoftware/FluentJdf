@@ -143,7 +143,7 @@
                Namespace="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
                Prefix="n"
                XPath="//n:version"
-               Value="$(AppVersion)"/>
+               Value="$(AppVersion).$(BuildNumber)"/>
 
     <!-- File update tasks for pre and post deployment go here -->
   </Target>
