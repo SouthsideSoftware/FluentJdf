@@ -17,5 +17,12 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder {
         It should_have_associated_ticket = () => message.AdditionalParts.Count.ShouldEqual(1);
 
         It should_have_the_correct_associated_ticket = () => XNode.DeepEquals((message.AdditionalParts.First() as TicketTransmissionPart).Ticket, ticket);
+
+        It should_have_QueueSubmissionParams = () => message.SelectJDFDescendant("QueueSubmissionParams").ShouldNotBeNull();
+
+        It should_have_QueueSubmissionParams_with_url_attribute = () => message.SelectJDFDescendant("QueueSubmissionParams").Attribute("URL").ShouldNotBeNull();
+
+        It should_have_QueueSubmissionParams_with_correct_url_attribute_cid
+                = () => message.SelectJDFDescendant("QueueSubmissionParams").Attribute("URL").Value.ShouldEqual("cid:" + message.AdditionalParts.First().Id);
     }
 }

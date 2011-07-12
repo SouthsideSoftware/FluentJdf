@@ -240,8 +240,6 @@ namespace FluentJdf.LinqToJdf {
             return this;
         }
 
-        //todo: add packaging options
-
         /// <summary>
         /// Transmit this ticket to the given url (string).
         /// </summary>
@@ -260,6 +258,8 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public IJmfResult Transmit(Uri url) {
             try {
+                //todo: add packaging options
+
                 string name = string.Format("JMF{0}", MimeTypeHelper.JmfExtension);
                 using (var transmissionPartColllection = new TransmissionPartCollection(additionalParts)) {
                     transmissionPartColllection.Add(new MessageTransmissionPart(this, name));

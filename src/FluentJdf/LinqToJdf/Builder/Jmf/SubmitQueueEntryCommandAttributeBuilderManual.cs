@@ -3,6 +3,10 @@ using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.LinqToJdf.Builder.Jmf {
     public partial class SubmitQueueEntryCommandAttributeBuilder {
+
+        readonly ITransmissionPartFactory transmissionPartFactory 
+            = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPartFactory>();
+
         /// <summary>
         /// Add a JDF that will be sent with this submit queue entry.
         /// </summary>
@@ -11,10 +15,11 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
         public SubmitQueueEntryCommandAttributeBuilder Ticket(Ticket ticket) {
             ParameterCheck.ParameterRequired(ticket, "ticket");
 
-            //todo: use the ITransmissionPartFactory
-            var part = new TicketTransmissionPart(ticket, "Ticket");
+            var part = transmissionPartFactory.CreateTransmissionPart("Ticket", ticket);
             ParentJmfNode.Message.AddRelatedPart(part);
-            //todo: the id of the part needs to go into the url of a new QueueSubmissionParams element
+            var name = Globals.JdfName("QueueSubmissionParams"); //TODO once params are generated, move to use the constant.
+            //http://www.faqs.org/rfcs/rfc2387.html
+            AddNode(name).With().Attribute("URL", string.Format("cid:{0}", part.Id));
             return this;
         }
     }

@@ -1,11 +1,11 @@
 <Query Kind="Program">
-  <Reference Relative="..\src\FluentJdf\bin\Debug\Infrastructure.Core.dll">C:\development\FluentJdf\src\FluentJdf\bin\Debug\Infrastructure.Core.dll</Reference>
-  <Reference Relative="..\src\FluentJdf\bin\Debug\FluentJdf.dll">C:\development\FluentJdf\src\FluentJdf\bin\Debug\FluentJdf.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll</Reference>
-  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll">C:\development\FluentJdf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll</Reference>
+  <Reference Relative="..\src\FluentJdf\bin\Debug\Infrastructure.Core.dll">C:\development\fluentjdf\src\FluentJdf\bin\Debug\Infrastructure.Core.dll</Reference>
+  <Reference Relative="..\src\FluentJdf\bin\Debug\FluentJdf.dll">C:\development\fluentjdf\src\FluentJdf\bin\Debug\FluentJdf.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Core.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Castle.Windsor.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\Debug\Infrastructure.Container.CastleWindsor.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\Infrastructure.Logging.NLog.dll</Reference>
+  <Reference Relative="..\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll">C:\development\fluentjdf\src\Infrastructure\Infrastructure.Logging.NLog\bin\Debug\NLog.dll</Reference>
   <Namespace>FluentJdf.LinqToJdf</Namespace>
   <Namespace>Infrastructure.Container.CastleWindsor</Namespace>
   <Namespace>Infrastructure.Logging.NLog</Namespace>
@@ -17,10 +17,12 @@
   <Namespace>Infrastructure.Core.Helpers</Namespace>
   <Namespace>Infrastructure.Core.Mime</Namespace>
   <Namespace>System.Drawing</Namespace>
+  <Namespace>FluentJdf.Transmission</Namespace>
+  <Namespace>FluentJdf.Messaging</Namespace>
 </Query>
 
 bool loggingOn = false;
-
+static ITransmitter mockTransmitter;
 
 //static IEncoding defaultEncoding;
 //static IEncoding defaultSinglePartEncoding;
@@ -29,11 +31,53 @@ bool loggingOn = false;
 void Main() {
 	InitializeFluentJdf();
 	//ProcessTicketsForTests();
-	FactoryTests();
-	
-	return;
-	
-	//var xn = XName.Get(ProcessType.Bending);
+	//FactoryTests();
+	//FluentGetProcess();
+	FluentSubmitQueueEntry();
+}
+
+//issue 65
+void FluentSubmitQueueEntry() {
+	FluentJdf.LinqToJdf.Message message;
+	FluentJdf.LinqToJdf.Ticket ticket;
+
+	ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
+	message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
+
+	message.Dump();
+
+ 	FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(MockTransmitter));
+	message.Transmit("file:///Test");
+
+}
+
+ public class MockTransmitter : ITransmitter {
+	#region ITransmitter Members
+
+	public IJmfResult Transmit(Uri uri, ITransmissionPartCollection partsToSend) {
+		var result = new JmfResult(partsToSend);
+		result.Dump();
+		
+		var encoded = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Encode(partsToSend);
+		encoded.Stream.Position = 0;
+		
+		using (var sr = new StreamReader(encoded.Stream)) {
+			sr.ReadToEnd().Dump();
+		}
+		
+		return result;
+	}
+
+	public IJmfResult Transmit(string uri, ITransmissionPartCollection partsToSend) {
+		throw new NotImplementedException();
+	}
+
+	#endregion
+}
+
+void FluentGetProcess() {
+//var xn = XName.Get(ProcessType.Bending);
 	//xn.LocalName.Dump();
 	//xn.Dump();
 	
@@ -68,7 +112,6 @@ void Main() {
 	;
 	//.WithInput()
 	//.Dump();
-	
 }
 
 void FactoryTests() {
@@ -98,7 +141,7 @@ void FactoryTests() {
 	
 	using (var stream = File.OpenRead(path)) {
 	
-		var parts = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Decode("test", stream, MimeTypeHelper.MimeMultipartMimeType);
+		var parts = new FluentJdf.Encoding.MimeEncoding(transmissionPartFactory).Decode("test", stream, MimeTypeHelper.MimeMultipartMimeType);
 		parts.Dump();
 		
 		using (var bmp = new Bitmap(parts.Last().CopyOfStream())) {
@@ -107,9 +150,9 @@ void FactoryTests() {
 		
 		//now lets reverse the process.
 		
-		var encoded = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Encode(parts);
+		var encoded = new FluentJdf.Encoding.MimeEncoding(transmissionPartFactory).Encode(parts);
 		
-		parts = new FluentJdf.Encoding.MimeEncoding(new TransmissionPartFactory()).Decode("test", encoded.Stream, MimeTypeHelper.MimeMultipartMimeType);
+		parts = new FluentJdf.Encoding.MimeEncoding(transmissionPartFactory).Decode("test", encoded.Stream, MimeTypeHelper.MimeMultipartMimeType);
 		parts.Dump();
 		
 		parts.Last().CopyOfStream().Length.Dump();
@@ -136,6 +179,7 @@ void InitializeFluentJdf() {
 	config.Configure();
 	FluentJdfLibrary.Settings.ResetToDefaults();
 	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
+	mockTransmitter = new MockTransmitter();
 }
 
 LoggingConfiguration GetNLogConfiguration(){
