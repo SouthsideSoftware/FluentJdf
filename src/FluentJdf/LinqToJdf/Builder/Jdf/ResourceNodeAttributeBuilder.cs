@@ -1,3 +1,4 @@
+using System;
 using System.Xml.Linq;
 using Infrastructure.Core.CodeContracts;
 
@@ -5,7 +6,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
     /// <summary>
     /// Set attributes on a JDF node.
     /// </summary>
-    public class ResourceNodeAttributeBuilder : IResourceNodeBuilder {
+    public class ResourceNodeAttributeBuilder : IJdfNodeBuilder {
         ResourceNodeBuilder resourceNodeBuilder;
 
         internal ResourceNodeAttributeBuilder(ResourceNodeBuilder resourceNodeBuilder) {
@@ -78,6 +79,31 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         public ResourceNodeNameBuilder WithOutput() {
             return new ResourceNodeNameBuilder(resourceNodeBuilder.ParentJdfNode, ResourceUsage.Output);
+        }
+
+        /// <summary>
+        /// Adds a new intent JDF.
+        /// </summary>
+        /// <returns></returns>
+        public JdfNodeBuilder AddIntent() {
+            return resourceNodeBuilder.AddIntent();
+        }
+
+        /// <summary>
+        /// Adds a new intent JDF.
+        /// </summary>
+        /// <returns></returns>
+        public JdfNodeBuilder AddProcessGroup() {
+            return resourceNodeBuilder.AddProcessGroup();
+        }
+
+        /// <summary>
+        /// Adds a new process JDF
+        /// </summary>
+        /// <param name="types"></param>
+        /// <returns></returns>
+        public JdfNodeBuilder AddProcess(params string[] types) {
+            return resourceNodeBuilder.AddProcess(types);
         }
 
         /// <summary>

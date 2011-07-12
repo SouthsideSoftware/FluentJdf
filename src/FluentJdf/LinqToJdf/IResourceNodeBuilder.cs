@@ -6,7 +6,7 @@ namespace FluentJdf.LinqToJdf
     /// <summary>
     /// Node builder interface for resources.
     /// </summary>
-    public interface IResourceNodeBuilder
+    public interface IResourceNodeBuilder 
     {
         /// <summary>
         /// Create an input

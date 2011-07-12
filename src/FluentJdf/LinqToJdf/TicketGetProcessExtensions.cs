@@ -47,6 +47,17 @@ namespace FluentJdf.LinqToJdf {
             return new TicketGetProcess(ticket);
         }
 
+        /// <summary>
+        /// Get intent node.
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <returns></returns>
+        public static TicketProcess GetIntent(this Ticket ticket) {
+            ParameterCheck.ParameterRequired(ticket, "ticket");
+            var ticketGetProcess = new TicketGetProcess(ticket);
+            return ticketGetProcess.Named(ProcessType.Intent);
+        }
+
     }
 
     /// <summary>

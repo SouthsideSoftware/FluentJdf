@@ -5,7 +5,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
     /// <summary>
     /// 
     /// </summary>
-    public class ResourceNodeBuilder : JdfNodeBuilderBase, IResourceNodeBuilder, IJdfNodeBuilder {
+    public class ResourceNodeBuilder : JdfNodeBuilderBase, IJdfNodeBuilder {
         internal ResourceNodeBuilder(JdfNodeBuilder parent, XName resourceName, ResourceUsage usage, string id = null)
             : base(parent) {
             ParameterCheck.ParameterRequired(resourceName, "resourceName");
