@@ -56,7 +56,7 @@ void FluentGetProcess() {
 			.WithInput()
 			.FileSpec()
 			.WithOutput()
-			//how do I get to the run list this references fluently?
+			//how do I get to the run list this references fluently? (By Calling RunList)
 			.InkZoneProfile().AddNode(Resource.RunList.RefName()).With().Attribute("rRef", "foo")
 			.WithInput().RunList().With().Id("foo")
 			.AddProcessGroup()
