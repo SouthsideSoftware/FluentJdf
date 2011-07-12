@@ -29,7 +29,9 @@ bool loggingOn = false;
 void Main() {
 	InitializeFluentJdf();
 	//ProcessTicketsForTests();
-	//FactoryTests();
+	FactoryTests();
+	
+	return;
 	
 	//var xn = XName.Get(ProcessType.Bending);
 	//xn.LocalName.Dump();

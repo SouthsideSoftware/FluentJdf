@@ -7,13 +7,14 @@ using FluentJdf.Utility;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
 using Infrastructure.Core.Mime;
+using Infrastructure.Core.Helpers;
 
 namespace FluentJdf.Encoding {
     /// <summary>
     /// Mime Encoder class used for multi part encoding.
     /// </summary>
     public class MimeEncoding : IEncoding {
-        static readonly ILog logger = LogManager.GetLogger(typeof (MimeEncoding));
+        static readonly ILog logger = LogManager.GetLogger(typeof(MimeEncoding));
         readonly ITransmissionPartFactory transmissionPartFactory;
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace FluentJdf.Encoding {
         /// <returns></returns>
         public EncodingResult Encode(ITransmissionPart transmissionPart) {
             ParameterCheck.ParameterRequired(transmissionPart, "transmissionPart");
-            return Encode(new TransmissionPartCollection {transmissionPart});
+            return Encode(new TransmissionPartCollection { transmissionPart });
         }
 
         /// <summary>
@@ -61,7 +62,6 @@ namespace FluentJdf.Encoding {
 
             try {
                 int nextContentId = 1;
-
 
                 var mime = new Mime(stream);
                 Console.WriteLine("Parts " + mime.NumParts);
@@ -134,41 +134,24 @@ namespace FluentJdf.Encoding {
                 foreach (ITransmissionPart part in parts) {
                     var mimePart = new Mime();
 
-                    //var encoder = factory.GetEncodingForMimeType(part.MimeType);
-                    //encoder.Encode(part);
-
                     mimePart.SetHeaderField("Content-ID", part.Id);
 
-                    //if this is not an attachment part or the mime type is text/ something then treat as text
-                    if (part.MimeType.StartsWith("text/")) {
-                        string data = null;
-                        using (var sr = new StreamReader(part.CopyOfStream())) {
-                            data = sr.ReadToEnd();
-                        }
-                        if (part.MimeType.IndexOf("xml") > -1) {
-                            mimePart.SetBodyFromXml(data);
-                        }
-                        else {
-                            mimePart.SetBodyFromPlainText(data);
-                        }
+                    //TODO optimize call to get the bytes from the stream
+                    byte[] data = null;
+                    using (var sr = new BinaryReader(part.CopyOfStream())) {
+                        data = sr.ReadBytes((int)part.CopyOfStream().Length);
+                    }
+                    //TODO determine if this is how we should handle it.
+                    if (!part.MimeType.Equals(MimeTypeHelper.JdfMimeType)
+                            && !part.MimeType.Equals(MimeTypeHelper.JmfMimeType)
+                            && !part.MimeType.StartsWith("text/")) {
+                        //for text and jdf/jmf documents, do not base64 encode them.
+                        mimePart.EncodingType = Mime.MimeEncoding.Base64;
                     }
                     else {
-                        //TODO optimize call to get the bytes from the stream
-                        byte[] data = null;
-                        using (Stream partStream = part.CopyOfStream()) {
-                            using (var sr = new BinaryReader(partStream)) {
-                                data = sr.ReadBytes((int) partStream.Length);
-                            }
-                        }
-                        mimePart.SetBodyFromBinary(data);
-
-                        if (withBinaryEncodingAttachment) {
-                            mimePart.EncodingType = Mime.MimeEncoding.Binary;
-                        }
-                        else {
-                            mimePart.EncodingType = Mime.MimeEncoding.Base64;
-                        }
+                        mimePart.EncodingType = Mime.MimeEncoding.Binary;
                     }
+                    mimePart.SetBodyFromBinary(data);
 
                     mimePart.ContentType = part.MimeType;
                     mime.AppendPart(mimePart);
