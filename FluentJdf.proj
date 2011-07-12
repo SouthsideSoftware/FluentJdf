@@ -32,11 +32,12 @@
     <ProductDescription>Fluent JDF</ProductDescription>
 		<Configuration>Debug</Configuration>
     <GenerateDocs>false</GenerateDocs>
+    <PublishNugetPackage>false</PublishNugetPackage>
 	</PropertyGroup>
 
 	<!-- Version Information -->
 	<PropertyGroup>
-		<AppVersion>0.1.1</AppVersion>
+		<AppVersion>0.1.3</AppVersion>
 		<SchemaVersion>0</SchemaVersion>
     <PrintableSupportSchemaVersion>0</PrintableSupportSchemaVersion>
     <InTeamCity Condition="'$(build_number)' == ''">false</InTeamCity>
@@ -50,8 +51,9 @@
       Fluent JDF contains everything you need to quickly
       add JDF capabilities to any client application.  It includes powerful tools
       that allow you to easily author, parse and send JDF from your client applications.
-      This package uses Castle Windsor and NLog.  See NuGet for related packages
-      to support other IoC/DI containers and logging frameworks.
+      This package uses Castle Windsor and NLog.  Support for log4net and other IoC
+      containers is coming soon.  If you have a favorite IoC container you would like
+      to see supported, let us know on the forums.
     </FluentJdfPackageDescription>
 	</PropertyGroup>
 
@@ -103,11 +105,6 @@
   <Target Name="InstallPackages" Outputs="%(ProjectDir.Identity)">
     <Message Importance="high" Text="Installing packages for %(ProjectDir.Identity)"/>
     <Exec Command='$(NuGet) install %(ProjectDir.Identity)\packages.config -o $(MSBuildProjectDirectory)\packages'/>
-  </Target>
-
-  <Target Name="UpdatePackages" Outputs="%(ProjectDir.Identity)">
-    <Message Importance="high" Text="Installing packages for %(ProjectDir.Identity)"/>
-    <Exec Command="$(NuGet) update %(ProjectDir.Identity)\packages.config"/>
   </Target>
 
 	<Target Name="Version">
@@ -338,7 +335,13 @@
                SubstitutionsFile="$(MSBuildProjectDirectory)/FluentJdf.proj"
                SubstitutionsRoot="/msb:Project/msb:ProjectExtensions/msb:helpWebConfigContent" />
     <CallTarget Targets="PublishWebHelp" Condition="$(HelpWebDir) != ''"/>
+    <CallTarget Targets="PublishNugetPackage" Condition="$(PublishNugetPackage)"/>
 	</Target>
+
+  <Target Name="PublishNugetPackage">
+    <Message Importance="high" Text="Publish packages FluentJdf.$(AppVersion)"/>
+    <Exec WorkingDirectory="$(NuGetPackageDir)" Command="$(NuGet) push -source http://packages.nuget.org/v1/ FluentJdf.$(AppVersion).nupkg 55312497-4441-41df-a355-84f42fa2ca0d"/>
+  </Target>
 
   <ProjectExtensions>
     <helpWebConfigContent>
