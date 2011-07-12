@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Data;
+using FluentJdf.LinqToJdf;
 
 namespace FluentJdf.TemplateEngine
 {
@@ -46,7 +48,13 @@ namespace FluentJdf.TemplateEngine
 			{
                 //todo: what if it is not a string.  Can we use dots to go get properties?
                 if (vars.ContainsKey(name)) {
-                    val = vars[name].ToString();
+                    object v = vars[name];
+                    if (v is DateTime) {
+                        val = ((DateTime)v).ToJdfDateTimeString();
+                    }
+                    else {
+                        val = v.ToString();
+                    }
                 }
 			}
 			if (val != null)
