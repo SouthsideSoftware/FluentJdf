@@ -120,146 +120,152 @@
   <data name="CanOnlyOperateOnJdfNode" xml:space="preserve">
     <value>Can only operate on JDF node.  The node is a {0}</value>
   </data>
-	<data name="CanOnlyOperateOnResourceLink">
-		<value xml:space="preserve">Can only operate on resource link.  The node is a {0}</value>
-	</data>
-	<data name="ElementExtensions_JdfParent_NoJdfParentFound">
-		<value xml:space="preserve">Could not find JDF parent for element {0}</value>
-	</data>
-	<data name="ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent">
-		<value xml:space="preserve">This node is not a JDF and it does not have a JDF parent.  The node is {0}</value>
-	</data>
-	<data name="JdfElementExtensions_LinkResource_ResourceNameOrIdOrBothRequired">
-		<value xml:space="preserve">Linking a resource requires either the resource name or the id (or both).</value>
-	</data>
-	<data name="ElementExtensions_JdfRoot_NoJdfRootFound">
-		<value xml:space="preserve">The element {0} does not have a JDF root</value>
-	</data>
-	<data name="ElementExtensions_AddContent_RequiresContentToAdd">
-		<value xml:space="preserve">AddContent requires content to add</value>
-	</data>
-	<data name="ResourceExtensions_Resource_ResourceWithIdCannotBeFound">
-		<value xml:space="preserve">Resource with ID {0} cannot be found</value>
-	</data>
-	<data name="JdfElementExtensions_LinkResource_CouldNotFindResourceWithGivenIdAndNameWasNotProvided">
-		<value xml:space="preserve">Could not find resource with id {0} and could not create it because name was not provided</value>
-	</data>
-	<data name="Loader_Loader_FailedToLoadAndCompileSchema">
-		<value xml:space="preserve">Failed to load and compile JDF schema.  The error is {0}</value>
-	</data>
-	<data name="ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket">
-		<value xml:space="preserve">ValidateJdf requires the document to be of type Ticket.  Use Ticket.Create().</value>
-	</data>
-	<data name="PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart">
-		<value xml:space="preserve">Pass through encoder cannot encode a transmission part collection containing more than one part.</value>
-	</data>
-	<data name="TransmissionPart_CannotCreatePartAsFileDoesNotExist">
-		<value xml:space="preserve">Cannot create transmission part from file {0} because it does not exist</value>
-	</data>
-	<data name="XmlTransmissionPart_FailedToLoadXDocumentFromFile">
-		<value xml:space="preserve">Failed to load XDocument from {0}</value>
-	</data>
-	<data name="FailedToLoadXDocumentFromStream">
-		<value xml:space="preserve">Failed to load XDocument from stream</value>
-	</data>
-	<data name="JmfElementExtensions_ThrowExceptionIfNotJmfElement_CanOnlyOperateOnJmfNodes">
-		<value xml:space="preserve">Can only operate on JMF nodes.  The name is {0}.</value>
-	</data>
-	<data name="EncodingSettings_ThrowExceptionIfTypeIsNotIEncoding">
-		<value xml:space="preserve">Encodings must be of type IEncoding</value>
-	</data>
-	<data name="TransmissionPartSettings_ThrowExceptionIfTypeIsNotITransmissionPart">
-		<value xml:space="preserve">TransmissionParts must be of type ITransmissionPart</value>
-	</data>
-	<data name="TransmissionSettings_ThrowExceptionIfTypeIsNotITransmitter">
-		<value xml:space="preserve">The assigned transmitter must implement ITransmitter</value>
-	</data>
-	<data name="TransmitterFactory_GetTransmitterForScheme_SchemeNotConfigured">
-		<value xml:space="preserve">Scheme {0} is not configured with a transmitter.</value>
-	</data>
-	<data name="TransmissionPartCollection_Add_TransmissionPartExists">
-		<value xml:space="preserve">Transmission part with id {0} already exists</value>
-	</data>
-	<data name="HttpTransmissionSettingsBuilder_TimeoutInSeconds_MustNotBeLessThanZero">
-		<value xml:space="preserve">Timeout in seconds must not be less than zero unless set to Timeout.Infinite</value>
-	</data>
-	<data name="HttpTransmitter_Transmit_AtLeastOneTransmissionPartIsRequired">
-		<value xml:space="preserve">At least one transmission part is required for transmission.</value>
-	</data>
-	<data name="HttpTransmitter_Transmit_RequiresHttpUrl">
-		<value xml:space="preserve">HTTP transmitter only works with http urls</value>
-	</data>
-	<data name="HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException">
-		<value xml:space="preserve">HttpTransmitter failed to transmit {0} because of unexpected exception</value>
-	</data>
-	<data name="Ticket_Transmit_Failed">
-		<value xml:space="preserve">Failed to transmit ticket to {0}</value>
-	</data>
-	<data name="JmfElementExtensions_AddJmfElement_JMFMustBeRoot">
-		<value xml:space="preserve">Can only add JMF as root element.  Root element {0} already exists</value>
-	</data>
-	<data name="JmfElementExtensions_ThrowExceptionIfNotInMessage_CannotOperateOnElementUnlessItIsInMessage">
-		<value xml:space="preserve">The element must be contained in a Message object</value>
-	</data>
-	<data name="Message_ModifyJmfNode_RootMustExistAndMustbeJmf">
-		<value xml:space="preserve">The root of the Message must exist and must be a JMF</value>
-	</data>
-	<data name="FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired">
-		<value xml:space="preserve">FluentJDF requires a root node when copying a document.</value>
-	</data>
-	<data name="Ticket_ModifyJdfNode_RootMustExistAndBeJdf">
-		<value xml:space="preserve">Root must exist and must be JDF</value>
-	</data>
-	<data name="AtLeastOneProcessMustBeSpecified">
-		<value xml:space="preserve">You must pass at least one type in order to create a process</value>
-	</data>
-	<data name="ElementExtensions_ValidateJmf_MessageRequired">
-		<value xml:space="preserve">ValidateJmf requires the document to be of type Message.  Use Message.Create()</value>
-	</data>
-	<data name="ElementExtensions_ThrowExceptionIfNotJdfOrJmfElement">
-		<value xml:space="preserve">Cannot operate on {0} element.  This extension only operate on JDF or JMF nodes.</value>
-	</data>
-	<data name="JmfElementExtensions_SetSenderId_SenderIdMustBeProvided">
-		<value xml:space="preserve">The provided sender id is null or whitespace and no default sender id is configured</value>
-	</data>
-  <data name="TransmissionLogger_Log_FailedToLog">
-    <value xml:space="preserve">Unexpected error attempting to log transmission.</value>
+  <data name="CanOnlyOperateOnResourceLink" xml:space="preserve">
+    <value>Can only operate on resource link.  The node is a {0}</value>
   </data>
-	<data name="TemplateExpansionException_MessageText">
-		<value><![CDATA[Error occurred at line: ]]></value>
-	</data>
-	<data name="TemplateExpansionException_MessagePositionText">
-		<value><![CDATA[ position: ]]></value>
-	</data>
-	<data name="FormulaTemplateItemFactory_CreateFormulaItem_InvalidFunctionNameMessage">
-		<value><![CDATA[Invalid function name {0} ]]></value>
-	</data>
-	<data name="ErrorAtLineAndColumn">
-		<value xml:space="preserve">{0} at line {1} column {2}</value>
-	</data>
-	<data name="TableTemplateItem_Generate_DataSetHasNoTable">
-		<value><![CDATA[Supplied data set does not contain table ]]></value>
-	</data>
-	<data name="CouldNotOpen">
-		<value xml:space="preserve">Could not open {0}</value>
-	</data>
-	<data name="TemplateItem_TemplateItem_VariableNameIsNotLegal">
-		<value xml:space="preserve">variable name {0} is not legal.  Variable names can be of the form varName or tableName.varName.  Additional dots are not legal</value>
-	</data>
-	<data name="FileDoesNotExist">
-		<value xml:space="preserve">File {0} does not exist</value>
-	</data>
-	<data name="GeneratedDocumentConfigurationBuilder_NameValue_NameAlreadyInNameValues">
-		<value xml:space="preserve">Name {0} is already contained in name values.</value>
-	</data>
-	<data name="GeneratedDocumentConfigurationBuilder_DataTable_TableWithNameAlreadyExists">
-		<value xml:space="preserve">Table with name {0} is already configured</value>
-	</data>
-	<data name="MimeEncoding_Decode_GeneralDecodingError">
-		<value><![CDATA[Error occured attempting to decode multipart
-elated transmission.  The error is ]]></value>
-	</data>
-	<data name="MimeEncoding_Decode_NoMessagePartsToDecode">
-		<value xml:space="preserve">Error occured attempting to parse through message, there are no parts to the transmission!</value>
-	</data>
+  <data name="ElementExtensions_JdfParent_NoJdfParentFound" xml:space="preserve">
+    <value>Could not find JDF parent for element {0}</value>
+  </data>
+  <data name="ElementExtensions_FirstJdf_NodeNotJdfAndNoJdfParent" xml:space="preserve">
+    <value>This node is not a JDF and it does not have a JDF parent.  The node is {0}</value>
+  </data>
+  <data name="JdfElementExtensions_LinkResource_ResourceNameOrIdOrBothRequired" xml:space="preserve">
+    <value>Linking a resource requires either the resource name or the id (or both).</value>
+  </data>
+  <data name="ElementExtensions_JdfRoot_NoJdfRootFound" xml:space="preserve">
+    <value>The element {0} does not have a JDF root</value>
+  </data>
+  <data name="ElementExtensions_AddContent_RequiresContentToAdd" xml:space="preserve">
+    <value>AddContent requires content to add</value>
+  </data>
+  <data name="ResourceExtensions_Resource_ResourceWithIdCannotBeFound" xml:space="preserve">
+    <value>Resource with ID {0} cannot be found</value>
+  </data>
+  <data name="JdfElementExtensions_LinkResource_CouldNotFindResourceWithGivenIdAndNameWasNotProvided" xml:space="preserve">
+    <value>Could not find resource with id {0} and could not create it because name was not provided</value>
+  </data>
+  <data name="Loader_Loader_FailedToLoadAndCompileSchema" xml:space="preserve">
+    <value>Failed to load and compile JDF schema.  The error is {0}</value>
+  </data>
+  <data name="ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket" xml:space="preserve">
+    <value>ValidateJdf requires the document to be of type Ticket.  Use Ticket.Create().</value>
+  </data>
+  <data name="PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart" xml:space="preserve">
+    <value>Pass through encoder cannot encode a transmission part collection containing more than one part.</value>
+  </data>
+  <data name="TransmissionPart_CannotCreatePartAsFileDoesNotExist" xml:space="preserve">
+    <value>Cannot create transmission part from file {0} because it does not exist</value>
+  </data>
+  <data name="XmlTransmissionPart_FailedToLoadXDocumentFromFile" xml:space="preserve">
+    <value>Failed to load XDocument from {0}</value>
+  </data>
+  <data name="FailedToLoadXDocumentFromStream" xml:space="preserve">
+    <value>Failed to load XDocument from stream</value>
+  </data>
+  <data name="JmfElementExtensions_ThrowExceptionIfNotJmfElement_CanOnlyOperateOnJmfNodes" xml:space="preserve">
+    <value>Can only operate on JMF nodes.  The name is {0}.</value>
+  </data>
+  <data name="EncodingSettings_ThrowExceptionIfTypeIsNotIEncoding" xml:space="preserve">
+    <value>Encodings must be of type IEncoding</value>
+  </data>
+  <data name="TransmissionPartSettings_ThrowExceptionIfTypeIsNotITransmissionPart" xml:space="preserve">
+    <value>TransmissionParts must be of type ITransmissionPart</value>
+  </data>
+  <data name="TransmissionSettings_ThrowExceptionIfTypeIsNotITransmitter" xml:space="preserve">
+    <value>The assigned transmitter must implement ITransmitter</value>
+  </data>
+  <data name="TransmitterFactory_GetTransmitterForScheme_SchemeNotConfigured" xml:space="preserve">
+    <value>Scheme {0} is not configured with a transmitter.</value>
+  </data>
+  <data name="TransmissionPartCollection_Add_TransmissionPartExists" xml:space="preserve">
+    <value>Transmission part with id {0} already exists</value>
+  </data>
+  <data name="HttpTransmissionSettingsBuilder_TimeoutInSeconds_MustNotBeLessThanZero" xml:space="preserve">
+    <value>Timeout in seconds must not be less than zero unless set to Timeout.Infinite</value>
+  </data>
+  <data name="HttpTransmitter_Transmit_AtLeastOneTransmissionPartIsRequired" xml:space="preserve">
+    <value>At least one transmission part is required for transmission.</value>
+  </data>
+  <data name="HttpTransmitter_Transmit_RequiresHttpUrl" xml:space="preserve">
+    <value>HTTP transmitter only works with http urls</value>
+  </data>
+  <data name="HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException" xml:space="preserve">
+    <value>HttpTransmitter failed to transmit {0} because of unexpected exception</value>
+  </data>
+  <data name="Ticket_Transmit_Failed" xml:space="preserve">
+    <value>Failed to transmit ticket to {0}</value>
+  </data>
+  <data name="JmfElementExtensions_AddJmfElement_JMFMustBeRoot" xml:space="preserve">
+    <value>Can only add JMF as root element.  Root element {0} already exists</value>
+  </data>
+  <data name="JmfElementExtensions_ThrowExceptionIfNotInMessage_CannotOperateOnElementUnlessItIsInMessage" xml:space="preserve">
+    <value>The element must be contained in a Message object</value>
+  </data>
+  <data name="Message_ModifyJmfNode_RootMustExistAndMustbeJmf" xml:space="preserve">
+    <value>The root of the Message must exist and must be a JMF</value>
+  </data>
+  <data name="FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired" xml:space="preserve">
+    <value>FluentJDF requires a root node when copying a document.</value>
+  </data>
+  <data name="Ticket_ModifyJdfNode_RootMustExistAndBeJdf" xml:space="preserve">
+    <value>Root must exist and must be JDF</value>
+  </data>
+  <data name="AtLeastOneProcessMustBeSpecified" xml:space="preserve">
+    <value>You must pass at least one type in order to create a process</value>
+  </data>
+  <data name="ElementExtensions_ValidateJmf_MessageRequired" xml:space="preserve">
+    <value>ValidateJmf requires the document to be of type Message.  Use Message.Create()</value>
+  </data>
+  <data name="ElementExtensions_ThrowExceptionIfNotJdfOrJmfElement" xml:space="preserve">
+    <value>Cannot operate on {0} element.  This extension only operate on JDF or JMF nodes.</value>
+  </data>
+  <data name="JmfElementExtensions_SetSenderId_SenderIdMustBeProvided" xml:space="preserve">
+    <value>The provided sender id is null or whitespace and no default sender id is configured</value>
+  </data>
+  <data name="TransmissionLogger_Log_FailedToLog" xml:space="preserve">
+    <value>Unexpected error attempting to log transmission.</value>
+  </data>
+  <data name="TemplateExpansionException_MessageText" xml:space="preserve">
+    <value>Error occurred at line: </value>
+  </data>
+  <data name="TemplateExpansionException_MessagePositionText" xml:space="preserve">
+    <value> position: </value>
+  </data>
+  <data name="FormulaTemplateItemFactory_CreateFormulaItem_InvalidFunctionNameMessage" xml:space="preserve">
+    <value>Invalid function name {0} </value>
+  </data>
+  <data name="ErrorAtLineAndColumn" xml:space="preserve">
+    <value>{0} at line {1} column {2}</value>
+  </data>
+  <data name="TableTemplateItem_Generate_DataSetHasNoTable" xml:space="preserve">
+    <value>Supplied data set does not contain table </value>
+  </data>
+  <data name="CouldNotOpen" xml:space="preserve">
+    <value>Could not open {0}</value>
+  </data>
+  <data name="TemplateItem_TemplateItem_VariableNameIsNotLegal" xml:space="preserve">
+    <value>variable name {0} is not legal.  Variable names can be of the form varName or tableName.varName.  Additional dots are not legal</value>
+  </data>
+  <data name="FileDoesNotExist" xml:space="preserve">
+    <value>File {0} does not exist</value>
+  </data>
+  <data name="GeneratedDocumentConfigurationBuilder_NameValue_NameAlreadyInNameValues" xml:space="preserve">
+    <value>Name {0} is already contained in name values.</value>
+  </data>
+  <data name="GeneratedDocumentConfigurationBuilder_DataTable_TableWithNameAlreadyExists" xml:space="preserve">
+    <value>Table with name {0} is already configured</value>
+  </data>
+  <data name="MimeEncoding_Decode_GeneralDecodingError" xml:space="preserve">
+    <value>Error occured attempting to decode multipart
+elated transmission.  The error is </value>
+  </data>
+  <data name="MimeEncoding_Decode_NoMessagePartsToDecode" xml:space="preserve">
+    <value>Error occured attempting to parse through message, there are no parts to the transmission!</value>
+  </data>
+  <data name="FileTransmitter_Transmit_AtLeastOneTransmissionPartIsRequired" xml:space="preserve">
+    <value>At least one transmission part is required for transmission.</value>
+  </data>
+  <data name="FileTransmitter_Transmit_RequiresHttpUrl" xml:space="preserve">
+    <value>HTTP transmitter only works with http urls</value>
+  </data>
 </root>

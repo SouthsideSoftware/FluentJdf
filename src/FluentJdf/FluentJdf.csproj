@@ -331,6 +331,7 @@
     <Compile Include="TemplateEngine\TemplateItem.cs" />
     <Compile Include="TemplateEngine\TemplateItemCollection.cs" />
     <Compile Include="TemplateEngine\VariableTemplateItem.cs" />
+    <Compile Include="Transmission\FileTransmitter.cs" />
     <Compile Include="Transmission\HttpTransmitter.cs" />
     <Compile Include="Transmission\HttpWebRequestFactory.cs" />
     <Compile Include="Transmission\IHttpWebRequestFactory.cs" />
