@@ -9,6 +9,7 @@ using FluentJdf.Encoding;
 using FluentJdf.Messaging;
 using FluentJdf.Resources;
 using FluentJdf.Transmission.Logging;
+using FluentJdf.Utility;
 using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
@@ -68,7 +69,7 @@ namespace FluentJdf.Transmission
 
                 var response = (HttpWebResponse) request.GetResponse();
                 try {
-                    var contentType = GetContentTypeOfResponse(response);
+                    var contentType = response.ContentType.NormalizeContentType();
 
                     var responseStream = new TempFileStream();
                     response.GetResponseStream().CopyTo(responseStream);
@@ -84,17 +85,6 @@ namespace FluentJdf.Transmission
                 logger.Error(string.Format(Messages.HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException, uri), err);
                 throw;
             }
-        }
-
-        string GetContentTypeOfResponse(HttpWebResponse response) {
-            var contentType = response.ContentType.ToLower();
-            string[] contentElements = contentType.Split(';');
-            if (contentElements.Length > 1)
-            {
-                contentType = contentElements[0];
-            }
-
-            return contentType;
         }
 
         /// <summary>
