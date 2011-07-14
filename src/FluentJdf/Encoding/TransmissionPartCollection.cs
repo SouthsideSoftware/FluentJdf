@@ -148,6 +148,73 @@ namespace FluentJdf.Encoding {
             get { return false; }
         }
 
+        /// <summary>
+        /// Gets the first message in the transmission part collection
+        /// </summary>
+        /// <remarks>There should not be more than one, but if there is, this will just get the 
+        /// first. Will be <see langword="null"/> if there is no message.</remarks>
+        public Message Message {
+            get {
+                if (MessagePart != null) {
+                    return MessagePart.Message;
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the message part if any.  
+        /// </summary>
+        /// <remarks>Returns <see langword="null"/> if there is no message part.</remarks>
+        public MessageTransmissionPart MessagePart {
+            get {
+                return (from part in transmissionParts.Values
+                        where part is MessageTransmissionPart
+                        select (part as MessageTransmissionPart)).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Gets the first ticket in the transmission part collection
+        /// </summary>
+        /// <remarks>Will be <see langword="null"/> if there is no ticket.</remarks>
+        public Ticket Ticket {
+            get {
+                if (TicketPart != null) {
+                    return TicketPart.Ticket;
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Returns <see langword="true"/> if there is a ticket in the collection.
+        /// </summary>
+        public bool HasTicket {
+            get { return TicketPart != null; }
+        }
+
+        /// <summary>
+        /// Gets the first ticket part if any.  
+        /// </summary>
+        /// <remarks>Returns <see langword="null"/> if there is no ticket part.</remarks>
+        public TicketTransmissionPart TicketPart {
+            get {
+                return (from part in transmissionParts.Values
+                        where part is TicketTransmissionPart
+                        select (part as TicketTransmissionPart)).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Returns <see langword="true"/> if there is a message in the collection.
+        /// </summary>
+        public bool HasMessage {
+            get { return MessagePart != null; }
+        }
+
         #endregion
 
         /// <summary>
@@ -183,40 +250,6 @@ namespace FluentJdf.Encoding {
         /// <returns></returns>
         public bool ContainsId(string id) {
             return transmissionParts.ContainsKey(id);
-        }
-
-        /// <summary>
-        /// Gets the first message in the transmission part collection
-        /// </summary>
-        /// <remarks>There should not be more than one, but if there is, this will just get the 
-        /// first. Will be <see langword="null"/> if there is no message.</remarks>
-        public Message Message {
-            get {
-                if (MessagePart != null) {
-                    return MessagePart.Message;
-                }
-
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets the message part if any.  
-        /// </summary>
-        /// <remarks>Returns <see langword="null"/> if there is no message part.</remarks>
-        public MessageTransmissionPart MessagePart {
-            get {
-                return (from part in transmissionParts.Values
-                        where part is MessageTransmissionPart 
-                        select (part as MessageTransmissionPart)).FirstOrDefault();
-            }
-        }
-
-        /// <summary>
-        /// Returns <see langword="true"/> if there is a message in the collection.
-        /// </summary>
-        public bool HasMessage {
-            get { return MessagePart != null; }
         }
     }
 }

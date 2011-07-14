@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FluentJdf.Encoding;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
+using Infrastructure.Core.Helpers;
 
 namespace FluentJdf.Configuration {
     /// <summary>
@@ -81,6 +82,7 @@ namespace FluentJdf.Configuration {
             SetDefaultEncoding<PassThroughEncoding>();
             SetDefaultSinglePartEncoding<PassThroughEncoding>();
             SetDefaultMultiPartEncoding<MimeEncoding>();
+            RegisterEncodingForMimeType<MimeEncoding>(MimeTypeHelper.MimeMultipartMimeType);
             return this;
         }
 
