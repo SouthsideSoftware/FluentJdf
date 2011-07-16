@@ -282,7 +282,6 @@
     <Compile Include="LinqToJdf\Builder\Jdf\JdfNodeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jdf\JdfNodeBuilderBase.cs" />
     <Compile Include="LinqToJdf\ProcessType.cs" />
-    <Compile Include="LinqToJdf\ProcessXPathParser.cs" />
     <Compile Include="LinqToJdf\Query.cs" />
     <Compile Include="LinqToJdf\RefExtensions.cs" />
     <Compile Include="LinqToJdf\RefExtensionsNormalizer.cs" />
