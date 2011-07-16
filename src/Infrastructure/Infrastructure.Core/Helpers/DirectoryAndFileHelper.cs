@@ -82,6 +82,8 @@ namespace Infrastructure.Core.Helpers {
             EnsureFolderExists(fileInfo);
 
             if (fileInfo.Exists && !overrideFile) {
+                var log = logger ?? _logger;
+                log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_DestinationFileExists, fileInfo.FullName));
                 throw new ApplicationException(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_DestinationFileExists, fileInfo.FullName));
             }
 
