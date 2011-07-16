@@ -2741,6 +2741,29 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Get Resources By the Named Item.
+        /// </summary>
+        /// <param name="resourceName"></param>
+        /// <returns></returns>
+        public TicketResouces Named(XName resourceName) {
+            
+            ParameterCheck.ParameterRequired(resourceName, "resourceName");
+
+            var processElements = Elements.Where(item => {
+                var ns = resourceName.NamespaceName;
+
+                if (string.IsNullOrWhiteSpace(ns)) {
+                    ns = Globals.JdfNamespace.NamespaceName;
+                }
+
+                return item.Name != null && item.Name.LocalName == resourceName.LocalName && item.Name.NamespaceName == ns;
+
+            });
+
+            return new TicketResouces(_ticket, processElements, true);
+        }
+
+        /// <summary>
         /// ctor
         /// </summary>
         /// <param name="ticket"></param>

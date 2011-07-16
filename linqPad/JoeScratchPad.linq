@@ -68,7 +68,7 @@ void FluentGetProcess() {
 	//ticket.Dump();
 	
 	ticket.GetProcess()
-	.Bending().Dump()
+	.Bending().Dump("Bending")
 	.WithOutput().Dump("WithOutput")
 	.InkZoneProfile().Dump("InkZoneProfile")
 	.RunList().Dump("RunList");
@@ -76,11 +76,22 @@ void FluentGetProcess() {
 	ticket.GetProcess()
 	.Bending()
 	.WithInput()
-	.LayoutElement().Dump()
+	.LayoutElement().Dump("LayoutElement With Fluent Name");
+	
+	ticket.GetProcess()
+	.Bending()
+	.WithInput()
+	.Named(Element.LayoutElement)
+	.Dump("LayoutElement With XName");
+
+	ticket.GetProcess()
+	.Bending()
+	.WithInput()
+	.Named("LayoutElement")
+	.Dump("LayoutElement With String");
 	
 	//.WithInput("LayoutElement").Dump()
 	//.WithOutput("InkZoneProfile").Dump()
-	;
 	//.WithInput()
 	//.Dump();
 	
@@ -89,9 +100,9 @@ void FluentGetProcess() {
 	//intent.GetIntent().WithInput().ArtDeliveryIntent().Dump();
 	
 	intent = Ticket.CreateIntent().WithInput()
-	.ArtDeliveryIntent().AddNode("ArtDelivery").AddNode(Resource.RunList).Ticket.Dump();
+	.ArtDeliveryIntent().AddNode("ArtDelivery").AddNode(Resource.RunList).Ticket.Dump("ArtDelivery");
 	
-	intent.GetIntent().WithInput().ArtDeliveryIntent().RunList().Dump();
+	intent.GetIntent().WithInput().ArtDeliveryIntent().RunList().Dump("RunList");
 	
 	//intent = Ticket.CreateIntent().WithInput().ArtDeliveryIntent().AddNode(Element.ArtDelivery).AddNode(Resource.RunList).Ticket;
  	//intent.GetIntent().WithInput().ArtDeliveryIntent().RunList().Dump();

@@ -189,8 +189,6 @@ namespace FluentJdf.LinqToJdf {
                     }
                 }
             }
-
-            //yield return null;
         }
 
         /// <summary>
