@@ -87,7 +87,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         /// <returns>An enumerator over FileTransmitterEncoderConfigurationItem objects</returns>
         public IEnumerator<FileTransmitterEncoderConfigurationItem> GetEnumerator() {
-            throw new NotImplementedException();
+            return _items.Values.GetEnumerator();
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         /// <returns>An enumerator over FileTransmitterEncoderConfigurationItem objects</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-            throw new NotImplementedException();
+            return _items.Values.GetEnumerator();
         }
 
         internal void Dump() {
