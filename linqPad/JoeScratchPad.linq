@@ -175,6 +175,9 @@ void InitializeFluentJdf() {
 	
 	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
 	mockTransmitter = new MockTransmitter();
+	
+	var trans = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IHttpWebRequestFactory>().Dump();
+	
 }
 
 LoggingConfiguration GetNLogConfiguration(){

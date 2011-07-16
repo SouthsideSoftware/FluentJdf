@@ -17,11 +17,13 @@
         /// The global settings are contained in FluentJdfLibrary.Settings.
         /// </remarks>
         public FluentJdfLibrary() {
+            //TODO we need an interface for the HttpTransmissionSettings and a better way to resolve.
+            Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof(HttpTransmissionSettings), typeof(HttpTransmissionSettings));
             jdfAuthoringSettings = new JdfAuthoringSettings();
             encodingSettings = new EncodingSettings();
             transmissionPartSettings = new TransmissionPartSettings();
             transmitterSettings = new TransmitterSettings();
-            httpTransmissionSettings = new HttpTransmissionSettings();
+            httpTransmissionSettings = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<HttpTransmissionSettings>();
             templateEngineSettings = new TemplateEngineSettings();
             ResetToDefaults();
         }
