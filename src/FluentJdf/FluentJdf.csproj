@@ -330,6 +330,7 @@
     <Compile Include="TemplateEngine\TemplateItem.cs" />
     <Compile Include="TemplateEngine\TemplateItemCollection.cs" />
     <Compile Include="TemplateEngine\VariableTemplateItem.cs" />
+    <Compile Include="Transmission\FileTransmissionConfig.cs" />
     <Compile Include="Transmission\FileTransmissionConfigurationItem.cs" />
     <Compile Include="Transmission\FileTransmissionItem.cs" />
     <Compile Include="Transmission\FileTransmissionItemCollection.cs" />
@@ -355,9 +356,13 @@
     <Compile Include="Transmission\IHttpWebRequestFactory.cs" />
     <Compile Include="Transmission\ITransmitter.cs" />
     <Compile Include="Transmission\ITransmitterFactory.cs" />
+    <Compile Include="Transmission\JdpTypeHoldingConfigurationItem.cs" />
     <Compile Include="Transmission\Logging\ITransmissionLogger.cs" />
     <Compile Include="Transmission\Logging\TransmissionData.cs" />
     <Compile Include="Transmission\Logging\TransmissionLogger.cs" />
+    <Compile Include="Transmission\MessageHandlerConfigurationCollection.cs" />
+    <Compile Include="Transmission\MessageHandlerConfigurationItem.cs" />
+    <Compile Include="Transmission\OutboundMessageConfigurationItem.cs" />
     <Compile Include="Transmission\TransmitterFactory.cs" />
     <Compile Include="Messaging\IJmfResult.cs" />
     <Compile Include="Utility\StringHelper.cs" />
