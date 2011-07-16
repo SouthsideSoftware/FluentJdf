@@ -46,6 +46,7 @@ namespace FluentJdf.Configuration {
         public TransmitterSettings ResetToDefaults() {
             TransmittersByScheme.Clear();
             RegisterTransmitterForScheme("http", typeof(HttpTransmitter));
+            RegisterTransmitterForScheme("file", typeof(FileTransmitter));
             return this;
         }
 
