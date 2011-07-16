@@ -93,7 +93,7 @@ namespace FluentJdf.Transmission {
         /// Dump diagnostic information to the attached trace listeners.
         /// </summary>
         public void Dump() {
-            Trace.WriteLine("FileTransmitterConfigurationItem" + ToString());
+            Trace.WriteLine(this.GetType().Name + " " + ToString());
             Trace.Indent();
             try {
                 _folderInfoConfigurationCollection.Dump();

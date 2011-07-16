@@ -100,7 +100,7 @@ namespace FluentJdf.Transmission {
         }
 
         internal void Dump() {
-            Trace.WriteLine("*********** FileTransmitterEncoderConfigurationCollection *************");
+            Trace.WriteLine("*********** " + this.GetType().Name + " *************");
             Trace.Indent();
             try {
                 foreach (FileTransmitterEncoderConfigurationItem item in this) {

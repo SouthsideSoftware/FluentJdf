@@ -161,7 +161,7 @@ namespace FluentJdf.Transmission {
         /// Dump a string representation to the trace listeners.
         /// </summary>
         public override void Dump() {
-            Trace.WriteLine("TransmissionConfigurationItem " + ToString());
+            Trace.WriteLine(this.GetType().Name + " " + ToString());
             Trace.Indent();
             try {
                 if (_outbound != null) {

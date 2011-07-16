@@ -10,7 +10,6 @@ namespace FluentJdf.Transmission {
     /// <summary>
     /// Summary description for JdpTypeHoldingCofigurationItem.
     /// </summary>
-    /// 
     [Serializable]
     public abstract class JdpTypeHoldingConfigurationItem {
         /// <summary>
@@ -101,7 +100,7 @@ namespace FluentJdf.Transmission {
         /// Dump diagnostic information to the attached trace listeners.
         /// </summary>
         public virtual void Dump() {
-            Trace.WriteLine("TypeHoldingConfigurationItem" + ToString());
+            Trace.WriteLine(this.GetType().Name + " " + ToString());
         }
     }
 }

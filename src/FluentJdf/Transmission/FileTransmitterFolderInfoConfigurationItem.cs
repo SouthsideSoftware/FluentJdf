@@ -232,7 +232,7 @@ namespace FluentJdf.Transmission {
         /// Dump diagnostic information to the trace listeners.
         /// </summary>
         public void Dump() {
-            Trace.WriteLine("FileTransmitterFolderInfoConfigurationItem " + ToString());
+            Trace.WriteLine(this.GetType().Name + " " + ToString());
             Trace.Indent();
             try {
                 Trace.WriteLine("NameValues");
