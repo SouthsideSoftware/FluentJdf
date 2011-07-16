@@ -20,6 +20,6 @@ namespace FluentJdf.Configuration {
         /// Reset to default settings.
         /// </summary>
         /// <returns></returns>
-        TemplateEngineSettings ResetToDefaults();
+        ITemplateEngineSettings ResetToDefaults();
     }
 }

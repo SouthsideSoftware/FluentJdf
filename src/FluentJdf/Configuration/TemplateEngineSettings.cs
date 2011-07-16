@@ -32,7 +32,7 @@ namespace FluentJdf.Configuration {
         /// Reset to defaults.
         /// </summary>
         /// <returns></returns>
-        public TemplateEngineSettings ResetToDefaults() {
+        public ITemplateEngineSettings ResetToDefaults() {
             CustomFormulas.Clear();
             RegisterCustomFormula("configuredDefaultVersion", () => FluentJdfLibrary.Settings.JdfAuthoringSettings.JdfVersion);
             return this;
