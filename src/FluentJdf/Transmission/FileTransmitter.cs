@@ -57,14 +57,11 @@ namespace FluentJdf.Transmission {
             DirectoryAndFileHelper.EnsureFolderExists(fileInfo.Directory, logger);
 
             try {
-
                 var encodingResult = encodingfactory.GetEncodingForTransmissionParts(partsToSend).Encode(partsToSend);
                 transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Request"));
 
-                using (var outStream = File.Open(uri.LocalPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
-                    encodingResult.Stream.CopyTo(outStream);
-                }
-                
+                DirectoryAndFileHelper.SaveStreamToFile(encodingResult.Stream, fileInfo, logger);
+
                 return new JmfResult(new TransmissionPartCollection());
             }
             catch (Exception err) {

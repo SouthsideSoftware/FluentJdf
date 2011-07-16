@@ -130,7 +130,7 @@
     <value>Enumerable {0} must contain at least one member</value>
   </data>
   <data name="ParameterCheck_StringRequiredAndNotWhitespace" xml:space="preserve">
-    <value>The string parameter {0} must not be null, empty or contain only whitespace.</value>
+    <value>The string parameter {0} must not be null, empty or contain only whitespace</value>
   </data>
   <data name="DirectoryAndFileHelper_ErrorCreatingDirectory" xml:space="preserve">
     <value>Error Creating Directory: '{0}'</value>
@@ -163,7 +163,7 @@
     <value>Header param with same name already exists.  The header is {0}</value>
   </data>
   <data name="MimeHeaderParamCollection_AddAt_InvalidPositionForMiimeHeader" xml:space="preserve">
-    <value>Invalid position {0} to add a parameter in a Mime Header.</value>
+    <value>Invalid position {0} to add a parameter in a Mime Header</value>
   </data>
   <data name="MimeMessage_ContentTypeUnknownBecauseNoBody" xml:space="preserve">
     <value>Content type is unknown because message has no body</value>
@@ -184,9 +184,15 @@
     <value>Unhandled exception</value>
   </data>
   <data name="LogInitializer_HookUnhandledExceptionEvents_Unhandled_UnknownException" xml:space="preserve">
-    <value>Unhandled exception.  Actual exception is not known.</value>
+    <value>Unhandled exception.  Actual exception is not known</value>
   </data>
   <data name="ParameterCheck_IntParameterGreaterThanZero" xml:space="preserve">
     <value>Parameter {0} must be greater than zero.</value>
+  </data>
+  <data name="DirectoryAndFileHelper_SaveStreamToFile_ErrorCreatingTempFile" xml:space="preserve">
+    <value>Error creating Or writing to temporary file used to write stream {0}</value>
+  </data>
+  <data name="DirectoryAndFileHelper_SaveStreamToFile_ErrorRenamingFileFromTempFile" xml:space="preserve">
+    <value>Error during rename of temp file from {0} to {1}</value>
   </data>
 </root>

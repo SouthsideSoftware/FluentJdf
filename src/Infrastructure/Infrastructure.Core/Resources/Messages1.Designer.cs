@@ -70,7 +70,25 @@ namespace Infrastructure.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unhandled exception.  Actual exception is not known..
+        ///   Looks up a localized string similar to Error creating Or writing to temporary file used to write stream {0}.
+        /// </summary>
+        public static string DirectoryAndFileHelper_SaveStreamToFile_ErrorCreatingTempFile {
+            get {
+                return ResourceManager.GetString("DirectoryAndFileHelper_SaveStreamToFile_ErrorCreatingTempFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error during rename of temp file from {0} to {1}.
+        /// </summary>
+        public static string DirectoryAndFileHelper_SaveStreamToFile_ErrorRenamingFileFromTempFile {
+            get {
+                return ResourceManager.GetString("DirectoryAndFileHelper_SaveStreamToFile_ErrorRenamingFileFromTempFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled exception.  Actual exception is not known.
         /// </summary>
         public static string LogInitializer_HookUnhandledExceptionEvents_Unhandled_UnknownException {
             get {
@@ -169,7 +187,7 @@ namespace Infrastructure.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid position {0} to add a parameter in a Mime Header..
+        ///   Looks up a localized string similar to Invalid position {0} to add a parameter in a Mime Header.
         /// </summary>
         public static string MimeHeaderParamCollection_AddAt_InvalidPositionForMiimeHeader {
             get {
@@ -268,7 +286,7 @@ namespace Infrastructure.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The string parameter {0} must not be null, empty or contain only whitespace..
+        ///   Looks up a localized string similar to The string parameter {0} must not be null, empty or contain only whitespace.
         /// </summary>
         public static string ParameterCheck_StringRequiredAndNotWhitespace {
             get {

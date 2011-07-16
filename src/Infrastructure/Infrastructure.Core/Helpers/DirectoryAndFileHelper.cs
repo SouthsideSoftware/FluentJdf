@@ -16,6 +16,8 @@ namespace Infrastructure.Core.Helpers {
 
         static ILog _logger = LogManager.GetLogger(typeof(DirectoryAndFileHelper));
 
+        static DirectoryInfo _tempPath = new DirectoryInfo(Path.GetTempPath());
+
         /// <summary>
         /// Ensure a Directory exists and if it does not, create it.
         /// </summary>
@@ -44,6 +46,72 @@ namespace Infrastructure.Core.Helpers {
                 }
             }
         }
+
+        /// <summary>
+        /// Save a stream of information to a File
+        /// </summary>
+        /// <remarks>
+        /// Because a FileSystemWatcher fires when a file is created and not finished, we want to
+        /// save to a temporary file and then move the file when we are complete.
+        /// </remarks>
+        /// <param name="stream">The Stream to Save</param>
+        /// <param name="path">The File Path to save the file</param>
+        /// /// <param name="logger">An optional logger to use to log any exceptions</param>
+        public static void SaveStreamToFile(Stream stream, string path, ILog logger = null) {
+            ParameterCheck.ParameterRequired(path, "path");
+            SaveStreamToFile(stream, new FileInfo(path), logger);
+        }
+
+        /// <summary>
+        /// Save a stream of information to a File
+        /// </summary>
+        /// <remarks>
+        /// Because a FileSystemWatcher fires when a file is created and not finished, we want to
+        /// save to a temporary file and then move the file when we are complete.
+        /// If the directory is on the same drive as the Systems Temp folder, the file will be created there.
+        /// </remarks>
+        /// <param name="stream">The Stream to Save</param>
+        /// <param name="fileInfo">The File  to save the stream</param>
+        /// <param name="logger">An optional logger to use to log any exceptions</param>
+        public static void SaveStreamToFile(Stream stream, FileInfo fileInfo, ILog logger = null) {
+            ParameterCheck.ParameterRequired(stream, "stream");
+            ParameterCheck.ParameterRequired(fileInfo, "fileInfo");
+
+            EnsureFolderExists(fileInfo);
+
+            var tempDirectoryInfo = new DirectoryInfo(Path.GetTempPath());
+
+            string tempFileName = null;
+
+            if (_tempPath.Root.Equals(fileInfo.Directory.Root)) {
+                tempFileName = Path.Combine(_tempPath.FullName, Guid.NewGuid() + ".tmp");
+            }
+            else {
+                tempFileName = Path.Combine(fileInfo.Directory.FullName, Guid.NewGuid() + ".tmp");
+            }
+
+            try {
+                using (var outStream = File.Open(tempFileName, FileMode.Create, FileAccess.Write, FileShare.None)) {
+                    stream.CopyTo(outStream);
+                }
+            }
+            catch (Exception ex) {
+                var log = logger ?? _logger;
+                log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_ErrorCreatingTempFile, tempFileName), ex);
+                throw;
+            }
+
+            try {
+                File.Move(tempFileName, fileInfo.FullName);
+            }
+            catch (Exception ex) {
+                var log = logger ?? _logger;
+                log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_ErrorRenamingFileFromTempFile, tempFileName, fileInfo.FullName), ex);
+                throw;
+            }
+
+        }
+
     }
 
 }
