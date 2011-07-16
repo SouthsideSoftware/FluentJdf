@@ -60,7 +60,7 @@ namespace FluentJdf.Transmission {
                 var encodingResult = encodingfactory.GetEncodingForTransmissionParts(partsToSend).Encode(partsToSend);
                 transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Request"));
 
-                DirectoryAndFileHelper.SaveStreamToFile(encodingResult.Stream, fileInfo, logger);
+                DirectoryAndFileHelper.SaveStreamToFile(encodingResult.Stream, fileInfo, false, logger);
 
                 return new JmfResult(new TransmissionPartCollection());
             }

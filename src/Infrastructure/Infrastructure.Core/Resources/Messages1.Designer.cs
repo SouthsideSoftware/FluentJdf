@@ -70,6 +70,24 @@ namespace Infrastructure.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The destination file already exists and could not be deleted &apos;{0}&apos;.
+        /// </summary>
+        public static string DirectoryAndFileHelper_SaveStreamToFile_CouldNotDeleteExistingFile {
+            get {
+                return ResourceManager.GetString("DirectoryAndFileHelper_SaveStreamToFile_CouldNotDeleteExistingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The destination file already exists and overrideFile is false &apos;{0}&apos;.
+        /// </summary>
+        public static string DirectoryAndFileHelper_SaveStreamToFile_DestinationFileExists {
+            get {
+                return ResourceManager.GetString("DirectoryAndFileHelper_SaveStreamToFile_DestinationFileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error creating Or writing to temporary file used to write stream {0}.
         /// </summary>
         public static string DirectoryAndFileHelper_SaveStreamToFile_ErrorCreatingTempFile {

@@ -40,7 +40,7 @@ namespace FluentJdf.Tests.Unit.Transmission {
         It should_get_class_registered_for_file_scheme = () => transmitterFactory.GetTransmitterForScheme("file").ShouldBeOfType(typeof(FileTransmitter));
 
         It should_transmit_message_to_temp_file_location = () => {
-            var path = new Uri("file:///" + Path.Combine(Path.GetTempPath(), Path.GetTempFileName() + ".jdf"));
+            var path = new Uri("file:///" + Path.GetTempFileName() + ".jdf");
             try {
                 var results = message.Transmit(path.LocalPath);
                 File.Exists(path.LocalPath).ShouldBeTrue();
@@ -51,7 +51,7 @@ namespace FluentJdf.Tests.Unit.Transmission {
         };
 
         It should_be_able_deserialize_back_into_parts = () => {
-            var path = new Uri("file:///" + Path.Combine(Path.GetTempPath(), Path.GetTempFileName() + ".jdf"));
+            var path = new Uri("file:///" + Path.GetTempFileName() + ".jdf");
             var results = message.Transmit(path.LocalPath);
 
             try {

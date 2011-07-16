@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using Machine.Specifications;
 
-namespace FluentJdf.Tests {
+namespace System {
     /// <summary>
     /// Extension methods and helpers
     /// </summary>
@@ -14,7 +14,7 @@ namespace FluentJdf.Tests {
         public static bool SameBytes(this Stream one, Stream two) {
 
             if (one.Length != two.Length) {
-                throw new SpecificationException(string.Format("Should be same length but is {1} at byte {2}", one.Length, two.Length));
+                throw new SpecificationException(string.Format("Should be same length but is {0} at byte {1}", one.Length, two.Length));
             }
 
             int byteCount = 0;

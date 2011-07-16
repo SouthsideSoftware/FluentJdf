@@ -189,6 +189,12 @@
   <data name="ParameterCheck_IntParameterGreaterThanZero" xml:space="preserve">
     <value>Parameter {0} must be greater than zero.</value>
   </data>
+  <data name="DirectoryAndFileHelper_SaveStreamToFile_CouldNotDeleteExistingFile" xml:space="preserve">
+    <value>The destination file already exists and could not be deleted '{0}'</value>
+  </data>
+  <data name="DirectoryAndFileHelper_SaveStreamToFile_DestinationFileExists" xml:space="preserve">
+    <value>The destination file already exists and overrideFile is false '{0}'</value>
+  </data>
   <data name="DirectoryAndFileHelper_SaveStreamToFile_ErrorCreatingTempFile" xml:space="preserve">
     <value>Error creating Or writing to temporary file used to write stream {0}</value>
   </data>

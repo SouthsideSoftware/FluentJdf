@@ -56,10 +56,11 @@ namespace Infrastructure.Core.Helpers {
         /// </remarks>
         /// <param name="stream">The Stream to Save</param>
         /// <param name="path">The File Path to save the file</param>
-        /// /// <param name="logger">An optional logger to use to log any exceptions</param>
-        public static void SaveStreamToFile(Stream stream, string path, ILog logger = null) {
+        /// <param name="overrideFile">OverRide if the file exists?</param>
+        /// <param name="logger">An optional logger to use to log any exceptions</param>
+        public static void SaveStreamToFile(Stream stream, string path, bool overrideFile, ILog logger = null) {
             ParameterCheck.ParameterRequired(path, "path");
-            SaveStreamToFile(stream, new FileInfo(path), logger);
+            SaveStreamToFile(stream, new FileInfo(path), overrideFile, logger);
         }
 
         /// <summary>
@@ -72,22 +73,36 @@ namespace Infrastructure.Core.Helpers {
         /// </remarks>
         /// <param name="stream">The Stream to Save</param>
         /// <param name="fileInfo">The File  to save the stream</param>
+        /// <param name="overrideFile">OverRide if the file exists?</param>
         /// <param name="logger">An optional logger to use to log any exceptions</param>
-        public static void SaveStreamToFile(Stream stream, FileInfo fileInfo, ILog logger = null) {
+        public static void SaveStreamToFile(Stream stream, FileInfo fileInfo, bool overrideFile, ILog logger = null) {
             ParameterCheck.ParameterRequired(stream, "stream");
             ParameterCheck.ParameterRequired(fileInfo, "fileInfo");
 
             EnsureFolderExists(fileInfo);
 
-            var tempDirectoryInfo = new DirectoryInfo(Path.GetTempPath());
+            if (fileInfo.Exists && !overrideFile) {
+                throw new ApplicationException(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_DestinationFileExists, fileInfo.FullName));
+            }
 
             string tempFileName = null;
 
-            if (_tempPath.Root.Equals(fileInfo.Directory.Root)) {
-                tempFileName = Path.Combine(_tempPath.FullName, Guid.NewGuid() + ".tmp");
+            if (_tempPath.Root.Name.Equals(fileInfo.Directory.Root.Name)) {
+                tempFileName = Path.GetTempFileName();
             }
             else {
                 tempFileName = Path.Combine(fileInfo.Directory.FullName, Guid.NewGuid() + ".tmp");
+            }
+
+            if (fileInfo.Exists) {
+                try {
+                    fileInfo.Delete();
+                }
+                catch (Exception ex) {
+                    var log = logger ?? _logger;
+                    log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_CouldNotDeleteExistingFile, tempFileName), ex);
+                    throw;
+                }
             }
 
             try {
@@ -96,6 +111,7 @@ namespace Infrastructure.Core.Helpers {
                 }
             }
             catch (Exception ex) {
+                AttemptDeleteOfFailedTempFile(tempFileName);
                 var log = logger ?? _logger;
                 log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_ErrorCreatingTempFile, tempFileName), ex);
                 throw;
@@ -105,11 +121,23 @@ namespace Infrastructure.Core.Helpers {
                 File.Move(tempFileName, fileInfo.FullName);
             }
             catch (Exception ex) {
+                AttemptDeleteOfFailedTempFile(tempFileName);
                 var log = logger ?? _logger;
                 log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_ErrorRenamingFileFromTempFile, tempFileName, fileInfo.FullName), ex);
                 throw;
             }
 
+        }
+
+        private static void AttemptDeleteOfFailedTempFile(string path) {
+            try {
+                if (File.Exists(path)) {
+                    File.Delete(path);
+                }
+            }
+            finally {
+
+            }
         }
 
     }
