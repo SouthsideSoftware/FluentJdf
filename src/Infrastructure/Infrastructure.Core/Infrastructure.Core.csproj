@@ -54,6 +54,7 @@
     <Compile Include="CodeContracts\PreconditionException.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Helpers\ApplicationInformation.cs" />
+    <Compile Include="Helpers\DirectoryAndFileHelper.cs" />
     <Compile Include="Helpers\MimeTypeHelper.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\ILogProvider.cs" />

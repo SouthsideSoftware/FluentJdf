@@ -10,6 +10,7 @@ using Infrastructure.Core.CodeContracts;
 using FluentJdf.Resources;
 using Infrastructure.Core;
 using System.IO;
+using Infrastructure.Core.Helpers;
 
 namespace FluentJdf.Transmission {
 
@@ -51,16 +52,19 @@ namespace FluentJdf.Transmission {
             if (!uri.IsFile && !uri.IsUnc) {
                 throw new PreconditionException(Messages.FileTransmitter_Transmit_RequiresHttpUrl);
             }
+            var fileInfo = new FileInfo(uri.LocalPath);
+
+            DirectoryAndFileHelper.EnsureFolderExists(fileInfo.Directory, logger);
 
             try {
+
                 var encodingResult = encodingfactory.GetEncodingForTransmissionParts(partsToSend).Encode(partsToSend);
                 transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Request"));
 
                 using (var outStream = File.Open(uri.LocalPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
                     encodingResult.Stream.CopyTo(outStream);
                 }
-                //TODO do we deal with a response by waiting for a file to show up?
-
+                
                 return new JmfResult(new TransmissionPartCollection());
             }
             catch (Exception err) {
