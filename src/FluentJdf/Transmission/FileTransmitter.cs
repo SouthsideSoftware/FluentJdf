@@ -19,7 +19,7 @@ namespace FluentJdf.Transmission {
     /// </summary>
     public class FileTransmitter : ITransmitter {
 
-        static ILog logger = LogManager.GetLogger(typeof(HttpTransmitter));
+        static ILog logger = LogManager.GetLogger(typeof(FileTransmitter));
         readonly ITransmissionLogger transmissionLogger;
 
         readonly IEncodingFactory encodingfactory;
