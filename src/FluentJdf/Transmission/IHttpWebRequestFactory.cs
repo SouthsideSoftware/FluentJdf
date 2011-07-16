@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using FluentJdf.Configuration;
 
-namespace FluentJdf.Transmission
-{
+namespace FluentJdf.Transmission {
     /// <summary>
     /// Factory used to create <see cref="HttpWebRequest"/> objects.
     /// </summary>

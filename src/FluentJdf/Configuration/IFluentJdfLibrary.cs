@@ -6,32 +6,44 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets the http transmission settings.
         /// </summary>
-        HttpTransmissionSettings HttpTransmissionSettings { get; }
+        HttpTransmissionSettings HttpTransmissionSettings {
+            get;
+        }
 
         /// <summary>
         /// Gets the JDF authoring settings.
         /// </summary>
-        JdfAuthoringSettings JdfAuthoringSettings { get; }
+        JdfAuthoringSettings JdfAuthoringSettings {
+            get;
+        }
 
         /// <summary>
         /// Gets the transmission part settings 
         /// </summary>
-        TransmissionPartSettings TransmissionPartSettings { get; }
+        TransmissionPartSettings TransmissionPartSettings {
+            get;
+        }
 
         /// <summary>
         /// Gets the transmitter settings.
         /// </summary>
-        TransmitterSettings TransmitterSettings { get; }
+        TransmitterSettings TransmitterSettings {
+            get;
+        }
 
         /// <summary>
         /// Gets the encoding settings.
         /// </summary>
-        EncodingSettings EncodingSettings { get; }
+        EncodingSettings EncodingSettings {
+            get;
+        }
 
         /// <summary>
         /// Gets the template engine settings.
         /// </summary>
-        ITemplateEngineSettings TemplateEngineSettings { get; }
+        ITemplateEngineSettings TemplateEngineSettings {
+            get;
+        }
 
         /// <summary>
         /// Make all settings default.
@@ -56,7 +68,7 @@ namespace FluentJdf.Configuration {
         /// </summary>
         /// <returns></returns>
         JdfAuthoringSettingsBuilder WithJdfAuthoringSettings();
-        
+
 
         /// <summary>
         /// Gets the encoding settings builder.

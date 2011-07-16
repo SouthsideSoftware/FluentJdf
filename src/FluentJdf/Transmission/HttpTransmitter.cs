@@ -14,13 +14,12 @@ using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
 
-namespace FluentJdf.Transmission
-{
+namespace FluentJdf.Transmission {
     /// <summary>
     /// Transmit JDF over HTTP and collect a response.
     /// </summary>
     public class HttpTransmitter : ITransmitter {
-        static ILog logger = LogManager.GetLogger(typeof (HttpTransmitter));
+        static ILog logger = LogManager.GetLogger(typeof(HttpTransmitter));
         IHttpWebRequestFactory httpWebRequestFactory;
         readonly ITransmissionLogger transmissionLogger;
 
@@ -67,7 +66,7 @@ namespace FluentJdf.Transmission
                     encodingResult.Stream.CopyTo(outStream);
                 }
 
-                var response = (HttpWebResponse) request.GetResponse();
+                var response = (HttpWebResponse)request.GetResponse();
                 try {
                     var contentType = response.ContentType.NormalizeContentType();
 
@@ -78,10 +77,12 @@ namespace FluentJdf.Transmission
                     var responseParts = encodingfactory.GetEncodingForMimeType(contentType).Decode("httpContent", responseStream,
                                                                                                    contentType);
                     return new JmfResult(responseParts);
-                } finally {
+                }
+                finally {
                     response.Close();
                 }
-            } catch (Exception err) {
+            }
+            catch (Exception err) {
                 logger.Error(string.Format(Messages.HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException, uri), err);
                 throw;
             }

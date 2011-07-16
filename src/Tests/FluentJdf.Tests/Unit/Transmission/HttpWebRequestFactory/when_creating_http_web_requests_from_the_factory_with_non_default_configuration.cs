@@ -10,7 +10,7 @@ namespace FluentJdf.Tests.Unit.Transmission.HttpWebRequestFactory {
         static HttpWebRequest httpWebRequest;
 
         Establish context = () => {
-            factory = new FluentJdf.Transmission.HttpWebRequestFactory();
+            factory = new FluentJdf.Transmission.HttpWebRequestFactory(FluentJdf.Configuration.FluentJdfLibrary.Settings.HttpTransmissionSettings);
             FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdf.Configuration.FluentJdfLibrary.Settings.WithHttpTransmissionSettings().TimeoutInSeconds(5).Proxy("http://proxy", true, "user", "password", "domain");
         };

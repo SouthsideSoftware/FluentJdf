@@ -21,7 +21,7 @@
   <Namespace>FluentJdf.Messaging</Namespace>
 </Query>
 
-bool loggingOn = false;
+bool loggingOn = true;
 static ITransmitter mockTransmitter;
 
 //static IEncoding defaultEncoding;
@@ -172,6 +172,7 @@ void InitializeFluentJdf() {
 	}
 	config.Configure();
 	FluentJdfLibrary.Settings.ResetToDefaults();
+	
 	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
 	mockTransmitter = new MockTransmitter();
 }

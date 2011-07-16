@@ -11,7 +11,7 @@ namespace FluentJdf.Tests.Unit.Transmission.HttpWebRequestFactory
         static HttpWebRequest httpWebRequest;
 
         Establish context = () => {
-            factory = new FluentJdf.Transmission.HttpWebRequestFactory();
+            factory = new FluentJdf.Transmission.HttpWebRequestFactory(FluentJdf.Configuration.FluentJdfLibrary.Settings.HttpTransmissionSettings);
             FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
         };
 
