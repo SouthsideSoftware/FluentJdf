@@ -331,6 +331,7 @@
     <Compile Include="TemplateEngine\TemplateItem.cs" />
     <Compile Include="TemplateEngine\TemplateItemCollection.cs" />
     <Compile Include="TemplateEngine\VariableTemplateItem.cs" />
+    <Compile Include="Transmission\FileSpecUrlMangler.cs" />
     <Compile Include="Transmission\FileTransmissionConfig.cs" />
     <Compile Include="Transmission\FileTransmissionConfigurationItem.cs" />
     <Compile Include="Transmission\FileTransmissionItem.cs" />
