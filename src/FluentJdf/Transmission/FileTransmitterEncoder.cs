@@ -6,6 +6,8 @@ using FluentJdf.Encoding;
 using System.IO;
 using Infrastructure.Core.CodeContracts;
 using FluentJdf.LinqToJdf;
+using System.Collections.ObjectModel;
+using Infrastructure.Core;
 
 namespace FluentJdf.Transmission {
 
@@ -20,14 +22,14 @@ namespace FluentJdf.Transmission {
         private string _id;
         private string _urlBase;
         private bool _useMime = false;
-        private IDictionary<string, string> _nameValues;
+        private ReadOnlyDictionary<string, string> _nameValues;
 
         /// <summary>
         /// The folder Info items (Attachment, jdf, jmf)
         /// </summary>
-        public List<FileTransmitterFolderInfoConfigurationItem> FolderInfo {
+        public ReadOnlyCollection<FileTransmitterFolderInfoConfigurationItem> FolderInfo {
             get {
-                return _folderInfo;
+                return _folderInfo.AsReadOnly();
             }
         }
 
@@ -43,7 +45,7 @@ namespace FluentJdf.Transmission {
         /// <summary>
         /// Additional Name Values
         /// </summary>
-        public IDictionary<string, string> NameValues {
+        public ReadOnlyDictionary<string, string> NameValues {
             get {
                 return _nameValues;
             }
@@ -81,7 +83,7 @@ namespace FluentJdf.Transmission {
             _id = id;
             _urlBase = urlBase;
             _useMime = useMime;
-            _nameValues = nameValues ?? new Dictionary<string, string>();
+            _nameValues = new ReadOnlyDictionary<string, string>(nameValues ?? new Dictionary<string, string>());
 
             _folderInfo = new List<FileTransmitterFolderInfoConfigurationItem>();
 
@@ -96,10 +98,10 @@ namespace FluentJdf.Transmission {
         /// <param name="configItem"></param>
         public void AddFolderInfo(FileTransmitterFolderInfoConfigurationItem configItem) {
             if (FolderInfo.Any(item => item.FolderInfoType == configItem.FolderInfoType)) {
-                throw new JdfException(string.Format("FolderInfoTypeEnum already exists.{0}", configItem.FolderInfoType));
+                throw new JdfException(string.Format("FolderInfoTypeEnum '{0}' already exists.", configItem.FolderInfoType));
             }
 
-            FolderInfo.Add(configItem);
+            _folderInfo.Add(configItem);
         }
 
         ///// <summary>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Diagnostics;
 using Infrastructure.Core.CodeContracts;
 using FluentJdf.LinqToJdf;
+using Infrastructure.Core;
 
 namespace FluentJdf.Transmission {
 
@@ -18,7 +19,7 @@ namespace FluentJdf.Transmission {
         private string _referenceFolder;
         private int _order;
         private FolderInfoTypeEnum _folderInfoType;
-        private IDictionary<string, string> _nameValues;
+        private ReadOnlyDictionary<string, string> _nameValues;
         private bool _suppress = false;
 
         /// <summary>
@@ -115,7 +116,7 @@ namespace FluentJdf.Transmission {
             _referenceFolder = referenceFolder;
             _order = order;
 
-            _nameValues = nameValues ?? new Dictionary<string, string>();
+            _nameValues = new ReadOnlyDictionary<string, string>(nameValues ?? new Dictionary<string, string>());
 
             switch (partType) {
                 case FolderInfoTypeEnum.Attachment:
@@ -157,7 +158,7 @@ namespace FluentJdf.Transmission {
         /// <summary>
         /// Additional Name Values
         /// </summary>
-        public IDictionary<string, string> NameValues {
+        public ReadOnlyDictionary<string, string> NameValues {
             get {
                 return _nameValues;
             }
