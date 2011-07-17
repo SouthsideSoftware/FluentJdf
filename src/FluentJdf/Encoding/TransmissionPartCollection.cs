@@ -16,7 +16,8 @@ namespace FluentJdf.Encoding {
         /// <summary>
         /// Construct an empty collection.
         /// </summary>
-        public TransmissionPartCollection() {}
+        public TransmissionPartCollection() {
+        }
 
         /// <summary>
         /// Construct a collection and put in the transmission parts
@@ -34,7 +35,11 @@ namespace FluentJdf.Encoding {
         /// </summary>
         /// <returns></returns>
         public ITransmissionPart this[string id] {
-            get { return transmissionParts[id]; }
+            get {
+                ITransmissionPart retVal = null;
+                transmissionParts.TryGetValue(id, out retVal);
+                return retVal;
+            }
         }
 
         #region ITransmissionPartCollection Members
@@ -135,7 +140,9 @@ namespace FluentJdf.Encoding {
         /// The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
         /// </returns>
         public int Count {
-            get { return transmissionParts.Count; }
+            get {
+                return transmissionParts.Count;
+            }
         }
 
         /// <summary>
@@ -145,7 +152,9 @@ namespace FluentJdf.Encoding {
         /// true if the <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only; otherwise, false.
         /// </returns>
         public bool IsReadOnly {
-            get { return false; }
+            get {
+                return false;
+            }
         }
 
         /// <summary>
@@ -193,7 +202,9 @@ namespace FluentJdf.Encoding {
         /// Returns <see langword="true"/> if there is a ticket in the collection.
         /// </summary>
         public bool HasTicket {
-            get { return TicketPart != null; }
+            get {
+                return TicketPart != null;
+            }
         }
 
         /// <summary>
@@ -212,7 +223,9 @@ namespace FluentJdf.Encoding {
         /// Returns <see langword="true"/> if there is a message in the collection.
         /// </summary>
         public bool HasMessage {
-            get { return MessagePart != null; }
+            get {
+                return MessagePart != null;
+            }
         }
 
         #endregion

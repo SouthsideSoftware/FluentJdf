@@ -21,7 +21,7 @@ namespace Infrastructure.Core.Tests.Unit.Helpers.DirectoryAndFileHelper {
                 }
             }
             stream.Flush();
-            stream.Position = 0;
+            stream.Seek(0, SeekOrigin.Begin);
 
             path = new FileInfo(Path.GetTempFileName());
         };
@@ -33,8 +33,8 @@ namespace Infrastructure.Core.Tests.Unit.Helpers.DirectoryAndFileHelper {
         It should_match_stream_length = () => {
             File.Exists(path.FullName).ShouldBeTrue();
             using (var ms = new MemoryStream(File.ReadAllBytes(path.FullName))) {
-                ms.Position = 0;
-                stream.Position = 0;
+                ms.Seek(0, SeekOrigin.Begin);
+                stream.Seek(0, SeekOrigin.Begin);
                 ms.SameBytes(stream);
             }
         };
