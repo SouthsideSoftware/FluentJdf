@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using FluentJdf.Encoding;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
 using FluentJdf.Transmission;
+using System.IO;
+using FluentJdf.LinqToJdf;
 
 namespace FluentJdf.Configuration {
 
@@ -60,6 +63,28 @@ namespace FluentJdf.Configuration {
         public Type DefaultEncoding {
             get {
                 return defaultEncoding;
+            }
+        }
+
+        /// <summary>
+        /// Add a <see cref="FileTransmitterEncoder"/>
+        /// </summary>
+        /// <param name="encoder"></param>
+        public void AddFileTransmitterEncoders(FileTransmitterEncoder encoder) {
+            Uri uri = new Uri(encoder.UrlBase);
+            string itemPath = Path.GetDirectoryName(uri.LocalPath);
+            //itemPath will be null if the Url points at the root of a drive.  Use the Uri local path in that case.
+            if (itemPath == null) {
+                itemPath = uri.LocalPath;
+            }
+            if (FileTransmitterEncoders.ContainsKey(encoder.Id)) {
+                throw new JdfException(string.Format("Collection already contains a " + typeof(FileTransmitterEncoder).Name + " with ID={0}", encoder.Id));
+            }
+            else if (FileTransmitterEncoders.Values.Any(item => item.UrlBase.Equals(encoder.UrlBase, StringComparison.OrdinalIgnoreCase))) {
+                throw new JdfException(string.Format("Collection already contains a " + typeof(FileTransmitterEncoder).Name + " with BaseUrl={0}", encoder.UrlBase));
+            }
+            else {
+                FileTransmitterEncoders[encoder.Id] = encoder;
             }
         }
 

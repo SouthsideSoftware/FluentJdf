@@ -30,16 +30,17 @@ namespace FluentJdf.Configuration {
         /// <param name="id">The id of the encoder</param>
         /// <param name="urlBase">The url base</param>
         /// <param name="useMime">UseMime</param>
+        /// <param name="nameValues">Extra Values</param>
         /// <returns></returns>
-        public FileTransmitterEncoderBuilder FileTransmitterEncoder(string id, string urlBase, bool useMime = false) {
+        public FileTransmitterEncoderBuilder FileTransmitterEncoder(string id, string urlBase, bool useMime = false, IDictionary<string, string> nameValues = null) {
             ParameterCheck.StringRequiredAndNotWhitespace(id, "id");
             ParameterCheck.StringRequiredAndNotWhitespace(urlBase, "urlBase");
 
             if (encodingSettings.FileTransmitterEncoders.ContainsKey(id)) {
                 throw new JdfException(string.Format("FileTransmitterEncoder Id already exists {0}", id));
             }
-            var newEncoder = new FileTransmitterEncoder(id, urlBase, useMime);
-            encodingSettings.FileTransmitterEncoders[id] = newEncoder;
+            var newEncoder = new FileTransmitterEncoder(id, urlBase, useMime, nameValues);
+            encodingSettings.AddFileTransmitterEncoders(newEncoder);
             return new FileTransmitterEncoderBuilder(fluentJdfLibrary, encodingSettings, newEncoder);
         }
 
@@ -49,12 +50,13 @@ namespace FluentJdf.Configuration {
         /// <param name="id">The id of the encoder</param>
         /// <param name="urlBase">The url base</param>
         /// <param name="useMime">UseMime</param>
+        /// <param name="nameValues">Extra Values</param>
         /// <returns></returns>
-        public FileTransmitterEncoderBuilder FileTransmitterEncoder(string id, Uri urlBase, bool useMime = false) {
+        public FileTransmitterEncoderBuilder FileTransmitterEncoder(string id, Uri urlBase, bool useMime = false, IDictionary<string, string> nameValues = null) {
             ParameterCheck.StringRequiredAndNotWhitespace(id, "id");
             ParameterCheck.ParameterRequired(urlBase, "urlBase");
 
-            return this.FileTransmitterEncoder(id, urlBase.ToString(), useMime);
+            return this.FileTransmitterEncoder(id, urlBase.ToString(), useMime, nameValues);
         }
 
         /// <summary>
