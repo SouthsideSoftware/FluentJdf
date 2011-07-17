@@ -16,6 +16,7 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
         static string testKey = null;
         static string testValue = null;
         static FileTransmitterEncoder fileEncoder = null;
+        static FileTransmitterEncoderBuilder builder = null;
 
         Establish context = () => {
             uriOne = new Uri(@"file:///c:\temp\SimpleSend\1\");
@@ -29,8 +30,8 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
         Because because_folder_info_configured_with_attachment = () => {
             Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
             FluentJdfLibrary.Settings.ResetToDefaults();
-            FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true)
-                .FolderInfo(FolderInfoTypeEnum.Attachment, uriOne.ToString(), uriTwo.ToString(), 2, additionalItems);
+            builder = FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true);
+            builder.FolderInfo(FolderInfoTypeEnum.Attachment, uriOne.ToString(), uriTwo.ToString(), 2, additionalItems);
             fileEncoder = FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.Values.First();
         };
 
@@ -56,6 +57,19 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
 
         It should_have_one_name_value_item_with_correct_key_and_value = () => {
             fileEncoder.FolderInfo.First().NameValues[testKey].ShouldEqual(testValue);
+        };
+
+        It should_not_allow_second_item_added_with_same_type = () => {
+            Exception exception = null;
+            try {
+                builder.FolderInfo(FolderInfoTypeEnum.Attachment, uriOne.ToString(), uriTwo.ToString(), 2, additionalItems);
+            }
+            catch (Exception ex) {
+                exception = ex;
+            }
+
+            exception.ShouldNotBeNull();
+            fileEncoder.FolderInfo.Count.ShouldEqual(1);
         };
     }
 }

@@ -68,10 +68,10 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, string destinationFolder,
                                                         string referenceFolder, int order = 0, IDictionary<string, string> nameValues = null) {
-            if (encoder.FolderInfo.Any(item => item.FolderInfoType == type)) {
-                throw new JdfException(string.Format("FolderInfoTypeEnum already exists.{0}", type));
-            }
-            encoder.FolderInfo.Add(new FileTransmitterFolderInfoConfigurationItem(type, destinationFolder, referenceFolder, order, nameValues));
+            //if (encoder.FolderInfo.Any(item => item.FolderInfoType == type)) {
+            //    throw new JdfException(string.Format("FolderInfoTypeEnum already exists.{0}", type));
+            //}
+            encoder.AddFolderInfo(new FileTransmitterFolderInfoConfigurationItem(type, destinationFolder, referenceFolder, order, nameValues));
             return this;
         }
 

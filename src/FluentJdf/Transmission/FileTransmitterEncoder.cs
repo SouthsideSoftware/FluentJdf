@@ -90,6 +90,17 @@ namespace FluentJdf.Transmission {
             }
         }
 
+        /// <summary>
+        /// Add a new <see cref="FileTransmitterFolderInfoConfigurationItem"/>
+        /// </summary>
+        /// <param name="configItem"></param>
+        public void AddFolderInfo(FileTransmitterFolderInfoConfigurationItem configItem) {
+            if (FolderInfo.Any(item => item.FolderInfoType == configItem.FolderInfoType)) {
+                throw new JdfException(string.Format("FolderInfoTypeEnum already exists.{0}", configItem.FolderInfoType));
+            }
+            FolderInfo.Add(configItem);
+        }
+
         ///// <summary>
         ///// ctor
         ///// </summary>
