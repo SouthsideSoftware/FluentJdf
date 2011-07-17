@@ -6,6 +6,7 @@ using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
 
 namespace FluentJdf.Configuration {
+
     /// <summary>
     /// Settings for encoding.
     /// </summary>
@@ -24,49 +25,58 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets dictionary of encoding settings by mime type.
         /// </summary>
-        public Dictionary<string, Type> EncodingsByMimeType { get; private set; }
+        public Dictionary<string, Type> EncodingsByMimeType {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the default encoding for transmission part collections containing a single part.
         /// </summary>
         public Type DefaultSinglePartEncoding {
-            get { return defaultSinglePartEncoding; }
+            get {
+                return defaultSinglePartEncoding;
+            }
         }
 
-        internal void SetDefaultSinglePartEncoding<T>() where T:IEncoding {
+        internal void SetDefaultSinglePartEncoding<T>() where T : IEncoding {
             RegisterEncodingIfRequired<T>();
-            defaultSinglePartEncoding = typeof (T);
+            defaultSinglePartEncoding = typeof(T);
         }
 
         /// <summary>
         /// Gets the default encoding.
         /// </summary>
         public Type DefaultEncoding {
-            get { return defaultEncoding; }
+            get {
+                return defaultEncoding;
+            }
         }
 
-        internal void SetDefaultEncoding<T>() where T: IEncoding {
+        internal void SetDefaultEncoding<T>() where T : IEncoding {
             RegisterEncodingIfRequired<T>();
-            defaultEncoding = typeof (T);
+            defaultEncoding = typeof(T);
         }
 
         /// <summary>
         /// Gets the default encoding for transmission part collections containing multiple parts.
         /// </summary>
         public Type DefaultMultiPartEncoding {
-            get { return defaultMultiPartEncoding; }
+            get {
+                return defaultMultiPartEncoding;
+            }
         }
 
-        internal void SetDefaultMultiPartEncoding<T>() where T:IEncoding {
-           RegisterEncodingIfRequired<T>();
-            defaultMultiPartEncoding = typeof (T);
+        internal void SetDefaultMultiPartEncoding<T>() where T : IEncoding {
+            RegisterEncodingIfRequired<T>();
+            defaultMultiPartEncoding = typeof(T);
         }
 
         /// <summary>
         /// Register an encoding for a mime type.
         /// </summary>
         /// <param name="mimeType"></param>
-        public void RegisterEncodingForMimeType<T>(string mimeType) where T:IEncoding {
+        public void RegisterEncodingForMimeType<T>(string mimeType) where T : IEncoding {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
             RegisterEncodingIfRequired<T>();
@@ -86,10 +96,10 @@ namespace FluentJdf.Configuration {
             return this;
         }
 
-        void RegisterEncodingIfRequired<T>() where T: IEncoding {
-            var encodingType = typeof (T);
-            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (IEncoding), encodingType.FullName)) {
-                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (IEncoding), encodingType);
+        void RegisterEncodingIfRequired<T>() where T : IEncoding {
+            var encodingType = typeof(T);
+            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof(IEncoding), encodingType.FullName)) {
+                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof(IEncoding), encodingType);
             }
         }
     }
