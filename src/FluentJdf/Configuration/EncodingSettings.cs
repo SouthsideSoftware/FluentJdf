@@ -8,6 +8,7 @@ using Infrastructure.Core.Helpers;
 using FluentJdf.Transmission;
 using System.IO;
 using FluentJdf.LinqToJdf;
+using Infrastructure.Core;
 
 namespace FluentJdf.Configuration {
 
@@ -18,13 +19,15 @@ namespace FluentJdf.Configuration {
         Type defaultEncoding;
         Type defaultMultiPartEncoding;
         Type defaultSinglePartEncoding;
+        Dictionary<string, FileTransmitterEncoder> _fileTransmitterEncoderList;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         public EncodingSettings() {
             EncodingsByMimeType = new Dictionary<string, Type>();
-            FileTransmitterEncoders = new Dictionary<string, FileTransmitterEncoder>(StringComparer.OrdinalIgnoreCase);
+            _fileTransmitterEncoderList = new Dictionary<string, FileTransmitterEncoder>(StringComparer.OrdinalIgnoreCase);
+            FileTransmitterEncoders = new ReadOnlyDictionary<string, FileTransmitterEncoder>(_fileTransmitterEncoderList);
         }
 
         /// <summary>
@@ -38,7 +41,7 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets dictionary of <see cref="FileTransmitterEncoder"/>s.
         /// </summary>
-        public Dictionary<string, FileTransmitterEncoder> FileTransmitterEncoders {
+        public IDictionary<string, FileTransmitterEncoder> FileTransmitterEncoders {
             get;
             private set;
         }
@@ -84,7 +87,7 @@ namespace FluentJdf.Configuration {
                 throw new JdfException(string.Format("Collection already contains a " + typeof(FileTransmitterEncoder).Name + " with BaseUrl={0}", encoder.UrlBase));
             }
             else {
-                FileTransmitterEncoders[encoder.Id] = encoder;
+                _fileTransmitterEncoderList[encoder.Id] = encoder;
             }
         }
 
@@ -124,7 +127,7 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public EncodingSettings ResetToDefaults() {
             EncodingsByMimeType.Clear();
-            FileTransmitterEncoders.Clear();
+            _fileTransmitterEncoderList.Clear();
             SetDefaultEncoding<PassThroughEncoding>();
             SetDefaultSinglePartEncoding<PassThroughEncoding>();
             SetDefaultMultiPartEncoding<MimeEncoding>();

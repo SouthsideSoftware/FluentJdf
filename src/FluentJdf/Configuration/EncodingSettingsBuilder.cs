@@ -77,7 +77,7 @@ namespace FluentJdf.Configuration {
             }
 
             var newEncoder = new FileTransmitterEncoder(id, urlBase, useMime, nameValues);
-            encodingSettings.FileTransmitterEncoders[id] = newEncoder;
+            encodingSettings.AddFileTransmitterEncoders(newEncoder);
             return new FileTransmitterEncoderBuilder(fluentJdfLibrary, encodingSettings, newEncoder);
         }
 
