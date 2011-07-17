@@ -14,9 +14,9 @@ namespace Infrastructure.Core.Helpers {
     /// </summary>
     public static class DirectoryAndFileHelper {
 
-        static ILog _logger = LogManager.GetLogger(typeof(DirectoryAndFileHelper));
+        static readonly ILog logger = LogManager.GetLogger(typeof(DirectoryAndFileHelper));
 
-        static DirectoryInfo _tempPath = new DirectoryInfo(Path.GetTempPath());
+        static readonly DirectoryInfo tempPath = new DirectoryInfo(Path.GetTempPath());
 
         /// <summary>
         /// Ensure a Directory exists and if it does not, create it.
@@ -40,7 +40,7 @@ namespace Infrastructure.Core.Helpers {
                     directory.Create();
                 }
                 catch (Exception ex) {
-                    var log = logger ?? _logger;
+                    var log = logger ?? DirectoryAndFileHelper.logger;
                     log.Error(string.Format(Messages.DirectoryAndFileHelper_ErrorCreatingDirectory, directory.FullName), ex);
                     throw;
                 }
@@ -82,14 +82,14 @@ namespace Infrastructure.Core.Helpers {
             EnsureFolderExists(fileInfo);
 
             if (fileInfo.Exists && !overrideFile) {
-                var log = logger ?? _logger;
+                var log = logger ?? DirectoryAndFileHelper.logger;
                 log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_DestinationFileExists, fileInfo.FullName));
                 throw new ApplicationException(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_DestinationFileExists, fileInfo.FullName));
             }
 
             string tempFileName = null;
 
-            if (_tempPath.Root.Name.Equals(fileInfo.Directory.Root.Name)) {
+            if (tempPath.Root.Name.Equals(fileInfo.Directory.Root.Name)) {
                 tempFileName = Path.GetTempFileName();
             }
             else {
@@ -101,7 +101,7 @@ namespace Infrastructure.Core.Helpers {
                     fileInfo.Delete();
                 }
                 catch (Exception ex) {
-                    var log = logger ?? _logger;
+                    var log = logger ?? DirectoryAndFileHelper.logger;
                     log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_CouldNotDeleteExistingFile, tempFileName), ex);
                     throw;
                 }
@@ -114,7 +114,7 @@ namespace Infrastructure.Core.Helpers {
             }
             catch (Exception ex) {
                 AttemptDeleteOfFailedTempFile(tempFileName);
-                var log = logger ?? _logger;
+                var log = logger ?? DirectoryAndFileHelper.logger;
                 log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_ErrorCreatingTempFile, tempFileName), ex);
                 throw;
             }
@@ -124,7 +124,7 @@ namespace Infrastructure.Core.Helpers {
             }
             catch (Exception ex) {
                 AttemptDeleteOfFailedTempFile(tempFileName);
-                var log = logger ?? _logger;
+                var log = logger ?? DirectoryAndFileHelper.logger;
                 log.Error(string.Format(Messages.DirectoryAndFileHelper_SaveStreamToFile_ErrorRenamingFileFromTempFile, tempFileName, fileInfo.FullName), ex);
                 throw;
             }
