@@ -83,7 +83,7 @@ namespace FluentJdf.Configuration {
             if (FileTransmitterEncoders.ContainsKey(encoder.Id)) {
                 throw new JdfException(string.Format("Collection already contains a " + typeof(FileTransmitterEncoder).Name + " with ID={0}", encoder.Id));
             }
-            else if (FileTransmitterEncoders.Values.Any(item => item.UrlBase.Equals(encoder.UrlBase, StringComparison.OrdinalIgnoreCase))) {
+            else if (FileTransmitterEncoders.Values.Any(item => item.LocalPath.Equals(encoder.LocalPath, StringComparison.OrdinalIgnoreCase))) {
                 throw new JdfException(string.Format("Collection already contains a " + typeof(FileTransmitterEncoder).Name + " with BaseUrl={0}", encoder.UrlBase));
             }
             else {

@@ -80,5 +80,29 @@ namespace FluentJdf.Transmission {
             ParameterCheck.StringRequiredAndNotWhitespace(uri, "uri");
             return Transmit(new Uri(uri), partsToSend);
         }
+
+        /// <summary>
+        /// Gets the encoder associated with a URI in a given transmitter configuration.
+        /// </summary>
+        /// <param name="uri">The destination URI.</param>
+        /// <returns>The FileTransmitterEncoder for the URI or null if there is no FileTransmitterEncoder for the URI</returns>
+        private static FileTransmitterEncoder GetFileTransmitterEncoder(Uri uri) {
+
+            FileTransmitterEncoder retVal = null;
+
+            var baseUri = Path.GetDirectoryName(uri.LocalPath);
+
+            FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.TryGetValue(baseUri, out retVal);
+            return retVal;
+            //return (FileTransmitterEncoderConfigurationItem)_itemsByUrlBase[Path.GetDirectoryName(uri.LocalPath)];
+
+            //FileTransmitterEncoderConfigurationItem item = FileTransmissionConfig.FileTransmitterEncoderConfiguration[uri];
+            //if (item != null) {
+            //    return FileTransmitterEncoderFactory.Create(item);
+            //}
+            //else {
+            //    return null;
+            //}
+        }
     }
 }

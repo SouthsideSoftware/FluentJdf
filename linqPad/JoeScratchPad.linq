@@ -44,7 +44,12 @@ void InitializeFileEncodingTransmitters() {
 	.FileTransmitterEncoder("id2", @"file:///c:\zzz\SimpleSend\MimeEncoded\")
 	.FolderInfo(FolderInfoTypeEnum.Attachment, @"file:///c:\zzz\SimpleSend\dest\", @"file:///c:\zzz\SimpleSend\ref\")
 	.Settings.EncodingSettings.FileTransmitterEncoders.Dump();
+	
+	FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.TryGetValue(baseUri, out retVal);
+	
+	var uri =new Uri(@"file:///c:\temp\SimpleSend/MimeEncoded\").Dump();
 
+ 	var baseUri = Path.GetDirectoryName(uri.LocalPath).Dump();
 }
 
 void FluentGetProcess() {

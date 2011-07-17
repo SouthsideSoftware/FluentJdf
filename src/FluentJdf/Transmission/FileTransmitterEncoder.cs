@@ -20,6 +20,7 @@ namespace FluentJdf.Transmission {
         //private ITransmissionPartFactory _transmissionFactory;
 
         private string _id;
+        private string _localPath;
         private string _urlBase;
         private bool _useMime = false;
         private ReadOnlyDictionary<string, string> _nameValues;
@@ -39,6 +40,15 @@ namespace FluentJdf.Transmission {
         public string Id {
             get {
                 return _id;
+            }
+        }
+
+        /// <summary>
+        /// Local Path after normalizing.
+        /// </summary>
+        public string LocalPath {
+            get {
+                return _localPath;
             }
         }
 
@@ -90,6 +100,9 @@ namespace FluentJdf.Transmission {
             if (!_urlBase.EndsWith("\\")) {
                 _urlBase = _urlBase + "\\";
             }
+
+            Uri uri = new Uri(_urlBase);
+            _localPath = Path.GetDirectoryName(uri.LocalPath);
         }
 
         /// <summary>
@@ -335,17 +348,21 @@ namespace FluentJdf.Transmission {
         ///// <summary>
         ///// Gets the encoder associated with a URI in a given transmitter configuration.
         ///// </summary>
-        ///// <param name="config">The configuration associated with the transmitter.</param>
         ///// <param name="uri">The destination URI.</param>
         ///// <returns>The FileTransmitterEncoder for the URI or null if there is no FileTransmitterEncoder for the URI</returns>
-        //public static FileTransmitterEncoder GetFileTransmitterEncoder(TransmissionConfigurationItem config, Uri uri) {
-        //    FileTransmitterEncoderConfigurationItem item = FileTransmissionConfig.FileTransmitterEncoderConfiguration[uri];
-        //    if (item != null) {
-        //        return FileTransmitterEncoderFactory.Create(item);
-        //    }
-        //    else {
-        //        return null;
-        //    }
+        //public static FileTransmitterEncoder GetFileTransmitterEncoder(Uri uri) {
+
+            
+
+        //    //return (FileTransmitterEncoderConfigurationItem)_itemsByUrlBase[Path.GetDirectoryName(uri.LocalPath)];
+
+        //    //FileTransmitterEncoderConfigurationItem item = FileTransmissionConfig.FileTransmitterEncoderConfiguration[uri];
+        //    //if (item != null) {
+        //    //    return FileTransmitterEncoderFactory.Create(item);
+        //    //}
+        //    //else {
+        //    //    return null;
+        //    //}
         //}
 
     }
