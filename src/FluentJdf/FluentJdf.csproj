@@ -98,6 +98,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\FileTransmitterEncoderBuilder.cs" />
     <Compile Include="Configuration\IFluentJdfLibrary.cs" />
     <Compile Include="Configuration\ITemplateEngineSettings.cs" />
     <Compile Include="Configuration\LibraryConfigurationException.cs" />

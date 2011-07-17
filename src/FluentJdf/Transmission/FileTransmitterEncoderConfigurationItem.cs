@@ -7,6 +7,8 @@ using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.Transmission {
 
+    //DONE Built into FileTransmitterEncoder
+
     /// <summary>
     /// Configuration of a file transmitter encoder
     /// </summary>

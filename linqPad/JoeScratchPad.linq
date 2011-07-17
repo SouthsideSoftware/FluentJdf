@@ -21,7 +21,7 @@
   <Namespace>FluentJdf.Messaging</Namespace>
 </Query>
 
-bool loggingOn = true;
+bool loggingOn = false;
 static ITransmitter mockTransmitter;
 
 //static IEncoding defaultEncoding;
@@ -32,8 +32,19 @@ void Main() {
 	InitializeFluentJdf();
 	//ProcessTicketsForTests();
 	//FactoryTests();
-	FluentGetProcess();
+	//FluentGetProcess();
 	//FluentSubmitQueueEntry();
+	InitializeFileEncodingTransmitters();
+}
+
+void InitializeFileEncodingTransmitters() {
+
+	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
+	.FileTransmitterEncoder("id", @"file:///c:\temp\SimpleSend\MimeEncoded\", true)
+	.FileTransmitterEncoder("id2", @"file:///c:\zzz\SimpleSend\MimeEncoded\")
+	.FolderInfo(FolderInfoTypeEnum.Attachment, @"file:///c:\zzz\SimpleSend\dest\", @"file:///c:\zzz\SimpleSend\ref\")
+	.Settings.EncodingSettings.FileTransmitterEncoders.Dump();
+
 }
 
 void FluentGetProcess() {
@@ -175,8 +186,7 @@ void InitializeFluentJdf() {
 	
 	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
 	mockTransmitter = new MockTransmitter();
-	
-	var trans = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IHttpWebRequestFactory>().Dump();
+	//var trans = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IHttpWebRequestFactory>().Dump();
 	
 }
 

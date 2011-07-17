@@ -4,6 +4,7 @@ using FluentJdf.Encoding;
 using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
+using FluentJdf.Transmission;
 
 namespace FluentJdf.Configuration {
 
@@ -20,12 +21,21 @@ namespace FluentJdf.Configuration {
         /// </summary>
         public EncodingSettings() {
             EncodingsByMimeType = new Dictionary<string, Type>();
+            FileTransmitterEncoders = new Dictionary<string, FileTransmitterEncoder>(StringComparer.OrdinalIgnoreCase);
         }
 
         /// <summary>
         /// Gets dictionary of encoding settings by mime type.
         /// </summary>
         public Dictionary<string, Type> EncodingsByMimeType {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets dictionary of <see cref="FileTransmitterEncoder"/>s.
+        /// </summary>
+        public Dictionary<string, FileTransmitterEncoder> FileTransmitterEncoders {
             get;
             private set;
         }
@@ -89,6 +99,7 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public EncodingSettings ResetToDefaults() {
             EncodingsByMimeType.Clear();
+            FileTransmitterEncoders.Clear();
             SetDefaultEncoding<PassThroughEncoding>();
             SetDefaultSinglePartEncoding<PassThroughEncoding>();
             SetDefaultMultiPartEncoding<MimeEncoding>();

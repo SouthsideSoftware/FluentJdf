@@ -60,7 +60,7 @@ namespace FluentJdf.Transmission {
         /// </para>
         /// </remarks>
         public FileTransmitterFolderInfoConfigurationItem(FolderInfoTypeEnum partType, string destinationFolder, string referenceFolder,
-                int order, IDictionary<string, string> nameValues) :
+                int order = 0, IDictionary<string, string> nameValues = null) :
             this(partType, destinationFolder, referenceFolder, order, false, nameValues) {
         }
 
@@ -133,19 +133,6 @@ namespace FluentJdf.Transmission {
         }
 
         /// <summary>
-        /// Returns true if this type of item
-        /// should not be output.
-        /// </summary>
-        public bool Suppress {
-            get {
-                return _suppress;
-            }
-            set {
-                _suppress = value;
-            }
-        }
-
-        /// <summary>
         /// Gets the destination folder.  This is where the file
         /// will be placed by the file transmitter.
         /// </summary>
@@ -155,6 +142,47 @@ namespace FluentJdf.Transmission {
             }
             set {
                 _destinationFolder = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the type of part this info applies to.
+        /// </summary>
+        public FolderInfoTypeEnum FolderInfoType {
+            get {
+                return _folderInfoType;
+            }
+        }
+
+        /// <summary>
+        /// Additional Name Values
+        /// </summary>
+        public IDictionary<string, string> NameValues {
+            get {
+                return _nameValues;
+            }
+        }
+
+        /// <summary>
+        /// Gets the order for transmission.  Transmission order
+        /// for items with identical Order is not defined.
+        /// </summary>
+        public int Order {
+            get {
+                return _order;
+            }
+        }
+
+        /// <summary>
+        /// Returns true if this type of item
+        /// should not be output.
+        /// </summary>
+        public bool Suppress {
+            get {
+                return _suppress;
+            }
+            set {
+                _suppress = value;
             }
         }
 
@@ -171,26 +199,6 @@ namespace FluentJdf.Transmission {
                 _referenceFolder = value;
             }
         }
-
-        /// <summary>
-        /// Gets the order for transmission.  Transmission order
-        /// for items with identical Order is not defined.
-        /// </summary>
-        public int Order {
-            get {
-                return _order;
-            }
-        }
-
-        /// <summary>
-        /// Gets the type of part this info applies to.
-        /// </summary>
-        public FolderInfoTypeEnum FolderInfoType {
-            get {
-                return _folderInfoType;
-            }
-        }
-
 
         /// <summary>
         /// Compare the order of this item with the order of another.

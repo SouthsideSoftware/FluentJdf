@@ -14,24 +14,89 @@ namespace FluentJdf.Transmission {
     /// as the base classs for other encoders.
     /// </summary>
     public class FileTransmitterEncoder {
-        private FileTransmitterEncoderConfigurationItem _configItem;
-        private ITransmissionPartFactory _transmissionFactory;
+        private List<FileTransmitterFolderInfoConfigurationItem> _folderInfo;
+        //private ITransmissionPartFactory _transmissionFactory;
+
+        private string _id;
+        private string _urlBase;
+        private bool _useMime = false;
+        private IDictionary<string, string> _nameValues;
 
         /// <summary>
-        /// ctor
+        /// The folder Info items (Attachment, jdf, jmf)
         /// </summary>
-        public FileTransmitterEncoder(ITransmissionPartFactory transmissionFactory) {
-            ParameterCheck.ParameterRequired(transmissionFactory, "transmissionFactory");
-            _transmissionFactory = transmissionFactory;
+        public List<FileTransmitterFolderInfoConfigurationItem> FolderInfo {
+            get {
+                return _folderInfo;
+            }
         }
 
         /// <summary>
-        /// Initialize the encoder.
+        /// Gets the unique ID
         /// </summary>
-        /// <param name="configItem"></param>
-        public virtual void Initialize(FileTransmitterEncoderConfigurationItem configItem) {
-            _configItem = configItem;
+        public string Id {
+            get {
+                return _id;
+            }
         }
+
+        /// <summary>
+        /// Additional Name Values
+        /// </summary>
+        public IDictionary<string, string> NameValues {
+            get {
+                return _nameValues;
+            }
+        }
+
+        /// <summary>
+        /// Gets the URI base of this item.
+        /// </summary>
+        public string UrlBase {
+            get {
+                return _urlBase;
+            }
+        }
+
+        /// <summary>
+        /// Gets true if this encoder should use mime to package the parts
+        /// </summary>
+        public bool UseMime {
+            get {
+                return _useMime;
+            }
+        }
+
+        /// <summary>
+        /// Create a new FileTransmitterEncoder
+        /// </summary>
+        /// <param name="id">The id of the encoder</param>
+        /// <param name="urlBase">The url base</param>
+        /// <param name="useMime">UseMime</param>
+        /// <param name="nameValues">Additional Parameters</param>
+        public FileTransmitterEncoder(string id, string urlBase, bool useMime = false, IDictionary<string, string> nameValues = null) {
+            ParameterCheck.ParameterRequired(id, "id");
+            ParameterCheck.ParameterRequired(urlBase, "uriBase");
+
+            _id = id;
+            _urlBase = urlBase;
+            _useMime = useMime;
+            _nameValues = nameValues ?? new Dictionary<string, string>();
+
+            _folderInfo = new List<FileTransmitterFolderInfoConfigurationItem>();
+
+            if (!_urlBase.EndsWith("\\")) {
+                _urlBase = _urlBase + "\\";
+            }
+        }
+
+        ///// <summary>
+        ///// ctor
+        ///// </summary>
+        //public FileTransmitterEncoder(ITransmissionPartFactory transmissionFactory) {
+        //    ParameterCheck.ParameterRequired(transmissionFactory, "transmissionFactory");
+        //    _transmissionFactory = transmissionFactory;
+        //}
 
         /// <summary>
         /// Prepare a collection of files for transmission.
@@ -240,6 +305,17 @@ namespace FluentJdf.Transmission {
             newFolder = FileTransmissionConfig.ReplaceVar(newFolder, "jobkey", jobKey);
 
             return newFolder;
+        }
+
+        /// <summary>
+        /// Get a string representation of this object.
+        /// </summary>
+        /// <returns>A string with information about the object.</returns>
+        public override string ToString() {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Id: {0} Url Base: {1} Use Mime: {2}",
+                _id, _urlBase, _useMime);
+            return sb.ToString();
         }
 
         ///// <summary>
