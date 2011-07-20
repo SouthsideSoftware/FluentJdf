@@ -284,7 +284,7 @@
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_resource_pool_when_it_exists.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_get_resource_or_null_with_resource_in_ancestor_resource_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_get_resource_or_null_with_resource_in_local_resource_pool.cs" />
-    <Compile Include="Unit\LinqToJdf\ResourceExtensions\When_using_get_usage.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_get_usage.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_link_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_referencing_elements_on_resource_element_with_multiple_legal_references.cs" />

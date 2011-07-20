@@ -4,7 +4,7 @@ using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.ResourceExtensions {
     [Subject(typeof (FluentJdf.LinqToJdf.ResourceExtensions))]
-    public class When_using_get_usage {
+    public class when_using_get_usage {
         static XElement jdf;
 
         Establish content =
