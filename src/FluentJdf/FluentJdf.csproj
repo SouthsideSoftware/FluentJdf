@@ -333,18 +333,9 @@
     <Compile Include="TemplateEngine\VariableTemplateItem.cs" />
     <Compile Include="Transmission\FileSpecUrlMangler.cs" />
     <Compile Include="Transmission\FileTransmissionConfig.cs" />
-    <Compile Include="Transmission\FileTransmissionConfigurationItem.cs" />
     <Compile Include="Transmission\FileTransmissionItem.cs" />
-    <Compile Include="Transmission\FileTransmissionItemCollection.cs" />
     <Compile Include="Transmission\FileTransmitter.cs" />
     <Compile Include="Transmission\FileTransmitterEncoder.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Transmission\FileTransmitterEncoderConfigurationCollection.cs" />
-    <Compile Include="Transmission\FileTransmitterEncoderConfigurationItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Transmission\FileTransmitterFolderInfoConfigurationCollection.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Transmission\FileTransmitterFolderInfoConfigurationItem.cs">
