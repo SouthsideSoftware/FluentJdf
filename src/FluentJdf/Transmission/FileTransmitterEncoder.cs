@@ -24,20 +24,20 @@ namespace FluentJdf.Transmission {
 
         static ILog logger = LogManager.GetLogger(typeof(FileTransmitterEncoder));
 
-        private List<FileTransmitterFolderInfoConfigurationItem> _folderInfo;
+        private List<FileTransmitterFolderInfoConfigurationItem> folderInfo;
 
-        private string _id;
-        private string _localPath;
-        private Uri _urlBase;
-        private bool _useMime = false;
-        private ReadOnlyDictionary<string, string> _nameValues;
+        private string id;
+        private string localPath;
+        private Uri urlBase;
+        private bool useMime = false;
+        private ReadOnlyDictionary<string, string> nameValues;
 
         /// <summary>
         /// The folder Info items (Attachment, jdf, jmf)
         /// </summary>
         public ReadOnlyCollection<FileTransmitterFolderInfoConfigurationItem> FolderInfo {
             get {
-                return _folderInfo.AsReadOnly();
+                return folderInfo.AsReadOnly();
             }
         }
 
@@ -46,7 +46,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public string Id {
             get {
-                return _id;
+                return id;
             }
         }
 
@@ -55,7 +55,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public string LocalPath {
             get {
-                return _localPath;
+                return localPath;
             }
         }
 
@@ -64,7 +64,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public ReadOnlyDictionary<string, string> NameValues {
             get {
-                return _nameValues;
+                return nameValues;
             }
         }
 
@@ -73,7 +73,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public Uri UrlBase {
             get {
-                return _urlBase;
+                return urlBase;
             }
         }
 
@@ -82,7 +82,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public bool UseMime {
             get {
-                return _useMime;
+                return useMime;
             }
         }
 
@@ -114,14 +114,14 @@ namespace FluentJdf.Transmission {
             ParameterCheck.ParameterRequired(id, "id");
             ParameterCheck.ParameterRequired(urlBase, "uriBase");
 
-            _id = id;
-            _urlBase = urlBase.EnsureTrailingSlash();
-            _useMime = useMime;
-            _nameValues = new ReadOnlyDictionary<string, string>(nameValues ?? new Dictionary<string, string>());
+            this.id = id;
+            this.urlBase = urlBase.EnsureTrailingSlash();
+            this.useMime = useMime;
+            this.nameValues = new ReadOnlyDictionary<string, string>(nameValues ?? new Dictionary<string, string>());
 
-            _folderInfo = new List<FileTransmitterFolderInfoConfigurationItem>();
+            this.folderInfo = new List<FileTransmitterFolderInfoConfigurationItem>();
 
-            _localPath = _urlBase.GetLocalPath();
+            this.localPath = urlBase.EnsureTrailingSlash().GetLocalPath();
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace FluentJdf.Transmission {
                 throw new JdfException(string.Format("FolderInfoTypeEnum '{0}' already exists.", configItem.FolderInfoType));
             }
 
-            _folderInfo.Add(configItem);
+            folderInfo.Add(configItem);
         }
 
         /// <summary>
@@ -380,7 +380,7 @@ namespace FluentJdf.Transmission {
         public override string ToString() {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("Id: {0} Url Base: {1} Use Mime: {2}",
-                _id, _urlBase, _useMime);
+                id, urlBase, useMime);
             return sb.ToString();
         }
 

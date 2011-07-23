@@ -13,11 +13,11 @@ namespace FluentJdf.Transmission {
     /// </summary>
     public class FileTransmissionItem : ITransmissionPart, IComparable, IDisposable {
 
-        private TempFileStream _stream;
-        private Uri _destinationUrl;
-        private int _order;
-        private ITransmissionPart _part;
-        private string _mimeType;
+        private TempFileStream stream;
+        private Uri destinationUrl;
+        private int order;
+        private ITransmissionPart part;
+        private string mimeType;
 
         /// <summary>
         /// Constructor by part.
@@ -28,7 +28,7 @@ namespace FluentJdf.Transmission {
         /// <param name="order">The order of this item for sending.</param>
         public FileTransmissionItem(ITransmissionPart part, Uri destinationUrl, string mimeType, int order) :
             this(part.CopyOfStream(), destinationUrl, mimeType, order) {
-            _part = part;
+            this.part = part;
         }
 
         /// <summary>
@@ -42,11 +42,11 @@ namespace FluentJdf.Transmission {
             if (stream.CanSeek) {
                 stream.Seek(0, SeekOrigin.Begin);
             }
-            _stream = new TempFileStream();
-            stream.CopyTo(_stream);
-            _destinationUrl = destinationUrl;
-            _mimeType = mimeType;
-            _order = order;
+            this.stream = new TempFileStream();
+            stream.CopyTo(this.stream);
+            this.destinationUrl = destinationUrl;
+            this.mimeType = mimeType;
+            this.order = order;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public ITransmissionPart Part {
             get {
-                return _part;
+                return part;
             }
         }
 
@@ -64,7 +64,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public Stream Stream {
             get {
-                return _stream;
+                return stream;
             }
         }
 
@@ -73,7 +73,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public Uri DestinationUri {
             get {
-                return _destinationUrl;
+                return destinationUrl;
             }
         }
 
@@ -82,7 +82,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public int Order {
             get {
-                return _order;
+                return order;
             }
         }
 
@@ -93,7 +93,7 @@ namespace FluentJdf.Transmission {
         /// <returns>0 if obj is null or not a FileTransmissionItem.  Otherwise 0, -1, 1 for equals, less-than and greater-than.</returns>
         public int CompareTo(object obj) {
             if (obj is FileTransmissionItem) {
-                return _order.CompareTo(((FileTransmissionItem)obj).Order);
+                return order.CompareTo(((FileTransmissionItem)obj).Order);
             }
             else {
                 return 0;
@@ -114,9 +114,9 @@ namespace FluentJdf.Transmission {
         /// <param name="isDisposing"></param>
         protected virtual void Dispose(bool isDisposing) {
             if (isDisposing) {
-                if (_stream != null) {
-                    _stream.Dispose();
-                    _stream = null;
+                if (stream != null) {
+                    stream.Dispose();
+                    stream = null;
                 }
             }
         }
@@ -159,7 +159,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public string MimeType {
             get {
-                return _mimeType;
+                return mimeType;
             }
         }
 

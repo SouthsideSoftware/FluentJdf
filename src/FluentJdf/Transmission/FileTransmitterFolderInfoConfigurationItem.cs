@@ -15,12 +15,12 @@ namespace FluentJdf.Transmission {
     [Serializable]
     public class FileTransmitterFolderInfoConfigurationItem : IComparable<FileTransmitterFolderInfoConfigurationItem>, IComparable {
 
-        private string _destinationFolder;
-        private string _referenceFolder;
-        private int _order;
-        private FolderInfoTypeEnum _folderInfoType;
-        private ReadOnlyDictionary<string, string> _nameValues;
-        private bool _suppress = false;
+        private string destinationFolder;
+        private string referenceFolder;
+        private int order;
+        private FolderInfoTypeEnum folderInfoType;
+        private ReadOnlyDictionary<string, string> nameValues;
+        private bool suppress = false;
 
         /// <summary>
         /// Construct a default FolderInfo for the given part type.  
@@ -111,25 +111,25 @@ namespace FluentJdf.Transmission {
                 referenceFolder = "${Root}";
             }
 
-            _suppress = suppress;
-            _destinationFolder = destinationFolder;
-            _referenceFolder = referenceFolder;
-            _order = order;
+            this.suppress = suppress;
+            this.destinationFolder = destinationFolder;
+            this.referenceFolder = referenceFolder;
+            this.order = order;
 
-            _nameValues = new ReadOnlyDictionary<string, string>(nameValues ?? new Dictionary<string, string>());
+            this.nameValues = new ReadOnlyDictionary<string, string>(nameValues ?? new Dictionary<string, string>());
 
             switch (partType) {
                 case FolderInfoTypeEnum.Attachment:
                 case FolderInfoTypeEnum.Jdf:
                 case FolderInfoTypeEnum.Jmf:
-                    _folderInfoType = partType;
+                    folderInfoType = partType;
                     break;
                 default:
                     throw new JdfException(string.Format("partType must be 'Attachment', 'Jdf' or 'Jmf'.  The type given for FolderInfo is {0}", partType));
             }
 
-            if (_order < 0) {
-                _order = (int)_folderInfoType;
+            if (order < 0) {
+                this.order = (int)folderInfoType;
             }
         }
 
@@ -139,10 +139,10 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public string DestinationFolder {
             get {
-                return _destinationFolder;
+                return destinationFolder;
             }
             set {
-                _destinationFolder = value;
+                destinationFolder = value;
             }
         }
 
@@ -151,7 +151,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public FolderInfoTypeEnum FolderInfoType {
             get {
-                return _folderInfoType;
+                return folderInfoType;
             }
         }
 
@@ -160,7 +160,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public ReadOnlyDictionary<string, string> NameValues {
             get {
-                return _nameValues;
+                return nameValues;
             }
         }
 
@@ -170,7 +170,7 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public int Order {
             get {
-                return _order;
+                return order;
             }
         }
 
@@ -180,10 +180,10 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public bool Suppress {
             get {
-                return _suppress;
+                return suppress;
             }
             set {
-                _suppress = value;
+                suppress = value;
             }
         }
 
@@ -194,10 +194,10 @@ namespace FluentJdf.Transmission {
         /// </summary>
         public string ReferenceFolder {
             get {
-                return _referenceFolder;
+                return referenceFolder;
             }
             set {
-                _referenceFolder = value;
+                referenceFolder = value;
             }
         }
 
@@ -208,7 +208,7 @@ namespace FluentJdf.Transmission {
         /// <returns>0 if equals or if obj is not a non-null FileTransmitterFolderInfoConfigurationItem. 1 if this is greater, -1 if this is less than.</returns>
         public int CompareTo(object obj) {
             if (obj is FileTransmitterFolderInfoConfigurationItem) {
-                return _order.CompareTo(((FileTransmitterFolderInfoConfigurationItem)obj).Order);
+                return order.CompareTo(((FileTransmitterFolderInfoConfigurationItem)obj).Order);
             }
             else {
                 return 0;
@@ -224,7 +224,7 @@ namespace FluentJdf.Transmission {
             if (other == null) {
                 return 0;
             }
-            return _order.CompareTo(other.Order);
+            return order.CompareTo(other.Order);
         }
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace FluentJdf.Transmission {
         public override string ToString() {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("Destination Folder: {0} Reference Folder: {1} Order: {2} FolderInfoType: {3} Suppress: {4}",
-                _destinationFolder, _referenceFolder, _order, _folderInfoType.ToString(), _suppress);
+                destinationFolder, referenceFolder, order, folderInfoType.ToString(), suppress);
             return sb.ToString();
         }
 
@@ -247,8 +247,8 @@ namespace FluentJdf.Transmission {
                 Trace.WriteLine("NameValues");
                 Trace.Indent();
                 try {
-                    foreach (string key in _nameValues.Keys) {
-                        Trace.WriteLine(string.Format("{0}={1}", key, _nameValues[key]));
+                    foreach (string key in nameValues.Keys) {
+                        Trace.WriteLine(string.Format("{0}={1}", key, nameValues[key]));
                     }
                 }
                 finally {
