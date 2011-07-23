@@ -9,6 +9,10 @@ using FluentJdf.LinqToJdf;
 using System.Collections.ObjectModel;
 using Infrastructure.Core;
 using Infrastructure.Core.Helpers;
+using System.Xml.Linq;
+using FluentJdf.Utility;
+using FluentJdf.Transmission.Logging;
+using Infrastructure.Core.Logging;
 
 namespace FluentJdf.Transmission {
 
@@ -17,12 +21,14 @@ namespace FluentJdf.Transmission {
     /// as the base classs for other encoders.
     /// </summary>
     public class FileTransmitterEncoder {
+
+        static ILog logger = LogManager.GetLogger(typeof(FileTransmitterEncoder));
+
         private List<FileTransmitterFolderInfoConfigurationItem> _folderInfo;
-        //private ITransmissionPartFactory _transmissionFactory;
 
         private string _id;
         private string _localPath;
-        private string _urlBase;
+        private Uri _urlBase;
         private bool _useMime = false;
         private ReadOnlyDictionary<string, string> _nameValues;
 
@@ -65,7 +71,7 @@ namespace FluentJdf.Transmission {
         /// <summary>
         /// Gets the URI base of this item.
         /// </summary>
-        public string UrlBase {
+        public Uri UrlBase {
             get {
                 return _urlBase;
             }
@@ -88,6 +94,23 @@ namespace FluentJdf.Transmission {
         /// <param name="useMime">UseMime</param>
         /// <param name="nameValues">Additional Parameters</param>
         public FileTransmitterEncoder(string id, string urlBase, bool useMime = false, IDictionary<string, string> nameValues = null) {
+            ParameterCheck.ParameterRequired(urlBase, "uriBase");
+            var uri = new Uri(urlBase);
+            Construct(id, uri, useMime, nameValues);
+        }
+
+        /// <summary>
+        /// Create a new FileTransmitterEncoder
+        /// </summary>
+        /// <param name="id">The id of the encoder</param>
+        /// <param name="urlBase">The url base</param>
+        /// <param name="useMime">UseMime</param>
+        /// <param name="nameValues">Additional Parameters</param>
+        public FileTransmitterEncoder(string id, Uri urlBase, bool useMime = false, IDictionary<string, string> nameValues = null) {
+            Construct(id, urlBase, useMime, nameValues);
+        }
+
+        private void Construct(string id, Uri urlBase, bool useMime = false, IDictionary<string, string> nameValues = null) {
             ParameterCheck.ParameterRequired(id, "id");
             ParameterCheck.ParameterRequired(urlBase, "uriBase");
 
@@ -98,12 +121,8 @@ namespace FluentJdf.Transmission {
 
             _folderInfo = new List<FileTransmitterFolderInfoConfigurationItem>();
 
-            if (!_urlBase.EndsWith("\\")) {
-                _urlBase = _urlBase + "\\";
-            }
-
-            Uri uri = new Uri(_urlBase);
-            _localPath = Path.GetDirectoryName(uri.LocalPath);
+            _urlBase = urlBase.EnsureTrailingSlash();
+            _localPath = _urlBase.GetLocalPath();
         }
 
         /// <summary>
@@ -117,14 +136,6 @@ namespace FluentJdf.Transmission {
 
             _folderInfo.Add(configItem);
         }
-
-        ///// <summary>
-        ///// ctor
-        ///// </summary>
-        //public FileTransmitterEncoder(ITransmissionPartFactory transmissionFactory) {
-        //    ParameterCheck.ParameterRequired(transmissionFactory, "transmissionFactory");
-        //    _transmissionFactory = transmissionFactory;
-        //}
 
         /// <summary>
         /// Gets the folder info for Jmf.
@@ -161,6 +172,8 @@ namespace FluentJdf.Transmission {
         /// </summary>
         /// <param name="parts">The transmission parts.</param>
         /// <param name="transmissionFactory">Transmission factory that is needed but not used.</param>
+        /// <param name="encodingfactory">The encodingfactory</param>
+        /// <param name="transmissionLogger">The transmissionLogger</param>
         /// <returns>A collection of file transmission items in order of sending.</returns>
         /// <remarks>
         /// <para>
@@ -179,168 +192,168 @@ namespace FluentJdf.Transmission {
         /// ${JobKey} = A JobKey directory.  JobKey used is from the first JDF found in the parts (tree.Key).
         /// </para>
         /// </remarks>
-        public virtual ITransmissionPartCollection PrepareTransmission(ITransmissionPartCollection parts, ITransmissionPartFactory transmissionFactory) {
-            ITransmissionPartCollection items = new TransmissionPartCollection();
+        public virtual List<FileTransmissionItem> PrepareTransmission(ITransmissionPartCollection parts,
+                                                                        ITransmissionPartFactory transmissionFactory,
+                                                                        IEncodingFactory encodingfactory,
+                                                                        ITransmissionLogger transmissionLogger) {
+            var items = new List<FileTransmissionItem>();
             try {
-                throw new NotImplementedException();
+                if (UseMime) {
+                    MimeEncoding encoding = new MimeEncoding(transmissionFactory);
+                    var encoded = encoding.Encode(parts);
+                    using (var mimeResult = encoded.Stream) {
+                        items.Add(new FileTransmissionItem(mimeResult, new Uri(Path.Combine(LocalPath, Guid.NewGuid().ToString() + ".mim")), encoded.ContentType, 0));
+                    }
+                }
+                else {
+                    if (JmfFolderInfo == null && JdfFolderInfo == null && AttachmentFolderInfo == null) {
+                        throw new JdfException(
+                            string.Format("The configuration of the file transmission encoder id {0} is invaild because it is configured not to send anything",
+                            Id));
+                    }
+                    if (JmfFolderInfo != null && (JdfFolderInfo == null || AttachmentFolderInfo == null)) {
+                        throw new JdfException(
+                            string.Format("The configuration of the file transmission encoder id {0} is invaild because it is configured to send JMF but not JDF and the attachment",
+                            Id));
+                    }
+                    if (JdfFolderInfo != null && AttachmentFolderInfo == null) {
+                        throw new JdfException(
+                            string.Format("The configuration of the file transmission encoder id {0} is invaild because it is configured to send JDF but not the attachment",
+                            Id));
+                    }
 
-                //if (UseMime) {
-                //    MimeEncoding encoding = new MimeEncoding(transmissionFactory);
-                //    var encoded = encoding.Encode(parts);
-                //    using (var mimeResult = encoded.Stream) {
-                //        items.Add(new FileTransmissionItem(mimeResult, new Uri(Path.Combine(UrlBase, Guid.NewGuid().ToString() + ".mim")), encoded.ContentType, 0));
-                //    }
-                //    string contentType;
-                //}
-                //else {
-                //    if (JmfFolderInfo == null && JdfFolderInfo == null && AttachmentFolderInfo == null) {
-                //        throw new JdfException(
-                //            string.Format("The configuration of the file transmission encoder id {0} is invaild because it is configured not to send anything",
-                //            Id));
-                //    }
-                //    if (JmfFolderInfo != null && (JdfFolderInfo == null || AttachmentFolderInfo == null)) {
-                //        throw new JdfException(
-                //            string.Format("The configuration of the file transmission encoder id {0} is invaild because it is configured to send JMF but not JDF and the attachment",
-                //            Id));
-                //    }
-                //    if (JdfFolderInfo != null && AttachmentFolderInfo == null) {
-                //        throw new JdfException(
-                //            string.Format("The configuration of the file transmission encoder id {0} is invaild because it is configured to send JDF but not the attachment",
-                //            Id));
-                //    }
-                //    Guid transmissionGuid = Guid.NewGuid();
-                //    string jobId = "JDF_JobIdUnknown";
-                //    string jobKey = "JDF_JobKeyUnknown";
+                    Guid transmissionGuid = Guid.NewGuid();
+                    string jobId = "JDF_JobIdUnknown";
+                    string jobKey = "JDF_JobKeyUnknown";
 
-                //    var helperType = MimeTypeHelper.JdfMimeType;
+                    var jdfTransmissionPart = parts.TicketPart;
 
-                //    //pass over parts to get the job id and key
-                //    foreach (ITransmissionPart part in parts) {
-                //        if (part.MimeType == MimeTypeHelper.JdfMimeType) {//if (part is JdfTransmissionPart) {
-                //            if (part.Tree.RootJdf.JobId.Length > 0) {
-                //                jobId = "JDF_" + part.Tree.RootJdf.JobId;
-                //            }
-                //            if (part.Tree.Key.Length > 0) {
-                //                jobKey = "JDF_" + part.Tree.Key;
-                //            }
-                //            break;
-                //        }
-                //    }
+                    //pass over parts to get the job id and key
+                    if (jdfTransmissionPart != null) {
 
-                //    //pass over parts to generate destination file names and mapping
-                //    var urlMapping = new Dictionary<string, Uri>(StringComparer.OrdinalIgnoreCase);
-                //    foreach (TransmissionPart part in parts) {
-                //        FileTransmitterFolderInfoConfigurationItem folderConfigurationItem;
-                //        string extension = null;
-                //        if (part.MimeType == MimeTypeHelper.JdfMimeType) {
-                //            folderConfigurationItem = JdfFolderInfo;
-                //            extension = ".jdf";
-                //        }
-                //        if (part.MimeType == MimeTypeHelper.JmfMimeType) {
-                //            folderConfigurationItem = JmfFolderInfo;
-                //            extension = ".jmf";
-                //        }
-                //        else {
-                //            folderConfigurationItem = AttachmentFolderInfo;
-                //            extension = MimeTypeHelper.MimeTypeExtension(part.MimeType);
-                //        }
+                        //TODO is this the best way to obtain the ticket? We know it must exist since we are on the correct mime item.
+                        var ticket = parts.Ticket;
 
-                //        string fileName = part.FileName;
-                //        if (fileName == null) {
-                //            fileName = Guid.NewGuid().ToString() + extension;
-                //        }
-                //        else {
-                //            fileName = Path.GetFileName(fileName);
-                //        }
+                        if (ticket.Root.GetJobId().Length > 0) {
+                            jobId = "JDF_" + ticket.Root.GetJobId();
+                        }
+                        if (ticket.Root.GetId().Length > 0) {
+                            jobKey = "JDF_" + ticket.Root.GetId();
+                        }
+                    }
 
-                //        if (folderConfigurationItem != null) {
-                //            part.FileName = Path.Combine(ExpandFolder(folderConfigurationItem.DestinationFolder, UrlBase, transmissionGuid, jobId, jobKey), fileName);
-                //            string referencePath = Path.Combine(ExpandFolder(folderConfigurationItem.ReferenceFolder, UrlBase, transmissionGuid, jobId, jobKey), fileName);
-                //            urlMapping.Add("cid:" + part.Id.ToLower(), new Uri(referencePath));
-                //        }
-                //    }
+                    var itemsToProcess = new List<KeyValuePair<ITransmissionPart, string>>();
 
-                //    //fixup urls and add to the collection of files to send
-                //    foreach (TransmissionPart part in parts) {
-                //        FileTransmitterFolderInfoConfigurationItem folderConfigurationItem;
+                    //pass over parts to generate destination file names and mapping
+                    var urlMapping = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                    foreach (ITransmissionPart part in parts) {
+                        FileTransmitterFolderInfoConfigurationItem folderConfigurationItem;
+                        string extension = null;
+                        if (part.MimeType == MimeTypeHelper.JdfMimeType) {
+                            folderConfigurationItem = JdfFolderInfo;
+                            extension = ".jdf";
+                        }
+                        if (part.MimeType == MimeTypeHelper.JmfMimeType) {
+                            folderConfigurationItem = JmfFolderInfo;
+                            extension = ".jmf";
+                        }
+                        else {
+                            folderConfigurationItem = AttachmentFolderInfo;
+                            extension = MimeTypeHelper.MimeTypeExtension(part.MimeType);
+                        }
 
-                //        if (part.MimeType == MimeTypeHelper.JdfMimeType) {
-                //            folderConfigurationItem = JdfFolderInfo;
-                //        }
-                //        if (part.MimeType == MimeTypeHelper.JmfMimeType) {
-                //            folderConfigurationItem = JmfFolderInfo;
-                //        }
-                //        else {
-                //            folderConfigurationItem = AttachmentFolderInfo;
-                //        }
+                        string fileName = Guid.NewGuid().ToString() + extension; //we do not have an original filename, we can only create one.
 
+                        if (folderConfigurationItem != null) {
+                            var newFileName = Path.Combine(ExpandFolder(folderConfigurationItem.DestinationFolder, LocalPath, transmissionGuid, jobId, jobKey), fileName);
+                            string referencePath = Path.Combine(ExpandFolder(folderConfigurationItem.ReferenceFolder, LocalPath, transmissionGuid, jobId, jobKey), fileName);
+                            urlMapping.Add("cid:" + part.Id.ToLower(), referencePath);
+                            itemsToProcess.Add(new KeyValuePair<ITransmissionPart, string>(part, newFileName));
+                        }
+                    }
 
+                    //fixup urls and add to the collection of files to send
+                    foreach (var processPart in itemsToProcess) {
+                        FileTransmitterFolderInfoConfigurationItem folderConfigurationItem;
 
-                //        if (part is JdfTransmissionPart) {
-                //            FileSpecUrlMangler.MapFileSpecUrls(part.Tree, urlMapping, true);
-                //            FileSpecUrlMangler.MapPreviewUrls(part.Tree, urlMapping, true);
-                //        }
-                //        else if (part is JmfTransmissionPart) {
-                //            MapMessageUrls(part.Tree, urlMapping);
-                //        }
+                        var part = processPart.Key;
+                        var file = processPart.Value;
 
-                //        if (folderConfigurationItem != null) {
-                //            TransmissionPartCollection singlePartCollection = new TransmissionPartCollection();
-                //            singlePartCollection.Add(part);
+                        if (part.MimeType == MimeTypeHelper.JdfMimeType) {
+                            folderConfigurationItem = JdfFolderInfo;
+                        }
+                        if (part.MimeType == MimeTypeHelper.JmfMimeType) {
+                            folderConfigurationItem = JmfFolderInfo;
+                        }
+                        else {
+                            folderConfigurationItem = AttachmentFolderInfo;
+                        }
 
-                //            SimpleEncoding encoding = new SimpleEncoding();
-                //            string contentType;
-                //            OptimalEncodingResult encodingResult = encoding.OptimalEncode(singlePartCollection, out contentType);
-                //            try {
-                //                items.Add(new FileTransmissionItem(encodingResult.Stream, new Uri(part.FileName), folderConfigurationItem.Order));
-                //            }
-                //            finally {
-                //                encodingResult.Dispose();
-                //            }
-                //        }
-                //    }
-                //}
+                        //TODO is this the best way to obtain the ticket? We know it must exist since we are on the correct mime item.
+                        if (part.MimeType == MimeTypeHelper.JdfMimeType) {
+                            FileSpecUrlMangler.MapFileSpecUrls(parts.Ticket, urlMapping, true);
+                            FileSpecUrlMangler.MapPreviewUrls(parts.Ticket, urlMapping, true);
+                        }
+
+                        //TODO is this the best way to obtain the message? We know it must exist since we are on the correct mime item.
+                        if (part.MimeType == MimeTypeHelper.JmfMimeType) {
+                            MapMessageUrls(parts.Message, urlMapping);
+                        }
+
+                        if (folderConfigurationItem != null) {
+                            if (!folderConfigurationItem.Suppress) {
+                                var encodingResult = encodingfactory.GetEncodingForMimeType(part.MimeType).Encode(part);
+                                transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Request"));
+
+                                items.Add(new FileTransmissionItem(encodingResult.Stream, new Uri(file), part.MimeType, folderConfigurationItem.Order));
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception err) {
                 throw new JdfException(string.Format("Error occured while trying to encode transmission.  Message is {0}",
                     err.Message), err);
             }
-            //return items;
+            return items;
         }
 
-        //private void MapMessageUrls(JdfTree jmfTree, Dictionary<string, Uri> urlMapping) {
-        //    // Access the URL in the QueueSubmissionParams or ResubmissionParams of each Command element in the JMF.
-        //    foreach (JmfCommand command in jmfTree.Root.GetElementsByName("Command")) {
-        //        bool toProcess = false;
-        //        ElementList submissionParams = null;
-        //        if (command.Attributes["Type"].ToString() == "SubmitQueueEntry") {
-        //            submissionParams = command.GetElementsByName("QueueSubmissionParams");
-        //            if (submissionParams.Count == 0) {
-        //                OAIException.Throw(new OAIException("QueueSubmissionParams are required in SubmitQueueEntry"));
-        //            }
-        //            else {
-        //                toProcess = true;
-        //            }
-        //        }
-        //        if (command.Attributes["Type"].ToString() == "ResubmitQueueEntry") {
-        //            submissionParams = command.GetElementsByName("ResubmissionParams");
-        //            if (submissionParams.Count == 0) {
-        //                OAIException.Throw(new OAIException("ReSubmissionParams are required in ResubmitQueueEntry"));
-        //            }
-        //            else {
-        //                toProcess = true;
-        //            }
-        //        }
-        //        if (toProcess) {
-        //            //HACK: ToLower();
-        //            string jdfUrl = submissionParams[0].Attributes["URL"].ToString().ToLower();
+        private void MapMessageUrls(Message message, Dictionary<string, string> urlMapping) {
+            // Access the URL in the QueueSubmissionParams or ResubmissionParams of each Command element in the JMF.
+            foreach (var command in message.Root.SelectJDFDescendants(Element.Command)) {
+                bool toProcess = false;
 
-        //            if (urlMapping.Contains(jdfUrl)) {
-        //                submissionParams[0].Attributes["URL"].SetValue(((Uri)urlMapping[jdfUrl]).AbsoluteUri);
-        //            }
-        //        }
-        //    }
-        //}
+                var commandType = command.GetAttributeValueOrNull("Type");
+
+                IEnumerable<XElement> submissionParams = null;
+
+                if (commandType == Command.SubmitQueueEntry) {
+                    submissionParams = command.SelectJDFDescendants(Element.QueueSubmissionParams);
+                    if (submissionParams.Count() == 0) {
+                        throw new JdfException("QueueSubmissionParams are required in SubmitQueueEntry");
+                    }
+                    else {
+                        toProcess = true;
+                    }
+                }
+                if (commandType == Command.ResubmitQueueEntry) {
+                    submissionParams = command.SelectJDFDescendants(Element.ResubmissionParams);
+                    if (submissionParams.Count() == 0) {
+                        throw new JdfException("ReSubmissionParams are required in ResubmitQueueEntry");
+                    }
+                    else {
+                        toProcess = true;
+                    }
+                }
+                if (toProcess) {
+                    string jdfUrl = submissionParams.First().GetAttributeValueOrNull("URL").ToString().ToLower();
+                    string newUrl = null;
+                    if (urlMapping.TryGetValue(jdfUrl, out newUrl)) {
+                        submissionParams.First().AddOrReplaceAttribute(new XAttribute("URL", (new Uri(newUrl)).AbsoluteUri));
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Expands special variables in folder names found in

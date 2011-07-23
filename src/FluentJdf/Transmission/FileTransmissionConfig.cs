@@ -12,7 +12,7 @@ namespace FluentJdf.Transmission {
     public static class FileTransmissionConfig {
 
         /// <summary>
-        /// Full path of the configuratin file.
+        /// Full path of the configuration file.
         /// </summary>
         public static string ConfigurationFile {
             get {
@@ -21,11 +21,39 @@ namespace FluentJdf.Transmission {
         }
 
         /// <summary>
-        /// Path where the executable is located without the name of the executable.
+        /// Path where the executable is located without the name of the executable. (same as InstallationRoot)
         /// </summary>
         public static string ExecutablePath {
             get {
                 return Path.GetDirectoryName(ConfigurationFile);
+            }
+        }
+
+        /// <summary>
+        /// Path where the executable is located without the name of the executable. (same as ExecutablePath)
+        /// </summary>
+        public static string InstallationRoot {
+            get {
+                return Path.GetDirectoryName(ConfigurationFile);
+            }
+        }
+
+        /// <summary>
+        /// The Log Folder
+        /// </summary>
+        public static string LogFolder {
+            get {
+                //TODO how do we determine the log folder path?
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// The Temp folder
+        /// </summary>
+        public static string TempFolder {
+            get {
+                return Path.GetTempPath();
             }
         }
 
@@ -42,29 +70,17 @@ namespace FluentJdf.Transmission {
                     oldString = pathString;
 
                     if (pathString.IndexOf("${InstallationRoot}") > -1) {
-                        pathString = ReplaceVar(pathString, "InstallationRoot", JdpSettings["InstallationRoot"]);
+                        pathString = ReplaceVar(pathString, "InstallationRoot", InstallationRoot);
                     }
                     if (pathString.IndexOf("${ConfigurationFolder}") > -1) {
-                        pathString = ReplaceVar(pathString, "ConfigurationFolder", JdpSettings["ConfigurationFolder"]);
+                        pathString = ReplaceVar(pathString, "ConfigurationFolder", ExecutablePath);
                     }
                     if (pathString.IndexOf("${TempFolder}") > -1) {
-                        pathString = ReplaceVar(pathString, "TempFolder", JdpSettings["TempFolder"]);
-                    }
-                    if (pathString.IndexOf("${FileStorageRoot}") > -1) {
-                        pathString = ReplaceVar(pathString, "FileStorageRoot", JdpSettings["FileStorageRoot"]);
+                        pathString = ReplaceVar(pathString, "TempFolder", TempFolder);
                     }
                     if (pathString.IndexOf("${WebServerRoot}") > -1) {
-                        pathString = ReplaceVar(pathString, "WebServerRoot", JdpSettings["WebServerRoot"]);
-                    }
-                    if (pathString.IndexOf("${WebServerRootUrl}") > -1) {
-                        pathString = ReplaceVar(pathString, "WebServerRootUrl", JdpSettings["WebServerRootUrl"]);
-                    }
-                    if (pathString.IndexOf("${LogFolder}") > -1) {
-                        string logFolder = JdpSettings["LogFolder"];
-                        if (logFolder == null) {
-                            logFolder = @"\logs";
-                        }
-                        pathString = ReplaceVar(pathString, "LogFolder", logFolder);
+                        throw new NotImplementedException("${WebServerRoot}");
+                        //pathString = ReplaceVar(pathString, "WebServerRoot", JdpSettings["WebServerRoot"]);
                     }
                     if (pathString.IndexOf("${RuntimeExecutableFolder}") > -1) {
                         pathString = ReplaceVar(pathString, "RuntimeExecutableFolder", ExecutablePath);
@@ -127,13 +143,5 @@ namespace FluentJdf.Transmission {
             return pathString;
         }
 
-        /// <summary>
-        /// Hack: JdfSettings so we can compile until we can figure out the transmission config.
-        /// </summary>
-        public static Dictionary<string, string> JdpSettings {
-            get {
-                throw new NotImplementedException();
-            }
-        }
     }
 }

@@ -369,6 +369,7 @@
     <Compile Include="Messaging\IJmfResult.cs" />
     <Compile Include="Utility\StringHelper.cs" />
     <Compile Include="Utility\UniqueGenerator.cs" />
+    <Compile Include="Utility\UriExtensionMethods.cs" />
     <Compile Include="Utility\XContainerExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>

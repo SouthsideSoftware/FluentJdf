@@ -8,6 +8,7 @@ using Infrastructure.Core.Logging;
 using FluentJdf.Transmission.Logging;
 using Infrastructure.Core.CodeContracts;
 using FluentJdf.Resources;
+using FluentJdf.Utility;
 using Infrastructure.Core;
 using System.IO;
 using Infrastructure.Core.Helpers;
@@ -20,8 +21,11 @@ namespace FluentJdf.Transmission {
     public class FileTransmitter : ITransmitter {
 
         static ILog logger = LogManager.GetLogger(typeof(FileTransmitter));
-        readonly ITransmissionLogger transmissionLogger;
+        
+        readonly ITransmissionPartFactory transmissionPartFactory
+            = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPartFactory>();
 
+        readonly ITransmissionLogger transmissionLogger;
         readonly IEncodingFactory encodingfactory;
 
         /// <summary>
@@ -56,10 +60,26 @@ namespace FluentJdf.Transmission {
             var transmissionEncoder = GetFileTransmitterEncoder(uri);
 
             if (transmissionEncoder != null) {
+                List<FileTransmissionItem> results = null;
+                try {
+                    results = transmissionEncoder.PrepareTransmission(partsToSend, transmissionPartFactory, encodingfactory, transmissionLogger);
 
-                
+                    foreach (var item in results.OrderBy(item => item.Order)) {
+                        var fileInfo = new FileInfo(item.DestinationUri.LocalPath);
+                        DirectoryAndFileHelper.EnsureFolderExists(fileInfo.Directory, logger);
+                        DirectoryAndFileHelper.SaveStreamToFile(item.Stream, fileInfo, false, logger);
+                    }
+                }
+                catch (Exception err) {
+                    logger.Error(string.Format(Messages.HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException, uri), err);
+                    throw;
+                }
+                finally {
+                    foreach (var item in results) {
+                        item.Dispose();
+                    }
+                }
 
-                //do nothing
                 return new JmfResult(new TransmissionPartCollection());
             }
             else {
@@ -99,9 +119,11 @@ namespace FluentJdf.Transmission {
         private static FileTransmitterEncoder GetFileTransmitterEncoder(Uri uri) {
 
             FileTransmitterEncoder retVal = null;
-            var itemPath = Path.GetDirectoryName(uri.LocalPath);
 
-            FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.FirstOrDefault(item => item.Value.LocalPath.Equals(itemPath));
+            var testPath = uri.GetLocalPath();
+
+            retVal = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders
+                .FirstOrDefault(item => item.Value.LocalPath.Equals(testPath, StringComparison.OrdinalIgnoreCase)).Value;
             return retVal;
         }
     }

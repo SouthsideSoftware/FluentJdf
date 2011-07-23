@@ -19,9 +19,10 @@
   <Namespace>System.Drawing</Namespace>
   <Namespace>FluentJdf.Transmission</Namespace>
   <Namespace>FluentJdf.Messaging</Namespace>
+  <Namespace>FluentJdf.Utility</Namespace>
 </Query>
 
-bool loggingOn = false;
+bool loggingOn = true;
 static ITransmitter mockTransmitter;
 
 //static IEncoding defaultEncoding;
@@ -40,16 +41,44 @@ void Main() {
 void InitializeFileEncodingTransmitters() {
 
 	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
-	.FileTransmitterEncoder("id", @"file:///c:\temp\SimpleSend\MimeEncoded\", true)
+	.FileTransmitterEncoder("id", @"file:///c:\temp\SimpleSend\MimeEncoded", true)
 	.FileTransmitterEncoder("id2", @"file:///c:\zzz\SimpleSend\MimeEncoded\")
-	.FolderInfo(FolderInfoTypeEnum.Attachment, @"file:///c:\zzz\SimpleSend\dest\", @"file:///c:\zzz\SimpleSend\ref\")
+	.FolderInfo(FolderInfoTypeEnum.Attachment, @"file:///c:\zzz\SimpleSend\dest", @"file:///c:\zzz\SimpleSend\ref")
 	.Settings.EncodingSettings.FileTransmitterEncoders.Dump();
 	
-	FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.TryGetValue(baseUri, out retVal);
+	var uri = new Uri(@"file:///c:\temp\SimpleSend/MimeEncoded\").Dump("uri");
 	
-	var uri =new Uri(@"file:///c:\temp\SimpleSend/MimeEncoded\").Dump();
+	//uri = new Uri(@"file:///c:\").Dump("uri");
+	
+	uri.LocalPath.Dump("LocalPath");
+	
+	Path.GetDirectoryName(uri.LocalPath).Dump("Path.GetDirectoryName");
+	
+	//uri = new Uri(@"file:///\\machine\SimpleSend/MimeEncoded\").Dump("uri");
+	
+	//uri.IsFile.Dump("File");
+	//uri.GetLocalPath().Dump("LocalPath");
+	//uri.AbsolutePath.Dump("Absolute");
 
- 	var baseUri = Path.GetDirectoryName(uri.LocalPath).Dump();
+ 	var baseUri = Path.GetDirectoryName(uri.LocalPath).Dump("baseUri");
+	
+	FileTransmitterEncoder encoder = null;
+	
+	//FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.Count.Dump("count");
+	
+	//FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.TryGetValue(uri.ToString(), out encoder);
+	
+	var testPath = uri.GetLocalPath();
+
+	encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders
+				.FirstOrDefault(item => item.Value.LocalPath.Equals(testPath, StringComparison.OrdinalIgnoreCase)).Value;
+	
+	//encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.FirstOrDefault (fte => fte.Value.UrlBase.Equals(uri)).Value;
+	
+	//encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.GetFileTransmitterEncoder();
+		
+	encoder.Dump("encoder");
+
 }
 
 void FluentGetProcess() {

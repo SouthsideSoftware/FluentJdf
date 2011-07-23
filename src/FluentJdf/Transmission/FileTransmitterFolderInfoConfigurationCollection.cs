@@ -6,6 +6,8 @@
 
 //namespace FluentJdf.Transmission {
 
+//Built into FileTransmitterEncoder
+
 //    /// <summary>
 //    /// Collection of FileTransmitterFolderInfoConfigurationItem objects
 //    /// 1 for JDF, 1 for JMF and 1 for Attachments
