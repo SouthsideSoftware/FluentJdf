@@ -78,10 +78,6 @@ namespace FluentJdf.Transmission {
                     if (pathString.IndexOf("${TempFolder}") > -1) {
                         pathString = ReplaceVar(pathString, "TempFolder", TempFolder);
                     }
-                    if (pathString.IndexOf("${WebServerRoot}") > -1) {
-                        throw new NotImplementedException("${WebServerRoot}");
-                        //pathString = ReplaceVar(pathString, "WebServerRoot", JdpSettings["WebServerRoot"]);
-                    }
                     if (pathString.IndexOf("${RuntimeExecutableFolder}") > -1) {
                         pathString = ReplaceVar(pathString, "RuntimeExecutableFolder", ExecutablePath);
                     }
