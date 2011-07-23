@@ -21,20 +21,19 @@ namespace FluentJdf.Transmission {
         /// no mapping has been provided for that CID.</param>
         /// <exception cref="JdfException">Thrown if mustMapCIDs is true and no mapping was supplied for a CID-based URL.</exception>
         public static void MapFileSpecUrls(Ticket ticket, IDictionary<string, string> urlMapping, bool mustMapCIDs) {
-            
+
             var fileSpecs = ticket.Root.SelectJDFDescendants(Element.FileSpec);
 
             foreach (var fileSpec in fileSpecs) {
                 var urlValue = fileSpec.GetAttributeValueOrNull("URL");
                 if (urlValue != null) {
-                    string oldUrl = urlValue.ToLower();
-                    string newUrl = null;
-                    if (urlMapping.TryGetValue(oldUrl, out newUrl)) {
+                    string newUrl = urlMapping.FirstOrDefault(item => item.Key.Equals(urlValue, StringComparison.OrdinalIgnoreCase)).Value;
+                    if (newUrl != null) {
                         fileSpec.AddOrReplaceAttribute(new XAttribute("URL", (new Uri(newUrl)).AbsoluteUri));
                     }
                     else {
-                        if (oldUrl.ToLower().StartsWith("cid:") && mustMapCIDs) {
-                            throw new JdfException("mustMapCIDs is true and no mapping supplied for URL " + oldUrl);
+                        if (urlValue.StartsWith("cid:", StringComparison.OrdinalIgnoreCase) && mustMapCIDs) {
+                            throw new JdfException("mustMapCIDs is true and no mapping supplied for URL: " + urlValue);
                         }
                     }
                 }
@@ -51,20 +50,19 @@ namespace FluentJdf.Transmission {
         /// no mapping has been provided for that CID.</param>
         /// <exception cref="JdfException">Thrown if mustMapCIDs is true and no mapping was supplied for a CID-based URL.</exception>
         public static void MapPreviewUrls(Ticket ticket, IDictionary<string, string> urlMapping, bool mustMapCIDs) {
-            
+
             var previews = ticket.Root.SelectJDFDescendants(Element.Preview);
 
             foreach (var preview in previews) {
                 var urlValue = preview.GetAttributeValueOrNull("URL");
                 if (urlValue != null) {
-                    string oldUrl = urlValue.ToLower();
-                    string newUrl = null;
-                    if (urlMapping.TryGetValue(oldUrl, out newUrl)) {
+                    string newUrl = urlMapping.FirstOrDefault(item => item.Key.Equals(urlValue, StringComparison.OrdinalIgnoreCase)).Value;
+                    if (newUrl != null) {
                         preview.AddOrReplaceAttribute(new XAttribute("URL", (new Uri(newUrl)).AbsoluteUri));
                     }
                     else {
-                        if (oldUrl.ToLower().StartsWith("cid:") && mustMapCIDs) {
-                            throw new JdfException("mustMapCIDs is true and no mapping supplied for URL " + oldUrl);
+                        if (urlValue.StartsWith("cid:", StringComparison.OrdinalIgnoreCase) && mustMapCIDs) {
+                            throw new JdfException("mustMapCIDs is true and no mapping supplied for URL: " + urlValue);
                         }
                     }
                 }
