@@ -36,9 +36,18 @@ void Main() {
 	//FluentGetProcess();
 	//FluentSubmitQueueEntry();
 	InitializeFileEncodingTransmitters();
+	CreateTestDataForFileTransmitterEncoder();
+}
+
+void CreateTestDataForFileTransmitterEncoder() {
+	FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry()
+	.AddNode(Element.QueueSubmissionParams).With().Attribute("Hold","true").Attribute("URL", "cid:TestCID")
+	.Message.Dump();
+
 }
 
 void InitializeFileEncodingTransmitters() {
+
 
 	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
 	.FileTransmitterEncoder("id", @"file:///c:\temp\SimpleSend\MimeEncoded", true)

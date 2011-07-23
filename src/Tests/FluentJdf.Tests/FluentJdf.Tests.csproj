@@ -226,6 +226,7 @@
     <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_expanding_root_and_guid_folders.cs" />
     <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_expanding_root_and_jobid_folders.cs" />
     <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_expanding_root_and_jobkey_folders.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_mapping_map_message_url_cid.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_default_configuration.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_non_default_configuration.cs" />
     <Compile Include="Unit\Transmission\Logging\TransmissionData\when_creating_with_content_type_including_char_encoding.cs" />
@@ -366,7 +367,9 @@
   <ItemGroup>
     <EmbeddedResource Include="TestData\mimeMultipart.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\SimpleCommandSubmitQEntryMultiPart.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

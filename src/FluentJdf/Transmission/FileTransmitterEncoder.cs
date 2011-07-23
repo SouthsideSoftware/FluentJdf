@@ -317,7 +317,7 @@ namespace FluentJdf.Transmission {
             return items;
         }
 
-        internal void MapMessageUrls(Message message, Dictionary<string, string> urlMapping) {
+        internal void MapMessageUrls(Message message, IDictionary<string, string> urlMapping) {
             // Access the URL in the QueueSubmissionParams or ResubmissionParams of each Command element in the JMF.
             foreach (var command in message.Root.SelectJDFDescendants(Element.Command)) {
                 bool toProcess = false;
@@ -346,8 +346,8 @@ namespace FluentJdf.Transmission {
                 }
                 if (toProcess) {
                     string jdfUrl = submissionParams.First().GetAttributeValueOrNull("URL").ToString().ToLower();
-                    string newUrl = null;
-                    if (urlMapping.TryGetValue(jdfUrl, out newUrl)) {
+                    string newUrl = urlMapping.FirstOrDefault(item => item.Key.Equals(jdfUrl, StringComparison.OrdinalIgnoreCase)).Value;
+                    if (newUrl != null) {
                         submissionParams.First().AddOrReplaceAttribute(new XAttribute("URL", (new Uri(newUrl)).AbsoluteUri));
                     }
                 }
