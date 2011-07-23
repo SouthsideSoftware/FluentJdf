@@ -17,10 +17,6 @@ namespace FluentJdf.Tests.Unit.LinqToJdf.Ticket {
 
         Because of = () => sourceTicket = FluentJdf.LinqToJdf.Ticket
 			                                        .CreateProcess(ProcessType.Bending)
-			                                        //.AddProcess(ProcessType.Buffer)
-			                                        //.AddIntent()
-			                                        .Ticket
-			                                        .ModifyJdfNode()
 			                                        .WithInput()
 			                                        .RunList()
 			                                        .WithInput()

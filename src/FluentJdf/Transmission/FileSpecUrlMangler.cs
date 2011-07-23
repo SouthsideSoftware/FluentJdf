@@ -6,13 +6,14 @@ using FluentJdf.LinqToJdf;
 using System.Xml.Linq;
 
 namespace FluentJdf.Transmission {
+
     /// <summary>
     /// Provides methods for converting old URLs in file specs to new URLs based on some rule.
     /// </summary>
     public class FileSpecUrlMangler {
 
         /// <summary>
-        /// Given a HybridDictionary of mappings between old and new URLs, converts the URL
+        /// Given a IDictionary of mappings between old and new URLs, converts the URL
         /// in every FileSpec in the JdfTree to the appropriate new URL.
         /// </summary>
         /// <param name="ticket">The Ticket to process</param>

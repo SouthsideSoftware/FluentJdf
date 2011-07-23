@@ -35,11 +35,18 @@ void Main() {
 	//FactoryTests();
 	//FluentGetProcess();
 	//FluentSubmitQueueEntry();
-	InitializeFileEncodingTransmitters();
+	//InitializeFileEncodingTransmitters();
 	CreateTestDataForFileTransmitterEncoder();
 }
 
 void CreateTestDataForFileTransmitterEncoder() {
+
+			FluentJdf.LinqToJdf.Ticket
+				.CreateProcess(ProcessType.Bending)
+				.WithInput()
+				.FileSpec()
+				.Ticket.Dump();
+
 	FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry()
 	.AddNode(Element.QueueSubmissionParams).With().Attribute("Hold","true").Attribute("URL", "cid:TestCID")
 	.Message.Dump();
