@@ -115,13 +115,12 @@ namespace FluentJdf.Transmission {
             ParameterCheck.ParameterRequired(urlBase, "uriBase");
 
             _id = id;
-            _urlBase = urlBase;
+            _urlBase = urlBase.EnsureTrailingSlash();
             _useMime = useMime;
             _nameValues = new ReadOnlyDictionary<string, string>(nameValues ?? new Dictionary<string, string>());
 
             _folderInfo = new List<FileTransmitterFolderInfoConfigurationItem>();
 
-            _urlBase = urlBase.EnsureTrailingSlash();
             _localPath = _urlBase.GetLocalPath();
         }
 
@@ -265,8 +264,8 @@ namespace FluentJdf.Transmission {
                         string fileName = Guid.NewGuid().ToString() + extension; //we do not have an original filename, we can only create one.
 
                         if (folderConfigurationItem != null) {
-                            var newFileName = Path.Combine(ExpandFolder(folderConfigurationItem.DestinationFolder, LocalPath, transmissionGuid, jobId, jobKey), fileName);
-                            string referencePath = Path.Combine(ExpandFolder(folderConfigurationItem.ReferenceFolder, LocalPath, transmissionGuid, jobId, jobKey), fileName);
+                            var newFileName = Path.Combine(ExpandFolder(folderConfigurationItem.DestinationFolder, transmissionGuid, jobId, jobKey), fileName);
+                            string referencePath = Path.Combine(ExpandFolder(folderConfigurationItem.ReferenceFolder, transmissionGuid, jobId, jobKey), fileName);
                             urlMapping.Add("cid:" + part.Id.ToLower(), referencePath);
                             itemsToProcess.Add(new KeyValuePair<ITransmissionPart, string>(part, newFileName));
                         }
@@ -318,7 +317,7 @@ namespace FluentJdf.Transmission {
             return items;
         }
 
-        private void MapMessageUrls(Message message, Dictionary<string, string> urlMapping) {
+        internal void MapMessageUrls(Message message, Dictionary<string, string> urlMapping) {
             // Access the URL in the QueueSubmissionParams or ResubmissionParams of each Command element in the JMF.
             foreach (var command in message.Root.SelectJDFDescendants(Element.Command)) {
                 bool toProcess = false;
@@ -360,15 +359,13 @@ namespace FluentJdf.Transmission {
         /// the configuration.
         /// </summary>
         /// <param name="folderToExpand">The folder name from configuration.</param>
-        /// <param name="baseFolder">urlBase from the configuration.</param>
         /// <param name="guid">A guid unique to the entire transmission.</param>
         /// <param name="jobId">Job id of the first JDF part</param>
         /// <param name="jobKey">Job key (JdfTree.Key) of the first JDF part.</param>
         /// <returns>Folder with variables expanded.</returns>
-        protected string ExpandFolder(string folderToExpand, string baseFolder, Guid guid, string jobId, string jobKey) {
-            string localBaseFolder = new Uri(baseFolder).LocalPath;
+        internal string ExpandFolder(string folderToExpand, Guid guid, string jobId, string jobKey) {
             string newFolder = string.Copy(folderToExpand).ToLower();
-            newFolder = FileTransmissionConfig.ReplaceVar(newFolder, "root", localBaseFolder);
+            newFolder = FileTransmissionConfig.ReplaceVar(newFolder, "root", LocalPath);
             newFolder = FileTransmissionConfig.ReplaceVar(newFolder, "guid", guid.ToString());
             newFolder = FileTransmissionConfig.ReplaceVar(newFolder, "jobid", jobId);
             newFolder = FileTransmissionConfig.ReplaceVar(newFolder, "jobkey", jobKey);

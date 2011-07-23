@@ -87,6 +87,12 @@
     <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>fluentjdf.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -364,6 +370,7 @@
     <Compile Include="Utility\XContainerExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="fluentjdf.snk" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Resources\Schema\JDF.xsd">
       <SubType>Designer</SubType>

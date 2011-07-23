@@ -87,6 +87,12 @@
     <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>fluentjdf.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
       <HintPath>..\..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
@@ -217,6 +223,9 @@
     <Compile Include="Unit\TemplateEngine\Template\when_generating_with_additional_custom_formula.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_with_globally_configured_custom_formula.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_with_custom_formula.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_expanding_root_and_guid_folders.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_expanding_root_and_jobid_folders.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_expanding_root_and_jobkey_folders.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_default_configuration.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_non_default_configuration.cs" />
     <Compile Include="Unit\Transmission\Logging\TransmissionData\when_creating_with_content_type_including_char_encoding.cs" />
@@ -322,6 +331,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="fluentjdf.snk" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
