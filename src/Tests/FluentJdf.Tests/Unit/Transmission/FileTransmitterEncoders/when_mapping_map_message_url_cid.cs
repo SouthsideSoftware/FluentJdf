@@ -48,7 +48,5 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitterEncoders {
 
         It should_have_replaced_url_for_resubmit_queue_entry = () => new Uri(messageReQSP.SelectJDFDescendant(Element.ResubmissionParams).Attribute("URL").Value).ShouldEqual(replaceUri);
 
-        //It should_equal_temp_and_jobkey_off_root = () => expanded.ShouldEqual(Path.Combine(@"c:\temp", jobKey));
-
     }
 }
