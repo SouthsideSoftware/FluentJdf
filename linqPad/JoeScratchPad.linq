@@ -22,7 +22,7 @@
   <Namespace>FluentJdf.Utility</Namespace>
 </Query>
 
-bool loggingOn = true;
+bool loggingOn = false;
 static ITransmitter mockTransmitter;
 
 //static IEncoding defaultEncoding;
@@ -46,7 +46,7 @@ void InitializeFileEncodingTransmitters() {
 	.FolderInfo(FolderInfoTypeEnum.Attachment, @"file:///c:\zzz\SimpleSend\dest", @"file:///c:\zzz\SimpleSend\ref")
 	.Settings.EncodingSettings.FileTransmitterEncoders.Dump();
 	
-	var uri = new Uri(@"file:///c:\temp\SimpleSend/MimeEncoded\").Dump("uri");
+	var uri = new Uri(@"file:///c:\temp\SimpleSend/MimeEncoded\\").Dump("uri");
 	
 	//uri = new Uri(@"file:///c:\").Dump("uri");
 	
@@ -57,7 +57,7 @@ void InitializeFileEncodingTransmitters() {
 	//uri = new Uri(@"file:///\\machine\SimpleSend/MimeEncoded\").Dump("uri");
 	
 	//uri.IsFile.Dump("File");
-	//uri.GetLocalPath().Dump("LocalPath");
+	uri.GetLocalPath().Dump("GetLocalPath()");
 	//uri.AbsolutePath.Dump("Absolute");
 
  	var baseUri = Path.GetDirectoryName(uri.LocalPath).Dump("baseUri");
