@@ -9,25 +9,24 @@ namespace FluentJdf.Messaging {
     /// <summary>
     /// The result of a JMF message.
     /// </summary>
-    public class JmfResult : IJmfResult
-    {
+    public class JmfResult : IJmfResult {
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="transmissionPartCollection"></param>
-        public JmfResult(ITransmissionPartCollection transmissionPartCollection)
-        {
+        public JmfResult(ITransmissionPartCollection transmissionPartCollection) {
             ParameterCheck.ParameterRequired(transmissionPartCollection, "transmissionPartCollection");
             TransmissionPartCollection = transmissionPartCollection;
-            if (transmissionPartCollection.HasMessage)
-            {
+
+            Details = new List<IJmfResultDetail>();
+
+            if (transmissionPartCollection.HasMessage) {
                 Message jmf = transmissionPartCollection.Message;
-                if (!jmf.HasBeenValidatedAtLeastOnce)
-                {
+                if (!jmf.HasBeenValidatedAtLeastOnce) {
                     jmf.Root.ValidateJmf();
                 }
 
-                Details = new List<IJmfResultDetail>();
                 var responseElements = jmf.JdfXPathSelectElements("//Response");
                 foreach (var responseElement in responseElements) {
                     Details.Add(new JmfResultDetail(responseElement));
@@ -38,7 +37,10 @@ namespace FluentJdf.Messaging {
         /// <summary>
         /// Gets the details of this result.
         /// </summary>
-        public IList<IJmfResultDetail> Details { get; private set; }
+        public IList<IJmfResultDetail> Details {
+            get;
+            private set;
+        }
 
         #region IJmfResult Members
 
@@ -46,15 +48,21 @@ namespace FluentJdf.Messaging {
         /// The collection of parts associated with the response.
         /// The first member of the collection is the JMF response.
         /// </summary>
-        public ITransmissionPartCollection TransmissionPartCollection { get; private set; }
+        public ITransmissionPartCollection TransmissionPartCollection {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets true if the JMF response
         /// indicates success.
         /// </summary>
-        public bool IsSuccess
-        {
-            get { return Details.Count > 0 && (from detail in Details where detail.ReturnCode != ReturnCode.Success select detail).Count() == 0; }
+        public bool IsSuccess {
+            get {
+                return Details.Count > 0 && (from detail in Details
+                                             where detail.ReturnCode != ReturnCode.Success
+                                             select detail).Count() == 0;
+            }
         }
 
         #endregion
