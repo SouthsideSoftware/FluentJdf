@@ -1,0 +1,6 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<JMF SenderID="JMFClient" TimeStamp="2000-11-07T13:15:56+01:00" xmlns="http://www.CIP4.org/JDFSchema_1_1" Version="1.1">
+	<Command ID="C0001" Type="SubmitQueueEntry">
+		<QueueSubmissionParams Hold="true" URL="http://127.0.0.1:7777/testjdp/TestData/MultiPartTestJob.jdf" />
+	</Command>
+</JMF>

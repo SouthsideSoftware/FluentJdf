@@ -2,7 +2,8 @@ using System;
 using FluentJdf.Configuration;
 using Machine.Specifications;
 
-namespace FluentJdf.Tests.Unit.Transmission {
+namespace FluentJdf.Tests.Unit.Transmission.TransmitterFactory {
+
     [Subject(typeof(FluentJdf.Transmission.TransmitterFactory))]
     public class when_creating_transmitters_from_some_unregistered_schemes {
         static FluentJdf.Transmission.TransmitterFactory factory;

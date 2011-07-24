@@ -87,6 +87,12 @@
     <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>fluentjdf.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
       <HintPath>..\..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
@@ -134,6 +140,9 @@
     <Compile Include="Legacy\TemplateEngine\TemplateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_encodings.cs" />
+    <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders.cs" />
+    <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders_file_info_by_strings.cs" />
+    <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders_file_info_by_uri.cs" />
     <Compile Include="Unit\Configuration\HttpTransmissionSettings\when_setting_http_transmission_settings.cs" />
     <Compile Include="Unit\Configuration\TemplateEngineSettingsBuilder\when_registering_custom_formulas.cs" />
     <Compile Include="Unit\Configuration\TemplateEngineSettings\when_registering_custom_formulas.cs" />
@@ -214,12 +223,24 @@
     <Compile Include="Unit\TemplateEngine\Template\when_generating_with_additional_custom_formula.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_with_globally_configured_custom_formula.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_with_custom_formula.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_expanding_root_and_guid_folders.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_expanding_root_and_jobid_folders.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_expanding_root_and_jobkey_folders.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_mapping_file_spec_url.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_mapping_map_message_url_cid.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitterEncoders\when_mapping_preview_url.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitter\FileTransmitterTestSetupFactory.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_mime.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_write_to_disk.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_write_to_disk_mime.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_use_file_transmitter_encoder_only_attachment.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_default_configuration.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_non_default_configuration.cs" />
     <Compile Include="Unit\Transmission\Logging\TransmissionData\when_creating_with_content_type_including_char_encoding.cs" />
     <Compile Include="Unit\Transmission\Logging\TransmissionData\when_creating_with_simple_content_type.cs" />
     <Compile Include="Unit\Transmission\Logging\TransmissionData\when_getting_diagnostic_logging_string.cs" />
-    <Compile Include="Unit\Transmission\when_creating_transmitters_from_some_registered_schemes.cs" />
+    <Compile Include="Unit\Transmission\TransmitterFactory\when_creating_transmitters_from_some_registered_schemes.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartFactory\when_creating_transmission_parts.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartFactory\when_creating_transmission_parts_by_mime_type_with_some_registered.cs" />
     <Compile Include="Unit\Encoding\EncodingFactory\when_creating_encodings.cs" />
@@ -281,7 +302,7 @@
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_resource_pool_when_it_exists.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_get_resource_or_null_with_resource_in_ancestor_resource_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_get_resource_or_null_with_resource_in_local_resource_pool.cs" />
-    <Compile Include="Unit\LinqToJdf\ResourceExtensions\When_using_get_usage.cs" />
+    <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_get_usage.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_link_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_is_resource_pool.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_referencing_elements_on_resource_element_with_multiple_legal_references.cs" />
@@ -294,9 +315,11 @@
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_resource_with_link_with_option_set_so_references_are_not_updated.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_id_on_stand_alone_resource_element.cs" />
     <Compile Include="Unit\LinqToJdf\XNameExtensions\when_using_link_name.cs" />
-    <Compile Include="Unit\Transmission\when_creating_transmitters_from_some_unregistered_schemes.cs" />
-    <Compile Include="Unit\Transmission\when_testing_file_transmitter_with_multi_part_mime.cs" />
+    <Compile Include="Unit\Transmission\TransmitterFactory\when_creating_transmitters_from_some_unregistered_schemes.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_with_multi_part_mime.cs" />
     <Compile Include="Unit\Utility\StringHelper\when_using_contains_that_support_case_insensitive_comparisons.cs" />
+    <Compile Include="Unit\Utility\UriExtensionMethods\when_verifying_local_path_for_uri.cs" />
+    <Compile Include="Unit\Utility\UriExtensionMethods\when_verifying_uri_for_trailing_backslash.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FluentJdf\FluentJdf.csproj">
@@ -317,6 +340,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="fluentjdf.snk" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -351,7 +375,9 @@
   <ItemGroup>
     <EmbeddedResource Include="TestData\mimeMultipart.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\SimpleCommandSubmitQEntryMultiPart.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

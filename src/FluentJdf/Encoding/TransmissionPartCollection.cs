@@ -42,8 +42,6 @@ namespace FluentJdf.Encoding {
             }
         }
 
-        #region ITransmissionPartCollection Members
-
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
@@ -227,8 +225,6 @@ namespace FluentJdf.Encoding {
                 return MessagePart != null;
             }
         }
-
-        #endregion
 
         /// <summary>
         /// Used internally to perform the dispose.
