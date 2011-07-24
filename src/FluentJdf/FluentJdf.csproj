@@ -87,6 +87,12 @@
     <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>fluentjdf.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -98,6 +104,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\FileTransmitterEncoderBuilder.cs" />
     <Compile Include="Configuration\IFluentJdfLibrary.cs" />
     <Compile Include="Configuration\ITemplateEngineSettings.cs" />
     <Compile Include="Configuration\LibraryConfigurationException.cs" />
@@ -330,7 +337,19 @@
     <Compile Include="TemplateEngine\TemplateItem.cs" />
     <Compile Include="TemplateEngine\TemplateItemCollection.cs" />
     <Compile Include="TemplateEngine\VariableTemplateItem.cs" />
+    <Compile Include="Transmission\FileSpecUrlMangler.cs" />
+    <Compile Include="Transmission\FileTransmissionConfig.cs" />
+    <Compile Include="Transmission\FileTransmissionItem.cs" />
     <Compile Include="Transmission\FileTransmitter.cs" />
+    <Compile Include="Transmission\FileTransmitterEncoder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Transmission\FileTransmitterFolderInfoConfigurationItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Transmission\FolderInfoTypeEnum.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Transmission\HttpTransmitter.cs" />
     <Compile Include="Transmission\HttpWebRequestFactory.cs" />
     <Compile Include="Transmission\IHttpWebRequestFactory.cs" />
@@ -343,9 +362,11 @@
     <Compile Include="Messaging\IJmfResult.cs" />
     <Compile Include="Utility\StringHelper.cs" />
     <Compile Include="Utility\UniqueGenerator.cs" />
+    <Compile Include="Utility\UriExtensionMethods.cs" />
     <Compile Include="Utility\XContainerExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="fluentjdf.snk" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Resources\Schema\JDF.xsd">
       <SubType>Designer</SubType>

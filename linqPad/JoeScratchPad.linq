@@ -19,9 +19,11 @@
   <Namespace>System.Drawing</Namespace>
   <Namespace>FluentJdf.Transmission</Namespace>
   <Namespace>FluentJdf.Messaging</Namespace>
+  <Namespace>FluentJdf.Utility</Namespace>
+  <Namespace>FluentJdf.Transmission.Logging</Namespace>
 </Query>
 
-bool loggingOn = true;
+bool loggingOn = false;
 static ITransmitter mockTransmitter;
 
 //static IEncoding defaultEncoding;
@@ -32,8 +34,143 @@ void Main() {
 	InitializeFluentJdf();
 	//ProcessTicketsForTests();
 	//FactoryTests();
-	FluentGetProcess();
-	//FluentSubmitQueueEntry();
+	//FluentGetProcess();
+	FluentSubmitQueueEntry();
+	//InitializeFileEncodingTransmitters();
+	//CreateTestDataForFileTransmitterEncoder();
+}
+
+
+void FluentSubmitQueueEntry() {
+
+	FluentJdf.LinqToJdf.Message message;
+	FluentJdf.LinqToJdf.Ticket ticket;
+
+	ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
+	message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
+
+	var ms = new MemoryStream();
+	var sw = new StreamWriter(ms);
+	sw.Write("This is a test.");
+	sw.Flush();
+	ms.Position = 0;
+
+	var attachmentPart = new TransmissionPart(ms, "TestAttachment", MimeTypeHelper.TextMimeType, "id_1234");
+	message.AddRelatedPart(attachmentPart);
+
+	ticket.Dump("Ticket");
+	message.Dump("Message");
+
+ 	//FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+	//FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(MockTransmitter));
+	//message.Transmit(@"file:///c:\temp\SimpleSend\");
+
+	//we now want to configure the transmitter so we can verify order and supression.
+
+	//return;
+	
+	var dirs = new DirectoryInfo(new Uri(@"file:///c:\temp\SimpleSend\").GetLocalPath());
+			dirs.GetDirectories().Dump();
+	
+	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
+			.FileTransmitterEncoder("mime", @"file:///c:\temp\SimpleSend\Mime", true)
+			.FileTransmitterEncoder("id", @"file:///c:\temp\SimpleSend\")
+			.FolderInfo(FolderInfoTypeEnum.Attachment, @"file:///c:\temp\SimpleSend\attach", @"file:///c:\temp\SimpleSend\", 1)
+			.FolderInfo(FolderInfoTypeEnum.Jdf, @"file:///c:\temp\SimpleSend\${JobId}\jdf", @"file:///c:\temp\SimpleSend\", 3)
+			.FolderInfo(FolderInfoTypeEnum.Jmf, @"file:///c:\temp\SimpleSend\${JobId}\jmf", @"file:///c:\temp\SimpleSend\", 2)
+			.Settings.EncodingSettings.FileTransmitterEncoders.Dump("FileTransmitterEncoders");
+	
+	FileTransmitterEncoder encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders
+				.FirstOrDefault(item => item.Value.Id.Equals("id", StringComparison.OrdinalIgnoreCase)).Value;
+	
+	string name = string.Format("JMF{0}", MimeTypeHelper.JmfExtension);
+	using (var transmissionPartCollection = new TransmissionPartCollection()) {
+		transmissionPartCollection.Add(new MessageTransmissionPart(message, name));
+		transmissionPartCollection.Add(new TicketTransmissionPart(ticket, name + "2"));
+		transmissionPartCollection.Add(attachmentPart);
+		
+		var items = encoder.PrepareTransmission(transmissionPartCollection, new TransmissionPartFactory(), new EncodingFactory(), new TransmissionLogger());
+		items.OrderBy(item => item.Order).Dump("PrepareTransmission");
+		//return transmitterFactory.GetTransmitterForUrl(url).Transmit(url, transmissionPartColllection);
+	}
+	
+	
+	//results = encoder.PrepareTransmission(partsToSend, transmissionPartFactory, encodingfactory, transmissionLogger);
+	
+}
+
+void CreateTestDataForFileTransmitterEncoder() {
+
+	FluentJdf.LinqToJdf.Ticket
+		.CreateProcess(ProcessType.Bending)
+		.AddNode(Element.ResourcePool)
+		.AddNode(Element.Preview)
+		.With().Attribute("MimeType", "application/pdf")
+		.Ticket.Dump();
+
+	FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry()
+	.AddNode(Element.QueueSubmissionParams).With().Attribute("Hold","true").Attribute("URL", "cid:TestCID")
+	.Message.Dump();
+
+}
+
+void CreateTestDataForMockFileTransmitterEncoder() {
+
+	FluentJdf.LinqToJdf.Ticket
+		.CreateProcess(ProcessType.Bending)
+		.AddNode(Element.ResourcePool)
+		.AddNode(Element.Preview)
+		.With().Attribute("MimeType", "application/pdf")
+		.Ticket.Dump();
+
+	FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry()
+	.AddNode(Element.QueueSubmissionParams).With().Attribute("Hold","true").Attribute("URL", "cid:TestCID")
+	.Message.Dump();
+
+}
+
+void InitializeFileEncodingTransmitters() {
+
+
+	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
+	.FileTransmitterEncoder("id", @"file:///c:\temp\SimpleSend\MimeEncoded", true)
+	.FileTransmitterEncoder("id2", @"file:///c:\zzz\SimpleSend\MimeEncoded\")
+	.FolderInfo(FolderInfoTypeEnum.Attachment, @"file:///c:\zzz\SimpleSend\dest", @"file:///c:\zzz\SimpleSend\ref")
+	.Settings.EncodingSettings.FileTransmitterEncoders.Dump();
+	
+	var uri = new Uri(@"file:///c:\temp\SimpleSend/MimeEncoded\\").Dump("uri");
+	
+	//uri = new Uri(@"file:///c:\").Dump("uri");
+	
+	uri.LocalPath.Dump("LocalPath");
+	
+	Path.GetDirectoryName(uri.LocalPath).Dump("Path.GetDirectoryName");
+	
+	//uri = new Uri(@"file:///\\machine\SimpleSend/MimeEncoded\").Dump("uri");
+	
+	//uri.IsFile.Dump("File");
+	uri.GetLocalPath().Dump("GetLocalPath()");
+	//uri.AbsolutePath.Dump("Absolute");
+
+ 	var baseUri = Path.GetDirectoryName(uri.LocalPath).Dump("baseUri");
+	
+	FileTransmitterEncoder encoder = null;
+	
+	//FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.Count.Dump("count");
+	
+	//FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.TryGetValue(uri.ToString(), out encoder);
+	
+	var testPath = uri.GetLocalPath();
+
+	encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders
+				.FirstOrDefault(item => item.Value.LocalPath.Equals(testPath, StringComparison.OrdinalIgnoreCase)).Value;
+	
+	//encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.FirstOrDefault (fte => fte.Value.UrlBase.Equals(uri)).Value;
+	
+	//encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.GetFileTransmitterEncoder();
+		
+	encoder.Dump("encoder");
+
 }
 
 void FluentGetProcess() {
@@ -165,33 +302,6 @@ void FactoryTests() {
 }
 
 
-void InitializeFluentJdf() {
-	var config = Infrastructure.Core.Configuration.Settings.UseCastleWindsor();
-	if (loggingOn){
-		config.LogWithNLog(GetNLogConfiguration());
-	}
-	config.Configure();
-	FluentJdfLibrary.Settings.ResetToDefaults();
-	
-	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
-	mockTransmitter = new MockTransmitter();
-	
-	var trans = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IHttpWebRequestFactory>().Dump();
-	
-}
-
-LoggingConfiguration GetNLogConfiguration(){
-	LoggingConfiguration config = new LoggingConfiguration();
-	
-	ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
-	config.AddTarget("console", consoleTarget);
-	consoleTarget.Layout = "${longdate} ${level:uppercase=true} ${logger} ${newline}${message}${newline}";
-	LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget);
-	config.LoggingRules.Add(rule);
-	
-	return config;
-}
-
 static void ProcessTicketsForTests() {
 var ticket = FluentJdf.LinqToJdf.Ticket
 			.CreateIntent()
@@ -242,23 +352,6 @@ var ticket = FluentJdf.LinqToJdf.Ticket
 
 	ticket.Root.Dump().SelectJDFDescendant("JDF").Dump().Element("Test").Dump();//.Attribute("me").Value.Equals("6").Dump();
 }
-
-//issue 65
-void FluentSubmitQueueEntry() {
-	FluentJdf.LinqToJdf.Message message;
-	FluentJdf.LinqToJdf.Ticket ticket;
-
-	ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
-	message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
-
-	message.Dump();
-
- 	FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
-	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(MockTransmitter));
-	message.Transmit("file:///Test");
-
-}
-
  public class MockTransmitter : ITransmitter {
 	#region ITransmitter Members
 
@@ -282,6 +375,33 @@ void FluentSubmitQueueEntry() {
 
 	#endregion
 }
+
+void InitializeFluentJdf() {
+	var config = Infrastructure.Core.Configuration.Settings.UseCastleWindsor();
+	if (loggingOn){
+		config.LogWithNLog(GetNLogConfiguration());
+	}
+	config.Configure();
+	FluentJdfLibrary.Settings.ResetToDefaults();
+	
+	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
+	mockTransmitter = new MockTransmitter();
+	//var trans = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IHttpWebRequestFactory>().Dump();
+	
+}
+
+LoggingConfiguration GetNLogConfiguration(){
+	LoggingConfiguration config = new LoggingConfiguration();
+	
+	ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
+	config.AddTarget("console", consoleTarget);
+	consoleTarget.Layout = "${longdate} ${level:uppercase=true} ${logger} ${newline}${message}${newline}";
+	LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget);
+	config.LoggingRules.Add(rule);
+	
+	return config;
+}
+
 
 /*
 	var basePath = new FileInfo(Util.CurrentQueryPath).DirectoryName;
