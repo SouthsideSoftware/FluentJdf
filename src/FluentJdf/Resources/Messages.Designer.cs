@@ -178,7 +178,7 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error occured while trying to encode transmission.  Message is {0}.
+        ///   Looks up a localized string similar to Error occured while trying to encode transmission.  Message is &apos;{0}&apos;.
         /// </summary>
         internal static string ErrorOccuredWhileTryingToEncodeTransmissionMessageIs {
             get {
@@ -369,7 +369,7 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to load and compile JDF schema.  The error is {0}.
+        ///   Looks up a localized string similar to Failed to load and compile JDF schema.  The error is &apos;{0}&apos;.
         /// </summary>
         internal static string Loader_Loader_FailedToLoadAndCompileSchema {
             get {
@@ -496,7 +496,7 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The configuration of the file transmission encoder id {0} is invaild because it is configured not to send anything.
+        ///   Looks up a localized string similar to The configuration of the file transmission encoder id &apos;{0}&apos; is invaild because it is configured not to send anything.
         /// </summary>
         internal static string TheConfigurationOfTheFileTransmissionEncoderId0IsInvaild {
             get {
@@ -505,7 +505,7 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The configuration of the file transmission encoder id {0} is invaild because it is configured to send JDF but not the attachment.
+        ///   Looks up a localized string similar to The configuration of the file transmission encoder id &apos;{0}&apos; is invaild because it is configured to send JDF but not the attachment.
         /// </summary>
         internal static string TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJDFNoAttach {
             get {
@@ -514,7 +514,7 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The configuration of the file transmission encoder id {0} is invaild because it is configured to send JMF but not JDF and the attachment.
+        ///   Looks up a localized string similar to The configuration of the file transmission encoder id &apos;{0}&apos; is invaild because it is configured to send JMF but not JDF and the attachment.
         /// </summary>
         internal static string TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJMFNoJDF {
             get {
@@ -595,7 +595,7 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to load XDocument from {0}.
+        ///   Looks up a localized string similar to Failed to load XDocument from &apos;{0}&apos;.
         /// </summary>
         internal static string XmlTransmissionPart_FailedToLoadXDocumentFromFile {
             get {

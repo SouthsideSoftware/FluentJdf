@@ -145,7 +145,7 @@
     <value>Could not find resource with id {0} and could not create it because name was not provided</value>
   </data>
   <data name="Loader_Loader_FailedToLoadAndCompileSchema" xml:space="preserve">
-    <value>Failed to load and compile JDF schema.  The error is {0}</value>
+    <value>Failed to load and compile JDF schema.  The error is '{0}'</value>
   </data>
   <data name="ElementExtensions_ValidateJdf_ValidateJdfRequiresDocumentOfTypeTicket" xml:space="preserve">
     <value>ValidateJdf requires the document to be of type Ticket.  Use Ticket.Create().</value>
@@ -157,7 +157,7 @@
     <value>Cannot create transmission part from file {0} because it does not exist</value>
   </data>
   <data name="XmlTransmissionPart_FailedToLoadXDocumentFromFile" xml:space="preserve">
-    <value>Failed to load XDocument from {0}</value>
+    <value>Failed to load XDocument from '{0}'</value>
   </data>
   <data name="FailedToLoadXDocumentFromStream" xml:space="preserve">
     <value>Failed to load XDocument from stream</value>
@@ -275,16 +275,16 @@ elated transmission.  The error is </value>
     <value>partType must be 'Attachment', 'Jdf' or 'Jmf'.  The type given for FolderInfo is {0}</value>
   </data>
   <data name="TheConfigurationOfTheFileTransmissionEncoderId0IsInvaild" xml:space="preserve">
-    <value>The configuration of the file transmission encoder id {0} is invaild because it is configured not to send anything</value>
+    <value>The configuration of the file transmission encoder id '{0}' is invaild because it is configured not to send anything</value>
   </data>
   <data name="TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJMFNoJDF" xml:space="preserve">
-    <value>The configuration of the file transmission encoder id {0} is invaild because it is configured to send JMF but not JDF and the attachment</value>
+    <value>The configuration of the file transmission encoder id '{0}' is invaild because it is configured to send JMF but not JDF and the attachment</value>
   </data>
   <data name="TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJDFNoAttach" xml:space="preserve">
-    <value>The configuration of the file transmission encoder id {0} is invaild because it is configured to send JDF but not the attachment</value>
+    <value>The configuration of the file transmission encoder id '{0}' is invaild because it is configured to send JDF but not the attachment</value>
   </data>
   <data name="ErrorOccuredWhileTryingToEncodeTransmissionMessageIs" xml:space="preserve">
-    <value>Error occured while trying to encode transmission.  Message is {0}</value>
+    <value>Error occured while trying to encode transmission.  Message is '{0}'</value>
   </data>
   <data name="QueueSubmissionParamsAreRequiredInSubmitQueueEntry" xml:space="preserve">
     <value>QueueSubmissionParams are required in SubmitQueueEntry</value>

@@ -70,8 +70,7 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, string destinationFolder,
                                                         string referenceFolder, int order = 0, IDictionary<string, string> nameValues = null) {
-            encoder.AddFolderInfo(new FileTransmitterFolderInfoConfigurationItem(type, destinationFolder, referenceFolder, order, nameValues));
-            return this;
+            return this.FolderInfo(type, destinationFolder.ToString(), referenceFolder.ToString(), order, false, nameValues);
         }
 
         /// <summary>
@@ -85,7 +84,39 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, Uri destinationFolder,
                                                         Uri referenceFolder, int order = 0, IDictionary<string, string> nameValues = null) {
-            return this.FolderInfo(type, destinationFolder.ToString(), referenceFolder.ToString(), order, nameValues);
+            return this.FolderInfo(type, destinationFolder.ToString(), referenceFolder.ToString(), order, false, nameValues);
         }
+
+        /// <summary>
+        /// Add Folder Info
+        /// </summary>
+        /// <param name="type">The <see cref="FolderInfoTypeEnum"/> type</param>
+        /// <param name="destinationFolder">The destination folder</param>
+        /// <param name="referenceFolder">The reference folder</param>
+        /// <param name="order">The optional order to write the files.</param>
+        /// <param name="suppress">Suppress the output</param>
+        /// <param name="nameValues">Additional Parameters</param>
+        /// <returns></returns>
+        public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, string destinationFolder,
+                                                        string referenceFolder, int order, bool suppress, IDictionary<string, string> nameValues = null) {
+            encoder.AddFolderInfo(new FileTransmitterFolderInfoConfigurationItem(type, destinationFolder, referenceFolder, order, suppress, nameValues));
+            return this;
+        }
+
+        /// <summary>
+        /// Add Folder Info
+        /// </summary>
+        /// <param name="type">The <see cref="FolderInfoTypeEnum"/> type</param>
+        /// <param name="destinationFolder">The destination folder</param>
+        /// <param name="referenceFolder">The reference folder</param>
+        /// <param name="order">The optional order to write the files.</param>
+        /// <param name="suppress">Suppress the output</param>
+        /// <param name="nameValues">Additional Parameters</param>
+        /// <returns></returns>
+        public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, Uri destinationFolder,
+                                                        Uri referenceFolder, int order, bool suppress, IDictionary<string, string> nameValues = null) {
+            return this.FolderInfo(type, destinationFolder.ToString(), referenceFolder.ToString(), order, suppress, nameValues);
+        }
+
     }
 }
