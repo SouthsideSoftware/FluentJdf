@@ -65,6 +65,9 @@ namespace FluentJdf.Transmission {
                     results = transmissionEncoder.PrepareTransmission(partsToSend, transmissionPartFactory, encodingfactory, transmissionLogger);
 
                     foreach (var item in results.OrderBy(item => item.Order)) {
+                        if (item.Stream.CanSeek) {
+                            item.Stream.Seek(0, SeekOrigin.Begin);
+                        }
                         var fileInfo = new FileInfo(item.DestinationUri.LocalPath);
                         DirectoryAndFileHelper.EnsureFolderExists(fileInfo.Directory, logger);
                         DirectoryAndFileHelper.SaveStreamToFile(item.Stream, fileInfo, false, logger);
@@ -88,6 +91,10 @@ namespace FluentJdf.Transmission {
                 try {
                     var encodingResult = encodingfactory.GetEncodingForTransmissionParts(partsToSend).Encode(partsToSend);
                     transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Request"));
+
+                    if (encodingResult.Stream.CanSeek) {
+                        encodingResult.Stream.Seek(0, SeekOrigin.Begin);
+                    }
 
                     DirectoryAndFileHelper.SaveStreamToFile(encodingResult.Stream, fileInfo, false, logger);
 

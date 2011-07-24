@@ -303,6 +303,7 @@ namespace FluentJdf.Transmission {
                         if (folderConfigurationItem != null) {
                             if (!folderConfigurationItem.Suppress) {
                                 var encodingResult = encodingfactory.GetEncodingForMimeType(part.MimeType).Encode(part);
+                                encodingResult.Stream.Seek(0, SeekOrigin.Begin);
                                 transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Request"));
                                 items.Add(new FileTransmissionItem(part, encodingResult.Stream, new Uri(file), part.MimeType, folderConfigurationItem.Order));
                             }

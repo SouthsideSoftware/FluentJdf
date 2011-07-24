@@ -68,7 +68,10 @@ void FluentSubmitQueueEntry() {
 	//we now want to configure the transmitter so we can verify order and supression.
 
 	//return;
-
+	
+	var dirs = new DirectoryInfo(new Uri(@"file:///c:\temp\SimpleSend\").GetLocalPath());
+			dirs.GetDirectories().Dump();
+	
 	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
 			.FileTransmitterEncoder("mime", @"file:///c:\temp\SimpleSend\Mime", true)
 			.FileTransmitterEncoder("id", @"file:///c:\temp\SimpleSend\")
