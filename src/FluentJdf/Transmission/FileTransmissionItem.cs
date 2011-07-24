@@ -20,25 +20,15 @@ namespace FluentJdf.Transmission {
         private string mimeType;
 
         /// <summary>
-        /// Constructor by part.
-        /// </summary>
-        /// <param name="part">TransmissionPart</param>
-        /// <param name="destinationUrl">Fully-qualified destination URL.</param>
-        /// <param name="mimeType">The mimeType</param>
-        /// <param name="order">The order of this item for sending.</param>
-        public FileTransmissionItem(ITransmissionPart part, Uri destinationUrl, string mimeType, int order) :
-            this(part.CopyOfStream(), destinationUrl, mimeType, order) {
-            this.part = part;
-        }
-
-        /// <summary>
         /// Constructor.
         /// </summary>
+        /// <param name="part">The original part.</param>
         /// <param name="stream">Stream to send.</param>
         /// <param name="destinationUrl">Fully-qualified destination URL.</param>
         /// <param name="mimeType">The mimeType</param>
         /// <param name="order">The order of this item for sending.</param>
-        public FileTransmissionItem(Stream stream, Uri destinationUrl, string mimeType, int order) {
+        public FileTransmissionItem(ITransmissionPart part, Stream stream, Uri destinationUrl, string mimeType, int order) {
+            this.part = part;
             if (stream.CanSeek) {
                 stream.Seek(0, SeekOrigin.Begin);
             }
@@ -171,7 +161,7 @@ namespace FluentJdf.Transmission {
         /// <param name="mimeType"></param>
         /// <param name="id"></param>
         public void Initialize(string name, Stream stream, string mimeType, string id = null) {
-            //Do nothing
+            //do nothing
         }
     }
 }

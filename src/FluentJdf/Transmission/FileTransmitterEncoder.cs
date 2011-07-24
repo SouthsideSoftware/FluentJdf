@@ -201,7 +201,8 @@ namespace FluentJdf.Transmission {
                     MimeEncoding encoding = new MimeEncoding(transmissionFactory);
                     var encoded = encoding.Encode(parts);
                     using (var mimeResult = encoded.Stream) {
-                        items.Add(new FileTransmissionItem(mimeResult, new Uri(Path.Combine(LocalPath, Guid.NewGuid().ToString() + ".mim")), encoded.ContentType, 0));
+                        //TODO determine better way to provide the part.
+                        items.Add(new FileTransmissionItem(null, mimeResult, new Uri(Path.Combine(LocalPath, Guid.NewGuid().ToString() + ".mim")), encoded.ContentType, 0));
                     }
                 }
                 else {
@@ -261,7 +262,7 @@ namespace FluentJdf.Transmission {
                             extension = MimeTypeHelper.MimeTypeExtension(part.MimeType);
                         }
 
-                        string fileName = Guid.NewGuid().ToString() + extension; //we do not have an original filename, we can only create one.
+                        string fileName = part.Id.ToString() + extension;
 
                         if (folderConfigurationItem != null) {
                             var newFileName = Path.Combine(ExpandFolder(folderConfigurationItem.DestinationFolder, transmissionGuid, jobId, jobKey), fileName);
@@ -303,8 +304,7 @@ namespace FluentJdf.Transmission {
                             if (!folderConfigurationItem.Suppress) {
                                 var encodingResult = encodingfactory.GetEncodingForMimeType(part.MimeType).Encode(part);
                                 transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Request"));
-
-                                items.Add(new FileTransmissionItem(encodingResult.Stream, new Uri(file), part.MimeType, folderConfigurationItem.Order));
+                                items.Add(new FileTransmissionItem(part, encodingResult.Stream, new Uri(file), part.MimeType, folderConfigurationItem.Order));
                             }
                         }
                     }

@@ -55,7 +55,7 @@ void FluentSubmitQueueEntry() {
 	sw.Flush();
 	ms.Position = 0;
 
-	var attachmentPart = new TransmissionPart(ms, "TestAttachment", MimeTypeHelper.TextMimeType, "id_1234.txt");
+	var attachmentPart = new TransmissionPart(ms, "TestAttachment", MimeTypeHelper.TextMimeType, "id_1234");
 	message.AddRelatedPart(attachmentPart);
 
 	ticket.Dump("Ticket");
@@ -70,11 +70,11 @@ void FluentSubmitQueueEntry() {
 	//return;
 
 	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
-			.FileTransmitterEncoder("i2", @"file:///c:\temp\SimpleSend\Mime", true)
+			.FileTransmitterEncoder("mime", @"file:///c:\temp\SimpleSend\Mime", true)
 			.FileTransmitterEncoder("id", @"file:///c:\temp\SimpleSend\")
 			.FolderInfo(FolderInfoTypeEnum.Attachment, @"file:///c:\temp\SimpleSend\attach", @"file:///c:\temp\SimpleSend\", 1)
-			.FolderInfo(FolderInfoTypeEnum.Jdf, @"file:///c:\temp\SimpleSend\${JobId}\jdf", @"file:///c:\temp\SimpleSend\", 3, true)
-			.FolderInfo(FolderInfoTypeEnum.Jmf, @"file:///c:\temp\SimpleSend\${JobId}\jmf", @"file:///c:\temp\SimpleSend\", 2, true)
+			.FolderInfo(FolderInfoTypeEnum.Jdf, @"file:///c:\temp\SimpleSend\${JobId}\jdf", @"file:///c:\temp\SimpleSend\", 3)
+			.FolderInfo(FolderInfoTypeEnum.Jmf, @"file:///c:\temp\SimpleSend\${JobId}\jmf", @"file:///c:\temp\SimpleSend\", 2)
 			.Settings.EncodingSettings.FileTransmitterEncoders.Dump("FileTransmitterEncoders");
 	
 	FileTransmitterEncoder encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders
