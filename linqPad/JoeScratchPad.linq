@@ -34,19 +34,54 @@ void Main() {
 	//ProcessTicketsForTests();
 	//FactoryTests();
 	//FluentGetProcess();
-	//FluentSubmitQueueEntry();
+	FluentSubmitQueueEntry();
 	//InitializeFileEncodingTransmitters();
-	CreateTestDataForFileTransmitterEncoder();
+	//CreateTestDataForFileTransmitterEncoder();
+}
+
+
+void FluentSubmitQueueEntry() {
+
+	//Path.Combine(ApplicationInformation.Directory, "schema").Dump();
+
+	FluentJdf.LinqToJdf.Message message;
+	FluentJdf.LinqToJdf.Ticket ticket;
+
+	ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
+	message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
+
+	ticket.Dump("Ticket");
+	message.Dump("Message");
+
+ 	FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
+	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(MockTransmitter));
+	message.Transmit(@"file:///c:\Test");
+
 }
 
 void CreateTestDataForFileTransmitterEncoder() {
 
-			FluentJdf.LinqToJdf.Ticket
-				.CreateProcess(ProcessType.Bending)
-				.AddNode(Element.ResourcePool)
-				.AddNode(Element.Preview)
-				.With().Attribute("MimeType", "application/pdf").Attribute("URL", cid)
-				.Ticket.Dump();
+	FluentJdf.LinqToJdf.Ticket
+		.CreateProcess(ProcessType.Bending)
+		.AddNode(Element.ResourcePool)
+		.AddNode(Element.Preview)
+		.With().Attribute("MimeType", "application/pdf")
+		.Ticket.Dump();
+
+	FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry()
+	.AddNode(Element.QueueSubmissionParams).With().Attribute("Hold","true").Attribute("URL", "cid:TestCID")
+	.Message.Dump();
+
+}
+
+void CreateTestDataForMockFileTransmitterEncoder() {
+
+	FluentJdf.LinqToJdf.Ticket
+		.CreateProcess(ProcessType.Bending)
+		.AddNode(Element.ResourcePool)
+		.AddNode(Element.Preview)
+		.With().Attribute("MimeType", "application/pdf")
+		.Ticket.Dump();
 
 	FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry()
 	.AddNode(Element.QueueSubmissionParams).With().Attribute("Hold","true").Attribute("URL", "cid:TestCID")
@@ -227,32 +262,6 @@ void FactoryTests() {
 }
 
 
-void InitializeFluentJdf() {
-	var config = Infrastructure.Core.Configuration.Settings.UseCastleWindsor();
-	if (loggingOn){
-		config.LogWithNLog(GetNLogConfiguration());
-	}
-	config.Configure();
-	FluentJdfLibrary.Settings.ResetToDefaults();
-	
-	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
-	mockTransmitter = new MockTransmitter();
-	//var trans = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IHttpWebRequestFactory>().Dump();
-	
-}
-
-LoggingConfiguration GetNLogConfiguration(){
-	LoggingConfiguration config = new LoggingConfiguration();
-	
-	ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
-	config.AddTarget("console", consoleTarget);
-	consoleTarget.Layout = "${longdate} ${level:uppercase=true} ${logger} ${newline}${message}${newline}";
-	LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget);
-	config.LoggingRules.Add(rule);
-	
-	return config;
-}
-
 static void ProcessTicketsForTests() {
 var ticket = FluentJdf.LinqToJdf.Ticket
 			.CreateIntent()
@@ -303,23 +312,6 @@ var ticket = FluentJdf.LinqToJdf.Ticket
 
 	ticket.Root.Dump().SelectJDFDescendant("JDF").Dump().Element("Test").Dump();//.Attribute("me").Value.Equals("6").Dump();
 }
-
-//issue 65
-void FluentSubmitQueueEntry() {
-	FluentJdf.LinqToJdf.Message message;
-	FluentJdf.LinqToJdf.Ticket ticket;
-
-	ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
-	message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
-
-	message.Dump();
-
- 	FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
-	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(MockTransmitter));
-	message.Transmit("file:///Test");
-
-}
-
  public class MockTransmitter : ITransmitter {
 	#region ITransmitter Members
 
@@ -343,6 +335,33 @@ void FluentSubmitQueueEntry() {
 
 	#endregion
 }
+
+void InitializeFluentJdf() {
+	var config = Infrastructure.Core.Configuration.Settings.UseCastleWindsor();
+	if (loggingOn){
+		config.LogWithNLog(GetNLogConfiguration());
+	}
+	config.Configure();
+	FluentJdfLibrary.Settings.ResetToDefaults();
+	
+	Infrastructure.Core.Configuration.Settings.ServiceLocator.LogRegisteredComponents();
+	mockTransmitter = new MockTransmitter();
+	//var trans = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<IHttpWebRequestFactory>().Dump();
+	
+}
+
+LoggingConfiguration GetNLogConfiguration(){
+	LoggingConfiguration config = new LoggingConfiguration();
+	
+	ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget();
+	config.AddTarget("console", consoleTarget);
+	consoleTarget.Layout = "${longdate} ${level:uppercase=true} ${logger} ${newline}${message}${newline}";
+	LoggingRule rule = new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget);
+	config.LoggingRules.Add(rule);
+	
+	return config;
+}
+
 
 /*
 	var basePath = new FileInfo(Util.CurrentQueryPath).DirectoryName;

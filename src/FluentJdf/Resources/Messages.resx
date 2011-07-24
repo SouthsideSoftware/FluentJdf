@@ -295,4 +295,7 @@ elated transmission.  The error is </value>
   <data name="MustMapCIDsIsTrueAndNoMappingSuppliedForURL" xml:space="preserve">
     <value>mustMapCIDs is true and no mapping supplied for URL: '{0}'</value>
   </data>
+  <data name="FailedToValidateExistingJDFSchemaFolderTheErrorIs0" xml:space="preserve">
+    <value>Failed to validate existing JDF schema folder.  The error is {0}</value>
+  </data>
 </root>

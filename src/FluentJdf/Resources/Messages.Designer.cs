@@ -196,6 +196,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to validate existing JDF schema folder.  The error is {0}.
+        /// </summary>
+        internal static string FailedToValidateExistingJDFSchemaFolderTheErrorIs0 {
+            get {
+                return ResourceManager.GetString("FailedToValidateExistingJDFSchemaFolderTheErrorIs0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File {0} does not exist.
         /// </summary>
         internal static string FileDoesNotExist {
