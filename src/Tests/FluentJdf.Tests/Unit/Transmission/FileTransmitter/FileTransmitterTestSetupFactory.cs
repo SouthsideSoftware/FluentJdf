@@ -15,6 +15,20 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
     internal static class FileTransmitterTestSetupFactory {
 
         public static List<FluentJdf.Transmission.FileTransmissionItem> GetFileTransmissionItem(string encoderId) {
+            var message = GetMessage();
+
+            string name = string.Format("JMF{0}", Infrastructure.Core.Helpers.MimeTypeHelper.JmfExtension);
+            var transmissionPartCollection = new TransmissionPartCollection();
+            transmissionPartCollection.Add(new MessageTransmissionPart(message, name));
+            transmissionPartCollection.AddRange(message.AdditionalParts);
+
+            var encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders
+               .FirstOrDefault(item => item.Value.Id.Equals(encoderId, StringComparison.OrdinalIgnoreCase)).Value;
+
+            return encoder.PrepareTransmission(transmissionPartCollection, new TransmissionPartFactory(), new EncodingFactory(), new TransmissionLogger()).OrderBy(item => item.Order).ToList();
+        }
+
+        public static FluentJdf.LinqToJdf.Message GetMessage() {
             var encodingFactory = new EncodingFactory();
             var logger = new TransmissionLogger();
             var transmitterFactory = new FluentJdf.Transmission.TransmitterFactory();
@@ -32,15 +46,7 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
             var attachmentPart = new TransmissionPart(ms, "TestAttachment", Infrastructure.Core.Helpers.MimeTypeHelper.TextMimeType, "id_1234");
             message.AddRelatedPart(attachmentPart);
 
-            string name = string.Format("JMF{0}", Infrastructure.Core.Helpers.MimeTypeHelper.JmfExtension);
-            var transmissionPartCollection = new TransmissionPartCollection();
-            transmissionPartCollection.Add(new MessageTransmissionPart(message, name));
-            transmissionPartCollection.AddRange(message.AdditionalParts);
-
-            var encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders
-               .FirstOrDefault(item => item.Value.Id.Equals(encoderId, StringComparison.OrdinalIgnoreCase)).Value;
-
-            return encoder.PrepareTransmission(transmissionPartCollection, new TransmissionPartFactory(), new EncodingFactory(), new TransmissionLogger()).OrderBy(item => item.Order).ToList();
+            return message;
         }
 
     }
