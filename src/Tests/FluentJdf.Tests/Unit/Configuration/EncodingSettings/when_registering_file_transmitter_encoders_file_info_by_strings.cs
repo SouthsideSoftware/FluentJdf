@@ -5,6 +5,7 @@ using System.Text;
 using Machine.Specifications;
 using FluentJdf.Configuration;
 using FluentJdf.Transmission;
+using FluentJdf.LinqToJdf;
 
 namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
 
@@ -59,17 +60,9 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
             fileEncoder.FolderInfo.First().NameValues[testKey].ShouldEqual(testValue);
         };
 
-        It should_not_allow_second_item_added_with_same_type = () => {
-            Exception exception = null;
-            try {
-                builder.FolderInfo(FolderInfoTypeEnum.Attachment, uriOne.ToString(), uriTwo.ToString(), 2, additionalItems);
-            }
-            catch (Exception ex) {
-                exception = ex;
-            }
+        It should_not_allow_second_item_added_with_same_type = () => Catch.Exception(
+                () => builder.FolderInfo(FolderInfoTypeEnum.Attachment, uriOne.ToString(), uriTwo.ToString(), 2, additionalItems))
+                .ShouldBe(typeof(JdfException));
 
-            exception.ShouldNotBeNull();
-            fileEncoder.FolderInfo.Count.ShouldEqual(1);
-        };
     }
 }

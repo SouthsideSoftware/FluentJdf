@@ -89,15 +89,9 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
             Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true);
-            Exception exception = null;
-            try {
-                FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriTwo, true);
-            }
-            catch (Exception ex) {
-                exception = ex;
-            }
 
-            exception.ShouldBeOfType<JdfException>();
+            Catch.Exception(() => FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriTwo, true)).ShouldBe(typeof(JdfException));
+
             FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.Count.ShouldEqual(1);
         };
 
