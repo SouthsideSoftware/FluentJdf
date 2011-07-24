@@ -252,7 +252,7 @@ namespace FluentJdf.Transmission {
                             folderConfigurationItem = JdfFolderInfo;
                             extension = ".jdf";
                         }
-                        if (part.MimeType == MimeTypeHelper.JmfMimeType) {
+                        else if (part.MimeType == MimeTypeHelper.JmfMimeType) {
                             folderConfigurationItem = JmfFolderInfo;
                             extension = ".jmf";
                         }
@@ -281,7 +281,7 @@ namespace FluentJdf.Transmission {
                         if (part.MimeType == MimeTypeHelper.JdfMimeType) {
                             folderConfigurationItem = JdfFolderInfo;
                         }
-                        if (part.MimeType == MimeTypeHelper.JmfMimeType) {
+                        else if (part.MimeType == MimeTypeHelper.JmfMimeType) {
                             folderConfigurationItem = JmfFolderInfo;
                         }
                         else {
