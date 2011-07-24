@@ -27,8 +27,9 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
             FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
             encodingFactory = new EncodingFactory();
             logger = new TransmissionLogger();
+            var partFactory = new TransmissionPartFactory();
             transmitterFactory = new FluentJdf.Transmission.TransmitterFactory();
-            transmitter = new FluentJdf.Transmission.FileTransmitter(encodingFactory, logger);
+            transmitter = new FluentJdf.Transmission.FileTransmitter(encodingFactory, logger, partFactory);
             tempPath = Path.GetTempPath();
             ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
             message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;

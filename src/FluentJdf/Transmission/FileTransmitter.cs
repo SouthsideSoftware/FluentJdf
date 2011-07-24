@@ -21,20 +21,7 @@ namespace FluentJdf.Transmission {
     public class FileTransmitter : ITransmitter {
 
         static ILog logger = LogManager.GetLogger(typeof(FileTransmitter));
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="transmissionPartFactory"></param>
-        public FileTransmitter(ITransmissionPartFactory transmissionPartFactory) {
-            ParameterCheck.ParameterRequired(transmissionPartFactory, "transmissionPartFactory");
-
-            this.transmissionPartFactory = transmissionPartFactory;
-        }
-
-        readonly ITransmissionPartFactory transmissionPartFactory
-            = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPartFactory>();
-
+        readonly ITransmissionPartFactory transmissionPartFactory;
         readonly ITransmissionLogger transmissionLogger;
         readonly IEncodingFactory encodingfactory;
 
@@ -43,12 +30,15 @@ namespace FluentJdf.Transmission {
         /// </summary>
         /// <param name="encodingfactory"></param>
         /// <param name="transmissionLogger"></param>
-        public FileTransmitter(IEncodingFactory encodingfactory, ITransmissionLogger transmissionLogger) {
+        /// <param name="transmissionPartFactory"></param>
+        public FileTransmitter(IEncodingFactory encodingfactory, ITransmissionLogger transmissionLogger, ITransmissionPartFactory transmissionPartFactory) {
             ParameterCheck.ParameterRequired(encodingfactory, "encodingfactory");
             ParameterCheck.ParameterRequired(transmissionLogger, "transmissionLogger");
+            ParameterCheck.ParameterRequired(transmissionPartFactory, "transmissionPartFactory");
 
             this.encodingfactory = encodingfactory;
             this.transmissionLogger = transmissionLogger;
+            this.transmissionPartFactory = transmissionPartFactory;
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ using FluentJdf.Transmission;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
-    [Subject(typeof (FluentJdf.Transmission.FileTransmitter))]
+    [Subject(typeof(FluentJdf.Transmission.FileTransmitter))]
     public class when_testing_file_transmitter_to_use_file_transmitter_encoder_with_default_reference_folder {
         protected static List<FileTransmissionItem> preparedItems;
 
@@ -33,15 +33,16 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
 
         It should_have_three_transmitted_parts = () => preparedItems.Count.ShouldEqual(3);
 
+        It should_reference_attachment_from_jdf_using_reference_path =
+            () =>
+            Ticket.Load(preparedItems.Skip(1).First().CopyOfStream()).GetIntent().WithInput().RunList().Elements.First().Descendants(Element.FileSpec).First().GetAttributeValueOrNull("URL").
+                ShouldStartWith(
+                    @"file:///c:/temp/simplesend/attach/");
+
         It should_reference_jdf_from_jmf_using_reference_path = () => {
-            var jobId = Ticket.Load(preparedItems.Skip(1).First().CopyOfStream()).Root.GetJobId();
+            string jobId = Ticket.Load(preparedItems.Skip(1).First().CopyOfStream()).Root.GetJobId();
             Message.Load(preparedItems.First().CopyOfStream()).Root.Descendants(Element.QueueSubmissionParams).First().GetAttributeValueOrNull("URL").ShouldStartWith(
                 string.Format(@"file:///c:/temp/simplesend/JDF_{0}/jdf/", jobId));
         };
-
-        It should_reference_attachment_from_jdf_using_reference_path =
-            () =>
-            Ticket.Load(preparedItems.Skip(1).First().CopyOfStream()).GetIntent().WithInput().RunList().Elements.First().Descendants(Element.FileSpec).First().GetAttributeValueOrNull("URL").ShouldStartWith(
-                @"file:///c:/temp/simplesend/attach/");
     }
 }

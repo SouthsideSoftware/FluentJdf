@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using FluentJdf.Configuration;
 using FluentJdf.LinqToJdf;
 using FluentJdf.Transmission;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
-    [Subject(typeof (FluentJdf.Transmission.FileTransmitter))]
+    [Subject(typeof(FluentJdf.Transmission.FileTransmitter))]
     public class when_testing_file_transmitter_to_use_file_transmitter_encoder {
         protected static List<FileTransmissionItem> preparedItems;
 
@@ -32,14 +31,14 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
         It should_have_jmf_in_second_position_by_mime = () => preparedItems.Skip(1).First().MimeType.ShouldEqual("application/vnd.cip4-jmf+xml");
         It should_have_three_transmitted_parts = () => preparedItems.Count.ShouldEqual(3);
 
-        It should_reference_jdf_from_jmf_using_reference_path =
-            () =>
-            Message.Load(preparedItems.Skip(1).First().CopyOfStream()).Root.Descendants(Element.QueueSubmissionParams).First().GetAttributeValueOrNull("URL").ShouldStartWith(
-                @"file:///c:/zzz/simplesend/");
-
         It should_reference_attachment_from_jdf_using_reference_path =
             () =>
             Ticket.Load(preparedItems.Last().CopyOfStream()).GetIntent().WithInput().RunList().Elements.First().Descendants(Element.FileSpec).First().GetAttributeValueOrNull("URL").ShouldStartWith(
                 @"file:///c:/yyy/simplesend/");
+
+        It should_reference_jdf_from_jmf_using_reference_path =
+            () =>
+            Message.Load(preparedItems.Skip(1).First().CopyOfStream()).Root.Descendants(Element.QueueSubmissionParams).First().GetAttributeValueOrNull("URL").ShouldStartWith(
+                @"file:///c:/zzz/simplesend/");
     }
 }
