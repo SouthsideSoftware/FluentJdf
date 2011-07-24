@@ -261,10 +261,10 @@ namespace FluentJdf.LinqToJdf {
                 //todo: add packaging options
 
                 string name = string.Format("JMF{0}", MimeTypeHelper.JmfExtension);
-                using (var transmissionPartColllection = new TransmissionPartCollection()) {
-                    transmissionPartColllection.Add(new MessageTransmissionPart(this, name));
-                    transmissionPartColllection.AddRange(additionalParts);
-                    return transmitterFactory.GetTransmitterForUrl(url).Transmit(url, transmissionPartColllection);
+                using (var transmissionPartCollection = new TransmissionPartCollection()) {
+                    transmissionPartCollection.Add(new MessageTransmissionPart(this, name));
+                    transmissionPartCollection.AddRange(additionalParts);
+                    return transmitterFactory.GetTransmitterForUrl(url).Transmit(url, transmissionPartCollection);
                 }
             }
             catch (Exception err) {
