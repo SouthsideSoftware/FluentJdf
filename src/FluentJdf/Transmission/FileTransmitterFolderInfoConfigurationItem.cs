@@ -125,7 +125,7 @@ namespace FluentJdf.Transmission {
                     folderInfoType = partType;
                     break;
                 default:
-                    throw new JdfException(string.Format("partType must be 'Attachment', 'Jdf' or 'Jmf'.  The type given for FolderInfo is {0}", partType));
+                    throw new JdfException(string.Format(FluentJdf.Resources.Messages.PartTypeMustBeAttachmentJdfOrJmfTheTypeGivenForFolderInfo, partType));
             }
 
             if (order < 0) {

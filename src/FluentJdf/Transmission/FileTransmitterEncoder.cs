@@ -130,7 +130,7 @@ namespace FluentJdf.Transmission {
         /// <param name="configItem"></param>
         public void AddFolderInfo(FileTransmitterFolderInfoConfigurationItem configItem) {
             if (FolderInfo.Any(item => item.FolderInfoType == configItem.FolderInfoType)) {
-                throw new JdfException(string.Format("FolderInfoTypeEnum '{0}' already exists.", configItem.FolderInfoType));
+                throw new JdfException(string.Format(FluentJdf.Resources.Messages.FolderInfoTypeEnum0AlreadyExists, configItem.FolderInfoType));
             }
 
             folderInfo.Add(configItem);
@@ -207,17 +207,17 @@ namespace FluentJdf.Transmission {
                 else {
                     if (JmfFolderInfo == null && JdfFolderInfo == null && AttachmentFolderInfo == null) {
                         throw new JdfException(
-                            string.Format("The configuration of the file transmission encoder id {0} is invaild because it is configured not to send anything",
+                            string.Format(FluentJdf.Resources.Messages.TheConfigurationOfTheFileTransmissionEncoderId0IsInvaild,
                             Id));
                     }
                     if (JmfFolderInfo != null && (JdfFolderInfo == null || AttachmentFolderInfo == null)) {
                         throw new JdfException(
-                            string.Format("The configuration of the file transmission encoder id {0} is invaild because it is configured to send JMF but not JDF and the attachment",
+                            string.Format(FluentJdf.Resources.Messages.TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJMFNoJDF,
                             Id));
                     }
                     if (JdfFolderInfo != null && AttachmentFolderInfo == null) {
                         throw new JdfException(
-                            string.Format("The configuration of the file transmission encoder id {0} is invaild because it is configured to send JDF but not the attachment",
+                            string.Format(FluentJdf.Resources.Messages.TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJDFNoAttach,
                             Id));
                     }
 
@@ -311,7 +311,7 @@ namespace FluentJdf.Transmission {
                 }
             }
             catch (Exception err) {
-                throw new JdfException(string.Format("Error occured while trying to encode transmission.  Message is {0}",
+                throw new JdfException(string.Format(FluentJdf.Resources.Messages.ErrorOccuredWhileTryingToEncodeTransmissionMessageIs,
                     err.Message), err);
             }
             return items;
@@ -329,7 +329,7 @@ namespace FluentJdf.Transmission {
                 if (commandType == Command.SubmitQueueEntry) {
                     submissionParams = command.SelectJDFDescendants(Element.QueueSubmissionParams);
                     if (submissionParams.Count() == 0) {
-                        throw new JdfException("QueueSubmissionParams are required in SubmitQueueEntry");
+                        throw new JdfException(FluentJdf.Resources.Messages.QueueSubmissionParamsAreRequiredInSubmitQueueEntry);
                     }
                     else {
                         toProcess = true;
@@ -338,7 +338,7 @@ namespace FluentJdf.Transmission {
                 if (commandType == Command.ResubmitQueueEntry) {
                     submissionParams = command.SelectJDFDescendants(Element.ResubmissionParams);
                     if (submissionParams.Count() == 0) {
-                        throw new JdfException("ReSubmissionParams are required in ResubmitQueueEntry");
+                        throw new JdfException(FluentJdf.Resources.Messages.ReSubmissionParamsAreRequiredInResubmitQueueEntry);
                     }
                     else {
                         toProcess = true;

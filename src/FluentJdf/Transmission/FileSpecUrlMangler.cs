@@ -34,7 +34,7 @@ namespace FluentJdf.Transmission {
                     }
                     else {
                         if (urlValue.StartsWith("cid:", StringComparison.OrdinalIgnoreCase) && mustMapCIDs) {
-                            throw new JdfException("mustMapCIDs is true and no mapping supplied for URL: " + urlValue);
+                            throw new JdfException(string.Format(FluentJdf.Resources.Messages.MustMapCIDsIsTrueAndNoMappingSuppliedForURL, urlValue));
                         }
                     }
                 }
@@ -63,7 +63,7 @@ namespace FluentJdf.Transmission {
                     }
                     else {
                         if (urlValue.StartsWith("cid:", StringComparison.OrdinalIgnoreCase) && mustMapCIDs) {
-                            throw new JdfException("mustMapCIDs is true and no mapping supplied for URL: " + urlValue);
+                            throw new JdfException(string.Format(FluentJdf.Resources.Messages.MustMapCIDsIsTrueAndNoMappingSuppliedForURL, urlValue));
                         }
                     }
                 }

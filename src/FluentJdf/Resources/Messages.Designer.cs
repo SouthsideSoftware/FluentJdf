@@ -178,6 +178,15 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error occured while trying to encode transmission.  Message is {0}.
+        /// </summary>
+        internal static string ErrorOccuredWhileTryingToEncodeTransmissionMessageIs {
+            get {
+                return ResourceManager.GetString("ErrorOccuredWhileTryingToEncodeTransmissionMessageIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to load XDocument from stream.
         /// </summary>
         internal static string FailedToLoadXDocumentFromStream {
@@ -219,6 +228,15 @@ namespace FluentJdf.Resources {
         internal static string FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired {
             get {
                 return ResourceManager.GetString("FluentJdfDocumentBase_FluentJdfDocumentBase_FluentJDF_RootNodeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FolderInfoTypeEnum &apos;{0}&apos; already exists..
+        /// </summary>
+        internal static string FolderInfoTypeEnum0AlreadyExists {
+            get {
+                return ResourceManager.GetString("FolderInfoTypeEnum0AlreadyExists", resourceCulture);
             }
         }
         
@@ -379,6 +397,24 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to mustMapCIDs is true and no mapping supplied for URL: &apos;{0}&apos;.
+        /// </summary>
+        internal static string MustMapCIDsIsTrueAndNoMappingSuppliedForURL {
+            get {
+                return ResourceManager.GetString("MustMapCIDsIsTrueAndNoMappingSuppliedForURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to partType must be &apos;Attachment&apos;, &apos;Jdf&apos; or &apos;Jmf&apos;.  The type given for FolderInfo is {0}.
+        /// </summary>
+        internal static string PartTypeMustBeAttachmentJdfOrJmfTheTypeGivenForFolderInfo {
+            get {
+                return ResourceManager.GetString("PartTypeMustBeAttachmentJdfOrJmfTheTypeGivenForFolderInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pass through encoder cannot encode a transmission part collection containing more than one part..
         /// </summary>
         internal static string PassThroughEncoder_Encode_CannotEncodeMoreThanOnePart {
@@ -388,11 +424,29 @@ namespace FluentJdf.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to QueueSubmissionParams are required in SubmitQueueEntry.
+        /// </summary>
+        internal static string QueueSubmissionParamsAreRequiredInSubmitQueueEntry {
+            get {
+                return ResourceManager.GetString("QueueSubmissionParamsAreRequiredInSubmitQueueEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resource with ID {0} cannot be found.
         /// </summary>
         internal static string ResourceExtensions_Resource_ResourceWithIdCannotBeFound {
             get {
                 return ResourceManager.GetString("ResourceExtensions_Resource_ResourceWithIdCannotBeFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ReSubmissionParams are required in ResubmitQueueEntry.
+        /// </summary>
+        internal static string ReSubmissionParamsAreRequiredInResubmitQueueEntry {
+            get {
+                return ResourceManager.GetString("ReSubmissionParamsAreRequiredInResubmitQueueEntry", resourceCulture);
             }
         }
         
@@ -429,6 +483,33 @@ namespace FluentJdf.Resources {
         internal static string TemplateItem_TemplateItem_VariableNameIsNotLegal {
             get {
                 return ResourceManager.GetString("TemplateItem_TemplateItem_VariableNameIsNotLegal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configuration of the file transmission encoder id {0} is invaild because it is configured not to send anything.
+        /// </summary>
+        internal static string TheConfigurationOfTheFileTransmissionEncoderId0IsInvaild {
+            get {
+                return ResourceManager.GetString("TheConfigurationOfTheFileTransmissionEncoderId0IsInvaild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configuration of the file transmission encoder id {0} is invaild because it is configured to send JDF but not the attachment.
+        /// </summary>
+        internal static string TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJDFNoAttach {
+            get {
+                return ResourceManager.GetString("TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJDFNoAttach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configuration of the file transmission encoder id {0} is invaild because it is configured to send JMF but not JDF and the attachment.
+        /// </summary>
+        internal static string TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJMFNoJDF {
+            get {
+                return ResourceManager.GetString("TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJMFNoJDF", resourceCulture);
             }
         }
         

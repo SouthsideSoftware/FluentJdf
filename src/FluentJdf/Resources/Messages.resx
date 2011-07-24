@@ -268,4 +268,31 @@ elated transmission.  The error is </value>
   <data name="FileTransmitter_Transmit_RequiresHttpUrl" xml:space="preserve">
     <value>HTTP transmitter only works with http urls</value>
   </data>
+  <data name="FolderInfoTypeEnum0AlreadyExists" xml:space="preserve">
+    <value>FolderInfoTypeEnum '{0}' already exists.</value>
+  </data>
+  <data name="PartTypeMustBeAttachmentJdfOrJmfTheTypeGivenForFolderInfo" xml:space="preserve">
+    <value>partType must be 'Attachment', 'Jdf' or 'Jmf'.  The type given for FolderInfo is {0}</value>
+  </data>
+  <data name="TheConfigurationOfTheFileTransmissionEncoderId0IsInvaild" xml:space="preserve">
+    <value>The configuration of the file transmission encoder id {0} is invaild because it is configured not to send anything</value>
+  </data>
+  <data name="TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJMFNoJDF" xml:space="preserve">
+    <value>The configuration of the file transmission encoder id {0} is invaild because it is configured to send JMF but not JDF and the attachment</value>
+  </data>
+  <data name="TheConfigurationOfTheFileTransmissionEncoderId0IsInvaildJDFNoAttach" xml:space="preserve">
+    <value>The configuration of the file transmission encoder id {0} is invaild because it is configured to send JDF but not the attachment</value>
+  </data>
+  <data name="ErrorOccuredWhileTryingToEncodeTransmissionMessageIs" xml:space="preserve">
+    <value>Error occured while trying to encode transmission.  Message is {0}</value>
+  </data>
+  <data name="QueueSubmissionParamsAreRequiredInSubmitQueueEntry" xml:space="preserve">
+    <value>QueueSubmissionParams are required in SubmitQueueEntry</value>
+  </data>
+  <data name="ReSubmissionParamsAreRequiredInResubmitQueueEntry" xml:space="preserve">
+    <value>ReSubmissionParams are required in ResubmitQueueEntry</value>
+  </data>
+  <data name="MustMapCIDsIsTrueAndNoMappingSuppliedForURL" xml:space="preserve">
+    <value>mustMapCIDs is true and no mapping supplied for URL: '{0}'</value>
+  </data>
 </root>

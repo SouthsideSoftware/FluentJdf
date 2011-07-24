@@ -43,8 +43,9 @@ void CreateTestDataForFileTransmitterEncoder() {
 
 			FluentJdf.LinqToJdf.Ticket
 				.CreateProcess(ProcessType.Bending)
-				.WithInput()
-				.FileSpec()
+				.AddNode(Element.ResourcePool)
+				.AddNode(Element.Preview)
+				.With().Attribute("MimeType", "application/pdf").Attribute("URL", cid)
 				.Ticket.Dump();
 
 	FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry()
