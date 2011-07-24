@@ -5,13 +5,12 @@ using System.Text;
 using FluentJdf.Configuration;
 using FluentJdf.Encoding;
 using FluentJdf.Messaging;
-using FluentJdf.Transmission;
 using FluentJdf.Transmission.Logging;
 using Infrastructure.Core.Result;
 using Machine.Specifications;
 using System.IO;
 
-namespace FluentJdf.Tests.Unit.Transmission {
+namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
 
     [Subject(typeof(FluentJdf.Transmission.FileTransmitter))]
     public class when_testing_file_transmitter_with_multi_part_mime {
@@ -29,15 +28,14 @@ namespace FluentJdf.Tests.Unit.Transmission {
             encodingFactory = new EncodingFactory();
             logger = new TransmissionLogger();
             transmitterFactory = new FluentJdf.Transmission.TransmitterFactory();
-            transmitter = new FileTransmitter(encodingFactory, logger);
+            transmitter = new FluentJdf.Transmission.FileTransmitter(encodingFactory, logger);
             tempPath = Path.GetTempPath();
             ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
             message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
-            FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(FileTransmitter));
-            //message.Transmit("file:///Test");
+            FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(FluentJdf.Transmission.FileTransmitter));
         };
 
-        It should_get_class_registered_for_file_scheme = () => transmitterFactory.GetTransmitterForScheme("file").ShouldBeOfType(typeof(FileTransmitter));
+        It should_get_class_registered_for_file_scheme = () => transmitterFactory.GetTransmitterForScheme("file").ShouldBeOfType(typeof(FluentJdf.Transmission.FileTransmitter));
 
         It should_transmit_message_to_temp_file_location = () => {
             var path = new Uri("file:///" + Path.GetTempFileName() + ".jdf");
