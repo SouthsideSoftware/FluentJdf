@@ -10,6 +10,9 @@ using Infrastructure.Core.Result;
 using Machine.Specifications;
 using System.IO;
 using FluentJdf.Utility;
+using Infrastructure.Core.Helpers;
+
+//TODO this should really be an integration test.
 
 namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
 
@@ -52,11 +55,31 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
                     }    
                 }
             }
-
+            
             message = FileTransmitterTestSetupFactory.GetMessage();
             result = message.Transmit(rootFolderUri);
             directoryInfo = new DirectoryInfo(rootFolderUri.GetLocalPath());
         };
+
+        private static string AttachmentFullName() {
+            return directoryInfo.GetDirectories()
+                .FirstOrDefault(item => item.Name.Equals("Attach", StringComparison.OrdinalIgnoreCase))
+                .GetFiles().First().FullName;
+        }
+
+        private static string JdfFullName() {
+            return directoryInfo.GetDirectories()
+                .FirstOrDefault(item => !item.Name.Equals("Attach", StringComparison.OrdinalIgnoreCase))
+                .GetDirectories().FirstOrDefault(item => item.Name.Equals("jdf", StringComparison.OrdinalIgnoreCase))
+                .GetFiles().First().FullName;
+        }
+
+        private static string JmfFullName() {
+            return directoryInfo.GetDirectories()
+                .FirstOrDefault(item => !item.Name.Equals("Attach", StringComparison.OrdinalIgnoreCase))
+                .GetDirectories().FirstOrDefault(item => item.Name.Equals("jmf", StringComparison.OrdinalIgnoreCase))
+                .GetFiles().First().FullName;
+        }
 
         It should_have_two_subfolders_in_directory = () => directoryInfo.GetDirectories().Count().ShouldEqual(2);
 
@@ -65,5 +88,12 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
         It should_have_jdf_root_folder_in_directory = () => directoryInfo.GetDirectories().FirstOrDefault(item => !item.Name.Equals("Attach", StringComparison.OrdinalIgnoreCase)).ShouldNotBeNull();
 
         It should_have_jdf_and_jmf_folder_in_jdf_root_folder = () => directoryInfo.GetDirectories().FirstOrDefault(item => !item.Name.Equals("Attach", StringComparison.OrdinalIgnoreCase)).GetDirectories().Count().ShouldEqual(2);
+
+        It should_have_attachment_equal_to_the_attachment_that_was_saved = () => File.ReadAllText(AttachmentFullName()).ShouldEqual("This is a test.");
+
+        It should_have_jdf_ticket = () => FluentJdf.LinqToJdf.Ticket.Load(JdfFullName()).ShouldNotBeNull();
+
+        It should_have_jmf_message = () => FluentJdf.LinqToJdf.Message.Load(JmfFullName()).ShouldNotBeNull();
+
     }
 }
