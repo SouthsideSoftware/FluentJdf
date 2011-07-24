@@ -24,7 +24,7 @@ namespace FluentJdf.Transmission {
 
         static ILog logger = LogManager.GetLogger(typeof(FileTransmitterEncoder));
 
-        private List<FileTransmitterFolderInfoConfigurationItem> folderInfo;
+        private List<FileTransmitterFolderInfo> folderInfo;
 
         private string id;
         private string localPath;
@@ -35,7 +35,7 @@ namespace FluentJdf.Transmission {
         /// <summary>
         /// The folder Info items (Attachment, jdf, jmf)
         /// </summary>
-        public ReadOnlyCollection<FileTransmitterFolderInfoConfigurationItem> FolderInfo {
+        public ReadOnlyCollection<FileTransmitterFolderInfo> FolderInfo {
             get {
                 return folderInfo.AsReadOnly();
             }
@@ -119,16 +119,16 @@ namespace FluentJdf.Transmission {
             this.useMime = useMime;
             this.nameValues = new ReadOnlyDictionary<string, string>(nameValues ?? new Dictionary<string, string>());
 
-            this.folderInfo = new List<FileTransmitterFolderInfoConfigurationItem>();
+            this.folderInfo = new List<FileTransmitterFolderInfo>();
 
             this.localPath = urlBase.EnsureTrailingSlash().GetLocalPath();
         }
 
         /// <summary>
-        /// Add a new <see cref="FileTransmitterFolderInfoConfigurationItem"/>
+        /// Add a new <see cref="FileTransmitterFolderInfo"/>
         /// </summary>
         /// <param name="configItem"></param>
-        public void AddFolderInfo(FileTransmitterFolderInfoConfigurationItem configItem) {
+        public void AddFolderInfo(FileTransmitterFolderInfo configItem) {
             if (FolderInfo.Any(item => item.FolderInfoType == configItem.FolderInfoType)) {
                 throw new JdfException(string.Format(FluentJdf.Resources.Messages.FolderInfoTypeEnum0AlreadyExists, configItem.FolderInfoType));
             }
@@ -139,7 +139,7 @@ namespace FluentJdf.Transmission {
         /// <summary>
         /// Gets the folder info for Jmf.
         /// </summary>
-        private FileTransmitterFolderInfoConfigurationItem JmfFolderInfo {
+        private FileTransmitterFolderInfo JmfFolderInfo {
             get {
                 return FolderInfo.FirstOrDefault(item => item.FolderInfoType == FolderInfoTypeEnum.Jmf
                                                 && !item.Suppress);
@@ -149,7 +149,7 @@ namespace FluentJdf.Transmission {
         /// <summary>
         /// Gets the folder info for Jmf.
         /// </summary>
-        private FileTransmitterFolderInfoConfigurationItem JdfFolderInfo {
+        private FileTransmitterFolderInfo JdfFolderInfo {
             get {
                 return FolderInfo.FirstOrDefault(item => item.FolderInfoType == FolderInfoTypeEnum.Jdf
                                                 && !item.Suppress);
@@ -159,7 +159,7 @@ namespace FluentJdf.Transmission {
         /// <summary>
         /// Gets the folder info for Jmf.
         /// </summary>
-        private FileTransmitterFolderInfoConfigurationItem AttachmentFolderInfo {
+        private FileTransmitterFolderInfo AttachmentFolderInfo {
             get {
                 return FolderInfo.FirstOrDefault(item => item.FolderInfoType == FolderInfoTypeEnum.Attachment
                                                 && !item.Suppress);
@@ -247,26 +247,26 @@ namespace FluentJdf.Transmission {
                     //pass over parts to generate destination file names and mapping
                     var urlMapping = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                     foreach (ITransmissionPart part in parts) {
-                        FileTransmitterFolderInfoConfigurationItem folderConfigurationItem;
+                        FileTransmitterFolderInfo folder;
                         string extension = null;
                         if (part.MimeType == MimeTypeHelper.JdfMimeType) {
-                            folderConfigurationItem = JdfFolderInfo;
+                            folder = JdfFolderInfo;
                             extension = ".jdf";
                         }
                         else if (part.MimeType == MimeTypeHelper.JmfMimeType) {
-                            folderConfigurationItem = JmfFolderInfo;
+                            folder = JmfFolderInfo;
                             extension = ".jmf";
                         }
                         else {
-                            folderConfigurationItem = AttachmentFolderInfo;
+                            folder = AttachmentFolderInfo;
                             extension = MimeTypeHelper.MimeTypeExtension(part.MimeType);
                         }
 
                         string fileName = part.Id.ToString() + extension;
 
-                        if (folderConfigurationItem != null) {
-                            var newFileName = Path.Combine(ExpandFolder(folderConfigurationItem.DestinationFolder, transmissionGuid, jobId, jobKey), fileName);
-                            string referencePath = Path.Combine(ExpandFolder(folderConfigurationItem.ReferenceFolder, transmissionGuid, jobId, jobKey), fileName);
+                        if (folder != null) {
+                            var newFileName = Path.Combine(ExpandFolder(folder.DestinationFolder, transmissionGuid, jobId, jobKey), fileName);
+                            string referencePath = Path.Combine(ExpandFolder(folder.ReferenceFolder, transmissionGuid, jobId, jobKey), fileName);
                             urlMapping.Add("cid:" + part.Id.ToLower(), referencePath);
                             itemsToProcess.Add(new KeyValuePair<ITransmissionPart, string>(part, newFileName));
                         }
@@ -274,19 +274,19 @@ namespace FluentJdf.Transmission {
 
                     //fixup urls and add to the collection of files to send
                     foreach (var processPart in itemsToProcess) {
-                        FileTransmitterFolderInfoConfigurationItem folderConfigurationItem;
+                        FileTransmitterFolderInfo folder;
 
                         var part = processPart.Key;
                         var file = processPart.Value;
 
                         if (part.MimeType == MimeTypeHelper.JdfMimeType) {
-                            folderConfigurationItem = JdfFolderInfo;
+                            folder = JdfFolderInfo;
                         }
                         else if (part.MimeType == MimeTypeHelper.JmfMimeType) {
-                            folderConfigurationItem = JmfFolderInfo;
+                            folder = JmfFolderInfo;
                         }
                         else {
-                            folderConfigurationItem = AttachmentFolderInfo;
+                            folder = AttachmentFolderInfo;
                         }
 
                         //TODO is this the best way to obtain the ticket? We know it must exist since we are on the correct mime item.
@@ -300,12 +300,12 @@ namespace FluentJdf.Transmission {
                             MapMessageUrls(parts.Message, urlMapping);
                         }
 
-                        if (folderConfigurationItem != null) {
-                            if (!folderConfigurationItem.Suppress) {
+                        if (folder != null) {
+                            if (!folder.Suppress) {
                                 var encodingResult = encodingfactory.GetEncodingForMimeType(part.MimeType).Encode(part);
                                 encodingResult.Stream.Seek(0, SeekOrigin.Begin);
                                 transmissionLogger.Log(new TransmissionData(encodingResult.Stream, encodingResult.ContentType, "Request"));
-                                items.Add(new FileTransmissionItem(part, encodingResult.Stream, new Uri(file), part.MimeType, folderConfigurationItem.Order));
+                                items.Add(new FileTransmissionItem(part, encodingResult.Stream, new Uri(file), part.MimeType, folder.Order));
                             }
                         }
                     }

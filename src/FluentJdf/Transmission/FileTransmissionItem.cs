@@ -123,7 +123,13 @@ namespace FluentJdf.Transmission {
         /// </summary>
         /// <returns></returns>
         public Stream CopyOfStream() {
-            return Stream;
+            var tempStream = new TempFileStream();
+            stream.Seek(0, SeekOrigin.Begin);
+            stream.CopyTo(tempStream);
+            tempStream.Seek(0, SeekOrigin.Begin);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            return tempStream;
         }
 
         /// <summary>

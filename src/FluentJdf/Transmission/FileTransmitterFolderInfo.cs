@@ -1,34 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
-using Infrastructure.Core.CodeContracts;
+using System.Text;
 using FluentJdf.LinqToJdf;
+using FluentJdf.Resources;
 using Infrastructure.Core;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.Transmission {
-
     /// <summary>
     /// Configuration of a FileTransmitterFolderInfo
     /// </summary>
     [Serializable]
-    public class FileTransmitterFolderInfoConfigurationItem : IComparable<FileTransmitterFolderInfoConfigurationItem>, IComparable {
-
-        private string destinationFolder;
-        private string referenceFolder;
-        private int order;
-        private FolderInfoTypeEnum folderInfoType;
-        private ReadOnlyDictionary<string, string> nameValues;
-        private bool suppress = false;
+    public class FileTransmitterFolderInfo : IComparable<FileTransmitterFolderInfo>, IComparable {
+        readonly FolderInfoTypeEnum folderInfoType;
+        readonly ReadOnlyDictionary<string, string> nameValues;
+        readonly int order;
+        string destinationFolder;
+        string referenceFolder;
+        bool suppress;
 
         /// <summary>
         /// Construct a default FolderInfo for the given part type.  
         /// </summary>
         /// <param name="partType">The type of part (Attachment, Jdf or Jmf).</param>
-        public FileTransmitterFolderInfoConfigurationItem(FolderInfoTypeEnum partType) :
-            this(partType, null, null, -1, null) {
-        }
+        public FileTransmitterFolderInfo(FolderInfoTypeEnum partType) :
+            this(partType, null, null, -1, null) {}
 
         /// <summary>
         /// Constructor
@@ -60,10 +57,9 @@ namespace FluentJdf.Transmission {
         /// this will be an empty string.
         /// </para>
         /// </remarks>
-        public FileTransmitterFolderInfoConfigurationItem(FolderInfoTypeEnum partType, string destinationFolder, string referenceFolder,
-                int order = 0, IDictionary<string, string> nameValues = null) :
-            this(partType, destinationFolder, referenceFolder, order, false, nameValues) {
-        }
+        public FileTransmitterFolderInfo(FolderInfoTypeEnum partType, string destinationFolder, string referenceFolder,
+                                         int order = 0, IDictionary<string, string> nameValues = null) :
+                                             this(partType, destinationFolder, referenceFolder, order, false, nameValues) {}
 
         /// <summary>
         /// Constructor
@@ -99,9 +95,8 @@ namespace FluentJdf.Transmission {
         /// this will be an empty string.
         /// </para>
         /// </remarks>
-        public FileTransmitterFolderInfoConfigurationItem(FolderInfoTypeEnum partType, string destinationFolder, string referenceFolder, int order,
-            bool suppress, IDictionary<string, string> nameValues) {
-
+        public FileTransmitterFolderInfo(FolderInfoTypeEnum partType, string destinationFolder, string referenceFolder, int order,
+                                         bool suppress, IDictionary<string, string> nameValues) {
             ParameterCheck.ParameterRequired(partType, "partType");
 
             if (destinationFolder == null) {
@@ -125,11 +120,11 @@ namespace FluentJdf.Transmission {
                     folderInfoType = partType;
                     break;
                 default:
-                    throw new JdfException(string.Format(FluentJdf.Resources.Messages.PartTypeMustBeAttachmentJdfOrJmfTheTypeGivenForFolderInfo, partType));
+                    throw new JdfException(string.Format(Messages.PartTypeMustBeAttachmentJdfOrJmfTheTypeGivenForFolderInfo, partType));
             }
 
             if (order < 0) {
-                this.order = (int)folderInfoType;
+                this.order = (int) folderInfoType;
             }
         }
 
@@ -138,30 +133,22 @@ namespace FluentJdf.Transmission {
         /// will be placed by the file transmitter.
         /// </summary>
         public string DestinationFolder {
-            get {
-                return destinationFolder;
-            }
-            set {
-                destinationFolder = value;
-            }
+            get { return destinationFolder; }
+            set { destinationFolder = value; }
         }
 
         /// <summary>
         /// Gets the type of part this info applies to.
         /// </summary>
         public FolderInfoTypeEnum FolderInfoType {
-            get {
-                return folderInfoType;
-            }
+            get { return folderInfoType; }
         }
 
         /// <summary>
         /// Additional Name Values
         /// </summary>
         public ReadOnlyDictionary<string, string> NameValues {
-            get {
-                return nameValues;
-            }
+            get { return nameValues; }
         }
 
         /// <summary>
@@ -169,9 +156,7 @@ namespace FluentJdf.Transmission {
         /// for items with identical Order is not defined.
         /// </summary>
         public int Order {
-            get {
-                return order;
-            }
+            get { return order; }
         }
 
         /// <summary>
@@ -179,12 +164,8 @@ namespace FluentJdf.Transmission {
         /// should not be output.
         /// </summary>
         public bool Suppress {
-            get {
-                return suppress;
-            }
-            set {
-                suppress = value;
-            }
+            get { return suppress; }
+            set { suppress = value; }
         }
 
         /// <summary>
@@ -193,72 +174,52 @@ namespace FluentJdf.Transmission {
         /// JDF and JMF.  
         /// </summary>
         public string ReferenceFolder {
-            get {
-                return referenceFolder;
-            }
-            set {
-                referenceFolder = value;
-            }
+            get { return referenceFolder; }
+            set { referenceFolder = value; }
         }
+
+        #region IComparable Members
 
         /// <summary>
         /// Compare the order of this item with the order of another.
         /// </summary>
-        /// <param name="obj">FileTransmitterFolderInfoConfigurationItem to which to compare</param>
-        /// <returns>0 if equals or if obj is not a non-null FileTransmitterFolderInfoConfigurationItem. 1 if this is greater, -1 if this is less than.</returns>
+        /// <param name="obj">FileTransmitterFolderInfo to which to compare</param>
+        /// <returns>0 if equals or if obj is not a non-null FileTransmitterFolderInfo. 1 if this is greater, -1 if this is less than.</returns>
         public int CompareTo(object obj) {
-            if (obj is FileTransmitterFolderInfoConfigurationItem) {
-                return order.CompareTo(((FileTransmitterFolderInfoConfigurationItem)obj).Order);
+            if (obj is FileTransmitterFolderInfo) {
+                return order.CompareTo(((FileTransmitterFolderInfo) obj).Order);
             }
             else {
                 return 0;
             }
         }
 
+        #endregion
+
+        #region IComparable<FileTransmitterFolderInfo> Members
+
         /// <summary>
         /// Compare the order of this item with the order of another.
         /// </summary>
-        /// <param name="other">FileTransmitterFolderInfoConfigurationItem to which to compare</param>
-        /// <returns>0 if equals or if obj is not a non-null FileTransmitterFolderInfoConfigurationItem. 1 if this is greater, -1 if this is less than.</returns>
-        public int CompareTo(FileTransmitterFolderInfoConfigurationItem other) {
+        /// <param name="other">FileTransmitterFolderInfo to which to compare</param>
+        /// <returns>0 if equals or if obj is not a non-null FileTransmitterFolderInfo. 1 if this is greater, -1 if this is less than.</returns>
+        public int CompareTo(FileTransmitterFolderInfo other) {
             if (other == null) {
                 return 0;
             }
             return order.CompareTo(other.Order);
         }
 
+        #endregion
+
         /// <summary>
         /// Return a string representation of the object.
         /// </summary>
         public override string ToString() {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.AppendFormat("Destination Folder: {0} Reference Folder: {1} Order: {2} FolderInfoType: {3} Suppress: {4}",
-                destinationFolder, referenceFolder, order, folderInfoType.ToString(), suppress);
+                            destinationFolder, referenceFolder, order, folderInfoType.ToString(), suppress);
             return sb.ToString();
         }
-
-        /// <summary>
-        /// Dump diagnostic information to the trace listeners.
-        /// </summary>
-        public void Dump() {
-            Trace.WriteLine(this.GetType().Name + " " + ToString());
-            Trace.Indent();
-            try {
-                Trace.WriteLine("NameValues");
-                Trace.Indent();
-                try {
-                    foreach (string key in nameValues.Keys) {
-                        Trace.WriteLine(string.Format("{0}={1}", key, nameValues[key]));
-                    }
-                }
-                finally {
-                    Trace.Unindent();
-                }
-            }
-            finally {
-                Trace.Unindent();
-            }
-        }
-
     }
 }

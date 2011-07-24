@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using FluentJdf;
 using FluentJdf.Encoding;
+using FluentJdf.LinqToJdf;
 using FluentJdf.Transmission.Logging;
 
 namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
@@ -29,19 +30,13 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
         }
 
         public static FluentJdf.LinqToJdf.Message GetMessage() {
-            var encodingFactory = new EncodingFactory();
-            var logger = new TransmissionLogger();
-            var transmitterFactory = new FluentJdf.Transmission.TransmitterFactory();
-            var transmitter = new FluentJdf.Transmission.FileTransmitter(encodingFactory, logger);
-
-            var ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
+            var ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().WithInput().RunList().AddNode(Element.LayoutElement).AddNode(Element.FileSpec).With().Attribute("URL", "cid:id_1234").Ticket;
             var message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
 
             var ms = new MemoryStream();
             var sw = new StreamWriter(ms);
             sw.Write("This is a test.");
             sw.Flush();
-            ms.Seek(0, SeekOrigin.Begin);
 
             var attachmentPart = new TransmissionPart(ms, "TestAttachment", Infrastructure.Core.Helpers.MimeTypeHelper.TextMimeType, "id_1234");
             message.AddRelatedPart(attachmentPart);

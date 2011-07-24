@@ -69,8 +69,8 @@ namespace FluentJdf.Configuration {
         /// <param name="nameValues">Additional Parameters</param>
         /// <returns></returns>
         public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, string destinationFolder,
-                                                        string referenceFolder, int order = 0, IDictionary<string, string> nameValues = null) {
-            return this.FolderInfo(type, destinationFolder.ToString(), referenceFolder.ToString(), order, false, nameValues);
+                                                        string referenceFolder = null, int order = 0, IDictionary<string, string> nameValues = null) {
+            return this.FolderInfo(type, destinationFolder, false, referenceFolder, order, nameValues);
         }
 
         /// <summary>
@@ -83,8 +83,8 @@ namespace FluentJdf.Configuration {
         /// <param name="nameValues">Additional Parameters</param>
         /// <returns></returns>
         public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, Uri destinationFolder,
-                                                        Uri referenceFolder, int order = 0, IDictionary<string, string> nameValues = null) {
-            return this.FolderInfo(type, destinationFolder.ToString(), referenceFolder.ToString(), order, false, nameValues);
+                                                        Uri referenceFolder = null, int order = 0, IDictionary<string, string> nameValues = null) {
+            return this.FolderInfo(type, destinationFolder.ToString(), false, referenceFolder != null ? referenceFolder.ToString() : null, order, nameValues);
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace FluentJdf.Configuration {
         /// <param name="suppress">Suppress the output</param>
         /// <param name="nameValues">Additional Parameters</param>
         /// <returns></returns>
-        public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, string destinationFolder,
-                                                        string referenceFolder, int order, bool suppress, IDictionary<string, string> nameValues = null) {
-            encoder.AddFolderInfo(new FileTransmitterFolderInfoConfigurationItem(type, destinationFolder, referenceFolder, order, suppress, nameValues));
+        public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, string destinationFolder,  bool suppress,
+                                                        string referenceFolder = null, int order = 0, IDictionary<string, string> nameValues = null) {
+            encoder.AddFolderInfo(new FileTransmitterFolderInfo(type, destinationFolder, referenceFolder ?? destinationFolder, order, suppress, nameValues));
             return this;
         }
 
@@ -113,9 +113,9 @@ namespace FluentJdf.Configuration {
         /// <param name="suppress">Suppress the output</param>
         /// <param name="nameValues">Additional Parameters</param>
         /// <returns></returns>
-        public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, Uri destinationFolder,
-                                                        Uri referenceFolder, int order, bool suppress, IDictionary<string, string> nameValues = null) {
-            return this.FolderInfo(type, destinationFolder.ToString(), referenceFolder.ToString(), order, suppress, nameValues);
+        public FileTransmitterEncoderBuilder FolderInfo(FolderInfoTypeEnum type, Uri destinationFolder, bool suppress,
+                                                        Uri referenceFolder = null, int order = 0, IDictionary<string, string> nameValues = null) {
+            return this.FolderInfo(type, destinationFolder.ToString(), suppress, referenceFolder != null ? referenceFolder.ToString() : null, order, nameValues);
         }
 
     }

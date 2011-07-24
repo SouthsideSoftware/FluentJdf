@@ -344,7 +344,7 @@
     <Compile Include="Transmission\FileTransmitterEncoder.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Transmission\FileTransmitterFolderInfoConfigurationItem.cs">
+    <Compile Include="Transmission\FileTransmitterFolderInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Transmission\FolderInfoTypeEnum.cs">

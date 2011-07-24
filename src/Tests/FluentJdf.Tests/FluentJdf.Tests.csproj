@@ -142,7 +142,9 @@
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_encodings.cs" />
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders.cs" />
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders_file_info_by_strings.cs" />
+    <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders_file_info_by_strings_with_default_reference_folder.cs" />
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders_file_info_by_uri.cs" />
+    <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders_file_info_by_uri_with_default_reference_folder.cs" />
     <Compile Include="Unit\Configuration\HttpTransmissionSettings\when_setting_http_transmission_settings.cs" />
     <Compile Include="Unit\Configuration\TemplateEngineSettingsBuilder\when_registering_custom_formulas.cs" />
     <Compile Include="Unit\Configuration\TemplateEngineSettings\when_registering_custom_formulas.cs" />
@@ -232,6 +234,7 @@
     <Compile Include="Unit\Transmission\FileTransmitter\FileTransmitterTestSetupFactory.cs" />
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder.cs" />
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_mime.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_with_default_reference_folder.cs" />
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_write_to_disk.cs" />
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_write_to_disk_mime.cs" />
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_use_file_transmitter_encoder_only_attachment.cs" />

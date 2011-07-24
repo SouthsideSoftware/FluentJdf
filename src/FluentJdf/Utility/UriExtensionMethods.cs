@@ -24,8 +24,8 @@ namespace FluentJdf.Utility {
                 return uri;
             }
 
-            if (!uri.AbsolutePath.EndsWith("\\")) {
-                return new Uri(uri.ToString() + "\\");
+            if (!uri.LocalPath.EndsWith(Path.DirectorySeparatorChar.ToString())) {
+                return new Uri(uri.ToString() + Path.DirectorySeparatorChar);
             }
 
             return uri;

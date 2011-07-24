@@ -21,7 +21,17 @@ namespace FluentJdf.Transmission {
     public class FileTransmitter : ITransmitter {
 
         static ILog logger = LogManager.GetLogger(typeof(FileTransmitter));
-        
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="transmissionPartFactory"></param>
+        public FileTransmitter(ITransmissionPartFactory transmissionPartFactory) {
+            ParameterCheck.ParameterRequired(transmissionPartFactory, "transmissionPartFactory");
+
+            this.transmissionPartFactory = transmissionPartFactory;
+        }
+
         readonly ITransmissionPartFactory transmissionPartFactory
             = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmissionPartFactory>();
 
