@@ -106,6 +106,10 @@ namespace Infrastructure.Core.Helpers
         /// </summary>
         public const string HtmlMimeType = "text/html";
 
+        /// <summary>
+        /// Gets the Text mime type.
+        /// </summary>
+        public const string TextMimeType = "text/plain";
 
         /// <summary>
         /// Gets the standard extension for html files.
