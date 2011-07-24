@@ -32,5 +32,16 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
 
         It should_have_attachment_in_first_position_by_mime = () => preparedItems.First().MimeType.ShouldEqual("multipart/related");
 
+        It should_be_able_deserialize_back_into_parts = () => {
+            var stream = preparedItems.First().CopyOfStream();
+            stream.Seek(0, SeekOrigin.Begin);
+            var parts = new FluentJdf.Encoding.MimeEncoding(
+                new TransmissionPartFactory()).Decode("test", stream, Infrastructure.Core.Helpers.MimeTypeHelper.MimeMultipartMimeType);
+            parts.Count.ShouldEqual(3);
+            parts.First().MimeType.ShouldEqual("application/vnd.cip4-jmf+xml");
+            parts.Skip(1).First().MimeType.ShouldEqual("application/vnd.cip4-jdf+xml");
+            parts.Last().MimeType.ShouldEqual("text/plain");
+        };
+
     }
 }

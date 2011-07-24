@@ -27,7 +27,7 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
             var sw = new StreamWriter(ms);
             sw.Write("This is a test.");
             sw.Flush();
-            ms.Position = 0;
+            ms.Seek(0, SeekOrigin.Begin);
 
             var attachmentPart = new TransmissionPart(ms, "TestAttachment", Infrastructure.Core.Helpers.MimeTypeHelper.TextMimeType, "id_1234");
             message.AddRelatedPart(attachmentPart);
