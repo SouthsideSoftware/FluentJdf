@@ -83,7 +83,7 @@ namespace FluentJdf.Transmission {
                     }
                 }
 
-                return new JmfResult(new TransmissionPartCollection());
+                return new FileTransmissionJmfResult();
             }
             else {
                 var fileInfo = new FileInfo(uri.LocalPath);
@@ -98,7 +98,7 @@ namespace FluentJdf.Transmission {
 
                     DirectoryAndFileHelper.SaveStreamToFile(encodingResult.Stream, fileInfo, false, logger);
 
-                    return new JmfResult(new TransmissionPartCollection());
+                    return new FileTransmissionJmfResult();
                 }
                 catch (Exception err) {
                     logger.Error(string.Format(Messages.HttpTransmitter_Transmit_HttpTransmitter_UnexpectedException, uri), err);

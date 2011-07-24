@@ -95,5 +95,7 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
 
         It should_have_jmf_message = () => FluentJdf.LinqToJdf.Message.Load(JmfFullName()).ShouldNotBeNull();
 
+        It should_have_is_success_true = () => result.IsSuccess.ShouldBeTrue();
+
     }
 }

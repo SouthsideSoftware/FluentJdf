@@ -12,6 +12,14 @@ namespace FluentJdf.Messaging {
     public class JmfResult : IJmfResult {
 
         /// <summary>
+        /// Creates an empty success result
+        /// </summary>
+        public JmfResult() {
+            Details = new List<IJmfResultDetail>();
+            TransmissionPartCollection = new TransmissionPartCollection();
+        }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="transmissionPartCollection"></param>

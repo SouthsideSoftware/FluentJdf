@@ -102,5 +102,7 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
         It should_have_jdf_ticket = () => FluentJdf.LinqToJdf.Ticket.Load(transmissionParts.Skip(1).First().CopyOfStream()).ShouldNotBeNull();
 
         It should_have_jmf_message = () => FluentJdf.LinqToJdf.Message.Load(transmissionParts.First().CopyOfStream()).ShouldNotBeNull();
+
+        It should_have_is_success_true = () => result.IsSuccess.ShouldBeTrue();
     }
 }
