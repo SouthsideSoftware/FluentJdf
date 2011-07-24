@@ -59,7 +59,7 @@ namespace FluentJdf.TemplateEngine {
         FormulaTemplateItem CreateCustomFormulaIfRegistered(TemplateItem parent, string name, int lineNumber, int positionInLine,
                                                      string functionName, ITemplateEngineSettings templateEngineSettings)
         {
-            Dictionary<string, Func<string>> customFormulas = templateEngineSettings.CustomFormulas;
+            IDictionary<string, Func<string>> customFormulas = templateEngineSettings.CustomFormulas;
             int openParenPos = functionName.IndexOf("(");
             string funcNameWithoutParameters = functionName;
             if (openParenPos > -1) {

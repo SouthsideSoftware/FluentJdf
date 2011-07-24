@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Infrastructure.Core;
 
 namespace FluentJdf.Configuration {
     /// <summary>
@@ -9,7 +10,7 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets dictionary of custom formulas.
         /// </summary>
-        Dictionary<string, Func<string>> CustomFormulas { get; }
+        ReadOnlyDictionary<string, Func<string>> CustomFormulas { get; }
 
         /// <summary>
         /// Register a custom formula.
