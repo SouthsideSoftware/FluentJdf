@@ -32,7 +32,7 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
 
             FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
                 .FileTransmitterEncoder("mime", @"file:///c:\temp\SimpleSend\Mime", true)
-                .FileTransmitterEncoder("id", @"file:///c:\temp\SimpleSend\")
+                .FileTransmitterEncoder("id", rootFolderUri)
                 .FolderInfo(FluentJdf.Transmission.FolderInfoTypeEnum.Attachment, @"file:///c:\temp\SimpleSend\attach", @"file:///c:\temp\SimpleSend\", 1)
                 .FolderInfo(FluentJdf.Transmission.FolderInfoTypeEnum.Jdf, @"file:///c:\temp\SimpleSend\${JobId}\jdf", @"file:///c:\temp\SimpleSend\", 3)
                 .FolderInfo(FluentJdf.Transmission.FolderInfoTypeEnum.Jmf, @"file:///c:\temp\SimpleSend\${JobId}\jmf", @"file:///c:\temp\SimpleSend\", 2);

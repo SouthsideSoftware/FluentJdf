@@ -20,10 +20,10 @@ namespace FluentJdf.Tests.Unit.Utility.UriExtensionMethods {
             uri_unc_path_no_backslash = new Uri(@"file:///\\machine\SimpleSend/MimeEncoded/");
         };
 
-        It should_have_correct_local_path_on_c_drive_item = () => uri_c_drive_no_backslash.GetLocalPath().ShouldEqual(@"c:\temp\SimpleSend\MimeEncoded");
+        It should_have_correct_local_path_on_c_drive_item = () => uri_c_drive_no_backslash.GetLocalPath().ShouldEqual(@"c:\temp\SimpleSend\MimeEncoded\");
 
         It should_have_correct_local_path_on_c_root_item = () => uri_c_drive_root.GetLocalPath().ShouldEqual(@"c:\");
 
-        It should_have_correct_local_path_on_unc_item = () => uri_unc_path_no_backslash.GetLocalPath().ShouldEqual(@"\\machine\SimpleSend\MimeEncoded");
+        It should_have_correct_local_path_on_unc_item = () => uri_unc_path_no_backslash.GetLocalPath().ShouldEqual(@"\\machine\SimpleSend\MimeEncoded\");
     }
 }

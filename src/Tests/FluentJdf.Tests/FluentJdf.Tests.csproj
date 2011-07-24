@@ -233,6 +233,7 @@
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder.cs" />
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_mime.cs" />
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_write_to_disk.cs" />
+    <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_to_use_file_transmitter_encoder_write_to_disk_mime.cs" />
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_use_file_transmitter_encoder_only_attachment.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_default_configuration.cs" />
     <Compile Include="Unit\Transmission\HttpWebRequestFactory\when_creating_http_web_requests_from_the_factory_with_non_default_configuration.cs" />

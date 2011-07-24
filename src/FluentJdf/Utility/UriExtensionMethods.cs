@@ -45,9 +45,9 @@ namespace FluentJdf.Utility {
                 retVal = uri.LocalPath;
             }
 
-            //if (!retVal.EndsWith(@"\")) {
-            //    retVal += @"\";
-            //}
+            if (!retVal.EndsWith(@"\")) {
+                retVal += @"\";
+            }
 
             return retVal;
         }
