@@ -5,6 +5,7 @@ using FluentJdf.Resources;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Container;
 using Infrastructure.Core.Helpers;
+using Infrastructure.Core;
 
 namespace FluentJdf.Configuration {
     /// <summary>
@@ -12,41 +13,47 @@ namespace FluentJdf.Configuration {
     /// </summary>
     public class TransmissionPartSettings {
         Type defaultTransmissionPart;
+        IDictionary<string, Type> transmissionPartsByMimeType;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         public TransmissionPartSettings() {
-            TransmissionPartsByMimeType = new Dictionary<string, Type>();
+            transmissionPartsByMimeType = new Dictionary<string, Type>();
+            TransmissionPartsByMimeType = new ReadOnlyDictionary<string, Type>(transmissionPartsByMimeType);
         }
 
         /// <summary>
         /// Gets dictionary of transmission part settings by mime type.
         /// </summary>
-        public Dictionary<string, Type> TransmissionPartsByMimeType { get; private set; }
+        public ReadOnlyDictionary<string, Type> TransmissionPartsByMimeType {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the default transmission part
         /// </summary>
-        public Type DefaultTransmissionPart
-        {
-            get { return defaultTransmissionPart; }
+        public Type DefaultTransmissionPart {
+            get {
+                return defaultTransmissionPart;
+            }
         }
 
-        internal void SetDefaultTransmissionPart<T>() where T:ITransmissionPart {
+        internal void SetDefaultTransmissionPart<T>() where T : ITransmissionPart {
             RegisterTransmissionPartIfRequired<T>();
-            defaultTransmissionPart = typeof (T);
+            defaultTransmissionPart = typeof(T);
         }
 
         /// <summary>
         /// Register a transmission part for a mime type.
         /// </summary>
         /// <param name="mimeType"></param>
-        public void RegisterTransmissionPartForMimeType<T>(string mimeType) where T:ITransmissionPart {
+        public void RegisterTransmissionPartForMimeType<T>(string mimeType) where T : ITransmissionPart {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
             RegisterTransmissionPartIfRequired<T>();
-            TransmissionPartsByMimeType[mimeType] = typeof(T);
+            transmissionPartsByMimeType[mimeType] = typeof(T);
         }
 
         /// <summary>
@@ -54,7 +61,7 @@ namespace FluentJdf.Configuration {
         /// </summary>
         /// <returns></returns>
         public TransmissionPartSettings ResetToDefaults() {
-            TransmissionPartsByMimeType.Clear();
+            transmissionPartsByMimeType.Clear();
             SetDefaultTransmissionPart<TransmissionPart>();
             RegisterTransmissionPartForMimeType<XmlTransmissionPart>(MimeTypeHelper.XmlMimeType);
             RegisterTransmissionPartForMimeType<TicketTransmissionPart>(MimeTypeHelper.JdfMimeType);
@@ -62,10 +69,10 @@ namespace FluentJdf.Configuration {
             return this;
         }
 
-        void RegisterTransmissionPartIfRequired<T>() where T:ITransmissionPart {
-            var transmissionPartType = typeof (T);
-            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof (ITransmissionPart), transmissionPartType.FullName)) {
-                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof (ITransmissionPart), transmissionPartType, ComponentLifestyle.TransientNoTracking);
+        void RegisterTransmissionPartIfRequired<T>() where T : ITransmissionPart {
+            var transmissionPartType = typeof(T);
+            if (!Infrastructure.Core.Configuration.Settings.ServiceLocator.CanResolve(typeof(ITransmissionPart), transmissionPartType.FullName)) {
+                Infrastructure.Core.Configuration.Settings.ServiceLocator.Register(typeof(ITransmissionPart), transmissionPartType, ComponentLifestyle.TransientNoTracking);
             }
         }
     }

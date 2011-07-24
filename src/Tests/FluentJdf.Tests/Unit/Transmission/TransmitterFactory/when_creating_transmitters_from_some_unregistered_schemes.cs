@@ -10,7 +10,7 @@ namespace FluentJdf.Tests.Unit.Transmission.TransmitterFactory {
 
         Establish context = () => {
                                 FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
-                                FluentJdf.Configuration.FluentJdfLibrary.Settings.TransmitterSettings.TransmittersByScheme.Clear();
+                                FluentJdf.Configuration.FluentJdfLibrary.Settings.TransmitterSettings.ClearTransmitters();
                                 factory = new FluentJdf.Transmission.TransmitterFactory();
                             };
 

@@ -19,21 +19,23 @@ namespace FluentJdf.Configuration {
         Type defaultEncoding;
         Type defaultMultiPartEncoding;
         Type defaultSinglePartEncoding;
-        Dictionary<string, FileTransmitterEncoder> _fileTransmitterEncoderList;
+        IDictionary<string, Type> encodingsByMimeType;
+        IDictionary<string, FileTransmitterEncoder> fileTransmitterEncoderList;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         public EncodingSettings() {
-            EncodingsByMimeType = new Dictionary<string, Type>();
-            _fileTransmitterEncoderList = new Dictionary<string, FileTransmitterEncoder>(StringComparer.OrdinalIgnoreCase);
-            FileTransmitterEncoders = new ReadOnlyDictionary<string, FileTransmitterEncoder>(_fileTransmitterEncoderList);
+            encodingsByMimeType = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
+            EncodingsByMimeType = new ReadOnlyDictionary<string, Type>(encodingsByMimeType);
+            fileTransmitterEncoderList = new Dictionary<string, FileTransmitterEncoder>(StringComparer.OrdinalIgnoreCase);
+            FileTransmitterEncoders = new ReadOnlyDictionary<string, FileTransmitterEncoder>(fileTransmitterEncoderList);
         }
 
         /// <summary>
         /// Gets dictionary of encoding settings by mime type.
         /// </summary>
-        public Dictionary<string, Type> EncodingsByMimeType {
+        public ReadOnlyDictionary<string, Type> EncodingsByMimeType {
             get;
             private set;
         }
@@ -41,7 +43,7 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets dictionary of <see cref="FileTransmitterEncoder"/>s.
         /// </summary>
-        public IDictionary<string, FileTransmitterEncoder> FileTransmitterEncoders {
+        public ReadOnlyDictionary<string, FileTransmitterEncoder> FileTransmitterEncoders {
             get;
             private set;
         }
@@ -82,7 +84,7 @@ namespace FluentJdf.Configuration {
                 throw new JdfException(string.Format("Collection already contains a " + typeof(FileTransmitterEncoder).Name + " with BaseUrl={0}", encoder.UrlBase));
             }
             else {
-                _fileTransmitterEncoderList[encoder.Id] = encoder;
+                fileTransmitterEncoderList[encoder.Id] = encoder;
             }
         }
 
@@ -113,7 +115,7 @@ namespace FluentJdf.Configuration {
             ParameterCheck.StringRequiredAndNotWhitespace(mimeType, "mimeType");
 
             RegisterEncodingIfRequired<T>();
-            EncodingsByMimeType[mimeType] = typeof(T);
+            encodingsByMimeType[mimeType] = typeof(T);
         }
 
         /// <summary>
@@ -121,8 +123,8 @@ namespace FluentJdf.Configuration {
         /// </summary>
         /// <returns></returns>
         public EncodingSettings ResetToDefaults() {
-            EncodingsByMimeType.Clear();
-            _fileTransmitterEncoderList.Clear();
+            encodingsByMimeType.Clear();
+            fileTransmitterEncoderList.Clear();
             SetDefaultEncoding<PassThroughEncoding>();
             SetDefaultSinglePartEncoding<PassThroughEncoding>();
             SetDefaultMultiPartEncoding<MimeEncoding>();
