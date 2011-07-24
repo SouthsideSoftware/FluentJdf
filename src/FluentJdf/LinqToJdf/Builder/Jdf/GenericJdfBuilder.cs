@@ -45,14 +45,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         }
 
         /// <summary>
-        /// Return the JDFNodeBuilder
-        /// </summary>
-        /// <returns></returns>
-        public JdfNodeBuilder Node() {
-            return jdfNodeBuilder;
-        }
-
-        /// <summary>
         /// Get the attribute builder for the element.
         /// </summary>
         /// <returns></returns>
@@ -117,7 +109,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         public XElement Element {
             get {
-                return element; //_jdfNodeBuilder.Element; //????
+                return element;
             }
         }
 
@@ -126,7 +118,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         public JdfNodeBuilder ParentJdfNode {
             get {
-                return jdfNodeBuilder;
+                return jdfNodeBuilder; //also replaced the old Node() method.
             }
         }
 

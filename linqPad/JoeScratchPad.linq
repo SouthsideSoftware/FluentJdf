@@ -35,11 +35,72 @@ void Main() {
 	//ProcessTicketsForTests();
 	//FactoryTests();
 	//FluentGetProcess();
-	FluentSubmitQueueEntry();
+	//FluentSubmitQueueEntry();
 	//InitializeFileEncodingTransmitters();
 	//CreateTestDataForFileTransmitterEncoder();
+	VerifyPromoteElement();
 }
 
+void VerifyPromoteElement() {
+
+	var ticket = FluentJdf.LinqToJdf.Ticket
+		.CreateProcess(ProcessType.Bending, ProcessType.CaseMaking)
+		.With().JobId("job1234")
+		.AddProcess(ProcessType.BoxFolding)
+		.With().JobId("box1234")
+		.WithInput().RunList("foo")
+		.RootJdfNode
+		.AddProcess(ProcessType.BoxPacking)
+		.With().JobId("pack1234")
+		.WithInput().RunList("foo")
+		.Ticket;
+		ticket.Dump();
+		
+	return;
+
+	ticket = FluentJdf.LinqToJdf.Ticket
+		.CreateProcess(ProcessType.Bending, ProcessType.CaseMaking)
+		.With().JobId("job1234")
+		.AddProcess(ProcessType.BoxFolding)
+		.With().JobId("box1234")
+		.WithInput().RunList().With().Id("foo")
+		.RootJdfNode
+		.AddProcess(ProcessType.BoxPacking)
+		.With().JobId("pack1234")
+		.WithInput().RunList().With().Id("foo")
+		.Ticket;
+		ticket.Dump();
+		
+/*
+var ticket = FluentJdf.LinqToJdf.Ticket
+		.CreateProcess(ProcessType.Bending, ProcessType.CaseMaking)
+		.With().JobId("job1234")
+		.AddProcess(ProcessType.BoxFolding)
+		.With().JobId("box1234")
+		.WithInput()
+		.RunList()
+		.AddNode(Resource.FileSpec).With().Attribute("Url", "Foo")
+		//.WithInput()
+		//.RunList()
+		//.WithInput()
+		//.LayoutElement()
+		//.WithInput()
+		//.FileSpec()
+		//.WithOutput()
+		//how do I get to the run list this references fluently? (By Calling RunList)
+		//.InkZoneProfile().AddNode(Resource.RunList.RefName()).With().Attribute("rRef", "foo")
+		.WithInput().RunList().With().Id("foo")
+		.RootJdfNode
+		.AddProcess(ProcessType.BoxPacking)
+		.With().JobId("pack1234")
+		.WithInput().RunList().With().Id("foo")
+		.Ticket;
+		ticket.Dump();
+
+
+*/		
+		
+}
 
 void FluentSubmitQueueEntry() {
 
@@ -69,8 +130,9 @@ void FluentSubmitQueueEntry() {
 
 	//return;
 	
-	var dirs = new DirectoryInfo(new Uri(@"file:///c:\temp\SimpleSend\").GetLocalPath());
-			dirs.GetDirectories().Dump();
+	var dirs = new DirectoryInfo(new Uri(@"file:///c:\temp\SimpleSend\").GetLocalPath()).GetDirectories();
+	
+	dirs.Dump();
 	
 	FluentJdf.Configuration.FluentJdfLibrary.Settings.WithEncodingSettings()
 			.FileTransmitterEncoder("mime", @"file:///c:\temp\SimpleSend\Mime", true)

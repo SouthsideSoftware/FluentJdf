@@ -43,7 +43,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         public GenericJdfBuilder AddNode(XElement element) {
             ParameterCheck.ParameterRequired(element, "element");
             Element.Add(element);
-            return new GenericJdfBuilder(nodeBuilder.Node(), element);
+            return new GenericJdfBuilder(nodeBuilder.ParentJdfNode, element);
         }
 
         /// <summary>

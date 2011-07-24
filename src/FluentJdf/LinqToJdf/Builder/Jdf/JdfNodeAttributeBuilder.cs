@@ -16,14 +16,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         }
 
         /// <summary>
-        /// Gets the JDF node builder for this attribute builder.
-        /// </summary>
-        /// <returns></returns>
-        public JdfNodeBuilder Node() {
-            return jdfNodeBuilder;
-        }
-
-        /// <summary>
         /// Sets the job id if given.  If no
         /// job id is provided, a unique value is generated.
         /// </summary>

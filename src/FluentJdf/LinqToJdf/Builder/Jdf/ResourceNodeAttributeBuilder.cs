@@ -37,14 +37,6 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         }
 
         /// <summary>
-        /// Gets the resource node builder for this attribute builder.
-        /// </summary>
-        /// <returns></returns>
-        public ResourceNodeBuilder Node() {
-            return resourceNodeBuilder;
-        }
-
-        /// <summary>
         /// Sets the ID of the resource and optionally does not update references.
         /// </summary>
         /// <param name="id"></param>
