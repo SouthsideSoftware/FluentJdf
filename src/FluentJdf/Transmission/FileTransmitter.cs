@@ -78,8 +78,15 @@ namespace FluentJdf.Transmission {
                     throw;
                 }
                 finally {
-                    foreach (var item in results) {
-                        item.Dispose();
+                    if (results != null) {
+                        try {
+                            foreach (var item in results) {
+                                item.Dispose();
+                            }
+                        }
+                        finally {
+                            //do nothing
+                        }
                     }
                 }
 
