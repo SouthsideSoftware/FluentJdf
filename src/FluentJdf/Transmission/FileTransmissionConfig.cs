@@ -103,7 +103,15 @@ namespace FluentJdf.Transmission {
                 string fullVarName = "${" + varName + "}";
 
                 while (pathString.IndexOf(fullVarName, 0, StringComparison.InvariantCultureIgnoreCase) > -1) {
-                    pathString = pathString.Replace(fullVarName, varValue);
+                    var tempReplaceValue = varValue;
+                    var index = pathString.IndexOf(fullVarName);
+                    if (index > 0 && tempReplaceValue.StartsWith(Path.DirectorySeparatorChar.ToString()) && pathString[index - 1] == Path.DirectorySeparatorChar) {
+                        tempReplaceValue = tempReplaceValue.Substring(1);
+                    }
+                    if (tempReplaceValue.EndsWith(Path.DirectorySeparatorChar.ToString()) && index + fullVarName.Length < tempReplaceValue.Length && pathString[index + fullVarName.Length] == Path.DirectorySeparatorChar) {
+                        tempReplaceValue = tempReplaceValue.Substring(0, tempReplaceValue.Length - 1);
+                    }
+                    pathString = pathString.Replace(fullVarName, tempReplaceValue);
                 }
 
             }

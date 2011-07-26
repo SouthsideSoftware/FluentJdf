@@ -38,10 +38,70 @@ void Main() {
 	//FluentSubmitQueueEntry();
 	//InitializeFileEncodingTransmitters();
 	//CreateTestDataForFileTransmitterEncoder();
-	VerifyPromoteElement();
+	FixNullReference();
+	//VerifyPromoteElement();
+}
+
+void FixNullReference() {
+
+	FluentJdfLibrary.Settings.WithEncodingSettings()
+		.FileTransmitterEncoder("id", @"file://maindevserver/test/")
+		.FolderInfo(FolderInfoTypeEnum.Attachment, @"file://maindevserver/test/Attachments", @"file://c:\SimpleSend\Attachments\", 1)
+		.FolderInfo(FolderInfoTypeEnum.Jdf, @"file://maindevserver/test/${JobId}/", @"file://c:\SimpleSend\${JobId}\", 2)
+		.FolderInfo(FolderInfoTypeEnum.Jmf, @"file://maindevserver/test/", @"file://c:\SimpleSend\", 3);
+
+	FluentJdf.LinqToJdf.Message message;
+	FluentJdf.LinqToJdf.Ticket ticket;
+
+	ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
+	message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
+
+	var ms = new MemoryStream();
+	var sw = new StreamWriter(ms);
+	sw.Write("This is a test.");
+	sw.Flush();
+	ms.Position = 0;
+
+	var attachmentPart = new TransmissionPart(ms, "TestAttachment", MimeTypeHelper.TextMimeType, "id_1234");
+	message.AddRelatedPart(attachmentPart);
+
+	ticket.Dump("Ticket");
+	message.Dump("Message");
+
+
+	FileTransmitterEncoder encoder = FluentJdf.Configuration.FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders
+				.FirstOrDefault(item => item.Value.Id.Equals("id", StringComparison.OrdinalIgnoreCase)).Value;
+	
+	string name = string.Format("JMF{0}", MimeTypeHelper.JmfExtension);
+	using (var transmissionPartCollection = new TransmissionPartCollection()) {
+		transmissionPartCollection.Add(new MessageTransmissionPart(message, name));
+		transmissionPartCollection.Add(new TicketTransmissionPart(ticket, name + "2"));
+		transmissionPartCollection.Add(attachmentPart);
+		
+		var items = encoder.PrepareTransmission(transmissionPartCollection, new TransmissionPartFactory(), new EncodingFactory(), new TransmissionLogger());
+		items.OrderBy(item => item.Order).Dump("PrepareTransmission");
+		//return transmitterFactory.GetTransmitterForUrl(url).Transmit(url, transmissionPartColllection);
+	}
+
 }
 
 void VerifyPromoteElement() {
+
+
+
+	var ticket2 = FluentJdf.LinqToJdf.Ticket
+		.CreateProcess(ProcessType.Bending, ProcessType.CaseMaking)
+		.With().JobId("job1234")
+		.AddProcess(ProcessType.BoxFolding)
+		.With().JobId("box1234")
+		.WithInput().RunList().With().Id("foo")
+		.RootJdfNode
+		.AddProcess(ProcessType.BoxPacking)
+		.With().JobId("pack1234")
+		.WithInput().RunList().With().Id("foo")
+		.Ticket.Dump();
+		
+	return;
 
 	var ticket = FluentJdf.LinqToJdf.Ticket
 		.CreateProcess(ProcessType.Bending, ProcessType.CaseMaking)
@@ -55,21 +115,7 @@ void VerifyPromoteElement() {
 		.WithInput().RunList("foo")
 		.Ticket;
 		ticket.Dump();
-		
-	return;
 
-	ticket = FluentJdf.LinqToJdf.Ticket
-		.CreateProcess(ProcessType.Bending, ProcessType.CaseMaking)
-		.With().JobId("job1234")
-		.AddProcess(ProcessType.BoxFolding)
-		.With().JobId("box1234")
-		.WithInput().RunList().With().Id("foo")
-		.RootJdfNode
-		.AddProcess(ProcessType.BoxPacking)
-		.With().JobId("pack1234")
-		.WithInput().RunList().With().Id("foo")
-		.Ticket;
-		ticket.Dump();
 		
 /*
 var ticket = FluentJdf.LinqToJdf.Ticket
