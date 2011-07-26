@@ -93,7 +93,9 @@ namespace FluentJdf.Configuration {
             ParameterCheck.StringRequiredAndNotWhitespace(id, "id");
             ParameterCheck.ParameterRequired(urlBase, "urlBase");
 
-            return this.FileTransmitterEncoder(id, urlBase.ToString(), useMime, nameValues);
+            var newEncoder = new FileTransmitterEncoder(id, urlBase, useMime, nameValues);
+            encodingSettings.AddFileTransmitterEncoders(newEncoder);
+            return new FileTransmitterEncoderBuilder(fluentJdfLibrary, encodingSettings, newEncoder);
         }
 
     }

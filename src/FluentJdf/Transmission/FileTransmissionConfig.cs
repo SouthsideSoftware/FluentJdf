@@ -101,39 +101,11 @@ namespace FluentJdf.Transmission {
         public static string ReplaceVar(string pathString, string varName, string varValue) {
             if (varValue != null) {
                 string fullVarName = "${" + varName + "}";
-                int index = pathString.IndexOf(fullVarName);
-                //only proceed if replacement var found
-                if (index > -1) {
-                    //if at the start of the string
-                    if (index == 0) {
-                        //combine replace value with everything that comes after the end of the replacement var
-                        //not including any leading slash in the static part of the string
-                        string endPath = pathString.Substring(fullVarName.Length);
-                        while (endPath.StartsWith(@"\")) {
-                            endPath = endPath.Substring(1);
-                        }
-                        pathString = Path.Combine(varValue, endPath);
-                    }
-                    //if it it as the end
-                    else if (index == pathString.Length - fullVarName.Length) {
-                        //combine everything that comes before the start of the replacement var with the replacement value
-                        pathString = Path.Combine(pathString.Substring(0, pathString.Length - fullVarName.Length), varValue);
-                    }
-                    //otherwise, it is somewhere in the middle
-                    else {
-                        //combine the front literal with the replacement value with leading slashes removed
-                        //and then add on the remaining static portion without leading slashes
-                        string endPath = pathString.Substring(index + fullVarName.Length);
-                        while (endPath.StartsWith(@"\")) {
-                            endPath = endPath.Substring(1);
-                        }
-                        while (varValue.StartsWith(@"\")) {
-                            varValue = varValue.Substring(1);
-                        }
-                        string path1 = pathString.Substring(0, index);
-                        pathString = Path.Combine(Path.Combine(path1, varValue), endPath);
-                    }
+
+                while (pathString.IndexOf(fullVarName, 0, StringComparison.InvariantCultureIgnoreCase) > -1) {
+                    pathString = pathString.Replace(fullVarName, varValue);
                 }
+
             }
 
             return pathString;
