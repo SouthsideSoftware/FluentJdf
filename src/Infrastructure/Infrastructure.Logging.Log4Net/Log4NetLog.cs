@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
 
 namespace Infrastructure.Logging.Log4Net
@@ -16,7 +17,7 @@ namespace Infrastructure.Logging.Log4Net
         /// </summary>
         /// <param name="log4netLog"></param>
         public Log4NetLog(log4net.ILog log4netLog) {
-            Contract.Requires(log4netLog != null);
+            ParameterCheck.ParameterRequired(log4netLog, "log4netLog");
 
             log4NetLog = log4netLog;
         }
