@@ -105,18 +105,38 @@ namespace FluentJdf.Transmission {
                 while (pathString.IndexOf(fullVarName, 0, StringComparison.InvariantCultureIgnoreCase) > -1) {
                     var tempReplaceValue = varValue;
                     var index = pathString.IndexOf(fullVarName);
-                    if (index > 0 && tempReplaceValue.StartsWith(Path.DirectorySeparatorChar.ToString()) && pathString[index - 1] == Path.DirectorySeparatorChar) {
+                    if (index > 0 && IsSeparatorChar(tempReplaceValue[0]) && IsSeparatorChar(pathString[index - 1])) {
                         tempReplaceValue = tempReplaceValue.Substring(1);
                     }
-                    if (tempReplaceValue.EndsWith(Path.DirectorySeparatorChar.ToString()) && index + fullVarName.Length < tempReplaceValue.Length && pathString[index + fullVarName.Length] == Path.DirectorySeparatorChar) {
+                    if (IsSeparatorChar(tempReplaceValue[tempReplaceValue.Length - 1]) && index + fullVarName.Length < pathString.Length && IsSeparatorChar(pathString[index + fullVarName.Length])) {
                         tempReplaceValue = tempReplaceValue.Substring(0, tempReplaceValue.Length - 1);
                     }
-                    pathString = pathString.Replace(fullVarName, tempReplaceValue);
-                }
+                    if (index + fullVarName.Length < pathString.Length) {
+                        pathString = pathString.Substring(0, index) + tempReplaceValue + pathString.Substring(index + fullVarName.Length);
+                    }
+                    else {
+                        pathString = pathString.Substring(0, index) + tempReplaceValue;
+                    }
 
+                }
             }
 
             return pathString;
+        }
+
+        /// <summary>
+        /// If the character is a / or a \ we will return true 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private static bool IsSeparatorChar(char item) {
+            if (item == Path.DirectorySeparatorChar) {
+                return true;
+            }
+            if (item == Path.AltDirectorySeparatorChar) {
+                return true;
+            }
+            return false;
         }
 
     }
