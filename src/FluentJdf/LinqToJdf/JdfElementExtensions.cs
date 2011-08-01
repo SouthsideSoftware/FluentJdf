@@ -84,7 +84,8 @@ namespace FluentJdf.LinqToJdf {
             ParameterCheck.ParameterRequired(element, "element");
             element.ThrowExceptionIfNotJdfElement();
             var sStatus = element.GetAttributeValueOrNull("Status");
-            if (sStatus == null) return JdfStatus.Unknown;
+            if (sStatus == null)
+                return JdfStatus.Unknown;
             JdfStatus status;
             if (Enum.TryParse(sStatus, true, out status)) {
                 return status;
@@ -313,6 +314,67 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Determine if we can change the Id of the Resource.
+        /// </summary>
+        /// <remarks>The id of the element does not need to be set at Element creation time, 
+        /// if the With().Id("foo") is used, we need to verify if another element uses it.</remarks>
+        /// <param name="element"></param>
+        /// <param name="newId"></param>
+        /// <returns></returns>
+        public static bool CanResourceIdBeChanged(XElement element, string newId) {
+            ParameterCheck.ParameterRequired(element, "jdfNode");
+            ParameterCheck.ParameterRequired(newId, "newId");
+
+            var foundElement = element.JdfXPathSelectElement(string.Format("//*[@ID='{0}']", newId));
+
+            if (foundElement == null) {
+                return true;
+            }
+
+            var originalAttributeValue = element.GetAttributeValueOrNull("ID");
+            element.SetAttributeValue("ID", newId);
+
+            var areEqual = XElement.DeepEquals(foundElement, element);
+
+            if (!areEqual) {
+                areEqual = element.FirstChild() == null;
+            }
+
+            element.SetAttributeValue("ID", originalAttributeValue);
+
+            return areEqual;
+        }
+
+        /// <summary>
+        /// Change the ID of a resource and promote if needed.
+        /// </summary>
+        /// <param name="element">The Resource Element to change</param>
+        /// <param name="id">The new Id of the Element</param>
+        /// <param name="updateReferences"></param>
+        public static void ChangeResourceId(XElement element, string id, bool updateReferences = true) {
+            ParameterCheck.ParameterRequired(element, "jdfNode");
+            ParameterCheck.ParameterRequired(id, "newId");
+            if (!CanResourceIdBeChanged(element, id)) {
+                throw new JdfException(string.Format(FluentJdf.Resources.Messages.TheId0AlreadyExistsOnAResourceNotMatchingTheCurrent, id));
+            }
+
+            var originalElement = element.JdfXPathSelectElement(string.Format("//*[@ID='{0}']", id));
+
+            element.SetId(id, updateReferences);
+
+            if (originalElement != null) {
+                foreach (var item in originalElement.Elements()) {
+                    element.Add(item);
+                }
+            }
+            PromoteResourceIfNeeded(element);
+
+            if (originalElement != null) {
+                originalElement.Remove();
+            }
+        }
+
+        /// <summary>
         /// Link a resource with the given name and id with the given usage.  If the id is null or
         /// not provided, generate a unique id.  If
         /// the resource does not exist in the current jdf or its ancestors, 
@@ -382,10 +444,9 @@ namespace FluentJdf.LinqToJdf {
                     MoveResourceToCommonParent(resource, referencesClosestToRoot[0]);
                 }
             }
-            else if (resource.Depth() > depthOfReferenceClosestToRoot) {
+            else if (resourceDepth > depthOfReferenceClosestToRoot) {
                 resource.Remove();
                 MoveResourceToLocationOfEarliestLink(resource, referencesClosestToRoot[0]);
-
             }
         }
 
@@ -555,7 +616,7 @@ namespace FluentJdf.LinqToJdf {
             var typesString = element.GetAttributeFromJdfElement("Types");
 
             if (string.IsNullOrWhiteSpace(typesString)) {
-                
+
                 var oneType = GetJdfType(element);
                 if (oneType != null) {
                     return new string[] { oneType.LocalName };

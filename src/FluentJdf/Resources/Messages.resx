@@ -298,4 +298,7 @@ elated transmission.  The error is </value>
   <data name="FailedToValidateExistingJDFSchemaFolderTheErrorIs0" xml:space="preserve">
     <value>Failed to validate existing JDF schema folder.  The error is {0}</value>
   </data>
+  <data name="TheId0AlreadyExistsOnAResourceNotMatchingTheCurrent" xml:space="preserve">
+    <value>The id '{0}' already exists on a resource not matching the current element.</value>
+  </data>
 </root>

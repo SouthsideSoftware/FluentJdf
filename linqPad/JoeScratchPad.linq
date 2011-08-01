@@ -38,8 +38,8 @@ void Main() {
 	//FluentSubmitQueueEntry();
 	//InitializeFileEncodingTransmitters();
 	//CreateTestDataForFileTransmitterEncoder();
-	FixNullReference();
-	//VerifyPromoteElement();
+	//FixNullReference();
+	VerifyPromoteElement();
 }
 
 void FixNullReference() {
@@ -87,34 +87,35 @@ void FixNullReference() {
 
 void VerifyPromoteElement() {
 
-
-
 	var ticket2 = FluentJdf.LinqToJdf.Ticket
 		.CreateProcess(ProcessType.Bending, ProcessType.CaseMaking)
 		.With().JobId("job1234")
 		.AddProcess(ProcessType.BoxFolding)
 		.With().JobId("box1234")
-		.WithInput().RunList().With().Id("foo")
-		.RootJdfNode
+		.WithInput().RunList().With().Id("foo").AddNode("Test").Ticket;
+		
+		
+		ticket2.ModifyJdfNode()
 		.AddProcess(ProcessType.BoxPacking)
 		.With().JobId("pack1234")
 		.WithInput().RunList().With().Id("foo")
-		.Ticket.Dump();
+		.Ticket.Dump("ticket2");
 		
-	return;
+	//return;
 
 	var ticket = FluentJdf.LinqToJdf.Ticket
 		.CreateProcess(ProcessType.Bending, ProcessType.CaseMaking)
 		.With().JobId("job1234")
 		.AddProcess(ProcessType.BoxFolding)
 		.With().JobId("box1234")
-		.WithInput().RunList("foo")
-		.RootJdfNode
+		.WithInput().RunList("foo").Ticket;
+		
+		
+		ticket.ModifyJdfNode()
 		.AddProcess(ProcessType.BoxPacking)
 		.With().JobId("pack1234")
-		.WithInput().RunList("foo")
-		.Ticket;
-		ticket.Dump();
+		.WithInput().RunList("foo");
+		ticket.Dump("ticket");
 
 		
 /*

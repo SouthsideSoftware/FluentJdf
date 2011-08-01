@@ -44,7 +44,7 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// <returns></returns>
         /// <remarks>By default, references are updated.</remarks>
         public ResourceNodeAttributeBuilder Id(string id, bool updateReferences = true) {
-            Element.SetId(id, updateReferences);
+            JdfElementExtensions.ChangeResourceId(Element, id, updateReferences);
             return this;
         }
 
@@ -111,7 +111,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// Gets the root JDF node.
         /// </summary>
         public JdfNodeBuilder RootJdfNode {
-            get { return resourceNodeBuilder.RootJdfNode; }
+            get {
+                return resourceNodeBuilder.RootJdfNode;
+            }
         }
 
         /// <summary>

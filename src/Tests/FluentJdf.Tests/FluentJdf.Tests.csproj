@@ -177,6 +177,7 @@
     <Compile Include="Unit\LinqToJdf\JdfDateTime\when_converting_to_jdf_date_time_string.cs" />
     <Compile Include="Unit\LinqToJdf\JdfDateTime\when_jdf_date_time_try_parse.cs" />
     <Compile Include="Unit\LinqToJdf\JdfDateTime\when_parsing_jdf_date_time_strings.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfElementExtensions\PromoteResource\when_adding_two_resources_with_same_id_using_with.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_getting_the_list_of_jdf_elements_containing_a_process_type.cs" />
     <Compile Include="Unit\LinqToJdf\JdfElementExtensions\when_setting_and_getting_status.cs" />
     <Compile Include="Unit\LinqToJdf\JmfBuilder\TemplateEngine\when_generating_from_a_basic_message_template_overriding_a_default_formula.cs" />
