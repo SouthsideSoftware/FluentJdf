@@ -11,14 +11,31 @@ namespace FluentJdf.Configuration {
     /// </summary>
     public class TransmitterSettings {
 
-         IDictionary<string, string> transmittersByScheme;
+        IDictionary<string, string> transmittersByScheme;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         public TransmitterSettings() {
-             transmittersByScheme = new Dictionary<string, string>();
-             TransmittersByScheme = new ReadOnlyDictionary<string, string>(transmittersByScheme);
+            transmittersByScheme = new Dictionary<string, string>();
+            TransmittersByScheme = new ReadOnlyDictionary<string, string>(transmittersByScheme);
+            SetStreamLimitandFolder();
+        }
+
+        /// <summary>
+        /// The Stream Limit for logging before it becomes a separate file.
+        /// </summary>
+        public int InlineStreamLimit {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// The path to the Stream Log Folder.
+        /// </summary>
+        public string StreamLogsFolder {
+            get;
+            internal set;
         }
 
         /// <summary>
@@ -64,7 +81,13 @@ namespace FluentJdf.Configuration {
             transmittersByScheme.Clear();
             RegisterTransmitterForScheme("http", typeof(HttpTransmitter));
             RegisterTransmitterForScheme("file", typeof(FileTransmitter));
+            SetStreamLimitandFolder();
             return this;
+        }
+
+        private void SetStreamLimitandFolder() {
+            InlineStreamLimit = 4 * 1024;
+            StreamLogsFolder = "/logs/Jwf/Streams";
         }
 
         void RegisterTransmitterIfRequired(Type transmitter) {

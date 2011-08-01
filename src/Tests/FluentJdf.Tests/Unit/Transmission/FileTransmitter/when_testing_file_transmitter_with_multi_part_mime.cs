@@ -33,8 +33,13 @@ namespace FluentJdf.Tests.Unit.Transmission.FileTransmitter {
             tempPath = Path.GetTempPath();
             ticket = FluentJdf.LinqToJdf.Ticket.CreateIntent().Ticket;
             message = FluentJdf.LinqToJdf.Message.Create().AddCommand().SubmitQueueEntry().With().Ticket(ticket).Message;
+            FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().InlineStreamLimit(12).StreamLogsFolder("me");
             FluentJdf.Configuration.FluentJdfLibrary.Settings.WithTransmitterSettings().TransmitterForScheme("file", typeof(FluentJdf.Transmission.FileTransmitter));
         };
+
+        It should_have_a_stream_limit_of_12 = () => FluentJdf.Configuration.FluentJdfLibrary.Settings.TransmitterSettings.InlineStreamLimit.ShouldEqual(12);
+
+        It should_have_a_stream_folder_of_me = () => FluentJdf.Configuration.FluentJdfLibrary.Settings.TransmitterSettings.StreamLogsFolder.ShouldEqual("me");
 
         It should_get_class_registered_for_file_scheme = () => transmitterFactory.GetTransmitterForScheme("file").ShouldBeOfType(typeof(FluentJdf.Transmission.FileTransmitter));
 

@@ -7,17 +7,23 @@ using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Logging;
 
-namespace FluentJdf.Transmission.Logging
-{
+namespace FluentJdf.Transmission.Logging {
     /// <summary>
     /// Logs transmissions.
     /// </summary>
     public class TransmissionLogger : ITransmissionLogger {
-        static ILog logger = LogManager.GetLogger(typeof (TransmissionLogger));
+        static ILog logger = LogManager.GetLogger(typeof(TransmissionLogger));
 
-        //todo: make these constants configuration options (issue #44)
-        const int InlineStreamLimit = 4 * 1024;
-        const string StreamLogsFolder = "/logs/Jwf/Streams";
+        readonly int InlineStreamLimit;
+        readonly string StreamLogsFolder;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        public TransmissionLogger() {
+            this.InlineStreamLimit = Configuration.FluentJdfLibrary.Settings.TransmitterSettings.InlineStreamLimit;
+            this.StreamLogsFolder = Configuration.FluentJdfLibrary.Settings.TransmitterSettings.StreamLogsFolder;
+        }
 
         /// <summary>
         /// Log the given data.
@@ -30,17 +36,18 @@ namespace FluentJdf.Transmission.Logging
             ParameterCheck.ParameterRequired(transmissionData, "transmissionData");
 
             try {
-                logger.Debug(BuildLogMessage(transmissionData));    
-            } catch (Exception err) {
+                logger.Debug(BuildLogMessage(transmissionData));
+            }
+            catch (Exception err) {
                 logger.Error(Messages.TransmissionLogger_Log_FailedToLog, err);
-            }            
+            }
         }
 
         string BuildLogMessage(TransmissionData transmissionData) {
             var sb = new StringBuilder(transmissionData.ToLogString());
             if (transmissionData.Stream.Length <= InlineStreamLimit) {
                 sb.AppendFormat("Data:\n");
-                byte [] bytes = new byte[transmissionData.Stream.Length];
+                byte[] bytes = new byte[transmissionData.Stream.Length];
                 transmissionData.Stream.Read(bytes, 0, bytes.Length);
                 try {
                     sb.AppendLine(new UTF8Encoding(true).GetString(bytes));

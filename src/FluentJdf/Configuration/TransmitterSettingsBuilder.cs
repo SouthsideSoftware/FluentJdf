@@ -16,6 +16,28 @@ namespace FluentJdf.Configuration {
         }
 
         /// <summary>
+        /// The Stream Limit for logging before it becomes a separate file.
+        /// </summary>
+        public TransmitterSettingsBuilder InlineStreamLimit(int inlineStreamLimit) {
+            ParameterCheck.IntParameterGreaterThanZero(inlineStreamLimit, "inlineStreamLimit");
+
+            transmitterSettings.InlineStreamLimit = inlineStreamLimit;
+
+            return this;
+        }
+
+        /// <summary>
+        /// The path to the Stream Log Folder.
+        /// </summary>
+        public TransmitterSettingsBuilder StreamLogsFolder(string streamLogsFolder) {
+            ParameterCheck.StringRequiredAndNotWhitespace(streamLogsFolder, "streamLogsFolder");
+
+            transmitterSettings.StreamLogsFolder = streamLogsFolder;
+
+            return this;
+        }
+
+        /// <summary>
         /// Register a transmitter for a scheme.
         /// </summary>
         public TransmitterSettingsBuilder TransmitterForScheme(string scheme, Type transmitterType) {
