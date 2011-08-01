@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastructure.Testing;
 using Machine.Specifications;
 using FluentJdf.LinqToJdf;
-using Infrastructure.Core.Testing;
 using System.Xml.Linq;
 using l = FluentJdf.LinqToJdf;
 using x = FluentJdf.LinqToJdf.XPathExtensions;

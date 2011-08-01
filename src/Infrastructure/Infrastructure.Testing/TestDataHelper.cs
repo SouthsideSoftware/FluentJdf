@@ -4,7 +4,7 @@ using System.Reflection;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
 
-namespace Infrastructure.Core.Testing {
+namespace Infrastructure.Testing {
     /// <summary>
     /// Helps get test data from resources
     /// </summary>

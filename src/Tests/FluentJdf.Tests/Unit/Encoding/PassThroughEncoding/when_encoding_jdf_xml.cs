@@ -2,7 +2,6 @@ using System.Xml.Linq;
 using FluentJdf.Encoding;
 using FluentJdf.LinqToJdf;
 using Infrastructure.Core.Helpers;
-using Infrastructure.Core.Testing;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding {

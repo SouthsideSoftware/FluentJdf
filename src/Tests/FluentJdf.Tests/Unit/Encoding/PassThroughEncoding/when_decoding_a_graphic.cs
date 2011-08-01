@@ -3,7 +3,7 @@ using System.Linq;
 using FluentJdf.Configuration;
 using FluentJdf.Encoding;
 using Infrastructure.Core.Helpers;
-using Infrastructure.Core.Testing;
+using Infrastructure.Testing;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.Encoding.PassThroughEncoding {

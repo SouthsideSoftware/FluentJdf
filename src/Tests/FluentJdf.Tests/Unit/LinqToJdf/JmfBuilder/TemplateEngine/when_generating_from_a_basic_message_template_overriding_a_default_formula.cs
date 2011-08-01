@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using FluentJdf.LinqToJdf;
-using Infrastructure.Core.Testing;
+using Infrastructure.Testing;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.LinqToJdf.JmfBuilder.TemplateEngine

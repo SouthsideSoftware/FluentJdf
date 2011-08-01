@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml.Linq;
 using FluentJdf.Encoding;
 using FluentJdf.Messaging;
-using Infrastructure.Core.Testing;
+using Infrastructure.Testing;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.Messaging.JmfResult

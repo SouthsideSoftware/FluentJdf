@@ -134,7 +134,6 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyContext.cs" />
-    <Compile Include="ExtensionMethodsAndHelpers.cs" />
     <Compile Include="Legacy\AssertionHelper.cs" />
     <Compile Include="Legacy\SetUpFixture.cs" />
     <Compile Include="Legacy\TemplateEngine\TemplateTests.cs" />
@@ -345,6 +344,10 @@
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.Logging.NLog\Infrastructure.Logging.NLog.csproj">
       <Project>{E1A4F08F-33A0-4CCB-8098-8C0E9856CF86}</Project>
       <Name>Infrastructure.Logging.NLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure.Testing\Infrastructure.Testing.csproj">
+      <Project>{5E3EAF3D-D091-49FF-9A27-6AD1AB316732}</Project>
+      <Name>Infrastructure.Testing</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Infrastructure.Core.Testing;
+using Infrastructure.Testing;
 using Machine.Specifications;
 using Infrastructure.Core.Helpers;
 

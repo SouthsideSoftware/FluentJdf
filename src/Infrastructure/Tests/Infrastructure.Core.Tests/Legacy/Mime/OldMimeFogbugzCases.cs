@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using Infrastructure.Core.Testing;
+using Infrastructure.Testing;
 using NUnit.Framework;
 using FluentAssertions;
 

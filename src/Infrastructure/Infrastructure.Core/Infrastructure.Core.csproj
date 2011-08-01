@@ -99,7 +99,6 @@
     <Compile Include="Result\ResultItemType.cs" />
     <Compile Include="Result\ResultOf.cs" />
     <Compile Include="TempFileStream.cs" />
-    <Compile Include="Testing\TestDataHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Messages.resx">

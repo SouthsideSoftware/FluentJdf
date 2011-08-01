@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastructure.Testing;
 using Machine.Specifications;
 using System.IO;
 

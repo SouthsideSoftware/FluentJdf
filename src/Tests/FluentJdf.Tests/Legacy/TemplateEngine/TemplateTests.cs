@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using FluentJdf.LinqToJdf;
 using FluentJdf.TemplateEngine;
-using Infrastructure.Core.Testing;
+using Infrastructure.Testing;
 using NUnit.Framework;
 using System.IO;
 using System.Collections.Specialized;

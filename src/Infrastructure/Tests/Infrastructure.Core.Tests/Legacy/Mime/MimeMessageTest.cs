@@ -1,6 +1,6 @@
 using System;
 using System.Drawing;
-using Infrastructure.Core.Testing;
+using Infrastructure.Testing;
 using NUnit.Framework;
 using System.IO;
 using Infrastructure.Core.Mime;

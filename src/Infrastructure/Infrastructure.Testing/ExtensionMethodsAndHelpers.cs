@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
+﻿using System.IO;
 using Machine.Specifications;
 
-namespace System {
+namespace Infrastructure.Testing {
     /// <summary>
     /// Extension methods and helpers
     /// </summary>

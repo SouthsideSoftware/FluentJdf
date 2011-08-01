@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using FluentJdf.Configuration;
 using FluentJdf.Encoding;
-using Infrastructure.Core.Testing;
+using Infrastructure.Testing;
 using Machine.Specifications;
 
 namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory {
