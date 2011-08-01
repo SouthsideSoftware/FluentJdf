@@ -6,6 +6,7 @@ using FluentJdf.LinqToJdf;
 using FluentJdf.Resources;
 using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
+using FluentJdf.Utility;
 
 namespace FluentJdf.Transmission {
     /// <summary>
@@ -107,8 +108,8 @@ namespace FluentJdf.Transmission {
             }
 
             this.suppress = suppress;
-            this.destinationFolder = destinationFolder;
-            this.referenceFolder = referenceFolder;
+            this.destinationFolder = destinationFolder.EnsureTrailingSlash();
+            this.referenceFolder = referenceFolder.EnsureTrailingSlash();
             this.order = order;
 
             this.nameValues = new ReadOnlyDictionary<string, string>(nameValues ?? new Dictionary<string, string>());

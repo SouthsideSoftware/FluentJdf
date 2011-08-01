@@ -1,5 +1,6 @@
 ﻿using System;
 using Infrastructure.Core.CodeContracts;
+using System.IO;
 
 namespace FluentJdf.Utility {
     /// <summary>
@@ -53,6 +54,27 @@ namespace FluentJdf.Utility {
             }
 
             return count;
+        }
+
+        /// <summary>
+        /// Ensure a directory name stored as a string ends in / or \
+        /// </summary>
+        /// <param name="path">The uri to process</param>
+        /// <param name="useAltDirectoryChar">Insert a / instead of a \</param>
+        /// <returns></returns>
+        public static string EnsureTrailingSlash(this string path, bool useAltDirectoryChar = true) {
+            ParameterCheck.ParameterRequired(path, "path");
+
+            if (!path.EndsWith(Path.DirectorySeparatorChar.ToString()) && !path.EndsWith(Path.AltDirectorySeparatorChar.ToString())) {
+                if (useAltDirectoryChar) {
+                    path += Path.AltDirectorySeparatorChar;
+                }
+                else {
+                    path += Path.DirectorySeparatorChar;
+                }
+            }
+
+            return path;
         }
 
         /// <summary>

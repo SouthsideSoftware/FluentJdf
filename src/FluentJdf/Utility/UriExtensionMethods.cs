@@ -45,8 +45,8 @@ namespace FluentJdf.Utility {
                 retVal = uri.LocalPath;
             }
 
-            if (!retVal.EndsWith(@"\")) {
-                retVal += @"\";
+            if (!retVal.EndsWith(Path.DirectorySeparatorChar.ToString()) && !retVal.EndsWith(Path.AltDirectorySeparatorChar.ToString())) {
+                retVal += Path.DirectorySeparatorChar;
             }
 
             return retVal;
