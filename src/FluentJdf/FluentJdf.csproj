@@ -290,8 +290,6 @@
     <Compile Include="LinqToJdf\Builder\Jdf\JdfNodeBuilderBase.cs" />
     <Compile Include="LinqToJdf\ProcessType.cs" />
     <Compile Include="LinqToJdf\Query.cs" />
-    <Compile Include="LinqToJdf\RefExtensions.cs" />
-    <Compile Include="LinqToJdf\RefExtensionsNormalizer.cs" />
     <Compile Include="LinqToJdf\Resource.cs" />
     <Compile Include="LinqToJdf\Builder\Jdf\ResourceNodeAttributeBuilder.cs" />
     <Compile Include="LinqToJdf\Builder\Jdf\ResourceNodeNameBuilder.cs" />

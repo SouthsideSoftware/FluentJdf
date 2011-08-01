@@ -18,14 +18,12 @@ namespace FluentJdf.LinqToJdf {
         /// Evaluate an xpath against JDF with optional foreign namespaces.
         /// </summary>
         /// <param name="document">The document to operate upon.</param>
-        /// <param name="traverseRefs">False to avoid traversing ref elements.</param>
         /// <param name="xpath">The xpath query.</param>
         /// <param name="namespaceManager">Optional namespace manager containing foreign namespace definitions.</param>
         /// <returns>An <see cref="XElement"/>.</returns>
         public static XElement JdfXPathSelectElement(this XContainer document, string xpath,
-                                                     bool traverseRefs = true,
                                                      XmlNamespaceManager namespaceManager = null) {
-            return JdfXPathSelectElements(document, xpath, traverseRefs, namespaceManager).FirstOrDefault();
+            return JdfXPathSelectElements(document, xpath, namespaceManager).FirstOrDefault();
         }
 
         /// <summary>
@@ -33,24 +31,17 @@ namespace FluentJdf.LinqToJdf {
         /// </summary>
         /// <param name="element"></param>
         /// <param name="xPathExpression"></param>
-        /// <param name="traverseRefs">False to avoid traversing ref elements.</param>
         /// <param name="namespaceManager"></param>
         /// <returns></returns>
         public static IEnumerable<XElement> JdfXPathSelectElements(this XContainer element, string xPathExpression,
-            bool traverseRefs = true,
-            XmlNamespaceManager namespaceManager = null) {
+                                                                    XmlNamespaceManager namespaceManager = null) {
 
             ParameterCheck.ParameterRequired(element, "element");
             ParameterCheck.StringRequiredAndNotWhitespace(xPathExpression, "xPathExpression");
 
             var xPath = new XPathDecorator(xPathExpression).PrefixNames("jdf");
-            if (!traverseRefs) {
-                return element.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager));
-            }
 
-            using (var normalizer = new RefExtensionsNormalizer(element)) {
-                return normalizer.Node.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager)).ToList(); //can't be lazy
-            }
+            return element.XPathSelectElements(xPath, MakeNamespaceResolver(namespaceManager));
         }
 
         /// <summary>

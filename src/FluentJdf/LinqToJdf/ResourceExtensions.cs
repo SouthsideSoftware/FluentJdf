@@ -211,7 +211,7 @@ namespace FluentJdf.LinqToJdf {
                 root = root.Document.Root;
             }
 
-            return root.JdfXPathSelectElements(string.Format("//*[@rRef='{0}']", id), false);
+            return root.JdfXPathSelectElements(string.Format("//*[@rRef='{0}']", id));
         }
 
         /// <summary>
