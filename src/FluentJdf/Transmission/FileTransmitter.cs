@@ -60,9 +60,19 @@ namespace FluentJdf.Transmission {
             var transmissionEncoder = GetFileTransmitterEncoder(uri);
 
             if (transmissionEncoder != null) {
+
+                FileTransmitterEncoder actualEncoder;
+
+                if (transmissionEncoder.FolderInfo.Count == 0) {
+                    actualEncoder = FileTransmitterEncoder.BuildDefaultFolderInfoCollection(transmissionEncoder);
+                }
+                else {
+                    actualEncoder = transmissionEncoder;
+                }
+
                 List<FileTransmissionItem> results = null;
                 try {
-                    results = transmissionEncoder.PrepareTransmission(partsToSend, transmissionPartFactory, encodingfactory, transmissionLogger);
+                    results = actualEncoder.PrepareTransmission(partsToSend, transmissionPartFactory, encodingfactory, transmissionLogger);
 
                     foreach (var item in results.OrderBy(item => item.Order)) {
                         if (item.Stream.CanSeek) {
@@ -93,6 +103,8 @@ namespace FluentJdf.Transmission {
                 return new FileTransmissionJmfResult();
             }
             else {
+                //This code is no longer valid
+                //TODO delete this code since mime is no longer the default.
                 var fileInfo = new FileInfo(uri.LocalPath);
                 DirectoryAndFileHelper.EnsureFolderExists(fileInfo.Directory, logger);
                 try {

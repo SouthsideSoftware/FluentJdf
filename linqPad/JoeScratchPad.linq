@@ -39,7 +39,17 @@ void Main() {
 	//InitializeFileEncodingTransmitters();
 	//CreateTestDataForFileTransmitterEncoder();
 	//FixNullReference();
-	VerifyPromoteElement();
+	//VerifyPromoteElement();
+	VerifyAddingDefaultFolderInfo();
+}
+
+void VerifyAddingDefaultFolderInfo() {
+	var encoder = new FileTransmitterEncoder("id", @"file:///c:\temp");
+	encoder.AddFolderInfo(new FileTransmitterFolderInfo(FolderInfoTypeEnum.Attachment, encoder.UrlBase.ToString(), encoder.LocalPath, 1));
+	encoder.AddFolderInfo(new FileTransmitterFolderInfo(FolderInfoTypeEnum.Jdf, encoder.UrlBase.ToString(), encoder.LocalPath, 2));
+	encoder.AddFolderInfo(new FileTransmitterFolderInfo(FolderInfoTypeEnum.Jmf, encoder.UrlBase.ToString(), encoder.LocalPath, 3));
+	
+	encoder.Dump();
 }
 
 void FixNullReference() {

@@ -356,6 +356,20 @@ namespace FluentJdf.Transmission {
         }
 
         /// <summary>
+        /// If an item has no FolderInfo, we define the default order that the items will be inserted.
+        /// </summary>
+        /// <param name="transmissionEncoder">The encoder.</param>
+        /// <returns></returns>
+        internal static FileTransmitterEncoder BuildDefaultFolderInfoCollection(FileTransmitterEncoder transmissionEncoder) {
+            FileTransmitterEncoder actualEncoder;
+            actualEncoder = new FileTransmitterEncoder(transmissionEncoder.Id, transmissionEncoder.UrlBase, transmissionEncoder.UseMime, transmissionEncoder.NameValues);
+            actualEncoder.AddFolderInfo(new FileTransmitterFolderInfo(FolderInfoTypeEnum.Attachment, actualEncoder.UrlBase.ToString(), actualEncoder.UrlBase.ToString(), 1));
+            actualEncoder.AddFolderInfo(new FileTransmitterFolderInfo(FolderInfoTypeEnum.Jdf, actualEncoder.UrlBase.ToString(), actualEncoder.UrlBase.ToString(), 2));
+            actualEncoder.AddFolderInfo(new FileTransmitterFolderInfo(FolderInfoTypeEnum.Jmf, actualEncoder.UrlBase.ToString(), actualEncoder.UrlBase.ToString(), 3));
+            return actualEncoder;
+        }
+
+        /// <summary>
         /// Expands special variables in folder names found in
         /// the configuration.
         /// </summary>

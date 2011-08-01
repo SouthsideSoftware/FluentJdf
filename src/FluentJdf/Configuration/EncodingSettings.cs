@@ -19,8 +19,8 @@ namespace FluentJdf.Configuration {
         Type defaultEncoding;
         Type defaultMultiPartEncoding;
         Type defaultSinglePartEncoding;
-        IDictionary<string, Type> encodingsByMimeType;
-        IDictionary<string, FileTransmitterEncoder> fileTransmitterEncoderList;
+        readonly IDictionary<string, Type> encodingsByMimeType;
+        readonly IDictionary<string, FileTransmitterEncoder> fileTransmitterEncoderList;
 
         /// <summary>
         /// Constructor.
