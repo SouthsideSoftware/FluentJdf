@@ -25,7 +25,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Address(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Address, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Address, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -33,7 +35,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder AdhesiveBindingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.AdhesiveBindingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.AdhesiveBindingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -41,7 +45,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ApprovalParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ApprovalParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ApprovalParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -49,7 +55,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ApprovalSuccess(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ApprovalSuccess, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ApprovalSuccess, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -57,7 +65,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ArtDeliveryIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ArtDeliveryIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ArtDeliveryIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -65,7 +75,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Assembly(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Assembly, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Assembly, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -73,7 +85,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder AssetListCreationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.AssetListCreationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.AssetListCreationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -81,7 +95,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder AutomatedOverPrintParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.AutomatedOverPrintParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.AutomatedOverPrintParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -89,7 +105,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BarcodeCompParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BarcodeCompParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BarcodeCompParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -97,7 +115,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BarcodeReproParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BarcodeReproParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BarcodeReproParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -105,7 +125,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BendingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BendingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BendingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -113,7 +135,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BinderySignature(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BinderySignature, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BinderySignature, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -121,7 +145,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BindingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BindingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BindingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -129,7 +155,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BlockPreparationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BlockPreparationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BlockPreparationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -137,7 +165,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BoxFoldingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BoxFoldingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BoxFoldingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -145,7 +175,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BoxPackingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BoxPackingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BoxPackingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -153,7 +185,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BufferParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BufferParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BufferParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -161,7 +195,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Bundle(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Bundle, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Bundle, usage, id);
+            retVal.Element.SetClass("Quantity");
+            return retVal;
         }
 
         /// <summary>
@@ -169,7 +205,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder BundlingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.BundlingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.BundlingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -177,7 +215,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ByteMap(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ByteMap, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ByteMap, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -185,7 +225,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CaseMakingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CaseMakingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CaseMakingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -193,7 +235,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CasingInParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CasingInParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CasingInParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -201,7 +245,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ChannelBindingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ChannelBindingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ChannelBindingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -209,7 +255,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CIELABMeasuringField(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CIELABMeasuringField, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CIELABMeasuringField, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -217,7 +265,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CoilBindingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CoilBindingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CoilBindingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -225,7 +275,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CollectingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CollectingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CollectingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -233,7 +285,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Color(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Color, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Color, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -241,7 +295,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ColorantAlias(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ColorantAlias, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ColorantAlias, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -249,7 +305,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ColorantControl(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ColorantControl, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ColorantControl, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -257,7 +315,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ColorControlStrip(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ColorControlStrip, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ColorControlStrip, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -265,7 +325,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ColorCorrectionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ColorCorrectionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ColorCorrectionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -273,7 +335,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ColorIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ColorIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ColorIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -281,7 +345,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ColorMeasurementConditions(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ColorMeasurementConditions, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ColorMeasurementConditions, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -289,7 +355,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ColorPool(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ColorPool, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ColorPool, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -297,7 +365,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ColorSpaceConversionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ColorSpaceConversionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ColorSpaceConversionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -305,7 +375,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ComChannel(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ComChannel, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ComChannel, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -313,7 +385,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Company(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Company, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Company, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -321,7 +395,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Component(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Component, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Component, usage, id);
+            retVal.Element.SetClass("Quantity");
+            return retVal;
         }
 
         /// <summary>
@@ -329,7 +405,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Contact(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Contact, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Contact, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -337,7 +415,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ContactCopyParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ContactCopyParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ContactCopyParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -345,7 +425,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ContentList(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ContentList, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ContentList, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -353,7 +435,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ConventionalPrintingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ConventionalPrintingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ConventionalPrintingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -361,7 +445,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CoverApplicationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CoverApplicationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CoverApplicationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -369,7 +455,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CreasingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CreasingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CreasingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -377,7 +465,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CustomerInfo(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CustomerInfo, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CustomerInfo, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -385,7 +475,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CutBlock(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CutBlock, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CutBlock, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -393,7 +485,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CutMark(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CutMark, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CutMark, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -401,7 +495,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CuttingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CuttingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CuttingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -409,7 +505,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CylinderLayout(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CylinderLayout, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CylinderLayout, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -417,7 +515,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder CylinderLayoutPreparationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.CylinderLayoutPreparationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.CylinderLayoutPreparationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -425,7 +525,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DBMergeParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DBMergeParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DBMergeParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -433,7 +535,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DBRules(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DBRules, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DBRules, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -441,7 +545,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DBSchema(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DBSchema, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DBSchema, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -449,7 +555,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DBSelection(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DBSelection, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DBSelection, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -457,7 +565,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DeliveryIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DeliveryIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DeliveryIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -465,7 +575,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DeliveryParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DeliveryParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DeliveryParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -473,7 +585,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DensityMeasuringField(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DensityMeasuringField, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DensityMeasuringField, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -481,7 +595,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DevelopingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DevelopingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DevelopingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -489,7 +605,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Device(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Device, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Device, usage, id);
+            retVal.Element.SetClass("Implementation");
+            return retVal;
         }
 
         /// <summary>
@@ -497,7 +615,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DeviceMark(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DeviceMark, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DeviceMark, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -505,7 +625,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DeviceNSpace(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DeviceNSpace, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DeviceNSpace, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -513,7 +635,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DieLayout(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DieLayout, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DieLayout, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -521,7 +645,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DieLayoutProductionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DieLayoutProductionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DieLayoutProductionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -529,7 +655,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DigitalDeliveryParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DigitalDeliveryParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DigitalDeliveryParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -537,7 +665,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DigitalMedia(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DigitalMedia, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DigitalMedia, usage, id);
+            retVal.Element.SetClass("Handling");
+            return retVal;
         }
 
         /// <summary>
@@ -545,7 +675,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DigitalPrintingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DigitalPrintingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DigitalPrintingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -553,7 +685,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder DividingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.DividingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.DividingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -561,7 +695,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ElementColorParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ElementColorParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ElementColorParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -569,7 +705,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder EmbossingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.EmbossingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.EmbossingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -577,7 +715,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder EmbossingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.EmbossingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.EmbossingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -585,7 +725,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Employee(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Employee, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Employee, usage, id);
+            retVal.Element.SetClass("Implementation");
+            return retVal;
         }
 
         /// <summary>
@@ -593,7 +735,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder EndSheetGluingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.EndSheetGluingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.EndSheetGluingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -601,7 +745,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ExposedMedia(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ExposedMedia, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ExposedMedia, usage, id);
+            retVal.Element.SetClass("Handling");
+            return retVal;
         }
 
         /// <summary>
@@ -609,7 +755,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ExternalImpositionTemplate(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ExternalImpositionTemplate, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ExternalImpositionTemplate, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -617,7 +765,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder FeedingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.FeedingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.FeedingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -625,7 +775,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder FileSpec(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.FileSpec, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.FileSpec, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -633,7 +785,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder FitPolicy(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.FitPolicy, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.FitPolicy, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -641,7 +795,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Fold(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Fold, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Fold, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -649,7 +805,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder FoldingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.FoldingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.FoldingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -657,7 +815,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder FoldingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.FoldingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.FoldingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -665,7 +825,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder FontParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.FontParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.FontParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -673,7 +835,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder FontPolicy(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.FontPolicy, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.FontPolicy, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -681,7 +845,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder FormatConversionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.FormatConversionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.FormatConversionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -689,7 +855,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder GatheringParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.GatheringParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.GatheringParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -697,7 +865,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder GlueApplication(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.GlueApplication, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.GlueApplication, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -705,7 +875,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder GlueLine(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.GlueLine, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.GlueLine, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -713,7 +885,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder GluingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.GluingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.GluingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -721,7 +895,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder HeadBandApplicationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.HeadBandApplicationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.HeadBandApplicationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -729,7 +905,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Hole(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Hole, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Hole, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -737,7 +915,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder HoleLine(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.HoleLine, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.HoleLine, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -745,7 +925,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder HoleMakingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.HoleMakingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.HoleMakingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -753,7 +935,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder HoleMakingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.HoleMakingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.HoleMakingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -761,7 +945,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder IdentificationField(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.IdentificationField, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.IdentificationField, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -769,7 +955,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder IDPrintingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.IDPrintingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.IDPrintingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -777,7 +965,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ImageCompressionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ImageCompressionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ImageCompressionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -785,7 +975,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ImageReplacementParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ImageReplacementParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ImageReplacementParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -793,7 +985,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ImageSetterParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ImageSetterParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ImageSetterParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -801,7 +995,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Ink(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Ink, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Ink, usage, id);
+            retVal.Element.SetClass("Consumable");
+            return retVal;
         }
 
         /// <summary>
@@ -809,7 +1005,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder InkZoneCalculationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.InkZoneCalculationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.InkZoneCalculationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -817,7 +1015,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder InkZoneProfile(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.InkZoneProfile, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.InkZoneProfile, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -825,7 +1025,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder InsertingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.InsertingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.InsertingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -833,7 +1035,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder InsertingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.InsertingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.InsertingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -841,7 +1045,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder InsertSheet(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.InsertSheet, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.InsertSheet, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -849,7 +1055,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder InterpretedPDLData(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.InterpretedPDLData, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.InterpretedPDLData, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -857,7 +1065,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder InterpretingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.InterpretingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.InterpretingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -865,7 +1075,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder JacketingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.JacketingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.JacketingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -873,7 +1085,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder JobField(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.JobField, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.JobField, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -881,7 +1095,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder LabelingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.LabelingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.LabelingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -889,7 +1105,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder LaminatingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.LaminatingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.LaminatingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -897,7 +1115,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder LaminatingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.LaminatingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.LaminatingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -905,7 +1125,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Layout(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Layout, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Layout, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -913,7 +1135,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder LayoutElement(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.LayoutElement, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.LayoutElement, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -921,7 +1145,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder LayoutElementProductionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.LayoutElementProductionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.LayoutElementProductionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -929,7 +1155,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder LayoutIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.LayoutIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.LayoutIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -937,7 +1165,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder LayoutPreparationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.LayoutPreparationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.LayoutPreparationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -945,7 +1175,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder LayoutShift(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.LayoutShift, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.LayoutShift, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -953,7 +1185,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder LongitudinalRibbonOperationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.LongitudinalRibbonOperationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.LongitudinalRibbonOperationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -961,7 +1195,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ManualLaborParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ManualLaborParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ManualLaborParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -969,7 +1205,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Media(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Media, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Media, usage, id);
+            retVal.Element.SetClass("Consumable");
+            return retVal;
         }
 
         /// <summary>
@@ -977,7 +1215,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder MediaIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.MediaIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.MediaIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -985,7 +1225,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder MediaSource(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.MediaSource, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.MediaSource, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -993,7 +1235,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder MiscConsumable(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.MiscConsumable, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.MiscConsumable, usage, id);
+            retVal.Element.SetClass("Consumable");
+            return retVal;
         }
 
         /// <summary>
@@ -1001,7 +1245,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder NodeInfo(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.NodeInfo, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.NodeInfo, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1009,7 +1255,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder NumberingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.NumberingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.NumberingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -1017,7 +1265,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder NumberingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.NumberingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.NumberingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1025,7 +1275,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ObjectResolution(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ObjectResolution, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ObjectResolution, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1033,7 +1285,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder OrderingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.OrderingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.OrderingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1041,7 +1295,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PackingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PackingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PackingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -1049,7 +1305,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PackingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PackingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PackingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1057,7 +1315,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PageAssignParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PageAssignParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PageAssignParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1065,7 +1325,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PageList(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PageList, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PageList, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1073,7 +1335,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Pallet(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Pallet, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Pallet, usage, id);
+            retVal.Element.SetClass("Consumable");
+            return retVal;
         }
 
         /// <summary>
@@ -1081,7 +1345,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PalletizingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PalletizingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PalletizingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1089,7 +1355,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PDFToPSConversionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PDFToPSConversionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PDFToPSConversionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1097,7 +1365,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PDLCreationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PDLCreationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PDLCreationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1105,7 +1375,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PDLResourceAlias(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PDLResourceAlias, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PDLResourceAlias, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1113,7 +1385,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PerforatingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PerforatingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PerforatingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1121,7 +1395,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Person(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Person, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Person, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1129,7 +1405,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PlaceHolderResource(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PlaceHolderResource, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PlaceHolderResource, usage, id);
+            retVal.Element.SetClass("PlaceHolder");
+            return retVal;
         }
 
         /// <summary>
@@ -1137,7 +1415,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PlasticCombBindingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PlasticCombBindingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PlasticCombBindingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1145,7 +1425,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PlateCopyParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PlateCopyParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PlateCopyParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1153,7 +1435,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PreflightAnalysis(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PreflightAnalysis, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PreflightAnalysis, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1161,7 +1445,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PreflightInventory(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PreflightInventory, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PreflightInventory, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1169,7 +1455,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PreflightParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PreflightParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PreflightParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1177,7 +1465,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PreflightProfile(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PreflightProfile, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PreflightProfile, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1185,7 +1475,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PreflightReport(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PreflightReport, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PreflightReport, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1193,7 +1485,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PreflightReportRulePool(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PreflightReportRulePool, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PreflightReportRulePool, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1201,7 +1495,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PreviewGenerationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PreviewGenerationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PreviewGenerationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1209,7 +1505,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PrintCondition(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PrintCondition, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PrintCondition, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1217,7 +1515,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PrintRollingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PrintRollingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PrintRollingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1225,7 +1525,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ProductionIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ProductionIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ProductionIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -1233,7 +1535,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ProductionPath(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ProductionPath, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ProductionPath, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1241,7 +1545,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ProofingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ProofingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ProofingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -1249,7 +1555,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ProofingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ProofingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ProofingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1257,7 +1565,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PSToPDFConversionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PSToPDFConversionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PSToPDFConversionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1265,7 +1575,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder PublishingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.PublishingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.PublishingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -1273,7 +1585,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder QualityControlParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.QualityControlParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.QualityControlParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1281,7 +1595,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder QualityControlResult(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.QualityControlResult, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.QualityControlResult, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1289,7 +1605,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder RasterReadingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.RasterReadingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.RasterReadingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1297,7 +1615,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder RefAnchor(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.RefAnchor, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.RefAnchor, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1305,7 +1625,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder RegisterMark(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.RegisterMark, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.RegisterMark, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1313,7 +1635,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder RegisterRibbon(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.RegisterRibbon, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.RegisterRibbon, usage, id);
+            retVal.Element.SetClass("Consumable");
+            return retVal;
         }
 
         /// <summary>
@@ -1321,7 +1645,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder RenderingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.RenderingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.RenderingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1329,7 +1655,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ResourceDefinitionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ResourceDefinitionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ResourceDefinitionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1337,7 +1665,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder RingBindingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.RingBindingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.RingBindingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1345,7 +1675,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder RollStand(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.RollStand, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.RollStand, usage, id);
+            retVal.Element.SetClass("Handling");
+            return retVal;
         }
 
         /// <summary>
@@ -1353,7 +1685,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder RunList(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.RunList, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.RunList, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1361,7 +1695,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder SaddleStitchingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.SaddleStitchingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.SaddleStitchingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1369,7 +1705,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ScanParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ScanParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ScanParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1377,7 +1715,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ScavengerArea(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ScavengerArea, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ScavengerArea, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1385,7 +1725,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ScreeningIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ScreeningIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ScreeningIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -1393,7 +1735,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ScreeningParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ScreeningParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ScreeningParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1401,7 +1745,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder SeparationControlParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.SeparationControlParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.SeparationControlParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1409,7 +1755,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Shape(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Shape, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Shape, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1417,7 +1765,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ShapeCuttingIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ShapeCuttingIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ShapeCuttingIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -1425,7 +1775,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ShapeCuttingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ShapeCuttingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ShapeCuttingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1433,7 +1785,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ShapeDef(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ShapeDef, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ShapeDef, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1441,7 +1795,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ShapeDefProductionParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ShapeDefProductionParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ShapeDefProductionParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1449,7 +1805,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Sheet(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Sheet, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Sheet, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1457,7 +1815,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ShrinkingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ShrinkingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ShrinkingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1465,7 +1825,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder SideSewingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.SideSewingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.SideSewingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1473,7 +1835,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder SizeIntent(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.SizeIntent, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.SizeIntent, usage, id);
+            retVal.Element.SetClass("Intent");
+            return retVal;
         }
 
         /// <summary>
@@ -1481,7 +1845,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder SpinePreparationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.SpinePreparationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.SpinePreparationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1489,7 +1855,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder SpineTapingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.SpineTapingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.SpineTapingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1497,7 +1865,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder StackingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.StackingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.StackingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1505,7 +1875,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder StaticBlockingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.StaticBlockingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.StaticBlockingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1513,7 +1885,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder StitchingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.StitchingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.StitchingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1521,7 +1895,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Strap(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Strap, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Strap, usage, id);
+            retVal.Element.SetClass("Consumable");
+            return retVal;
         }
 
         /// <summary>
@@ -1529,7 +1905,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder StrappingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.StrappingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.StrappingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1537,7 +1915,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder StripBindingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.StripBindingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.StripBindingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1545,7 +1925,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder StrippingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.StrippingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.StrippingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1553,7 +1935,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Surface(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Surface, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Surface, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1561,7 +1945,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ThreadSealingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ThreadSealingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ThreadSealingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1569,7 +1955,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder ThreadSewingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.ThreadSewingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.ThreadSewingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1577,7 +1965,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Tile(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Tile, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Tile, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1585,7 +1975,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder Tool(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.Tool, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.Tool, usage, id);
+            retVal.Element.SetClass("Handling");
+            return retVal;
         }
 
         /// <summary>
@@ -1593,7 +1985,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder TransferCurve(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.TransferCurve, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.TransferCurve, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1601,7 +1995,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder TransferCurvePool(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.TransferCurvePool, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.TransferCurvePool, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1609,7 +2005,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder TransferFunctionControl(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.TransferFunctionControl, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.TransferFunctionControl, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1617,7 +2015,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder TrappingDetails(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.TrappingDetails, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.TrappingDetails, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1625,7 +2025,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder TrappingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.TrappingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.TrappingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1633,7 +2035,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder TrapRegion(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.TrapRegion, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.TrapRegion, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1641,7 +2045,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder TrimmingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.TrimmingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.TrimmingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1649,7 +2055,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder UsageCounter(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.UsageCounter, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.UsageCounter, usage, id);
+            retVal.Element.SetClass("Consumable");
+            return retVal;
         }
 
         /// <summary>
@@ -1657,7 +2065,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder VarnishingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.VarnishingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.VarnishingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1665,7 +2075,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder VerificationParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.VerificationParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.VerificationParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1673,7 +2085,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder WebInlineFinishingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.WebInlineFinishingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.WebInlineFinishingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1681,7 +2095,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder WireCombBindingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.WireCombBindingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.WireCombBindingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
 
         /// <summary>
@@ -1689,8 +2105,11 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         /// </summary>
         /// <param name="id">An optional id, otherwise a unique id will be created</param>
         public ResourceNodeBuilder WrappingParams(string id = null) {
-            return new ResourceNodeBuilder(ParentJdf, Resource.WrappingParams, usage, id);
+            var retVal = new ResourceNodeBuilder(ParentJdf, Resource.WrappingParams, usage, id);
+            retVal.Element.SetClass("Parameter");
+            return retVal;
         }
+
 
         /// <summary>
         /// Create a resource with the given name and return a factory to operate in it.

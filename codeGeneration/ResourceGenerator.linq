@@ -1,9 +1,17 @@
-<Query Kind="Program" />
+<Query Kind="Program">
+  <Namespace>System.Xml.Schema</Namespace>
+</Query>
+
+string basePath;
+Dictionary<string, XmlSchemaComplexType> ComplexTypes = new Dictionary<string, XmlSchemaComplexType>();
+Dictionary<string, string> ClassMap = new Dictionary<string,string>(); 
 
 void Main() {
 	
-	var basePath = new FileInfo(Util.CurrentQueryPath).DirectoryName;
+	basePath = new FileInfo(Util.CurrentQueryPath).DirectoryName;
 	var path = Path.Combine(basePath,  @"..\src\FluentJdf\Resources\Schema\JDFResource.xsd");
+
+	CreateTypeDictionary();
 
 	var xmlDoc = new XmlDocument();
 	xmlDoc.Load(path);
@@ -14,8 +22,17 @@ void Main() {
 		if (element.Name == "xs:element") {
 			var attr = ((XmlElement)element).GetAttribute("substitutionGroup");
 			if (attr != null && attr == "jdf:Resource") {
-				attr = ((XmlElement)element).GetAttribute("name");
+				attr = ((XmlElement)element).GetAttribute("name");				
 				items.Add(attr);
+				
+				var type = ((XmlElement)element).GetAttribute("type");
+				var ct = ComplexTypes[type.Replace("jdf:", string.Empty)];
+				
+				foreach (XmlSchemaAttribute att in ct.AttributeUses.Values) {
+					if (att.Name.Equals("Class", StringComparison.OrdinalIgnoreCase)) {
+						ClassMap[attr] = att.FixedValue;
+					}
+				}
 			}
 		}
 	}
@@ -50,13 +67,42 @@ void Main() {
 		/// </summary>
 		/// <param name=""id"">An optional id, otherwise a unique id will be created</param>
 		public ResourceNodeBuilder {0}(string id = null) {{
-			return new ResourceNodeBuilder(ParentJdf, Resource.{0}, usage, id);
+			var retVal = new ResourceNodeBuilder(ParentJdf, Resource.{0}, usage, id);
+			retVal.Element.SetClass(""{1}"");
+			return retVal;
 		}}";
 		
 	foreach (var item in items.OrderBy (item => item)) {
-		Console.WriteLine(formatString, item);
+		Console.WriteLine(formatString, item, ClassMap[item]);
 	}
 		
 }
 
+void CreateTypeDictionary() {
+	var path = Path.Combine(basePath, @"..\src\FluentJdf\Resources\Schema\JDF.xsd"); //@"..\src\FluentJdf\Resources\Schema\JDF.xsd"
+
+	XmlSchemaSet schemaSet = new XmlSchemaSet();
+
+	XmlNamespaceManager nsmgr = new XmlNamespaceManager(schemaSet.NameTable);
+	nsmgr.AddNamespace("xs", "http://www.w3.org/2001/XMLSchema");
+	nsmgr.AddNamespace("jdftyp", "http://www.CIP4.org/JDFSchema_1_3_Types");
+	nsmgr.AddNamespace("jdf", "http://www.CIP4.org/JDFSchema_1_1");
+
+	schemaSet.ValidationEventHandler += new ValidationEventHandler(ValidationCallback);
+	schemaSet.Add("http://www.CIP4.org/JDFSchema_1_1", path);
+	schemaSet.Compile();
+
+	ComplexTypes = (from ss in schemaSet.Schemas().Cast<XmlSchema>()
+					from ct in ss.SchemaTypes.Values.OfType<XmlSchemaComplexType>()
+					select ct).ToDictionary(item => item.Name);
+}
+
+ void ValidationCallback(object sender, ValidationEventArgs args) {
+	if (args.Severity == XmlSeverityType.Warning)
+		Console.Write("WARNING: ");
+	else if (args.Severity == XmlSeverityType.Error)
+		Console.Write("ERROR: ");
+
+	args.Message.Dump();
+}
 // Define other methods and classes here
