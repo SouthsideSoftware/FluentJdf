@@ -70,7 +70,7 @@
   <Import Project="$(SouthSideTasksPath)\SouthSideBuildTasks.MSBuild.Tasks.Targets"/>
 
 	<Target Name="Dist" DependsOnTargets="Clean;InstallPackages;Version;Build;Test;Document;Publish"/>
-  <Target Name="TeamCityBuild" DependsOnTargets="Clean;InstallPackages;Version;Build"/>
+  <Target Name="TeamCityBuild" DependsOnTargets="Clean;InstallPackages;Version;Build;BuildMSpecBat"/>
   <Target Name="TeamCityPublish" DependsOnTargets="Document;Publish"/>
 
 	<Target Name="Clean">
@@ -214,7 +214,22 @@
     <CallTarget Targets="MSpecTests;MSpecCoverage;NUnitCoverage;FitnesseTests"/>
   </Target>
 
-  <Target Name="MSpecTests" Outputs="%(TestItem.Identity)">
+  <Target Name="BuildMSpecBat">
+    <Message Importance="high" Text="Building Mspec.bat from template"/>
+    <XmlRead XPath="//package[@id='Machine.Specifications']/@version"
+             XmlFileName="%(TestItem.TestProjectDir)\packages.config">
+      <Output TaskParameter="Value" PropertyName="MSpecVersion"/>
+    </XmlRead>
+    <Message Importance="high" Text="MSpec Path: $(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe"/>
+    <ItemGroup>
+      <Tokens Include="mspecTestRunner">
+        <ReplacementValue>$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe</ReplacementValue>
+      </Tokens>
+    </ItemGroup>
+    <TemplateFile Template="$(MSBuildProjectDirectory)\mspecTemplate.bat" OutputFileName="$(MSBuildProjectDirectory)\mspec.bat" Tokens="@(Tokens)"/>
+  </Target>
+
+  <Target Name="MSpecTests" Outputs="%(TestItem.Identity)" DependsOnTargets="BuildMspecBat">
     <Message Importance="high" Text="Testing: %(TestItem.TestDir)\%(TestItem.Identity)"/>
     <XmlRead XPath="//package[@id='Machine.Specifications']/@version"
              XmlFileName="%(TestItem.TestProjectDir)\packages.config">
@@ -222,11 +237,11 @@
     </XmlRead>
     <Message Importance="high" Text="MSpec: $(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe"/>
     <Exec WorkingDirectory="%(TestItem.TestDir)"
-          Command='"$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity)"'
+          Command='"$(MSBuildProjectDirectory)\mspec.bat" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity)"'
           Condition='!$(InTeamCity)'/>
 
     <Exec WorkingDirectory="%(TestItem.TestDir)"
-          Command='"$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools\mspec-clr4.exe" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity) --teamcity"'
+          Command='"$(MSBuildProjectDirectory)\mspec.bat" --html $(TestOutputDir)\%(TestItem.TestReportName) %(TestItem.Identity) --teamcity"'
           Condition='$(InTeamCity)'/>
   </Target>
 
