@@ -100,6 +100,7 @@
     <ProjectDir Include="src\Infrastructure\Tests\Infrastructure.Container.CastleWindsor.Tests"/>
     <ProjectDir Include="src\Infrastructure\Infrastructure.Logging.Log4Net"/>
     <ProjectDir Include="src\Infrastructure\Infrastructure.Logging.NLog"/>
+    <ProjectDir Include="src\Infrastructure\Infrastructure.Testing"/>
   </ItemGroup>
 
   <Target Name="InstallPackages" Outputs="%(ProjectDir.Identity)">
