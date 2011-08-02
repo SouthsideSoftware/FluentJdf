@@ -70,6 +70,8 @@
   <Import Project="$(SouthSideTasksPath)\SouthSideBuildTasks.MSBuild.Tasks.Targets"/>
 
 	<Target Name="Dist" DependsOnTargets="Clean;InstallPackages;Version;Build;Test;Document;Publish"/>
+  <Target Name="TeamCityBuild" DependsOnTargets="Clean;InstallPackages;Version;Build"/>
+  <Target Name="TeamCityPublish" DependsOnTargets="Document;Publish"/>
 
 	<Target Name="Clean">
     <Message Importance="high" Text="Clean"/>
