@@ -21,6 +21,13 @@ namespace FluentJdf.Transmission {
         }
 
         /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public HttpWebRequestFactory() {
+            settings = FluentJdfLibrary.Settings.HttpTransmissionSettings;
+        }
+
+        /// <summary>
         /// Create a web request.
         /// </summary>
         /// <param name="uri"></param>
