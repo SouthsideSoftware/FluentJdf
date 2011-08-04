@@ -211,7 +211,7 @@
 
   <Target Name="TestInsideTeamCity">
     <Message Importance="high" Text="Test inside team city"/>
-    <CallTarget Targets="MSpecTests;MSpecCoverage;NUnitCoverage;FitnesseTests"/>
+    <CallTarget Targets="MSpecTests;NUnitTests"/>
   </Target>
 
   <Target Name="BuildMSpecBat">
