@@ -324,10 +324,10 @@
     <Compile Include="Unit\LinqToJdf\XNameExtensions\when_using_link_name.cs" />
     <Compile Include="Unit\Transmission\TransmitterFactory\when_creating_transmitters_from_some_unregistered_schemes.cs" />
     <Compile Include="Unit\Transmission\FileTransmitter\when_testing_file_transmitter_with_multi_part_mime.cs" />
-    <Compile Include="Utility\StringHelper\when_ensuring_path_ends_with_slash.cs" />
-    <Compile Include="Utility\StringHelper\when_using_contains_that_support_case_insensitive_comparisons.cs" />
-    <Compile Include="Utility\UriExtensionMethods\when_verifying_local_path_for_uri.cs" />
-    <Compile Include="Utility\UriExtensionMethods\when_verifying_uri_for_trailing_backslash.cs" />
+    <Compile Include="Unit\Utility\StringHelper\when_ensuring_path_ends_with_slash.cs" />
+    <Compile Include="Unit\Utility\StringHelper\when_using_contains_that_support_case_insensitive_comparisons.cs" />
+    <Compile Include="Unit\Utility\UriExtensionMethods\when_verifying_local_path_for_uri.cs" />
+    <Compile Include="Unit\Utility\UriExtensionMethods\when_verifying_uri_for_trailing_backslash.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FluentJdf\FluentJdf.csproj">
