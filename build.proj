@@ -28,10 +28,13 @@
   <!-- Binary files to publish -->
   <ItemGroup>
     <BinFiles Include="src\FluentJdf\bin\$(Configuration)\*.*;
-                             src\Infrastructure\Infrastructure.Core\bin\$(Configuration)\*.*;
-                             src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\$(Configuration)\*.*;
-                             src\Infrastructure\Infrastructure.Logging.Log4Net\bin\$(Configuration)\*.*;
-                             src\Infrastructure\Infrastructure.Logging.NLog\bin\$(Configuration)\*.*;"/>
+                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\*.*"
+              Exclude="src\Tests\FluentJdf.Tests\bin\$(Configuration)\ExpectedObjects.*;
+                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\Machine.Specifications.*;
+                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\Infrastructure.Testsing.*;
+                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\nunit.*.*;
+                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\pnunit.*;
+                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\Rhino.Mocks.*"/>
   </ItemGroup>
 
   <!-- Nuget -->
