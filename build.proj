@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets ="Dist" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- See https://onpointondemand.fogbugz.com/default.asp?W695 for documentation -->
+  <Import Project="$(MSBuildProjectDirectory)\Tools\MSBuild\BuildSupport\Onpoint.Targets.properties"/>
+
+  <!-- Version Information -->
+  <PropertyGroup>
+    <AppVersion>0.3.0</AppVersion>
+    <SchemaVersion>0</SchemaVersion>
+  </PropertyGroup>
+
+  <!-- Project name and description -->
+  <PropertyGroup>
+    <ProductName>FluentJdf</ProductName>
+    <ProductDescription>Fluent JDF</ProductDescription>
+  </PropertyGroup>
+
+  <!-- MSpec Tests -->
+  <ItemGroup>
+    <MSpecTestItem Include="FluentJdf.Tests"/>
+  </ItemGroup>
+
+  <!-- NUnit Tests -->
+  <ItemGroup>
+    <NUnitTestItem Include="FluentJdf.Tests"/>
+  </ItemGroup>
+
+  <!-- Binary files to publish -->
+  <ItemGroup>
+    <BinFiles Include="src\FluentJdf\bin\$(Configuration)\*.*;
+                             src\Infrastructure\Infrastructure.Core\bin\$(Configuration)\*.*;
+                             src\Infrastructure\Infrastructure.Container.CastleWindsor\bin\$(Configuration)\*.*;
+                             src\Infrastructure\Infrastructure.Logging.Log4Net\bin\$(Configuration)\*.*;
+                             src\Infrastructure\Infrastructure.Logging.NLog\bin\$(Configuration)\*.*;"/>
+  </ItemGroup>
+
+  <!-- Nuget -->
+  <PropertyGroup>
+    <NugetPackageSummary>JDF Client Library for .NET</NugetPackageSummary>
+    <NugetPackageId>FluentJdf</NugetPackageId>
+    <NugetPushUrl>http://packages.nuget.org/v1/</NugetPushUrl>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildProjectDirectory)\Tools\MSBuild\BuildSupport\Onpoint.Targets"/>
+</Project>

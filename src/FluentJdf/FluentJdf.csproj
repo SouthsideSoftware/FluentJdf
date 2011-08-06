@@ -94,6 +94,9 @@
     <AssemblyOriginatorKeyFile>fluentjdf.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Infrastructure.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Onpoint.Infrastructure.0.1.0.9\lib\Infrastructure.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -366,7 +369,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="fluentjdf.snk" />
-    <None Include="packages.config" />
     <EmbeddedResource Include="Resources\Schema\JDF.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -388,6 +390,7 @@
     <EmbeddedResource Include="Resources\Schema\JDFTypes.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Messages.resx">
@@ -395,12 +398,6 @@
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.Core\Infrastructure.Core.csproj">
-      <Project>{941D0CE6-D735-47AD-8521-7171BCB2833A}</Project>
-      <Name>Infrastructure.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

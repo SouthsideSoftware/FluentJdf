@@ -49,7 +49,7 @@ dotcover.xml
 *_tcabanski
 OnpointConnect.esent/**
 OnpointConnect_subscriptions.esent/**
-packages/**
+packages/*/*
 glob:Jwf.sln.docstates
 glob:*.csproj.vs10x
 glob:codeGeneration/output/*
