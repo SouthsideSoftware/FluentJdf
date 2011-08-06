@@ -3,6 +3,11 @@
   <!-- See https://onpointondemand.fogbugz.com/default.asp?W695 for documentation -->
   <Import Project="$(MSBuildProjectDirectory)\Tools\MSBuild\BuildSupport\Onpoint.Targets.properties"/>
 
+  <!-- Extension points -->
+  <PropertyGroup>
+    <CustomPublishTask>CreateLinqPadSample</CustomPublishTask>
+  </PropertyGroup>
+  
   <!-- Version Information -->
   <PropertyGroup>
     <AppVersion>0.3.0</AppVersion>
@@ -45,4 +50,12 @@
   </PropertyGroup>
 
   <Import Project="$(MSBuildProjectDirectory)\Tools\MSBuild\BuildSupport\Onpoint.Targets"/>
+
+  <Target Name="CreateLinqPadSample">
+    <Message Importance="high" Text="EXTENSION TARGET: CreateLinqPadSample"/>
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\LinqPad\FluentJdfShell.linq" DestinationFiles="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq"/>
+    <FileUpdate Files="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq" Regex='"..\\src\\FluentJdf\\bin\\Debug\\' ReplacementText='"'/>
+    <FileUpdate Files="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq" Regex='"..\\src\\Infrastructure\\Infrastructure.Container.CastleWindsor\\bin\\Debug\\' ReplacementText='"'/>
+    <FileUpdate Files="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq" Regex='"..\\src\\Infrastructure\\Infrastructure.Logging.NLog\\bin\\Debug\\' ReplacementText='"'/>
+  </Target>
 </Project>

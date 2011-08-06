@@ -224,6 +224,7 @@
 
     <CallTarget Targets="PublishBin"/>
     <CallTarget Targets="PublishHelp"/>
+    <CallTarget Targets="$(CustomPublishTask)" Condition="$(CustomPublishTask) != ''"/>
     <CallTarget Targets="CreateNugetPackage"/>
     <CallTarget Targets="PublishNugetPackage"/>
 	</Target>
