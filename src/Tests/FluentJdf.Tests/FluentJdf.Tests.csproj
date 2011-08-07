@@ -103,17 +103,16 @@
     <Reference Include="ExpectedObjects">
       <HintPath>..\..\..\packages\ExpectedObjects.1.0.0.0\lib\ExpectedObjects.dll</HintPath>
     </Reference>
-    <Reference Include="Infrastructure.Container.CastleWindsor, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Onpoint.Infrastructure.0.1.0.9\lib\Infrastructure.Container.CastleWindsor.dll</HintPath>
+    <Reference Include="Infrastructure.Container.CastleWindsor">
+      <HintPath>..\..\..\packages\Onpoint.Infrastructure.0.2.0.12\lib\Infrastructure.Container.CastleWindsor.dll</HintPath>
     </Reference>
-    <Reference Include="Infrastructure.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Onpoint.Infrastructure.0.1.0.9\lib\Infrastructure.Core.dll</HintPath>
+    <Reference Include="Infrastructure.Core">
+      <HintPath>..\..\..\packages\Onpoint.Infrastructure.0.2.0.12\lib\Infrastructure.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Infrastructure.Logging.NLog, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Onpoint.Infrastructure.0.1.0.9\lib\Infrastructure.Logging.NLog.dll</HintPath>
+    <Reference Include="Infrastructure.Logging.NLog">
+      <HintPath>..\..\..\packages\Onpoint.Infrastructure.0.2.0.12\lib\Infrastructure.Logging.NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Infrastructure.Testing, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Infrastructure.Testing">
       <HintPath>..\..\..\lib\Infrastructure\Infrastructure.Testing.dll</HintPath>
     </Reference>
     <Reference Include="Machine.Specifications, Version=0.4.23.0, Culture=neutral, processorArchitecture=MSIL">
@@ -145,7 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\FluentJdf\Properties\CommonAssemblyInfo.cs">
-      <Link>CommonAssemblyInfo.cs</Link>
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssemblyContext.cs" />
     <Compile Include="Legacy\AssertionHelper.cs" />
@@ -343,12 +342,6 @@
     <Compile Include="Unit\Utility\UriExtensionMethods\when_verifying_uri_for_trailing_backslash.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FluentJdf\FluentJdf.csproj">
-      <Project>{B70C889D-3B60-469D-8475-23818353771C}</Project>
-      <Name>FluentJdf</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="fluentjdf.snk" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -388,6 +381,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestData\SimpleCommandSubmitQEntryMultiPart.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FluentJdf\FluentJdf.csproj">
+      <Project>{B70C889D-3B60-469D-8475-23818353771C}</Project>
+      <Name>FluentJdf</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
