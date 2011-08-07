@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infrastructure.Logging.Log4Net</name>
+    </assembly>
+    <members>
+        <member name="T:Infrastructure.Logging.Log4Net.ConfigurationExtension">
+            <summary>
+            Extensions for working with configuration.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.ConfigurationExtension.LogWithLog4Net(Infrastructure.Core.Configuration)">
+            <summary>
+            Log using log4net (default settings)
+            </summary>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Infrastructure.Logging.Log4Net.Log4NetLog">
+            <summary>
+            Implementation of commons ILog for log4net.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.#ctor(log4net.ILog)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="log4netLog"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Error(System.Object)">
+            <summary>
+            Log a message at the error level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the error level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the error level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Fatal(System.Object)">
+            <summary>
+            Log a message at the fatal level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message and an exception at the fatal level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the fatal level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Debug(System.Object)">
+            <summary>
+            Log a message at the debug level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the debug level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the debug level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Info(System.Object)">
+            <summary>
+            Log a message at the info level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the info level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the info level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Warn(System.Object)">
+            <summary>
+            Log a message at the warning level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the warning level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLog.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the warning level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="P:Infrastructure.Logging.Log4Net.Log4NetLog.IsErrorEnabled">
+            <summary>
+            Gets <see langword="true"/> if error logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Log4Net.Log4NetLog.IsFatalEnabled">
+            <summary>
+            Gets <see langword="true"/> if logging is enabled at the fatal level.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Log4Net.Log4NetLog.IsDebugEnabled">
+            <summary>
+            Gets <see langword="true"/> if debug level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Log4Net.Log4NetLog.IsInfoEnabled">
+            <summary>
+            Gets <see langword="true"/> if info level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Logging.Log4Net.Log4NetLog.IsWarnEnabled">
+            <summary>
+            Gets <see langword="true"/> if warning level logging is enabled.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Logging.Log4Net.Log4NetLogProvider">
+            <summary>
+            Implementation of ILogProvider for Log4Net.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLogProvider.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+            <remarks>Reads config from log4net.config.</remarks>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLogProvider.GetLogger(System.Type)">
+            <summary>
+            Gets the ILog implementation for the type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Logging.Log4Net.Log4NetLogProvider.GetLogger(System.String)">
+            <summary>
+            Gets the ILog implementation for the key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

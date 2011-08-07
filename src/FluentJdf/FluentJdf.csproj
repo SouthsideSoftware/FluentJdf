@@ -96,7 +96,7 @@
   <ItemGroup>
     <Reference Include="Infrastructure.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Onpoint.Infrastructure.0.2.0.12\lib\Infrastructure.Core.dll</HintPath>
+      <HintPath>..\..\lib\Infrastructure\Infrastructure.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

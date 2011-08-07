@@ -1,0 +1,3225 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infrastructure.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Infrastructure.Core.CodeContracts.ParameterCheck">
+            <summary>
+            Precondition checking for methods.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.ParameterCheck.StringRequiredAndNotWhitespace(System.String,System.String)">
+            <summary>
+            Throw a Precondition exception if the provided string
+            is null, empty or contains only whitespace.
+            </summary>
+            <param name="parameter">Teh string parameter to check.</param>
+            <param name="parameterName">The name of the string parameter (used in error messages).</param>
+            <exception cref="T:Infrastructure.Core.CodeContracts.PreconditionException">
+            <para>The parameter is null, empty or contains only whitespace.</para>
+            <para>- or -</para>
+            <para>The parameter name is null, empty or all whitespace</para>
+            </exception>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.ParameterCheck.ParameterRequired(System.Object,System.String)">
+            <summary>
+            Throws a Precondition exception if the provided object
+            is null
+            </summary>
+            <param name="parameter">The object to test.</param>
+            <param name="parameterName">The name of the parameter.</param>
+            <exception cref="T:Infrastructure.Core.CodeContracts.PreconditionException">
+            <para>The object is null</para>
+            <para>- or -</para>
+            <para>The parameter name is null, empty or all whitespace</para>
+            </exception>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.ParameterCheck.IntParameterIsNonZero(System.Int32,System.String)">
+            <summary>
+            Throws a Precondition exception if the provided integer is zero
+            </summary>
+            <param name="parameter">The integer to test.</param>
+            <param name="parameterName">The name of the parameter.</param>
+            <exception cref="T:Infrastructure.Core.CodeContracts.PreconditionException">
+            <para>The integer is zero</para>
+            <para>- or -</para>
+            <para>The parameter name is null, empty or all whitespace</para>
+            </exception>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.ParameterCheck.IntParameterGreaterThanZero(System.Int32,System.String)">
+            <summary>
+            Throws a Precondition exception if the provided integer is not greater than zero
+            </summary>
+            <param name="parameter">The integer to test.</param>
+            <param name="parameterName">The name of the parameter.</param>
+            <exception cref="T:Infrastructure.Core.CodeContracts.PreconditionException">
+            <para>The integer is not greater than zero.</para>
+            <para>- or -</para>
+            <para>The parameter name is null, empty or all whitespace</para>
+            </exception>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.ParameterCheck.ListMustContainAtLeastOne``1(System.Collections.Generic.IList{``0},System.String)">
+            <summary>
+            Throws a Precondition exception if the provided list is null or does not contain at least one member
+            </summary>
+            <typeparam name="T">The type of list</typeparam>
+            <param name="listParameter">A list of type T.</param>
+            <param name="parameterName">The name of the parameter</param>
+            <exception cref="T:Infrastructure.Core.CodeContracts.PreconditionException">
+            <para>The list is null</para>
+            <para>- or -</para>
+            <para>The list does not contain at least one element</para>
+            <para>- or -</para>
+            <para>The parameter name is null, empty or all whitespace</para>
+            </exception>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.ParameterCheck.MustContainAtLeastOne``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Throws a Precondition exception if the provided IEnumerable is null or does not contain at least one member
+            </summary>
+            <typeparam name="T">The type of enumerated object</typeparam>
+            <param name="enumerable">An IEnumerable of type T.</param>
+            <param name="parameterName">The name of the parameter</param>
+            <exception cref="T:Infrastructure.Core.CodeContracts.PreconditionException">
+            <para>The enumerable is null</para>
+            <para>- or -</para>
+            <para>The enumerable does not contain at least one element</para>
+            <para>- or -</para>
+            <para>The parameter name is null, empty or all whitespace</para>
+            </exception>
+        </member>
+        <member name="T:Infrastructure.Core.CodeContracts.PreconditionException">
+            <summary>
+            Method preconditions not met.
+            </summary>
+            <remarks>
+            Code should not generally throw this exception.  Rather,
+            use methods in the static ParameterCheck class
+            </remarks>
+            <seealso cref="T:Infrastructure.Core.CodeContracts.ParameterCheck"/>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.PreconditionException.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.PreconditionException.#ctor(System.String)">
+            <summary>
+            Constructor with error message.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.PreconditionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructior with error message and inner exception.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="inner">The inner exception.</param>
+        </member>
+        <member name="M:Infrastructure.Core.CodeContracts.PreconditionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor used in serialization.
+            </summary>
+            <param name="info">Serialization information.</param>
+            <param name="context">Serialization context.</param>
+        </member>
+        <member name="T:Infrastructure.Core.Configuration">
+            <summary>
+            Configuration of commons
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Configuration.BuildWith(Infrastructure.Core.Container.IServiceLocator)">
+            <summary>
+            Assigns the service locator builder.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Configuration.LogWith(Infrastructure.Core.Logging.ILogProvider)">
+            <summary>
+            Assigns the log provider.
+            </summary>
+            <param name="logProvider"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Configuration.Configure">
+            <summary>
+            Apply the configuration.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Configuration.Settings">
+            <summary>
+            Gets the settings instance.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Configuration.Logger">
+            <summary>
+            Use this in code so that the logger is not used until after
+            the log provider is initialized by configuration.  Otherwise, you will always get 
+            the null logger provider.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Configuration.ServiceLocator">
+            <summary>
+            Gets the service locator configured.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Configuration.LogProvider">
+            <summary>
+            Gets the configured log provider.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Helpers.ApplicationInformation">
+            <summary>
+            Common information about the application
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.ApplicationInformation.LogApplicationInfo">
+            <summary>
+            Logs information about the application to the configured loggers.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Helpers.ApplicationInformation.Logger">
+            <summary>
+            Use this in code so that the logger is not used until after
+            the log provider is initialized by configuration.  Otherwise, you will always get 
+            the null logger provider.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Helpers.ApplicationInformation.Name">
+            <summary>
+            Gets the name of the application as contained in the AssemblyProduct attribute
+            of the entry assembly.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Helpers.ApplicationInformation.Version">
+            <summary>
+            Gets the version of the application as contained in the AssemblyVersion attribute
+            of the entry assembly.
+            This is the value used by .NET to check for compatibility with callers.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Helpers.ApplicationInformation.FileVersion">
+            <summary>
+            Gets the file version of the application as contained in the AssemblyFileVersion attribute
+            of the entry assembly.
+            This is the library version with the build number.  Build number is not relevant
+            when checking for compatibility.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Helpers.ApplicationInformation.Directory">
+            <summary>
+            Gets the application directory.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Helpers.ApplicationInformation.IsWebApplication">
+            <summary>
+            Gets a boolean indicating whether of not the current application is a web application.
+            </summary>
+            <remarks>The application is considered a web application of the configuration file
+            name is web.config.</remarks>
+        </member>
+        <member name="T:Infrastructure.Core.Helpers.DirectoryAndFileHelper">
+            <summary>
+            Helper methods for Directories and Files.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.DirectoryAndFileHelper.EnsureFolderExists(System.IO.FileInfo,Infrastructure.Core.Logging.ILog)">
+            <summary>
+            Ensure a Directory exists and if it does not, create it.
+            </summary>
+            <param name="fileInfo">The directory to ensure</param>
+            <param name="logger">An optional logger to use to log any exceptions</param>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.DirectoryAndFileHelper.EnsureFolderExists(System.IO.DirectoryInfo,Infrastructure.Core.Logging.ILog)">
+            <summary>
+            Ensure a Directory exists and if it does not, create it.
+            </summary>
+            <param name="directory">The directory to ensure</param>
+            <param name="logger">An optional logger to use to log any exceptions</param>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.DirectoryAndFileHelper.SaveStreamToFile(System.IO.Stream,System.String,System.Boolean,Infrastructure.Core.Logging.ILog)">
+            <summary>
+            Save a stream of information to a File
+            </summary>
+            <remarks>
+            Because a FileSystemWatcher fires when a file is created and not finished, we want to
+            save to a temporary file and then move the file when we are complete.
+            </remarks>
+            <param name="stream">The Stream to Save</param>
+            <param name="path">The File Path to save the file</param>
+            <param name="overrideFile">OverRide if the file exists?</param>
+            <param name="logger">An optional logger to use to log any exceptions</param>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.DirectoryAndFileHelper.SaveStreamToFile(System.IO.Stream,System.IO.FileInfo,System.Boolean,Infrastructure.Core.Logging.ILog)">
+            <summary>
+            Save a stream of information to a File
+            </summary>
+            <remarks>
+            Because a FileSystemWatcher fires when a file is created and not finished, we want to
+            save to a temporary file and then move the file when we are complete.
+            If the directory is on the same drive as the Systems Temp folder, the file will be created there.
+            </remarks>
+            <param name="stream">The Stream to Save</param>
+            <param name="fileInfo">The File  to save the stream</param>
+            <param name="overrideFile">OverRide if the file exists?</param>
+            <param name="logger">An optional logger to use to log any exceptions</param>
+        </member>
+        <member name="T:Infrastructure.Core.Helpers.MimeTypeHelper">
+            <summary>
+            Helpers for looking up mime types of extensions and vice versa.
+            The pdf, jdf, and jmf mime types are hard-coded.  The rest
+            rely on the registry.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.PdfMimeType">
+            <summary>
+            Gets the standard mime type for PDF
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.JdfMimeType">
+            <summary>
+            Gets the standard mime type for JDF
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.JmfMimeType">
+            <summary>
+            Gets the standard mime type for JMF
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.MimeMultipartMimeType">
+            <summary>
+            Gets the standard mime type for mime multipart
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.XmlMimeType">
+            <summary>
+            Gets the standard mime type for xml.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.JdfExtension">
+            <summary>
+            Gets the standard extension for JDF
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.JmfExtension">
+            <summary>
+            Gets the standard extension for JMF.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.XmlExtension">
+            <summary>
+            Gets the standard extension for xml.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.PngExtension">
+            <summary>
+            Extension for PNG files.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.PngMimeType">
+            <summary>
+            PNG mime type
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.JpegExtension">
+            <summary>
+            JPEG extension
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.JpegMimeType">
+            <summary>
+            JPEG mime type
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.GifExtension">
+            <summary>
+            GIF extension.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.GifMimeType">
+            <summary>
+            GIF mime type.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.MimeJdfFirstPartExtension">
+            <summary>
+            Gets the standard extension for mime where the first part if JDF
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.MimeJmfFirstPartExtension">
+            <summary>
+            Gets the standard extension for mime when the first part is JMF.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.PdfExtension">
+            <summary>
+            Gets the standard extension for PDF.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.HtmlMimeType">
+            <summary>
+            Gets the HTML mime type.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.TextMimeType">
+            <summary>
+            Gets the Text mime type.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Helpers.MimeTypeHelper.HtmlMimeTypeExtension">
+            <summary>
+            Gets the standard extension for html files.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.MimeTypeHelper.MimeType(System.String)">
+            <summary>
+            Gets the mime type of the given extension or file name.
+            </summary>
+            <param name="fileNameOrExtension"></param>
+            <returns></returns>
+            <remarks>Returns standard types for pdf. jdf, jmf, mjd (mime with JDF first), and mjm (mime with JMF first),
+            goes to registry for other types and returns application/octet-stream
+            if type cannot be found.
+            </remarks>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.MimeTypeHelper.MimeTypeOf(System.String)">
+            <summary>
+            Gets the mime type of the given extension or file name.
+            </summary>
+            <param name="fileNameOrExtension"></param>
+            <returns></returns>
+            <remarks>Returns standard types for pdf. jdf, jmf, mjd (mime with JDF first), and mjm (mime with JMF first),
+            goes to registry for other types and returns application/octet-stream
+            if type cannot be found.
+            </remarks>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.MimeTypeHelper.MimeTypeExtension(System.String)">
+            <summary>
+            Gets the extension (including the '.') associated
+            with the given mime type.
+            </summary>
+            <param name="mimeType"></param>
+            <returns></returns>
+            <remarks>If the mime type cannot be found, the 
+            returned extension is '.unknown'.</remarks>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.MimeTypeHelper.MimeTypeExtensionOf(System.String)">
+            <summary>
+            Gets the extension (including the '.') associated
+            with the given mime type.
+            </summary>
+            <param name="mimeType"></param>
+            <returns></returns>
+            <remarks>If the mime type cannot be found, the 
+            returned extension is '.unknown'.</remarks>
+        </member>
+        <member name="T:Infrastructure.Core.Logging.ILog">
+            <summary>
+            Common logging interface.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Error(System.Object)">
+            <summary>
+            Log a message at the error level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the error level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the error level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Fatal(System.Object)">
+            <summary>
+            Log a message at the fatal level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message and an exception at the fatal level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the fatal level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Debug(System.Object)">
+            <summary>
+            Log a message at the debug level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the debug level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the debug level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Info(System.Object)">
+            <summary>
+            Log a message at the info level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the info level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the info level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Warn(System.Object)">
+            <summary>
+            Log a message at the warning level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the warning level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILog.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the warning level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.ILog.IsErrorEnabled">
+            <summary>
+            Gets <see langword="true"/> if error logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.ILog.IsFatalEnabled">
+            <summary>
+            Gets <see langword="true"/> if logging is enabled at the fatal level.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.ILog.IsDebugEnabled">
+            <summary>
+            Gets <see langword="true"/> if debug level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.ILog.IsInfoEnabled">
+            <summary>
+            Gets <see langword="true"/> if info level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.ILog.IsWarnEnabled">
+            <summary>
+            Gets <see langword="true"/> if warning level logging is enabled.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Logging.ILogProvider">
+            <summary>
+            Interface to get ILog instances.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILogProvider.GetLogger(System.Type)">
+            <summary>
+            Gets the ILog implementation for the type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.ILogProvider.GetLogger(System.String)">
+            <summary>
+            Gets the ILog implementation for the key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Infrastructure.Core.Logging.LogInitializer">
+            <summary>
+            Helpers for log4net logging
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.LogInitializer.Initialize">
+            <summary>
+            Initialize the log4net system.  Watch the configuration file for changes.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Logging.LogManager">
+            <summary>
+            Log manager.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.LogManager.GetLogger(System.Type)">
+            <summary>
+            Gets the ILog implementation for the type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.LogManager.GetLogger(System.String)">
+            <summary>
+            Gets the ILog implementation for the key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Infrastructure.Core.Logging.NullLog">
+            <summary>
+            ILog implementation that does nothing.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Error(System.Object)">
+            <summary>
+            Log a message at the error level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the error level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the error level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Fatal(System.Object)">
+            <summary>
+            Log a message at the fatal level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message and an exception at the fatal level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the fatal level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Debug(System.Object)">
+            <summary>
+            Log a message at the debug level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the debug level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the debug level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Info(System.Object)">
+            <summary>
+            Log a message at the info level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the info level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the info level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Warn(System.Object)">
+            <summary>
+            Log a message at the warning level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the warning level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the warning level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.NullLog.IsErrorEnabled">
+            <summary>
+            Gets <see langword="true"/> if error logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.NullLog.IsFatalEnabled">
+            <summary>
+            Gets <see langword="true"/> if logging is enabled at the fatal level.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.NullLog.IsDebugEnabled">
+            <summary>
+            Gets <see langword="true"/> if debug level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.NullLog.IsInfoEnabled">
+            <summary>
+            Gets <see langword="true"/> if info level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.NullLog.IsWarnEnabled">
+            <summary>
+            Gets <see langword="true"/> if warning level logging is enabled.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Logging.NullLogProvider">
+            <summary>
+            Implementation of ILogProvider that returns a do-nothing
+            logger.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLogProvider.GetLogger(System.Type)">
+            <summary>
+            Gets the ILog implementation for the type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLogProvider.GetLogger(System.String)">
+            <summary>
+            Gets the ILog implementation for the key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.Mime">
+            <summary>
+            Alternative Mime which is designed to be compatible with Chilkat Mime.
+            Chilkat Mime doesn't support Mono but this Mime will.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime._headers">
+            <summary>
+            Mime header
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime._encoding">
+            <summary>
+            Mime encoding for this part.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime._isMultiPart">
+            <summary>
+            Indicate if this is a multi part mime
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime._boundary">
+            <summary>
+            Boundary of multipart mime
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime._contentType">
+            <summary>
+            The mime type of the part content.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime._buffer">
+            <summary>
+            The raw bytes for this mime.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime._charset">
+            <summary>
+            Mime Character set for this part.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime._fileName">
+            <summary>
+            The name of the file contained within this BodyPart
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime._mimes">
+            <summary>
+            Collection of nested mimes if thia is multi part mime.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.#ctor(System.String)">
+            <summary>
+            Construct a mime from file.
+            </summary>
+            <param name="fileName">name of file to build a mime</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.#ctor(System.Byte[])">
+            <summary>
+            Construct a mime from byte array
+            </summary>
+            <param name="bytes">byte array to build a mime</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.#ctor(System.IO.Stream)">
+            <summary>
+            Construct a mime from stream.
+            </summary>
+            <param name="stream">stream to build a mime</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.#ctor(Infrastructure.Core.Mime.MimeParser)">
+            <summary>
+            Internal use to construct mime from mime parser
+            </summary>
+            <param name="mp">MimeParser</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.#ctor(Infrastructure.Core.Mime.MimeParser@,System.Boolean)">
+            <summary>
+            Internal use to construct a child mime from mime parser
+            </summary>
+            <param name="mp"></param>
+            <param name="isChildMime"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetMimeEncoding(System.String)">
+            <summary>
+            Return MimeEncoding enum based on given encoding string
+            </summary>
+            <param name="encoding">encoding string</param>
+            <returns>MimeEncoding enum</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetMimeCharset(System.String)">
+            <summary>
+            Return MimeCharset enum based on given charset string
+            </summary>
+            <param name="charset">charset string</param>
+            <returns>MimeCharset enum</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.MimeEncodingToString(Infrastructure.Core.Mime.Mime.MimeEncoding)">
+            <summary>
+            Returns a RFC2045 content transfer encoding value for a
+            given MimeEncoding.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.MimeCharsetToString(Infrastructure.Core.Mime.Mime.MimeCharset)">
+            <summary>
+            Returns a RFC2045 charset string for a given charset.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.Parse(Infrastructure.Core.Mime.MimeParser@,System.Boolean)">
+            <summary>
+            Parsing mime from stream
+            </summary>
+            <param name="mp"></param>
+            <param name="isChildMime"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetMimeBinary">
+            <summary>
+            Returns byte representation of the Mime.
+            </summary>
+            <returns>bytes</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetMimeStream">
+            <summary>
+            Gets a memory stream that contains the mime.
+            </summary>
+            <returns>A memory stream.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetMimeStream(System.String)">
+            <summary>
+            Gets a stream containing the mime.
+            </summary>
+            <param name="tempFileName">If non-null, the content is placed in the given file and a FileStream is returned.
+            If this is null, a memory stream is returned.</param>
+            <returns>A stream containg the mime.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.ToString">
+            <summary>
+            Returns string representation of the Mime.
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.Write(System.IO.Stream)">
+            <summary>
+            Output the mime message to a stream.
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.Write(System.IO.StreamWriter)">
+            <summary>
+            Write to the stream writer
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.WriteBody(System.IO.StreamWriter)">
+            <summary>
+            Encode the body and write to the stream writer.
+            </summary>
+            <param name="writer">A StreamWriter to receive the output.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetPart(System.Int32)">
+            <summary>
+            Return the part of given index as Mime message.
+            </summary>
+            <param name="partIndex">Index of part</param>
+            <returns>Mime</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetHeaderField(System.String)">
+            <summary>
+            Return the value of the specified header
+            </summary>
+            <param name="headerName">Name of header</param>
+            <returns>value of specified header.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetXml">
+            <summary>
+            Return xml string as body
+            </summary>
+            <returns>string of xml body</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetBodyBinary">
+            <summary>
+            Return bytes as binary body
+            </summary>
+            <returns>bytes of binary body</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.SetHeaderField(System.String,System.String)">
+            <summary>
+            Set header field
+            </summary>
+            <param name="nameField"></param>
+            <param name="valueField"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.SetBodyFromPlainText(System.String,Infrastructure.Core.Mime.Mime.MimeCharset)">
+            <summary>
+            Set body of the message from plain text
+            </summary>
+            <param name="plainText">plain text to set the body</param>
+            <param name="charset"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.SetBodyFromPlainText(System.String)">
+            <summary>
+            Set body of the message from plain text
+            </summary>
+            <param name="plainText">plain text to set the body</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.SetBodyFromXml(System.String)">
+            <summary>
+            Set body of the message from Xml text
+            </summary>
+            <param name="xmlText">Xml text to set the body</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.SetBodyFromBinary(System.Byte[])">
+            <summary>
+            Set body of the message from binary byte array
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.IsXml">
+            <summary>
+            Return boolean indicating whether the body of the message is xml
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.AppendPart(Infrastructure.Core.Mime.Mime)">
+            <summary>
+            Append the given part to the body
+            </summary>
+            <param name="part"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetMime">
+            <summary>
+            Return string of the whole message
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.NewMultipartRelated">
+            <summary>
+            Construct a new Mime Multipart message
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.CreateDefaultType">
+            <summary>
+            Copy Content-type of the first body part and put into 'type' parameter in Content-type header of the mime.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.Add(Infrastructure.Core.Mime.Mime)">
+            <summary>
+            Add child message
+            </summary>
+            <param name="childMime"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.SetBodyFromFile(System.String)">
+            <summary>
+            Set body of the message from file.
+            </summary>
+            <param name="fileName">The file to read from.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.AddAdditionalHeader">
+            <summary>
+            This method checks and adds additional required header fields.  
+            1. If it is a text type, add the character set
+            2. Check and add Content-Transfer-Encoding
+            3. Calculates the content length.  For base64 encoding, this
+            requires encoding the buffer.  Therefore, the encoded data is stored in
+            _encodedString for use during the body right when base64 encoding is used.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.AddAdditionalHeader(Infrastructure.Core.Mime.MimeHeaderCollection)">
+            <summary>
+            This method checks and adds additional required header fields.  
+            1. If it is a text type, add the character set
+            2. Check and add Content-Transfer-Encoding
+            3. Calculates the content length.  For base64 encoding, this
+            requires encoding the buffer.  Therefore, the encoded data is stored in
+            _encodedString for use during the body right when base64 encoding is used.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.AddContentType">
+            <summary>
+            Add Content type to header
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.AddContentType(Infrastructure.Core.Mime.MimeHeaderCollection)">
+            <summary>
+            Add Content type to the given header
+            </summary>
+            <param name="headers">headers to add content typ</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetText">
+            <summary>
+            Gets the text from the part assuming us-ascii charset.
+            </summary>
+            <returns>The text from the part.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetText(Infrastructure.Core.Mime.Mime.MimeCharset)">
+            <summary>
+            Gets the text from the part with a given encoding.
+            </summary>
+            <param name="charset">The charset to use (e.g. MimeCharset.Ascii)</param>
+            <returns>The text from the part</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.SetText(System.String)">
+            <summary>
+            Sets the underlying part buffer from a string using the ASCII character set.
+            </summary>
+            <param name="val">The string to put in the part.</param>
+            <remarks>
+            ContentType becomes text/plain.
+            </remarks>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.SetText(System.String,Infrastructure.Core.Mime.Mime.MimeCharset)">
+            <summary>
+            Sets the underlying part buffer from a string using the given character set.
+            </summary>
+            <param name="val">The string to put in the part.</param>
+            <param name="charset">The charcter set used to convert the string to bytes.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.GetPartByContentId(System.String)">
+            <summary>
+            Return the part of given contentId as Mime.
+            </summary>
+            <param name="contentId">Content-Id of mime</param>
+            <returns>Mime with the specified contentID.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.Dispose">
+            <summary>
+            Dispose.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.Mime.Dispose(System.Boolean)">
+            <summary>
+            Dispose.
+            </summary>
+            <param name="isDisposing"></param>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.Mime.Headers">
+            <summary>
+            Gets the headers associated with this mime.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.Mime.ContentType">
+            <summary>
+            Gets or sets the content type of this mime.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.Mime.NumParts">
+            <summary>
+            Gets the number of parts
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.Mime.Encoding">
+            <summary>
+            Gets or sets Content type encoding of mime file.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.Mime.Filename">
+            <summary>
+            Gets or sets Name of mime file.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.Mime.EncodingType">
+            <summary>
+            Gets or sets the encoding of the part
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.Mime.Buffer">
+            <summary>
+            Gets or sets the raw byte array associated with the body part.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.Mime.Boundary">
+            <summary>
+            Boundary of the multi part
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.Mime.HasParts">
+            <summary>
+            Determine if the mime has Parts
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.Mime.MimeEncoding">
+            <summary>
+            Encoding of the part.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime.MimeEncoding.Base64">
+            <summary>
+            Bae64 Transfer encoding 
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime.MimeEncoding.QuotedPrintable">
+            <summary>
+            Quoted printable transfer encoding.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime.MimeEncoding.Binary">
+            <summary>
+            This is just a hint that the data is binary in nature.  
+            The data is not encoded in any way.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime.MimeEncoding.E7Bit">
+            <summary>
+            This is just a hint that the data is 7bit ascii.  The data
+            is not encoded in any way.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime.MimeEncoding.E8Bit">
+            <summary>
+            This is just a hint that the data is 8bit ascii.  The 
+            data is not encoded in any way.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.Mime.MimeCharset">
+            <summary>
+            Allowable charsets
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime.MimeCharset.Ascii">
+            <summary>
+            The ASCII charset (Encoding.ASCII).  
+            This is the most portable charset.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime.MimeCharset.Utf7">
+            <summary>
+            The BigEndianUnicode charset (Encoding.BigEndianUnicode)
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.Mime.MimeCharset.Utf8">
+            <summary>
+            The UTF8 charset (Encoding.UTF8).  This is
+            the most portable charset that can carry double-byte Unicode
+            characters.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeBasicPart">
+            <summary>
+            This represents mime message content such as text or binary data.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeBodyPart">
+            <summary>
+            The body of a mime message.  
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart._contentType">
+            <summary>
+            The mime type of the part content.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart._buffer">
+            <summary>
+            The raw bytes for this part.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart._encoding">
+            <summary>
+            Mime encoding for this part.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart._charset">
+            <summary>
+            Mime Character set for this part.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart._fileName">
+            <summary>
+            The name of the file contained within this BodyPart
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.GetMimeEncoding(System.String)">
+            <summary>
+            Return MimeEncoding enum based on given encoding string
+            </summary>
+            <param name="encoding">encoding string</param>
+            <returns>MimeEncoding enum</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.GetMimeCharset(System.String)">
+            <summary>
+            Return MimeCharset enum based on given charset string
+            </summary>
+            <param name="charset">charset string</param>
+            <returns>MimeCharset enum</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.MimeEncodingToString(Infrastructure.Core.Mime.MimeBodyPart.MimeEncoding)">
+            <summary>
+            Returns a RFC2045 content transfer encoding value for a
+            given MimeEncoding.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.MimeCharsetToString(Infrastructure.Core.Mime.MimeBodyPart.MimeCharset)">
+            <summary>
+            Returns a RFC2045 charset string for a given charset.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.Write(System.IO.StreamWriter)">
+            <summary>
+            Write this part to the output.
+            </summary>
+            <param name="writer">A StreamWriter connected to the output stream.</param>
+            <remarks>
+            MimeMessage controls opening and closing the StreamWriter.
+            </remarks>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.WriteBody(System.IO.StreamWriter)">
+            <summary>
+            Encode the body and write to the output stream.
+            </summary>
+            <param name="writer">A StreamWriter to receive the output.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.AddAdditionalHeader(Infrastructure.Core.Mime.MimeHeaderCollection)">
+            <summary>
+            This method checks and adds additional required header fields.  
+            1. If it is a text type, add the character set
+            2. Check and add Content-Transfer-Encoding
+            3. Calculates the content length.  For base64 encoding, this
+            requires encoding the buffer.  Therefore, the encoded data is stored in
+            _encodedString for use during the body right when base64 encoding is used.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.GetText">
+            <summary>
+            Gets the text from the part assuming us-ascii charset.
+            </summary>
+            <returns>The text from the part.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.GetText(Infrastructure.Core.Mime.MimeBodyPart.MimeCharset)">
+            <summary>
+            Gets the text from the part with a given encoding.
+            </summary>
+            <param name="charset">The charset to use (e.g. MimeCharset.Ascii)</param>
+            <returns>The text from the part</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.SetText(System.String)">
+            <summary>
+            Sets the underlying part buffer from a string using the ASCII character set.
+            </summary>
+            <param name="val">The string to put in the part.</param>
+            <remarks>
+            ContentType becomes text/plain.
+            </remarks>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.SetText(System.String,Infrastructure.Core.Mime.MimeBodyPart.MimeCharset)">
+            <summary>
+            Sets the underlying part buffer from a string using the given character set.
+            </summary>
+            <param name="val">The string to put in the part.</param>
+            <param name="charset">The charcter set used to convert the string to bytes.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.ToString">
+            <summary>
+            Returns a string representation of the MimeBodyPart.
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.GetMimeBinary">
+            <summary>
+            Returns byte representation of the MimeMessage.
+            </summary>
+            <returns>bytes</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.GetXml">
+            <summary>
+            Return xml string as body
+            </summary>
+            <returns>string of xml body</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPart.GetBodyBinary">
+            <summary>
+            Return bytes as binary body
+            </summary>
+            <returns>bytes of binary body</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeBodyPart.ContentType">
+            <summary>
+            Gets or sets the content type of the body 
+            (e.g. multipart/related, text/xml).
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeBodyPart.Encoding">
+            <summary>
+            Gets or sets the encoding of the part
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeBodyPart.Buffer">
+            <summary>
+            Gets or sets the raw byte array associated with the body part.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeBodyPart.IsXml">
+            <summary>
+            Return boolean indicating whether the body of the message is xml
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeBodyPart.FileName">
+            <summary>
+            The name of the file contained within this BodyPart
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeBodyPart.MimeEncoding">
+            <summary>
+            Encoding of the part.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart.MimeEncoding.Base64">
+            <summary>
+            Bae64 Transfer encoding 
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart.MimeEncoding.QuotedPrintable">
+            <summary>
+            Quoted printable transfer encoding.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart.MimeEncoding.Binary">
+            <summary>
+            This is just a hint that the data is binary in nature.  
+            The data is not encoded in any way.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart.MimeEncoding.E7Bit">
+            <summary>
+            This is just a hint that the data is 7bit ascii.  The data
+            is not encoded in any way.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart.MimeEncoding.E8Bit">
+            <summary>
+            This is just a hint that the data is 8bit ascii.  The 
+            data is not encoded in any way.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeBodyPart.MimeCharset">
+            <summary>
+            Allowable charsets
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart.MimeCharset.Ascii">
+            <summary>
+            The ASCII charset (Encoding.ASCII).  
+            This is the most portable charset.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart.MimeCharset.Utf7">
+            <summary>
+            The BigEndianUnicode charset (Encoding.BigEndianUnicode)
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeBodyPart.MimeCharset.Utf8">
+            <summary>
+            The UTF8 charset (Encoding.UTF8).  This is
+            the most portable charset that can carry double-byte Unicode
+            characters.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBasicPart.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBasicPart.#ctor(System.String)">
+            <summary>
+            Construct a basic part from a file.  Attempt to determine
+            mime type from the file name.
+            </summary>
+            <param name="fileName">The file to read from.</param>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeBodyPartCollection">
+            <summary>
+            A collection based on an array list of mime body parts.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPartCollection.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPartCollection.Add(Infrastructure.Core.Mime.MimeBodyPart)">
+            <summary>
+            Add a mime body part.
+            </summary>
+            <param name="part">The part to add.</param>
+            <returns>The newly added part.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPartCollection.RemoveAt(System.Int32)">
+            <summary>
+            Remove the MimeBodyPart at the given index.
+            </summary>
+            <param name="index">The index from which to remove.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPartCollection.Remove(Infrastructure.Core.Mime.MimeBodyPart)">
+            <summary>
+            Remove the given MimeBodyPart from the collection.
+            </summary>
+            <param name="part">The part to remove.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeBodyPartCollection.GetEnumerator">
+            <summary>
+            Gets an enumerator over the MimeBodyPart objects in the collection.
+            </summary>
+            <returns>An enumerator over MimeBodyPart objects.</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeBodyPartCollection.Item(System.Int32)">
+            <summary>
+            Gets the mime body part at the indicated index.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeBodyPartCollection.Count">
+            <summary>
+            Gets the number of elements currently in the collection.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeCollection">
+            <summary>
+            Summary description for MimeCollection.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeCollection.#ctor">
+            <summary>
+            MimeCollection
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeCollection.Add(Infrastructure.Core.Mime.Mime)">
+            <summary>
+            Add a mime message.
+            </summary>
+            <param name="part">The part to add.</param>
+            <returns>The newly added part.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeCollection.RemoveAt(System.Int32)">
+            <summary>
+            Remove the Mime at the given index.
+            </summary>
+            <param name="index">The index from which to remove.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeCollection.Remove(Infrastructure.Core.Mime.Mime)">
+            <summary>
+            Remove the given Mime from the collection.
+            </summary>
+            <param name="part">The part to remove.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeCollection.GetEnumerator">
+            <summary>
+            Gets an enumerator over the Mime objects in the collection.
+            </summary>
+            <returns>An enumerator over Mime objects.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeCollection.Write(System.IO.StreamWriter)">
+            <summary>
+            Write
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeCollection.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeCollection.GetMimeBinary">
+            <summary>
+            GetMimeBinary
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeCollection.Item(System.Int32)">
+            <summary>
+            Gets the mime message at the indicated index.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeCollection.Count">
+            <summary>
+            Gets the number of elements currently in the collection.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeException">
+            <exception>
+            An exception occured in the oai.mime library.
+            </exception> 
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeException.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeException.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="Message">The message.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="Message">The message.</param>
+            <param name="Inner">The inner exception.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            For serialization.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeException.ThrowAndLog(System.String,System.Type)">
+            <summary>
+            Log a new mime exception and then throw it.
+            </summary>
+            <param name="message"></param>
+            <param name="callingType"></param>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeHeader">
+            <summary>
+            Represents a mime header in the form name:value.  Names are lower-cased 
+            so lookups and usage of names is case-insensitive.
+            </summary>
+            <remarks>Per the RFC, comments in the value are stripped during parsing.</remarks>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeHeaderBase">
+            <summary>
+            Base class for MimeHeader and MimeHeaderParam.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderBase.#ctor(System.String,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="val">The value.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderBase.#ctor(System.String)">
+            <summary>
+            A line containing the header.  The child classes's ParseLine
+            function will determine how the line is parsed.
+            </summary>
+            <param name="line">A line containing header information.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderBase.ParseLine(System.String,System.String@,System.String@)">
+            <summary>
+            Parse a line.
+            </summary>
+            <param name="line">The line to parse.</param>
+            <remarks>
+            Override this in child classes.
+            </remarks>
+            <param name="name"></param>
+            <param name="val"></param>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderBase.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderBase.Value">
+            <summary>
+            Gets the value.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeader.#ctor(System.String)">
+            <summary>
+            Construct a mime header from a line.  
+            </summary>
+            <param name="line">The line in name:value form.  The line does not include a crlf pair.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeader.#ctor(System.String,System.String)">
+            <summary>
+            Constructs a mime header from a name and value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="val">The value.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeader.ParseLine(System.String,System.String@,System.String@)">
+            <summary>
+            Parse a line in the form name: value
+            </summary>
+            <param name="line">The line to parse.</param>
+            <param name="name">(out) the name.</param>
+            <param name="val">(out) the value.</param>
+            <exception cref="T:Infrastructure.Core.Mime.MimeException">If the header param is not in the expected format.</exception>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeader.ToString">
+            <summary>
+            Return a header string in the form name:value. 
+            </summary>
+            <returns>The unterminated header string.</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeader.Parameters">
+            <summary>
+            Gets the collection of parameters associated with this header.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeHeaderCollection">
+            <summary>
+            The collection of mime headers keyed by header name.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderCollection.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderCollection.Add(Infrastructure.Core.Mime.MimeHeader)">
+            <summary>
+            Add a mime header.
+            </summary>
+            <param name="header">The header to add.</param>
+            <returns>The newly added header.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderCollection.Contains(System.String)">
+            <summary>
+            Returns true if the given header name exists in the collection.
+            </summary>
+            <param name="headerName">The header name to find.</param>
+            <returns>True if the header exists.  Otherwise, false.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderCollection.GetEnumerator">
+            <summary>
+            Get an enumerator.
+            </summary>
+            <returns>An enumerator over MimeHeader objects.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderCollection.ToString">
+            <summary>
+            Returns a string representation of the collection.
+            </summary>
+            <returns>Lines are terminated with CRLF as described in the MIME standard.</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderCollection.Item(System.String)">
+            <summary>
+            Gets the mime header by key.  Returns null if not found.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderCollection.Item(System.Int32)">
+            <summary>
+            Gets the mime header by index.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderCollection.Count">
+            <summary>
+            Gets the number of entries in the collection.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeHeaderEnumerator">
+            <summary>
+            Enumerator over MimeHeader objects in a MimeHeaderCollection.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderEnumerator.#ctor(Infrastructure.Core.Mime.MimeHeaderCollection)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="headers">The MimeHeaderCollection over which to enumerate.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderEnumerator.Reset">
+            <summary>
+            Reset the enumerator to one before the first element.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderEnumerator.MoveNext">
+            <summary>
+            Move to the next element.
+            </summary>
+            <returns>True if there was a next element.</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderEnumerator.Current">
+            <summary>
+            Get the current element.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeHeaderParam">
+            <summary>
+            Represents a parameter as defined in the RFC for content-type 
+            header parameters.  That is, a name=value pair where the
+            value may be enclosed in double quotes.
+            </summary>
+            <remarks>
+            Per the RFC, text enclosed in parenthesis is treated as a comment
+            and is ignored and stripped from the header value.
+            </remarks>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParam.#ctor(System.String,System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="val">The value.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParam.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="line">A line in the form name=value.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParam.ParseLine(System.String,System.String@,System.String@)">
+            <summary>
+            Parse a line in the form name = value
+            </summary>
+            <param name="line">The line to parse.</param>
+            <param name="name">(out) the name.</param>
+            <param name="val">(out) the value.</param>
+            <exception cref="T:Infrastructure.Core.Mime.MimeException">If the header param is not in the expected format.</exception>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParam.ToString">
+            <summary>
+            Return a header string in the form name:value. 
+            </summary>
+            <returns>The unterminated header string.</returns>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeHeaderParamCollection">
+            <summary>
+            The collection of mime headers keyed by header name.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParamCollection.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParamCollection.Add(Infrastructure.Core.Mime.MimeHeaderParam)">
+            <summary>
+            Add a mime param header.
+            </summary>
+            <param name="header">The header to add.</param>
+            <returns>The newly added header.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParamCollection.AddAt(System.Int32,Infrastructure.Core.Mime.MimeHeaderParam)">
+            <summary>
+            Add a mime param header at a specific position.
+            </summary>
+            <param name="index">the zero-based position to add.</param>
+            <param name="header">The header to add.</param>
+            <returns>The newly added header.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParamCollection.Contains(System.String)">
+            <summary>
+            Determines whether the header parameter collection contains a specific key.
+            </summary>
+            <param name="key">key to find</param>
+            <returns>True if the collection contains the specific key. False if not.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParamCollection.GetEnumerator">
+            <summary>
+            Get an enumerator.
+            </summary>
+            <returns>An enumerator over MimeHeader objects.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParamCollection.ToString">
+            <summary>
+            Returns a string representation of the collection.
+            </summary>
+            <returns>Parameters are seperated with a ';' as described in the mime standard.</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderParamCollection.Item(System.String)">
+            <summary>
+            Gets the mime param header by key.  Returns null if not found.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderParamCollection.Item(System.Int32)">
+            <summary>
+            Gets the mime param header by index.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderParamCollection.Count">
+            <summary>
+            Gets the number of entries in the collection.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeHeaderParamEnumerator">
+            <summary>
+            Enumerator over MimeHeader objects in a MimeHeaderCollection.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParamEnumerator.#ctor(Infrastructure.Core.Mime.MimeHeaderParamCollection)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="headers">The MimeHeaderParamCollection over which to enumerate.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParamEnumerator.Reset">
+            <summary>
+            Reset the enumerator to one before the first element.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeHeaderParamEnumerator.MoveNext">
+            <summary>
+            Move to the next element.
+            </summary>
+            <returns>True if there was a next element.</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeHeaderParamEnumerator.Current">
+            <summary>
+            Get the current element.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeMessage">
+            <summary> 
+            Represents a mime message with a collection of headers and a 
+            body.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.#ctor(Infrastructure.Core.Mime.MimeBodyPart)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.#ctor(System.Byte[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="bytes"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.#ctor(Infrastructure.Core.Mime.MimeParser@,Infrastructure.Core.Mime.MimeMultipartBody)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="mp">MimeParser</param>
+            <param name="parentMultipartBody">Multipart Body of parent messages</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.CreateMimeMultipartRelated">
+            <summary>
+            Construct a new Mime Multipart message
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.DeleteBody">
+            <summary>
+            Deletes the body.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.Write(System.IO.Stream)">
+            <summary>
+            Output the mime message to a stream.
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.ToString">
+            <summary>
+            Returns string representation of the MimeMessage.
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.GetMimeBinary">
+            <summary>
+            Returns byte representation of the MimeMessage.
+            </summary>
+            <returns>bytes</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.GetPart(System.Int32)">
+            <summary>
+            Return the part of given index as Mime message.
+            </summary>
+            <param name="partIndex">Index of part</param>
+            <returns>MimeMessage</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.GetHeaderField(System.String)">
+            <summary>
+            Return the value of the specified header
+            </summary>
+            <param name="headerName">Name of header</param>
+            <returns>value of specified header.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.GetXml">
+            <summary>
+            Return xml string as body
+            </summary>
+            <returns>string of xml body</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.GetBodyBinary">
+            <summary>
+            Return bytes as binary body
+            </summary>
+            <returns>bytes of binary body</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.SetHeaderField(System.String,System.String)">
+            <summary>
+            Set header field
+            </summary>
+            <param name="nameField"></param>
+            <param name="valueField"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.SetBodyFromPlainText(System.String)">
+            <summary>
+            Set body of the message from plain text
+            </summary>
+            <param name="plainText">plain text to set the body</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.SetBodyFromXml(System.String)">
+            <summary>
+            Set body of the message from Xml text
+            </summary>
+            <param name="xmlText">Xml text to set the body</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.SetBodyFromBinary(System.Byte[])">
+            <summary>
+            Set body of the message from binary byte array
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.IsXml">
+            <summary>
+            Return boolean indicating whether the body of the message is xml
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.AppendPart(Infrastructure.Core.Mime.MimeMessage)">
+            <summary>
+            Append the given part to the body
+            </summary>
+            <param name="part"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessage.GetMime">
+            <summary>
+            Return string of the whole message
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMessage.Headers">
+            <summary>
+            Gets the headers associated with this message.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMessage.ContentType">
+            <summary>
+            Gets the content type of the body.
+            </summary>
+            <exception cref="T:Infrastructure.Core.Mime.MimeException">If the body is null.</exception>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMessage.Body">
+            <summary>
+            Gets or sets the body of the message.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMessage.NumParts">
+            <summary>
+            Number of parts
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMessage.Encoding">
+            <summary>
+            Content type encoding of mime file.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMessage.Filename">
+            <summary>
+            Name of mime file.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeMessageCollection">
+            <summary>
+            A collection based on an array list of mime messages.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessageCollection.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessageCollection.Add(Infrastructure.Core.Mime.MimeMessage)">
+            <summary>
+            Add a mime message.
+            </summary>
+            <param name="part">The part to add.</param>
+            <returns>The newly added part.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessageCollection.RemoveAt(System.Int32)">
+            <summary>
+            Remove the MimeMessage at the given index.
+            </summary>
+            <param name="index">The index from which to remove.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessageCollection.Remove(Infrastructure.Core.Mime.MimeMessage)">
+            <summary>
+            Remove the given MimeMessage from the collection.
+            </summary>
+            <param name="part">The part to remove.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMessageCollection.GetEnumerator">
+            <summary>
+            Gets an enumerator over the MimeMessage objects in the collection.
+            </summary>
+            <returns>An enumerator over MimeMessage objects.</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMessageCollection.Item(System.Int32)">
+            <summary>
+            Gets the mime message at the indicated index.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMessageCollection.Count">
+            <summary>
+            Gets the number of elements currently in the collection.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeMultipartBody">
+            <summary>
+            Represents a MultiPart mime body.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMultipartBody.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMultipartBody.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMultipartBody.Add(Infrastructure.Core.Mime.MimeMessage)">
+            <summary>
+            Add a mime message to the multipart message.
+            </summary>
+            <param name="part">The MimeMessage to add.</param>
+            <returns>The newly added MimeMessage</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMultipartBody.Remove(Infrastructure.Core.Mime.MimeMessage)">
+            <summary>
+            Remove the given MimeMessage from this multipart message.
+            </summary>
+            <param name="part">The MimeMessage to remove.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMultipartBody.GetPart(System.Int32)">
+            <summary>
+            Return the part of given index as Mime message. 
+            </summary>
+            <param name="partIndex">Index of part</param>
+            <returns>MimeMessage</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMultipartBody.RemoveAt(System.Int32)">
+            <summary>
+            Remove the MimeMessage at the given index.
+            </summary>
+            <param name="index">The index from which to remove a part.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMultipartBody.WriteBody(System.IO.StreamWriter)">
+            <summary>
+            Write the body of this multipart message.
+            </summary>
+            <param name="writer">The writer that receives the output.</param>
+            <remarks>
+            The body of a multipart message consists of 1..n child parts.
+            </remarks>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMultipartBody.ToString">
+            <summary>
+            Returns a string representation of the MimeMultipartBody.
+            </summary>
+            <returns>string</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeMultipartBody.GetMimeBinary">
+            <summary>
+            Returns byte representation of the MimeMessage.
+            </summary>
+            <returns>bytes</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMultipartBody.Boundary">
+            <summary>
+            Boundary of the multi part
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeMultipartBody.NumParts">
+            <summary>
+            Number of parts
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeParser">
+            <summary>
+            Parses a mime message stream.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeParser.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeParser.Finalize">
+            <summary>
+            Destructor
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeParser.ReadNextChunk(System.Byte[]@,System.Int32@,System.Boolean@)">
+            <summary>
+            Reads the next chunk from the mime stream and returns it as byte.
+            </summary>
+            <param name="buffer">A byte array to hold the data chunk.</param>
+            <param name="bytesRead">The number of bytes in the chunk.  Will be -1 if EOF.</param>
+            <param name="isEndOfChunk">False if there is more to read in this chunk.</param>
+            <returns>The type of thing in the buffer.  If EOF, the buffer is unchanged.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeParser.ReadNextChunk(System.String@,System.Boolean@)">
+            <summary>
+            Reads the next chunk from the mime stream and returns it as string.
+            </summary>
+            <param name="chunkString">A string to hold the data chunk.</param>
+            <param name="isEndOfChunk">False if there is more to read in this chunk.</param>
+            <returns>The type of thing in the buffer.  If EOF, the buffer is unchanged.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeParser.ReadNextChunk(System.String@,System.Boolean@,System.Boolean@,System.Byte[]@)">
+            <summary>
+            Reads the next chunk from the mime stream and returns it as string.
+            </summary>
+            <param name="chunkString">A string to hold the data chunk.</param>
+            <param name="isEndOfChunk">False if there is more to read in this chunk.</param>
+            <param name="readBinaryBody"></param>
+            <param name="buffer"></param>
+            <returns>The type of thing in the buffer.  If EOF, the buffer is unchanged.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeParser.IsNextLineBoundary(System.String)">
+            <summary>
+            Determine if the next line is Boundary
+            </summary>
+            <param name="boundary"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeParser.IsMultiPart">
+            <summary>
+            Flag indicating multipart Mime stream
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeParser.Boundary">
+            <summary>
+            Boundary of multipart Mime message
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeParser.ChunkType">
+            <summary>
+            The type of thing returned by Read routines
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeParser.ChunkType.VersionHeader">
+            <summary>
+            A version header.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeParser.ChunkType.Header">
+            <summary>
+            A header.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeParser.ChunkType.Body">
+            <summary>
+            An entity body
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeParser.ChunkType.StartBoundary">
+            <summary>
+            A start boundary line
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeParser.ChunkType.Boundary">
+            <summary>
+            A boundary line
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeParser.ChunkType.EndBoundary">
+            <summary>
+            An end boundary line
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeParser.ChunkType.EOF">
+            <summary>
+            EOF reached.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Mime.MimeParser.ChunkType.Unknown">
+            <summary>
+            Unknown
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Mime.MimeStreamReader">
+            <summary>
+            Summary description for MimeStreamReader.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeStreamReader.#ctor(System.IO.Stream)">
+            <summary>
+            Mime StreamReader
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeStreamReader.ReadNexLine">
+            <summary>
+            Read the next line of current stream to string
+            </summary>
+            <returns>string of the next line</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeStreamReader.ReadNexLine(System.Boolean)">
+            <summary>
+            Read the next line of current stream to string
+            </summary>
+            <param name="ignoreLeadingNonreadableChar">If true, ignore leading-nonreadable characters
+            a nonreadable character is the ASCII character with Dec > 125 or Hex > 7D
+            </param>
+            <returns>string of the next line</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeStreamReader.IsNextLineBoundary(System.String,System.String)">
+            <summary>
+            Determine if the next line is Boundary
+            </summary>
+            <param name="boundary"></param>
+            <param name="boundaryPrefix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeStreamReader.IsMimeBoundary(System.String,System.String,System.String)">
+            <summary>
+            Check for stream line for Mime Boundary
+            </summary>
+            <param name="streamLine"></param>
+            <param name="boundary"></param>
+            <param name="prefix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeStreamReader.IsMimeBoundaryLast(System.String,System.String,System.String)">
+            <summary>
+            Check for stream line for the last Mime Boundary
+            </summary>
+            <param name="streamLine"></param>
+            <param name="boundary"></param>
+            <param name="prefix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeStreamReader.ReadBytes(System.String,System.String)">
+            <summary>
+            Read bytes of current stream
+            </summary>
+            <param name="boundary"></param>
+            <param name="boundaryPrefix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Mime.MimeStreamReader.Close">
+            <summary>
+            Close current stream
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Mime.MimeStreamReader.Position">
+            <summary>
+            Position of current stream
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Container.ComponentLifestyle">
+            <summary>
+            Generic component lifestyle
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Container.ComponentLifestyle.Singleton">
+            <summary>
+            Singleton
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Container.ComponentLifestyle.Transient">
+            <summary>
+            New component created for each resolution.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Container.ComponentLifestyle.Thread">
+            <summary>
+            One component for each thread.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Container.ComponentLifestyle.PerWebRequest">
+            <summary>
+            One instance per web request.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Container.ComponentLifestyle.TransientNoTracking">
+            <summary>
+            For containers that track transients by default, this
+            lifestyle is a true transient with no tracking.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Container.IComponentInstaller">
+            <summary>
+            Interface for a component installer.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IComponentInstaller.Install(Infrastructure.Core.Container.IServiceLocator)">
+            <summary>
+            Install components in the given service locator.
+            </summary>
+            <param name="serviceLocator"></param>
+        </member>
+        <member name="T:Infrastructure.Core.Container.IHandler">
+            <summary>
+            Interface to coordinate the creation and destruction 
+            of a component via the service locator/container.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IHandler.Resolve">
+            <summary>
+            Return an instance of the implementation type.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Infrastructure.Core.Container.IHandler.Service">
+            <summary>
+            Gets the service type.  Often an interface.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Container.IHandler.Implementation">
+            <summary>
+            Gets the implementation type of the service.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Container.IHandler.Key">
+            <summary>
+            Gets the key that can be used to lookup this handler
+            in the locator/container.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Container.IServiceLocator">
+            <summary>
+            Generic service locator
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.Resolve``1">
+            <summary>
+            Get the default instance of the given type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.Resolve(System.Type)">
+            <summary>
+            Get the default instance of the given type
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.Resolve``1(System.String)">
+            <summary>
+            Get the instance of the given type with the given key.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.Resolve(System.Type,System.String)">
+            <summary>
+            Get the instance of the given type with the given key.
+            </summary>
+            <param name="type"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.CanResolve(System.Type)">
+            <summary>
+            Returns true if the given type can be resolved.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.CanResolve(System.Type,System.String)">
+            <summary>
+            Returns true if a component with the given type and key can be resolved.
+            </summary>
+            <param name="type"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.ResolveAll``1">
+            <summary>
+            Resolve all components of the given type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.GetAllHandlersFor(System.Type)">
+            <summary>
+            Get the handlers for the given type.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.Release(System.Object)">
+            <summary>
+            Release the given instance.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.LogRegisteredComponents">
+            <summary>
+            Log information about the currently registered components.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.NativelyRegisterComponentsAndPlugins">
+            <summary>
+            Load all plugins and run native container registration for each assembly (if available)
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.Register(System.Type,System.Type,Infrastructure.Core.Container.ComponentLifestyle)">
+            <summary>
+            Register an implementation of the given interface type with a 
+            lifestyle that defaults to singleton under the key full name
+            of implementation.
+            </summary>
+            <param name="interfaceType"></param>
+            <param name="instanceType"></param>
+            <param name="componentLifestyle"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.Register(System.String,System.Type,System.Type,Infrastructure.Core.Container.ComponentLifestyle)">
+            <summary>
+            Register an implementation of the given interface type with a 
+            lifestyle that defaults to singleton and the given key.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.Reset">
+            <summary>
+            Clear all components from the container.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.RegisterRemainingInterfaceImplementations(System.Reflection.Assembly)">
+            <summary>
+            Register remaining interface implementations as singletons
+            in the given assmebly.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.ReadOnlyDictionary`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.#ctor(System.Collections.Generic.IDictionary{`0,`1})">
+            <summary>
+            
+            </summary>
+            <param name="dictionary"></param>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.Add(`0,`1)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.ContainsKey(`0)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.Remove(`0)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.TryGetValue(`0,`1@)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.Clear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.Contains(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="array"></param>
+            <param name="arrayIndex"></param>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.ReadOnlyDictionary`2.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Infrastructure.Core.ReadOnlyDictionary`2.Keys">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.ReadOnlyDictionary`2.Values">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.ReadOnlyDictionary`2.Item(`0)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Infrastructure.Core.ReadOnlyDictionary`2.Count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.ReadOnlyDictionary`2.IsReadOnly">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Resources.Messages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.DirectoryAndFileHelper_ErrorCreatingDirectory">
+            <summary>
+              Looks up a localized string similar to Error Creating Directory: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.DirectoryAndFileHelper_SaveStreamToFile_CouldNotDeleteExistingFile">
+            <summary>
+              Looks up a localized string similar to The destination file already exists and could not be deleted &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.DirectoryAndFileHelper_SaveStreamToFile_DestinationFileExists">
+            <summary>
+              Looks up a localized string similar to The destination file already exists and overrideFile is false &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.DirectoryAndFileHelper_SaveStreamToFile_ErrorCreatingTempFile">
+            <summary>
+              Looks up a localized string similar to Error creating Or writing to temporary file used to write stream {0}.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.DirectoryAndFileHelper_SaveStreamToFile_ErrorRenamingFileFromTempFile">
+            <summary>
+              Looks up a localized string similar to Error during rename of temp file from {0} to {1}.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.LogInitializer_HookUnhandledExceptionEvents_Unhandled_UnknownException">
+            <summary>
+              Looks up a localized string similar to Unhandled exception.  Actual exception is not known.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.LogInitializer_HookUnhandledExceptionEvents_UnhandledException">
+            <summary>
+              Looks up a localized string similar to Unhandled exception.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.Mime_Dispose_CouldNoDeleteMimeBufferFile">
+            <summary>
+              Looks up a localized string similar to Could not delete mime buffer file {0}.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.Mime_GetMimeCharset_UnrecognizedCharset">
+            <summary>
+              Looks up a localized string similar to Unrecognized charset: {0}.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.Mime_GetMimeCollectionFile_ErrorDuringEncoding">
+            <summary>
+              Looks up a localized string similar to Error occurred during mime encoding.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.Mime_GetMimeEncoding_UnrecognizedMimeEncoding">
+            <summary>
+              Looks up a localized string similar to Unrecognized MimeEncoding: {0}.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.Mime_GetMimeStream_CouldNotDeleteTempFileUsedToCreateBody">
+            <summary>
+              Looks up a localized string similar to Could not delete temp file {0} used to create mime body.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeBodyPart_GetMimeCharsetUnrecognizedCharset">
+            <summary>
+              Looks up a localized string similar to Unrecognized charset: .
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeBodyPart_GetMimeEncoding_UnrecognizedMimeEncoding">
+            <summary>
+              Looks up a localized string similar to Unrecognized MimeEncoding: .
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeHeader_ParseLine_HeaderIsNotInCorrectForm">
+            <summary>
+              Looks up a localized string similar to Header is not in the expected name:value form.  The raw data is {0}.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeHeaderParamCollection_Add_HeaderParamWithNameExists">
+            <summary>
+              Looks up a localized string similar to Header param with same name already exists.  The header is {0}.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeHeaderParamCollection_AddAt_InvalidPositionForMiimeHeader">
+            <summary>
+              Looks up a localized string similar to Invalid position {0} to add a parameter in a Mime Header.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeMessage_ContentTypeUnknownBecauseNoBody">
+            <summary>
+              Looks up a localized string similar to Content type is unknown because message has no body.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeMessage_Write_MimeMustHaveBody">
+            <summary>
+              Looks up a localized string similar to Mime message must have a body part.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeParser_ParseBoundary_InvalidBoundaryString">
+            <summary>
+              Looks up a localized string similar to Invalid boundary string.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeParser_ParseBoundary_InvalidMultipart">
+            <summary>
+              Looks up a localized string similar to Invalid multipart.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.MimeParser_ValidateVersionHeader_InvalidMimeStream">
+            <summary>
+              Looks up a localized string similar to Invalid MIME stream.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.NameSelectorCannotFindComponent">
+            <summary>
+              Looks up a localized string similar to Cannot find component with name {0} of type {1}.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.ParameterCheck_GetParameterRequiredErrorMessage">
+            <summary>
+              Looks up a localized string similar to The parameter {0} is required..
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.ParameterCheck_IntParameterGreaterThanZero">
+            <summary>
+              Looks up a localized string similar to Parameter {0} must be greater than zero..
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.ParameterCheck_IntParameterIsNonZero">
+            <summary>
+              Looks up a localized string similar to The parameter {0} must not have a zero value.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.ParameterCheck_ListMustContainAtLeastOne">
+            <summary>
+              Looks up a localized string similar to Enumerable {0} must contain at least one member.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.ParameterCheck_StringRequiredAndNotWhitespace">
+            <summary>
+              Looks up a localized string similar to The string parameter {0} must not be null, empty or contain only whitespace.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Result.ResultBase">
+            <summary>
+            A collection of ResultItemBase items
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Result.ResultItemCollection`1">
+            <summary>
+            A collection of result items.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultItemCollection`1._resultItems">
+            <summary>
+            The collection of result items.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemCollection`1.AddMessage(`0)">
+            <summary>
+            Adds a result item that may be an error or a warning.
+            </summary>
+            <param name="resultItem">The message to add.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemCollection`1.AppendResult(Infrastructure.Core.Result.ResultItemCollection{`0})">
+            <summary>
+            Append errors and warnings to this collection.
+            </summary>
+            <param name="resultToAppend">The object containing errors and warnings to add.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemCollection`1.AddMessages(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Add all unique warning from an IEnumerable{ResultItem}
+            </summary>
+            <param name="messages">IEnumerable{ResultItem} containing items to add</param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemCollection`1.ToString">
+            <summary>
+            Returns a string representation of the result.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemCollection`1.ToStringWithLineBreaks">
+            <summary>
+            Returns a string representation of the result.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemCollection`1.ToHtml">
+            <summary>
+            Returns an HTML string representation of the result.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItemCollection`1.IsSuccess">
+            <summary>
+            Returns true if there are no errors in the errors collection.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItemCollection`1.Errors">
+            <summary>
+            Gets a read-only list of the errors
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItemCollection`1.Warnings">
+            <summary>
+            Gets a read-only list of the warnings
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItemCollection`1.Messages">
+            <summary>
+            Gets a read-only list of all result items
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItemCollection`1.Count">
+            <summary>
+            Get the count of all errors and warnings.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultBase.WithMessage(Infrastructure.Core.Result.ResultCode,System.String)">
+            <summary>
+            Helper method to create a ResultBase containing one message.
+            </summary>
+            <param name="resultCode"></param>
+            <param name="messageText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultBase.AddMessage(Infrastructure.Core.Result.ResultCode,System.String)">
+            <summary>
+            Adds a message with a given result code.
+            </summary>
+            <param name="resultCode">The result code.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultBase.AddMessageFormat(Infrastructure.Core.Result.ResultCode,System.String,System.Object[])">
+            <summary>
+            Add a message with format like string.Format.
+            </summary>
+            <param name="resultCode">The result code.</param>
+            <param name="message">The message optionally including format specifiers.</param>
+            <param name="parms">Additional parameters used to fill in the format specifiers.</param>
+        </member>
+        <member name="T:Infrastructure.Core.Result.ResultCode">
+            <summary>
+            Result codes
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.GeneralError">
+            <summary>
+            Indicates a general error occured.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.UnexpectedException">
+            <summary>
+            Indicates an unexpected exception was thrown by some process.  The message
+            associated with this error should contain stack dump information.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.RootJdfRequired">
+            <summary>
+            The intent parser requires a root JDF intent
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.JmfResponseError">
+            <summary>
+            The JMF response had an error notification.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.JmfResponseFatal">
+            <summary>
+            The JMF response has a fatal notification.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.JmfResponseErrorWithNoNotification">
+            <summary>
+            The JMF response indicates an error code but no error or fatal notifications
+            were provided.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.GeneralWarning">
+            <summary>
+            A warning of an unspecified nature.  See message for 
+            more information.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.RequiredAttributeNotFilled">
+            <summary>
+            An attribute device capabilities says is required was not replaced with a value from intent mapping process
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.JmfResponseWarning">
+            <summary>
+            The JMF response had a warning notification.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.JmfResponseWithoutReturnCode">
+            <summary>
+            Receiced a JMF response without a ReturnCode
+            so we cannot tell if it is a success or failure.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.NoHandlerConfigured">
+            <summary>
+            There is no handler configured.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.UnsupportedProcess">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultCode.UnsupportedFeature">
+            <summary>
+            Feature not supported.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Result.ResultItem">
+            <summary>
+            Simple result item of result code and message
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItem.#ctor(Infrastructure.Core.Result.ResultCode,System.String)">
+            <summary>
+            Create a new result item.
+            </summary>
+            <param name="resultCode">The result code.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItem.Equals(Infrastructure.Core.Result.ResultItem)">
+            <summary>
+            Equality checking for IEquatable implementation (LINQ friendly).
+            </summary>
+            <param name="other">The ResultItem to compare to this instance.</param>
+            <returns>True if the members of this instance have the same values as the member of the other instance.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItem.Equals(System.Object)">
+            <summary>
+            Check equality with another object
+            </summary>
+            <param name="obj">The object to check</param>
+            <returns>True is the given object is a ResultItemBase and has the same member values
+            as this instance.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItem.GetHashCode">
+            <summary>
+            Gets the hash code. 
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItem.ToString">
+            <summary>
+            Overrides the standard ToString() implementation
+            </summary>
+            <returns>A string with [result code] - [message].</returns>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItem.ResultCode">
+            <summary>
+            The result code associated with this message
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItem.Message">
+            <summary>
+            The message text.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItem.Type">
+            <summary>
+            The type of the result item.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Result.ResultItemBase">
+            <summary>
+            A result item with an associated XML element
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemBase.#ctor(Infrastructure.Core.Result.ResultCode,System.String,System.Xml.Linq.XElement)">
+            <summary>
+            Create a new ResultItemBase
+            </summary>
+            <param name="resultCode"></param>
+            <param name="message"></param>
+            <param name="element"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemBase.#ctor(Infrastructure.Core.Result.ResultCode,System.String,System.Xml.Linq.XCData,System.Xml.Linq.XElement)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Infrastructure.Core.Result.ResultItemBase"/> class.
+            </summary>
+            <param name="resultCode">The result code.</param>
+            <param name="message">The message.</param>
+            <param name="cdata">The cdata.</param>
+            <param name="element">The element.</param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemBase.Equals(Infrastructure.Core.Result.ResultItemBase)">
+            <summary>
+            Equality checking for IEquatable implementation (LINQ friendly).
+            </summary>
+            <param name="other">The ResultItemBase to compare to this instance.</param>
+            <returns>True if the members of this instance have the same values as the member of the other instance.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemBase.Equals(System.Object)">
+            <summary>
+            Check equality with another object
+            </summary>
+            <param name="obj">The object to check</param>
+            <returns>True is the given object is a ResultItemBase and has the same member values
+            as this instance.</returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultItemBase.GetHashCode">
+            <summary>
+            Gets the hash code. 
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItemBase.Element">
+            <summary>
+            The associated XML element.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultItemBase.CData">
+            <summary>
+            Gets the C data.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Result.ResultItemType">
+            <summary>
+            Identifies the severity of a result item.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultItemType.Error">
+            <summary>
+            Process was aborted because a required condition was not met.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.Result.ResultItemType.Warning">
+            <summary>
+            Process continbued but result may be less than complete.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Result.ResultOf`2">
+            <summary>
+            Generic wrapper to include a collection of result items with any return type.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TResultItem"></typeparam>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`2.#ctor">
+            <summary>
+            Create an empty wrapper.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`2.#ctor(`0)">
+            <summary>
+            Create a wrapper with a value.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`2.#ctor(Infrastructure.Core.Result.ResultItemCollection{`1})">
+            <summary>
+            Create a wrapper from a result item collection
+            </summary>
+            <param name="messages"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`2.#ctor(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            Create a wrapper from a set of result items
+            </summary>
+            <param name="messages"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`2.#ctor(`1)">
+            <summary>
+            Create a wrapper from a single result item
+            </summary>
+            <param name="resultItem"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`2.#ctor(`0,Infrastructure.Core.Result.ResultItemCollection{`1})">
+            <summary>
+            Create a wrapper with a value and  a collection of result items.
+            </summary>
+            <param name="value"></param>
+            <param name="resultItems"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`2.ToResultOf">
+            <summary>
+            Convert the wrapper to a more-specific type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`2.ToString">
+            <summary>
+            Gets a string representation of this result.  Includes
+            a string representation of the value if the value is
+            non-null.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultOf`2.Value">
+            <summary>
+            The wrapped value.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Result.ResultOf`2.HasValue">
+            <summary>
+            Indicate if the wrapped value is present.
+            </summary>
+        </member>
+        <member name="T:Infrastructure.Core.Result.ResultOf`1">
+            <summary>
+            Generic wrapper to include a collection of ResultItemBase with any return type.
+            </summary>
+            <typeparam name="T">The return type being wrapped.</typeparam>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.op_Implicit(Infrastructure.Core.Result.ResultOf{`0})~Infrastructure.Core.Result.ResultBase">
+            <summary>
+            Cast to a ResultBase
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.#ctor">
+            <summary>
+            Create an empty wrapper.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.#ctor(`0)">
+            <summary>
+            Create a wrapper with a value.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.#ctor(Infrastructure.Core.Result.ResultItemCollection{Infrastructure.Core.Result.ResultItemBase})">
+            <summary>
+            Create a wrapper with results.
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.#ctor(System.Exception)">
+            <summary>
+            Create a wrapper with an exception result.
+            </summary>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.#ctor(Infrastructure.Core.Result.ResultItemBase)">
+            <summary>
+            Create a wrapper with a result item
+            </summary>
+            <param name="resultItem"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.#ctor(Infrastructure.Core.Result.ResultCode,System.String,System.Xml.Linq.XElement)">
+            <summary>
+            Create a wrapper with a result item
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.#ctor(`0,Infrastructure.Core.Result.ResultItemCollection{Infrastructure.Core.Result.ResultItemBase})">
+            <summary>
+            Create a wrapper with a value and results.
+            </summary>
+            <param name="value"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.Append(Infrastructure.Core.Result.ResultBase)">
+            <summary>
+            Append additional results to the ResultBase.
+            </summary>
+            <param name="otherResults"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Infrastructure.Core.Result.ResultOf`1.AddMessage(Infrastructure.Core.Result.ResultCode,System.String)">
+            <summary>
+            Adds a message with a given result code.
+            </summary>
+            <param name="resultCode">The result code.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="T:Infrastructure.Core.TempFileStream">
+            <summary>
+            A stream backed by a temp file that will be deleted on close.
+            </summary>
+        </member>
+        <member name="F:Infrastructure.Core.TempFileStream.BufferSize">
+            <summary>
+            Gets and sets the buffer size.  Default is 8kb (same as .NET framework uses for all file streams)
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.TempFileStream.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.TempFileStream.#ctor(System.IO.FileAccess)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="access"></param>
+        </member>
+        <member name="M:Infrastructure.Core.TempFileStream.#ctor(System.IO.FileAccess,System.IO.FileShare)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="access"></param>
+            <param name="share"></param>
+        </member>
+        <member name="M:Infrastructure.Core.TempFileStream.#ctor(System.IO.FileAccess,System.IO.FileShare,System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="access"></param>
+            <param name="share"></param>
+            <param name="bufferSize"></param>
+        </member>
+    </members>
+</doc>

@@ -23,7 +23,6 @@
       <dependency id="NLog" version="2.0.0.2000" />
       <dependency id="Castle.Core" version="2.5.2" />
       <dependency id="Castle.Windsor" version="2.5.3" />
-      <dependency id="Onpoint.Infrastructure" version="0.2.0.12" />
     </dependencies>
     <tags>jdf fluent</tags>
   </metadata>
@@ -41,5 +40,7 @@
     <file src="BuildOutput\bin\Infrastructure.Container.CastleWindsor.dll" target="tools" />
     <file src="BuildOutput\bin\Infrastructure.Logging.NLog.dll" target="tools" />
     <file src="linqPad\FluentJdfSample.linq" target="tools" />
+    <file src="lib\Infrastructure\Infrastructure.Testing.dll" target="tools\optionDlls" />
+    <file src="lib\Infrastructure\Infrastructure.Logging.log4net.dll" target="tools\optionDlls" />
   </files>
 </package>

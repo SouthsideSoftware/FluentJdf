@@ -103,14 +103,17 @@
     <Reference Include="ExpectedObjects">
       <HintPath>..\..\..\packages\ExpectedObjects.1.0.0.0\lib\ExpectedObjects.dll</HintPath>
     </Reference>
-    <Reference Include="Infrastructure.Container.CastleWindsor">
-      <HintPath>..\..\..\packages\Onpoint.Infrastructure.0.2.0.12\lib\Infrastructure.Container.CastleWindsor.dll</HintPath>
+    <Reference Include="Infrastructure.Container.CastleWindsor, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Infrastructure\Infrastructure.Container.CastleWindsor.dll</HintPath>
     </Reference>
-    <Reference Include="Infrastructure.Core">
-      <HintPath>..\..\..\packages\Onpoint.Infrastructure.0.2.0.12\lib\Infrastructure.Core.dll</HintPath>
+    <Reference Include="Infrastructure.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Infrastructure\Infrastructure.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Infrastructure.Logging.NLog">
-      <HintPath>..\..\..\packages\Onpoint.Infrastructure.0.2.0.12\lib\Infrastructure.Logging.NLog.dll</HintPath>
+    <Reference Include="Infrastructure.Logging.NLog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\Infrastructure\Infrastructure.Logging.NLog.dll</HintPath>
     </Reference>
     <Reference Include="Infrastructure.Testing">
       <HintPath>..\..\..\lib\Infrastructure\Infrastructure.Testing.dll</HintPath>

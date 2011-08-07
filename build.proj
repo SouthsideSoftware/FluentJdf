@@ -49,6 +49,12 @@
     <NugetPushUrl>http://packages.nuget.org/v1/</NugetPushUrl>
   </PropertyGroup>
 
+  <!-- Updating -->
+  <PropertyGroup>
+    <InfrastructureProjectDir>..\Infrastructure</InfrastructureProjectDir>
+    <InfrastructureLibDir>$(InfrastructureProjectDir)\BuildOutput\bin</InfrastructureLibDir>
+  </PropertyGroup>
+
   <Import Project="$(MSBuildProjectDirectory)\Tools\MSBuild\BuildSupport\Onpoint.Targets"/>
 
   <Target Name="CreateLinqPadSample">
@@ -57,5 +63,17 @@
     <FileUpdate Files="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq" Regex='"..\\src\\FluentJdf\\bin\\Debug\\' ReplacementText='"'/>
     <FileUpdate Files="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq" Regex='"..\\src\\Infrastructure\\Infrastructure.Container.CastleWindsor\\bin\\Debug\\' ReplacementText='"'/>
     <FileUpdate Files="$(MSBuildProjectDirectory)\LinqPad\FluentJdfSample.linq" Regex='"..\\src\\Infrastructure\\Infrastructure.Logging.NLog\\bin\\Debug\\' ReplacementText='"'/>
+  </Target>
+
+  <Target Name="UpdateInfrastructure">
+    <ItemGroup>
+      <InfrastructureReferenceFiles Include="$(InfrastructureLibDir)\Infrastructure.Core.*;
+                                    $(InfrastructureLibDir)\Infrastructure.Logging.NLog.*;
+                                    $(InfrastructureLibDir)\Infrastructure.Container.CastleWindsor.*;
+                                    $(InfrastructureLibDir)\Infrastructure.Logging.log4net.*"/>
+    </ItemGroup>
+    <MSBuild Projects="$(InfrastructureProjectDir)\build.proj" Targets="dist"/>
+    <Copy SourceFiles="@(InfrastructureReferenceFiles)" DestinationFolder="lib\Infrastructure"/>
+    <MSBuild Projects="$(MSBuildProjectDirectory)\build.proj" Targets="dist"/>
   </Target>
 </Project>
