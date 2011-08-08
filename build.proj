@@ -33,7 +33,8 @@
   <!-- Binary files to publish -->
   <ItemGroup>
     <BinFiles Include="src\FluentJdf\bin\$(Configuration)\*.*;
-                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\*.*"
+                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\*.*;
+                       lib\Infrastructure\Infrastructure.Logging.Log4Net.*"
               Exclude="src\Tests\FluentJdf.Tests\bin\$(Configuration)\ExpectedObjects.*;
                        src\Tests\FluentJdf.Tests\bin\$(Configuration)\Machine.Specifications.*;
                        src\Tests\FluentJdf.Tests\bin\$(Configuration)\Infrastructure.Testsing.*;
@@ -66,13 +67,13 @@
   </Target>
 
   <Target Name="UpdateInfrastructure">
+    <MSBuild Projects="$(InfrastructureProjectDir)\build.proj" Targets="dist"/>
     <ItemGroup>
       <InfrastructureReferenceFiles Include="$(InfrastructureLibDir)\Infrastructure.Core.*;
                                     $(InfrastructureLibDir)\Infrastructure.Logging.NLog.*;
                                     $(InfrastructureLibDir)\Infrastructure.Container.CastleWindsor.*;
                                     $(InfrastructureLibDir)\Infrastructure.Logging.log4net.*"/>
     </ItemGroup>
-    <MSBuild Projects="$(InfrastructureProjectDir)\build.proj" Targets="dist"/>
     <Copy SourceFiles="@(InfrastructureReferenceFiles)" DestinationFolder="lib\Infrastructure"/>
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.proj" Targets="dist"/>
   </Target>
