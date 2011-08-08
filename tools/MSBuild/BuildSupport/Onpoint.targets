@@ -167,6 +167,11 @@
       </Tokens>
     </ItemGroup>
     <TemplateFile Template="$(MSBuildProjectDirectory)\tools\MSBuild\BuildSupport\mspecTemplate.bat" OutputFileName="$(MSBuildProjectDirectory)\mspec.bat" Tokens="@(Tokens)"/>
+
+    <ItemGroup>
+      <MSpecConfigFiles Include="$(ToolsDir)\MSBuild\BuildSupport\MSpecConfig\*.*"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(MSpecConfigFiles)" DestinationFolder="$(PackageDir)\Machine.Specifications.$(MSpecVersion)\tools"/>
     
     <Exec WorkingDirectory="$(TestDir)"
           Command="$(MsBuildProjectDirectory)\mspec --html $(TestOutputDir)\%(MSpecTestItem.Identity).results.htm %(MSpecTestItem.Identity).dll" Condition="!$(InTeamCity)"/>
