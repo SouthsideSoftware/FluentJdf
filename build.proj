@@ -40,7 +40,8 @@
                        src\Tests\FluentJdf.Tests\bin\$(Configuration)\Infrastructure.Testsing.*;
                        src\Tests\FluentJdf.Tests\bin\$(Configuration)\nunit.*.*;
                        src\Tests\FluentJdf.Tests\bin\$(Configuration)\pnunit.*;
-                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\Rhino.Mocks.*"/>
+                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\Rhino.Mocks.*;
+                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\FluentJdf.Tests.*"/>
   </ItemGroup>
 
   <!-- Nuget -->
@@ -72,7 +73,8 @@
       <InfrastructureReferenceFiles Include="$(InfrastructureLibDir)\Infrastructure.Core.*;
                                     $(InfrastructureLibDir)\Infrastructure.Logging.NLog.*;
                                     $(InfrastructureLibDir)\Infrastructure.Container.CastleWindsor.*;
-                                    $(InfrastructureLibDir)\Infrastructure.Logging.log4net.*"/>
+                                    $(InfrastructureLibDir)\Infrastructure.Logging.log4net.*;
+                                    $(InfrastructureLibDir)\Infrastructure.Testing.*"/>
     </ItemGroup>
     <Copy SourceFiles="@(InfrastructureReferenceFiles)" DestinationFolder="lib\Infrastructure"/>
     <MSBuild Projects="$(MSBuildProjectDirectory)\build.proj" Targets="dist"/>

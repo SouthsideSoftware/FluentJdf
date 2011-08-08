@@ -30,8 +30,11 @@
     <file src="BuildOutput\bin\FluentJdf.dll" target="lib" />
     <file src="BuildOutput\bin\FluentJdf.xml" target="lib" />
     <file src="BuildOutput\bin\Infrastructure.Core.dll" target="lib" />
+    <file src="BuildOutput\bin\Infrastructure.Core.xml" target="lib" />
     <file src="BuildOutput\bin\Infrastructure.Container.CastleWindsor.dll" target="lib" />
+    <file src="BuildOutput\bin\Infrastructure.Container.CastleWindsor.xml" target="lib" />
     <file src="BuildOutput\bin\Infrastructure.Logging.NLog.dll" target="lib" />
+    <file src="BuildOutput\bin\Infrastructure.Logging.NLog.xml" target="lib" />
     <file src="BuildOutput\bin\Castle.Core.dll" target="tools" />
     <file src="BuildOutput\bin\Castle.Windsor.dll" target="tools" />
     <file src="BuildOutput\bin\NLog.dll" target="tools" />
@@ -41,6 +44,8 @@
     <file src="BuildOutput\bin\Infrastructure.Logging.NLog.dll" target="tools" />
     <file src="linqPad\FluentJdfSample.linq" target="tools" />
     <file src="lib\Infrastructure\Infrastructure.Testing.dll" target="tools\optionDlls" />
+    <file src="lib\Infrastructure\Infrastructure.Testing.xml" target="tools\optionDlls" />
     <file src="lib\Infrastructure\Infrastructure.Logging.log4net.dll" target="tools\optionDlls" />
+    <file src="lib\Infrastructure\Infrastructure.Logging.log4net.xml" target="tools\optionDlls" />
   </files>
 </package>

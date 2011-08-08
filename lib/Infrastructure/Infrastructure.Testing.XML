@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Infrastructure.Testing</name>
+    </assembly>
+    <members>
+        <member name="T:Infrastructure.Testing.ExtensionMethodsAndHelpers">
+            <summary>
+            Extension methods and helpers
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Testing.ExtensionMethodsAndHelpers.SameBytes(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Returns true if the both streams contain the same bytes.
+            </summary>
+            <param name="one"></param>
+            <param name="two"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Infrastructure.Testing.TestDataHelper">
+            <summary>
+            Helps get test data from resources
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Testing.TestDataHelper.PathToTestFile(System.String,System.Reflection.Assembly)">
+            <summary>
+            Gets the full path of the desired test file.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">If the file does not exist in the test data folder extracted
+            from the embedded resources.</exception>
+        </member>
+        <member name="M:Infrastructure.Testing.TestDataHelper.GetTestStream(System.String)">
+            <summary>
+            Gets the readable stream for the given file name located in the TestData folder
+            </summary>
+            <param name="testFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Infrastructure.Testing.TestDataHelper.Instance">
+            <summary>
+            Gets the singleton instance of the test data helper.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Testing.TestDataHelper.TestDataDirectory">
+            <summary>
+            Gets the test data directory.
+            </summary>
+        </member>
+    </members>
+</doc>
