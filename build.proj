@@ -30,6 +30,7 @@
     <NUnitTestItem Include="FluentJdf.Tests"/>
   </ItemGroup>
 
+  <!-- Binary files to publish -->
   <PropertyGroup>
     <BinInclude>
       src\FluentJdf\bin\$(Configuration)\*.*;
