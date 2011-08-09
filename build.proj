@@ -47,20 +47,6 @@
     </BinExclude>
   </PropertyGroup>
 
-  <!-- Binary files to publish -->
-  <!--<ItemGroup>
-    <BinFiles Include="src\FluentJdf\bin\$(Configuration)\*.*;
-                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\*.*;
-                       lib\Infrastructure\Infrastructure.Logging.Log4Net.*"
-              Exclude="src\Tests\FluentJdf.Tests\bin\$(Configuration)\ExpectedObjects.*;
-                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\Machine.Specifications.*;
-                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\Infrastructure.Testsing.*;
-                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\nunit.*.*;
-                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\pnunit.*;
-                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\Rhino.Mocks.*;
-                       src\Tests\FluentJdf.Tests\bin\$(Configuration)\FluentJdf.Tests.*"/>
-  </ItemGroup>-->
-
   <!-- Nuget -->
   <PropertyGroup>
     <NugetPackageSummary>JDF Client Library for .NET</NugetPackageSummary>
