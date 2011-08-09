@@ -161,6 +161,7 @@
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders_file_info_by_uri.cs" />
     <Compile Include="Unit\Configuration\EncodingSettings\when_registering_file_transmitter_encoders_file_info_by_uri_with_default_reference_folder.cs" />
     <Compile Include="Unit\Configuration\HttpTransmissionSettings\when_setting_http_transmission_settings.cs" />
+    <Compile Include="Unit\Configuration\JdfAuthoringSettingsBuilder\when_setting_sender_id_to_whitespace.cs" />
     <Compile Include="Unit\Configuration\TemplateEngineSettingsBuilder\when_registering_custom_formulas.cs" />
     <Compile Include="Unit\Configuration\TemplateEngineSettings\when_registering_custom_formulas.cs" />
     <Compile Include="Unit\Configuration\TransmissionPartSettings\MockTransmissionPart.cs" />
@@ -391,6 +392,7 @@
       <Name>FluentJdf</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

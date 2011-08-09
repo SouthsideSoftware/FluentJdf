@@ -12,7 +12,7 @@ namespace FluentJdf.Configuration
     public class JdfAuthoringSettingsBuilder : SettingsBuilderBase {
         JdfAuthoringSettings authoringSettings;
 
-        internal JdfAuthoringSettingsBuilder(FluentJdfLibrary fluentJdfLibrary, JdfAuthoringSettings authoringSettings) : base(fluentJdfLibrary) {
+        internal JdfAuthoringSettingsBuilder(IFluentJdfLibrary fluentJdfLibrary, JdfAuthoringSettings authoringSettings) : base(fluentJdfLibrary) {
             ParameterCheck.ParameterRequired(authoringSettings, "authoringSettings");
 
             this.authoringSettings = authoringSettings;
@@ -99,7 +99,9 @@ namespace FluentJdf.Configuration
         /// <param name="senderId"></param>
         /// <returns></returns>
         public JdfAuthoringSettingsBuilder SenderId(string senderId) {
-            ParameterCheck.StringRequiredAndNotWhitespace(senderId, "senderId");
+            if (string.IsNullOrWhiteSpace(senderId)) {
+                senderId = null;
+            }
 
             authoringSettings.SenderId = senderId;
             return this;
