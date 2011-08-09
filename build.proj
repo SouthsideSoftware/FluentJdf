@@ -30,8 +30,25 @@
     <NUnitTestItem Include="FluentJdf.Tests"/>
   </ItemGroup>
 
+  <PropertyGroup>
+    <BinInclude>
+      src\FluentJdf\bin\$(Configuration)\*.*;
+      src\Tests\FluentJdf.Tests\bin\$(Configuration)\*.*;
+      lib\Infrastructure\Infrastructure.Logging.Log4Net.*
+    </BinInclude>
+    <BinExclude>
+      src\Tests\FluentJdf.Tests\bin\$(Configuration)\ExpectedObjects.*;
+      src\Tests\FluentJdf.Tests\bin\$(Configuration)\Machine.Specifications.*;
+      src\Tests\FluentJdf.Tests\bin\$(Configuration)\Infrastructure.Testsing.*;
+      src\Tests\FluentJdf.Tests\bin\$(Configuration)\nunit.*.*;
+      src\Tests\FluentJdf.Tests\bin\$(Configuration)\pnunit.*;
+      src\Tests\FluentJdf.Tests\bin\$(Configuration)\Rhino.Mocks.*;
+      src\Tests\FluentJdf.Tests\bin\$(Configuration)\FluentJdf.Tests.*
+    </BinExclude>
+  </PropertyGroup>
+
   <!-- Binary files to publish -->
-  <ItemGroup>
+  <!--<ItemGroup>
     <BinFiles Include="src\FluentJdf\bin\$(Configuration)\*.*;
                        src\Tests\FluentJdf.Tests\bin\$(Configuration)\*.*;
                        lib\Infrastructure\Infrastructure.Logging.Log4Net.*"
@@ -42,7 +59,7 @@
                        src\Tests\FluentJdf.Tests\bin\$(Configuration)\pnunit.*;
                        src\Tests\FluentJdf.Tests\bin\$(Configuration)\Rhino.Mocks.*;
                        src\Tests\FluentJdf.Tests\bin\$(Configuration)\FluentJdf.Tests.*"/>
-  </ItemGroup>
+  </ItemGroup>-->
 
   <!-- Nuget -->
   <PropertyGroup>
