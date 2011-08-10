@@ -2618,6 +2618,16 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.Configuration_RunComponentInstallers_CouldNotLoadTypesFromAssembly">
+            <summary>
+              Looks up a localized string similar to Failed to load types from assembly {0}.  Details will follow this message.  The exception is {1}.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.Configuration_RunComponentInstallers_LoaderError">
+            <summary>
+              Looks up a localized string similar to 	Loader Error: {0}.
+            </summary>
+        </member>
         <member name="P:Infrastructure.Core.Resources.Messages.DirectoryAndFileHelper_ErrorCreatingDirectory">
             <summary>
               Looks up a localized string similar to Error Creating Directory: &apos;{0}&apos;.
