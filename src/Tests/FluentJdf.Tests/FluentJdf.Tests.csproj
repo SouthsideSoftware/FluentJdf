@@ -203,6 +203,8 @@
     <Compile Include="Unit\LinqToJdf\JmfBuilder\when_setting_version_on_submit_queue_entry.cs" />
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_get_message_elements.cs" />
     <Compile Include="Unit\LinqToJdf\JmfElementExtensions\when_using_get_message_names.cs" />
+    <Compile Include="Unit\LinqToJdf\Message\when_creating_from_a_template_in_an_xdocument.cs" />
+    <Compile Include="Unit\LinqToJdf\Message\when_creating_from_a_template_in_a_message.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_copy_constructor.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_message_element_getter.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_message_names_getter.cs" />
@@ -224,6 +226,8 @@
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_GetResourceLinkPoolResolvedItem_for_DigitalPrintingParams.cs" />
     <Compile Include="Unit\LinqToJdf\Message\when_using_message_elements_getter.cs" />
     <Compile Include="Unit\LinqToJdf\ResourceExtensions\when_using_set_unique_id_recursive.cs" />
+    <Compile Include="Unit\LinqToJdf\Ticket\when_creating_from_a_template_in_an_xdocument.cs" />
+    <Compile Include="Unit\LinqToJdf\Ticket\when_creating_from_a_template_in_a_ticket.cs" />
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_copy_constructor.cs" />
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_parse.cs" />
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_ticket_getprocess.cs" />

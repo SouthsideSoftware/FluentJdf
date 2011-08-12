@@ -3,7 +3,9 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using FluentJdf.LinqToJdf.Builder.Jdf;
+using FluentJdf.LinqToJdf.Builder.Jmf;
 using FluentJdf.Resources;
+using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Logging;
 
@@ -57,6 +59,18 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public static GeneratedTicketTemplateSelectionBuilder CreateFromTemplate(Stream templateStream) {
             return new GeneratedTicketTemplateSelectionBuilder(templateStream);
+        }
+
+        /// <summary>
+        /// Creates a ticket from a template in an XDocument.
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        public static GeneratedTicketTemplateSelectionBuilder CreateFromTemplate(XDocument document) {
+            var stream = new TempFileStream();
+            document.Save(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+            return CreateFromTemplate(stream);
         }
 
         /// <summary>

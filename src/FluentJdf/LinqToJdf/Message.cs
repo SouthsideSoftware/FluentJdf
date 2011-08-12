@@ -9,6 +9,7 @@ using FluentJdf.LinqToJdf.Builder.Jmf;
 using FluentJdf.Messaging;
 using FluentJdf.Resources;
 using FluentJdf.Transmission;
+using Infrastructure.Core;
 using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core.Helpers;
 using Infrastructure.Core.Logging;
@@ -104,6 +105,18 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public static GeneratedMessageTemplateSelectionBuilder CreateFromTemplate(Stream templateStream) {
             return new GeneratedMessageTemplateSelectionBuilder(templateStream);
+        }
+
+        /// <summary>
+        /// Creates a message from a template in an XDocument.
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        public static GeneratedMessageTemplateSelectionBuilder CreateFromTemplate(XDocument document) {
+            var stream = new TempFileStream();
+            document.Save(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+            return CreateFromTemplate(stream);
         }
 
         /// <summary>
