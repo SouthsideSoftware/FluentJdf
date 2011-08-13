@@ -53,6 +53,7 @@ namespace FluentJdf.TemplateEngine {
                         if (vars.ContainsKey(parameterName)) {
                             parameters[index] = vars[parameterName].ToString();
                         }
+                        index++;
                     }
                 }
                 writer.Write(valueFunction.Execute(parameters));

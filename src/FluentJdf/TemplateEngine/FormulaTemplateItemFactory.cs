@@ -46,6 +46,9 @@ namespace FluentJdf.TemplateEngine {
                 var startArgumentList = openingParenPosition + 1;
                 var lengthArgumentList = closingParenPosition - startArgumentList;
                 parameterNames = functionNameWithParameterList.Substring(startArgumentList, lengthArgumentList).Split(',');
+               for (int i = 0; i < parameterNames.Length; i++) {
+                   parameterNames[i] = parameterNames[i].Trim();
+               }
             }
 
             var customFormulaTemplateItem = CreateCustomFormulaIfRegistered(parent, name, lineNumber, positionInLine, functionName,
