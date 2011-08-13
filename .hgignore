@@ -37,7 +37,6 @@ _[Uu]pgrade*/*
 fitnesse/assemblies/**
 fitnesse/FitNesseRoot/ErrorLogs/**
 glob:tools/EFProf/John Leger.xml
-relre:/*.ReSharper
 glob:fitnesse/FitNesseRoot/ErrorLogs*/
 glob:fitnesse/assemblies/sjdf*/
 glob:src/RICOH.SJDF.Core/Process/.ProcessTemplateGenerator.cs-itr_m2
