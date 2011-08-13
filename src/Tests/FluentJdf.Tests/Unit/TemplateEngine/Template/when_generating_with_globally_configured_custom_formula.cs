@@ -5,6 +5,7 @@ using FluentJdf.Configuration;
 using FluentJdf.LinqToJdf;
 using Infrastructure.Testing;
 using Machine.Specifications;
+using Rhino.Mocks;
 
 namespace FluentJdf.Tests.Unit.TemplateEngine.Template {
     [Subject(typeof(FluentJdf.TemplateEngine.Template))]
@@ -14,7 +15,7 @@ namespace FluentJdf.Tests.Unit.TemplateEngine.Template {
         static XDocument document;
 
         Establish context = () => {
-            FluentJdfLibrary.Settings.TemplateEngineSettings.RegisterCustomFormula("getDeviceId", () => Globals.CreateUniqueId("test_"));
+            FluentJdfLibrary.Settings.WithTemplateEngineSettings().CustomFormula("getDeviceId", () => Globals.CreateUniqueId("test_"));
             template = new FluentJdf.TemplateEngine.Template(TestDataHelper.Instance.PathToTestFile("BasicJmfTemplateCustomFormula.jmf"));
             dict = new Dictionary<string, object>();
         };

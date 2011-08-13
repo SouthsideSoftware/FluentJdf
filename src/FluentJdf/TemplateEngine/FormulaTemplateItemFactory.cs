@@ -11,14 +11,14 @@ namespace FluentJdf.TemplateEngine {
     /// </summary>
     public class FormulaTemplateItemFactory {
         static readonly ILog logger = LogManager.GetLogger(typeof (FormulaTemplateItemFactory));
-        readonly Dictionary<string, Func<string>> additionalCustomFormulas;
+        readonly Dictionary<string, Delegate> additionalCustomFormulas;
 
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="additionalCustomFormulas"></param>
-        public FormulaTemplateItemFactory(Dictionary<string, Func<string>> additionalCustomFormulas = null) {
+        public FormulaTemplateItemFactory(Dictionary<string, Delegate> additionalCustomFormulas = null) {
             this.additionalCustomFormulas = additionalCustomFormulas;
         }
 
@@ -29,16 +29,27 @@ namespace FluentJdf.TemplateEngine {
         /// <param name="name">The name of this template item.</param>
         /// <param name="lineNumber">Line number within the xml template file.</param>
         /// <param name="positionInLine">Column number within the xml template file.</param>
-        /// <param name="functionName">The name of the function.</param>
+        /// <param name="functionNameWithParameterList">The name of the function.</param>
         /// <param name="templateEngineSettings">The template engine settings.</param>
         /// <returns>A FormulaTemplateItem descendant.</returns>
         public FormulaTemplateItem CreateFormulaItem(TemplateItem parent, string name, int lineNumber, int positionInLine,
-                                                     string functionName, ITemplateEngineSettings templateEngineSettings) {
+                                                     string functionNameWithParameterList, ITemplateEngineSettings templateEngineSettings) {
             ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
-            ParameterCheck.StringRequiredAndNotWhitespace(functionName, "functionName");
+            ParameterCheck.StringRequiredAndNotWhitespace(functionNameWithParameterList, "functionName");
+
+            var openingParenPosition = functionNameWithParameterList.IndexOf("(");
+            var closingParenPosition = functionNameWithParameterList.IndexOf(")");
+            var functionName = functionNameWithParameterList.Substring(0, openingParenPosition) + "()";
+
+            string[] parameterNames = null;
+            if (closingParenPosition - openingParenPosition > 1) {
+                var startArgumentList = openingParenPosition + 1;
+                var lengthArgumentList = closingParenPosition - startArgumentList;
+                parameterNames = functionNameWithParameterList.Substring(startArgumentList, lengthArgumentList).Split(',');
+            }
 
             var customFormulaTemplateItem = CreateCustomFormulaIfRegistered(parent, name, lineNumber, positionInLine, functionName,
-                                                                            templateEngineSettings);
+                                                                            templateEngineSettings, parameterNames);
             if (customFormulaTemplateItem != null) return customFormulaTemplateItem;
 
             if (functionName == "generate()") {
@@ -51,15 +62,15 @@ namespace FluentJdf.TemplateEngine {
                 return new JdfDefaultFormulaTemplateItem(parent, name, lineNumber, positionInLine);
             }
 
-            string mess = string.Format(Messages.FormulaTemplateItemFactory_CreateFormulaItem_InvalidFunctionNameMessage, functionName);
+            string mess = string.Format(Messages.FormulaTemplateItemFactory_CreateFormulaItem_InvalidFunctionNameMessage, functionNameWithParameterList);
             logger.ErrorFormat(Messages.ErrorAtLineAndColumn, mess, lineNumber, positionInLine);
             throw new TemplateExpansionException(lineNumber, positionInLine, mess);
         }
 
         FormulaTemplateItem CreateCustomFormulaIfRegistered(TemplateItem parent, string name, int lineNumber, int positionInLine,
-                                                     string functionName, ITemplateEngineSettings templateEngineSettings)
+                                                     string functionName, ITemplateEngineSettings templateEngineSettings, string [] parameterNames)
         {
-            IDictionary<string, Func<string>> customFormulas = templateEngineSettings.CustomFormulas;
+            IDictionary<string, Delegate> customFormulas = templateEngineSettings.CustomFormulas;
             int openParenPos = functionName.IndexOf("(");
             string funcNameWithoutParameters = functionName;
             if (openParenPos > -1) {
@@ -67,11 +78,11 @@ namespace FluentJdf.TemplateEngine {
             }
             if (additionalCustomFormulas != null && additionalCustomFormulas.ContainsKey(funcNameWithoutParameters)) {
                 return new CustomFormulaTemplateItem(parent, name, lineNumber, positionInLine, functionName,
-                                                     additionalCustomFormulas[funcNameWithoutParameters]);
+                                                     additionalCustomFormulas[funcNameWithoutParameters], parameterNames);
             }
             if (customFormulas.ContainsKey(funcNameWithoutParameters)) {
                 return new CustomFormulaTemplateItem(parent, name, lineNumber, positionInLine, functionName,
-                                                     customFormulas[funcNameWithoutParameters]);
+                                                     customFormulas[funcNameWithoutParameters], parameterNames);
             }
 
             return null;

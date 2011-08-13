@@ -12,6 +12,19 @@ namespace FluentJdf.TemplateEngine {
         readonly string name;
 
         /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="func"></param>
+        public CustomFormula(string name, Delegate func) {
+            ParameterCheck.ParameterRequired(func, "func");
+            ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
+
+            this.name = name;
+            customFunction = func;
+        }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         public CustomFormula(string name, Func<string> func) {

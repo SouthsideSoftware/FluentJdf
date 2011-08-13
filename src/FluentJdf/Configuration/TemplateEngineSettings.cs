@@ -8,14 +8,14 @@ namespace FluentJdf.Configuration {
     /// Settings for the template engine.
     /// </summary>
     public class TemplateEngineSettings : ITemplateEngineSettings {
-        readonly IDictionary<string, Func<string>> customFormulas;
+        readonly IDictionary<string, Delegate> customFormulas;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         public TemplateEngineSettings() {
-            customFormulas = new Dictionary<string, Func<string>>();
-            CustomFormulas = new ReadOnlyDictionary<string, Func<string>>(customFormulas);
+            customFormulas = new Dictionary<string, Delegate>();
+            CustomFormulas = new ReadOnlyDictionary<string, Delegate>(customFormulas);
         }
 
         #region ITemplateEngineSettings Members
@@ -23,12 +23,12 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets dictionary of custom formulas.
         /// </summary>
-        public ReadOnlyDictionary<string, Func<string>> CustomFormulas { get; private set; }
+        public ReadOnlyDictionary<string, Delegate> CustomFormulas { get; private set; }
 
         /// <summary>
         /// Register a custom formula.
         /// </summary>
-        public void RegisterCustomFormula(string formulaName, Func<string> formula) {
+        public void RegisterCustomFormula(string formulaName, Delegate formula) {
             ParameterCheck.ParameterRequired(formulaName, "formulaName");
 
             customFormulas[formulaName] = formula;
@@ -40,7 +40,9 @@ namespace FluentJdf.Configuration {
         /// <returns></returns>
         public ITemplateEngineSettings ResetToDefaults() {
             customFormulas.Clear();
-            RegisterCustomFormula("configuredDefaultVersion", () => FluentJdfLibrary.Settings.JdfAuthoringSettings.JdfVersion);
+            Func<string> func = () => FluentJdfLibrary.Settings.JdfAuthoringSettings.JdfVersion;
+            Delegate function = func;
+            RegisterCustomFormula("configuredDefaultVersion", function);
             return this;
         }
 
