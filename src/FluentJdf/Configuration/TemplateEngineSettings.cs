@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
-using FluentJdf.Encoding;
-using Infrastructure.Core.CodeContracts;
 using Infrastructure.Core;
+using Infrastructure.Core.CodeContracts;
 
 namespace FluentJdf.Configuration {
     /// <summary>
     /// Settings for the template engine.
     /// </summary>
     public class TemplateEngineSettings : ITemplateEngineSettings {
-
-        IDictionary<string, Func<string>> customFormulas;
+        readonly IDictionary<string, Func<string>> customFormulas;
 
         /// <summary>
         /// Constructor.
@@ -20,13 +18,13 @@ namespace FluentJdf.Configuration {
             CustomFormulas = new ReadOnlyDictionary<string, Func<string>>(customFormulas);
         }
 
+        #region ITemplateEngineSettings Members
+
         /// <summary>
         /// Gets dictionary of custom formulas.
         /// </summary>
-        public ReadOnlyDictionary<string, Func<string>> CustomFormulas {
-            get;
-            private set;
-        }
+        public ReadOnlyDictionary<string, Func<string>> CustomFormulas { get; private set; }
+
         /// <summary>
         /// Register a custom formula.
         /// </summary>
@@ -45,5 +43,7 @@ namespace FluentJdf.Configuration {
             RegisterCustomFormula("configuredDefaultVersion", () => FluentJdfLibrary.Settings.JdfAuthoringSettings.JdfVersion);
             return this;
         }
+
+        #endregion
     }
 }

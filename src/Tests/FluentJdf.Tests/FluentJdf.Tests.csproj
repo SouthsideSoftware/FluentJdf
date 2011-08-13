@@ -237,8 +237,16 @@
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_mixed_result_with_notifications.cs" />
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_success_result_with_no_notifications.cs" />
     <Compile Include="Unit\Schema\FluentValidation\when_validating_jmf_using_the_fluent_interface.cs" />
+    <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_five_parameters.cs" />
+    <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_four_parameters.cs" />
+    <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_one_parameter.cs" />
+    <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_three_parameters.cs" />
+    <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_two_parameters.cs" />
+    <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_wrong_number_of_parameters.cs" />
+    <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_zero_parameters.cs" />
     <Compile Include="Unit\TemplateEngine\FormulaTemplateItemFactory\when_creating_formula_template_item_for_registered_formula.cs" />
     <Compile Include="Unit\TemplateEngine\FormulaTemplateItemFactory\when_creating_formula_template_item_for_unregistered_formula.cs" />
+    <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_simple_custom_parameterized_formula.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_and_table_is_supplied_with_bad_structure.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_empty_table_is_supplied.cs" />
     <Compile Include="Unit\TemplateEngine\Template\when_generating_from_template_with_table_but_table_is_not_supplied.cs" />

@@ -108,6 +108,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TemplateEngine\CustomFormula.cs" />
     <Compile Include="Configuration\FileTransmitterEncoderBuilder.cs" />
     <Compile Include="Configuration\IFluentJdfLibrary.cs" />
     <Compile Include="Configuration\ITemplateEngineSettings.cs" />
