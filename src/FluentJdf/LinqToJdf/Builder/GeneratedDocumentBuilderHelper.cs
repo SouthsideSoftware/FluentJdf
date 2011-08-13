@@ -20,7 +20,7 @@ namespace FluentJdf.LinqToJdf.Builder
         Dictionary<string, object> nameValues;
         string jobId;
         bool makeIdsUnique = true;
-        Dictionary<string, Func<string>> customFormulas;
+        Dictionary<string, Delegate> customFormulas;
 
         internal GeneratedDocumentBuilderHelper(string templateFileName) {
             ParameterCheck.StringRequiredAndNotWhitespace(templateFileName, "templateFileName");
@@ -31,7 +31,7 @@ namespace FluentJdf.LinqToJdf.Builder
 
         void Initialize() {
             nameValues = new Dictionary<string, object>();
-            customFormulas = new Dictionary<string, Func<string>>();
+            customFormulas = new Dictionary<string, Delegate>();
         }
 
         internal GeneratedDocumentBuilderHelper(Stream templateStream) {
@@ -124,7 +124,7 @@ namespace FluentJdf.LinqToJdf.Builder
         /// <returns></returns>
         /// <remarks>The result of the custom function will be used for replacement if
         /// there is no replacement defined in the name values for the variable.</remarks>
-        public GeneratedDocumentBuilderHelper CustomFormula(string name, Func<string> customFunction) {
+        public GeneratedDocumentBuilderHelper CustomFormula(string name, Delegate customFunction) {
             ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
             ParameterCheck.ParameterRequired(customFunction, "customFunction");
 
@@ -136,7 +136,7 @@ namespace FluentJdf.LinqToJdf.Builder
         /// Generate the document.
         /// </summary>
         /// <returns></returns>
-        internal XDocument Generate() {
+        public XDocument Generate() {
             Template template;
             if (templateStream != null) {
                 template = new Template(templateStream, Globals.CreateUniqueId("Template_"), customFormulas);

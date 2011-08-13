@@ -106,5 +106,70 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf {
             generatedDocumentBuilderHelper.CustomFormula(name, customFunction);
             return this;
         }
+
+        /// <summary>
+        /// Adds a custom formula for use in this template.
+        /// </summary>
+        /// <param name="name">The name of the custom formula.  Is case sensitive.</param>
+        /// <param name="customFunction">The custom function that returns a string.</param>
+        /// <returns></returns>
+        /// <remarks>The result of the custom function will be used for replacement if
+        /// there is no replacement defined in the name values for the variable.</remarks>
+        public GeneratedMessageBuilder CustomFormula(string name, Func<string, string> customFunction) {
+            generatedDocumentBuilderHelper.CustomFormula(name, customFunction);
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a custom formula for use in this template.
+        /// </summary>
+        /// <param name="name">The name of the custom formula.  Is case sensitive.</param>
+        /// <param name="customFunction">The custom function that returns a string.</param>
+        /// <returns></returns>
+        /// <remarks>The result of the custom function will be used for replacement if
+        /// there is no replacement defined in the name values for the variable.</remarks>
+        public GeneratedMessageBuilder CustomFormula(string name, Func<string, string, string> customFunction) {
+            generatedDocumentBuilderHelper.CustomFormula(name, customFunction);
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a custom formula for use in this template.
+        /// </summary>
+        /// <param name="name">The name of the custom formula.  Is case sensitive.</param>
+        /// <param name="customFunction">The custom function that returns a string.</param>
+        /// <returns></returns>
+        /// <remarks>The result of the custom function will be used for replacement if
+        /// there is no replacement defined in the name values for the variable.</remarks>
+        public GeneratedMessageBuilder CustomFormula(string name, Func<string, string, string, string> customFunction) {
+            generatedDocumentBuilderHelper.CustomFormula(name, customFunction);
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a custom formula for use in this template.
+        /// </summary>
+        /// <param name="name">The name of the custom formula.  Is case sensitive.</param>
+        /// <param name="customFunction">The custom function that returns a string.</param>
+        /// <returns></returns>
+        /// <remarks>The result of the custom function will be used for replacement if
+        /// there is no replacement defined in the name values for the variable.</remarks>
+        public GeneratedMessageBuilder CustomFormula(string name, Func<string, string, string, string, string> customFunction) {
+            generatedDocumentBuilderHelper.CustomFormula(name, customFunction);
+            return this;
+        }
+        
+        /// <summary>
+        /// Adds a custom formula for use in this template.
+        /// </summary>
+        /// <param name="name">The name of the custom formula.  Is case sensitive.</param>
+        /// <param name="customFunction">The custom function that returns a string.</param>
+        /// <returns></returns>
+        /// <remarks>The result of the custom function will be used for replacement if
+        /// there is no replacement defined in the name values for the variable.</remarks>
+        public GeneratedMessageBuilder CustomFormula(string name, Func<string, string, string, string, string, string> customFunction) {
+            generatedDocumentBuilderHelper.CustomFormula(name, customFunction);
+            return this;
+        }
     }
 }

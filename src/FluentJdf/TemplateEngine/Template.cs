@@ -33,7 +33,7 @@ namespace FluentJdf.TemplateEngine
         /// </summary>
         /// <param name="fileName">The file to use.</param>
         /// <param name="additionalCustomFormulas">Optional additional custom formulas.</param>
-        public Template(string fileName, Dictionary<string, Func<string>> additionalCustomFormulas = null)
+        public Template(string fileName, Dictionary<string, Delegate> additionalCustomFormulas = null)
         {
             ParameterCheck.StringRequiredAndNotWhitespace(fileName, "fileName");
             if (!File.Exists(fileName)) {
@@ -52,7 +52,7 @@ namespace FluentJdf.TemplateEngine
         /// <param name="stream"></param>
         /// <param name="additionalCustomFormulas">Optional additional custom formulas.</param>
         /// <param name="name"></param>
-        public Template(Stream stream, string name, Dictionary<string, Func<string>> additionalCustomFormulas = null)
+        public Template(Stream stream, string name, Dictionary<string, Delegate> additionalCustomFormulas = null)
         {
             ParameterCheck.StringRequiredAndNotWhitespace(name, "name");
             ParameterCheck.ParameterRequired(stream, "stream");
@@ -83,7 +83,7 @@ namespace FluentJdf.TemplateEngine
             }
         }
 
-        private void Load(Stream stream, Dictionary<string, Func<string>> additionalCustomFormulas = null)
+        private void Load(Stream stream, Dictionary<string, Delegate> additionalCustomFormulas = null)
         {
             var templateEngineSettings = FluentJdfLibrary.Settings.TemplateEngineSettings;
             TemplateItem parent = null;
@@ -400,8 +400,7 @@ namespace FluentJdf.TemplateEngine
                                         LogAndThrowTemplateExpansionException(lineNumber, positionInLine, "Unexpected EOF");
                                     }
                                     string def = defaultValue.ToString().Trim();
-                                    if (def.EndsWith("()"))
-                                    {
+                                    if (def.IndexOf("(") > -1 && def.EndsWith(")")) {
                                         FormulaTemplateItem item = formulaTemplateItemFactory.CreateFormulaItem(parent, varName.ToString(), lineNumber, positionInLine, def, templateEngineSettings);
                                         if (parent == null)
                                         {

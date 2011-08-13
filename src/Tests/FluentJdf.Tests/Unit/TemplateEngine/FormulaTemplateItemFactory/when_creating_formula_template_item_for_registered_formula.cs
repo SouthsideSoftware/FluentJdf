@@ -1,6 +1,7 @@
 using System;
 using FluentJdf.Configuration;
 using Machine.Specifications;
+using Rhino.Mocks;
 
 namespace FluentJdf.Tests.Unit.TemplateEngine.FormulaTemplateItemFactory {
     [Subject(typeof(FluentJdf.TemplateEngine.FormulaTemplateItemFactory))]
@@ -10,8 +11,10 @@ namespace FluentJdf.Tests.Unit.TemplateEngine.FormulaTemplateItemFactory {
         static FluentJdf.TemplateEngine.FormulaTemplateItemFactory factory;
 
         Establish context = () => {
+            Func<string> func = () => "fooFormulaResult";
+            Delegate function = func;
             templateEngineSettings = new TemplateEngineSettings();
-            templateEngineSettings.RegisterCustomFormula("foo", () => "fooFormulaResult");
+            templateEngineSettings.RegisterCustomFormula("foo", function);
             factory = new FluentJdf.TemplateEngine.FormulaTemplateItemFactory();
         };
 

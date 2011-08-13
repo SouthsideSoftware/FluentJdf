@@ -10,12 +10,12 @@ namespace FluentJdf.Configuration {
         /// <summary>
         /// Gets dictionary of custom formulas.
         /// </summary>
-        ReadOnlyDictionary<string, Func<string>> CustomFormulas { get; }
+        ReadOnlyDictionary<string, Delegate> CustomFormulas { get; }
 
         /// <summary>
         /// Register a custom formula.
         /// </summary>
-        void RegisterCustomFormula(string formulaName, Func<string> formula);
+        void RegisterCustomFormula(string formulaName, Delegate formula);
 
         /// <summary>
         /// Reset to default settings.

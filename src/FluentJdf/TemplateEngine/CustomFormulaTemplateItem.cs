@@ -8,8 +8,9 @@ namespace FluentJdf.TemplateEngine {
     /// Processes any configured formula that is not handled by a specific <see cref="FormulaTemplateItem"/> descendant.
     /// </summary>
     public class CustomFormulaTemplateItem : FormulaTemplateItem {
-        Func<string> valueFunction;
+        CustomFormula valueFunction;
         string functionName;
+        string[] parameterNames;
 
         /// <summary>
         /// Constructor.
@@ -20,14 +21,16 @@ namespace FluentJdf.TemplateEngine {
         /// <param name="positionInLine">The column number within the xml template file.</param>
         /// <param name="functionName">The name of the function include parameters.</param>
         /// <param name="valueFunction">The custom function for this formula</param>
-        protected internal CustomFormulaTemplateItem(TemplateItem parent, string name, int lineNumber, int positionInLine, string functionName, Func<string> valueFunction) :
+        /// <param name="parameterNames">The parameter names if the function is parameterized (otherwise null).</param>
+        protected internal CustomFormulaTemplateItem(TemplateItem parent, string name, int lineNumber, int positionInLine, string functionName, Delegate valueFunction, string [] parameterNames) :
             base(parent, name, lineNumber, positionInLine)
         {
             ParameterCheck.ParameterRequired(valueFunction, "valueFunction");
             ParameterCheck.StringRequiredAndNotWhitespace(functionName, "functionName");
 
-            this.valueFunction = valueFunction;
+            this.valueFunction = new CustomFormula(functionName, valueFunction);
             this.functionName = functionName;
+            this.parameterNames = parameterNames;
         }
 
         /// <summary>
@@ -38,9 +41,22 @@ namespace FluentJdf.TemplateEngine {
         /// <returns>True if the replacement was made.</returns>
         protected internal override bool Generate(TextWriter writer, Dictionary<string, object> vars)
         {
-            if (!base.Generate(writer, vars))
-            {
-                writer.Write(valueFunction());
+            if (!base.Generate(writer, vars)) {
+                string[] parameters = null;
+                if (parameterNames == null || parameterNames.Length == 0) {
+                    parameters = new string[0];
+                }
+                else {
+                    parameters = new string[parameterNames.Length];
+                    int index = 0;
+                    foreach (var parameterName in parameterNames) {
+                        if (vars.ContainsKey(parameterName)) {
+                            parameters[index] = vars[parameterName].ToString();
+                        }
+                        index++;
+                    }
+                }
+                writer.Write(valueFunction.Execute(parameters));
             }
 
             return true;

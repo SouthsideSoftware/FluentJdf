@@ -15,8 +15,9 @@ namespace FluentJdf.Tests.Unit.TemplateEngine.Template {
         static XDocument document;
 
         Establish context = () => {
+            Func<string> func = () => Globals.CreateUniqueId("this_is_local_");
             template = new FluentJdf.TemplateEngine.Template(TestDataHelper.Instance.PathToTestFile("BasicJmfTemplateCustomFormula.jmf"), 
-                new Dictionary<string, Func<string>>{{"getDeviceId", () => Globals.CreateUniqueId("this_is_local_")}});
+                new Dictionary<string, Delegate>{{"getDeviceId", func}});
             dict = new Dictionary<string, object>();
         };
 
