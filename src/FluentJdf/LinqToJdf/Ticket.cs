@@ -209,9 +209,11 @@ namespace FluentJdf.LinqToJdf {
         /// <summary>
         /// Validate the document.
         /// </summary>
-        /// <param name="addSchemaInfo"></param>
-        public Ticket ValidateJdf(bool addSchemaInfo = true) {
-            validator.Validate(addSchemaInfo);
+        /// <param name="addSchemaInfo">True adds default elements, default attributes and schema info to the ticket.  False leaves this alone.  Default is true.</param>
+        /// <param name="workAroundMSBug">True works around an issue in the .NET framework that causes validation to work improperly on schema types that inherit 
+        /// from an abstract base class if the document is created via node authoring code instead of by Parse or Load methods.  Default is true.</param>
+        public Ticket ValidateJdf(bool addSchemaInfo = true, bool workAroundMSBug = true) {
+            validator.Validate(addSchemaInfo, workAroundMSBug);
             return this;
         }
     }

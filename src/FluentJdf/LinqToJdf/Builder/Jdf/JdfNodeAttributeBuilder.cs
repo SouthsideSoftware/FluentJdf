@@ -133,5 +133,28 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
                 return jdfNodeBuilder.ParentJdfNode;
             }
         }
+
+        /// <summary>
+        /// Sets the ID of the JDF node.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public JdfNodeAttributeBuilder Id(string id) {
+            Element.SetId(id);
+            return this;
+        }
+
+        /// <summary>
+        /// Sets an attribute value.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public JdfNodeAttributeBuilder Attribute(XName name, string value) {
+            ParameterCheck.ParameterRequired(name, "name");
+
+            Element.SetAttributeValue(name, value);
+            return this;
+        }
     }
 }

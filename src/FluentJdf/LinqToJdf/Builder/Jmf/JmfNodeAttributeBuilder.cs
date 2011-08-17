@@ -108,5 +108,18 @@ namespace FluentJdf.LinqToJdf.Builder.Jmf
             ParameterCheck.ParameterRequired(name, "name");
             return AddNode(new XElement(name));
         }
+
+        /// <summary>
+        /// Sets an attribute value.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public JmfNodeAttributeBuilder Attribute(XName name, string value) {
+            ParameterCheck.ParameterRequired(name, "name");
+
+            Element.SetAttributeValue(name, value);
+            return this;
+        }
     }
 }

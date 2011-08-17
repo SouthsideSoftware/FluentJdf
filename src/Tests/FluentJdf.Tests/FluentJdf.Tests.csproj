@@ -179,6 +179,8 @@
     <Compile Include="Unit\Encoding\TransmissionPartCollection\when_transmission_part_collection_has_one_jmf_part.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartCollection\when_transmission_part_collection_is_empty.cs" />
     <Compile Include="Unit\Encoding\TransmissionPartFactory\when_creating_jdf_and_jmf_transmission_parts.cs" />
+    <Compile Include="Unit\LinqToJdf\Builder\Jdf\JdfNodeAttributeBuilder\when_setting_arbitrary_attribute_on_the_jdf_node.cs" />
+    <Compile Include="Unit\LinqToJdf\Builder\Jmf\JmfNodeAttributeBuilder\when_setting_arbitrary_attribute_on_the_jmf_node.cs" />
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_setting_and_getting_timestamp.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\TemplateEngine\when_generating_from_a_basic_ticket_template.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\TemplateEngine\when_generating_from_a_ticket_template_that_uses_configured_default_version.cs" />
@@ -190,6 +192,7 @@
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_node_with_older_version_as_configured_default.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_process_group.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_simple_jdf_process.cs" />
+    <Compile Include="Unit\LinqToJdf\Builder\Jdf\JdfNodeAttributeBuilder\when_setting_id_on_the_jdf_node.cs" />
     <Compile Include="Unit\LinqToJdf\JdfDateTime\when_converting_to_jdf_date_time_string.cs" />
     <Compile Include="Unit\LinqToJdf\JdfDateTime\when_jdf_date_time_try_parse.cs" />
     <Compile Include="Unit\LinqToJdf\JdfDateTime\when_parsing_jdf_date_time_strings.cs" />
@@ -231,12 +234,15 @@
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_copy_constructor.cs" />
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_parse.cs" />
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_ticket_getprocess.cs" />
+    <Compile Include="Unit\Schema\Validator\when_validating_a_message_without_working_around_ms_bug.cs" />
+    <Compile Include="Unit\Schema\Validator\when_validating_a_ticket.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_jdfXPathSelectElement_using_multilevel_document.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_jdfXPathSelectElement_with_rRef.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_SelectJDFDescendants_ArtDeliveryIntent_resolves.cs" />
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_mixed_result_with_notifications.cs" />
     <Compile Include="Unit\Messaging\JmfResult\when_constructed_from_a_success_result_with_no_notifications.cs" />
     <Compile Include="Unit\Schema\FluentValidation\when_validating_jmf_using_the_fluent_interface.cs" />
+    <Compile Include="Unit\Schema\Validator\when_validating_a_ticket_without_working_around_ms_bug.cs" />
     <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_five_parameters.cs" />
     <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_four_parameters.cs" />
     <Compile Include="Unit\TemplateEngine\CustomFormula\when_executing_a_custom_formula_with_one_parameter.cs" />
