@@ -83,6 +83,17 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         }
 
         /// <summary>
+        /// Adds a new gray box (process group with types)
+        /// </summary>
+        /// <returns></returns>
+        public JdfNodeBuilder AddGrayBox(params string [] types) {
+            if (types == null || types.Length == 0) {
+                throw new ArgumentException(Messages.AtLeastOneProcessMustBeSpecified);
+            }
+            return new JdfNodeBuilder(jdfNodeBuilder.Element, ProcessType.ProcessGroup);
+        }
+
+        /// <summary>
         /// Adds a new process JDF
         /// </summary>
         /// <param name="types"></param>

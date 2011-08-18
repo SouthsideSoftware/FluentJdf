@@ -36,6 +36,17 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Add a process JDF to the current JDF or document
+        /// </summary>
+        /// <returns>The newly created JDF node.</returns>
+        /// <remarks>If no types are passed, a process group node is created.</remarks>
+        public static XElement AddGrayBoxJdfElement(this XContainer parent, params string[] types) {
+            ParameterCheck.ParameterRequired(parent, "parent");
+
+            return parent.AddJdfElement(true, types);
+        }
+
+        /// <summary>
         /// Gets the mime type associated with the given node.
         /// </summary>
         /// <param name="node"></param>
@@ -101,13 +112,28 @@ namespace FluentJdf.LinqToJdf {
         public static XElement AddJdfElement(this XContainer parent, params string[] types) {
             ParameterCheck.ParameterRequired(parent, "parent");
 
+            return parent.AddJdfElement(false, types);
+        }
+
+        /// <summary>
+        /// Add a JDF node to the current JDF or document
+        /// </summary>
+        /// <returns>The newly created JDF node.</returns>
+        /// <remarks>Passing isGrayBox=true will result in the creation of a gray box (process group with types set)</remarks>
+        public static XElement AddJdfElement(this XContainer parent, bool isGrayBox, params string[] types) {
+            ParameterCheck.ParameterRequired(parent, "parent");
+
             if (parent is XElement) {
                 parent = (parent as XElement).NearestJdf();
             }
 
             var jdfNode = new XElement(Element.JDF);
             parent.Add(jdfNode);
-            jdfNode.MakeJdfElementAProcess(types);
+            if (isGrayBox) {
+                jdfNode.MakeJdfElementAGrayBox(types);
+            } else {
+                jdfNode.MakeJdfElementAProcess(types);
+            }
             jdfNode.SetUniqueId();
             jdfNode.SetStatus(JdfStatus.Waiting);
 
@@ -751,6 +777,19 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Make the JDF node a gray box (process group with types)
+        /// </summary>
+        /// <returns></returns>
+        public static XElement MakeJdfElementAGrayBox(this XElement jdfNode, params string[] types) {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+            jdfNode.ThrowExceptionIfNotJdfElement();
+
+            jdfNode.SetTypeAndTypes(true, types);
+
+            return jdfNode;
+        }
+
+        /// <summary>
         /// Make the JDF node a process
         /// </summary>
         /// <returns></returns>
@@ -784,24 +823,55 @@ namespace FluentJdf.LinqToJdf {
         /// <returns></returns>
         public static XElement SetTypeAndTypes(this XElement jdfNode, params string[] types) {
             ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
+
+            return jdfNode.SetTypeAndTypes(false, types);
+        }
+
+        /// <summary>
+        /// Set type and optionally types of a JDF node.
+        /// </summary>
+        /// <param name="jdfNode"></param>
+        /// <param name="isGrayBox">If true, makes a gray box (Process group with types set)</param>
+        /// <param name="types"></param>
+        /// <returns></returns>
+        public static XElement SetTypeAndTypes(this XElement jdfNode, bool isGrayBox, params string[] types) {
+            ParameterCheck.ParameterRequired(jdfNode, "jdfNode");
             ThrowExceptionIfNotJdfElement(jdfNode);
 
             if (types == null || types.Length == 0) {
                 jdfNode.SetAttributeValue("Type", ProcessType.ProcessGroup);
                 jdfNode.SetXsiType(ProcessType.XsiJdfElementType(ProcessType.ProcessGroup).ToString());
             }
-            if (types.Length == 1) {
-                jdfNode.SetAttributeValue("Type", types[0]);
-                jdfNode.SetXsiType(ProcessType.XsiJdfElementType(types[0]).ToString());
-            }
-            else {
-                jdfNode.SetAttributeValue("Type", ProcessType.Combined);
-                jdfNode.SetXsiType(ProcessType.XsiJdfElementType(ProcessType.Combined));
-                jdfNode.SetAttributeValue("Types", string.Join(" ", types));
+            if (types.Length > 0 && isGrayBox) {
+                MakeGrayBox(jdfNode, types);
+            } else {
+                if (types.Length == 1) {
+                    MakeSimpleProcess(jdfNode, types);
+                }
+                else {
+                    MakeCombinedProcess(jdfNode, types);
+                }
             }
 
 
             return jdfNode;
+        }
+
+        static void MakeCombinedProcess(XElement jdfNode, string[] types) {
+            jdfNode.SetAttributeValue("Type", ProcessType.Combined);
+            jdfNode.SetXsiType(ProcessType.XsiJdfElementType(ProcessType.Combined));
+            jdfNode.SetAttributeValue("Types", string.Join(" ", types));
+        }
+
+        static void MakeSimpleProcess(XElement jdfNode, string[] types) {
+            jdfNode.SetAttributeValue("Type", types[0]);
+            jdfNode.SetXsiType(ProcessType.XsiJdfElementType(types[0]).ToString());
+        }
+
+        static void MakeGrayBox(XElement jdfNode, string[] types) {
+            jdfNode.SetAttributeValue("Type", ProcessType.ProcessGroup);
+            jdfNode.SetXsiType(ProcessType.XsiJdfElementType(ProcessType.ProcessGroup).ToString());
+            jdfNode.SetAttributeValue("Types", string.Join(" ", types));
         }
 
         /// <summary>

@@ -9,18 +9,24 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
     /// Factory for creating intent nodes.
     /// </summary>
     public class JdfNodeBuilder : JdfNodeBuilderBase, IJdfNodeBuilder {
-        internal JdfNodeBuilder(Ticket ticket, params string[] types) {
+        internal JdfNodeBuilder(Ticket ticket, params string[] types) : this(ticket, false, types) {}
+
+        internal JdfNodeBuilder(Ticket ticket, bool isGrayBox, params string[] types) {
             ParameterCheck.ParameterRequired(ticket, "ticket");
-            Initalize(ticket, types);
+            Initalize(ticket, isGrayBox, types);
         }
 
-        void Initalize(Ticket ticket, string[] types) {
+        void Initalize(Ticket ticket, bool isGrayBox, string[] types) {
             if (ticket.Root != null) {
                 ticket.Root.ThrowExceptionIfNotJdfElement();
             }
 
             if (ticket.Root == null) {
-                Element = ticket.AddProcessJdfElement(types);
+                if (isGrayBox) {
+                    Element = ticket.AddGrayBoxJdfElement(types);
+                } else {
+                    Element = ticket.AddProcessJdfElement(types);
+                }
             }
             else {
                 Element = ticket.Root;
@@ -31,7 +37,9 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
             }
         }
 
-        internal JdfNodeBuilder(XElement node, params string[] types) {
+        internal JdfNodeBuilder(XElement node, params string[] types) : this(node, false, types) {}
+
+        internal JdfNodeBuilder(XElement node, bool isGrayBox, params string[] types) {
             ParameterCheck.ParameterRequired(node, "node");
             node.ThrowExceptionIfNotJdfElement();
 
@@ -39,7 +47,12 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
                 InitializeFromElement(node);
             }
             else {
-                InitializeFromElement(node.AddProcessJdfElement(types));
+                if (isGrayBox) {
+                    InitializeFromElement(node.AddGrayBoxJdfElement(types));
+                }
+                else {
+                    InitializeFromElement(node.AddProcessJdfElement(types));
+                }
             }
         }
 
@@ -111,6 +124,17 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
                 throw new ArgumentException(Messages.AtLeastOneProcessMustBeSpecified);
             }
             return new JdfNodeBuilder(Element, types);
+        }
+
+        /// <summary>
+        /// Adds a new gray box (process group with types)
+        /// </summary>
+        /// <returns></returns>
+        public JdfNodeBuilder AddGrayBox(params string[] types) {
+            if (types == null || types.Length == 0) {
+                throw new ArgumentException(Messages.AtLeastOneProcessMustBeSpecified);
+            }
+            return new JdfNodeBuilder(Element, true, types);
         }
 
         /// <summary>

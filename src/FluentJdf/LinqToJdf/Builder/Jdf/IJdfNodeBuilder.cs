@@ -33,6 +33,12 @@
         JdfNodeBuilder AddProcess(params string[] types);
 
         /// <summary>
+        /// Adds a new gray box (process group with types)
+        /// </summary>
+        /// <returns></returns>
+        JdfNodeBuilder AddGrayBox(params string[] types);
+
+        /// <summary>
         /// Validate the JDF
         /// </summary>
         /// <param name="addSchemaInfo"></param>

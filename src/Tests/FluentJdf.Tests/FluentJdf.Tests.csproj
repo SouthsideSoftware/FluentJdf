@@ -184,10 +184,13 @@
     <Compile Include="Unit\LinqToJdf\ElementExtensions\when_setting_and_getting_timestamp.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\TemplateEngine\when_generating_from_a_basic_ticket_template.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\TemplateEngine\when_generating_from_a_ticket_template_that_uses_configured_default_version.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfBuilder\when_adding_a_jdf_gray_box_with_one_type_to_an_existing_jdf.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_combined_jdf_process.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_generic_node_test_on_address_input_resource.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_generic_node_test_on_root_jdf_element.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_generic_node_test_on_three_level_deep_jdf_document.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_gray_box.cs" />
+    <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_gray_box_with_one_type.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_intent.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_node_with_older_version_as_configured_default.cs" />
     <Compile Include="Unit\LinqToJdf\JdfBuilder\when_creating_jdf_process_group.cs" />

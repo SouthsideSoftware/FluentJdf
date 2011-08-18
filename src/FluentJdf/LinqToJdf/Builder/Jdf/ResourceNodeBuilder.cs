@@ -81,6 +81,14 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         }
 
         /// <summary>
+        /// Adds a new gray box (process group with types)
+        /// </summary>
+        /// <returns></returns>
+        public JdfNodeBuilder AddGrayBox(params string[] types) {
+            return ParentJdfNode.AddGrayBox(types);
+        }
+
+        /// <summary>
         /// Validate the JDF
         /// </summary>
         /// <param name="addSchemaInfo"></param>

@@ -199,6 +199,17 @@ namespace FluentJdf.LinqToJdf {
         }
 
         /// <summary>
+        /// Create a new JDF ticket with a gray box (process group with types) at the root.
+        /// </summary>
+        /// <returns></returns>
+        public static JdfNodeBuilder CreateGrayBox(params string[] types) {
+            if (types == null || types.Length == 0) {
+                throw new ArgumentException(Messages.AtLeastOneProcessMustBeSpecified);
+            }
+            return new JdfNodeBuilder(new Ticket(), true, types);
+        }
+
+        /// <summary>
         /// Create a new JDF ticket with a process group node at the root.
         /// </summary>
         /// <returns></returns>

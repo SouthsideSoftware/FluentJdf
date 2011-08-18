@@ -99,6 +99,14 @@ namespace FluentJdf.LinqToJdf.Builder.Jdf {
         }
 
         /// <summary>
+        /// Adds a new gray box (process group with types)
+        /// </summary>
+        /// <returns></returns>
+        public JdfNodeBuilder AddGrayBox(params string[] types) {
+            return resourceNodeBuilder.AddGrayBox(types);
+        }
+
+        /// <summary>
         /// Gets the ticket associated with this builder
         /// </summary>
         public Ticket Ticket {
