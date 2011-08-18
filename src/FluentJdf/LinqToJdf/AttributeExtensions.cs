@@ -176,7 +176,11 @@ namespace FluentJdf.LinqToJdf
             ParameterCheck.ParameterRequired(source, "source");
             ParameterCheck.ParameterRequired(attributeName, "attributeName");
 
-            return source.Descendants(attributeName).FirstOrDefault().GetActualPreferredOrNull();
+            var spanElement = source.Descendants(attributeName).FirstOrDefault();
+            if (spanElement == null) {
+                return null;
+            }
+            return spanElement.GetActualPreferredOrNull();
         }
 
         /// <summary>
