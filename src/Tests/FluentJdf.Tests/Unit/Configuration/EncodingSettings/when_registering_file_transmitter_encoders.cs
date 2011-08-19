@@ -28,28 +28,28 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
         };
 
         It should_be_able_to_register_file_transmitter_encoder_with_uri = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true);
             FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.Count.ShouldEqual(1);
         };
 
         It should_be_able_to_register_file_transmitter_encoder_with_uri_with_id_of_id = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true);
             FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders["id"].ShouldNotBeNull();
         };
 
         It should_be_able_to_register_file_transmitter_encoder_with_uri_with_mime_true = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true);
             FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders["id"].UseMime.ShouldBeTrue();
         };
 
         It should_be_able_to_register_file_transmitter_encoder_with_uri_with_name_value_item = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true, additionalItems);
             FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders["id"].NameValues.Count.ShouldEqual(1);
@@ -57,28 +57,28 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
         };
 
         It should_be_able_to_register_file_transmitter_encoder_with_string = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne.ToString(), true);
             FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders.Count.ShouldEqual(1);
         };
 
         It should_be_able_to_register_file_transmitter_encoder_with_string_with_id_of_id = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne.ToString(), true);
             FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders["id"].ShouldNotBeNull();
         };
 
         It should_be_able_to_register_file_transmitter_encoder_with_string_with_mime_true = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true);
             FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders["id"].UseMime.ShouldBeTrue();
         };
 
         It should_be_able_to_register_file_transmitter_encoder_with_string_with_name_value_item = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true, additionalItems);
             FluentJdfLibrary.Settings.EncodingSettings.FileTransmitterEncoders["id"].NameValues.Count.ShouldEqual(1);
@@ -86,7 +86,7 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
         };
 
         It should_fail_if_two_FileTransmitterEncoders_with_the_same_id_are_added = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true);
 
@@ -96,7 +96,7 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
         };
 
         It should_allow_two_transmitters_to_be_added_with_different_urlbase = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id1", uriOne, true);
             FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id2", uriTwo, true);

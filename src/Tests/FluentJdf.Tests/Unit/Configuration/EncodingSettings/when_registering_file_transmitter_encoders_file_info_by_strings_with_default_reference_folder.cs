@@ -12,7 +12,7 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
         static FileTransmitterEncoderBuilder builder;
 
         Because because_folder_info_configured_with_attachment = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             builder = FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true);
             builder.FolderInfo(FolderInfoTypeEnum.Attachment, uriOne.ToString());

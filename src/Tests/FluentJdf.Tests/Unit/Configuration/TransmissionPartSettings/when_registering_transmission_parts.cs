@@ -10,7 +10,7 @@ namespace FluentJdf.Tests.Unit.Configuration.TransmissionPartSettings {
         Establish context = () => { mockTransmissionPart = new MockTransmissionPart(); };
 
         It should_be_able_to_register_a_default_transmission_part = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithTransmissionPartSettings().DefaultTransmissionPart<MockTransmissionPart>();
             FluentJdfLibrary.Settings.TransmissionPartSettings.DefaultTransmissionPart.ShouldEqual(
@@ -18,7 +18,7 @@ namespace FluentJdf.Tests.Unit.Configuration.TransmissionPartSettings {
         };
 
         It should_be_able_to_register_a_mime_type_encoding = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType<MockTransmissionPart>("boohoo");
             FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType["boohoo"].

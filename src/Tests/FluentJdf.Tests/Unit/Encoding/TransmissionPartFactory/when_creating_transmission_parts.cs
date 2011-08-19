@@ -16,7 +16,7 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory
         static ITransmissionPart defaultTransmissionPart;
 
         Establish context = () => {
-                                Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+                                Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
                                 FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
                                 factory = new FluentJdf.Encoding.TransmissionPartFactory();
                             };

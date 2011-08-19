@@ -145,6 +145,11 @@
             Apply the configuration.
             </summary>
         </member>
+        <member name="M:Infrastructure.Core.Configuration.ResetServiceLocator">
+            <summary>
+            Clears the service locator configuration and re-runs the component installers.
+            </summary>
+        </member>
         <member name="P:Infrastructure.Core.Configuration.Settings">
             <summary>
             Gets the settings instance.
@@ -2473,7 +2478,7 @@
             lifestyle that defaults to singleton and the given key.
             </summary>
         </member>
-        <member name="M:Infrastructure.Core.Container.IServiceLocator.Reset">
+        <member name="M:Infrastructure.Core.Container.IServiceLocator.Clear">
             <summary>
             Clear all components from the container.
             </summary>

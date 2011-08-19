@@ -12,7 +12,7 @@ namespace FluentJdf.Tests.Unit.Encoding.EncodingFactory {
         static FluentJdf.Encoding.ITransmissionPartFactory factory;
 
         Establish context = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdf.Configuration.FluentJdfLibrary.Settings.ResetToDefaults();
             factory = new FluentJdf.Encoding.TransmissionPartFactory();
         };

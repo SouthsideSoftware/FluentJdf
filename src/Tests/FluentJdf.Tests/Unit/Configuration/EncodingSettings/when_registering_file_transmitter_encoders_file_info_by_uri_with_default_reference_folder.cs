@@ -16,7 +16,7 @@ namespace FluentJdf.Tests.Unit.Configuration.EncodingSettings {
         Establish context = () => uriOne = new Uri(@"file:///c:\temp\SimpleSend\1\");
 
         Because because_folder_info_configured_with_attachment = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             builder = FluentJdfLibrary.Settings.WithEncodingSettings().FileTransmitterEncoder("id", uriOne, true);
             builder.FolderInfo(FolderInfoTypeEnum.Attachment, uriOne);

@@ -14,7 +14,7 @@ namespace FluentJdf.Tests.Unit.Configuration.TransmitterSettings {
         Establish context = () => { mockTransmitter = new MockTransmitter(); };
 
         It should_be_able_to_register_a_scheme_transmitter = () => {
-            Infrastructure.Core.Configuration.Settings.ServiceLocator.Reset();
+            Infrastructure.Core.Configuration.Settings.ResetServiceLocator();
             FluentJdfLibrary.Settings.ResetToDefaults();
             FluentJdfLibrary.Settings.WithTransmissionPartSettings().TransmissionPartForMimeType<MockTransmissionPart>("boohoo");
             FluentJdfLibrary.Settings.TransmissionPartSettings.TransmissionPartsByMimeType["boohoo"].

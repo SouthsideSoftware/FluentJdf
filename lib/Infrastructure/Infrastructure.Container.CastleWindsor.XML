@@ -236,9 +236,9 @@
             lifestyle that defaults to singleton and the given key.
             </summary>
         </member>
-        <member name="M:Infrastructure.Container.CastleWindsor.WindsorServiceLocator.Reset">
+        <member name="M:Infrastructure.Container.CastleWindsor.WindsorServiceLocator.Clear">
             <summary>
-            Resets the container.
+            Clears the container.
             </summary>
         </member>
         <member name="M:Infrastructure.Container.CastleWindsor.WindsorServiceLocator.RegisterRemainingInterfaceImplementations(System.Reflection.Assembly)">
