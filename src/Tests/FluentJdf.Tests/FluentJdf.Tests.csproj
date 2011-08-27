@@ -100,8 +100,9 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\..\..\packages\Castle.Windsor.2.5.3\lib\NET40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="ExpectedObjects">
-      <HintPath>..\..\..\packages\ExpectedObjects.1.0.0.0\lib\ExpectedObjects.dll</HintPath>
+    <Reference Include="ExpectedObjects, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\ExpectedObjects.1.0.0.1\lib\ExpectedObjects.dll</HintPath>
     </Reference>
     <Reference Include="Infrastructure.Container.CastleWindsor, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -118,9 +119,9 @@
     <Reference Include="Infrastructure.Testing">
       <HintPath>..\..\..\lib\Infrastructure\Infrastructure.Testing.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Specifications, Version=0.4.23.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Machine.Specifications, Version=0.4.24.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\packages\Machine.Specifications.0.4.23.0\lib\Machine.Specifications.dll</HintPath>
+      <HintPath>..\..\..\packages\Machine.Specifications.0.4.24.0\lib\Machine.Specifications.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
