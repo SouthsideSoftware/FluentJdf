@@ -148,28 +148,28 @@
         </member>
         <member name="M:Infrastructure.Container.CastleWindsor.WindsorServiceLocator.Resolve``1">
             <summary>
-            Get the default instance of the given type.
+            Get the default instance of the given service type.
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Infrastructure.Container.CastleWindsor.WindsorServiceLocator.Resolve(System.Type)">
             <summary>
-            Get the default instance of the given type
+            Get the default instance of the given service type
             </summary>
             <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:Infrastructure.Container.CastleWindsor.WindsorServiceLocator.Resolve``1(System.String)">
             <summary>
-            Get the instance of the given type with the given key.
+            Get the instance of the given service type with the given key.
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Infrastructure.Container.CastleWindsor.WindsorServiceLocator.Resolve(System.Type,System.String)">
             <summary>
-            Get the instance of the given type with the given key.
+            Get the instance of the given service type with the given key.
             </summary>
             <param name="type"></param>
             <param name="key"></param>
@@ -177,7 +177,7 @@
         </member>
         <member name="M:Infrastructure.Container.CastleWindsor.WindsorServiceLocator.CanResolve(System.Type)">
             <summary>
-            Returns true if the given type can be resolved.
+            Returns true if the given service type can be resolved.
             </summary>
             <param name="type"></param>
             <returns></returns>
@@ -192,7 +192,7 @@
         </member>
         <member name="M:Infrastructure.Container.CastleWindsor.WindsorServiceLocator.ResolveAll``1">
             <summary>
-            Resolve all components of the given type.
+            Resolve all components of the given service type.
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>

@@ -2390,28 +2390,28 @@
         </member>
         <member name="M:Infrastructure.Core.Container.IServiceLocator.Resolve``1">
             <summary>
-            Get the default instance of the given type.
+            Get the default instance of the given service type.
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Infrastructure.Core.Container.IServiceLocator.Resolve(System.Type)">
             <summary>
-            Get the default instance of the given type
+            Get the default instance of the given service type
             </summary>
             <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:Infrastructure.Core.Container.IServiceLocator.Resolve``1(System.String)">
             <summary>
-            Get the instance of the given type with the given key.
+            Get the instance of the given service type with the given key.
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Infrastructure.Core.Container.IServiceLocator.Resolve(System.Type,System.String)">
             <summary>
-            Get the instance of the given type with the given key.
+            Get the instance of the given service type with the given key.
             </summary>
             <param name="type"></param>
             <param name="key"></param>
@@ -2426,7 +2426,7 @@
         </member>
         <member name="M:Infrastructure.Core.Container.IServiceLocator.CanResolve(System.Type,System.String)">
             <summary>
-            Returns true if a component with the given type and key can be resolved.
+            Returns true if a component with the given service type and key can be resolved.
             </summary>
             <param name="type"></param>
             <param name="key"></param>
@@ -2434,14 +2434,14 @@
         </member>
         <member name="M:Infrastructure.Core.Container.IServiceLocator.ResolveAll``1">
             <summary>
-            Resolve all components of the given type.
+            Resolve all components of the given service type.
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
         <member name="M:Infrastructure.Core.Container.IServiceLocator.GetAllHandlersFor(System.Type)">
             <summary>
-            Get the handlers for the given type.
+            Get the handlers for the given service type.
             </summary>
             <param name="type"></param>
             <returns></returns>
