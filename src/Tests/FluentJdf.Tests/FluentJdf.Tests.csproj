@@ -243,6 +243,7 @@
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_copy_constructor.cs" />
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_parse.cs" />
     <Compile Include="Unit\LinqToJdf\Ticket\when_using_ticket_getprocess.cs" />
+    <Compile Include="Unit\Logging\when_using_a_static_logger_initialized_before_logging_configuration.cs" />
     <Compile Include="Unit\Schema\Validator\when_validating_a_message_without_working_around_ms_bug.cs" />
     <Compile Include="Unit\Schema\Validator\when_validating_a_ticket.cs" />
     <Compile Include="Unit\LinqToJdf\XPathExtensions\when_using_jdfXPathSelectElement_using_multilevel_document.cs" />

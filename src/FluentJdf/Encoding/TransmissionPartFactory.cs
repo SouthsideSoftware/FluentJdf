@@ -14,7 +14,7 @@ namespace FluentJdf.Encoding {
     /// Implementation of transmission part factory.
     /// </summary>
     public class TransmissionPartFactory : ITransmissionPartFactory {
-        static ILog logger = LogManager.GetLogger(typeof(TransmissionPartFactory));
+        ILog logger = LogManager.GetLogger(typeof(TransmissionPartFactory));
         #region ITransmissionPartFactory Members
 
         /// <summary>

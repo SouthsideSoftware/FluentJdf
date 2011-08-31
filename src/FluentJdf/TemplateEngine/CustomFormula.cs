@@ -7,7 +7,7 @@ namespace FluentJdf.TemplateEngine {
     /// A custom template formula that may take parameters
     /// </summary>
     public class CustomFormula {
-        static ILog logger = LogManager.GetLogger(typeof(CustomFormula));
+        ILog logger = LogManager.GetLogger(typeof(CustomFormula));
         readonly Delegate customFunction;
         readonly string name;
 

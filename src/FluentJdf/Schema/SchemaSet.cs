@@ -12,9 +12,9 @@ namespace FluentJdf.Schema {
     /// Loads an XmlSchemaSet from resources and makes it available for use.
     /// </summary>
     public class SchemaSet {
-        static ILog logger = LogManager.GetLogger(typeof(SchemaSet));
+        ILog logger = LogManager.GetLogger(typeof(SchemaSet));
 
-        static string relativeSchemaDir = "schema";
+        const string RelativeSchemaDir = "schema";
 
         /// <summary>
         /// Get the singleton instance
@@ -22,7 +22,7 @@ namespace FluentJdf.Schema {
         public static SchemaSet Instance = new SchemaSet();
 
         private SchemaSet() {
-            var schemaDir = Path.Combine(ApplicationInformation.Directory, relativeSchemaDir);
+            var schemaDir = Path.Combine(ApplicationInformation.Directory, RelativeSchemaDir);
             if (!SchemaHasBeenCopied(schemaDir)) {
                 try {
 

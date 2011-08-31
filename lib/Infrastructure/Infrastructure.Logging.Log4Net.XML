@@ -127,6 +127,11 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
+        <member name="P:Infrastructure.Logging.Log4Net.Log4NetLog.Name">
+            <summary>
+            Gets the name of the logger.
+            </summary>
+        </member>
         <member name="P:Infrastructure.Logging.Log4Net.Log4NetLog.IsErrorEnabled">
             <summary>
             Gets <see langword="true"/> if error logging is enabled.

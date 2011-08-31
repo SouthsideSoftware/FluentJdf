@@ -10,7 +10,7 @@ namespace FluentJdf.TemplateEngine {
     /// Constructs specific desendants of FormulaTemplateItem
     /// </summary>
     public class FormulaTemplateItemFactory {
-        static readonly ILog logger = LogManager.GetLogger(typeof (FormulaTemplateItemFactory));
+        readonly ILog logger = LogManager.GetLogger(typeof (FormulaTemplateItemFactory));
         readonly Dictionary<string, Delegate> additionalCustomFormulas;
 
 

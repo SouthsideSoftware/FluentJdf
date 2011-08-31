@@ -13,7 +13,7 @@ namespace FluentJdf.TemplateEngine
 	/// A template item that replaces text based on a name/value pair or the data from a table.
 	/// </summary>
 	public class VariableTemplateItem : TemplateItem {
-	    static readonly ILog logger = LogManager.GetLogger(typeof (VariableTemplateItem));
+	    readonly ILog logger = LogManager.GetLogger(typeof (VariableTemplateItem));
 		private readonly string defaultValue;
 
 		/// <summary>

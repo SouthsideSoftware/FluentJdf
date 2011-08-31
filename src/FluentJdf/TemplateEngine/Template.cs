@@ -21,7 +21,7 @@ namespace FluentJdf.TemplateEngine
     /// </summary>
     public class Template
     {
-        static readonly ILog logger = LogManager.GetLogger(typeof(Template));
+        readonly ILog logger = LogManager.GetLogger(typeof(Template));
         private enum States { Text, Var, Val, TableName, TableTag, Comment };
 
         private readonly string name;

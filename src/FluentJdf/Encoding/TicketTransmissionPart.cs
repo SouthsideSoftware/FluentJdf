@@ -15,7 +15,7 @@ namespace FluentJdf.Encoding {
     /// A transmission part that holds a JDF ticket.
     /// </summary>
     public class TicketTransmissionPart : ITicketTransmissionPart {
-        static readonly ILog logger = LogManager.GetLogger(typeof (TicketTransmissionPart));
+        ILog logger = LogManager.GetLogger(typeof (TicketTransmissionPart));
 
         /// <summary>
         /// This constructor for use by factories.  Should not

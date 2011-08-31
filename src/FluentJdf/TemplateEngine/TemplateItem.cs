@@ -11,7 +11,7 @@ namespace FluentJdf.TemplateEngine
 	/// An item within a template.
 	/// </summary>
 	public abstract class TemplateItem {
-	    static readonly ILog logger = LogManager.GetLogger(typeof (TemplateItem));
+	    readonly ILog logger = LogManager.GetLogger(typeof (TemplateItem));
 		/// <summary>
 		/// The name of the item.
 		/// </summary>

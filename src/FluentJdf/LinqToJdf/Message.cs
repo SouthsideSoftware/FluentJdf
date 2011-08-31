@@ -19,7 +19,7 @@ namespace FluentJdf.LinqToJdf {
     /// A JMF message.
     /// </summary>
     public class Message : FluentJdfDocumentBase {
-        static readonly ILog logger = LogManager.GetLogger(typeof(Message));
+        readonly ILog logger = LogManager.GetLogger(typeof(Message));
         readonly ITransmissionPartCollection additionalParts = new TransmissionPartCollection();
         readonly ITransmitterFactory transmitterFactory = Infrastructure.Core.Configuration.Settings.ServiceLocator.Resolve<ITransmitterFactory>();
 

@@ -12,7 +12,7 @@ namespace FluentJdf.Transmission.Logging {
     /// Logs transmissions.
     /// </summary>
     public class TransmissionLogger : ITransmissionLogger {
-        static ILog logger = LogManager.GetLogger(typeof(TransmissionLogger));
+        ILog logger = LogManager.GetLogger(typeof(TransmissionLogger));
 
         readonly int InlineStreamLimit;
         readonly string StreamLogsFolder;

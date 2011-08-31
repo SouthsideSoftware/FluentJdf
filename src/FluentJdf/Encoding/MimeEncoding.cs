@@ -14,7 +14,7 @@ namespace FluentJdf.Encoding {
     /// Mime Encoder class used for multi part encoding.
     /// </summary>
     public class MimeEncoding : IEncoding {
-        static readonly ILog logger = LogManager.GetLogger(typeof(MimeEncoding));
+        readonly ILog logger = LogManager.GetLogger(typeof(MimeEncoding));
         readonly ITransmissionPartFactory transmissionPartFactory;
 
         /// <summary>

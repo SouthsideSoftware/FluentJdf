@@ -22,7 +22,7 @@ namespace FluentJdf.Transmission {
     /// </summary>
     public class FileTransmitterEncoder {
 
-        static ILog logger = LogManager.GetLogger(typeof(FileTransmitterEncoder));
+        ILog logger = LogManager.GetLogger(typeof(FileTransmitterEncoder));
 
         private List<FileTransmitterFolderInfo> folderInfo;
 

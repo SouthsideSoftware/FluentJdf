@@ -15,7 +15,7 @@ namespace FluentJdf.Encoding {
     /// A transmission part that holds a JMF message.
     /// </summary>
     public class MessageTransmissionPart : IMessageTransmissionPart {
-        static readonly ILog logger = LogManager.GetLogger(typeof (MessageTransmissionPart));
+        ILog logger = LogManager.GetLogger(typeof (MessageTransmissionPart));
 
         /// <summary>
         /// This constructor for use by factories.  Should not

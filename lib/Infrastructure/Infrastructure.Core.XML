@@ -522,6 +522,11 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
+        <member name="P:Infrastructure.Core.Logging.ILog.Name">
+            <summary>
+            Gets the name of the logger.
+            </summary>
+        </member>
         <member name="P:Infrastructure.Core.Logging.ILog.IsErrorEnabled">
             <summary>
             Gets <see langword="true"/> if error logging is enabled.
@@ -597,8 +602,22 @@
         </member>
         <member name="T:Infrastructure.Core.Logging.NullLog">
             <summary>
-            ILog implementation that does nothing.
+            ILog implementation that will log to nothing unless 
+            the global configuration changes to a specific logger in
+            which case the specific logger will be used.
             </summary>
+            <remarks>The check of the global configuration is necessary
+            to work-around case of library consumers that initalize 
+            static ILog instances using static initializers.  The
+            problem is that static initializers can be called at any time
+            unless there is a static constructor, which means the ILog
+            can be initialized before configuration takes place.</remarks>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.NullLog.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name"></param>
         </member>
         <member name="M:Infrastructure.Core.Logging.NullLog.Error(System.Object)">
             <summary>
@@ -700,6 +719,20 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
+        <member name="P:Infrastructure.Core.Logging.NullLog.RedirectedLogProvider">
+            <summary>
+            This getter deals with the case where someone initialized a static logger
+            using a static initializer, which caused it to be unexpectedly initialized
+            to the null logger before configuration was completed.  This getter checks
+            to see if configuration has changed.  If it has, it grabs the logger from 
+            the newly configured log provider so logging works as the user expects.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.NullLog.Name">
+            <summary>
+            Gets the name of the logger.
+            </summary>
+        </member>
         <member name="P:Infrastructure.Core.Logging.NullLog.IsErrorEnabled">
             <summary>
             Gets <see langword="true"/> if error logging is enabled.
@@ -744,6 +777,141 @@
             </summary>
             <param name="key"></param>
             <returns></returns>
+        </member>
+        <member name="T:Infrastructure.Core.Logging.StubLog">
+            <summary>
+            LOgs to nowhere.
+            </summary>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Error(System.Object)">
+            <summary>
+            Log a message at the error level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the error level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the error level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Fatal(System.Object)">
+            <summary>
+            Log a message at the fatal level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message and an exception at the fatal level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the fatal level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Debug(System.Object)">
+            <summary>
+            Log a message at the debug level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the debug level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the debug level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Info(System.Object)">
+            <summary>
+            Log a message at the info level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the info level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the info level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Warn(System.Object)">
+            <summary>
+            Log a message at the warning level.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message and exception at the warning level.
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Infrastructure.Core.Logging.StubLog.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Log a message using a format string at the warning level.
+            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.StubLog.Name">
+            <summary>
+            Gets the name of the logger.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.StubLog.IsErrorEnabled">
+            <summary>
+            Gets <see langword="true"/> if error logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.StubLog.IsFatalEnabled">
+            <summary>
+            Gets <see langword="true"/> if logging is enabled at the fatal level.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.StubLog.IsDebugEnabled">
+            <summary>
+            Gets <see langword="true"/> if debug level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.StubLog.IsInfoEnabled">
+            <summary>
+            Gets <see langword="true"/> if info level logging is enabled.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Logging.StubLog.IsWarnEnabled">
+            <summary>
+            Gets <see langword="true"/> if warning level logging is enabled.
+            </summary>
         </member>
         <member name="T:Infrastructure.Core.Mime.Mime">
             <summary>

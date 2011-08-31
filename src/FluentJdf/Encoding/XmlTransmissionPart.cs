@@ -13,7 +13,7 @@ namespace FluentJdf.Encoding {
     /// A transmission part for generic xml.
     /// </summary>
     public class XmlTransmissionPart : IXmlTransmissionPart {
-        static readonly ILog logger = LogManager.GetLogger(typeof (XmlTransmissionPart));
+        readonly ILog logger = LogManager.GetLogger(typeof (XmlTransmissionPart));
 
         /// <summary>
         /// This constructor for use by factories.  Should not

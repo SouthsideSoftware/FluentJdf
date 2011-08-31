@@ -19,7 +19,7 @@ namespace FluentJdf.Transmission {
     /// Transmit JDF over HTTP and collect a response.
     /// </summary>
     public class HttpTransmitter : ITransmitter {
-        static ILog logger = LogManager.GetLogger(typeof(HttpTransmitter));
+        ILog logger = LogManager.GetLogger(typeof(HttpTransmitter));
         IHttpWebRequestFactory httpWebRequestFactory;
         readonly ITransmissionLogger transmissionLogger;
 

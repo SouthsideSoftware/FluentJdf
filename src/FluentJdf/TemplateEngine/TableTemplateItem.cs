@@ -14,7 +14,7 @@ namespace FluentJdf.TemplateEngine
 	/// Contains a set of fields that may be replaced based on data from a DataTable.
 	/// </summary>
 	public class TableTemplateItem : TemplateItem {
-	    static readonly ILog logger = LogManager.GetLogger(typeof (TableTemplateItem));
+	    readonly ILog logger = LogManager.GetLogger(typeof (TableTemplateItem));
 
 	    /// <summary>
 	    /// The name of the table.

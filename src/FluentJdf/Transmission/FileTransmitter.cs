@@ -20,7 +20,7 @@ namespace FluentJdf.Transmission {
     /// </summary>
     public class FileTransmitter : ITransmitter {
 
-        static ILog logger = LogManager.GetLogger(typeof(FileTransmitter));
+        ILog logger = LogManager.GetLogger(typeof(FileTransmitter));
         readonly ITransmissionPartFactory transmissionPartFactory;
         readonly ITransmissionLogger transmissionLogger;
         readonly IEncodingFactory encodingfactory;
