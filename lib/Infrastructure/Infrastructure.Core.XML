@@ -212,7 +212,7 @@
         </member>
         <member name="P:Infrastructure.Core.Helpers.ApplicationInformation.Directory">
             <summary>
-            Gets the application directory.
+            Gets the application bin directory.
             </summary>
         </member>
         <member name="P:Infrastructure.Core.Helpers.ApplicationInformation.IsWebApplication">
@@ -240,6 +240,15 @@
             </summary>
             <param name="directory">The directory to ensure</param>
             <param name="logger">An optional logger to use to log any exceptions</param>
+        </member>
+        <member name="M:Infrastructure.Core.Helpers.DirectoryAndFileHelper.RootPathAndEnsureFolderExists(System.String,Infrastructure.Core.Logging.ILog)">
+            <summary>
+            Given a file path, creates the necessary directory.  If the file path is not rooted, 
+            it is made into a rooted path based on the application's bin directory.
+            </summary>
+            <param name="filePath"></param>
+            <param name="logger"></param>
+            <returns></returns>
         </member>
         <member name="M:Infrastructure.Core.Helpers.DirectoryAndFileHelper.SaveStreamToFile(System.IO.Stream,System.String,System.Boolean,Infrastructure.Core.Logging.ILog)">
             <summary>
@@ -2804,6 +2813,11 @@
         <member name="P:Infrastructure.Core.Resources.Messages.DirectoryAndFileHelper_ErrorCreatingDirectory">
             <summary>
               Looks up a localized string similar to Error Creating Directory: &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Infrastructure.Core.Resources.Messages.DirectoryAndFileHelper_RootPathAndEnsureFolderExists_ErrorCreatingDirectory">
+            <summary>
+              Looks up a localized string similar to Failed trying to root path and ensure that the folder exists for file path {0}.
             </summary>
         </member>
         <member name="P:Infrastructure.Core.Resources.Messages.DirectoryAndFileHelper_SaveStreamToFile_CouldNotDeleteExistingFile">
