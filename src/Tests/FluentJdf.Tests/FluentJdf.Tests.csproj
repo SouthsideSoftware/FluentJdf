@@ -95,10 +95,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
+      <HintPath>..\..\..\packages\Castle.Core.3.0.0.2001\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\..\..\packages\Castle.Windsor.2.5.3\lib\NET40\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\..\packages\Castle.Windsor.3.0.0.2001\lib\net40\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="ExpectedObjects, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -139,7 +139,9 @@
       <HintPath>..\..\..\packages\RhinoMocks.3.6\lib\Rhino.Mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -392,6 +394,7 @@
     <None Include="fluentjdf.snk" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>

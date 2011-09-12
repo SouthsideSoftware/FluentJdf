@@ -21,20 +21,20 @@
     <summary>JDF Client Library for .NET (Debug)</summary>
     <dependencies>
       <dependency id="NLog" version="2.0.0.2000" />
-      <dependency id="Castle.Core" version="2.5.2" />
-      <dependency id="Castle.Windsor" version="2.5.3" />
+      <dependency id="Castle.Core" version="3.0.0.2001" />
+      <dependency id="Castle.Windsor" version="3.0.0.2001" />
     </dependencies>
     <tags>jdf fluent</tags>
   </metadata>
   <files>
-    <file src="BuildOutput\bin\FluentJdf.dll" target="lib" />
-    <file src="BuildOutput\bin\FluentJdf.xml" target="lib" />
-    <file src="BuildOutput\bin\Infrastructure.Core.dll" target="lib" />
-    <file src="BuildOutput\bin\Infrastructure.Core.xml" target="lib" />
-    <file src="BuildOutput\bin\Infrastructure.Container.CastleWindsor.dll" target="lib" />
-    <file src="BuildOutput\bin\Infrastructure.Container.CastleWindsor.xml" target="lib" />
-    <file src="BuildOutput\bin\Infrastructure.Logging.NLog.dll" target="lib" />
-    <file src="BuildOutput\bin\Infrastructure.Logging.NLog.xml" target="lib" />
+    <file src="BuildOutput\bin\FluentJdf.dll" target="lib\net40-full" />
+    <file src="BuildOutput\bin\FluentJdf.xml" target="lib\net40-full" />
+    <file src="BuildOutput\bin\Infrastructure.Core.dll" target="lib\net40-full" />
+    <file src="BuildOutput\bin\Infrastructure.Core.xml" target="lib\net40-full" />
+    <file src="BuildOutput\bin\Infrastructure.Container.CastleWindsor.dll" target="lib\net40-full" />
+    <file src="BuildOutput\bin\Infrastructure.Container.CastleWindsor.xml" target="lib\net40-full" />
+    <file src="BuildOutput\bin\Infrastructure.Logging.NLog.dll" target="lib\net40-full" />
+    <file src="BuildOutput\bin\Infrastructure.Logging.NLog.xml" target="lib\net40-full" />
     <file src="BuildOutput\bin\Castle.Core.dll" target="tools" />
     <file src="BuildOutput\bin\Castle.Windsor.dll" target="tools" />
     <file src="BuildOutput\bin\NLog.dll" target="tools" />

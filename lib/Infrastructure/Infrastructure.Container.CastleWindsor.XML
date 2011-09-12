@@ -108,20 +108,12 @@
             A transient that is not tracked by the castle windsor container.
             </summary>
         </member>
-        <member name="M:Infrastructure.Container.CastleWindsor.NonTrackedTransientLifestyle.Init(Castle.MicroKernel.IComponentActivator,Castle.MicroKernel.IKernel,Castle.Core.ComponentModel)">
+        <member name="M:Infrastructure.Container.CastleWindsor.NonTrackedTransientLifestyle.Dispose">
             <summary>
-            Initalize the activator.
+            Invoked when the container gets disposed. The container will not call it multiple times in multithreaded environments.
+                          However it may be called at the same time when some out of band release mechanism is in progress. Resolving those potential
+                          issues is the task of implementors
             </summary>
-            <param name="componentActivator"></param>
-            <param name="kernel"></param>
-            <param name="model"></param>
-        </member>
-        <member name="M:Infrastructure.Container.CastleWindsor.NonTrackedTransientLifestyle.Resolve(Castle.MicroKernel.Context.CreationContext)">
-            <summary>
-            Resolve.
-            </summary>
-            <param name="context"></param>
-            <returns></returns>
         </member>
         <member name="M:Infrastructure.Container.CastleWindsor.NonTrackedTransientLifestyle.Release(System.Object)">
             <summary>
@@ -129,11 +121,6 @@
             </summary>
             <param name="instance"></param>
             <returns></returns>
-        </member>
-        <member name="M:Infrastructure.Container.CastleWindsor.NonTrackedTransientLifestyle.Dispose">
-            <summary>
-            Dispose.
-            </summary>
         </member>
         <member name="T:Infrastructure.Container.CastleWindsor.WindsorServiceLocator">
             <summary>
